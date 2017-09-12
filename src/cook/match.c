@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1991-1994, 1997-1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1991-1994, 1997-1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -43,7 +42,7 @@
 void
 match_delete(match_ty *this)
 {
-    trace(("match_delete(this = %08X)\n{\n", this));
+    trace(("match_delete(this = %p)\n{\n", this));
     if (this->vptr->destructor)
         this->vptr->destructor(this);
     mem_free(this);
@@ -91,8 +90,7 @@ match_compile(match_ty *this, string_ty *formal, const expr_position_ty *pp)
 {
     int             result;
 
-    trace(("match_compile(this = %08lX, formal = %08lX)\n{\n", (long)this,
-        (long)formal));
+    trace(("match_compile(this = %p, formal = %p)\n{\n", this, formal));
     trace_string(formal->str_text);
     result = this->vptr->compile(this, formal, pp);
     trace(("return %d;\n", result));
@@ -106,8 +104,7 @@ match_execute(match_ty *this, string_ty *actual, const expr_position_ty *pp)
 {
     int             result;
 
-    trace(("match_execute(this = %08lX, actual = %08lX)\n{\n", (long)this,
-        (long)actual));
+    trace(("match_execute(this = %p, actual = %p)\n{\n", this, actual));
     trace_string(actual->str_text);
     result = this->vptr->execute(this, actual, pp);
     trace(("return %d;\n", result));
@@ -138,9 +135,9 @@ match_reconstruct_lhs(const match_ty *this, string_ty *pattern,
 {
     string_ty       *result;
 
-    trace(("reconstruct(this = %08lX, pattern = %08X)\n{\n", this, pattern));
+    trace(("reconstruct(this = %p, pattern = %p)\n{\n", this, pattern));
     result = this->vptr->reconstruct_lhs(this, pattern, pp);
-    trace(("return %08lX;\n", result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -152,9 +149,9 @@ match_reconstruct_rhs(const match_ty *this, string_ty *pattern,
 {
     string_ty       *result;
 
-    trace(("reconstruct(this = %08lX, pattern = %08X)\n{\n", this, pattern));
+    trace(("reconstruct(this = %p, pattern = %p)\n{\n", this, pattern));
     result = this->vptr->reconstruct_rhs(this, pattern, pp);
-    trace(("return %08lX;\n", result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -106,12 +105,12 @@ input_crlf(input_ty *fp, int delete_on_close)
     input_ty        *result;
     input_crlf_ty   *this;
 
-    trace(("input_crlf(fp = %08lX)\n{\n", (long)fp));
+    trace(("input_crlf(fp = %p)\n{\n", fp));
     result = input_new(&vtbl);
     this = (input_crlf_ty *) result;
     this->fp = fp;
     this->delete_on_close = delete_on_close;
-    trace(("return %08lX\n", (long)result));
+    trace(("return %p\n", result));
     trace(("}\n"));
     return result;
 }

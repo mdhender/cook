@@ -1,6 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993-2007 Peter Miller
+ *      Copyright (C) 1993-2008 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -76,6 +76,7 @@
 #include <cook/builtin/stringset.h>
 #include <cook/builtin/strip.h>
 #include <cook/builtin/stripdot.h>
+#include <cook/builtin/strlen.h>
 #include <cook/builtin/subst.h>
 #include <cook/builtin/substr.h>
 #include <cook/builtin/suffix.h>
@@ -172,6 +173,7 @@ static builtin_ty *func[] = {
     &builtin_stringset,
     &builtin_strip,
     &builtin_stripdot,
+    &builtin_strlen,
     &builtin_subst,
     &builtin_substitute,
     &builtin_substr,

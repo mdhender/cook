@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1996, 1997, 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1996, 1997, 1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -20,7 +19,6 @@
  * Derived from code marked
  *      derived from RSADSI MD5 Message-Digest Algorithm
  *      Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991.
- *      All rights reserved.
  *
  *      License to copy and use this software is granted provided that it
  *      is identified as the "RSA Data Security, Inc. MD5 Message-Digest
@@ -447,6 +445,11 @@ md5_sum(fingerprint_ty *p, char *obuf, size_t obuf_len)
         cp += strlen(cp);
     }
     *cp = 0;
+
+#ifdef DEBUG
+    /* silence gcc warning */
+    (void)trace_pretest_result;
+#endif
 }
 
 

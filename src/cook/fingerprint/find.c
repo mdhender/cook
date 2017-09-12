@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -129,7 +128,7 @@ fp_find_subdir(string_ty *dirname, int ok_to_read)
         fp_subdir_read(sdp);
     }
 
-    trace(("return %08lX;\n", (long)sdp));
+    trace(("return %p;\n", sdp));
     trace(("}\n"));
     return sdp;
 }
@@ -214,7 +213,7 @@ fp_find_record(string_ty *path_a)
     }
 
     str_free(path_r);
-    trace(("return %08lX;\n", (long)p));
+    trace(("return %p;\n", p));
     trace(("}\n"));
     return p;
 }
@@ -243,8 +242,8 @@ fp_find_update(fp_subdir_ty *sdp, string_ty *file, fp_value_ty *fp)
     /*
      * build the actual filename
      */
-    trace(("fp_find_update(sdp = %08lX, file = \"%s\", fp = %08lX)\n{\n",
-            (long)sdp, file->str_text, (long)fp));
+    trace(("fp_find_update(sdp = %p, file = \"%s\", fp = %p)\n{\n", sdp,
+        file->str_text, fp));
     filename = os_path_cat(sdp->path, file);
 
     /*

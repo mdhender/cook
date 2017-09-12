@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993-2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1993-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -53,7 +52,7 @@
  *     to define the RF_ values (RF stands for Recipe Flag)
  * cook/flag.c
  *     to define the RF_ names
- * langu.flags.so
+ * lib/en/user-guide/langu.flags.so
  *     to document the recipe flag
  *
  * If you choose to make it a command line option,
@@ -501,6 +500,9 @@ option_number_name(option_number_ty o)
 
     case OPTION_ERROK:
         return "OPTION_ERROK";
+
+    case OPTION_FILE_SIZE_STATISTICS:
+        return "OPTION_FILE_SIZE_STATISTICS";
 
     case OPTION_FINGERPRINT:
         return "OPTION_FINGERPRINT";

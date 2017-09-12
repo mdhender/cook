@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -60,7 +59,7 @@ destructor(stmt_ty *sp)
 {
     stmt_if_ty      *this;
 
-    trace(("stmt_if::destructor(sp = %08X)\n{\n", sp));
+    trace(("stmt_if::destructor(sp = %p)\n{\n", sp));
     assert(sp);
     /* assert(sp->method == &method); */
     this = (stmt_if_ty *)sp;
@@ -96,7 +95,7 @@ code_generate(stmt_ty *sp, opcode_list_ty *olp)
     stmt_result_ty  status;
     opcode_label_ty *t1;
 
-    trace(("stmt_if::code_generate(sp = %08X)\n{\n", sp));
+    trace(("stmt_if::code_generate(sp = %p)\n{\n", sp));
     assert(sp);
     this = (stmt_if_ty *)sp;
 
@@ -183,7 +182,7 @@ stmt_if_new(expr_ty *condition, stmt_ty *then_clause, stmt_ty *else_clause)
     this->then_clause = stmt_copy(then_clause);
     this->else_clause = (else_clause ? stmt_copy(else_clause) : (stmt_ty *)0);
 
-    trace(("return %8.8lX;\n", (long)sp));
+    trace(("return %p;\n", sp));
     trace(("}\n"));
     return sp;
 }

@@ -1,8 +1,7 @@
 #!/bin/sh
 #
 #       cook - file construction tool
-#       Copyright (C) 1994, 1996, 1997, 2002, 2007 Peter Miller;
-#       All rights reserved.
+#       Copyright (C) 1994, 1996, 1997, 2002, 2007-2010 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -20,16 +19,14 @@
 #
 sortflag=
 if test "$1" = "-r"; then
-        sortflag=r
-        shift
+    sortflag="-r"
+    shift
 fi
 echo $* |
 tr ' ' '\12' |
-sort -t. +1n$sortflag -2 +2n$sortflag -3 +3n$sortflag -5 |
+sort -V $sortflag |
 while read f
 do
-        echo ".br"
-        echo ".ne 3i"
-        echo ".so $f"
+    echo ".so $f"
 done
 exit 0

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1990-1994, 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1990-1994, 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -59,7 +58,7 @@ stmt_private_new(stmt_method_ty *mp)
     sp = mem_alloc(mp->size);
     sp->method = mp;
     sp->s_references = 1;
-    trace(("return %08lX;\n", sp));
+    trace(("return %p;\n", sp));
     trace(("}\n"));
     return sp;
 }
@@ -86,11 +85,11 @@ stmt_private_new(stmt_method_ty *mp)
 stmt_ty *
 stmt_copy(stmt_ty *sp)
 {
-    trace(("stmt_copy(sp = %08X)\n{\n", sp));
+    trace(("stmt_copy(sp = %p)\n{\n", sp));
     assert(sp);
     assert(sp->s_references > 0);
     sp->s_references++;
-    trace(("return %08X;\n", sp));
+    trace(("return %p;\n", sp));
     trace(("}\n"));
     return sp;
 }
@@ -113,7 +112,7 @@ stmt_copy(stmt_ty *sp)
 void
 stmt_delete(stmt_ty *sp)
 {
-    trace(("stmt_delete(sp = %08X)\n{\n", sp));
+    trace(("stmt_delete(sp = %p)\n{\n", sp));
     assert(sp);
     assert(sp->s_references > 0);
     sp->s_references--;
@@ -154,7 +153,7 @@ stmt_evaluate(stmt_ty *sp, const match_ty *mp)
     stmt_result_ty  status;
     opcode_list_ty  *olp;
 
-    trace(("stmt_evaluate(sp = %08X)\n{\n", sp));
+    trace(("stmt_evaluate(sp = %p)\n{\n", sp));
     assert(sp);
     olp = stmt_compile(sp);
     if (olp)
@@ -200,7 +199,7 @@ stmt_compile(stmt_ty *sp)
     opcode_list_ty  *olp;
     stmt_result_ty  status;
 
-    trace(("stmt_compile(sp = %08X)\n{\n", sp));
+    trace(("stmt_compile(sp = %p)\n{\n", sp));
     assert(sp);
     olp = opcode_list_new();
     status = stmt_code_generate(sp, olp);
@@ -218,7 +217,7 @@ stmt_compile(stmt_ty *sp)
         if (option_test(OPTION_DISASSEMBLE))
             opcode_list_disassemble(olp);
     }
-    trace(("return %08lX;\n", (long)olp));
+    trace(("return %p;\n", olp));
     trace(("}\n"));
     return olp;
 }
@@ -241,8 +240,7 @@ stmt_code_generate(stmt_ty *sp, struct opcode_list_ty *olp)
 {
     stmt_result_ty  status;
 
-    trace(("stmt_code_generate(sp = %08lX, olp = %08lX)\n{\n",
-            (long)sp, (long)olp));
+    trace(("stmt_code_generate(sp = %p, olp = %p)\n{\n", sp, olp));
     assert(sp);
     assert(sp->method);
     assert(sp->method->code_generate);

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -291,8 +290,7 @@ sub_diversion(sub_context_ty *scp, wstring_ty *s, int resubstitute)
 {
     diversion_ty    *dp;
 
-    trace(("sub_diversion(s = %8.8lX, resub = %d)\n{\n", (long)s,
-        resubstitute));
+    trace(("sub_diversion(s = %p, resub = %d)\n{\n", s, resubstitute));
     dp = (diversion_ty *) mem_alloc(sizeof(diversion_ty));
     dp->text = wstr_copy(s);
     dp->pos = 0;
@@ -355,7 +353,7 @@ execute(sub_context_ty *scp, wstring_list_ty *arg)
     table_ty        *tp;
     size_t          j;
 
-    trace(("execute(scp = %08lX, arg = %08lX)\n{\n", (long)scp, (long)arg));
+    trace(("execute(scp = %p, arg = %p)\n{\n", scp, arg));
     if (arg->nitems == 0)
     {
         sub_context_ty  *scp2;
@@ -375,7 +373,7 @@ execute(sub_context_ty *scp, wstring_list_ty *arg)
     for (j = 0; j < scp->sub_var_pos; ++j)
     {
         tp = &scp->sub_var_list[j];
-        trace(("tp = %08lX\n", (long)tp));
+        trace(("tp = %p\n", tp));
         trace_string(tp->name);
         if (arglex_compare(tp->name, cmd->str_text))
         {
@@ -950,7 +948,7 @@ subst(sub_context_ty *scp, wstring_ty *s)
     table_ty        *the_end;
     int             error_count;
 
-    trace(("subst(scp = %08lX, s = %8.8lX)\n{\n", (long)scp, (long)s));
+    trace(("subst(scp = %p, s = %p)\n{\n", scp, s));
     collect_constructor(&buf);
     sub_diversion(scp, s, 1);
     for (;;)
@@ -1059,7 +1057,7 @@ subst(sub_context_ty *scp, wstring_ty *s)
     sub_var_clear(scp);
     result = collect_end(&buf);
     collect_destructor(&buf);
-    trace(("return %8.8lX;\n", (long)result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -1072,7 +1070,7 @@ subst_intl_wide(sub_context_ty *scp, const char *msg)
     wstring_ty      *s;
     wstring_ty      *result;
 
-    trace(("subst_intl_wide(scp = %08lX, msg = \"%s\")\n{\n", (long)scp, msg));
+    trace(("subst_intl_wide(scp = %p, msg = \"%s\")\n{\n", scp, msg));
     language_human();
     tmp = gettext(msg);
     language_C();
@@ -1085,7 +1083,7 @@ subst_intl_wide(sub_context_ty *scp, const char *msg)
     s = wstr_from_c(tmp);
     result = subst(scp, s);
     wstr_free(s);
-    trace(("return %8.8lX;\n", (long)result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -1097,7 +1095,7 @@ subst_intl(sub_context_ty *scp, const char *s)
     wstring_ty      *result_wide;
     string_ty       *result;
 
-    trace(("subst_intl(scp = %08lX, s = \"%s\")\n{\n", (long)scp, s));
+    trace(("subst_intl(scp = %p, s = \"%s\")\n{\n", scp, s));
     result_wide = subst_intl_wide(scp, s);
     result = wstr_to_str(result_wide);
     wstr_free(result_wide);
@@ -1138,7 +1136,7 @@ substitute(sub_context_ty *scp, string_ty *s)
     string_ty       *result;
 
     assert(s);
-    trace(("substitute(scp = %08lX, s = \"%s\")\n{\n", (long)scp, s->str_text));
+    trace(("substitute(scp = %p, s = \"%s\")\n{\n", scp, s->str_text));
     ws = str_to_wstr(s);
     result_wide = subst(scp, ws);
     wstr_free(ws);
@@ -1208,7 +1206,7 @@ sub_var_set(sub_context_ty *scp, const char *name, const char *fmt, ...)
     va_list         ap;
     string_ty       *s;
 
-    trace(("sub_var_set(scp = %08lX, name = \"%s\")\n{\n", (long)scp, name));
+    trace(("sub_var_set(scp = %p, name = \"%s\")\n{\n", scp, name));
     va_start(ap, fmt);
     s = str_vformat(fmt, ap);
     va_end(ap);
@@ -1223,8 +1221,8 @@ sub_var_set_string(sub_context_ty *scp, const char *name, string_ty *value)
 {
     table_ty        *svp;
 
-    trace(("sub_var_set_string(scp = %08lX, name = \"%s\", value = \"%s\")\n"
-        "{\n", (long)scp, name->str_text, value->str_text));
+    trace(("sub_var_set_string(scp = %p, name = \"%s\", value = \"%s\")\n"
+        "{\n", scp, name, value->str_text));
 
     if (scp->sub_var_pos >= scp->sub_var_size)
     {
@@ -1251,8 +1249,8 @@ sub_var_set_charstar(sub_context_ty *scp, const char *name, const char *value)
 {
     string_ty       *s;
 
-    trace(("sub_var_set_charstar(scp = %08lX, name = \"%s\", value = \"%s\")\n"
-        "{\n", (long)scp, name, value));
+    trace(("sub_var_set_charstar(scp = %p, name = \"%s\", value = \"%s\")\n{\n",
+        scp, name, value));
     s = str_from_c(value);
     sub_var_set_string(scp, name, s);
     str_free(s);
@@ -1263,8 +1261,8 @@ sub_var_set_charstar(sub_context_ty *scp, const char *name, const char *value)
 void
 sub_var_set_long(sub_context_ty *scp, const char *name, long value)
 {
-    trace(("sub_var_set_long(scp = %08lX, name = \"%s\", value = %ld)\n"
-        "{\n", (long)scp, name, value));
+    trace(("sub_var_set_long(scp = %p, name = \"%s\", value = %ld)\n{\n", scp,
+        name, value));
     sub_var_set(scp, name, "%ld", value);
     trace(("}\n"));
 }

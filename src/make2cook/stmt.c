@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -28,7 +27,7 @@ stmt_alloc(stmt_method_ty *mp)
 {
     stmt_ty         *result;
 
-    trace(("stmt_alloc(mp = %08lX)\n{\n", (long)mp));
+    trace(("stmt_alloc(mp = %p)\n{\n", mp));
     result = mem_alloc(mp->size);
     result->method = mp;
     result->white_space = 0;
@@ -38,7 +37,7 @@ stmt_alloc(stmt_method_ty *mp)
     string_list_constructor(&result->rref);
     if (mp->constructor)
         mp->constructor(result);
-    trace(("return %08lX;\n", (long)result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -47,7 +46,7 @@ stmt_alloc(stmt_method_ty *mp)
 void
 stmt_emit(stmt_ty *sp)
 {
-    trace(("stmt_emit(sp = %08lX)\n{\n", (long)sp));
+    trace(("stmt_emit(sp = %p)\n{\n", sp));
     if (sp->method->emit)
         sp->method->emit(sp);
     trace(("}\n"));
@@ -57,7 +56,7 @@ stmt_emit(stmt_ty *sp)
 void
 stmt_free(stmt_ty *sp)
 {
-    trace(("stmt_free(sp = %08lX)\n{\n", (long)sp));
+    trace(("stmt_free(sp = %p)\n{\n", sp));
     if (sp->method->destructor)
         sp->method->destructor(sp);
     string_list_destructor(&sp->mdef);
@@ -88,7 +87,7 @@ stmt_variable_merge(stmt_ty *parent, stmt_ty *child)
 void
 stmt_regroup(stmt_ty *sp)
 {
-    trace(("stmt_regroup(sp = %08lX)\n{\n", (long)sp));
+    trace(("stmt_regroup(sp = %p)\n{\n", sp));
     if (sp->method->regroup)
         sp->method->regroup(sp);
     trace(("}\n"));
@@ -98,7 +97,7 @@ stmt_regroup(stmt_ty *sp)
 void
 stmt_sort(stmt_ty *sp)
 {
-    trace(("stmt_sort(sp = %08lX)\n{\n", (long)sp));
+    trace(("stmt_sort(sp = %p)\n{\n", sp));
     if (sp->method->sort)
         sp->method->sort(sp);
     trace(("}\n"));

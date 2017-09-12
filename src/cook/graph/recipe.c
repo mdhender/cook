@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1999, 2000, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1999, 2000, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -74,7 +73,7 @@ graph_recipe_new(recipe_ty *rp)
     grp->single_thread = 0;
     grp->host_binding = 0;
     grp->multi_forced = 0;
-    trace(("return %08lX;\n", (long)grp));
+    trace(("return %p;\n", grp));
     trace(("}\n"));
     return grp;
 }
@@ -95,7 +94,7 @@ graph_recipe_new(recipe_ty *rp)
 void
 graph_recipe_delete(graph_recipe_ty *grp)
 {
-    trace(("graph_recipe_delete(grp = %08lX)\n{\n", (long)grp));
+    trace(("graph_recipe_delete(grp = %p)\n{\n", grp));
     assert(grp->reference_count > 0);
     grp->reference_count--;
     if (grp->reference_count > 0)

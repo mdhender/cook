@@ -1,8 +1,7 @@
 #!/bin/sh
 #
 #       cook - file construction tool
-#       Copyright (C) 1993-1997, 1999, 2001, 2003, 2004, 2007 Peter Miller;
-#       All rights reserved.
+#       Copyright (C) 1993-1997, 1999, 2001, 2003, 2004, 2007-2010 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -25,8 +24,8 @@ echo "Version: ${version}"
 echo 'Release: 1'
 echo 'Copyright: GPL'
 echo 'Group: Development/Building'
-echo "Source: http://www.canb.auug.org.au/~millerp/cook/cook-${version}.tar.gz"
-echo 'URL: http://www.canb.auug.org.au/~millerp/cook/'
+echo "Source: http://miller.emu.id.au/pmiller/cook/cook-${version}.tar.gz"
+echo 'URL: http://miller.emu.id.au/pmiller/cook/'
 echo 'BuildRoot: /tmp/cook-build-root'
 echo 'Icon: cook-${version}/cook.png'
 echo 'Provides: perl(host_lists.pl)'
@@ -143,8 +142,6 @@ do
         test/*/*)
                 ;;
         lib/*/building/*)
-                ;;
-        lib/*/lsm/*)
                 ;;
         lib/*/readme/*)
                 ;;

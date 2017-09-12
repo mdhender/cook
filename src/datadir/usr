@@ -1,0 +1,20 @@
+/*
+ * NAME
+ *      usr - define installation locations
+ *
+ * DESCRIPTION
+ *      This cookbook defined where certain directoris are,
+ *      relative to /usr.
+ *
+ * VARIABLES
+ *      bin             directory to place program binaries into
+ *      include         directory to place include files into
+ *      lib             directory to place libraries into
+ * Copyright (C) 1997-2007, 2010 Peter Miller
+ */
+
+#pragma once
+
+bin = /usr/bin;
+include = /usr/include;
+lib = /usr/lib;

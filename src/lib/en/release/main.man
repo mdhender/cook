@@ -1,7 +1,6 @@
 '\" t
 .\"     cook - file construction tool
-.\"     Copyright (C) 1997-1999, 2004, 2007 Peter Miller;
-.\"     All rights reserved.
+.\"     Copyright (C) 1997-1999, 2004, 2007-2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -21,11 +20,11 @@
 .if n .ftr CI I
 .if n .ftr CW R
 .if n .ftr C  R
-.so ../man1/z_name.so
+.so lib/en/man1/z_name.so
 .TH Release "\*(N)" "\*(N)" "Release Notes"
 .ad l
 .hy 0
-.so version.so
+.so etc/version.so
 .de e(
 .RS
 .ft CW
@@ -83,125 +82,29 @@ into the xterm session.
 .SH UPLOAD TO THE ARCHIVES
 There are two archives to upload to.
 .SS Update Primary Archive
-Transfer a copy to \f(CWhttp://www.canb.auug.org.au/~millerp/\fP by FTP.
-Login as \f(CWmillerp\fP and change to the \f[CW]WWW/cook\fP directory
-(this corresponds to the \f[CW]/~millerp/cook/\fP directory for WWW clients).
-.e(
-% \f(CBaecd -bl archive\fP
-% \f(CBftp ftp.canb.auug.org.au\fP
-user: \f(CBmillerp\fP
-ftp> \f(CBbinary\fP
-ftp> \f(CBcd WWW/cook\fP
-ftp>
-.e)
-Delete the old version of \*(N),
-to keep the space to a minimum.
-.e(
-ftp> \f(CBprompt\fP
-ftp> \f(CBmdelete \*(n)*\fP
-ftp>
-.e)
-Transfer the new version
-.e(
-ftp> \f(CBmput \*(n)*\fP
-ftp> \f(CBquit\fP
-%
-.e)
-.br
-.ne 2i
-.SS Update Linux Archive
-Transfer a copy to \f(CWmetalab.unc.edu\fP by FTP.
-.PP
-First check
-\f(CWftp://metalab.unc.edu/pub/Linux/HOW.TO.SUBMIT\fP
-and
-\f(CWftp://metalab.unc.edu/pub/Linux/LSM-TEMPLATE\fP
-to see if anything has changed.
-.PP
-Login as \f(CWanonymous\fP and change to the
-\f(CW/incoming/Linux\fP directory.
-Use the following commands
-.e(
-% \f(CBaecd -bl archive\fP
-% \f(CBftp metalab.unc.edu\fP
-user: \f(CBanonymous\fP
-ftp> \f(CBcd /incoming/linux\fP
-ftp> \f(CBbinary\fP
-ftp> \f(CBprompt\fP
-ftp> \f(CBmput \*(n)-*\fP
-ftp> \f(CBquit\fP
-%
-.e)
-.PP
-The incoming directory is scanned, and the files placed into the archive
-automatically.  There is no need to send email to the archive maintainer.
+Transfer a copy to \f[CW]http://miller.emu.id.au/pmiller/\fP by rsync.
 .SH NOTIFICATIONS
 A couple of mailing lists and newsgroups need to be notified.
 .SS Notify Mailing Lists
-Send a notification to the \fI\*(n)-users@canb.auug.org.au\fP and
-\fIaegis-users@canb.auug.org.au\fP
+Send a notification to the \f[I]cook-users@lists.auug.org.au\fP and
+\f[I]aegis-users@lists.auug.org.au\fP
 lists.  It should look like this:
 .e(
 .fi
 To:
 'in +8n
-aegis-users@canb.auug.org.au,
-cook-users@canb.auug.org.au
+aegis-users@lists.auug.org.au,
+cook-users@lists.auug.org.au
 .in -8n
-.so body.so
+.so lib/en/release/body.so
 .e)
 .PP
-Only send this notification \fIafter\fP the files are actually available
-at the archive site.
-.SS Notify Newsgroups
-Send a notification to the newsgroups can also be notified by email,
-which tends to work best as not all newsgroups are sufficiently available
-elsewhere.  It should look like this:
-.e(
-.fi
-To: mail2news@replay.com
-.br
-Newsgroups:
-'in +8n
-alt.sources.d,
-comp.software-eng,
-comp.software.config-mgmt,
-comp.sources.d,
-gnu.announce
-.in -8n
-.so body.so
-.e)
-.PP
-Only send this notification \fIafter\fP the files are actually available
+Only send this notification \f[I]after\fP the files are actually available
 at the archive site.
 .br
 .ne 2i
-.SS Update Mailing List Info
-Update the \*(n)-users list info, by sending email
-.e(
-To: majordomo@canb.auug.org.au
-
-newinfo \*(n)-users \fIpassword
-
-attach the \f(CIREADME\fI file here
-.e)
-.br
-.ne 2i
-.SS Notify Linux Announce
-Send a notification to the comp.os.linux.announce list.
-It should look like this:
-.e(
-.fi
-To: linux-announce@news.ornl.gov
-.so body.so
-.e)
-.PP
-Only send this notification \fIafter\fP the files are actually available
-at the archive site.
-.br
-.ne 2i
-.SS Update Slash Dot
+.SS Update FreshMeat
 Go to \f[CW]http://www.freshmeat.net/\fP and update the info for Cook.
 .br
 .ne 2i
-.so ../man1/copyright.so
+.so lib/en/man1/copyright.so

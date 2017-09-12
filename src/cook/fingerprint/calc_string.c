@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 2001, 2005-2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 2001, 2005-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -44,7 +43,7 @@ fp_fingerprint_string(string_ty *value)
     char            buffer[1000];
     fingerprint_ty  *fp;
 
-    trace(("fp_fingerprint_string(value = 08lX)\n{\n", (long)value));
+    trace(("fp_fingerprint_string(value = %p)\n{\n", value));
     fp = fingerprint_new(&fp_combined);
     fingerprint_addn(fp, (unsigned char *)value->str_text, value->str_length);
     fingerprint_sum(fp, buffer, sizeof(buffer));

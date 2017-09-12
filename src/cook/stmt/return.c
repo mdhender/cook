@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1998, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1998, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -89,7 +88,7 @@ code_generate(stmt_ty *sp, opcode_list_ty *olp)
      * opcode first.  We want to put it on the returnee's list, not
      * our own.
      */
-    trace(("stmt_return::code_generate(sp = %08X)\n{\n", sp));
+    trace(("stmt_return::code_generate(sp = %p)\n{\n", sp));
     assert(sp);
     this = (stmt_return_ty *)sp;
     expr_list_code_generate(&this->text, olp);
@@ -170,7 +169,7 @@ stmt_return_new(expr_list_ty *arg, expr_position_ty *pp)
     if (!pos)
         pos = pp;
     expr_position_copy_constructor(&this->pos, pos);
-    trace(("return %8.8lX;\n", (long)sp));
+    trace(("return %p;\n", sp));
     trace(("}\n"));
     return sp;
 }

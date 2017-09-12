@@ -1,0 +1,37 @@
+/*
+ * NAME
+ *      print - print files
+ *
+ * DESCRIPTION
+ *      This cookbook is used to print files.
+ *      It will almost certainly need to be changed for every site.
+ *
+ * RECIPES
+ *      %.lw: %.ps      print a PostScript file
+ *      %.lp: %         print a text file
+ *
+ * VARIABLES
+ *      lp              The print command.
+ *                      Not altered if already defined.
+ *      lp_flags        OPtions passed to the print command.
+ *                      Not altered if already defined.
+ *                      Defaults to empty.
+ * Copyright (C) 1997-2007, 2010 Peter Miller
+ */
+
+#pragma once
+
+if [not [defined lp]] then
+        lp = lp;
+if [not [defined lp_flags]] then
+        lp_flags = ;
+
+%.lw: %.ps
+{
+        [lp] [lp_flags] -dlaser %.ps;
+}
+
+%.lp: %
+{
+        [lp] [lp_flags] %;
+}

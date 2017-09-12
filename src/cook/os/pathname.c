@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -519,7 +518,7 @@ os_pathname(string_ty *path)
     /*
      * Change relative pathnames to absolute
      */
-    trace(("os_pathname(path = %08lX)\n{\n", path));
+    trace(("os_pathname(path = %p)\n{\n", path));
     if (!path)
         path = os_curdir();
     trace_string(path->str_text);

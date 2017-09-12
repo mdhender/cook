@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1998, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1998, 2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -118,7 +117,7 @@ cascade_find_inner(string_ty *name)
         result = cascade_list_new();
         symtab_assign(stp, name, result);
     }
-    trace(("return %08lX;\n", (long)result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }

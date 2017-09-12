@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -82,7 +81,7 @@ interpret(id_ty *idp, opcode_context_ty *ocp, const expr_position_ty *pp)
     /*
      * fetch the input arguments
      */
-    trace(("id_builtin::interpret(idp = %08lX)\n{\n", (long)idp));
+    trace(("id_builtin::interpret(idp = %p)\n{\n", idp));
     this = (id_builtin_ty *) idp;
     input = opcode_context_string_list_pop(ocp);
 
@@ -136,7 +135,7 @@ script(id_ty *idp, opcode_context_ty *ocp, const expr_position_ty *pp)
     /*
      * fetch the input arguments
      */
-    trace(("id_builtin::script(idp = %08lX)\n{\n", (long)idp));
+    trace(("id_builtin::script(idp = %p)\n{\n", idp));
     this = (id_builtin_ty *)idp;
     input = opcode_context_string_list_pop(ocp);
 
@@ -212,7 +211,7 @@ id_builtin_new(builtin_ty *bp)
     idp = id_instance_new(&method);
     this = (id_builtin_ty *) idp;
     this->value = bp;
-    trace(("return %08lX;\n", (long)idp));
+    trace(("return %p;\n", idp));
     trace(("}\n"));
     return idp;
 }

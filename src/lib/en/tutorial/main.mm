@@ -2,7 +2,7 @@
 .\"     cook - file construction tool
 .\"     Copyright (C) 2002 Aryeh M. Friedman
 .\"     Groff formatting general editorial work
-.\"     Copyright (C) 2002, 2003, 2007 Peter Miller
+.\"     Copyright (C) 2002, 2003, 2007, 2009, 2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -26,8 +26,8 @@
 .if t .ds HP 16 14 12 12 10 10 10 10 10 10
 .PH "''''"
 .PF "''''"
-.so libdir.so \"from the etc directory, by configure
-.so version.so \"from the etc directory
+.so etc/libdir.so
+.so etc/version.so
 .\" stuff for figuring dates
 .\"
 .ds MONTH1 January
@@ -448,7 +448,7 @@ By default cook looks for the cookbook in "Howto.cook" [note 1].
 .H 1 "A Sample Project"
 For the remainder of the tutorial we will be using the following
 sample project source tree:
-.so fig1.so
+.so lib/en/tutorial/fig1.so
 .P
 The final output of the build process will be completely working
 and installed executables of prog1 and prog2 installed in /usr/local/bin and
@@ -467,7 +467,7 @@ in our sample project the graph would be:
 .\" P2;prog2
 .\" .TE
 .P
-.so fig2.so
+.so lib/en/tutorial/fig2.so
 .P
 .ft R
 Now we know enough to write the first version of our cookbook.
@@ -1076,17 +1076,7 @@ be integrated using shell scripts.
 If you find any bugs in this tutorial please send a bug report
 to Aryeh M. Friedman \f[CW]<aryeh@m-net.arbornet.org>\fP.
 .P
-The Cook web site is \f[CW]http:\%//www.canb.auug.org.au\%/~millerp\%/cook/\fP
+The Cook web site is \f[CW]http:\%//miller.emu.id.au\%/pmiller\%/cook/\fP
 .P
 If you want to contact Cook's author, send email to
-Peter Miller \f[CW]<millerp@canb.auug.org.au>\fP.
-.\" .H 1 "Notes"
-.\" In the project that forced me to switch to Cook from make
-.\" there are multiple libraries each with a "includes.h" file that recursively
-.\" includes all the "local" includes and any other library headers needed (i.e.
-.\" libutils.h for example).  When the library is built the include.h file
-.\" has to be "cooked" in that it has to be scanned for local #include's and
-.\" each mentioned include file needs to be "sucked" into the main include,
-.\" this is done by a program called pack_h that is unique to that particular
-.\" project.  For various reasons the dependency checking in this case has
-.\" to be done by a shell script vs. c_incl.
+Peter Miller \f[CW]<pmiller@opensource.org.au>\fP.

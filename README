@@ -76,29 +76,15 @@ DESCRIPTION
 ARCHIVE SITE
        The latest version of cook is available on the Web from:
 
-           URL:    http://www.canb.auug.org.au/~millerp/cook/
-           File:   cook-2.31.README     # the README from the tar file
-           File:   cook-2.31.lsm        # LSM format description
-           File:   cook-2.31.spec       # RedHat package specification
-           File:   cook-2.31.rm.ps.gz   # PostScript of the Reference Manual
-           File:   cook-2.31.ug.ps.gz   # PostScript of the User Guide
-           File:   cook-2.31.tar.gz     # the complete source
+           URL:    http://miller.emu.id.au/pmiller/cook/
+           File:   cook-2.34.README     # the README from the tar file
+           File:   cook-2.34.spec       # RedHat package specification
+           File:   cook-2.34.rm.ps.gz   # PostScript of the Reference Manual
+           File:   cook-2.34.ug.ps.gz   # PostScript of the User Guide
+           File:   cook-2.34.tar.gz     # the complete source
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
-
-       Cook is also carried by sunsite.unc.edu in its Linux archives.  You
-       will be able to find Cook on any of its mirrors.
-
-           URL:    ftp://sunsite.unc.edu/pub/Linux/devel/make/
-           File:   cook-2.31.README     # the README from the tar file
-           File:   cook-2.31.lsm        # LSM format description
-           File:   cook-2.31.spec       # RedHat package specification
-           File:   cook-2.31.rm.ps.gz   # PostScript of the Reference Manual
-           File:   cook-2.31.ug.ps.gz   # PostScript of the User Guide
-           File:   cook-2.31.tar.gz     # the complete source
-       This site is extensively mirrored around the world, so look for a copy
-       near you (you will get much better response).
 
 MAILING LIST
        A mailing list has been created so that users of cook may exchange
@@ -107,18 +93,12 @@ MAILING LIST
        not moderated.
 
        The address of the mailing list is
-              cook-users@canb.auug.org.au
+              cook-users@lists.auug.org.au
        Please DO NOT send subscribe requests to this address.
 
-       To subscribe to this mailing list, send an email message to
-       majordomo@canb.auug.org.au with a message body containing the single
-       line
-              subscribe cook-users
-       If you have an email address which is not readily derived from your
-       mail headers (majordomo is only a Perl program, after all) you will
-       need to use a message of the form:
-              subscribe cook-users address
-       where address is the email address to which you want messages sent.
+       To subscribe to this mailing list, visit the cook-users mailing list
+       page, and go through the subscribe dialogue.
+       http://lists.auug.org.au/listinfo/cook-users,
 
        The software which handles this mailing list CANNOT send you a copy of
        the cook program.
@@ -128,10 +108,10 @@ BUILDING COOK
        BUILDING file included in this distribution.
 
 COPYRIGHT
-       cook version 2.31
+       cook version 2.34
        Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996,
-       1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
-       Peter Miller; All rights reserved.
+       1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008,
+       2009, 2010 Peter Miller
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -149,8 +129,8 @@ COPYRIGHT
        It should be in the LICENSE file included with this distribution.
 
 AUTHOR
-       Peter Miller   E-Mail:   millerp@canb.auug.org.au
-       /\/\*          WWW:      http://www.canb.auug.org.au/~millerp/
+       Peter Miller   E-Mail:   pmiller@opensource.org.au
+       /\/\*          WWW:      http://miller.emu.id.au/pmiller/
 
 NEW IN THIS RELEASE
        A number of features have been added to cook with this release.  The
@@ -158,120 +138,168 @@ NEW IN THIS RELEASE
        acknowledgements of those who generously sent me feedback, please see
        the etc/CHANGES.* files included in this distribution.
 
+   Version 2.34 (2010-Sep-25)
+       * This change set adds a link to the PPA to the download page.  This
+         means you can install a pre-built Ubuntu package, using the normal
+         apt-get install method.
+
+       * This change det fixes a problem where some systems (usually pseudo
+         filesystems) report ENOSYS instead of EACCES like any sane person
+         expects.
+
+   Version 2.33 (2009-Dec-20)
+       * The email address for the mailing list has changed.  See README or
+         the web site for more information.
+
+       * There is a new file-size-statistics option, for hinky NFS server
+         update latency.
+
+       * A bug has been fixed in the ^C interrupt handler, it no longer
+         deadlocks causing the processes to hang.
+
+       * A bug in the architecture handling has been fixed.
+
+       * This a number of 64-bit build issues have been fixed.
+
+       * The exit status is no longer printed for silent (not echoed)
+         commands.
+
+       * The metering details are no longer printed for silent (not echoed)
+         commands.
+
+       * The progress stars can now be enabled using the "set star" statements
+         within a cookbook.
+
+       * A bug has been fixed in the [collect] and [collect_lines] built-in
+         functions.  If a word (or line) was longer than 1024 bytes, a buffer
+         overrun occurred.  A variable size buffer is now used.
+
+       * There is a new [strlen] built-in function, which may be used to
+         obtain the length of a string.
+
+       * A bug has been fixed in the [substitute] function, it no longer
+         infinite loops when the string to be replaced is the empty string.
+
+   Version 2.32 (2008-Jul-29)
+       * The [options] function now includes the -nic option.
+
+       * There is now documentation in the cook(1) man page for the cook
+         --page-width option.
+
    Version 2.31 (2008-Feb-13)
        * A build problem with the ./configure file has been fixed.
 
        * There is a new "set no-ctime" flag, for coping with Aegis penchant
-       for making and breaking hard links.
+         for making and breaking hard links.
 
        * The LICENSE file has been updated to match the licensing of the
-       source code.
+         source code.
 
    Version 2.30 (2007-Aug-21)
        * Several build and portability problems have been fixed.
 
        * Several typographical and spelling errors have been fixed in the User
-       Guide.
+         Guide.
 
        * The license has been changed to GNU GPL version 3.
 
    Version 2.29 (2007-Jun-22)
        * There is a new variable for specifying the granularity of the file
-       timestamps.  Most POSIX systems will support a value of 1.  Rather than
-       default to the worst case, the user can now specify the value in
-       seconds with a built-in cook variable.
+         timestamps.  Most POSIX systems will support a value of 1.  Rather
+         than default to the worst case, the user can now specify the value in
+         seconds with a built-in cook variable.
 
        * There is a new recipe option avaibale called symlink-ingredients that
-       has the effect of creating symbolic links for ingredients which are
-       present on the search path, but not in the first directory in the
-       search path.  This option creates the necessary symbolic links.  This
-       is for use with brain dead tools, like GNU Automake, which don't grok
-       search paths.
+         has the effect of creating symbolic links for ingredients which are
+         present on the search path, but not in the first directory in the
+         search path.  This option creates the necessary symbolic links.  This
+         is for use with brain dead tools, like GNU Automake, which don't grok
+         search paths.
 
    Version 2.28 (2007-Jun-5)
        * The [print] function has been enhanced so that it is now able to
-       print more than one line, if you include a newline \n escape.
+         print more than one line, if you include a newline \n escape.
 
        * A problem with the Makefile has been fixed.
 
        * This change fixes a problem building the temp file name code which
-       uses sprintf(). Basically, the code now uses snprintf() which is better
-       and makes the problem go away.
+         uses sprintf(). Basically, the code now uses snprintf() which is
+         better and makes the problem go away.
 
    Version 2.27 (2007-Mar-13)
        * An ANSI C compiler is now required to build Cook.
 
        * A bug has been fixed in the cook_bom command's -prefix and -suffix
-       options.
+         options.
 
        * The fingerprint code is now more robust when faced with file
-       modification time trickery by users.
+         modification time trickery by users.
 
        * A few things have been improved for using Cook on Cygwin.
 
        * The c_incl -r option now understands .PSPIC directives, as well as
-       .so directives.
+         .so directives.
 
    Version 2.26 (2006-Jan-17)
        * A number of build problems have been fixed.
 
        * A bug has been fixed in the tell-position flag. It wasn't actually
-       giving the file name and line number when executing commands if you
-       used the "set tell-position" variants, only the -tell-position command
-       line option.
+         giving the file name and line number when executing commands if you
+         used the "set tell-position" variants, only the -tell-position
+         command line option.
 
        * The email address in the LSM file has been fixed,
 
        * A bug has been fixed in the cook -fp-update command, it would
-       segfault in some cases.
+         segfault in some cases.
 
        * A bug has been fixed in the cookbook include file processing.
 
        * A bug has been fixed in the negative flag setting (comamnd line
-       options and "set" clauses).
+         options and "set" clauses).
 
        * The find_command command now copes better with directories it is not
-       allowed to access.
+         allowed to access.
 
        * A Java cookbook has been added to to the distribution.
 
        * A bug has been fixed in the execution of some commands.  If any words
-       of the command had spaces in them, it did not pass it to a shell to be
-       executed, but instead constructed a command of a different shape than
-       the user expected.
+         of the command had spaces in them, it did not pass it to a shell to
+         be executed, but instead constructed a command of a different shape
+         than the user expected.
 
    Version 2.25 (2004-Jun-10)
        * The ./configure script now understands the --with-nlsdir option, used
-       to specify the install location of the .mo files.
+         to specify the install location of the .mo files.
 
        * A bug has been fixed on Linux (and it only ever ocurred on Linux)
-       where cook would suddenly stop for no reason with exit status 1.  Turns
-       out that sometimes fflush(stderr) returns an EAGAIN error.
+         where cook would suddenly stop for no reason with exit status 1.
+         Turns out that sometimes fflush(stderr) returns an EAGAIN error.
 
        * A bug has been fixed which caused the cook -script option to produce
-       invalid shell scripts when a recipe body contained no statements.
+         invalid shell scripts when a recipe body contained no statements.
 
        * A bug has been fixed in the graph file pair generation, used to
-       generate warnings about dangerous #include-cooked contents.
+         generate warnings about dangerous #include-cooked contents.
 
        * The metering output now includes elapsed times and percentages.
 
        * There is a new tell-position setting, so that when Cook prints a
-       command it is about to run, it includes the file name and line nunmber
-       of the command.  This can be useful when debugging cookbooks.
+         command it is about to run, it includes the file name and line
+         nunmber of the command.  This can be useful when debugging cookbooks.
 
        * A bug has been fixed in the output line wrapping.  Once again it
-       adapts to the window width.
+         adapts to the window width.
 
    Version 2.24 (2003-Jul-17)
        * A major problem with parallel execution and hangs has been fixed.
-       The table indexed by process ID was now growing correctly.
+         The table indexed by process ID was now growing correctly.
 
        * Some words have been added to the User Guide about the SHELL
-       environment variable, and the effects of errors in the .profile file.
+         environment variable, and the effects of errors in the .profile file.
 
        * Building RPMs has been improved, and the spec file now uses more
-       modern RPM features.
+         modern RPM features.
 
        * Building on Cygwin has been improved.
 
@@ -279,7 +307,7 @@ NEW IN THIS RELEASE
 
    Version 2.23 (2003-May-01)
        * Build problem encountered using newer bersions of GNU Bison mave been
-       fixed.
+         fixed.
 
        * For Cook developers, there is now a .ae file on the web site.
 
@@ -297,61 +325,61 @@ NEW IN THIS RELEASE
        * A test failure on Cygwin has been fixed.
 
        * The [read] and [read_lines] builtin functions have been added.  See
-       the Reference Manual for more information.
+         the Reference Manual for more information.
 
    Version 2.21 (2002-Aug-26)
        * The c_incl(1) command now accepts the -stripdot and -nostripdot
-       options.  These may be used to control the removal of redundant leading
-       dot directories.
+         options.  These may be used to control the removal of redundant
+         leading dot directories.
 
        * A bug has been fixed where cascade recipes failed to heed the
-       stripdot setting.
+         stripdot setting.
 
        * There is a new [stripdot] function, so that you can strip leading dot
-       directories from file names within functions.
+         directories from file names within functions.
 
        * A bug has been fixed in how the builtin functions which manipulate
-       build graphs were called.  This fixed a problem with freeing a string
-       which had already been freed.
+         build graphs were called.  This fixed a problem with freeing a string
+         which had already been freed.
 
    Version 2.20 (2002-Jun-06)
        * There is a fix for the build problems caused by recent GNU Gettext
-       releases.
+         releases.
 
        * The fingerprint handling is now more robust, particularly when faced
-       with files that move backwards in time.
+         with files that move backwards in time.
 
        * There is a fix for the build problems caused by recent Bison
-       releases.
+         releases.
 
    Version 2.19 (2002-Feb-19)
        * Some introduced with recent versions of GNU Bison have been fixed.
-       Bison's include file insulation didn't use YY in the insulating symbol
-       (just to be completely inconsistent) and in another case a namespace
-       clash occurred for a function name.
+         Bison's include file insulation didn't use YY in the insulating
+         symbol (just to be completely inconsistent) and in another case a
+         namespace clash occurred for a function name.
 
        * The generated Makefile has been improved, along with other small
-       build and install improvements.
+         build and install improvements.
 
        * A top-level fail statement how halts the parse as soon as it is
-       executed.  This will make it more useful for checking build
-       environments.
+         executed.  This will make it more useful for checking build
+         environments.
 
        * Documentation about cook_rsh(1) has been added to the Parallel
-       chapter of the User Guide.
+         chapter of the User Guide.
 
    Version 2.18 (2001-Oct-15)
        * A bug has been fixed in the ingredients-fingerprint recipe attribute.
-       It was failing to save the fingerprint cache file in some cases, and
-       thus came to incorrect conclusions on following runs.
+         It was failing to save the fingerprint cache file in some cases, and
+         thus came to incorrect conclusions on following runs.
 
        * The (exists) ingredients attribute has been fixed so that it no
-       longer implies behavious rimilar to set shallow.
+         longer implies behavious rimilar to set shallow.
 
        * There is a new cook_rsh(1) program, for use with the host-binding
-       recipe attribute, which allows you to load balance builds across
-       classes of hosts.  See cook_rsh(1) and the Parallel chapter of the User
-       Guide for more information.
+         recipe attribute, which allows you to load balance builds across
+         classes of hosts.  See cook_rsh(1) and the Parallel chapter of the
+         User Guide for more information.
 
        * Some build problems have been fixed on various platforms.
 
@@ -359,481 +387,490 @@ NEW IN THIS RELEASE
 
    Version 2.17 (2001-Apr-25)
        * When using file fingerprints, the way the .cook.fp file is written
-       has been changed, so that the timestamp of the containing directory is
-       modified much less often.  This is useul in combination with the
-       cook_bom(1) utility.
+         has been changed, so that the timestamp of the containing directory
+         is modified much less often.  This is useul in combination with the
+         cook_bom(1) utility.
 
        * A bug has been fixed under Cygwin, where archive members were not
-       being fingerprinted correctly.
+         being fingerprinted correctly.
 
        * A bug has been fixed in the [quote] function.  It now quotes all
-       sh(1), csh(1) and bash(1) special characters correctly.
+         sh(1), csh(1) and bash(1) special characters correctly.
 
        * A bug has been fixed in the [uptodate] function.  It now works as
-       advertised.
+         advertised.
 
        * There is a new ingredients-fingerprint recipe flag.  This means that
-       you can now cause a recipe to re-trigger when the ingredients list
-       changes.  This is especially useful when a library has a file removed.
+         you can now cause a recipe to re-trigger when the ingredients list
+         changes.  This is especially useful when a library has a file
+         removed.
 
        * The dependency graph can now have the edge types specified.  The
-       ``weak'' edge type if useful for managing links, and the ``exists''
-       edge type is useful for managing version stamps.  See the User Guide
-       for more information.
+         "weak" edge type if useful for managing links, and the "exists" edge
+         type is useful for managing version stamps.  See the User Guide for
+         more information.
 
    Version 2.16 (2000-Oct-25)
-       * The stringset function now accepts a `+' operator.  While union is
-       implicit, the apparrently redundant `+' operator is useful for
-       cancelling the other operators.
+       * The stringset function now accepts a "+" operator.  While union is
+         implicit, the apparrently redundant "+" operator is useful for
+         cancelling the other operators.
 
-       * The ``reason and fingerprint bug'' has been fixed.  This caused a
-       mysterious error message to appear sometimes when using the -reson
-       option incombination with fingerprints.
+       * The "reason and fingerprint bug" has been fixed.  This caused a
+         mysterious error message to appear sometimes when using the -reason
+         option incombination with fingerprints.
 
        * The % and %n patterns are now allowed to match the empty string,
-       provided they aren't the first thing in the pattern (otherwise
-       undesirable absolute path problems can occur).
+         provided they aren't the first thing in the pattern (otherwise
+         undesirable absolute path problems can occur).
 
-       * The c_incl(1) command now accepts `-' as a file name on the command
-       line, meaning standard input.
+       * The c_incl(1) command now accepts "-" as a file name on the command
+         line, meaning standard input.
 
        * Some improvements have been made to the Cygwin support, extending the
-       ``.exe'' automatic executable suffix coverage to a couple more places.
+         ".exe" automatic executable suffix coverage to a couple more places.
 
-       * A bug in the ``c'' cookbook has been fixed, which was getting .h
-       dependency files wrong.
+       * A bug in the "c" cookbook has been fixed, which was getting .h
+         dependency files wrong.
 
    Version 2.15 (2000-Apr-11)
        * The C_incl(1) problem with absolute paths has been fixed.
 
        * A bug has been fixed which caused problems on Solaris and SGI, where
-       Cook would report a No child processes error.
+         Cook would report a No child processes error.
 
    Version 2.12 (2000-Mar-28)
        * The c_incl program now has a -quote-filenames option, which means
-       that you can have filenames with spaces and special characters in them.
+         that you can have filenames with spaces and special characters in
+         them.
 
        * A bug in the c_incl program's path flattening has been fixed.
 
        * A small Y2K bug has been fixed in the date parsing used by the
-       cooktime(1) command.
+         cooktime(1) command.
 
        * A bug which caused the -parallel option to lose track of processes
-       when you used [execute] in a recipe body has been fixed.
+         when you used [execute] in a recipe body has been fixed.
 
        * The restrictions on the placement of the placement of %0 in a pattern
-       have been dropped; too many people didn't like it.  This does not break
-       any cookbooks.
+         have been dropped; too many people didn't like it.  This does not
+         break any cookbooks.
 
        * Cook now copes with the absence of the HOME environment variable.
-       This was a problem for CGI scripts.
+         This was a problem for CGI scripts.
 
    Version 2.11 (1999-Nov-04)
        * Numerous portability problems have been fixed in the configure and
-       build.
+         build.
 
        * A bug has been fixed which prevented Cook from working correctly when
-       run by some versions of cron(8) and at(1).
+         run by some versions of cron(8) and at(1).
 
        * There is a new cook_bom --ignore option, allowing you to nominate
-       file patterns that you don't want in the file lists.
+         file patterns that you don't want in the file lists.
 
        * There is a new [__FUNCTION__] variable, which contains the name of
-       the executing function, which suppliments the existing [__FILE__] and
-       [__LINE__] variables.
+         the executing function, which suppliments the existing [__FILE__] and
+         [__LINE__] variables.
 
        * Functions now have local variables, just put the word local on the
-       left-hand-side of the first assignment.  Local variables are reentrant
-       and thread-safe.
+         left-hand-side of the first assignment.  Local variables are
+         reentrant and thread-safe.
 
    Version 2.10 (1999-Sep-06)
        * The [print] and [write] functions now work more sensably with the
-       -SCript option.
+         -SCript option.
 
        * The fingerprint code has been improved.  It now does considerably
-       fewer redundant fingeprint calculations, resulting is some very welcome
-       speed improvements.
+         fewer redundant fingeprint calculations, resulting is some very
+         welcome speed improvements.
 
        * The behaviour of the remote shell invocation to cope with rshd at the
-       remote end failing to spawn a shell, and it copes with the default
-       shell at the remote end not being the Bourne shell.
+         remote end failing to spawn a shell, and it copes with the default
+         shell at the remote end not being the Bourne shell.
 
        * The -PARallel behaviour has been improved, so that it now looks for
-       child process who have finished more than it looks for recipes to run.
-       This doesn't change the semantics any, but it matches user expectations
-       far better (and results in shorter-lived zombie processes).
+         child process who have finished more than it looks for recipes to
+         run.  This doesn't change the semantics any, but it matches user
+         expectations far better (and results in shorter-lived zombie
+         processes).
 
        * The set meter recipe flag works once more.  (It stopped working when
-       the parallel modifications were made, and mysteriously forgotten until
-       now.)
+         the parallel modifications were made, and mysteriously forgotten
+         until now.)
 
        * There are some changes made to the fingerprinting code to detect when
-       files under ClearCase move backwards in time (because the underlying
-       file version is ``uncovered'') meaning that the derived (object) files
-       need to be rebuilt.
+         files under ClearCase move backwards in time (because the underlying
+         file version is "uncovered") meaning that the derived (object) files
+         need to be rebuilt.
 
        * There is a new [mtime-seconds] function, similar to the [mtime]
-       function, except that it returns seconds since the epoch, rather than a
-       human readable date.  More useful to handing to [expr].
+         function, except that it returns seconds since the epoch, rather than
+         a human readable date.  More useful to handing to [expr].
 
        * A bug has been fixed on SGI IRIX which failed to cope with not being
-       able to create directories because they already exist.
+         able to create directories because they already exist.
 
        * Ingredient recipes (ones with no body) may now have a double colon
-       rather than a single colon, even when there is more than on target
-       specified.  Some users may find this a more natural syntax for
-       ingredients recipes.
+         rather than a single colon, even when there is more than on target
+         specified.  Some users may find this a more natural syntax for
+         ingredients recipes.
 
        * The [expr] function now reports an error when given a number too big
-       to represent, rather than quietly returning wrong answers.  The range
-       of representable values depends on your system.
+         to represent, rather than quietly returning wrong answers.  The range
+         of representable values depends on your system.
 
        * Cook now works with GNU Regex correctly on Windows-NT.
 
    Version 2.9 (1999-May-27)
-       * There is a new ``for each'' style looping construct.  See the User
-       Guide for more information.
+       * There is a new "for each" style looping construct.  See the User
+         Guide for more information.
 
        * It is now possible to use regular expression patterns, instead of
-       Cook's native patterns.  You can set this for a whole cookbook or
-       individual recipes.  The default is to use Cook's native patterns.  See
-       the File Name Patterns chapter of the User Guide for more information.
+         Cook's native patterns.  You can set this for a whole cookbook or
+         individual recipes.  The default is to use Cook's native patterns.
+         See the File Name Patterns chapter of the User Guide for more
+         information.
 
        * A bug which caused host-binding and single-thread to core dump has
-       been fixed.
+         been fixed.
 
        * All text file input now copes with CRLF sequences, so mixing NT and
-       Unix builds on the one file server no longer creates problems.
+         Unix builds on the one file server no longer creates problems.
 
        * Fingerprints are now cached per-directory, rather than one huge file
-       for an entire directory tree.  This is more useful in recursive build
-       and [search_list] situations.
+         for an entire directory tree.  This is more useful in recursive build
+         and [search_list] situations.
 
        * The [cando], [cook] and [uptodate] functions now return lists of
-       successful files, rather than a simple true/false result.
+         successful files, rather than a simple true/false result.
 
        * The [in] and [matches] functions now return the list index (1 based)
-       of the matching word.  See the User Guide for more information.
+         of the matching word.  See the User Guide for more information.
 
        * There is a new cook -web option, to print a HTML web page on the
-       standard output, representing the dependency graph.  This is useful in
-       documenting the build process, or debugging cookbooks.
+         standard output, representing the dependency graph.  This is useful
+         in documenting the build process, or debugging cookbooks.
 
        * There is a new cook --fingerprint-update option which scans the
-       directory tree below the current directory and updates the file
-       fingerprints.  This helps when you use another tool (such as RCS or
-       ClearCase) which alters the file but preserves the file's modification
-       time.
+         directory tree below the current directory and updates the file
+         fingerprints.  This helps when you use another tool (such as RCS or
+         ClearCase) which alters the file but preserves the file's
+         modification time.
 
        * There is a new [write] function for writing text files.  This is
-       useful for coping with Windows-NT's absurdly short command lines.
+         useful for coping with Windows-NT's absurdly short command lines.
 
    Version 2.8 (1999-Feb-01)
        * The remote host-binding code has been improved to cope with
-       staggeringly long commands (which tended to make rsh(1) barf), and also
-       wierd and wonderfull $SHELL settings.
+         staggeringly long commands (which tended to make rsh(1) barf), and
+         also wierd and wonderfull $SHELL settings.
 
        * The #include directive now accepts more than one file, to be more
-       symmetric with the #include-cooked directive.
+         symmetric with the #include-cooked directive.
 
        * A bug has been fixed where cooktime gave an incorrect error message
-       if setting the file's utimes failed.
+         if setting the file's utimes failed.
 
        * The configure script has been improved for use on non-UNIX systems.
 
        * There is a new builtin [cook] function, a natural companion for the
-       [cando] and [uptodate] functions.  See the Cook User Guide for more
-       information.
+         [cando] and [uptodate] functions.  See the Cook User Guide for more
+         information.
 
    Version 2.7 (1998-Dec-30)
        * There is a new cook_bom(1) command (Bill Of Materials).  This may be
-       used to efficiently scan a directory tree for files, so that
-       ingredients lists may be produced automatically.  See cook_bom(1) for
-       more information.
+         used to efficiently scan a directory tree for files, so that
+         ingredients lists may be produced automatically.  See cook_bom(1) for
+         more information.
 
        * There is a new assign-append statement, so you can now use += to
-       append to the value of a variable.  See the User Guide for more
-       information.
+         append to the value of a variable.  See the User Guide for more
+         information.
 
        * There is a new gate-first recipe flag, which causes the recipe gate
-       to be evaluated before the ingredients are derived, rather than after.
+         to be evaluated before the ingredients are derived, rather than
+         after.
 
        * The c_incl(1) command has a new --interior-files option, so you can
-       tell it about include files that don't exist yet.  This is helpful when
-       they are generated, i.e. they are interior files of the dependency
-       graph, hence the option name.
+         tell it about include files that don't exist yet.  This is helpful
+         when they are generated, i.e. they are interior files of the
+         dependency graph, hence the option name.
 
        * There is a new [interior-files] function, which returns the files
-       interior to the dependency graph (constructed by a recipe), and a
-       complementatry [leaf-files] function, which returns the leaf files of
-       the dependency graph (not constructed by any recipe).
+         interior to the dependency graph (constructed by a recipe), and a
+         complementatry [leaf-files] function, which returns the leaf files of
+         the dependency graph (not constructed by any recipe).
 
-       * There is a new ``no-include-cooked-warning'' flag, if you want to
-       suppress the warnings about derived file dependencies in include-cooked
-       files.
+       * There is a new "no-include-cooked-warning" flag, if you want to
+         suppress the warnings about derived file dependencies in include-
+         cooked files.
 
        * There is a new relative_dirname built-in function, similar to the
-       existing dirname function, but it returns ``.'' for files with no
-       directory part, rather than the absolute path of the current directory.
+         existing dirname function, but it returns "." for files with no
+         directory part, rather than the absolute path of the current
+         directory.
 
    Version 2.6 (1998-Nov-09)
        * Cook has been ported to Windows-NT using CygWin32.  See the BUILDING
-       file for details.
+         file for details.
 
        * There are two new functions (dos-path and un-dos-path) for use when
-       invoking non-CygWin32 WindowsNT programs.  See the Cook User Guide for
-       more information.
+         invoking non-CygWin32 WindowsNT programs.  See the Cook User Guide
+         for more information.
 
        * Fingerprints now work meaningfully with directories.
 
        * A bug has been fixed in the pattern matching code.  It would
-       sometimes cause core dumps.
+         sometimes cause core dumps.
 
        * A bug involving fingerprints in combination with the search_list has
-       been fixed.  Cook would occasionally conclude that a shallow target was
-       up-to-date when a shallow ingredient was edited to be the same as a
-       deeper ingredient.
+         been fixed.  Cook would occasionally conclude that a shallow target
+         was up-to-date when a shallow ingredient was edited to be the same as
+         a deeper ingredient.
 
        * A bug has been fixed in cooktime.  It would use an inappropriate
-       timezone offset on some systems.
+         timezone offset on some systems.
 
    Release 2.5 (1998-Sep-02)
        * A problem which caused some tests to fail on Solaris' tmpfs now has a
-       work-around.
+         work-around.
 
-       * The ``setenv'' statement has finally been documented.  It's been in
-       the code tfor years, but I could never figure out why folks weren't
-       using it!
+       * The "setenv" statement has finally been documented.  It's been in the
+         code tfor years, but I could never figure out why folks weren't using
+         it!
 
        * A number of build problems on various systems have been fixed.
 
    Release 2.4 (1998-Jul-21)
        * There is a new form of dependencies.  Known as cascaded dependencies,
-       they allow the user to associate additional dependencies with an
-       ingredient.  For example, a C source file can be associated with
-       cascaded include dependencies.  This means that all files which depend
-       on the C source file, also depend on the included files.  The Cook
-       Reference Manual has been updated to include this new functionality.
+         they allow the user to associate additional dependencies with an
+         ingredient.  For example, a C source file can be associated with
+         cascaded include dependencies.  This means that all files which
+         depend on the C source file, also depend on the included files.  The
+         Cook Reference Manual has been updated to include this new
+         functionality.
 
        * There is a new section of the Cook Reference Manual giving
-       suggestions and a template for building large projects.
+         suggestions and a template for building large projects.
 
        * There is a new [expr] function, to calculate simple arithmetic
-       expressions.  See the User Guide for more information.
+         expressions.  See the User Guide for more information.
 
        * There is a new c_incl -no-recursion option, to prevent scanning
-       nested includes.  This is of most use when combined with the new
-       cascade dependencies.
+         nested includes.  This is of most use when combined with the new
+         cascade dependencies.
 
        * There is a new [exists-symlink] function, which may be used to test
-       for the existence of symlinks.  The [exists] function follows symbolic
-       links, and is not useful when manipulating the links themselves.
+         for the existence of symlinks.  The [exists] function follows
+         symbolic links, and is not useful when manipulating the links
+         themselves.
 
    Release 2.3 (1998-May-20)
        * There are 6 new special variables: graph_leaf_file,
-       graph_leaf_pattern, graph_interior_file, graph_interior_pattern,
-       graph_exterior_file and graph_exterior_pattern.  These variables may be
-       used to define the leaves of the derivation graph (the accept forms),
-       and non-leave of the graph (the reject forms).  This can make the graph
-       derivation faster, and greatly improves some error messages.  This
-       functionality is of most use when you have an exact source file
-       manifest, e.g. from a software configuration management system.  See
-       the User Guide for more information.
+         graph_leaf_pattern, graph_interior_file, graph_interior_pattern,
+         graph_exterior_file and graph_exterior_pattern.  These variables may
+         be used to define the leaves of the derivation graph (the accept
+         forms), and non-leave of the graph (the reject forms).  This can make
+         the graph derivation faster, and greatly improves some error
+         messages.  This functionality is of most use when you have an exact
+         source file manifest, e.g. from a software configuration management
+         system.  See the User Guide for more information.
 
        * The %0 pattern element has been extended to permit the matching of
-       absolute paths.
+         absolute paths.
 
    Release 2.2.2 (1997-Dec-10)
        * There is a new statement type, allowing functions to be invoked as
-       subroutines in any place where a command may be invoked.  See the User
-       Guide for more information.
+         subroutines in any place where a command may be invoked.  See the
+         User Guide for more information.
 
        * A number of problems with installing Cook have been fixed.  This
-       includes changing -mgm to -mm for the documnetation formatting, and
-       missing include dependencies and missing rules for installing the man
-       pages.
+         includes changing -mgm to -mm for the documnetation formatting, and
+         missing include dependencies and missing rules for installing the man
+         pages.
 
-       * There is a new ``print'' builtin function.  When combined with the
-       new function call statement, this provides a way of printing
-       information without invoking ``echo''.  See the User Guide for more
-       information.
+       * There is a new "print" builtin function.  When combined with the new
+         function call statement, this provides a way of printing information
+         without invoking "echo".  See the User Guide for more information.
 
-       * Cook now defaults the language to ``en'' internally if neoither the
-       LANG nor LANGUAGE environment variable was set.  This gives better
-       error messages.
+       * Cook now defaults the language to "en" internally if neoither the
+         LANG nor LANGUAGE environment variable was set.  This gives better
+         error messages.
 
    Release 2.2.1 (1997-Nov-04)
        * A bug was fixed where a recipe would fail to trigger if some, but not
-       all, of its targets were not present, but the existing targets were up-
-       to-date.  This bug was introduced in the inference engine re-write.
+         all, of its targets were not present, but the existing targets were
+         up-to-date.  This bug was introduced in the inference engine re-
+         write.
 
    Release 2.2 (1997-Oct-31)
        * The c_incl utility has had two new languages added.  It now
-       understands M4, and also has an ``optimistic'' language which can scan
-       many assemblers and even some high-level languages.  See c_incl(1) for
-       more information.
+         understands M4, and also has an "optimistic" language which can scan
+         many assemblers and even some high-level languages.  See c_incl(1)
+         for more information.
 
        * The c_incl utility also has a new --no-absolute-path option, to
-       supress scanning and reporting of such files.  See c_incl(1) for more
-       information.
+         supress scanning and reporting of such files.  See c_incl(1) for more
+         information.
 
        * There is a new warning added for dependencies on derived ingredients
-       when this information resides solely in derived cookbooks included
-       using the #include-cooked facility.  This assists in detecting problems
-       which may preclude a successful ``clean'' build.
+         when this information resides solely in derived cookbooks included
+         using the #include-cooked facility.  This assists in detecting
+         problems which may preclude a successful "clean" build.
 
        * This release adds a number of cookbook functions to the distrubuted
-       cookbooks.  These may be used by adding a
-           #include "functions"
-       line to your cookbook.  See the Cook User Guide for more information.
+         cookbooks.  These may be used by adding a
+             #include "functions"
+         line to your cookbook.  See the Cook User Guide for more information.
 
        * This release fixes a bug where the graph walking phase ignored
-       interrupts until something went wrong.
+         interrupts until something went wrong.
 
        * This release fixes a bug where make2cook did not correctly translate
-       ``%'' into sematicly equivalent Cook constructs.
+         "%" into sematicly equivalent Cook constructs.
 
    Release 2.1 (1997-Oct-12)
        * It is possible to specify that a command is to be executed on a
-       specific machine or machines.  This can be useful for restrictively
-       licensed third party software tools.
+         specific machine or machines.  This can be useful for restrictively
+         licensed third party software tools.
 
        * The parallel functionality has been extended to implement a virtual
-       parallel machine on a LAN.
+         parallel machine on a LAN.
 
        * Fingerprinting has been enhanced to be more informative, and to
-       adjust file modification times so that subsequest fingerprint-less runs
-       will not find too much to do.
+         adjust file modification times so that subsequest fingerprint-less
+         runs will not find too much to do.
 
        * The #line directive is now available, for better diagnostics of
-       generated cookbooks.  The __FILE__ and __LINE__ variable are also
-       available.
+         generated cookbooks.  The __FILE__ and __LINE__ variable are also
+         available.
 
        * There is now a thread-id variable, to obtain a thread-unique value
-       for use in generating temporary file names or variable names, etc,
-       which are unique to a thread.
+         for use in generating temporary file names or variable names, etc,
+         which are unique to a thread.
 
        * Added the wordlist function and the command-line-goals variable for
-       compatibility with GNU Make.  Updated make2cook to understand them.
+         compatibility with GNU Make.  Updated make2cook to understand them.
 
    Release 2.0.1
        * An install problem in the generated Makefile, to do with the the
-       manuals, has been fixed.
+         manuals, has been fixed.
 
    Release 2.0 (1997-Sep-11)
-   Version 2.26 (17-Jan-2005)
+   Version 1.26 (2005-Jan-17)
        Development of this release was generously supported by Endocardial
        Solutions, Inc.
 
        * Parallel execution is now supported.  If you have a multi-processor
-       machine, you can specify the number of parallel processing threads with
-       the -PARallel command line option, or via the [parallel_jobs] variable.
-       By using the [os node] function, the [parallel_jobs] variable can be
-       set appropriately for the host machine automatically by the cookbook.
-       There is a new single-thread keyword to support single threading
-       recipes which cannot be paralleized.
+         machine, you can specify the number of parallel processing threads
+         with the -PARallel command line option, or via the [parallel_jobs]
+         variable.  By using the [os node] function, the [parallel_jobs]
+         variable can be set appropriately for the host machine automatically
+         by the cookbook.  There is a new single-thread keyword to support
+         single threading recipes which cannot be paralleized.
 
        * The dependency graph is now constructed differently.  This gives
-       exactly the same results, but the order of evaluation of recipes is a
-       little more random.  This different graph construction is able to give
-       better error messages, better -Reason information, and allows the
-       introduction of parallel recipe evaluation if you have a multi-
-       processor computer.
+         exactly the same results, but the order of evaluation of recipes is a
+         little more random.  This different graph construction is able to
+         give better error messages, better -Reason information, and allows
+         the introduction of parallel recipe evaluation if you have a multi-
+         processor computer.
 
        * Recipes which use c_incl(1) to calculate their dependencies in the
-       ingredients section will need a small modification - they will need to
-       use the --Absent-Program-Ignore option.  See the User Guide for more
-       information.
+         ingredients section will need a small modification - they will need
+         to use the --Absent-Program-Ignore option.  See the User Guide for
+         more information.
 
        * You can now print pair-wise file dependencies by using the -PAirs
-       option.
+         option.
 
        * You can now print a shell script which approximates the actions cook
-       would take when building the targets by using the -SCript option.
+         would take when building the targets by using the -SCript option.
 
-       * There is a new ``shallow'' recipe flag, allowing you to specify that
-       the targets of a recipe are required to be in the top-level directory,
-       not further down the search_list path.
+       * There is a new "shallow" recipe flag, allowing you to specify that
+         the targets of a recipe are required to be in the top-level
+         directory, not further down the search_list path.
 
        * You may now define user-written functions in the cookbook to
-       supplement the built-in functions.  Your functions will be called in
-       the same manner as built-in functions.  There are new function and
-       return keywords to support definition of functions.
+         supplement the built-in functions.  Your functions will be called in
+         the same manner as built-in functions.  There are new function and
+         return keywords to support definition of functions.
 
        * The progress indicators produced by the -STar option now have more
-       detail: + means that the cook book is being read, * means that the
-       graph is being constructed, and # means that the graph is being walked.
+         detail: + means that the cook book is being read, * means that the
+         graph is being constructed, and # means that the graph is being
+         walked.
 
    Release 1.11 (1997-Jun-14)
        * Fixed a bug in the pattern matching which caused %0 (when not at the
-       start of the pattern) to fail to match the empty string.
+         start of the pattern) to fail to match the empty string.
 
        * The install locations have been changed slightly to conform better to
-       the GNU filesystem standards, and to take advantage of the additional
-       install location options of the configure scripts generated by GNU
-       Autoconf.
+         the GNU filesystem standards, and to take advantage of the additional
+         install location options of the configure scripts generated by GNU
+         Autoconf.
 
    Release 1.10
        * Error messages have been internationalized.  It is now possible to
-       get error messages in your native language, if it is supported.
+         get error messages in your native language, if it is supported.
 
        * The cook command now accepts a -no-include-cooked option, to disable
-       any cooking of the #include-cooked files.
+         any cooking of the #include-cooked files.
 
        * The cook -TRace option has been renamed -Reason.  This is thought to
-       more accurately reflect what it does.
+         more accurately reflect what it does.
 
        * The cook -Reason output has been changed to cite cookbook file names
-       and line numbers, in order to be more useful.  In addition, more reason
-       messages carry location information.
+         and line numbers, in order to be more useful.  In addition, more
+         reason messages carry location information.
 
    Release 1.9
-       * There are new ``f77'' and ``g77'' cookbooks, to allow Fortran
-       sources, in addition to C sources.
+       * There are new "f77" and "g77" cookbooks, to allow Fortran sources, in
+         addition to C sources.
 
        * There is a new [options] function, which expands to the current
-       settings of the command line options.  This is useful for recursive
-       cook directory structures.  See the Reference Manual for more
-       information.
+         settings of the command line options.  This is useful for recursive
+         cook directory structures.  See the Reference Manual for more
+         information.
 
-       * There is a new ``recursive'' cookbook, to assist in constructing
-       recursive cook structures.
+       * There is a new "recursive" cookbook, to assist in constructing
+         recursive cook structures.
 
        * The find_libs program now understands about shared libraries.
 
        * A bug which made the builtin [glob] function far to generous has been
-       corrected.
+         corrected.
 
        * A bug which caused some expression evaluation errors to be ignored
-       has been corrected.
+         has been corrected.
 
-       * The ``set update'' flag has been re-named the ``set time-adjust''
-       flag, to more closely describe what it does.  The old name will
-       continue to work indefinitely.
+       * The "set update" flag has been re-named the "set time-adjust" flag,
+         to more closely describe what it does.  The old name will continue to
+         work indefinitely.
 
-       * There is a new ``set time-adjust-back'' flag, which sets recipe
-       target times to be exactly one (1) second younger than the youngest
-       ingredient.  This is usually an adjustment into the recent past.
+       * There is a new "set time-adjust-back" flag, which sets recipe target
+         times to be exactly one (1) second younger than the youngest
+         ingredient.  This is usually an adjustment into the recent past.
 
    Release 1.8
        * The fingerprint code has been improved to work better with the
-       search_list functionality.
+         search_list functionality.
 
-       * The diagnostics have been improved when cook ``don't know how''.  A
-       list of attempted ingredients is included in the error message.
+       * The diagnostics have been improved when cook "don't know how".  A
+         list of attempted ingredients is included in the error message.
 
        * There is a new mkdir recipe flag.  This creates recipe target
-       directories before the recipe body is run.  See the Reference Manual
-       for more information.
+         directories before the recipe body is run.  See the Reference Manual
+         for more information.
 
        * There is a new unlink recipe flag.  This unlinks recipe targets
-       before the recipe body is run.  See the Reference Manual for more
-       information.
+         before the recipe body is run.  See the Reference Manual for more
+         information.
 
        * There is a new recurse recipe flag.  This overrides the infinite loop
-       recipe heuristic, allowing recipes to recuse upon themselves if one of
-       their ingredients matches one of their targets.  See the Reference
-       Manual for more information.
+         recipe heuristic, allowing recipes to recuse upon themselves if one
+         of their ingredients matches one of their targets.  See the Reference
+         Manual for more information.
 
    Release 1.7
        * The AIX code to handle archive files has been fixed.
@@ -842,59 +879,60 @@ NEW IN THIS RELEASE
 
    Release 1.6
        * Fixed a bug in the leading-dot removal code, and added an option to
-       make it user-settable.  Fixed a bug in the search_path depth code.
+         make it user-settable.  Fixed a bug in the search_path depth code.
 
    Release 1.5
        * The c_incl program now correctly prints the names of absent include
-       files, causing them to be cooked correctly in a greater number of
-       cases.
+         files, causing them to be cooked correctly in a greater number of
+         cases.
 
        * Recipes with no ingredients are now only applied if the target is
-       absent.  To still use the previous behaviour, use the "set force"
-       clause on the recipe.
+         absent.  To still use the previous behaviour, use the "set force"
+         clause on the recipe.
 
        * It is now possible to supplement the last-modified time with a
-       fingerprint, so cook does even fewer unnecesary recompilations than
-       before.  Put the statement
-              set fingerprint;
+         fingerprint, so cook does even fewer unnecesary recompilations than
+         before.  Put the statement
+         set fingerprint;
        somewhere near the top of your Howto.cook file for this to be the
        default for your project.
 
        * There is a new form of include directive:
-              #include-cooked filename...
+         #include-cooked filename...
        When files are included in this way, cook will check to make sure they
        are up-to-date.  If not, they will be cooked, and then cook will start
        again and re-read the cookbook.  This is most often used for
        maintaining include-dependency files.
 
        * Cook now configured using a program called configure, distributed
-       with the package.  The configure program is generated by GNU Autoconf.
-       See the BUILDING file for more details.
+         with the package.  The configure program is generated by GNU
+         Autoconf.  See the BUILDING file for more details.
 
        * The semantics of search_list have been improved.  It is now
-       guaranteed that when ingredients change they result in targets earlier
-       in the search_list being updated.
+         guaranteed that when ingredients change they result in targets
+         earlier in the search_list being updated.
 
        * There is now a make2cook translator, to translate Makefile files into
-       Howto.cook files.  Most of the GNU Make extensions are understood.
-       There is no exact semantic mapping between make and cook, so manual
-       editing is sometimes required.  See make2cook(1) for more information.
+         Howto.cook files.  Most of the GNU Make extensions are understood.
+         There is no exact semantic mapping between make and cook, so manual
+         editing is sometimes required.  See make2cook(1) for more
+         information.
 
        * Cook now understands archive member references, in the same format as
-       used by make, et al.  Archive member references benefit from stat
-       caching and fingerprinting, just as normal files do.
+         used by make, et al.  Archive member references benefit from stat
+         caching and fingerprinting, just as normal files do.
 
    Release 1.4
        * The cook program is now known to work on more systems.  Most changes
-       were aimed at improving portability, or avoiding problems specific to
-       some systems.
+         were aimed at improving portability, or avoiding problems specific to
+         some systems.
 
        * The GNU long option name convention is now understood.  Option names
-       for cook were always long, so this mostly consists of ignoring the
-       extra leading '-'.  The "--foo=bar" convention is also understood for
-       options with arguments.
+         for cook were always long, so this mostly consists of ignoring the
+         extra leading '-'.  The "--foo=bar" convention is also understood for
+         options with arguments.
 
        * Tests which fail now tell you what it was they were testing for.
-       This will give the user some idea of what is happening.
+         This will give the user some idea of what is happening.
 
 Reference Manual                     Cook                        Read Me(Cook)

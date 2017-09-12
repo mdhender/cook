@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1999, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1999, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -66,7 +65,7 @@ graph_recipe_script(graph_recipe_ty *grp, struct graph_ty *gp)
     int             forced;
     long            file_pos = 0;
 
-    trace(("graph_recipe_script(grp = %08lX)\n{\n", (long)grp));
+    trace(("graph_recipe_script(grp = %p)\n{\n", grp));
     status = graph_walk_status_done;
 
     grp->ocp = opcode_context_new(0, grp->mp);

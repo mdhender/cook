@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 2002, 2006-2008, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -50,11 +49,11 @@ integration-build-targets +=
         [match_mask etc/%.html [source_files]]
     ]
     archive/[project_short].png
+    archive/[project_short].64.png
     archive/[project_minus].ug.pdf
     archive/[project_minus].rm.pdf
     archive/[project_minus].tut.pdf
     /* archive/[project_minus].faq */
-    archive/[project_minus].lsm
     archive/[project_minus].spec
     archive/[project_minus].README
     archive/[project_minus].ae
@@ -110,49 +109,15 @@ integration-build-targets +=
 #endif
 
 
-
-%0%.y,M:: %0%.gen.c,Md;
-%0%.c,M:: %0%.c,Md;
-
-%1/%0%2.c,Md: %1/%0%2.c
-{
-    c_incl
-        -nc /* no cache */
-        -ns /* no system */
-        -eia /* empty if absent */
-        [stringset
-            [cc_include_flags]
-            [prepost "-I" "/%1" [search_list]]
-        ]
-        [resolve %1/%0%2.c]
-        -nsri /* no source relative includes */
-        [prepost "-rlp=" "" [search_list]] /* remove leading path */
-        -rlp [arch] /* remove leading architecture */
-        -o [target];
-}
-
 /*
  * These recipes build a Makefile for a user.  They do not build a
  * Makefile useful for a development build, because no arch
  * information is included in the Makefile.
  */
 
-makefile-per-file = [prepost "" ",M" [source_files]];
-
-Makefile.in: etc/Makefile.head etc/Makefile.sh etc/Makefile.awk [vs_file]
-    [makefile-per-file]
+Makefile.in: [source_files]
 {
-    cat [resolve etc/Makefile.head [makefile-per-file]] > [target];
-    sh [resolve etc/Makefile.sh] [source_files]
-        | [awk] -f [resolve etc/Makefile.awk]
-        >> [target];
-}
-
-%0%,M: etc/Makefi.file.sh etc/Makefile.awk
-{
-    depfile = [match_mask %%0%%,Md [need]];
-    sh [resolve etc/Makefi.file.sh] %0% [resolve %0%]
-            [resolve [depfile]]
+    aemakegen -p [project] -c [change]
         | [awk] -f [resolve etc/Makefile.awk]
         > [target];
 }
@@ -221,12 +186,18 @@ source_file_order =
     ;
 
 archive/[project_minus].tar.gz: [source_file_order]
+        debian/control /* at al */
     set shallow
 {
-    tar cf - [resolve [source_file_order]] |
-    tardy -unu 0 -gnu 0 -una Peter -gna Miller -p [project_minus] -ms 0644
+    tar cf - [resolve [source_file_order]]
+        debian/changelog
+        debian/compat
+        debian/control
+        debian/rules
+        debian/cook.install
+    | tardy -unu 0 -gnu 0 -una Peter -gna Miller -p [project_minus] -ms 0644
         -mc 07022 -now [prepost "-rp=" "" [search_list]]
-        > archive/[project_minus].tar;
+    > archive/[project_minus].tar;
     gzip -9 -v archive/[project_minus].tar;
 }
 
@@ -253,40 +224,6 @@ archive/[project_minus].ae: [source_files]
     sh [resolve etc/CHANGES.sh] [project] > [target];
 }
 
-lib/%3/man%1/%2.%1,M:: lib/%3/man%1/%2.%1,Md;
-
-lib/%3/man%1/%2.%1,Md: lib/%3/man%1/%2.%1
-{
-    c_incl -nc -ns -eia -r
-        [stringset
-            [prepost "-I" "/lib/%3/man%1" [search_list]]
-            [prepost "-I" /[arch]/etc [search_list]]
-            [prepost "-I" "/etc" [search_list]]
-            [cc_include_flags]
-        ]
-        [resolve lib/%3/man%1/%2.%1]
-        [prepost "-rlp=" "" [search_list]] /* remove leading path */
-        -rlp [arch] /* remove leading architecture */
-        -o [target];
-}
-
-lib/%1/%2/main.%3,M:: lib/%1/%2/main.%3,Md;
-
-lib/%1/%2/main.%3,Md: lib/%1/%2/main.%3
-{
-    c_incl -nc -ns -eia -r
-        [prepost "-I" "/lib/%1/%2" [search_list]]
-        [prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
-        [prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
-        [prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
-        [prepost "-I" /[arch]/etc [search_list]]
-        [prepost "-I" "/etc" [search_list]]
-        [resolve lib/%1/%2/main.%3]
-        [prepost "-rlp=" "" [search_list]] /* remove leading path */
-        -rlp [arch] /* remove leading architecture */
-        -o [target];
-}
-
 archive/[project_minus].ug.pdf: lib/en/user-guide/user-guide.pdf
     set shallow
 {
@@ -306,12 +243,6 @@ archive/[project_minus].tut.pdf: lib/en/tutorial/tutorial.pdf
 }
 
 archive/[project_minus].faq: lib/en/faq/faq.txt
-    set shallow
-{
-    cp [resolve [need]] [target];
-}
-
-archive/[project_minus].lsm: lib/en/lsm/lsm.txt
     set shallow
 {
     cp [resolve [need]] [target];
@@ -337,8 +268,7 @@ etc/%.html.d: etc/%.html
     set nocascade
 {
     c_incl -nc -ns -eia -r -nrec
-        [prepost "-I" /[arch]/etc [search_list]]
-        [prepost "-I" "/etc" [search_list]]
+        [cc_include_flags]
         -prefix "'cascade etc/"%".html ='"
         -suffix "';'" [resolve etc/%.html]
         [prepost "-rlp=" "" [search_list]] /* remove leading path */
@@ -352,8 +282,7 @@ archive/%.html: etc/%.html: etc/ssp.awk etc/version.so
     set shallow
 {
     roffpp
-        [prepost "-I" /[arch]/etc [search_list]]
-        [prepost "-I" "/etc" [search_list]]
+        [cc_include_flags]
         [resolve etc/%.html]
     | groff -Tascii -t -P-hub -man
     | [awk] -f [resolve etc/ssp.awk]
@@ -431,4 +360,75 @@ check-tarball: archive/[project_minus].tar.gz
     tar xzf [resolve archive/[project_minus].tar.gz];
     cd [project_minus] && ./configure && make;
     rm -rf [project_minus];
+}
+
+
+debian/control
+debian/changelog
+debian/cook.install: [source_files]
+    set shallow
+{
+    /* This actually makes more files than just debian/control */
+    aemakegen -p [project] -c [change] --target\=debian ;
+
+    cat debian/cook.install;
+}
+
+
+if [in [fromto %1D%2 %2 [version]] 001 002 003 004] then
+{
+    integration-build-targets += debian-package;
+}
+
+
+debian-package: archive/[project_minus].tar.gz
+    debian/changelog
+{
+    local vsn = [collect head -1 [resolve debian/changelog]
+                         | sed "'s|.*(\\([^()]*\\).*|\\1|'" ];
+    vsn = [fromto %-1 % [vsn]];
+    function print "vsn = '"[vsn]"'";
+    if [not [in [count [vsn]] 1]] then
+        fail "debian version not right";
+    local tarball = [project_short]_[vsn].orig.tar.gz;
+
+    local user = [collect id -un];
+    local key = ;
+    if [in [user] archives] then
+        key = -k19CEC7D5;
+    else
+        key = -us -uc;
+
+    /*
+     * We fake the .orig.tar.gz file to not have a debian/ directory,
+     * by filtering it out with tardy.  This silences a PITA lintian
+     * warning, for no real benefit.
+     */
+
+    unset GPG_AGENT_INFO &&
+    rm -rf archive/debian &&
+    mkdir -p archive/debian &&
+    cd archive/debian &&
+    echo Options Indexes > .htaccess &&
+    gunzip < ../[project_minus].tar.gz
+        | tardy -exclude "'"[project_minus]"/debian/*'"
+        | gzip -9 > [tarball] &&
+    tar xzf ../[project_minus].tar.gz &&
+    cd [project_minus] &&
+#if 0
+    dpkg-buildpackage -sgpg [key] -sa &&
+#else
+    debuild [key] -sa &&
+#endif
+    cd .. &&
+    rm -rf [project_minus] &&
+    lintian -iIv --pedantic *.changes
+    ;
+}
+
+
+archive/%1.%2.png: archive/%1.png
+    set shallow
+{
+    convert archive/%1.png -scale %2x%2 [target];
 }

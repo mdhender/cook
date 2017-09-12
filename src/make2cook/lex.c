@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997-1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1997-1999, 2001, 2006-2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -31,7 +30,7 @@
 #include <make2cook/blob.h>
 #include <make2cook/lex.h>
 #include <make2cook/stmt.h>
-#include <make2cook/gram.gen.h> /* must be last */
+#include <make2cook/gram.yacc.h> /* must be last */
 
 static input_ty *input;
 static long     line_number;
@@ -283,6 +282,7 @@ gram_trace2(void *garbage, char *s, ...)
     char            *cp;
     static char     line[1024];
 
+    (void)garbage;
     va_start(ap, s);
     buffer = str_vformat(s, ap);
     va_end(ap);

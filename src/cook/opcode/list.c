@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2004, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2004, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -59,7 +58,7 @@ opcode_list_new(void)
     olp->break_label = 0;
     olp->continue_label = 0;
     olp->return_label = 0;
-    trace(("return %08lX;\n", (long)olp));
+    trace(("return %p;\n", olp));
     trace(("}\n"));
     return olp;
 }
@@ -82,7 +81,7 @@ opcode_list_delete(opcode_list_ty *olp)
 {
     size_t          j;
 
-    trace(("opcode_list_delete(olp = %08lX)\n{\n", (long)olp));
+    trace(("opcode_list_delete(olp = %p)\n{\n", olp));
     assert(olp);
     assert(olp->reference_count >= 1);
     olp->reference_count--;
@@ -144,8 +143,7 @@ opcode_list_copy(opcode_list_ty *olp)
 void
 opcode_list_append(opcode_list_ty *olp, opcode_ty *op)
 {
-    trace(("opcode_list_append(olp = %08lX, op = %08lX)\n{\n", (long)olp,
-        (long)op));
+    trace(("opcode_list_append(olp = %p, op = %p)\n{\n", olp, op));
     assert(olp);
     assert(op);
     if (olp->length >= olp->maximum)
@@ -183,7 +181,7 @@ opcode_list_disassemble(opcode_list_ty *olp)
 {
     size_t          j;
 
-    trace(("opcode_list_disassemble(olp = %08lX)\n{\n", (long)olp));
+    trace(("opcode_list_disassemble(olp = %p)\n{\n", olp));
     printf("\n");
     for (j = 0; j < olp->length; ++j)
     {

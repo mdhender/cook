@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1998, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1998, 2006-2008 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -36,7 +35,12 @@ str_substitute(string_ty *a, string_ty *b, string_ty *c)
     ep = cp + c->str_length;
     while (cp < ep)
     {
-        if
+        if (a->str_length == 0)
+        {
+            sa_chars(&sa, b->str_text, b->str_length);
+            sa_char(&sa, *cp++);
+        }
+        else if
         (
             (size_t)(ep - cp) < a->str_length
         ||

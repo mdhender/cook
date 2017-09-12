@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2001-2003, 2005-2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2001-2003, 2005-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -37,7 +36,7 @@
  * cook/flag.c
  *     to define the RF_ names (see table[], below)
  *     AND define the RF_ to OPTION_ mapping (see flag_set_options(), below)
- * langu.flags.so
+ * lib/en/user-guide/langu.flags.so
  *     to document the recipe flag
  *
  * If you choose to make it a command line option,
@@ -54,14 +53,16 @@
  */
 
 #include <common/error_intl.h>
-#include <cook/expr/position.h>
-#include <cook/flag.h>
 #include <common/itab.h>
 #include <common/mem.h>
-#include <cook/option.h>
+#include <common/star.h>
 #include <common/str_list.h>
 #include <common/symtab.h>
 #include <common/trace.h>
+
+#include <cook/expr/position.h>
+#include <cook/flag.h>
+#include <cook/option.h>
 
 
 static symtab_ty *flags_symtab;
@@ -97,6 +98,8 @@ static table_ty table[] =
     { "no-ignore-error", RF_ERROK_OFF, RF_ERROK },
     { "no-errok", RF_ERROK_OFF, RF_ERROK },
     { "noerrok", RF_ERROK_OFF, RF_ERROK },
+    { "file-size-statistics", RF_FILE_SIZE_STATS, RF_FILE_SIZE_STATS_OFF },
+    { "no-file-size-statistics", RF_FILE_SIZE_STATS_OFF, RF_FILE_SIZE_STATS },
     { "fingerprint", RF_FINGERPRINT, RF_FINGERPRINT_OFF },
     { "fingerprints", RF_FINGERPRINT, RF_FINGERPRINT_OFF },
     { "fingerprinting", RF_FINGERPRINT, RF_FINGERPRINT_OFF },
@@ -154,6 +157,10 @@ static table_ty table[] =
     { "silent", RF_SILENT, RF_SILENT_OFF },
     { "no-silent", RF_SILENT_OFF, RF_SILENT },
     { "nosilent", RF_SILENT_OFF, RF_SILENT },
+
+    { "star", RF_STAR, RF_STAR_OFF },
+    { "no-star", RF_STAR_OFF, RF_STAR },
+
     { "stripdot", RF_STRIPDOT, RF_STRIPDOT_OFF },
     { "no-stripdot", RF_STRIPDOT_OFF, RF_STRIPDOT },
     { "nostripdot", RF_STRIPDOT_OFF, RF_STRIPDOT },
@@ -331,7 +338,7 @@ flag_recognize(const string_list_ty *slp, const expr_position_ty *pp)
         flag_delete(fp);
         fp = 0;
     }
-    trace(("return %08lX;\n", (long)fp));
+    trace(("return %p;\n", fp));
     trace(("}\n"));
     return fp;
 }
@@ -358,7 +365,7 @@ flag_recognize(const string_list_ty *slp, const expr_position_ty *pp)
 void
 flag_set_options(const flag_ty *fp, int level)
 {
-    trace(("flag_set_options(fp = 0x%08lX, level = %d)\n{\n", (long)fp, level));
+    trace(("flag_set_options(fp = %p, level = %d)\n{\n", fp, level));
     if (fp->flag[RF_CASCADE])
         option_set(OPTION_CASCADE, level, 1);
     if (fp->flag[RF_CASCADE_OFF])
@@ -373,6 +380,11 @@ flag_set_options(const flag_ty *fp, int level)
         option_set(OPTION_ERROK, level, 1);
     if (fp->flag[RF_ERROK_OFF])
         option_set(OPTION_ERROK, level, 0);
+
+    if (fp->flag[RF_FILE_SIZE_STATS])
+        option_set(OPTION_FILE_SIZE_STATISTICS, level, 1);
+    if (fp->flag[RF_FILE_SIZE_STATS_OFF])
+        option_set(OPTION_FILE_SIZE_STATISTICS, level, 0);
 
     if (fp->flag[RF_FINGERPRINT])
         option_set(OPTION_FINGERPRINT, level, 1);
@@ -430,6 +442,13 @@ flag_set_options(const flag_ty *fp, int level)
         option_set(OPTION_SHALLOW, level, 1);
     if (fp->flag[RF_SHALLOW_OFF])
         option_set(OPTION_SHALLOW, level, 0);
+
+    if (fp->flag[RF_STAR])
+        option_set(OPTION_STAR, level, 1);
+    if (fp->flag[RF_STAR_OFF])
+        option_set(OPTION_STAR, level, 0);
+    if (option_test(OPTION_STAR))
+        star_enable();
 
     if (fp->flag[RF_SILENT])
         option_set(OPTION_SILENT, level, 1);

@@ -1,7 +1,6 @@
 /*
  *      cook - a program construction tool
- *      Copyright (C) 1991-1994, 1997, 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1991-1994, 1997, 1999, 2006-2008 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -36,7 +35,6 @@ version_copyright(void)
 {
     static char    *text[] =
     {
-        "All rights reserved.",
         "",
         "The %s program comes with ABSOLUTELY NO WARRANTY;",
         "for details use the '%s -VERSion License' command.",

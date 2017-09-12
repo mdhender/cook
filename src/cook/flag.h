@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -36,7 +35,7 @@
  *     to define the RF_ values (RF stands for Recipe Flag)
  * cook/flag.c
  *     to define the RF_ names
- * langu.flags.so
+ * lib/en/user-guide/langu.flags.so
  *     to document the recipe flag
  *
  * If you choose to make it a command line option,
@@ -72,6 +71,8 @@ enum flag_value_ty
         RF_DEFAULT_OFF,
         RF_ERROK,
         RF_ERROK_OFF,
+        RF_FILE_SIZE_STATS,
+        RF_FILE_SIZE_STATS_OFF,
         RF_FINGERPRINT,
         RF_FINGERPRINT_NOWRITE,
         RF_FINGERPRINT_OFF,
@@ -99,6 +100,8 @@ enum flag_value_ty
         RF_SHALLOW_OFF,
         RF_SILENT,
         RF_SILENT_OFF,
+        RF_STAR,
+        RF_STAR_OFF,
         RF_STRIPDOT,
         RF_STRIPDOT_OFF,
         RF_SYMLINK_INGREDIENTS,

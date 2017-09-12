@@ -1,11 +1,11 @@
 Summary: a file construction tool
 Name: cook
-Version: 2.31
+Version: 2.34
 Release: 1
 Copyright: GPL
 Group: Development/Building
-Source: http://www.canb.auug.org.au/~millerp/cook/cook-2.31.tar.gz
-URL: http://www.canb.auug.org.au/~millerp/cook/
+Source: http://miller.emu.id.au/pmiller/cook/cook-2.34.tar.gz
+URL: http://miller.emu.id.au/pmiller/cook/
 BuildRoot: /tmp/cook-build-root
 Icon: cook-${version}/cook.png
 Provides: perl(host_lists.pl)

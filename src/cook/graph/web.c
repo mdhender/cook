@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -65,7 +64,7 @@ graph_recipe_web(graph_recipe_ty *grp)
     int             forced;
     string_ty       *s;
 
-    trace(("graph_recipe_web(grp = %08lX)\n{\n", (long)grp));
+    trace(("graph_recipe_web(grp = %p)\n{\n", grp));
     if (grp->input->nfiles == 0 && grp->output->nfiles == 0)
     {
         trace(("}\n"));
@@ -293,7 +292,7 @@ graph_file_web(graph_file_ty *gfp)
     graph_recipe_ty *grp;
     graph_file_ty   *gfp2;
 
-    trace(("graph_file_web(gfp = %08lX)\n{\n", (long)gfp));
+    trace(("graph_file_web(gfp = %p)\n{\n", gfp));
     if (gfp->input->nrecipes == 0 && gfp->output->nrecipes == 0)
     {
         trace(("}\n"));
@@ -406,7 +405,7 @@ graph_walk_web(graph_ty *gp)
     /*
      * Fetch the list of files, and sort it by name.
      */
-    trace(("graph_walk_web(gp = %08lX)\n{\n", (long)gp));
+    trace(("graph_walk_web(gp = %p)\n{\n", gp));
     graph_file_list_nrc_constructor(&gfl);
     symtab_walk(gp->already, web_file_stash, &gfl);
     qsort(gfl.item, gfl.nfiles, sizeof(gfl.item[0]), web_file_cmp);

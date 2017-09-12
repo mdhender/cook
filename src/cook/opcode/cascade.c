@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1998, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1998, 2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -208,7 +207,7 @@ opcode_cascade_new(const expr_position_ty *pp)
     op = opcode_new(&method);
     this = (opcode_cascade_ty *)op;
     expr_position_copy_constructor(&this->pos, pp);
-    trace(("return %08lX;\n", (long)op));
+    trace(("return %p;\n", op));
     trace(("}\n"));
     return op;
 }

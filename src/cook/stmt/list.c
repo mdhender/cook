@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -38,7 +37,7 @@
 void
 stmt_list_append(stmt_list_ty *sl, stmt_ty *s)
 {
-    trace(("stmt_list_append(sl = %08X, s = %08X)\n{\n", sl, s));
+    trace(("stmt_list_append(sl = %p, s = %p)\n{\n", sl, s));
     if (sl->sl_nstmts >= sl->sl_nstmts_max)
     {
         size_t          nbytes;
@@ -72,7 +71,7 @@ stmt_list_destructor(stmt_list_ty *sl)
 {
     size_t          j;
 
-    trace(("stmt_list_destructor(sl = %08X)\n{\n", sl));
+    trace(("stmt_list_destructor(sl = %p)\n{\n", sl));
     for (j = 0; j < sl->sl_nstmts; ++j)
         stmt_delete(sl->sl_stmt[j]);
     if (sl->sl_stmt)

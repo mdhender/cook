@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1998, 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1998, 1999, 2006-2008, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -25,7 +24,7 @@
 #include <common/symtab.h>
 #include <common/str_list.h>
 #include <cook/builtin/expr_lex.h>
-#include <cook/builtin/expr_parse.gen.h>
+#include <cook/builtin/expr_parse.yacc.h>
 #include <cook/expr/position.h>
 
 

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -45,13 +44,13 @@ fp_record_new(string_ty *filename, fp_subdir_ty *parent)
 {
     fp_record_ty    *this;
 
-    trace(("fp_record_new(parent = %08lX)\n{\n", (long)parent));
+    trace(("fp_record_new(parent = %p)\n{\n", parent));
     this = mem_alloc(sizeof(fp_record_ty));
     this->filename = str_copy(filename);
     this->parent = parent;
     this->exists = 0;
     fp_value_constructor(&this->value);
-    trace(("return %08lX;\n", (long)this));
+    trace(("return %p;\n", this));
     trace(("}\n"));
     return this;
 }
@@ -78,14 +77,13 @@ fp_record_new2(string_ty *filename, fp_subdir_ty *parent, fp_value_ty *fp)
 {
     fp_record_ty    *this;
 
-    trace(("fp_record_new2(parent = %08lX, fp = %08lX)\n{\n", (long)parent,
-        (long)fp));
+    trace(("fp_record_new2(parent = %p, fp = %p)\n{\n", parent, fp));
     this = mem_alloc(sizeof(fp_record_ty));
     this->filename = str_copy(filename);
     this->parent = parent;
     this->exists = 1;
     fp_value_constructor_copy(&this->value, fp);
-    trace(("return %08lX;\n", (long)this));
+    trace(("return %p;\n", this));
     trace(("}\n"));
     return this;
 }
@@ -108,7 +106,7 @@ fp_record_new2(string_ty *filename, fp_subdir_ty *parent, fp_value_ty *fp)
 void
 fp_record_delete(fp_record_ty *this)
 {
-    trace(("fp_record_delete(this = %08lX)\n{\n", (long)this));
+    trace(("fp_record_delete(this = %p)\n{\n", this));
     str_free(this->filename);
     fp_value_destructor(&this->value);
     mem_free(this);
@@ -132,8 +130,8 @@ fp_record_delete(fp_record_ty *this)
 void
 fp_record_write(fp_record_ty *this, string_ty *key, FILE *fp)
 {
-    trace(("fp_record_write(this = %08lX, key = \"%s\", fp = %08lX)\n{\n",
-        (long)this, key->str_text, (long)fp));
+    trace(("fp_record_write(this = %p, key = \"%s\", fp = %p)\n{\n", this,
+        key->str_text, fp));
     if (this->exists)
         fp_value_write(&this->value, (key ? key : this->filename), fp);
     trace(("}\n"));
@@ -157,8 +155,7 @@ fp_record_write(fp_record_ty *this, string_ty *key, FILE *fp)
 void
 fp_record_update(fp_record_ty *this, fp_value_ty *fp)
 {
-    trace(("fp_record_update(this = %08lX, fp = %08lX)\n{\n", (long)this,
-        (long)fp));
+    trace(("fp_record_update(this = %p, fp = %p)\n{\n", this, fp));
     if (!this->exists || !fp_value_equal_all(&this->value, fp))
     {
         trace(("need to update\n"));
@@ -187,7 +184,7 @@ fp_record_update(fp_record_ty *this, fp_value_ty *fp)
 void
 fp_record_clear(fp_record_ty *this)
 {
-    trace(("fp_record_clear(this = %08lX)\n{\n", (long)this));
+    trace(("fp_record_clear(this = %p)\n{\n", this));
     if (this->exists)
     {
         this->exists = 0;

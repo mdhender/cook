@@ -1,8 +1,7 @@
 #!/bin/sh
 #
 #       cook - file construction tool
-#       Copyright (C) 1997, 2007 Peter Miller;
-#       All rights reserved.
+#       Copyright (C) 1997, 2007, 2008, 2010 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -20,8 +19,7 @@
 #
 for f in $*
 do
-        ff=`echo $f | sed 's|^lib/../|../|'`
-        echo ".so $ff"
+        echo ".so $f"
 done
 
 exit 0

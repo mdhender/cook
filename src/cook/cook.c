@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994-1999, 2001, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994-1999, 2001, 2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -109,6 +108,7 @@
 #include <cook/os_interface.h>
 #include <cook/recipe.h>
 #include <cook/recipe/list.h>
+#include <cook/stat.cache.h>
 #include <cook/stmt.h>
 
 
@@ -332,7 +332,7 @@ cook_mtime_oldest(const opcode_context_ty *ocp, string_ty *path,
         }
         string_list_destructor(&sl);
     }
-    trace(("return %ld (%d);\n", (long)result, *depth_p));
+    trace(("return %ld (%ld);\n", (long)result, *depth_p));
     trace(("}\n"));
     return result;
 }
@@ -468,7 +468,7 @@ cook_mtime_newest(const opcode_context_ty *ocp, string_ty *path,
         }
         string_list_destructor(&sl);
     }
-    trace(("return %ld (%d);\n", (long)result, *depth_p));
+    trace(("return %ld (%ld);\n", (long)result, *depth_p));
     trace(("}\n"));
     return result;
 }
@@ -505,7 +505,7 @@ cook_mtime_resolve(const opcode_context_ty *ocp, string_list_ty *output,
     int             result;
     size_t          j;
 
-    trace(("cook_mtime_resolve(input = %08lX, output = %08lX)\n{\n", input,
+    trace(("cook_mtime_resolve(input = %p, output = %p)\n{\n", input,
         output));
     result = 0;
     for (j = start; j < input->nstrings; ++j)
@@ -600,7 +600,7 @@ cook(string_list_ty *wlp)
      * Note that tee(1) [see listing.c] must ignore them
      * for the generated messages to appear in the log file.
      */
-    trace(("cook(wlp = %08lX)\n{\n", wlp));
+    trace(("cook(wlp = %p)\n{\n", wlp));
     desist_enable();
 
     /*
@@ -672,6 +672,11 @@ cook(string_list_ty *wlp)
     graph_delete(gp);
 
     /*
+     * Dump file size data, if asked.
+     */
+    stat_cache_dump();
+
+    /*
      * Return the result to the caller.
      */
     trace(("return %d;\n", retval));
@@ -709,7 +714,7 @@ cook_pairs(string_list_ty *wlp)
      * Note that tee(1) [see listing.c] must ignore them
      * for the generated messages to appear in the log file.
      */
-    trace(("cook(wlp = %08lX)\n{\n", wlp));
+    trace(("cook(wlp = %p)\n{\n", wlp));
     desist_enable();
 
     /*
@@ -803,7 +808,7 @@ cook_script(string_list_ty *wlp)
      * Note that tee(1) [see listing.c] must ignore them
      * for the generated messages to appear in the log file.
      */
-    trace(("cook(wlp = %08lX)\n{\n", wlp));
+    trace(("cook(wlp = %p)\n{\n", wlp));
     desist_enable();
 
     /*
@@ -896,7 +901,7 @@ cook_web(string_list_ty *wlp)
      * Note that tee(1) [see listing.c] must ignore them
      * for the generated messages to appear in the log file.
      */
-    trace(("cook(wlp = %08lX)\n{\n", wlp));
+    trace(("cook(wlp = %p)\n{\n", wlp));
     desist_enable();
 
     /*
@@ -1251,7 +1256,7 @@ cook_explicit_append(recipe_ty *rp)
 {
     size_t          j;
 
-    trace(("cook_explicit_append(rp = %08lX)\n{\n", (long)rp));
+    trace(("cook_explicit_append(rp = %p)\n{\n", rp));
     recipe_list_append(&explicit, rp);
     for (j = 0; j < rp->target->nstrings; ++j)
     {

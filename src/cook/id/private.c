@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -33,7 +32,7 @@ id_instance_new(id_method_ty *mp)
     trace(("is a %s\n", mp->name));
     idp = mem_alloc(mp->size);
     idp->method = mp;
-    trace(("return %08lX;\n", (long)idp));
+    trace(("return %p;\n", idp));
     trace(("}\n"));
     return idp;
 }

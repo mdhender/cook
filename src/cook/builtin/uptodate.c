@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -136,10 +135,11 @@ interpret(string_list_ty *result, const string_list_ty *args,
                 fn = args->string[j];
                 trace(("\"%s\"\n", fn->str_text));
                 gfp = symtab_query(gp->already, fn);
-                trace(("gfp = %08lX\n", (long)gfp));
+                trace(("gfp = %p\n", gfp));
                 assert(gfp);
                 trace(("gfp->input_uptodate = %d\n", (int)gfp->input_uptodate));
-                trace(("gfp->input->nrecipes = %d\n", gfp->input->nrecipes));
+                trace(("gfp->input->nrecipes = %d\n",
+                    (int)gfp->input->nrecipes));
                 if (gfp && gfp->input_uptodate >= gfp->input->nrecipes)
                     string_list_append(result, fn);
             }

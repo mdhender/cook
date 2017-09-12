@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -58,7 +57,7 @@ destructor(stmt_ty *sp)
 {
     stmt_set_ty     *this;
 
-    trace(("destructor(sp = %08X)\n{\n", sp));
+    trace(("destructor(sp = %p)\n{\n", sp));
     assert(sp);
     /* assert(sp->method == &method); */
     this = (stmt_set_ty *)sp;
@@ -89,7 +88,7 @@ code_generate(stmt_ty *sp, opcode_list_ty *olp)
     stmt_set_ty     *this;
     expr_position_ty *pp;
 
-    trace(("code_generate(sp = %08X)\n{\n", sp));
+    trace(("code_generate(sp = %p)\n{\n", sp));
     assert(sp);
     this = (stmt_set_ty *)sp;
     opcode_list_append(olp, opcode_push_new());
@@ -155,7 +154,7 @@ stmt_set_new(expr_list_ty *elp, expr_position_ty *pp)
     this = (stmt_set_ty *)sp;
     expr_list_copy_constructor(&this->args, elp);
     expr_position_copy_constructor(&this->pos, pp);
-    trace(("return %8.8lX;\n", (long)sp));
+    trace(("return %p;\n", sp));
     trace(("}\n"));
     return sp;
 }

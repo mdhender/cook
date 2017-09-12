@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -89,7 +88,7 @@ fp_subdir_new(string_ty *path)
     this->dirty = 0;
     this->cache_in_dot = 0;
     this->need_to_read = 1;
-    trace(("return %08lX;\n", (long)this));
+    trace(("return %p;\n", this));
     trace(("}\n"));
     return this;
 }
@@ -110,7 +109,7 @@ fp_subdir_new(string_ty *path)
 void
 fp_subdir_delete(fp_subdir_ty *this)
 {
-    trace(("fp_subdir_delete(this = %08lX)\n{\n", (long)this));
+    trace(("fp_subdir_delete(this = %p)\n{\n", this));
     str_free(this->path);
     this->path = 0;
     symtab_free(this->stp);
@@ -141,7 +140,7 @@ fp_subdir_read(fp_subdir_ty *this)
         return;
     this->need_to_read = 0;
 
-    trace(("fp_subdir_read(this = %08lX)\n{\n", (long)this));
+    trace(("fp_subdir_read(this = %p)\n{\n", this));
     fn = os_path_cat(this->path, fp_filename());
     fp_gram(this, fn);
     str_free(fn);
@@ -169,8 +168,8 @@ walk(symtab_ty *sp, string_ty *key, void *p, void *arg)
     fp_record_ty    *data;
     FILE            *fp;
 
-    trace(("walk(sp = %08lX, key = \"%s\", p = %08lX, arg = %08lX)\n{\n",
-            (long)sp, key->str_text, (long)p, (long)arg));
+    trace(("walk(sp = %p, key = \"%s\", p = %p, arg = %p)\n{\n", sp,
+        key->str_text, p, arg));
     (void)sp;
     data = p;
     fp = arg;
@@ -205,7 +204,7 @@ fp_subdir_write(fp_subdir_ty *this, int *need_to_write_dot)
     /*
      * If we aren't dirty, don't write us out
      */
-    trace(("fp_subdir_write(this = %08lX)\n{\n", (long)this));
+    trace(("fp_subdir_write(this = %p)\n{\n", this));
     if (!this->dirty)
     {
         trace(("not dirty\n"));
@@ -235,6 +234,7 @@ fp_subdir_write(fp_subdir_ty *this, int *need_to_write_dot)
         switch (errno)
         {
         case ENOENT:
+        case ENOSYS:
             break;
 
         case EACCES:
@@ -258,7 +258,7 @@ fp_subdir_write(fp_subdir_ty *this, int *need_to_write_dot)
     fp = fopen(fn->str_text, "w");
     if (!fp)
     {
-        if (errno == EACCES || errno == ENOENT)
+        if (errno == EACCES || errno == ENOENT || errno == ENOSYS)
         {
             str_free(fn);
             trace(("mark not writable any more\n"));
@@ -337,7 +337,7 @@ fp_subdir_tweak(fp_subdir_ty *this)
     /*
      * read the directory
      */
-    trace(("fp_subdir_update(this = %08lX)\n{\n", (long)this));
+    trace(("fp_subdir_update(this = %p)\n{\n", this));
     star_as_specified('*');
     dp = opendir(this->path->str_text);
     if (!dp)

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2003, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2003, 2007, 2008, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -73,9 +72,15 @@
  * fileno, lstat, etc.
  */
 #ifdef __linux__
+#ifndef _POSIX_SOURCE
 #define _POSIX_SOURCE
-#define _GNU_SOURCE
+#endif
+#ifndef _GNU_SOURCE
+# define _GNU_SOURCE 1
+#endif
+#ifndef _BSD_SOURCE
 #define _BSD_SOURCE
+#endif
 #endif
 
 #endif /* COMMON_CONFIG_MESSY_H */

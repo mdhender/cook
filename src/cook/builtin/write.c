@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2004, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2004, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -56,7 +55,7 @@ interpret(string_list_ty *result, const string_list_ty *args,
     size_t          j;
     int             retval;
 
-    trace(("write::interpret(result = %08X, args = %08X)\n{\n", result, args));
+    trace(("write::interpret(result = %p, args = %p)\n{\n", result, args));
     (void)result;
     (void)ocp;
     retval = 0;
@@ -162,7 +161,7 @@ script(string_list_ty *result, const string_list_ty *args,
     static int      the_end_n;
     string_ty       *s;
 
-    trace(("write::script(result = %08X, args = %08X)\n{\n", result, args));
+    trace(("write::script(result = %p, args = %p)\n{\n", result, args));
     (void)result;
     (void)ocp;
     retval = 0;

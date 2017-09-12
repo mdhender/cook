@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -40,7 +39,7 @@
 void
 graph_recipe_list_constructor(graph_recipe_list_ty *grlp)
 {
-    trace(("graph_recipe_list_constructor(grlp = %8.8lX)\n{\n", (long)grlp));
+    trace(("graph_recipe_list_constructor(grlp = %p)\n{\n", grlp));
     grlp->nrecipes = 0;
     grlp->nrecipes_max = 0;
     grlp->recipe = 0;
@@ -66,7 +65,7 @@ graph_recipe_list_destructor(graph_recipe_list_ty *grlp)
 {
     size_t          j;
 
-    trace(("graph_recipe_list_destructor(grlp = %8.8lX)\n{\n", (long)grlp));
+    trace(("graph_recipe_list_destructor(grlp = %p)\n{\n", grlp));
     for (j = 0; j < grlp->nrecipes; ++j)
         graph_recipe_delete(grlp->recipe[j]);
     if (grlp->recipe)
@@ -96,8 +95,7 @@ graph_recipe_list_append(graph_recipe_list_ty *grlp, graph_recipe_ty *grp)
 {
     size_t          j;
 
-    trace(("graph_recipe_list_append(grlp = %8.8lX, grp = %8.8lX)\n{\n",
-        (long)grlp, (long)grp));
+    trace(("graph_recipe_list_append(grlp = %p, grp = %p)\n{\n", grlp, grp));
     for (j = 0; j < grlp->nrecipes; ++j)
     {
         if (grlp->recipe[j] == grp)
@@ -140,8 +138,7 @@ graph_recipe_list_append_list(graph_recipe_list_ty *to,
 {
     size_t          j;
 
-    trace(("graph_recipe_list_append_list(to = %8.8lX, from = %8.8lX)\n{\n",
-        (long)to, (long)from));
+    trace(("graph_recipe_list_append_list(to = %p, from = %p)\n{\n", to, from));
     for (j = 0; j < from->nrecipes; ++j)
         graph_recipe_list_append(to, from->recipe[j]);
     trace(("}\n"));
@@ -173,7 +170,7 @@ graph_recipe_list_new(void)
     trace(("graph_recipe_list_new()\n{\n"));
     grlp = mem_alloc(sizeof(graph_recipe_list_ty));
     graph_recipe_list_constructor(grlp);
-    trace(("return %8.8lX;\n", (long)grlp));
+    trace(("return %p;\n", grlp));
     trace(("}\n"));
     return grlp;
 }
@@ -194,7 +191,7 @@ graph_recipe_list_new(void)
 void
 graph_recipe_list_delete(graph_recipe_list_ty *grlp)
 {
-    trace(("graph_recipe_list_delete(grlp = %8.8lX)\n{\n", (long)grlp));
+    trace(("graph_recipe_list_delete(grlp = %p)\n{\n", grlp));
     graph_recipe_list_destructor(grlp);
     mem_free(grlp);
     trace(("}\n"));
@@ -217,8 +214,7 @@ graph_recipe_list_delete(graph_recipe_list_ty *grlp)
 void
 graph_recipe_list_nrc_constructor(graph_recipe_list_nrc_ty *grlp)
 {
-    trace(("graph_recipe_list_nrc_constructor(grlp = %8.8lX)\n{\n",
-        (long)grlp));
+    trace(("graph_recipe_list_nrc_constructor(grlp = %p)\n{\n", grlp));
     grlp->nrecipes = 0;
     grlp->nrecipes_max = 0;
     grlp->recipe = 0;
@@ -242,7 +238,7 @@ graph_recipe_list_nrc_constructor(graph_recipe_list_nrc_ty *grlp)
 void
 graph_recipe_list_nrc_destructor(graph_recipe_list_nrc_ty *grlp)
 {
-    trace(("graph_recipe_list_nrc_destructor(grlp = %8.8lX)\n{\n", (long)grlp));
+    trace(("graph_recipe_list_nrc_destructor(grlp = %p)\n{\n", grlp));
     if (grlp->recipe)
         mem_free(grlp->recipe);
     grlp->nrecipes = 0;
@@ -272,8 +268,8 @@ graph_recipe_list_nrc_append(graph_recipe_list_nrc_ty *grlp,
 {
     size_t          j;
 
-    trace(("graph_recipe_list_nrc_append(grlp = %8.8lX, grp = %8.8lX)\n{\n",
-        (long)grlp, (long)grp));
+    trace(("graph_recipe_list_nrc_append(grlp = %p, grp = %p)\n{\n", grlp,
+        grp));
     for (j = 0; j < grlp->nrecipes; ++j)
     {
         if (grlp->recipe[j] == grp)
@@ -316,8 +312,8 @@ graph_recipe_list_nrc_append_list(graph_recipe_list_nrc_ty *to,
 {
     size_t          j;
 
-    trace(("graph_recipe_list_nrc_append_list(to = %8.8lX, from = %8.8lX)\n{\n",
-        (long)to, (long)from));
+    trace(("graph_recipe_list_nrc_append_list(to = %p, from = %p)\n{\n", to,
+        from));
     for (j = 0; j < from->nrecipes; ++j)
         graph_recipe_list_nrc_append(to, from->recipe[j]);
     trace(("}\n"));
@@ -349,7 +345,7 @@ graph_recipe_list_nrc_new(void)
     trace(("graph_recipe_list_nrc_new()\n{\n"));
     grlp = mem_alloc(sizeof(graph_recipe_list_nrc_ty));
     graph_recipe_list_nrc_constructor(grlp);
-    trace(("return %8.8lX;\n", (long)grlp));
+    trace(("return %p;\n", grlp));
     trace(("}\n"));
     return grlp;
 }
@@ -370,7 +366,7 @@ graph_recipe_list_nrc_new(void)
 void
 graph_recipe_list_nrc_delete(graph_recipe_list_nrc_ty *grlp)
 {
-    trace(("graph_recipe_list_nrc_delete(grlp = %8.8lX)\n{\n", (long)grlp));
+    trace(("graph_recipe_list_nrc_delete(grlp = %p)\n{\n", grlp));
     graph_recipe_list_nrc_destructor(grlp);
     mem_free(grlp);
     trace(("}\n"));

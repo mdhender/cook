@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1991-1994, 1997-1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1991-1994, 1997-1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -31,6 +30,7 @@
 #include <common/error.h>
 #include <common/error_intl.h>
 #include <common/star.h>
+#include <common/stracc.h>
 #include <common/trace.h>
 #include <cook/builtin/collect.h>
 #include <cook/expr/position.h>
@@ -69,6 +69,7 @@ interpret(string_list_ty *result, const string_list_ty *args,
     int             status;
     int             silent;
     int             errok;
+    stracc          lbuf;
 
     trace(("collect\n"));
     (void)ocp;
@@ -116,10 +117,9 @@ interpret(string_list_ty *result, const string_list_ty *args,
         return -1;
     }
     delim = strchr(args->string[0]->str_text, '_') ? "\n" : "\n \t\f";
+    stracc_constructor(&lbuf);
     for (;;)
     {
-        char            buffer[1024];
-        char            *cp;
         int             c;
 
         for (;;)
@@ -130,20 +130,21 @@ interpret(string_list_ty *result, const string_list_ty *args,
         }
         if (c == EOF)
             break;
-        cp = buffer;
+        sa_open(&lbuf);
         for (;;)
         {
-            *cp++ = c;
+            sa_char(&lbuf, c);
             c = fgetc(fp);
             if (c == EOF || strchr(delim, c))
                 break;
         }
-        s = str_n_from_c(buffer, cp - buffer);
+        s = sa_close(&lbuf);
         string_list_append(result, s);
         str_free(s);
         if (c == EOF)
             break;
     }
+    stracc_destructor(&lbuf);
     if (ferror(fp))
     {
         sub_context_ty  *scp;

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -128,8 +127,7 @@ implications_of_file(graph_recipe_list_nrc_ty *walk, graph_file_ty *gfp,
     size_t          k;
     graph_recipe_ty *grp2;
 
-    trace(("implications_of_file(walk=%08lX, gfp=%08lX)\n{\n", (long)walk,
-        (long)gfp));
+    trace(("implications_of_file(walk = %p, gfp = %p)\n{\n", walk, gfp));
     gfp->input_satisfied++;
     if (uptodate)
         gfp->input_uptodate++;
@@ -190,7 +188,7 @@ implications_of_file(graph_recipe_list_nrc_ty *walk, graph_file_ty *gfp,
          * use-clause, it may be a script or some other
          * traversal.  Always push.
          */
-        trace(("recipe ingredients satisfied, push %08lX\n", (long)grp2));
+        trace(("recipe ingredients satisfied, push %p\n", grp2));
         graph_recipe_list_nrc_append(walk, grp2);
     }
 
@@ -345,8 +343,7 @@ implications_of_recipe(graph_recipe_list_nrc_ty *walk, graph_recipe_ty *grp,
 {
     size_t          j;
 
-    trace(("implications_of_recipe(walk=%08lX, grp=%08lX)\n{\n",
-            (long)walk, (long)grp));
+    trace(("implications_of_recipe(walk = %p, grp = %p)\n{\n", walk, grp));
     trace(("check %ld file outputs\n", (long)grp->output->nfiles));
     for (j = 0; j < grp->output->nfiles; ++j)
     {
@@ -401,8 +398,7 @@ graph_walk_inner(graph_ty *gp,
     itab_ty         *itp;
     string_list_ty  single_thread;
 
-    trace(("graph_walk(gp = %8.8lX, nproc = %d)\n{\n",
-            (long)gp, nproc));
+    trace(("graph_walk(gp = %p, nproc = %d)\n{\n", gp, nproc));
     status = graph_walk_status_uptodate;
     itp = itab_alloc(nproc);
 
@@ -546,12 +542,12 @@ graph_walk_inner(graph_ty *gp,
                  */
                 kp = walk.recipe[k];
                 trace(("k = %ld\n", (long)k));
-                trace(("kp = %08lX\n", (long)kp));
+                trace(("kp = %p\n", kp));
                 walk.recipe[walk_pos - 1] = kp;
                 walk.recipe[k] = grp;
                 grp = kp;
             }
-            trace(("grp = %08lX;\n", (long)grp));
+            trace(("grp = %p;\n", grp));
             trace(("grp->input->nfiles = %ld;\n", (long)grp->input->nfiles));
             trace(("grp->output->nfiles = %ld;\n", (long)grp->output->nfiles));
 

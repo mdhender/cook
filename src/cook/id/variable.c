@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -51,7 +50,7 @@ destructor(id_ty *idp)
 {
     id_variable_ty  *this;
 
-    trace(("id_variable::destructor(idp = %08lX)\n{\n", (long)idp));
+    trace(("id_variable::destructor(idp = %p)\n{\n", idp));
     this = (id_variable_ty *) idp;
     string_list_destructor(&this->value);
     trace(("}\n"));
@@ -82,7 +81,7 @@ interpret(id_ty *idp, opcode_context_ty *ocp, const expr_position_ty *pp)
     int             status;
     string_list_ty  *arg;
 
-    trace(("id_variable::interpret(idp = %08lX)\n{\n", (long)idp));
+    trace(("id_variable::interpret(idp = %p)\n{\n", idp));
     this = (id_variable_ty *)idp;
     status = 0;
     arg = opcode_context_string_list_pop(ocp);
@@ -159,7 +158,7 @@ id_variable_new(string_list_ty *slp)
     idp = id_instance_new(&method);
     this = (id_variable_ty *)idp;
     string_list_copy_constructor(&this->value, slp);
-    trace(("return %08lX;\n", (long)idp));
+    trace(("return %p;\n", idp));
     trace(("}\n"));
     return idp;
 }
