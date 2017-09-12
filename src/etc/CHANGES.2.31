@@ -1,0 +1,64 @@
+
+
+
+Project "cook.2.31"						  Page 1
+List of Changes					Wed Feb 13 10:06:02 2008
+
+Change	State		Description
+------- -------		-------------
+  10	being_		prepare for release
+	integrated
+	pmiller
+
+
+
+Project "cook.2.31", Change 10					  Page 1
+Change Details					Wed Feb 13 10:06:02 2008
+
+NAME
+	Project "cook.2.31", Delta 1, Change 10.
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change set prpares Cook for the next public release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory. This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+	arch.	 host	  aeb	      aet	  aet -bl     aet -reg
+	-------- -------- ---------   ---------	  ---------   ---------
+	linux-		  required    exempt	  exempt      required
+	i486
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+STATE
+	This change is in the 'being_integrated' state.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	source	modify	    4	      lib/en/readme/new.2.27.so
+	source	modify	    1	      lib/en/readme/new.2.30.so
+	source	create		      lib/en/readme/new.2.31.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Feb 13	pmiller
+			09:48:33 2008
+	develop_begin	Wed Feb 13	pmiller	 Elapsed time: 0.023
+			09:48:34 2008		 days.
+	develop_end_2ai Wed Feb 13	pmiller
+			09:58:52 2008
+	integrate_begin Wed Feb 13	pmiller
+			10:05:49 2008

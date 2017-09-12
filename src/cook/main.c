@@ -87,6 +87,8 @@ enum
     arglex_token_book_not,
     arglex_token_cascade,
     arglex_token_cascade_not,
+    arglex_token_ctime,
+    arglex_token_ctime_not,
     arglex_token_disassemble,
     arglex_token_disassemble_not,
     arglex_token_errok,
@@ -150,6 +152,8 @@ static arglex_table_ty argtab[] =
     { "-No_Book", (arglex_token_ty) arglex_token_book_not },
     { "-CAScade", (arglex_token_ty) arglex_token_cascade },
     { "-No_CAScade", (arglex_token_ty) arglex_token_cascade_not },
+    { "-CTime", (arglex_token_ty) arglex_token_ctime },
+    { "-No_CTime", (arglex_token_ty) arglex_token_ctime_not },
     { "-Continue", (arglex_token_ty) arglex_token_persevere },
     { "-No_Continue", (arglex_token_ty) arglex_token_persevere_not },
     { "-DISassemble", (arglex_token_ty) arglex_token_disassemble },
@@ -336,6 +340,14 @@ argparse(option_level_ty level)
 
         case arglex_token_cascade_not:
             type = OPTION_CASCADE;
+            goto normal_off;
+
+        case arglex_token_ctime:
+            type = OPTION_CTIME;
+            goto normal_on;
+
+        case arglex_token_ctime_not:
+            type = OPTION_CTIME;
             goto normal_off;
 
         case arglex_token_disassemble:

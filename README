@@ -77,12 +77,12 @@ ARCHIVE SITE
        The latest version of cook is available on the Web from:
 
            URL:    http://www.canb.auug.org.au/~millerp/cook/
-           File:   cook-2.30.README     # the README from the tar file
-           File:   cook-2.30.lsm        # LSM format description
-           File:   cook-2.30.spec       # RedHat package specification
-           File:   cook-2.30.rm.ps.gz   # PostScript of the Reference Manual
-           File:   cook-2.30.ug.ps.gz   # PostScript of the User Guide
-           File:   cook-2.30.tar.gz     # the complete source
+           File:   cook-2.31.README     # the README from the tar file
+           File:   cook-2.31.lsm        # LSM format description
+           File:   cook-2.31.spec       # RedHat package specification
+           File:   cook-2.31.rm.ps.gz   # PostScript of the Reference Manual
+           File:   cook-2.31.ug.ps.gz   # PostScript of the User Guide
+           File:   cook-2.31.tar.gz     # the complete source
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -91,12 +91,12 @@ ARCHIVE SITE
        will be able to find Cook on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/devel/make/
-           File:   cook-2.30.README     # the README from the tar file
-           File:   cook-2.30.lsm        # LSM format description
-           File:   cook-2.30.spec       # RedHat package specification
-           File:   cook-2.30.rm.ps.gz   # PostScript of the Reference Manual
-           File:   cook-2.30.ug.ps.gz   # PostScript of the User Guide
-           File:   cook-2.30.tar.gz     # the complete source
+           File:   cook-2.31.README     # the README from the tar file
+           File:   cook-2.31.lsm        # LSM format description
+           File:   cook-2.31.spec       # RedHat package specification
+           File:   cook-2.31.rm.ps.gz   # PostScript of the Reference Manual
+           File:   cook-2.31.ug.ps.gz   # PostScript of the User Guide
+           File:   cook-2.31.tar.gz     # the complete source
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -128,10 +128,10 @@ BUILDING COOK
        BUILDING file included in this distribution.
 
 COPYRIGHT
-       cook version 2.30
+       cook version 2.31
        Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996,
-       1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007 Peter
-       Miller; All rights reserved.
+       1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
+       Peter Miller; All rights reserved.
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -158,6 +158,15 @@ NEW IN THIS RELEASE
        acknowledgements of those who generously sent me feedback, please see
        the etc/CHANGES.* files included in this distribution.
 
+   Version 2.31 (2008-Feb-13)
+       * A build problem with the ./configure file has been fixed.
+
+       * There is a new "set no-ctime" flag, for coping with Aegis penchant
+       for making and breaking hard links.
+
+       * The LICENSE file has been updated to match the licensing of the
+       source code.
+
    Version 2.30 (2007-Aug-21)
        * Several build and portability problems have been fixed.
 
@@ -181,7 +190,7 @@ NEW IN THIS RELEASE
 
    Version 2.28 (2007-Jun-5)
        * The [print] function has been enhanced so that it is now able to
-       print more than one line, if you include a newline escape.
+       print more than one line, if you include a newline \n escape.
 
        * A problem with the Makefile has been fixed.
 

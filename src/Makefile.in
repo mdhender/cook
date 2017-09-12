@@ -3253,32 +3253,32 @@ $(mandir)/man1/roffpp.1: lib/$(MANLANG)/man1/roffpp.1 \
 
 lib/en/refman.ps: lib/en/refman/main.man bin/roffpp$(EXEEXT) etc/toc.so \
 		etc/version.so lib/en/readme/main.man \
-		lib/en/readme/new.so lib/en/readme/new.2.30.so \
-		lib/en/readme/new.2.29.so lib/en/readme/new.2.28.so \
-		lib/en/readme/new.2.27.so lib/en/readme/new.2.26.so \
-		lib/en/readme/new.2.25.so lib/en/readme/new.2.24.so \
-		lib/en/readme/new.2.23.so lib/en/readme/new.2.22.so \
-		lib/en/readme/new.2.21.so lib/en/readme/new.2.20.so \
-		lib/en/readme/new.2.19.so lib/en/readme/new.2.18.so \
-		lib/en/readme/new.2.17.so lib/en/readme/new.2.16.so \
-		lib/en/readme/new.2.15.so lib/en/readme/new.2.12.so \
-		lib/en/readme/new.2.11.so lib/en/readme/new.2.10.so \
-		lib/en/readme/new.2.9.so lib/en/readme/new.2.8.so \
-		lib/en/readme/new.2.7.so lib/en/readme/new.2.6.so \
-		lib/en/readme/new.2.5.so lib/en/readme/new.2.4.so \
-		lib/en/readme/new.2.3.so lib/en/readme/new.2.2.so \
-		lib/en/readme/new.2.1.so lib/en/readme/new.2.0.so \
-		lib/en/readme/new.1.26.so lib/en/readme/new.1.11.so \
-		lib/en/readme/new.1.10.so lib/en/readme/new.1.9.so \
-		lib/en/readme/new.1.8.so lib/en/readme/new.1.7.so \
-		lib/en/readme/new.1.6.so lib/en/readme/new.1.5.so \
-		lib/en/readme/new.1.4.so lib/en/building/main.man \
-		lib/en/building/windows-nt.so lib/en/refman/i18n.so \
-		lib/en/refman/i18n.pic.so lib/en/refman/parts.so \
-		lib/en/man1/c_incl.1 lib/en/man1/z_name.so \
-		lib/en/man1/o__rules.so lib/en/man1/z_exit.so \
-		lib/en/man1/copyright.so lib/en/man1/cook.1 \
-		etc/libdir.so lib/en/man1/cook_bom.1 \
+		lib/en/readme/new.so lib/en/readme/new.2.31.so \
+		lib/en/readme/new.2.30.so lib/en/readme/new.2.29.so \
+		lib/en/readme/new.2.28.so lib/en/readme/new.2.27.so \
+		lib/en/readme/new.2.26.so lib/en/readme/new.2.25.so \
+		lib/en/readme/new.2.24.so lib/en/readme/new.2.23.so \
+		lib/en/readme/new.2.22.so lib/en/readme/new.2.21.so \
+		lib/en/readme/new.2.20.so lib/en/readme/new.2.19.so \
+		lib/en/readme/new.2.18.so lib/en/readme/new.2.17.so \
+		lib/en/readme/new.2.16.so lib/en/readme/new.2.15.so \
+		lib/en/readme/new.2.12.so lib/en/readme/new.2.11.so \
+		lib/en/readme/new.2.10.so lib/en/readme/new.2.9.so \
+		lib/en/readme/new.2.8.so lib/en/readme/new.2.7.so \
+		lib/en/readme/new.2.6.so lib/en/readme/new.2.5.so \
+		lib/en/readme/new.2.4.so lib/en/readme/new.2.3.so \
+		lib/en/readme/new.2.2.so lib/en/readme/new.2.1.so \
+		lib/en/readme/new.2.0.so lib/en/readme/new.1.26.so \
+		lib/en/readme/new.1.11.so lib/en/readme/new.1.10.so \
+		lib/en/readme/new.1.9.so lib/en/readme/new.1.8.so \
+		lib/en/readme/new.1.7.so lib/en/readme/new.1.6.so \
+		lib/en/readme/new.1.5.so lib/en/readme/new.1.4.so \
+		lib/en/building/main.man lib/en/building/windows-nt.so \
+		lib/en/refman/i18n.so lib/en/refman/i18n.pic.so \
+		lib/en/refman/parts.so lib/en/man1/c_incl.1 \
+		lib/en/man1/z_name.so lib/en/man1/o__rules.so \
+		lib/en/man1/z_exit.so lib/en/man1/copyright.so \
+		lib/en/man1/cook.1 etc/libdir.so lib/en/man1/cook_bom.1 \
 		lib/en/man1/cook_lic.1 lib/en/man1/cook_rsh.1 \
 		lib/en/man1/cookfp.1 lib/en/man1/cooktime.1 \
 		lib/en/man1/find_libs.1 lib/en/man1/make2cook.1 \
@@ -3292,32 +3292,32 @@ $(datadir)/en/refman.ps: lib/en/refman.ps lib/en/.datadir
 
 lib/en/refman.dvi: lib/en/refman/main.man bin/roffpp$(EXEEXT) etc/toc.so \
 		etc/version.so lib/en/readme/main.man \
-		lib/en/readme/new.so lib/en/readme/new.2.30.so \
-		lib/en/readme/new.2.29.so lib/en/readme/new.2.28.so \
-		lib/en/readme/new.2.27.so lib/en/readme/new.2.26.so \
-		lib/en/readme/new.2.25.so lib/en/readme/new.2.24.so \
-		lib/en/readme/new.2.23.so lib/en/readme/new.2.22.so \
-		lib/en/readme/new.2.21.so lib/en/readme/new.2.20.so \
-		lib/en/readme/new.2.19.so lib/en/readme/new.2.18.so \
-		lib/en/readme/new.2.17.so lib/en/readme/new.2.16.so \
-		lib/en/readme/new.2.15.so lib/en/readme/new.2.12.so \
-		lib/en/readme/new.2.11.so lib/en/readme/new.2.10.so \
-		lib/en/readme/new.2.9.so lib/en/readme/new.2.8.so \
-		lib/en/readme/new.2.7.so lib/en/readme/new.2.6.so \
-		lib/en/readme/new.2.5.so lib/en/readme/new.2.4.so \
-		lib/en/readme/new.2.3.so lib/en/readme/new.2.2.so \
-		lib/en/readme/new.2.1.so lib/en/readme/new.2.0.so \
-		lib/en/readme/new.1.26.so lib/en/readme/new.1.11.so \
-		lib/en/readme/new.1.10.so lib/en/readme/new.1.9.so \
-		lib/en/readme/new.1.8.so lib/en/readme/new.1.7.so \
-		lib/en/readme/new.1.6.so lib/en/readme/new.1.5.so \
-		lib/en/readme/new.1.4.so lib/en/building/main.man \
-		lib/en/building/windows-nt.so lib/en/refman/i18n.so \
-		lib/en/refman/i18n.pic.so lib/en/refman/parts.so \
-		lib/en/man1/c_incl.1 lib/en/man1/z_name.so \
-		lib/en/man1/o__rules.so lib/en/man1/z_exit.so \
-		lib/en/man1/copyright.so lib/en/man1/cook.1 \
-		etc/libdir.so lib/en/man1/cook_bom.1 \
+		lib/en/readme/new.so lib/en/readme/new.2.31.so \
+		lib/en/readme/new.2.30.so lib/en/readme/new.2.29.so \
+		lib/en/readme/new.2.28.so lib/en/readme/new.2.27.so \
+		lib/en/readme/new.2.26.so lib/en/readme/new.2.25.so \
+		lib/en/readme/new.2.24.so lib/en/readme/new.2.23.so \
+		lib/en/readme/new.2.22.so lib/en/readme/new.2.21.so \
+		lib/en/readme/new.2.20.so lib/en/readme/new.2.19.so \
+		lib/en/readme/new.2.18.so lib/en/readme/new.2.17.so \
+		lib/en/readme/new.2.16.so lib/en/readme/new.2.15.so \
+		lib/en/readme/new.2.12.so lib/en/readme/new.2.11.so \
+		lib/en/readme/new.2.10.so lib/en/readme/new.2.9.so \
+		lib/en/readme/new.2.8.so lib/en/readme/new.2.7.so \
+		lib/en/readme/new.2.6.so lib/en/readme/new.2.5.so \
+		lib/en/readme/new.2.4.so lib/en/readme/new.2.3.so \
+		lib/en/readme/new.2.2.so lib/en/readme/new.2.1.so \
+		lib/en/readme/new.2.0.so lib/en/readme/new.1.26.so \
+		lib/en/readme/new.1.11.so lib/en/readme/new.1.10.so \
+		lib/en/readme/new.1.9.so lib/en/readme/new.1.8.so \
+		lib/en/readme/new.1.7.so lib/en/readme/new.1.6.so \
+		lib/en/readme/new.1.5.so lib/en/readme/new.1.4.so \
+		lib/en/building/main.man lib/en/building/windows-nt.so \
+		lib/en/refman/i18n.so lib/en/refman/i18n.pic.so \
+		lib/en/refman/parts.so lib/en/man1/c_incl.1 \
+		lib/en/man1/z_name.so lib/en/man1/o__rules.so \
+		lib/en/man1/z_exit.so lib/en/man1/copyright.so \
+		lib/en/man1/cook.1 etc/libdir.so lib/en/man1/cook_bom.1 \
 		lib/en/man1/cook_lic.1 lib/en/man1/cook_rsh.1 \
 		lib/en/man1/cookfp.1 lib/en/man1/cooktime.1 \
 		lib/en/man1/find_libs.1 lib/en/man1/make2cook.1 \
@@ -3331,32 +3331,32 @@ $(datadir)/en/refman.dvi: lib/en/refman.dvi lib/en/.datadir
 
 lib/en/refman.txt: lib/en/refman/main.man bin/roffpp$(EXEEXT) etc/toc.so \
 		etc/version.so lib/en/readme/main.man \
-		lib/en/readme/new.so lib/en/readme/new.2.30.so \
-		lib/en/readme/new.2.29.so lib/en/readme/new.2.28.so \
-		lib/en/readme/new.2.27.so lib/en/readme/new.2.26.so \
-		lib/en/readme/new.2.25.so lib/en/readme/new.2.24.so \
-		lib/en/readme/new.2.23.so lib/en/readme/new.2.22.so \
-		lib/en/readme/new.2.21.so lib/en/readme/new.2.20.so \
-		lib/en/readme/new.2.19.so lib/en/readme/new.2.18.so \
-		lib/en/readme/new.2.17.so lib/en/readme/new.2.16.so \
-		lib/en/readme/new.2.15.so lib/en/readme/new.2.12.so \
-		lib/en/readme/new.2.11.so lib/en/readme/new.2.10.so \
-		lib/en/readme/new.2.9.so lib/en/readme/new.2.8.so \
-		lib/en/readme/new.2.7.so lib/en/readme/new.2.6.so \
-		lib/en/readme/new.2.5.so lib/en/readme/new.2.4.so \
-		lib/en/readme/new.2.3.so lib/en/readme/new.2.2.so \
-		lib/en/readme/new.2.1.so lib/en/readme/new.2.0.so \
-		lib/en/readme/new.1.26.so lib/en/readme/new.1.11.so \
-		lib/en/readme/new.1.10.so lib/en/readme/new.1.9.so \
-		lib/en/readme/new.1.8.so lib/en/readme/new.1.7.so \
-		lib/en/readme/new.1.6.so lib/en/readme/new.1.5.so \
-		lib/en/readme/new.1.4.so lib/en/building/main.man \
-		lib/en/building/windows-nt.so lib/en/refman/i18n.so \
-		lib/en/refman/i18n.pic.so lib/en/refman/parts.so \
-		lib/en/man1/c_incl.1 lib/en/man1/z_name.so \
-		lib/en/man1/o__rules.so lib/en/man1/z_exit.so \
-		lib/en/man1/copyright.so lib/en/man1/cook.1 \
-		etc/libdir.so lib/en/man1/cook_bom.1 \
+		lib/en/readme/new.so lib/en/readme/new.2.31.so \
+		lib/en/readme/new.2.30.so lib/en/readme/new.2.29.so \
+		lib/en/readme/new.2.28.so lib/en/readme/new.2.27.so \
+		lib/en/readme/new.2.26.so lib/en/readme/new.2.25.so \
+		lib/en/readme/new.2.24.so lib/en/readme/new.2.23.so \
+		lib/en/readme/new.2.22.so lib/en/readme/new.2.21.so \
+		lib/en/readme/new.2.20.so lib/en/readme/new.2.19.so \
+		lib/en/readme/new.2.18.so lib/en/readme/new.2.17.so \
+		lib/en/readme/new.2.16.so lib/en/readme/new.2.15.so \
+		lib/en/readme/new.2.12.so lib/en/readme/new.2.11.so \
+		lib/en/readme/new.2.10.so lib/en/readme/new.2.9.so \
+		lib/en/readme/new.2.8.so lib/en/readme/new.2.7.so \
+		lib/en/readme/new.2.6.so lib/en/readme/new.2.5.so \
+		lib/en/readme/new.2.4.so lib/en/readme/new.2.3.so \
+		lib/en/readme/new.2.2.so lib/en/readme/new.2.1.so \
+		lib/en/readme/new.2.0.so lib/en/readme/new.1.26.so \
+		lib/en/readme/new.1.11.so lib/en/readme/new.1.10.so \
+		lib/en/readme/new.1.9.so lib/en/readme/new.1.8.so \
+		lib/en/readme/new.1.7.so lib/en/readme/new.1.6.so \
+		lib/en/readme/new.1.5.so lib/en/readme/new.1.4.so \
+		lib/en/building/main.man lib/en/building/windows-nt.so \
+		lib/en/refman/i18n.so lib/en/refman/i18n.pic.so \
+		lib/en/refman/parts.so lib/en/man1/c_incl.1 \
+		lib/en/man1/z_name.so lib/en/man1/o__rules.so \
+		lib/en/man1/z_exit.so lib/en/man1/copyright.so \
+		lib/en/man1/cook.1 etc/libdir.so lib/en/man1/cook_bom.1 \
 		lib/en/man1/cook_lic.1 lib/en/man1/cook_rsh.1 \
 		lib/en/man1/cookfp.1 lib/en/man1/cooktime.1 \
 		lib/en/man1/find_libs.1 lib/en/man1/make2cook.1 \

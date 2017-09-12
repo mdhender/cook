@@ -56,7 +56,7 @@ interrupt(int n)
     star_eoln();
     desist_flag++;
     scp = sub_context_new();
-    sub_var_set(scp, "Name", "%s", strsignal(n));
+    sub_var_set(scp, "Name", "%s", safe_strsignal(n));
     error_intl(scp, i18n("interrupted by $name"));
     sub_context_delete(scp);
     signal(n, interrupt);

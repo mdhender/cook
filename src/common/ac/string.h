@@ -47,6 +47,8 @@
 # endif
 #endif
 
+const char *safe_strsignal(int);
+
 #if STDC_HEADERS || HAVE_STRING_H
 #  include <string.h>
    /* An ANSI string.h and pre-ANSI memory.h might conflict.  */

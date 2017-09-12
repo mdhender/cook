@@ -399,7 +399,14 @@ stat_cache(string_ty *path, cache_ty *cp, int follow_links)
          * mod time.  The st_ctime field records when the inode's
          * meta-data (e.g. the st_mtime member) was last changed.
          */
-        if (option_test(OPTION_FINGERPRINT) && st.st_mtime < st.st_ctime)
+        if
+        (
+            option_test(OPTION_FINGERPRINT)
+        &&
+            option_test(OPTION_CTIME)
+        &&
+            st.st_mtime < st.st_ctime
+        )
             st.st_mtime = st.st_ctime;
 
         cp->oldest = st.st_mtime;

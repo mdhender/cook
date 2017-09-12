@@ -310,7 +310,7 @@ INSTALLING COOK
 
 PRINTED MANUALS
         The easiest way to get copies of the manuals is to get the
-        cook.2.30.rm.ps.gz and cook.2.30.ug.ps.gz files from the archive site.
+        cook.2.31.rm.ps.gz and cook.2.31.ug.ps.gz files from the archive site.
         These are compressed PostScript files of the Reference Manual and User
         Guide, respectively.  The Reference Manual (about 36 pages) contains
         the README file, the BUILDING file and internationalization notes, as
@@ -350,7 +350,7 @@ GETTING HELP
         When reporting problems, please include the version number given by
         the
                 % cook -version
-                cook version 2.30.D002
+                cook version 2.31.D001
                 ...warranty disclaimer...
                 %
         command.  Please do not send this example; run the program for the
@@ -454,10 +454,10 @@ WINDOWS-NT
                 bash$
 
 COPYRIGHT
-        cook version 2.30
+        cook version 2.31
         Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996,
-        1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007 Peter
-        Miller; All rights reserved.
+        1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
+        Peter Miller; All rights reserved.
 
         The Cook package is distributed in the hope that it will be useful,
         but WITHOUT ANY WARRANTY; without even the implied warranty of

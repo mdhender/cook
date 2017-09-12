@@ -84,6 +84,11 @@ static table_ty table[] =
     { "clearstat", RF_CLEARSTAT, RF_CLEARSTAT_OFF },
     { "no-clearstat", RF_CLEARSTAT_OFF, RF_CLEARSTAT },
     { "noclearstat", RF_CLEARSTAT_OFF, RF_CLEARSTAT },
+
+    { "ctime", RF_CTIME, RF_CTIME_OFF },
+    { "noctime", RF_CTIME_OFF, RF_CTIME },
+    { "no-ctime", RF_CTIME_OFF, RF_CTIME },
+
     { "default", RF_DEFAULT, RF_DEFAULT_OFF },
     { "no-default", RF_DEFAULT_OFF, RF_DEFAULT },
     { "nodefault", RF_DEFAULT_OFF, RF_DEFAULT },

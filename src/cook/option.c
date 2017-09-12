@@ -42,7 +42,7 @@
  * cook/option.h
  *     to define the OPTION_ value
  * cook/option.c
- *     option_tidyup()
+ *     option_tidy_up()
  *         if the option defaults to true
  *     option_set_errors()
  *         if the option should be turned off once cookbook errors
@@ -288,6 +288,7 @@ option_tidy_up(void)
     trace(("option_tidy_up()\n{\n"));
     option_set(OPTION_ACTION, OPTION_LEVEL_DEFAULT, 1);
     option_set(OPTION_CASCADE, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_CTIME, OPTION_LEVEL_DEFAULT, 1);
     option_set(OPTION_FINGERPRINT_WRITE, OPTION_LEVEL_DEFAULT, 1);
     option_set(OPTION_INCLUDE_COOKED, OPTION_LEVEL_DEFAULT, 1);
     option_set(OPTION_INCLUDE_COOKED_WARNING, OPTION_LEVEL_DEFAULT, 1);
@@ -491,6 +492,9 @@ option_number_name(option_number_ty o)
 
     case OPTION_CMDFILE:
         return "OPTION_CMDFILE";
+
+    case OPTION_CTIME:
+        return "OPTION_CTIME";
 
     case OPTION_DISASSEMBLE:
         return "OPTION_DISASSEMBLE";

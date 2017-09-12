@@ -72,6 +72,7 @@ static table_ty table[] =
 {
     { OPTION_ACTION, "-action", "-noaction" },
     { OPTION_CASCADE, "-cascade", "-nocascade" },
+    { OPTION_CTIME, "-ctime", "-no-ctime" },
     { OPTION_ERROK, "-errok", "-noerrok" },
     { OPTION_FINGERPRINT, "-fingerprint", "-nofingerprint" },
     { OPTION_FORCE, "-force", "-noforce" },

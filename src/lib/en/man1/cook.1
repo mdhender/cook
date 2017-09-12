@@ -139,6 +139,18 @@ If cooking a target should fail,
 .I \*(n)
 will exit.
 This is the default.
+.TP 8n
+.B \-CTime
+The inode st_ctime data is used to supplement the st_mtime data when
+determining whether or not files have changed.
+This is the default.
+(If you have no idea what this is, don't mess with it.)
+.TP 8n
+.B \-No_CTime
+Do not supplement st_mtime with st_ctime.  This may be important when
+st_nlink changes at critical times, because making and breaking hard
+links touches st_ctime.
+(If you have no idea what this is, seriously, don't mess with it.)
 .\" ------------------------------------ D ------------------------------------
 .\" ------------------------------------ E ------------------------------------
 .TP 8n

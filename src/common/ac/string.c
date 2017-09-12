@@ -116,8 +116,6 @@ strcasecmp(s1, s2)
 char *
 strsignal(int n)
 {
-        static char buffer[16];
-
         switch (n)
         {
 #ifdef SIGHUP
@@ -214,14 +212,25 @@ strsignal(int n)
         case SIGPWR:
                 return "power failure [SIGPWR]";
 #endif /* SIGPWR */
-
-        default:
-                snprintf(buffer, 16, "signal %d", n);
-                return buffer;
         }
+        return 0;
 }
 
 #endif /* !HAVE_STRSIGNAL */
+
+
+const char *
+safe_strsignal(int n)
+{
+    static char buffer[16];
+    const char *s = strsignal(n);
+    if (s && *s)
+        return s;
+    snprintf(buffer, sizeof(buffer), "signal %d", n);
+    return buffer;
+}
+
+
 #ifndef HAVE_STRENDCPY
 
 char *

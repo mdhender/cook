@@ -1,6 +1,6 @@
 dnl
 dnl     cook - file construction tool
-dnl     Copyright (C) 1994-2004, 2006, 2007 Peter Miller;
+dnl     Copyright (C) 1994-2004, 2006-2008 Peter Miller;
 dnl     All rights reserved.
 dnl
 dnl     This program is free software; you can redistribute it and/or modify
@@ -312,6 +312,7 @@ test "x$prefix" = xNONE && prefix="${ac_default_prefix-/usr/local}"
 test "x$exec_prefix" = xNONE && exec_prefix="$prefix"
 eval "exec_prefix=$exec_prefix"
 eval "bindir=$bindir"
+eval "datarootdir=$datarootdir"
 eval "mandir=$mandir"
 eval "libdir=$libdir"
 eval "datadir=$datadir"
@@ -350,7 +351,7 @@ AC_SUBST(NLSDIR)
 AH_TOP(
 [/*
  *      cook - file construction tool
- *      Copyright (C) 1995-2004, 2006, 2007 Peter Miller;
+ *      Copyright (C) 1995-2004, 2006-2008 Peter Miller;
  *      All rights reserved.
  *
  *      This program is free software; you can redistribute it and/or modify
