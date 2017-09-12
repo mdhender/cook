@@ -1,8 +1,7 @@
 /*
  * cook - file construction tool
- * Copyright (C) 1993-1995, 1997-2001, 2006, 2007 Peter Miller;
- * All rights reserved.
- *      Peter Miller <millerp@canb.auug.org.au>
+ * Copyright (C) 1993-1995, 1997-2001, 2006-2009 Peter Miller
+ *      Peter Miller <pmiller@opensource.org.au>
  *
  * This code is derived from code which is
  * Copyright (C) 1986 Steven M. Bellovin
@@ -676,17 +675,18 @@ yyerror(char *s)
 #ifdef DEBUG
 #define YYDEBUG 1
 
-#define printf yytrace
+#define fprintf yytrace
 
 static void
-yytrace(char *s, ...)
+yytrace(void *junk, char *s, ...)
 {
     va_list         ap;
     static char     line[1024];
     string_ty       *buffer;
     char            *cp;
 
-    sva_init(ap, s);
+    (void)junk;
+    va_start(ap, s);
     buffer = str_vformat(s, ap);
     va_end(ap);
     cp = line + strlen(line);

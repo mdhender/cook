@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1998, 2001, 2004, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1998, 2001, 2004, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -33,6 +32,7 @@
 #include <common/progname.h>
 #include <common/quit.h>
 #include <common/star.h>
+#include <common/trace.h>
 #include <common/verbose.h>
 #include <common/wstr.h>
 
@@ -255,7 +255,10 @@ wrap_inner(const wchar_t *s, const wchar_t *end)
         else
             ocol = 8;
 
-        wctomb(NULL, 0);
+        if (wctomb(NULL, 0) == -1)
+        {
+            assert(!"assume success");
+        }
         ep = s;
         break_space = 0;
         break_space_col = 0;
@@ -301,7 +304,10 @@ wrap_inner(const wchar_t *s, const wchar_t *end)
                  * need to reset the wctomb state, it is
                  * not broken.
                  */
-                wctomb(NULL, 0);
+                if (wctomb(NULL, 0) == -1)
+                {
+                    assert(!"assume success");
+                }
             }
 
             /*
@@ -387,7 +393,10 @@ wrap_inner(const wchar_t *s, const wchar_t *end)
         /*
          * Turn the input into a multi byte characters.
          */
-        wctomb(NULL, 0);
+        if (wctomb(NULL, 0) == -1)
+        {
+            assert(!"assume success");
+        }
         while (s < ep)
         {
             wchar_t         c;
@@ -428,7 +437,10 @@ wrap_inner(const wchar_t *s, const wchar_t *end)
                  * need to reset the wctomb state, it is
                  * not broken.
                  */
-                wctomb(NULL, 0);
+                if (wctomb(NULL, 0) == -1)
+                {
+                    assert(!"assume success");
+                }
             }
             tp += nbytes;
         }
@@ -593,6 +605,11 @@ verbose_intl(sub_context_ty *scp, char *s)
 
     if (need_to_delete)
         sub_context_delete(scp);
+
+#ifdef DEBUG
+    /* Silence gcc warning */
+    (void)trace_pretest_result;
+#endif
 }
 
 

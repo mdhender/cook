@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993-1997, 1999, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1993-1997, 1999, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -36,7 +35,7 @@
  *     to define the RF_ values (RF stands for Recipe Flag)
  * cook/flag.c
  *     to define the RF_ names
- * langu.flags.so
+ * lib/en/user-guide/langu.flags.so
  *     to document the recipe flag
  *
  * If you choose to make it a command line option,
@@ -83,9 +82,11 @@ enum option_number_ty
         OPTION_BOOK,
         OPTION_CASCADE,         /* do (not) cascade ingredients */
         OPTION_CMDFILE,         /* generate a command file */
+        OPTION_CTIME,           /* use both st_ctime and st_mtime */
         OPTION_DISASSEMBLE,     /* undocumented: disassemble opcode lists after
                                    compilation */
         OPTION_ERROK,           /* ignore error returns from commands */
+        OPTION_FILE_SIZE_STATISTICS, /* print file size statistics after run */
         OPTION_FINGERPRINT,     /* remember file fingerprints */
         OPTION_FINGERPRINT_WRITE, /* preserve fingerprints if taken */
         OPTION_FORCE,           /* always execute the commands */
@@ -116,7 +117,6 @@ enum option_number_ty
         OPTION_UPDATE_MAX,      /* update utime for consistency - backwards! */
         OPTION_MATCH_MODE_REGEX, /* regex pattern matching (as opp native) */
         OPTION_TELL_POSITION,   /* add file and line when echoing commands */
-        OPTION_CTIME,           /* use both st_ctime and st_mtime */
 
         /*
          * If you add to this list, make sure you also add the option to

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -39,7 +38,7 @@
 void
 graph_file_list_constructor(graph_file_list_ty *gflp)
 {
-    trace(("graph_file_list_constructor(gflp = %8.8lX)\n{\n", (long)gflp));
+    trace(("graph_file_list_constructor(gflp = %p)\n{\n", gflp));
     gflp->nfiles = 0;
     gflp->nfiles_max = 0;
     gflp->item = 0;
@@ -64,7 +63,7 @@ void
 graph_file_list_copy_constructor(graph_file_list_ty *gflp,
     graph_file_list_ty *from)
 {
-    trace(("graph_file_list_copy_constructor(gflp = %8.8lX)\n{\n", (long)gflp));
+    trace(("graph_file_list_copy_constructor(gflp = %p)\n{\n", gflp));
     graph_file_list_constructor(gflp);
     graph_file_list_append_list(gflp, from);
     trace(("}\n"));
@@ -88,7 +87,7 @@ graph_file_list_destructor(graph_file_list_ty *gflp)
 {
     size_t          j;
 
-    trace(("graph_file_list_destructor(gflp = %8.8lX)\n{\n", (long)gflp));
+    trace(("graph_file_list_destructor(gflp = %p)\n{\n", gflp));
     for (j = 0; j < gflp->nfiles; ++j)
         graph_file_delete(gflp->item[j].file);
     if (gflp->item)
@@ -119,8 +118,7 @@ graph_file_list_append(graph_file_list_ty *gflp, graph_file_ty *gfp,
     size_t          j;
     graph_file_and_type_ty *fat;
 
-    trace(("graph_file_list_append(gflp = %8.8lX, gfp = %8.8lX)\n{\n",
-            (long)gflp, (long)gfp));
+    trace(("graph_file_list_append(gflp = %p, gfp = %p)\n{\n", gflp, gfp));
     for (j = 0; j < gflp->nfiles; ++j)
     {
         fat = gflp->item + j;
@@ -165,8 +163,7 @@ graph_file_list_append_list(graph_file_list_ty *to, graph_file_list_ty *from)
 {
     size_t          j;
 
-    trace(("graph_file_list_append_list(to = %8.8lX, from = %8.8lX)\n{\n",
-        (long)to, (long)from));
+    trace(("graph_file_list_append_list(to = %p, from = %p)\n{\n", to, from));
     for (j = 0; j < from->nfiles; ++j)
     {
         graph_file_and_type_ty *fat;
@@ -204,7 +201,7 @@ graph_file_list_new(void)
     trace(("graph_file_list_new()\n{\n"));
     gflp = mem_alloc(sizeof(graph_file_list_ty));
     graph_file_list_constructor(gflp);
-    trace(("return %8.8lX;\n", (long)gflp));
+    trace(("return %p;\n", gflp));
     trace(("}\n"));
     return gflp;
 }
@@ -225,7 +222,7 @@ graph_file_list_new(void)
 void
 graph_file_list_delete(graph_file_list_ty *gflp)
 {
-    trace(("graph_file_list_delete(gflp = %8.8lX)\n{\n", (long)gflp));
+    trace(("graph_file_list_delete(gflp = %p)\n{\n", gflp));
     graph_file_list_destructor(gflp);
     mem_free(gflp);
     trace(("}\n"));
@@ -247,7 +244,7 @@ graph_file_list_delete(graph_file_list_ty *gflp)
 void
 graph_file_list_nrc_constructor(graph_file_list_nrc_ty *gflp)
 {
-    trace(("graph_file_list_nrc_constructor(gflp = %8.8lX)\n{\n", (long)gflp));
+    trace(("graph_file_list_nrc_constructor(gflp = %p)\n{\n", gflp));
     gflp->nfiles = 0;
     gflp->nfiles_max = 0;
     gflp->item = 0;
@@ -275,8 +272,7 @@ void
 graph_file_list_nrc_copy_constructor(graph_file_list_nrc_ty *gflp,
     graph_file_list_nrc_ty *from)
 {
-    trace(("graph_file_list_nrc_copy_constructor(gflp = %8.8lX)\n{\n",
-        (long)gflp));
+    trace(("graph_file_list_nrc_copy_constructor(gflp = %p)\n{\n", gflp));
     graph_file_list_nrc_constructor(gflp);
     graph_file_list_nrc_append_list(gflp, from);
     trace(("}\n"));
@@ -301,7 +297,7 @@ graph_file_list_nrc_copy_constructor(graph_file_list_nrc_ty *gflp,
 void
 graph_file_list_nrc_destructor(graph_file_list_nrc_ty *gflp)
 {
-    trace(("graph_file_list_nrc_destructor(gflp = %8.8lX)\n{\n", (long)gflp));
+    trace(("graph_file_list_nrc_destructor(gflp = %p)\n{\n", gflp));
     /* do not delete references */
     if (gflp->item)
         mem_free(gflp->item);
@@ -335,8 +331,7 @@ graph_file_list_nrc_append(graph_file_list_nrc_ty *gflp, graph_file_ty *gfp,
     size_t          j;
     graph_file_and_type_ty *fat;
 
-    trace(("graph_file_list_nrc_append(gflp = %8.8lX, gfp = %8.8lX)\n{\n",
-        (long)gflp, (long)gfp));
+    trace(("graph_file_list_nrc_append(gflp = %p, gfp = %p)\n{\n", gflp, gfp));
     for (j = 0; j < gflp->nfiles; ++j)
     {
         fat = gflp->item + j;
@@ -386,8 +381,8 @@ graph_file_list_nrc_append_list(graph_file_list_nrc_ty *to,
 {
     size_t          j;
 
-    trace(("graph_file_list_nrc_append_list(to = %8.8lX, from = %8.8lX)\n{\n",
-        (long)to, (long)from));
+    trace(("graph_file_list_nrc_append_list(to = %p, from = %p)\n{\n", to,
+        from));
     for (j = 0; j < from->nfiles; ++j)
     {
         graph_file_and_type_ty *fat;
@@ -425,7 +420,7 @@ graph_file_list_nrc_new(void)
     trace(("graph_file_list_nrc_new()\n{\n"));
     gflp = mem_alloc(sizeof(graph_file_list_nrc_ty));
     graph_file_list_nrc_constructor(gflp);
-    trace(("return %8.8lX;\n", (long)gflp));
+    trace(("return %p;\n", gflp));
     trace(("}\n"));
     return gflp;
 }
@@ -449,7 +444,7 @@ graph_file_list_nrc_new(void)
 void
 graph_file_list_nrc_delete(graph_file_list_nrc_ty *gflp)
 {
-    trace(("graph_file_list_nrc_delete(gflp = %8.8lX)\n{\n", (long)gflp));
+    trace(("graph_file_list_nrc_delete(gflp = %p)\n{\n", gflp));
     graph_file_list_nrc_destructor(gflp);
     mem_free(gflp);
     trace(("}\n"));

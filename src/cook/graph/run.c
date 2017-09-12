@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2001, 2003, 2004, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2001, 2003, 2004, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -180,7 +179,7 @@ graph_recipe_run(graph_recipe_ty *grp, graph_ty *gp)
     sub_context_ty  *scp;
     time_t          timestamp_granularity;
 
-    trace(("graph_recipe_run(grp = %08lX)\n{\n", (long)grp));
+    trace(("graph_recipe_run(grp = %p)\n{\n", grp));
     status = graph_walk_status_uptodate;
     timestamp_granularity = ts_granularity();
 
@@ -474,7 +473,7 @@ graph_recipe_run(graph_recipe_ty *grp, graph_ty *gp)
         target_depth = 0;
     }
     trace(("forced = %d;\n", forced));
-    trace(("target_depth = %d;\n", target_depth));
+    trace(("target_depth = %ld;\n", target_depth));
     trace(("target_age = %ld;\n", (long)target_age));
 
     /*
@@ -491,7 +490,7 @@ graph_recipe_run(graph_recipe_ty *grp, graph_ty *gp)
 
         gftp2 = grp->input->item + j;
         gfp2 = gftp2->file;
-        trace(("%d/%d \"%s\"\n", j, grp->input->nfiles,
+        trace(("%d/%d \"%s\"\n", (int)j, (int)(grp->input->nfiles),
                 gfp2->filename->str_text));
         depth2 = 32767;
         age2 =
@@ -638,7 +637,7 @@ graph_recipe_run(graph_recipe_ty *grp, graph_ty *gp)
          */
         if (depth2 < target_depth && !phony)
         {
-            trace(("depth2 = %d;\n", depth2));
+            trace(("depth2 = %ld;\n", depth2));
             if (!forced)
             {
                 if (show_reasoning)

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -40,7 +39,7 @@
 void
 opcode_delete(opcode_ty *op)
 {
-    trace(("opcode_delete(op = %08lX)\n{\n", (long)op));
+    trace(("opcode_delete(op = %p)\n{\n", op));
     assert(op);
     assert(op->method);
     if (op->method->destructor)
@@ -71,7 +70,7 @@ opcode_execute(const opcode_ty *op, struct opcode_context_ty *icp)
 {
     opcode_status_ty status;
 
-    trace(("opcode_execute(op = %08lX)\n{\n", (long)op));
+    trace(("opcode_execute(op = %p)\n{\n", op));
     assert(op);
     assert(op->method);
     assert(op->method->execute);
@@ -102,7 +101,7 @@ opcode_script(const opcode_ty *op, struct opcode_context_ty *icp)
 {
     opcode_status_ty status;
 
-    trace(("opcode_script(op = %08lX)\n{\n", (long)op));
+    trace(("opcode_script(op = %p)\n{\n", op));
     assert(op);
     assert(op->method);
     assert(op->method->script);
@@ -132,7 +131,7 @@ opcode_script(const opcode_ty *op, struct opcode_context_ty *icp)
 void
 opcode_disassemble(const opcode_ty *op)
 {
-    trace(("opcode_disassemble(op = %08lX)\n{\n", (long)op));
+    trace(("opcode_disassemble(op = %p)\n{\n", op));
     assert(op);
     assert(op->method);
     printf("%s", op->method->name);

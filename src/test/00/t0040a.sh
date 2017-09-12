@@ -1,8 +1,7 @@
 #!/bin/sh
 #
 #       cook - file construction tool
-#       Copyright (C) 1990-1994, 1997, 1998, 2003, 2007 Peter Miller;
-#       All rights reserved.
+#       Copyright (C) 1990-1994, 1997, 1998, 2003, 2007, 2008 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by

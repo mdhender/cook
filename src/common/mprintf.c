@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1991-1994, 1997, 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1991-1994, 1997, 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -19,6 +18,7 @@
  */
 
 #include <common/ac/errno.h>
+#include <common/ac/stdint.h>
 #include <common/ac/stdio.h>
 #include <common/ac/stdlib.h>
 #include <common/ac/string.h>
@@ -145,7 +145,6 @@ build_fake(char *fake, size_t fake_len, int flag, int width, int precision,
  * DESCRIPTION
  *      The vmprintf function is used to build a formatted string in memory.
  *      It understands all of the ANSI standard sprintf formatting directives.
- *      Additionally, "%S" may be used to manipulate (string_ty *) strings.
  *
  * ARGUMENTS
  *      fmt     - string spefiifying formatting to perform
@@ -181,6 +180,7 @@ vmprintf(const char *fmt, va_list ap)
      * It is important to only make one pass across the variable argument
      * list.  Behaviour is undefined for more than one pass.
      */
+    qualifier = 0;
     if (!tmplen)
     {
         tmplen = 500;
@@ -359,8 +359,21 @@ vmprintf(const char *fmt, va_list ap)
             break;
 
         case 'l':
+            if (qualifier == 'l')
+                c = 'L';
+            goto uninteresting;
+
         case 'h':
+            if (qualifier == 'h')
+                c = 'H';
+            goto uninteresting;
+
+        case 'j':
         case 'L':
+        case 'q':
+        case 't':
+        case 'z':
+            uninteresting:
             qualifier = c;
             c = *s++;
             break;
@@ -411,12 +424,35 @@ vmprintf(const char *fmt, va_list ap)
 
                 switch (qualifier)
                 {
+                case 'h':
+                    a = (short)va_arg(ap, int);
+                    break;
+
+                case 'H':
+                    a = (signed char)va_arg(ap, int);
+                    break;
+
+#ifdef HAVE_STDINT_H
+                case 'j':
+                    a = va_arg(ap, intmax_t);
+                    break;
+#endif
+
                 case 'l':
                     a = va_arg(ap, long);
                     break;
 
-                case 'h':
-                    a = (short)va_arg(ap, int);
+                case 'L':
+                case 'q':
+                    a = va_arg(ap, long long);
+                    break;
+
+                case 't':
+                    a = va_arg(ap, ptrdiff_t);
+                    break;
+
+                case 'z':
+                    a = va_arg(ap, size_t);
                     break;
 
                 default:
@@ -455,7 +491,16 @@ vmprintf(const char *fmt, va_list ap)
                  * Ignore "long double" for now,
                  * traditional implementations no grok.
                  */
-                a = va_arg(ap, double);
+                switch (qualifier)
+                {
+                case 'L':
+                    a = va_arg(ap, long double);
+                    break;
+
+                default:
+                    a = va_arg(ap, double);
+                    break;
+                }
                 if (!prec_set)
                     prec = 6;
                 if (width > MAX_WIDTH)
@@ -476,20 +521,20 @@ vmprintf(const char *fmt, va_list ap)
         case 'n':
             switch (qualifier)
             {
-            case 'l':
-                {
-                    long            *a;
-
-                    a = va_arg(ap, long *);
-                    *a = length;
-                }
-                break;
-
             case 'h':
                 {
                     short           *a;
 
                     a = va_arg(ap, short *);
+                    *a = length;
+                }
+                break;
+
+            case 'l':
+                {
+                    long            *a;
+
+                    a = va_arg(ap, long *);
                     *a = length;
                 }
                 break;
@@ -505,8 +550,8 @@ vmprintf(const char *fmt, va_list ap)
             }
             break;
 
-        case 'u':
         case 'o':
+        case 'u':
         case 'x':
         case 'X':
             {
@@ -516,12 +561,35 @@ vmprintf(const char *fmt, va_list ap)
 
                 switch (qualifier)
                 {
+                case 'h':
+                    a = (unsigned short)va_arg(ap, unsigned int);
+                    break;
+
+                case 'H':
+                    a = (unsigned char)va_arg(ap, unsigned int);
+                    break;
+
+#ifdef HAVE_STDINT_H
+                case 'j':
+                    a = va_arg(ap, uintmax_t);
+                    break;
+#endif
+
                 case 'l':
                     a = va_arg(ap, unsigned long);
                     break;
 
-                case 'h':
-                    a = (unsigned short)va_arg(ap, unsigned int);
+                case 'L':
+                case 'q':
+                    a = va_arg(ap, unsigned long long);
+                    break;
+
+                case 't':
+                    a = va_arg(ap, ptrdiff_t);
+                    break;
+
+                case 'z':
+                    a = va_arg(ap, size_t);
                     break;
 
                 default:
@@ -536,6 +604,23 @@ vmprintf(const char *fmt, va_list ap)
                     width = MAX_WIDTH;
                 build_fake(fake, sizeof(fake), flag, width, prec, 'l', c);
                 snprintf(num, sizeof(num), fake, a);
+                len = strlen(num);
+                assert(len < QUANTUM);
+                if (length + len > tmplen && !bigger())
+                    return 0;
+                memcpy(tmp + length, num, len);
+                length += len;
+            }
+            break;
+
+        case 'p':
+            {
+                void            *a;
+                char            num[MAX_WIDTH + 1];
+                size_t          len;
+
+                a = va_arg(ap, void *);
+                snprintf(num, sizeof(num), "%p", a);
                 len = strlen(num);
                 assert(len < QUANTUM);
                 if (length + len > tmplen && !bigger())
@@ -600,6 +685,7 @@ vmprintf(const char *fmt, va_list ap)
                 string_ty       *a;
                 int             len;
 
+                assert(!"don't use this");
                 a = va_arg(ap, string_ty *);
                 len = a->str_length;
                 if (!prec_set)
@@ -664,7 +750,6 @@ vmprintf(const char *fmt, va_list ap)
  * DESCRIPTION
  *      The mprintf function is used to build a formatted string in memory.
  *      It understands all of the ANSI standard sprintf formatting directives.
- *      Additionally, "%S" may be used to manipulate (string_ty *) strings.
  *
  * ARGUMENTS
  *      fmt     - string spefiifying formatting to perform
@@ -703,7 +788,6 @@ mprintf(const char *fmt, ...)
  * DESCRIPTION
  *      The vmprintfe function is used to build a formatted string in memory.
  *      It understands all of the ANSI standard sprintf formatting directives.
- *      Additionally, "%S" may be used to manipulate (string_ty *) strings.
  *
  * ARGUMENTS
  *      fmt     - string spefiifying formatting to perform
@@ -742,7 +826,6 @@ vmprintfe(const char *fmt, va_list ap)
  * DESCRIPTION
  *      The mprintfe function is used to build a formatted string in memory.
  *      It understands all of the ANSI standard sprintf formatting directives.
- *      Additionally, "%S" may be used to manipulate (string_ty *) strings.
  *
  * ARGUMENTS
  *      fmt     - string spefiifying formatting to perform
@@ -782,7 +865,6 @@ mprintfe(const char *fmt, ...)
  * DESCRIPTION
  *      The vmprintfes function is used to build a formatted string in memory.
  *      It understands all of the ANSI standard sprintf formatting directives.
- *      Additionally, "%S" may be used to manipulate (string_ty *) strings.
  *
  * ARGUMENTS
  *      fmt     - string spefiifying formatting to perform

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -49,7 +48,7 @@
 static void
 recipe_destructor(recipe_ty *rp)
 {
-    trace(("recipe_destructor(rp = %08lX)\n{\n", (long)rp));
+    trace(("recipe_destructor(rp = %p)\n{\n", rp));
     if (rp->target)
         string_list_delete(rp->target);
     if (rp->need1)
@@ -88,7 +87,7 @@ recipe_destructor(recipe_ty *rp)
 void
 recipe_delete(recipe_ty *rp)
 {
-    trace(("recipe_delete(rp = %08lX)\n{\n", (long)rp));
+    trace(("recipe_delete(rp = %p)\n{\n", rp));
     assert(rp->reference_count > 0);
     rp->reference_count--;
     if (rp->reference_count <= 0)
@@ -121,7 +120,7 @@ recipe_delete(recipe_ty *rp)
 recipe_ty *
 recipe_copy(recipe_ty *rp)
 {
-    trace(("recipe_copy(rp = %08lX)\n{\n", (long)rp));
+    trace(("recipe_copy(rp = %p)\n{\n", rp));
     assert(rp);
     assert(rp->reference_count > 0);
     rp->reference_count++;
@@ -154,7 +153,7 @@ recipe_constructor(recipe_ty *rp, string_list_ty *target, opcode_list_ty *need1,
     size_t          j;
     match_ty        *mp;
 
-    trace(("recipe_constructor(rp = %08lX)\n{\n", (long)rp));
+    trace(("recipe_constructor(rp = %p)\n{\n", rp));
     rp->target = string_list_new_copy(target);
     rp->need1 = need1 ? opcode_list_copy(need1) : 0;
     rp->need2 = need2 ? opcode_list_copy(need2) : 0;
@@ -261,7 +260,7 @@ recipe_new(string_list_ty *target, opcode_list_ty *need1, opcode_list_ty *need2,
         recipe_delete(rp);
         rp = 0;
     }
-    trace(("return %08lX;\n", (long)rp));
+    trace(("return %p;\n", rp));
     trace(("}\n"));
     return rp;
 }
@@ -288,7 +287,7 @@ recipe_new(string_list_ty *target, opcode_list_ty *need1, opcode_list_ty *need2,
 void
 recipe_flags_set(recipe_ty *rp)
 {
-    trace(("recipe_flags_set(rp = %8.8lX)\n{\n", (long)rp));
+    trace(("recipe_flags_set(rp = %p)\n{\n", rp));
     if (rp->flags)
         flag_set_options(rp->flags, OPTION_LEVEL_RECIPE);
     trace(("}\n"));

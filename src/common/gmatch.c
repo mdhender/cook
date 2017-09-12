@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -101,13 +100,12 @@ gmatch_inner(const char *formal, const char *formal_end, const char *actual,
     const char      *cp;
     int             result;
 
-    trace(("gmatch_inner(formal = %8.8lX, formal_end = %8.8lX, "
-        "actual = %8.8lX, actual_end = %8.8lX)\n{\n", (long)formal,
-        (long)formal_end, (long)actual, (long)actual_end));
+    trace(("gmatch_inner(formal = %p, formal_end = %p, actual = %p, "
+        "actual_end = %p)\n{\n", formal, formal_end, actual, actual_end));
     while (formal < formal_end)
     {
-        trace(("formal == \"%.*s\";\n", formal_end - formal, formal));
-        trace(("actual = \"%.*s\";\n", actual_end - actual, actual));
+        trace(("formal == \"%.*s\";\n", (int)(formal_end - formal), formal));
+        trace(("actual = \"%.*s\";\n", (int)(actual_end - actual), actual));
         switch (*formal)
         {
         default:
@@ -257,9 +255,9 @@ gmatch_inner(const char *formal, const char *formal_end, const char *actual,
                      * ']' elegantly.
                      */
                     trace(("formal == \"%.*s\";\n",
-                            formal_end - formal, formal));
+                        (int)(formal_end - formal), formal));
                     trace(("actual = \"%.*s\";\n",
-                            actual_end - actual, actual));
+                        (int)(actual_end - actual), actual));
                     if
                     (
                         formal_end >= formal + 3
@@ -298,9 +296,9 @@ gmatch_inner(const char *formal, const char *formal_end, const char *actual,
                     if (formal >= formal_end)
                         goto no_close;
                     trace(("formal == \"%.*s\";\n",
-                            formal_end - formal, formal));
+                        (int)(formal_end - formal), formal));
                     trace(("actual = \"%.*s\";\n",
-                            actual_end - actual, actual));
+                        (int)(actual_end - actual), actual));
                     if (*formal++ == ']')
                         break;
                 }

@@ -1,7 +1,6 @@
 /*
  *      aegis - project change supervisor
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -117,7 +116,7 @@ str_quote_shell(string_ty * s)
     if (!needs_quoting)
     {
         s = str_copy(s);
-        trace(("return %8.8lX;\n", (long)s));
+        trace(("return %p;\n", s));
         trace(("}\n"));
         return s;
     }
@@ -197,7 +196,7 @@ str_quote_shell(string_ty * s)
     /*
      * all done
      */
-    trace(("return %8.8lX;\n", (long)s));
+    trace(("return %p;\n", s));
     trace(("}\n"));
     return s;
 }
@@ -271,7 +270,7 @@ str_quote_cook(string_ty *s, int force)
     if (!needs_quoting)
     {
         s = str_copy(s);
-        trace(("return %8.8lX;\n", (long)s));
+        trace(("return %p;\n", s));
         trace(("}\n"));
         return s;
     }
@@ -343,7 +342,7 @@ str_quote_cook(string_ty *s, int force)
     /*
      * all done
      */
-    trace(("return %8.8lX;\n", (long)s));
+    trace(("return %p;\n", s));
     trace(("}\n"));
     return s;
 }

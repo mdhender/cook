@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1995-2001, 2004, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1995-2001, 2004, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -560,11 +559,17 @@ exit_status(char *cmd, int status, int errok)
             sub_var_set_long(scp, "Number", a);
             if (errok)
             {
-                error_intl
-                (
-                    scp,
-                    i18n("command $filename: exit status $number (ignored)")
-                );
+                int             silent;
+
+                silent = option_test(OPTION_SILENT);
+                if (!silent)
+                {
+                    error_intl
+                    (
+                        scp,
+                        i18n("command $filename: exit status $number (ignored)")
+                    );
+                }
             }
             else
             {
@@ -971,7 +976,7 @@ os_entryname(string_ty *path)
 {
     char            *cp;
 
-    trace(("os_entryname(path = %08lX)\n{\n", path));
+    trace(("os_entryname(path = %p)\n{\n", path));
     trace_string(path->str_text);
     cp = strrchr(path->str_text, '/');
     if (cp)
@@ -979,7 +984,7 @@ os_entryname(string_ty *path)
     else
         path = str_copy(path);
     trace_string(path->str_text);
-    trace(("return %08lX;\n", path));
+    trace(("return %p;\n", path));
     trace(("}\n"));
     return path;
 }
@@ -1009,7 +1014,7 @@ os_dirname(string_ty *path)
 {
     char            *cp;
 
-    trace(("os_dirname(path = %08lX)\n{\n", path));
+    trace(("os_dirname(path = %p)\n{\n", path));
     trace_string(path->str_text);
     cp = strrchr(path->str_text, '/');
     if (cp)
@@ -1024,7 +1029,7 @@ os_dirname(string_ty *path)
     else
         path = os_curdir();
     trace_string(path->str_text);
-    trace(("return %08lX;\n", path));
+    trace(("return %p;\n", path));
     trace(("}\n"));
     return path;
 }

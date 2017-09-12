@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -58,7 +57,7 @@ itab_alloc(int size)
     itp->hash_table = mem_alloc(itp->hash_modulus * sizeof(itab_row_ty *));
     for (j = 0; j < itp->hash_modulus; ++j)
         itp->hash_table[j] = 0;
-    trace(("return %08lX;\n", (long)itp));
+    trace(("return %p;\n", itp));
     trace(("}\n"));
     return itp;
 }
@@ -81,7 +80,7 @@ itab_free(itab_ty *itp)
 {
     itab_key_ty     j;
 
-    trace(("itab_free(itp = %08lX)\n{\n", (long)itp));
+    trace(("itab_free(itp = %p)\n{\n", itp));
     for (j = 0; j < itp->hash_modulus; ++j)
     {
         itab_row_ty     **rpp;
@@ -211,7 +210,7 @@ itab_query(itab_ty *itp, itab_key_ty key)
     itab_row_ty     *p;
     void            *result;
 
-    trace(("itab_query(itp = %08lX, key = %ld)\n{\n", (long)itp, (long)key));
+    trace(("itab_query(itp = %p, key = %ld)\n{\n", itp, (long)key));
     result = 0;
     idx = key & itp->hash_mask;
     for (p = itp->hash_table[idx]; p; p = p->overflow)
@@ -222,7 +221,7 @@ itab_query(itab_ty *itp, itab_key_ty key)
             break;
         }
     }
-    trace(("return %08lX;\n", (long)result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -249,8 +248,8 @@ itab_assign(itab_ty *itp, itab_key_ty key, void *data)
     itab_key_ty     idx;
     itab_row_ty     *p;
 
-    trace(("itab_assign(itp = %08lX, key = %ld, data = %08lX)\n{\n",
-        (long)itp, (long)key, (long)data));
+    trace(("itab_assign(itp = %p, key = %ld, data = %p)\n{\n", itp, (long)key,
+        data));
     idx = key & itp->hash_mask;
 
     for (p = itp->hash_table[idx]; p; p = p->overflow)
@@ -301,7 +300,7 @@ itab_delete(itab_ty *itp, itab_key_ty key)
     itab_key_ty     idx;
     itab_row_ty     **pp;
 
-    trace(("itab_delete(itp = %08lX, key = %ld)\n{\n", (long)itp, (long)key));
+    trace(("itab_delete(itp = %p, key = %ld)\n{\n", itp, (long)key));
     idx = key & itp->hash_mask;
 
     pp = &itp->hash_table[idx];
@@ -347,7 +346,7 @@ itab_walk(itab_ty *itp, void (*func)(itab_ty *, itab_key_ty, void *, void *),
     itab_key_ty     j;
     itab_row_ty     *rp;
 
-    trace(("itab_walk(itp = %08lX)\n{\n", (long)itp));
+    trace(("itab_walk(itp = %p)\n{\n", itp));
     for (j = 0; j < itp->hash_modulus; ++j)
         for (rp = itp->hash_table[j]; rp; rp = rp->overflow)
             func(itp, rp->key, rp->data, arg);

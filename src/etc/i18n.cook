@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 2002, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 2002, 2007, 2008, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -19,7 +18,7 @@
  */
 
 all,I =
-        [fromto %0%.y %0%.gen.c,I [match_mask %0%.y [source_files]]]
+        [fromto %0%.y %0%.yacc.c,I [match_mask %0%.y [source_files]]]
         [fromto %0%.c %0%.c,I [match_mask %0%.c [source_files]]]
         ;
 
@@ -31,7 +30,7 @@ common,I =
         ]
         [fromto
                 common/%0%.y
-                common/%0%.gen.c,I
+                common/%0%.yacc.c,I
                 [match_mask common/%0%.y [source_files]]
         ];
 

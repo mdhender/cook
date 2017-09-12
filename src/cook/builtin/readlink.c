@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1996-1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1996-1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -54,7 +53,7 @@ interpret(string_list_ty *result, const string_list_ty *args,
     int             nbytes;
     char            buffer[2000];
 
-    trace(("readlink(result = %08X, args = %08X)\n{\n", result, args));
+    trace(("readlink(result = %p, args = %p)\n{\n", result, args));
     (void)ocp;
     for (j = 1; j < args->nstrings; ++j)
     {

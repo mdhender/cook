@@ -1,0 +1,113 @@
+
+
+
+Project "cook.2.34"                                              Page 1
+List of Changes                                Sat Sep 25 19:19:20 2010
+
+Change  State           Description
+------- -------         -------------
+  10    being_          prepare for release
+        integrated
+        pmiller
+
+
+
+Project "cook.2.34", Change 10                                   Page 1
+Change Details                                 Sat Sep 25 19:19:20 2010
+
+NAME
+        Project "cook.2.34", Delta 1, Change 10.
+
+SUMMARY
+        prepare for release
+
+DESCRIPTION
+        This change set prepares Cook for the next public release.
+
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory. This
+        change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+        This change must build and test in the "linux-x86_64"
+        architecture.
+
+        arch.    host     aeb         aet         aet -bl     aet -reg
+        -------- -------- ---------   ---------   ---------   ---------
+        linux-            required    exempt      exempt      required
+        x86_64
+
+CAUSE
+        This change was caused by internal_improvement.
+
+STATE
+        This change is in the 'being_integrated' state.
+
+FILES
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        source  modify      8         etc/system.sh
+        source  modify      4         lib/en/man1/cook_lic.1
+        source  modify      7         lib/en/readme/new.1.10.so
+        source  modify     16         lib/en/readme/new.1.11.so
+        source  modify      5         lib/en/readme/new.1.26.so
+        source  modify      6         lib/en/readme/new.1.4.so
+        source  modify      6         lib/en/readme/new.1.5.so
+        source  modify      7         lib/en/readme/new.1.6.so
+        source  modify      7         lib/en/readme/new.1.7.so
+        source  modify      7         lib/en/readme/new.1.8.so
+        source  modify      7         lib/en/readme/new.1.9.so
+        source  modify     11         lib/en/readme/new.2.0.so
+        source  modify      9         lib/en/readme/new.2.1.so
+        source  modify     11         lib/en/readme/new.2.10.so
+        source  modify     13         lib/en/readme/new.2.11.so
+        source  modify      8         lib/en/readme/new.2.12.so
+        source  modify     10         lib/en/readme/new.2.15.so
+        source  modify     11         lib/en/readme/new.2.16.so
+        source  modify     10         lib/en/readme/new.2.17.so
+        source  modify      9         lib/en/readme/new.2.18.so
+        source  modify      9         lib/en/readme/new.2.19.so
+        source  modify     13         lib/en/readme/new.2.2.so
+        source  modify      8         lib/en/readme/new.2.20.so
+        source  modify      8         lib/en/readme/new.2.21.so
+        source  modify      8         lib/en/readme/new.2.22.so
+
+
+
+Project "cook.2.34", Change 10                                   Page 2
+Change Details                                 Sat Sep 25 19:19:20 2010
+
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        source  modify      8         lib/en/readme/new.2.23.so
+        source  modify      7         lib/en/readme/new.2.24.so
+        source  modify      7         lib/en/readme/new.2.25.so
+        source  modify      4         lib/en/readme/new.2.26.so
+        source  modify      6         lib/en/readme/new.2.27.so
+        source  modify      5         lib/en/readme/new.2.28.so
+        source  modify      5         lib/en/readme/new.2.29.so
+        source  modify     10         lib/en/readme/new.2.3.so
+        source  modify      2         lib/en/readme/new.2.30.so
+        source  modify      2         lib/en/readme/new.2.31.so
+        source  modify      2         lib/en/readme/new.2.32.so
+        source  modify      1         lib/en/readme/new.2.33.so
+        source  create                lib/en/readme/new.2.34.so
+        source  modify      9         lib/en/readme/new.2.4.so
+        source  modify     11         lib/en/readme/new.2.5.so
+        source  modify     13         lib/en/readme/new.2.6.so
+        source  modify     10         lib/en/readme/new.2.7.so
+        source  modify     13         lib/en/readme/new.2.8.so
+        source  modify     12         lib/en/readme/new.2.9.so
+
+HISTORY
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Sat Sep 25      pmiller
+                        18:47:32 2010
+        develop_begin   Sat Sep 25      pmiller  Elapsed time: 0.070
+                        18:47:32 2010            days.
+        develop_end_2ai Sat Sep 25      pmiller
+                        19:18:49 2010
+        integrate_begin Sat Sep 25      pmiller
+                        19:19:12 2010

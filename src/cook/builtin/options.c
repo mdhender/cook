@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1996-1999, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1996-1999, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -36,7 +35,7 @@
  *     to define the RF_ values (RF stands for Recipe Flag)
  * cook/flag.c
  *     to define the RF_ names
- * langu.flags.so
+ * lib/en/user-guide/langu.flags.so
  *     to document the recipe flag
  *
  * If you choose to make it a command line option,
@@ -76,6 +75,9 @@ static table_ty table[] =
     { OPTION_ERROK, "-errok", "-noerrok" },
     { OPTION_FINGERPRINT, "-fingerprint", "-nofingerprint" },
     { OPTION_FORCE, "-force", "-noforce" },
+    { OPTION_INCLUDE_COOKED, "-include-cooked", "-no-include-cooked" },
+    { OPTION_INCLUDE_COOKED_WARNING, "-include-cooked-warning",
+        "-no-include-cooked-warning" },
     { OPTION_METER, "-meter", "-nometer" },
     { OPTION_PERSEVERE, "-continue", "-nocontinue" },
     { OPTION_PRECIOUS, "-precious", "-noprecious" },
@@ -85,10 +87,10 @@ static table_ty table[] =
     { OPTION_STAR, "-star", "-nostar" },
     { OPTION_STRIP_DOT, "-stripdot", "-nostripdot" },
     { OPTION_SYMLINK_INGREDIENTS, "-symlink-ingredi", "-no-symlink-ingredi" },
+    { OPTION_TELL_POSITION, "-tellposition", "-notellposition" },
     { OPTION_TERMINAL, "-terminal", "-noterminal" },
     { OPTION_TOUCH, "-touch", "-notouch" },
     { OPTION_UPDATE, "-timeadjust", "-notimeadjust" },
-    { OPTION_TELL_POSITION, "-tellposition", "-notellposition" },
 };
 
 

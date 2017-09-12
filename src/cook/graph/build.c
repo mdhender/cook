@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2001-2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2001-2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -153,8 +152,8 @@ graph_check_ingredients(graph_ty *gp, recipe_ty *rp,
     /*
      * be optimistic, assume success
      */
-    trace(("graph_check_ingredients(gp = %8.8lX, rp = %8.8lX, "
-        "preference = %d)\n{\n", (long)gp, (long)rp, (int)preference));
+    trace(("graph_check_ingredients(gp = %p, rp = %p, preference = %d)\n{\n",
+        gp, rp, (int)preference));
     ocp = 0;
     cascade_list_constructor(&cascade);
     if (rp->inhibit)
@@ -828,8 +827,8 @@ graph_check_recipe(graph_ty *gp, recipe_ty *rp,
     size_t          k;
     opcode_context_ty *ocp;
 
-    trace(("graph_check_recipe(gp = %8.8lX, rp = %8.8lX, "
-        "preference = %d)\n{\n", (long)gp, (long)rp, (int)preference));
+    trace(("graph_check_recipe(gp = %p, rp = %p, preference = %d)\n{\n", gp,
+        rp, (int)preference));
     ocp = 0;
     status =
         graph_check_ingredients
@@ -977,11 +976,11 @@ graph_check_recipe(graph_ty *gp, recipe_ty *rp,
                 {
                     error_raw
                     (
-                        "%s: %d: file pair \"%S: %S\" missing",
+                        "%s: %d: file pair \"%s: %s\" missing",
                         __FILE__,
                         __LINE__,
-                        target1,
-                        ingredient
+                        (target1 ? target1->str_text : ""),
+                        (ingredient ? ingredient->str_text : "")
                     );
                     ok = 0;
                 }
@@ -1103,9 +1102,9 @@ graph_build_file(graph_ty *gp, string_ty *target,
      */
     graph_file_list_nrc_ty common_ingredients_gfl;
 
-    trace(("graph_build_file(gp = %8.8lX, target = %08lX, preference = %d, "
-        "result = %8.8lX, imp=%d)\n{\n", (long)gp, (long)target,
-        (int)preference, (long)result, implicit_allowed));
+    trace(("graph_build_file(gp = %p, target = %p, preference = %d, "
+        "result = %p, imp = %d)\n{\n", gp, target, (int)preference, result,
+        implicit_allowed));
     result->status = graph_build_status_error;
     result->gfp = 0;
     gfp = 0;
@@ -2062,8 +2061,8 @@ graph_build_file(graph_ty *gp, string_ty *target,
     str_free(target);
     assert((result->status == graph_build_status_success) ==
         (result->gfp != 0));
-    trace(("return { %s, %8.8lX};\n", graph_build_status_name(result->status),
-        (long)result->gfp));
+    trace(("return { %s, %p };\n", graph_build_status_name(result->status),
+        result->gfp));
     trace(("}\n"));
 }
 

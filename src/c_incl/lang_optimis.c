@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1998, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1998, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -60,8 +59,8 @@ directive(char *s, string_list_ty *type1, string_list_ty *type2)
      * Gnaw off any leading white space
      * and some optional punctuation characters.
      */
-    trace(("directive(s = \"%s\", type1 = %08lX, type2 = %08lX)\n{\n",
-            s, type1, type2));
+    trace(("directive(s = \"%s\", type1 = %p, type2 = %p)\n{\n", s, type1,
+        type2));
     (void)type2;
     while (*s && isspace((unsigned char)*s))
         ++s;
@@ -176,8 +175,8 @@ lang_optimistic_scan(input_ty *fp, string_list_ty *type1, string_list_ty *type2)
     int             result;
     int             c;
 
-    trace(("lang_optimistic_scan(fp = %08lX, type1 = %08lX, type2 = %08lX)\n"
-        "{\n", fp, type1, type2));
+    trace(("lang_optimistic_scan(fp = %p, type1 = %p, type2 = %p)\n{\n", fp,
+        type1, type2));
     pos = 0;
     max = 100;
     line = mem_alloc(max);

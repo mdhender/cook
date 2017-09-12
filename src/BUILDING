@@ -310,7 +310,7 @@ INSTALLING COOK
 
 PRINTED MANUALS
         The easiest way to get copies of the manuals is to get the
-        cook.2.31.rm.ps.gz and cook.2.31.ug.ps.gz files from the archive site.
+        cook.2.34.rm.ps.gz and cook.2.34.ug.ps.gz files from the archive site.
         These are compressed PostScript files of the Reference Manual and User
         Guide, respectively.  The Reference Manual (about 36 pages) contains
         the README file, the BUILDING file and internationalization notes, as
@@ -344,13 +344,13 @@ PRINTED MANUALS
 GETTING HELP
         If you need assistance with the Cook program, please do not hesitate
         to contact the author at
-                Peter Miller <millerp@canb.auug.org.au>
+                Peter Miller <pmiller@opensource.org.au>
         Any and all feedback is welcome.
 
         When reporting problems, please include the version number given by
         the
                 % cook -version
-                cook version 2.31.D001
+                cook version 2.34.D001
                 ...warranty disclaimer...
                 %
         command.  Please do not send this example; run the program for the
@@ -409,7 +409,8 @@ WINDOWS-NT
         appropriately, or test 14 will fail.
 
         Mounts persist across Cygwin sessions.  They are stored in a registry
-        file somewhere.  You will not need to do all this every time!
+        file somewhere.  You will not need to do all this every time!  ore
+        recent Cygwin versions don't need this at all.
 
    Configure
         The configure and build step should be the same as for UNIX, as
@@ -454,10 +455,10 @@ WINDOWS-NT
                 bash$
 
 COPYRIGHT
-        cook version 2.31
+        cook version 2.34
         Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996,
-        1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
-        Peter Miller; All rights reserved.
+        1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,
+        2008, 2009, 2010 Peter Miller
 
         The Cook package is distributed in the hope that it will be useful,
         but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -467,7 +468,7 @@ COPYRIGHT
         It should be in the LICENSE file included with this distribution.
 
 AUTHOR
-        Peter Miller   E-Mail:   millerp@canb.auug.org.au
-        /\/\*             WWW:   http://www.canb.auug.org.au/~millerp/
+        Peter Miller   E-Mail:   pmiller@opensource.org.au
+        /\/\*             WWW:   http://miller.emu.id.au/pmiller/
 
 Reference Manual                     Cook                          Build(Cook)

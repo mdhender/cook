@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 2000, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 2000, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -89,8 +88,8 @@ os_wait4(int pid, int *status, int options, struct rusage *rusage)
     cache_ty        *cp;
     int             pid2;
 
-    trace(("os_wait4(pid = %d, status = %08lX, options = 0x%X, "
-        "rusage = %08lX)\n{\n", pid, status, options, rusage));
+    trace(("os_wait4(pid = %d, status = %p, options = 0x%X, "
+        "rusage = %p)\n{\n", pid, status, options, rusage));
     assert(pid == -1 || pid > 0);
     assert(status);
     if (pid == -1)

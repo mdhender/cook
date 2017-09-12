@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -50,7 +49,7 @@ destructor(id_ty *idp)
 {
     id_function_ty  *this;
 
-    trace(("id_function::destructor(idp = %08lX)\n{\n", (long)idp));
+    trace(("id_function::destructor(idp = %p)\n{\n", idp));
     this = (id_function_ty *) idp;
     opcode_list_delete(this->value);
     trace(("}\n"));
@@ -79,7 +78,7 @@ interpret(id_ty *idp, opcode_context_ty *ocp, const struct expr_position_ty *pp)
 {
     id_function_ty  *this;
 
-    trace(("id_function::evaluate(idp = %08lX)\n{\n", (long)idp));
+    trace(("id_function::evaluate(idp = %p)\n{\n", idp));
     (void)pp;
     this = (id_function_ty *) idp;
     opcode_context_call(ocp, this->value);
@@ -138,7 +137,7 @@ id_function_new(opcode_list_ty *olp)
     idp = id_instance_new(&method);
     this = (id_function_ty *) idp;
     this->value = olp;
-    trace(("return %08lX;\n", (long)idp));
+    trace(("return %p;\n", idp));
     trace(("}\n"));
     return idp;
 }

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1998, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1998, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -40,10 +39,10 @@
 void
 expr_position_constructor(expr_position_ty *to, string_ty *fn, int ln)
 {
-    trace(("expr_position_constructor(to = %08lX)\n{\n", (long)to));
+    trace(("expr_position_constructor(to = %p)\n{\n", to));
     to->pos_name = fn ? str_copy(fn) : str_from_c("");
     to->pos_line = ln;
-    trace(("%s:%d (ref cnt %d)\n",
+    trace(("%s:%d (ref cnt %ld)\n",
         (to->pos_name ? to->pos_name->str_text : ""), to->pos_line,
         (to->pos_name ? to->pos_name->str_references : 0)));
     trace(("}\n"));
@@ -66,10 +65,10 @@ expr_position_constructor(expr_position_ty *to, string_ty *fn, int ln)
 void
 expr_position_constructorC(expr_position_ty *to, char *fn, int ln)
 {
-    trace(("expr_position_constructorC(to = %08lX)\n{\n", (long)to));
+    trace(("expr_position_constructorC(to = %p)\n{\n", to));
     to->pos_name = str_from_c(fn ? fn : "");
     to->pos_line = ln;
-    trace(("%s:%d (ref cnt %d)\n",
+    trace(("%s:%d (ref cnt %ld)\n",
         (to->pos_name ? to->pos_name->str_text : ""), to->pos_line,
         (to->pos_name ? to->pos_name->str_references : 0)));
     trace(("}\n"));
@@ -94,7 +93,7 @@ void
 expr_position_copy_constructor(expr_position_ty *to,
     const expr_position_ty *from)
 {
-    trace(("expr_position_copy_constructor(to = %08lX)\n{\n", (long)to));
+    trace(("expr_position_copy_constructor(to = %p)\n{\n", to));
     if (from)
         expr_position_constructor(to, from->pos_name, from->pos_line);
     else
@@ -102,7 +101,7 @@ expr_position_copy_constructor(expr_position_ty *to,
         to->pos_name = str_from_c("");
         to->pos_line = 0;
     }
-    trace(("%s:%d (ref cnt %d)\n",
+    trace(("%s:%d (ref cnt %ld)\n",
         (to->pos_name ? to->pos_name->str_text : ""), to->pos_line,
         (to->pos_name ? to->pos_name->str_references : 0)));
     trace(("}\n"));
@@ -124,8 +123,8 @@ expr_position_copy_constructor(expr_position_ty *to,
 void
 expr_position_destructor(expr_position_ty *pp)
 {
-    trace(("expr_position_destructor(pp = %08lX)\n{\n", (long)pp));
-    trace(("%s:%d (ref cnt %d)\n",
+    trace(("expr_position_destructor(pp = %p)\n{\n", pp));
+    trace(("%s:%d (ref cnt %ld)\n",
         (pp->pos_name ? pp->pos_name->str_text : ""), pp->pos_line,
         (pp->pos_name ? pp->pos_name->str_references : 0)));
     if (pp->pos_name)

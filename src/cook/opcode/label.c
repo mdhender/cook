@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -50,7 +49,7 @@ opcode_label_new(void)
     lp->npending = 0;
     lp->npending_max = 0;
     lp->pending = 0;
-    trace(("return %08lX;\n", (long)lp));
+    trace(("return %p;\n", lp));
     trace(("}\n"));
     return lp;
 }
@@ -71,7 +70,7 @@ opcode_label_new(void)
 void
 opcode_label_delete(opcode_label_ty *lp)
 {
-    trace(("opcode_label_delete(lp = %08lX)\n{\n", (long)lp));
+    trace(("opcode_label_delete(lp = %p)\n{\n", lp));
     if (lp->pending)
         mem_free(lp->pending);
     lp->pc = (size_t) (-1);
@@ -104,7 +103,7 @@ opcode_label_define(opcode_label_ty *lp, size_t where)
 {
     size_t          j;
 
-    trace(("opcode_label_define(lp = %08lX)\n{\n", (long)lp));
+    trace(("opcode_label_define(lp = %p)\n{\n", lp));
     assert(lp->pc == (size_t)(-1));
     lp->pc = where;
     trace(("pc = %ld\n", (long)lp->pc));
@@ -139,7 +138,7 @@ opcode_label_define(opcode_label_ty *lp, size_t where)
 void
 opcode_label_refer(opcode_label_ty *lp, size_t *where)
 {
-    trace(("opcode_label_refer(lp = %08lX)\n{\n", (long)lp));
+    trace(("opcode_label_refer(lp = %p)\n{\n", lp));
     *where = (size_t) (-1);
     if (lp->pc == (size_t) (-1))
     {

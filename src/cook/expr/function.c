@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -123,8 +122,7 @@ code_generate(const expr_ty *ep, opcode_list_ty *olp)
 {
     const expr_function_ty *this;
 
-    trace(("code_generate(ep = %08lX, olp = %08lX)\n{\n",
-            (long)ep, (long)olp));
+    trace(("code_generate(ep = %p, olp = %p)\n{\n", ep, olp));
     assert(ep);
     /* assert(ep->method == &method); */
     this = (const expr_function_ty *)ep;

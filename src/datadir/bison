@@ -1,0 +1,80 @@
+/*
+ * NAME
+ *      bison - how to use bison
+ *
+ * DESCRIPTION
+ *      This cookbook describes how to use bison.
+ *
+ *      You will have to add "-d" to the [bison_flags] variable
+ *      if you want %.h files generated.
+ *
+ *      If a y.output file is constructed, it will be moved to %.list
+ *
+ * RECIPES
+ *      %.c %.h: %.y    applied if -d in [bison_flags]
+ *      %.c: %.y        applied if -d not in [bison_flags]
+ *
+ * VARIABLES
+ *      bison_src       bison source files in the current directory.
+ *      dot_src         Source files constructable in the current directory
+ *                      (unioned with existing setting, if necessary).
+ *      dot_obj         Object files constructable in the current directory
+ *                      (unioned with existing setting, if necessary).
+ *      dot_clean       Files which may be removed from the current directory
+ *                      in a clean target.
+ *      dot_lint_obj    Lint object files constructable in the current directory
+ *                      (unioned with existing setting, if necessary).
+ * Copyright (C) 1997-2007, 2010 Peter Miller
+ */
+
+#pragma once
+
+#include "c"
+
+if [not [defined bison]] then
+        bison = bison;
+if [not [defined bison_flags]] then
+        bison_flags = ;
+bison_src = [glob *.y];
+cc_src = [stringset [cc_src] - [fromto %.y %.c [bison_src]]];
+dot_src =
+        [stringset
+                [dot_src] [bison_src]
+        -
+                [fromto %.y %.c [bison_src]] [fromto %.y %.s [bison_src]]
+        ];
+dot_obj = [stringset [dot_obj] [fromto %.y %.o [bison_src]]];
+dot_clean =
+        [stringset
+                [dot_clean]
+                [fromto %.y %.c [bison_src]]
+                [fromto %.y %.output [bison_src]]
+                [fromto %.y %.tab.c [bison_src]]
+                [fromto %.y %.tab.h [bison_src]]
+                [fromto %.y %.ln [bison_src]]
+                [fromto %.y %.s [bison_src]]
+        ];
+dot_lint_obj = [stringset [dot_lint_obj] [fromto %.y %.ln [bison_src]]];
+
+%.c %.h: %.y
+        if [in -d [bison_flags]]
+        single-thread %.tab.c %.tab.h %.output
+{
+        if [exists %.output] then
+                rm -f %.output
+                        set clearstat;
+        [bison] [bison_flags] %.y;
+        mv %.tab.c %.c;
+        mv %.tab.h %.h;
+}
+
+%.c: %.y
+        if [not [in -d [bison_flags]]]
+        single-thread %.tab.c %.output
+{
+        if [exists %.output] then
+                rm -f %.output
+                        set clearstat;
+        [bison] [bison_flags] %.y;
+        mv %.tab.c %.c;
+}

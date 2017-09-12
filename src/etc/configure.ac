@@ -1,7 +1,6 @@
 dnl
 dnl     cook - file construction tool
-dnl     Copyright (C) 1994-2004, 2006-2008 Peter Miller;
-dnl     All rights reserved.
+dnl     Copyright (C) 1994-2004, 2006-2008 Peter Miller
 dnl
 dnl     This program is free software; you can redistribute it and/or modify
 dnl     it under the terms of the GNU General Public License as published by
@@ -351,8 +350,7 @@ AC_SUBST(NLSDIR)
 AH_TOP(
 [/*
  *      cook - file construction tool
- *      Copyright (C) 1995-2004, 2006-2008 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1995-2004, 2006-2008 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by

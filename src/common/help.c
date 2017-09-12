@@ -1,7 +1,6 @@
 /*
  *      cook - a program construction tool
- *      Copyright (C) 1991-1995, 1997, 1998, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1991-1995, 1997, 1998, 2006-2008, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -142,7 +141,7 @@ help_env(void)
     /*
      * set the MANPATH environment variable
      */
-    s = wl2str(&manpath, 0, manpath.nstrings, ":");
+    s = wl2str_respect_empty(&manpath, 0, manpath.nstrings, ":", 1);
     string_list_destructor(&manpath);
     env_set("MANPATH", s->str_text);
     str_free(s);

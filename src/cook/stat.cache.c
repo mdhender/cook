@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1992-1994, 1997-1999, 2001, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1992-1994, 1997-1999, 2001, 2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -23,15 +22,16 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <cook/archive.h>
 #include <common/error_intl.h>
-#include <cook/fingerprint.h>
-#include <cook/fingerprint/value.h>
 #include <common/mem.h>
-#include <cook/option.h>
-#include <cook/stat.cache.h>
 #include <common/symtab.h>
 #include <common/trace.h>
+#include <cook/archive.h>
+#include <cook/fingerprint.h>
+#include <cook/fingerprint/value.h>
+#include <cook/option.h>
+#include <cook/option.h>
+#include <cook/stat.cache.h>
 
 
 typedef struct cache_ty cache_ty;
@@ -455,8 +455,8 @@ stat_cache_newest(string_ty *path, int follow_links)
     cache_ty        cache;
     sub_context_ty  *scp;
 
-    trace(("stat_cache_newest(path = \"%s\", lnk = %d)\n{\n",
-        (long)path->str_text, follow_links));
+    trace(("stat_cache_newest(path = \"%s\", lnk = %d)\n{\n", path->str_text,
+        follow_links));
     if (stat_cache(path, &cache, !!follow_links))
     {
         trace(("Bzzt!\n"));
@@ -549,8 +549,8 @@ stat_cache_oldest(string_ty *path, int follow_links)
     cache_ty        cache;
     sub_context_ty  *scp;
 
-    trace(("stat_cache_oldest(path = \"%s\", lnk = %d)\n{\n",
-        (long)path->str_text, follow_links));
+    trace(("stat_cache_oldest(path = \"%s\", lnk = %d)\n{\n", path->str_text,
+        follow_links));
     if (stat_cache(path, &cache, !!follow_links))
     {
         trace(("Bzzt!\n"));
@@ -733,4 +733,36 @@ stat_cache_clear(string_ty *path)
     if (symtab[1])
         symtab_delete(symtab[1], path);
     trace(("}\n"));
+}
+
+
+static void
+dumper(symtab_ty *stp, string_ty *key, void *data, void *arg)
+{
+    struct stat     st;
+
+    (void)stp;
+    (void)data;
+    if (stat(key->str_text, &st) >= 0 && S_ISREG(st.st_mode))
+    {
+        FILE            *fp;
+
+        fp = arg;
+        fprintf(fp, "%lld %s\n", (long long)st.st_size, key->str_text);
+    }
+}
+
+
+void
+stat_cache_dump(void)
+{
+    if (!option_test(OPTION_FILE_SIZE_STATISTICS))
+        return;
+    if (!symtab[1])
+        return;
+    FILE *fp = fopen("file-size-statistics.txt", "w");
+    if (!fp)
+        return;
+    symtab_walk(symtab[1], dumper, fp);
+    fclose(fp);
 }

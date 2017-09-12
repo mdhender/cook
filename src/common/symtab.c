@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1990-1994, 1997, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1990-1994, 1997, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -43,7 +42,7 @@ symtab_alloc(unsigned size)
         mem_alloc(stp->hash_modulus * sizeof(symtab_row_ty *));
     for (j = 0; j < stp->hash_modulus; ++j)
         stp->hash_table[j] = 0;
-    trace(("return %08lX;\n", (long)stp));
+    trace(("return %p;\n", stp));
     trace(("}\n"));
     return stp;
 }
@@ -54,7 +53,7 @@ symtab_free(symtab_ty *stp)
 {
     str_hash_ty     j;
 
-    trace(("symtab_free(stp = %08lX)\n{\n", (long)stp));
+    trace(("symtab_free(stp = %p)\n{\n", stp));
     for (j = 0; j < stp->hash_modulus; ++j)
     {
         symtab_row_ty   **rpp;
@@ -184,8 +183,7 @@ symtab_query(symtab_ty *stp, string_ty *key)
     symtab_row_ty   *p;
     void            *result;
 
-    trace(("symtab_query(stp = %08lX, key = \"%s\")\n{\n",
-        (long)stp, key->str_text));
+    trace(("symtab_query(stp = %p, key = \"%s\")\n{\n", stp, key->str_text));
     result = 0;
 
     idx = key->str_hash & stp->hash_mask;
@@ -198,7 +196,7 @@ symtab_query(symtab_ty *stp, string_ty *key)
         }
     }
 
-    trace(("return %08lX;\n", (long)result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -211,8 +209,8 @@ symtab_query_fuzzy_inner(symtab_ty *stp, string_ty *key, double *best_weight,
     str_hash_ty     idx;
     symtab_row_ty   *p;
 
-    trace(("symtab_query_fuzzy_inner(stp = %08lX, key = \"%s\")\n{\n",
-        (long)stp, key->str_text));
+    trace(("symtab_query_fuzzy_inner(stp = %p, key = \"%s\")\n{\n", stp,
+        key->str_text));
 
     for (idx = 0; idx < stp->hash_modulus; ++idx)
     {
@@ -240,8 +238,7 @@ symtab_query_fuzzy(symtab_ty *stp, string_ty *key, string_ty **key_used)
     void            *best_result;
     string_ty       *best_key;
 
-    trace(("symtab_query(stp = %08lX, key = \"%s\")\n{\n",
-        (long)stp, key->str_text));
+    trace(("symtab_query(stp = %p, key = \"%s\")\n{\n", stp, key->str_text));
     best_weight = 0.6;
     best_result = 0;
     best_key = 0;
@@ -250,7 +247,7 @@ symtab_query_fuzzy(symtab_ty *stp, string_ty *key, string_ty **key_used)
 
     if (key_used && best_key)
         *key_used = best_key;
-    trace(("return %08lX;\n", (long)best_result));
+    trace(("return %p;\n", best_result));
     trace(("}\n"));
     return best_result;
 }
@@ -284,7 +281,7 @@ symtab_query_fuzzyN(symtab_ty **stp_table, size_t stp_length, string_ty *key,
 
     if (key_used && best_key)
         *key_used = best_key;
-    trace(("return %08lX;\n", (long)best_result));
+    trace(("return %p;\n", best_result));
     trace(("}\n"));
     return best_result;
 }
@@ -311,8 +308,8 @@ symtab_assign(symtab_ty *stp, string_ty *key, void *data)
     str_hash_ty     idx;
     symtab_row_ty   *p;
 
-    trace(("symtab_assign(stp = %08lX, key = \"%s\", data = %08lX)\n{\n",
-        (long)stp, key->str_text, (long)data));
+    trace(("symtab_assign(stp = %p, key = \"%s\", data = %p)\n{\n", stp,
+        key->str_text, data));
     idx = key->str_hash & stp->hash_mask;
     for (p = stp->hash_table[idx]; p; p = p->overflow)
     {
@@ -364,8 +361,8 @@ symtab_assign_push(symtab_ty *stp, string_ty *key, void *data)
     str_hash_ty     idx;
     symtab_row_ty   *p;
 
-    trace(("symtab_assign_push(stp = %08lX, key = \"%s\", data = %08lX)\n{\n",
-        (long)stp, key->str_text, (long)data));
+    trace(("symtab_assign_push(stp = %p, key = \"%s\", data = %p)\n{\n", stp,
+        key->str_text, data));
     idx = key->str_hash & stp->hash_mask;
 
     p = mem_alloc(sizeof(symtab_row_ty));
@@ -402,8 +399,7 @@ symtab_delete(symtab_ty *stp, string_ty *key)
     str_hash_ty     idx;
     symtab_row_ty   **pp;
 
-    trace(("symtab_delete(stp = %08lX, key = \"%s\")\n{\n",
-        (long)stp, key->str_text));
+    trace(("symtab_delete(stp = %p, key = \"%s\")\n{\n", stp, key->str_text));
     idx = key->str_hash & stp->hash_mask;
 
     pp = &stp->hash_table[idx];
@@ -459,12 +455,7 @@ symtab_dump(symtab_ty *stp, char *caption)
     {
         for (p = stp->hash_table[j]; p; p = p->overflow)
         {
-            error_raw
-            (
-                "key = \"%s\", data = %08lX",
-                p->key->str_text,
-                (long)p->data
-            );
+            error_raw("key = \"%s\", data = %p", p->key->str_text, p->data);
         }
     }
     error_raw("}");
@@ -480,7 +471,7 @@ symtab_walk(symtab_ty *stp, void (*func)(symtab_ty *, string_ty *, void *,
     str_hash_ty     j;
     symtab_row_ty   *rp;
 
-    trace(("symtab_walk(stp = %08lX)\n{\n", (long)stp));
+    trace(("symtab_walk(stp = %p)\n{\n", stp));
     for (j = 0; j < stp->hash_modulus; ++j)
         for (rp = stp->hash_table[j]; rp; rp = rp->overflow)
             func(stp, rp->key, rp->data, arg);

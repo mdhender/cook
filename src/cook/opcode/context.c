@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -66,7 +65,7 @@ opcode_context_new(opcode_list_ty *olp, const match_ty *mp)
 {
     opcode_context_ty *ocp;
 
-    trace(("opcode_context_new(olp = %08lX)\n{\n", (long)olp));
+    trace(("opcode_context_new(olp = %p)\n{\n", olp));
     ocp = mem_alloc(sizeof(opcode_context_ty));
     ocp->call_stack_length = 0;
     ocp->call_stack_maximum = 0;
@@ -110,7 +109,7 @@ opcode_context_new(opcode_list_ty *olp, const match_ty *mp)
 void
 opcode_context_delete(opcode_context_ty *ocp)
 {
-    trace(("opcode_context_delete(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_delete(ocp = %p)\n{\n", ocp));
     if (ocp->call_stack)
         mem_free(ocp->call_stack);
     ocp->call_stack_length = 0;
@@ -178,7 +177,7 @@ opcode_context_execute_inner(opcode_context_ty *ocp,
     /*
      * keep executing until the last call exits
      */
-    trace(("opcode_context_execute(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_execute(ocp = %p)\n{\n", ocp));
     status = opcode_status_success;
     while (ocp->call_stack_length > 0)
     {
@@ -279,7 +278,7 @@ opcode_context_execute_nowait(opcode_context_ty *ocp)
 {
     opcode_status_ty status;
 
-    trace(("opcode_context_execute_nowait(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_execute_nowait(ocp = %p)\n{\n", ocp));
     for (;;)
     {
         status = opcode_context_execute(ocp);
@@ -363,8 +362,7 @@ opcode_context_call(opcode_context_ty *ocp, opcode_list_ty *olp)
 {
     opcode_frame_ty *frame;
 
-    trace(("opcode_context_call(ocp = %08lX, olp = %08lX)\n{\n",
-            (long)ocp, (long)olp));
+    trace(("opcode_context_call(ocp = %p, olp = %p)\n{\n", ocp, olp));
     if (ocp->call_stack_length >= ocp->call_stack_maximum)
     {
         size_t          nbytes;
@@ -402,7 +400,7 @@ opcode_context_call(opcode_context_ty *ocp, opcode_list_ty *olp)
 void
 opcode_context_string_list_push(opcode_context_ty *ocp)
 {
-    trace(("opcode_context_string_list_push(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_string_list_push(ocp = %p)\n{\n", ocp));
     assert(ocp);
     if (ocp->value_stack_length >= ocp->value_stack_maximum)
     {
@@ -439,7 +437,7 @@ opcode_context_string_push(opcode_context_ty *ocp, string_ty *s)
 {
     string_list_ty  *slp;
 
-    trace(("opcode_context_string_push(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_string_push(ocp = %p)\n{\n", ocp));
     assert(ocp);
     assert(ocp->value_stack_length > 0);
     slp = ocp->value_stack[ocp->value_stack_length - 1];
@@ -453,7 +451,7 @@ opcode_context_string_push_list(opcode_context_ty *ocp, const string_list_ty *i)
 {
     string_list_ty  *slp;
 
-    trace(("opcode_context_string_push(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_string_push(ocp = %p)\n{\n", ocp));
     assert(ocp);
     assert(ocp->value_stack_length > 0);
     slp = ocp->value_stack[ocp->value_stack_length - 1];
@@ -485,12 +483,12 @@ opcode_context_string_list_pop(opcode_context_ty *ocp)
 {
     string_list_ty *slp;
 
-    trace(("opcode_context_string_list_pop(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_string_list_pop(ocp = %p)\n{\n", ocp));
     assert(ocp);
     assert(ocp->value_stack_length > 0);
     ocp->value_stack_length--;
     slp = ocp->value_stack[ocp->value_stack_length];
-    trace(("return %08lX;\n", (long)slp));
+    trace(("return %p;\n", slp));
     trace(("}\n"));
     return slp;
 }
@@ -501,11 +499,11 @@ opcode_context_string_list_peek(const opcode_context_ty *ocp)
 {
     string_list_ty  *slp;
 
-    trace(("opcode_context_string_list_peek(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_string_list_peek(ocp = %p)\n{\n", ocp));
     assert(ocp);
     assert(ocp->value_stack_length > 0);
     slp = ocp->value_stack[ocp->value_stack_length - 1];
-    trace(("return %08lX;\n", (long)slp));
+    trace(("return %p;\n", slp));
     trace(("}\n"));
     return slp;
 }
@@ -532,8 +530,7 @@ opcode_context_goto(opcode_context_ty *ocp, size_t pc)
 {
     opcode_frame_ty *frame;
 
-    trace(("opcode_context_goto(ocp = %08lX, pc = %ld)\n{\n", (long)ocp,
-        (long)pc));
+    trace(("opcode_context_goto(ocp = %p, pc = %ld)\n{\n", ocp, (long)pc));
     assert(ocp);
     assert(ocp->call_stack_length > 0);
     frame = &ocp->call_stack[ocp->call_stack_length - 1];
@@ -563,7 +560,7 @@ opcode_context_suspend(opcode_context_ty *ocp)
     /*
      * save and clear flag state
      */
-    trace(("opcode_context_suspend(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_suspend(ocp = %p)\n{\n", ocp));
     ocp->flags = option_flag_state_get();
     option_undo_level(OPTION_LEVEL_EXECUTE);
     option_undo_level(OPTION_LEVEL_RECIPE);
@@ -577,7 +574,7 @@ opcode_context_resume(opcode_context_ty *ocp)
     /*
      * restore flag state
      */
-    trace(("opcode_context_resume(ocp = %08lX)\n{\n", (long)ocp));
+    trace(("opcode_context_resume(ocp = %p)\n{\n", ocp));
     assert(ocp->flags);
     if (ocp->flags)
         option_flag_state_set(ocp->flags);

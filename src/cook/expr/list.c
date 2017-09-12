@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -51,7 +50,7 @@ expr_list_destructor(expr_list_ty *elp)
 {
     size_t          j;
 
-    trace(("expr_list_destructor(elp = %08X)\n{\n", elp));
+    trace(("expr_list_destructor(elp = %p)\n{\n", elp));
     for (j = 0; j < elp->el_nexprs; j++)
         expr_delete(elp->el_expr[j]);
     if (elp->el_nexprs)
@@ -108,7 +107,7 @@ expr_list_copy_constructor(expr_list_ty *to, const expr_list_ty *from)
 {
     size_t          j;
 
-    trace(("expr_list_copy_constructor(to = %08X, from = %08X)\n{\n",
+    trace(("expr_list_copy_constructor(to = %p, from = %p)\n{\n",
             to, from));
     expr_list_constructor(to);
     for (j = 0; j < from->el_nexprs; j++)
@@ -146,7 +145,7 @@ expr_list_append(expr_list_ty *el, expr_ty *e)
 {
     size_t          nbytes;
 
-    trace(("expr_list_append(el = %08X, e = %08X)\n{\n", el, e));
+    trace(("expr_list_append(el = %p, e = %p)\n{\n", el, e));
     assert(el);
     assert(e);
     assert(!el->el_nexprs_max || !!el->el_expr);
@@ -185,13 +184,13 @@ expr_list_evaluate(const expr_list_ty *elp, const match_ty *mp)
     opcode_list_ty  *olp;
     string_list_ty  *result;
 
-    trace(("expr_list_evaluate(elp = %08X)\n{\n", (long)elp));
+    trace(("expr_list_evaluate(elp = %p)\n{\n", elp));
     olp = opcode_list_new();
     opcode_list_append(olp, opcode_push_new());
     expr_list_code_generate(elp, olp);
     result = opcode_list_run(olp, mp);
     opcode_list_delete(olp);
-    trace(("return %08lX;\n", result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }

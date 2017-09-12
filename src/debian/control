@@ -1,0 +1,19 @@
+Source: cook
+Section: devel
+Priority: optional
+Maintainer: Peter Miller <pmiller@opensource.org.au>
+Homepage: http://miller.emu.id.au/pmiller/software/cook/
+DM-Upload-Allowed: yes
+Build-Depends: bison, debhelper (>= 5), gettext, groff, perl, sharutils
+Standards-Version: 3.8.4
+
+Package: cook
+Section: devel
+Priority: optional
+Architecture: any
+Description: file construction tool
+ Cook is a tool for constructing files. It is given a set of files to create,
+ and recipes of how to create them. In any non-trivial program there will be
+ prerequisites to performing the actions necessary to creating any file, such as
+ include files.  Cook provides a mechanism to define these.
+Depends: ${misc:Depends}, ${shlibs:Depends}

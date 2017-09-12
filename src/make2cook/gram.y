@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997, 1998, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1997, 1998, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -24,6 +23,7 @@
 #include <common/ac/stdlib.h>
 
 #include <common/error_intl.h>
+#include <common/trace.h>
 #include <make2cook/gram.h>
 #include <make2cook/lex.h>
 #include <make2cook/stmt/assign.h>
@@ -38,7 +38,6 @@
 #include <make2cook/stmt/rule.h>
 #include <make2cook/stmt/unexport.h>
 #include <make2cook/stmt/vpath.h>
-#include <common/trace.h>
 
 #ifdef  DEBUG
 #define YYDEBUG 1
@@ -59,7 +58,7 @@ gram(char *filename)
 {
     int yyparse(void);
 
-    trace(("gram(filename = %08lX)\n{\n", (long)filename));
+    trace(("gram(filename = %p)\n{\n", filename));
     lex_open(filename);
 #if YYDEBUG
     yydebug = trace_pretest_;

@@ -1,7 +1,6 @@
 '\" t
 .\"     cook - file construction tool
-.\"     Copyright (C) 1994, 1995, 1997-2002, 2007 Peter Miller;
-.\"     All rights reserved.
+.\"     Copyright (C) 1994, 1995, 1997-2002, 2007, 2008, 2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -18,7 +17,7 @@
 .\"     <http://www.gnu.org/licenses/>.
 .\"
 .TH C_INCL 1 Cook "Reference Manual"
-.so z_name.so
+.so lib/en/man1/z_name.so
 .ds n) c_incl
 .SH NAME
 \*(n) - determine dependencies
@@ -312,7 +311,7 @@ this option may be used as ``\f(CW-slp [arch] "'[arch]'"\fP''
 If you need more intricate editing, used \fIsed\fP(1).
 .PP
 Any other options will generate an error.
-.so o__rules.so
+.so lib/en/man1/o__rules.so
 .br
 .ne 1i
 .SH CACHING
@@ -355,5 +354,5 @@ Accesses to the
 file use file locking, so recipies using
 .I \*(n)
 need not use the \f(CWsingle-thread\fP clause.
-.so z_exit.so
-.so copyright.so
+.so lib/en/man1/z_exit.so
+.so lib/en/man1/copyright.so

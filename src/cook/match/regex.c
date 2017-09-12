@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -78,7 +77,7 @@ destructor(match_ty *mp)
 {
     match_regex_ty  *this;
 
-    trace(("match_regex::destructor(mp = %08X)\n{\n", mp));
+    trace(("match_regex::destructor(mp = %p)\n{\n", mp));
     this = (match_regex_ty *)mp;
     if (this->actual)
         str_free(this->actual);
@@ -92,7 +91,7 @@ constructor(match_ty *mp)
 {
     match_regex_ty  *this;
 
-    trace(("match_regex::constructor(mp = %08X)\n{\n", mp));
+    trace(("match_regex::constructor(mp = %p)\n{\n", mp));
     this = (match_regex_ty *)mp;
     this->actual = 0;
     /* this is not 100% portable */
@@ -110,8 +109,7 @@ compile(match_ty *mp, string_ty *formal, const expr_position_ty *pp)
     size_t          formal_start;
     size_t          formal_end;
 
-    trace(("match_regex::complie(mp = %08lX, formal = %08lX)\n{\n", (long)mp,
-        (long)formal));
+    trace(("match_regex::complie(mp = %p, formal = %p)\n{\n", mp, formal));
     trace(("formal = \"%s\";\n", formal->str_text));
     this = (match_regex_ty *)mp;
     result = -1;
@@ -191,8 +189,7 @@ execute(match_ty *mp, string_ty *actual, const expr_position_ty *pp)
     int             result;
     int             err;
 
-    trace(("match_regex::execute(mp = %08lX, actual = %08lX)\n{\n", (long)mp,
-        (long)actual));
+    trace(("match_regex::execute(mp = %p, actual = %p)\n{\n", mp, actual));
     trace(("actual = \"%s\";\n", actual->str_text));
     this = (match_regex_ty *)mp;
     result = -1;
@@ -271,8 +268,7 @@ reconstruct_lhs(const match_ty *mp, string_ty *lhs, const expr_position_ty *pp)
     string_ty       *s;
     int             j;
 
-    trace(("match_regex::reconstruct_lhs(mp = %08lX, lhs = %08X)\n{\n",
-        (long)mp, (long)lhs));
+    trace(("match_regex::reconstruct_lhs(mp = %p, lhs = %p)\n{\n", mp, lhs));
     this = (const match_regex_ty *)mp;
     trace_string(lhs->str_text);
 
@@ -365,7 +361,7 @@ reconstruct_lhs(const match_ty *mp, string_ty *lhs, const expr_position_ty *pp)
 
     s = sa_close(&buffer);
     trace_string(s->str_text);
-    trace(("return %08lX;\n", s));
+    trace(("return %p;\n", s));
     trace(("}\n"));
     return s;
 }
@@ -381,8 +377,7 @@ reconstruct_rhs(const match_ty *mp, string_ty *rhs, const expr_position_ty *pp)
     string_ty       *s;
     int             j;
 
-    trace(("match_regex::reconstruct_rhs(mp = %08lX, rhs = %08X)\n{\n",
-        (long)mp, (long)rhs));
+    trace(("match_regex::reconstruct_rhs(mp = %p, rhs = %p)\n{\n", mp, rhs));
     this = (const match_regex_ty *)mp;
     trace_string(rhs->str_text);
     assert(this->actual);
@@ -456,7 +451,7 @@ reconstruct_rhs(const match_ty *mp, string_ty *rhs, const expr_position_ty *pp)
      */
     s = sa_close(&buffer);
     trace_string(s->str_text);
-    trace(("return %08lX;\n", s));
+    trace(("return %p;\n", s));
     trace(("}\n"));
     return s;
 }

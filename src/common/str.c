@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993-1995, 1997-1999, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1993-1995, 1997-1999, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -535,7 +534,6 @@ str_field(string_ty *s, int sep, int fldnum)
  * DESCRIPTION
  *      The str_format function is used to create new strings
  *      using a format specification similar to printf(3).
- *      The "%S" specifier is used to mean a ``string_ty *'' string.
  *
  * RETURNS
  *      string_ty * - a pointer to a string in dynamic memory.

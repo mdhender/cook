@@ -1,6 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993-2007 Peter Miller
+ *      Copyright (C) 1993-2007, 2009, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -38,16 +38,16 @@
 #include <common/symtab.h>
 #include <common/trace.h>
 #include <cook/expr.h>
-#include <cook/expr/list.h>     /* for parse.gen.h */
+#include <cook/expr/list.h>     /* for parse.yacc.h */
 #include <cook/hashline.h>
 #include <cook/lex.h>
 #include <cook/lex/filename.h>
 #include <cook/lex/filenamelist.h>
 #include <cook/option.h>
 #include <cook/stmt.h>
-#include <cook/stmt/list.h>     /* for parse.gen.h */
-#include <cook/parse.gen.h>     /* must be last */
-#include <cook/hashline.gen.h>  /* must be last */
+#include <cook/stmt/list.h>     /* for parse.yacc.h */
+#include <cook/parse.yacc.h>     /* must be last */
+#include <cook/hashline.yacc.h>  /* must be last */
 
 
 /*
@@ -114,7 +114,7 @@ internal_token_name(internal_token_ty tok)
     case internal_token_file_boundary:
         return "internal_token_file_boundary";
     }
-    sprintf(buffer, "%d", tok);
+    snprintf(buffer, sizeof(buffer), "%d", tok);
     return buffer;
 }
 
@@ -284,7 +284,7 @@ lex_open(string_ty *logical, string_ty *physical)
 {
     lex_ty          *new;
 
-    trace(("lex_open(filename = %08lX)\n{\n", logical));
+    trace(("lex_open(filename = %p)\n{\n", logical));
     trace_string(logical->str_text);
     if (!physical)
         physical = logical;
@@ -551,7 +551,7 @@ meta_repn(meta_ty *val)
     char            buf2[20];
     char            buf3[10];
 
-    if (val->m_type >= 0 && val->m_type < SIZEOF(type))
+    if (val->m_type >= 0 && (size_t)val->m_type < SIZEOF(type))
         strendcpy(buf2, type[val->m_type], buf2 + sizeof(buf2));
     else
         snprintf(buf2, sizeof(buf2), "%d", val->m_type);
@@ -564,7 +564,7 @@ meta_repn(meta_ty *val)
             buf3[1] = 0;
         }
         else
-            sprintf(buf3, "\\%03o", (unsigned char)val->m_char);
+            snprintf(buf3, sizeof(buf3), "\\%03o", (unsigned char)val->m_char);
         break;
 
     case '\'':
@@ -610,7 +610,7 @@ meta_repn(meta_ty *val)
 static void
 meta(meta_ty *val)
 {
-    trace(("meta(val = %08lX)\n{\n", val));
+    trace(("meta(val = %p)\n{\n", val));
     assert(root);
     if (root->l_mback.m_type)
     {
@@ -1090,7 +1090,7 @@ lex_trace(char *s, ...)
         *cp = 0;
         trace_printf
         (
-            "%s: %d: %s\n",
+            "%s: %ld: %s\n",
             root->filename.logical->str_text,
             root->l_line,
             line
@@ -1113,9 +1113,9 @@ mode_repn(lex_mode_ty n)
     };
     static char     buffer[12];
 
-    if (n >= 0 && n < SIZEOF(name))
+    if ((size_t)n < SIZEOF(name))
         return name[n];
-    sprintf(buffer, "%d", n);
+    snprintf(buffer, sizeof(buffer), "%d", n);
     return buffer;
 }
 
@@ -1264,7 +1264,7 @@ tokenize(void)
             {
                 trace
                 ((
-                    "%s: %d: state %d, mode %s;\n",
+                    "%s: %ld: state %d, mode %s;\n",
                     root->filename.logical->str_text,
                     root->l_line,
                     state,
@@ -1504,8 +1504,8 @@ tokenize(void)
     ret:
     trace
     ((
-        "%S: %d: state %d, mode %s;\n",
-        root->filename.logical,
+        "%s: %ld: state %d, mode %s;\n",
+        root->filename.logical->str_text,
         root->l_line,
         state,
         mode_repn(mode)

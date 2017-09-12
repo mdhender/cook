@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1990-1997, 2006, 2007 Peter Miller
- *      All rights reserved.
+ *      Copyright (C) 1990-1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -73,7 +72,7 @@ expr_private_new(expr_method_ty *mp)
     ep->method = mp;
     ep->e_references = 1;
     expr_position_constructor(&ep->e_position, lex_cur_file(), lex_cur_line());
-    trace(("return %08lX;\n", ep));
+    trace(("return %p;\n", ep));
     trace(("}\n"));
     return ep;
 }
@@ -101,9 +100,9 @@ expr_private_new(expr_method_ty *mp)
 expr_ty *
 expr_copy(expr_ty *ep)
 {
-    trace(("expr_copy(ep = %08X)\n{\n", ep));
+    trace(("expr_copy(ep = %p)\n{\n", ep));
     ep->e_references++;
-    trace(("return %08lX;\n", ep));
+    trace(("return %p;\n", ep));
     trace(("}\n"));
     return ep;
 }
@@ -127,7 +126,7 @@ expr_copy(expr_ty *ep)
 void
 expr_delete(expr_ty *ep)
 {
-    trace(("expr_delete(ep = %08X)\n{\n", ep));
+    trace(("expr_delete(ep = %p)\n{\n", ep));
     assert(ep);
     ep->e_references--;
     if (ep->e_references <= 0)
@@ -166,14 +165,14 @@ expr_evaluate(const expr_ty *ep, const match_ty *mp)
     opcode_list_ty  *olp;
     string_list_ty  *result;
 
-    trace(("expr_evaluate(ep = %08lX)\n{\n", (long)ep));
+    trace(("expr_evaluate(ep = %p)\n{\n", ep));
     assert(ep);
     olp = opcode_list_new();
     opcode_list_append(olp, opcode_push_new());
     expr_code_generate(ep, olp);
     result = opcode_list_run(olp, mp);
     opcode_list_delete(olp);
-    trace(("return %08lX;\n", result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -208,7 +207,7 @@ expr_eval_condition(const expr_ty *ep, const match_ty *mp)
     opcode_list_ty  *olp;
     int             result;
 
-    trace(("expr_eval_condition(ep = %08lX)\n{\n", (long)ep));
+    trace(("expr_eval_condition(ep = %p)\n{\n", ep));
     assert(ep);
     olp = opcode_list_new();
     opcode_list_append(olp, opcode_push_new());

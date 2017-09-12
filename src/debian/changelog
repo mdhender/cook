@@ -1,0 +1,3454 @@
+cook (2.34.D001-1) unstable; urgency=low
+
+  * This change set prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 25 Sep 2010 19:19:26 +1000
+
+cook (2.33.D010-1) unstable; urgency=low
+
+  * This change set adds a PPA link to the download page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 25 Sep 2010 18:15:22 +1000
+
+cook (2.33.D009-1) unstable; urgency=low
+
+  * There is a need for uudecode in the tests, and this means sharutils is a
+    Build-Depends.
+  * This change set adds a ppa-upload script, for uploading packages to the
+    LaunchPad PPA.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 16 Sep 2010 22:53:35 +1000
+
+cook (2.33.D008-1) unstable; urgency=low
+
+  * The build system now understands how to create Debian packages.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 16 Sep 2010 16:35:48 +1000
+
+cook (2.33.D007-1) unstable; urgency=low
+
+  * This change set fixes a typos, and get rid of some tabs.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 15 Sep 2010 14:30:45 +1000
+
+cook (2.33.D006-1) unstable; urgency=low
+
+  * References to sunsite have been removed.  Referenced to cj5.com have been
+    removed.  The LSM file (obsolete) has been removed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 15 Sep 2010 14:24:28 +1000
+
+cook (2.33.D005-1) unstable; urgency=low
+
+  * The png2ico command can no longer cope with grayscale images, so the icone
+    has a single colored pixel, to dodge this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 15 Sep 2010 14:16:57 +1000
+
+cook (2.33.D004-1) unstable; urgency=low
+
+  * This change det fixes a problem where some systems (usually pseudo
+    filesystems) report ENOSYS instead of EACCES like any sane person expects.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 05 May 2010 23:28:02 +1000
+
+cook (2.33.D003-1) unstable; urgency=low
+
+  * This change set fixes a problem calculating MANPATH.
+  * My thanks to Walter Franzini for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 05 May 2010 23:13:19 +1000
+
+cook (2.33.D002-1) unstable; urgency=low
+
+  * The t0217a test was time-zone specific.
+  * My thanks to Walter Franzini for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 05 May 2010 23:00:33 +1000
+
+cook (2.33.D001-1) unstable; urgency=low
+
+  * This change set prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 20 Dec 2009 18:22:48 +1100
+
+cook (2.32.D016-1) unstable; urgency=low
+
+  * This change fixes some of the references to the mailing list to have the new
+    (correct) web and email addresses.
+  * My thanks to Joseph Garvin <joseph.h.garvin@gmail.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 20 Dec 2009 17:06:09 +1100
+
+cook (2.32.D015-1) unstable; urgency=low
+
+  * There is a new file-size-statistics option, for hinky NFS server update
+    latency.
+  * My thanks to Jerry Pendergraft for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Nov 2009 23:57:18 +1100
+
+cook (2.32.D014-1) unstable; urgency=low
+
+  * The desist interrupt handler could sometimes deadlock because it use malloc
+    (vis the error message printing functions). This can cause processes to
+    hang.
+  * My thanks to Martin Sebor <msebor@gmail.com> for reporting this bug.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Nov 2009 23:53:16 +1100
+
+cook (2.32.D013-1) unstable; urgency=low
+
+  * A glich in the architecture stuff has been fixed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Nov 2009 23:44:43 +1100
+
+cook (2.32.D012-1) unstable; urgency=low
+
+  * This change set fixes a number of 64-bit issues in DEBUG builds.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Nov 2009 22:16:44 +1100
+
+cook (2.32.D011-1) unstable; urgency=low
+
+  * This change set is a no-op so that the tests can remember their executions
+    times on the new architecture.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Nov 2009 22:06:29 +1100
+
+cook (2.32.D010-1) unstable; urgency=low
+
+  * This change set fixes a couple of compile errors when DEBUG is defined.
+  * My thanks to Pieter den Hertog <pieter@dwark.nl> for this patch
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Nov 2009 21:47:47 +1100
+
+cook (2.32.D009-1) unstable; urgency=low
+
+  * This change set rebuilds for x86_64 architecture, and makes it the default.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 07 Nov 2009 08:46:14 +1100
+
+cook (2.32.D008-1) unstable; urgency=low
+
+  * The exit status was being printed sor silent commands.
+  * My thanks to Aryeh M. Friedman for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 01 Oct 2009 22:41:15 +1000
+
+cook (2.32.D007-1) unstable; urgency=low
+
+  * The mailing list has been corrected on the web pages.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 01 Oct 2009 14:00:04 +1000
+
+cook (2.32.D006-1) unstable; urgency=low
+
+  * Do not issue meting for commands not echoed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 03 Aug 2009 22:43:28 +1000
+
+cook (2.32.D005-1) unstable; urgency=low
+
+  * The progress starts can now be enabled using the "set star" statements
+    within a cookbook.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 03 Aug 2009 17:04:02 +1000
+
+cook (2.32.D004-1) unstable; urgency=low
+
+  * A bug has been fixed in the [collect] built-in function. If a word (or a
+    line, tfor the [collect_lines] fucntion) was longer than 1024 bytes, a
+    buffer overrun occurred. A variable size buffer is now used.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Jul 2009 22:00:15 +1000
+
+cook (2.32.D003-1) unstable; urgency=low
+
+  * There is a new [strlen] built-in function, which may be used to obtain the
+    length of a string.
+  * My thanks to Jerry Pendergraft for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Oct 2008 22:50:39 +1000
+
+cook (2.32.D002-1) unstable; urgency=low
+
+  * A bug has been fixed in the str_substitute function, it no longer infinite
+    loops when the string to be replaced in the empty string.  This caused the
+    [substitute] function to infinite loop, too.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Oct 2008 22:14:22 +1000
+
+cook (2.32.D001-1) unstable; urgency=low
+
+  * This change set prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 29 Jul 2008 23:50:59 +1000
+
+cook (2.31.D005-1) unstable; urgency=low
+
+  * There is a new US mirror of Cook, a link has been added to the front page
+    and the download page.  My thanks to Mike Henderson <mike@mdhenderson.com>
+    for making this available.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 29 Jul 2008 23:00:28 +1000
+
+cook (2.31.D004-1) unstable; urgency=low
+
+  * The [options] function now includes the -nic option.
+  * My thanks to Jerry Pendergraft for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 24 Jul 2008 22:36:17 +1000
+
+cook (2.31.D003-1) unstable; urgency=low
+
+  * The copyright notices have been updated to a form more closely aligned with
+    the GPL.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 24 Jul 2008 17:19:16 +1000
+
+cook (2.31.D002-1) unstable; urgency=low
+
+  * There is now documentation in the cook(1) man page for the cook --page-width
+    option.  No idera why this wasn't documented when it was added.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 24 Jul 2008 12:56:50 +1000
+
+cook (2.31.D001-1) unstable; urgency=low
+
+  * This change set prpares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 13 Feb 2008 10:09:16 +1100
+
+cook (2.30.D006-1) unstable; urgency=low
+
+  * In recent years GNU Autoconf introduced the conept of a DATAROOTDIR.  This
+    change sets adapts to its presence.
+  * My thanks to Tory Patnoe <tpatnoe@jabber.com> for reporting this bug.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 13 Feb 2008 09:28:18 +1100
+
+cook (2.30.D005-1) unstable; urgency=low
+
+  * The cook.ae file on the web site was built with an old version of aedist,
+    this change set rebuilds it.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 27 Dec 2007 16:22:23 +1100
+
+cook (2.30.D004-1) unstable; urgency=low
+
+  * There was a potential source of segfaults in the use of the strsignal return
+    value, this has been fixed with a safe_strsignal wrapper function.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 24 Nov 2007 23:52:46 +1100
+
+cook (2.30.D003-1) unstable; urgency=low
+
+  * There is a new "set no-ctime" flag, for coping with Aegis penchant for
+    making and breaking hard links.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 03 Oct 2007 11:50:22 +1000
+
+cook (2.30.D002-1) unstable; urgency=low
+
+  * The LICENSE file has been updated to match the licensing of the source code.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 30 Sep 2007 23:55:45 +1000
+
+cook (2.30.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 21 Aug 2007 13:37:15 +1000
+
+cook (2.29.D012-1) unstable; urgency=low
+
+  * A build problem with the common/ts.h include file has been fixed.  It now
+    correctly includes <time.h> first.
+  * My thanks to Neil Vice <psgdg@swiftdsl.com.au> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 21 Aug 2007 11:50:36 +1000
+
+cook (2.29.D011-1) unstable; urgency=low
+
+  * The existence of the MANIFEST file dates from the times when Cook was posted
+    to the comp.sources.unix Usenet group.  At the time (circa 1991) the posting
+    guidelines mandated a Makefile, and stringly recommended a MANIFEST file
+    (one line per file to describe all the files in the project).  This ancient
+    relic is being retired.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 17:50:17 +1000
+
+cook (2.29.D010-1) unstable; urgency=low
+
+  * The necessary Aegis configuration has been enabled to allow an RSS feed to
+    be generated for project integrations.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 16:34:01 +1000
+
+cook (2.29.D009-1) unstable; urgency=low
+
+  * The build no longer fails if the png2ico command is not installed.
+  * My thanks to Jerry Pendergraft for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 16:03:41 +1000
+
+cook (2.29.D008-1) unstable; urgency=low
+
+  * The grotty -c (groff -P-c) option is not available in all version sof grotty
+    (groff).  The cookbook has been changed to pass this as the equivalent
+    environment variable, so it can be ignored in versions which don't have it.
+  * My thanks to Jerry Pendergraft for reporting this problem.	I recommend
+    Solaris to anyone wanting a hostile portability test environment.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 15:59:40 +1000
+
+cook (2.29.D007-1) unstable; urgency=low
+
+  * The tests which need tabs (teher are only 5 now) generate their tabs in a
+    more portable way.
+  * My thnks to Jerry Pendergraft for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 11:59:37 +1000
+
+cook (2.29.D006-1) unstable; urgency=low
+
+  * This change fixes a number of Solaris build problems.
+  * My thanks to Jerry Pendergraft for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 11:43:34 +1000
+
+cook (2.29.D005-1) unstable; urgency=low
+
+  * Several more typos have been fixed in the User Guide.
+  * My thanks to Reuben Thomas for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 11:26:09 +1000
+
+cook (2.29.D004-1) unstable; urgency=low
+
+  * This change fixes a coupel of typos in the manual.
+  * My thanks to Reuben Thomas for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jul 2007 10:59:06 +1000
+
+cook (2.29.D003-1) unstable; urgency=low
+
+  * In an effort to reduce the number of tabs that have to be manufactured in
+    the test scripts (and this it is problematic to do so) the code has been
+    changed to emit fewer tabs.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 21 Jul 2007 20:25:29 +1000
+
+cook (2.29.D002-1) unstable; urgency=low
+
+  * The license has been changed to GNU GPL version 3.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 05 Jul 2007 21:04:31 +1000
+
+cook (2.29.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 22 Jun 2007 20:26:31 +1000
+
+cook (2.28.D004-1) unstable; urgency=low
+
+  * From: Scott Finneran <scott@fozzie>
+  * Date: Wed Jun 13 23:06:36 2007
+  * This change adds a variable for specifying the granularity of the file
+    timestamps. Most FSs will support a value of 1. Cygwin supports 1 on NTFS
+    and 2 on FAT and unfortunately doesn't provide an easy way to determine the
+    FS type.
+  * Rather than default to the worst case of 2 (the situation previously), a
+    user can now specify the value in seconds with a built-in cook variable. The
+    default under cygwin is now 1.
+  * I assign copyright of any code contained within to Peter Miller without
+    reservation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 22 Jun 2007 18:49:02 +1000
+
+cook (2.28.D003-1) unstable; urgency=low
+
+  * There is a new recipe option avaibale called "symlink-ingredients" it has
+    the effect of creating symbolic links for ingredients whichj are present on
+    the search path, but not in the first directory in the search path.	 This
+    option creates the necessary symbolic links.  This is for use with brain
+    dead tools, like GNU Automake, which don't grok search paths.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 22 Jun 2007 17:45:02 +1000
+
+cook (2.28.D002-1) unstable; urgency=low
+
+  * This change set contains all of the tests, so that they have their timing
+    estimate meta-data set.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 06 Jun 2007 22:28:04 +1000
+
+cook (2.28.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 05 Jun 2007 23:51:43 +1000
+
+cook (2.27.D006-1) unstable; urgency=low
+
+  * The [print] function has been enhanced so that it is now able to print more
+    than one line, if you include a newline \n escape.
+  * My thanks to Dmitry A. Kuminov <dmik@hugaida.com> for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 20 May 2007 18:36:38 +1000
+
+cook (2.27.D005-1) unstable; urgency=low
+
+  * This change fixes a problem where the hideous rules regarding tabs in
+    Makefiles were causing problems building from the tarball with make.
+  * For some reason, the tabs had been replaced by spaces.
+  * My thanks to Scott Finneran for this change set.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 20 May 2007 15:37:27 +1000
+
+cook (2.27.D004-1) unstable; urgency=low
+
+  * This change fixes a problem building the temp file name code which uses
+    sprintf(). Basically, the code now uses snprintf() which is better and makes
+    the problem go away.
+  * My thanks to Scott Finneran for this change set.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 20 May 2007 14:29:07 +1000
+
+cook (2.27.D003-1) unstable; urgency=low
+
+  * The web site now has a link to the on-line Cook repository, via aeget.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 19 Mar 2007 09:01:03 +1100
+
+cook (2.27.D002-1) unstable; urgency=low
+
+  * The icon has been convereted to be a png file, and a favicon has been added
+    as well.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 13 Mar 2007 11:32:09 +1100
+
+cook (2.27.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 13 Mar 2007 10:52:41 +1100
+
+cook (2.26.D039-1) unstable; urgency=low
+
+  * The references to an .rpm file have been removed from the web site.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 13 Mar 2007 08:49:10 +1100
+
+cook (2.26.D038-1) unstable; urgency=low
+
+  * This change removes that last of the K&R style function definitions.  The
+    use of the gcc -Wold-style-definitions -Werror means that they will not
+    return, either.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 09 Mar 2007 15:56:36 +1100
+
+cook (2.26.D037-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 09 Mar 2007 11:24:53 +1100
+
+cook (2.26.D036-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 09 Mar 2007 08:58:34 +1100
+
+cook (2.26.D035-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 04 Mar 2007 18:12:37 +1100
+
+cook (2.26.D034-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 04 Mar 2007 17:40:06 +1100
+
+cook (2.26.D033-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 04 Mar 2007 16:43:11 +1100
+
+cook (2.26.D032-1) unstable; urgency=low
+
+  * A long time ago in a galaxy far away, sco's vi was so broken it stuffed up
+    balcnaced parens insideents.  (everything sco touches is broken.)  These
+    sco-isms have been removed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 04 Mar 2007 14:14:37 +1100
+
+cook (2.26.D031-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 04 Mar 2007 14:02:16 +1100
+
+cook (2.26.D030-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 04 Mar 2007 12:51:52 +1100
+
+cook (2.26.D029-1) unstable; urgency=low
+
+  * The web site no longer references auug.org.au at all.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 26 Feb 2007 13:45:04 +1100
+
+cook (2.26.D028-1) unstable; urgency=low
+
+  * The develop_end has had the new aede-policy command added.	This change set
+    fixes problems with the tests.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 26 Feb 2007 13:23:57 +1100
+
+cook (2.26.D027-1) unstable; urgency=low
+
+  * The develop_end has had the new aede-policy command added.	Problems found
+    have been fixed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 26 Feb 2007 12:55:18 +1100
+
+cook (2.26.D026-1) unstable; urgency=low
+
+  * This change continues the work to make the Cook sources completely ANSI C,
+    elimitating the K&R insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 26 Feb 2007 10:17:31 +1100
+
+cook (2.26.D025-1) unstable; urgency=low
+
+  * I noticed a problem with the -prefix and -suffix switches of cook_bom. They
+    didn't work as expected.  Issueing
+  * cook_bom -suffix=/.bom . .bom
+  * behaved like
+  * cook_bom -suffix=-Suffix /.bom . .bom
+  * complaining about /.bom not being a directory resp. too many files on
+    command line.  A similar behaviour could be observed with the -prefix
+  * My thanks to Meikel Brandmeyer <mb@kotka.de> for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 26 Feb 2007 10:04:22 +1100
+
+cook (2.26.D024-1) unstable; urgency=low
+
+  * All of the K&R function definitions are being moved to ANSI C.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 06 Nov 2006 10:13:32 +1100
+
+cook (2.26.D023-1) unstable; urgency=low
+
+  * The code is moving to ANSI C.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Nov 2006 17:28:07 +1100
+
+cook (2.26.D022-1) unstable; urgency=low
+
+  * The os_path_cat function si snow used more uniformly.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Nov 2006 13:35:03 +1100
+
+cook (2.26.D021-1) unstable; urgency=low
+
+  * All of the varargs functions are not annotated with attributes so that GCC
+    can check the type sof the varags.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Nov 2006 12:32:34 +1100
+
+cook (2.26.D020-1) unstable; urgency=low
+
+  * The name of the include files have been fixed to add the top-level
+    directory.	This fixes a coupel of ambiguous situations, and generally make
+    everything clearer.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Nov 2006 00:04:35 +1100
+
+cook (2.26.D019-1) unstable; urgency=low
+
+  * The build now uses the gcc -Wextra option.	All the problems found by this
+    have been fixed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 03 Nov 2006 23:41:37 +1100
+
+cook (2.26.D018-1) unstable; urgency=low
+
+  * The fingerprint code is now more robust when faced with st_mtime trickery by
+    users.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 03 Nov 2006 22:22:25 +1100
+
+cook (2.26.D017-1) unstable; urgency=low
+
+  * The functions definitions are being upgraded to use ANSI C instead of K&R.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 02 Nov 2006 22:02:48 +1100
+
+cook (2.26.D016-1) unstable; urgency=low
+
+  * The code is being converted to ANSI C.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 02 Nov 2006 16:44:49 +1100
+
+cook (2.26.D015-1) unstable; urgency=low
+
+  * This change set continues to convert the sources to ANSI C.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 02 Nov 2006 10:18:22 +1100
+
+cook (2.26.D014-1) unstable; urgency=low
+
+  * The common functions have had their old K&R declarations are now ANCI C.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 21:59:56 +1100
+
+cook (2.26.D013-1) unstable; urgency=low
+
+  * The c_incl code no longer uses the _() macro.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 21:52:13 +1100
+
+cook (2.26.D012-1) unstable; urgency=low
+
+  * The BUILDING file now explicitly requires an ANSI C compiler.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 18:13:12 +1100
+
+cook (2.26.D011-1) unstable; urgency=low
+
+  * The include files no longer use the _() macro.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 16:05:00 +1100
+
+cook (2.26.D010-1) unstable; urgency=low
+
+  * The code is being upgraded to use ANSI C exclusively.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 15:34:45 +1100
+
+cook (2.26.D009-1) unstable; urgency=low
+
+  * A few things have been improved for using Cook on Cygwin.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 15:29:51 +1100
+
+cook (2.26.D008-1) unstable; urgency=low
+
+  * The change removes all uses of sprintf, and replaces them with snprintf.
+    It's safer.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 15:15:34 +1100
+
+cook (2.26.D007-1) unstable; urgency=low
+
+  * This is the first of several changes to convert the code to be exclusively
+    aANSI C.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 13:53:05 +1100
+
+cook (2.26.D006-1) unstable; urgency=low
+
+  * The merge command has been updated to use the new fmerge -iic option, which
+    says to ignore identical conflicts.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Nov 2006 10:43:36 +1100
+
+cook (2.26.D005-1) unstable; urgency=low
+
+  * The sprintf function is being replaced with the safer snprint function.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 30 Oct 2006 22:40:39 +1100
+
+cook (2.26.D004-1) unstable; urgency=low
+
+  * The strendcpy function has been instroduced, and the various users of
+    strlcat and strlcpy have been changed to use it.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 29 Oct 2006 19:42:20 +1100
+
+cook (2.26.D003-1) unstable; urgency=low
+
+  * The c_incl -r command now understands PSPIC directives, as well as .so
+    directives.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 05 Jun 2006 17:43:17 +1000
+
+cook (2.26.D002-1) unstable; urgency=low
+
+  * The website now has a couple more links at the bottom.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 17 Jan 2006 21:11:09 +1100
+
+cook (2.26.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 17 Jan 2006 12:58:49 +1100
+
+cook (2.25.D015-1) unstable; urgency=low
+
+  * Some build problems have been fixed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 17 Jan 2006 10:56:44 +1100
+
+cook (2.25.D014-1) unstable; urgency=low
+
+  * This change rebuild the project to cope with a new version of gcc.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 02 Dec 2005 23:57:46 +1100
+
+cook (2.25.D013-1) unstable; urgency=low
+
+  * A bug has been fixed in the tell-position flag.  It wasn't actually giving
+    the file name and line number when executing commands if you used the "set
+    tell-position" variants, only the --tell-position command line option.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 01 Apr 2005 23:18:40 +1000
+
+cook (2.25.D012-1) unstable; urgency=low
+
+  * The email address in the LSM file has been fixed,
+  * My thanks to Matt Lee for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 02 Jan 2005 14:22:49 +1100
+
+cook (2.25.D011-1) unstable; urgency=low
+
+  * This change fixes a minor typo in a change log file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 23 Dec 2004 17:31:12 +1100
+
+cook (2.25.D010-1) unstable; urgency=low
+
+  * A bug has been fixed in cook -fp-update, it would segfault in some cases.
+  * My thanks to Greg McIntyre <greg@symbionetworks.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 23 Dec 2004 13:45:00 +1100
+
+cook (2.25.D009-1) unstable; urgency=low
+
+  * This change fixes a small problem with the generated spec file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 04 Nov 2004 10:55:42 +1100
+
+cook (2.25.D008-1) unstable; urgency=low
+
+  * A bug has been fixed in cookbook include processing.
+  * My thanks to Walter Franzini for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 19 Sep 2004 23:20:15 +1000
+
+cook (2.25.D007-1) unstable; urgency=low
+
+  * A bug has been fixed in the flag setting (comamnd line options and "set"
+    clauses).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 19 Sep 2004 23:11:12 +1000
+
+cook (2.25.D006-1) unstable; urgency=low
+
+  * The find_command command now copes better with directories it is not allowed
+    to access.
+  * My thanks to Ralph Smith <smith@arete-dc.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 07 Sep 2004 12:31:51 +1000
+
+cook (2.25.D005-1) unstable; urgency=low
+
+  * This change adds a Jave recipe to the cookbook.
+  * My thanks to Matt Lee for this contribution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 28 Aug 2004 13:36:07 +1000
+
+cook (2.25.D004-1) unstable; urgency=low
+
+  * This change adds
+  * Provides: perl(host_lists.pl)
+  * to Cook's RPM spec file.
+  * My thanks to Jason Evans <jasone@canonware.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 21 Aug 2004 11:43:16 +1000
+
+cook (2.25.D003-1) unstable; urgency=low
+
+  * A bug has been fixed in the execution of some commands.  If any words of the
+    command had spaces in them, it did not pass it to a shell to be executed,
+    but instead constructed a command of a different shape than the user
+    expected.
+  * My thanks to Jose Manuel Nunes <Jose.deAbreuNunes@ieug.unige.ch> for
+    reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 05 Aug 2004 11:14:15 +1000
+
+cook (2.25.D002-1) unstable; urgency=low
+
+  * This change updates the release notes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 17 Jul 2004 20:14:47 +1000
+
+cook (2.25.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 17 Jul 2004 12:50:21 +1000
+
+cook (2.24.D012-1) unstable; urgency=low
+
+  * The ./configure script now understands the --with-nlsdir option, used to
+    specify the install location of the .mo files.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 09 Jun 2004 22:31:39 +1000
+
+cook (2.24.D011-1) unstable; urgency=low
+
+  * A bug has been fixed on Linux (and it only ever ocurred on Linux) where cook
+    would suddenly stop for no reason with exit status 1.  Turns out that
+    sometimes fflush(stderr) returns an EAGAIN error.
+  * My thanks to Jerry Pendergraft for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 08 Jun 2004 09:35:37 +1000
+
+cook (2.24.D010-1) unstable; urgency=low
+
+  * This change adds more commentary and debug to the graph walking code.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 27 May 2004 11:45:43 +1000
+
+cook (2.24.D009-1) unstable; urgency=low
+
+  * This change adds the generation of 'tags' and 'TAGS' files to the build.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 27 May 2004 11:32:23 +1000
+
+cook (2.24.D008-1) unstable; urgency=low
+
+  * A bug has been fixed which caused the cook -script option to produce
+    invalied shell scripts when a recipe body contained no statements.
+  * My thanks to ray <merkert@charter.net> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 21 Oct 2003 12:12:08 +1000
+
+cook (2.24.D007-1) unstable; urgency=low
+
+  * This change fixes a bug in the graph file pair generation, used to generate
+    warnings about damgerous #include-cooked contents.
+  * My thanks to Jerry Pendergraft fpr reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 02 Oct 2003 16:31:13 +1000
+
+cook (2.24.D006-1) unstable; urgency=low
+
+  * The metering output now includes elapsed times and percentages.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 25 Sep 2003 11:20:33 +1000
+
+cook (2.24.D005-1) unstable; urgency=low
+
+  * This change corrects the web page link to the GNU GPL.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 22 Aug 2003 13:01:45 +1000
+
+cook (2.24.D004-1) unstable; urgency=low
+
+  * This change adds the tell-position setting, useful for debugging cookbooks.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 20 Aug 2003 09:58:19 +1000
+
+cook (2.24.D003-1) unstable; urgency=low
+
+  * This change updates the user guide to explicitly state that function
+    arguments are thread safe.
+  * My thanks to Jody Hagins <jody@atdesk.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 15 Aug 2003 09:16:18 +1000
+
+cook (2.24.D002-1) unstable; urgency=low
+
+  * This change has the line wrapping adapt to the window width.  It broken some
+    time in the recent past dues to ./configure changes, or something similar.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 06 Aug 2003 13:35:31 +1000
+
+cook (2.24.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 17 Jul 2003 23:44:57 +1000
+
+cook (2.23.D008-1) unstable; urgency=low
+
+  * This change adds some words to the documentation about the SHELL environment
+    variable, and the effects of errors in the .profile file.
+  * My thanks to Simon Clift <ssclift@math.uwaterloo.ca> for pointing out (as
+    many others have) these issues.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 17 Jul 2003 17:45:36 +1000
+
+cook (2.23.D007-1) unstable; urgency=low
+
+  * This change adds some more documentation, to cope with building on Solaris.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 17 Jul 2003 17:32:59 +1000
+
+cook (2.23.D006-1) unstable; urgency=low
+
+  * This change fixes more RPM problems.  In particular, the spec file now
+    understands the %_prefix macro, so it is possible (at build time) to change
+    the install prefix.
+  * My thanks to Simon Clift for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 17 Jul 2003 17:17:02 +1000
+
+cook (2.23.D005-1) unstable; urgency=low
+
+  * This change fixes a number of problems discovered by Cygwin tests.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 15 Jul 2003 10:45:14 +1000
+
+cook (2.23.D004-1) unstable; urgency=low
+
+  * This change fixes a build problem on AIX.
+  * My thanks to Jason Sullivan <jasonsul@us.ibm.com> for reporting this problem
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 15 Jul 2003 10:20:07 +1000
+
+cook (2.23.D003-1) unstable; urgency=low
+
+  * This change copes with the latest RedHat 8.0 changes, coping with recent
+    versions of autoconf, automake and rpm.
+  * My thanks to Simon Clift for reporting the problems with the cook.spec file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 15 Jul 2003 09:59:35 +1000
+
+cook (2.23.D002-1) unstable; urgency=low
+
+  * I've been having problems for a while now with parallel builds using cook.
+    It turns out that hitting this bug in cook probably required an unusual set
+    of conditions:
+  * 1) Running as: cook -par 8
+  * 2) Running on an SMP system (may not matter).
+  * 3) A very fast recipe; body follows:
+  * echo \"#!/home/jasone/cw/devroot/bin/onyx/bin/tonyx\" > [target]
+  * && cat ./%0test/%.nx.in >> [target]
+  * && chmod u+x [target];
+  * 4) Many files generated by the fast recipe (currently in excess of 800).
+  * The problem is in common/itab.c:split(). That function doubles the size of a
+    hash table, then rebuilds the table. The problem is, it doesn't bother to
+    switch to the new table once it has been constructed. Thus, for any bucket
+    chains that have collisions at the original size, elements other than the
+    first ones are no longer accessible.  Naturally, this bug is a huge memory
+    leak, even if we get lucky and there are no collisions, since split() is
+    repeatedly called, but the table never gets larger to relieve the pressure.
+  * My thanks to Jason Evans for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jun 2003 23:57:31 +1000
+
+cook (2.23.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 01 May 2003 10:01:42 +1000
+
+cook (2.22.D005-1) unstable; urgency=low
+
+  * This change copes with yet more GNU Bison changes.	In this case, we are
+    coping with the enum that newer versions of Bison use for the lexer symbols
+    (makes for easier debugging), but is caused some syntax errors.
+  * My thanks to Luke Matkins <luke@tokensoft.net> (and others) for reporting
+    this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 15 Apr 2003 20:26:13 +1000
+
+cook (2.22.D004-1) unstable; urgency=low
+
+  * This change make some minor corrections to the tutorial.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 18 Mar 2003 23:30:59 +1100
+
+cook (2.22.D003-1) unstable; urgency=low
+
+  * This change adds a link to the .ae file to the dowenload page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 18 Mar 2003 23:00:29 +1100
+
+cook (2.22.D002-1) unstable; urgency=low
+
+  * This change fixes an error in the documentation of the ``errok'' flag.
+  * My thanks to Xavier Nodet <xavier.nodet@free.fr> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 18 Mar 2003 22:52:46 +1100
+
+cook (2.22.D001-1) unstable; urgency=low
+
+  * This change preparse Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 28 Feb 2003 10:23:25 +1100
+
+cook (2.21.D017-1) unstable; urgency=low
+
+  * This change fixes a small build problem with gettext.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 28 Feb 2003 09:05:43 +1100
+
+cook (2.21.D016-1) unstable; urgency=low
+
+  * This change updates the addres sof the cook-users mailing list archive on
+    the web page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 25 Feb 2003 11:54:07 +1100
+
+cook (2.21.D015-1) unstable; urgency=low
+
+  * This change adds a link to a tutorial in Japanese.
+  * My thanks to kwatch@lycos.jp for this link.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 25 Feb 2003 11:46:52 +1100
+
+cook (2.21.D014-1) unstable; urgency=low
+
+  * This change improves the performance of the reference counted strings.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 13 Feb 2003 22:09:11 +1100
+
+cook (2.21.D013-1) unstable; urgency=low
+
+  * This change adds a link for the BSD maintainer to the download page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 13 Feb 2003 17:05:49 +1100
+
+cook (2.21.D012-1) unstable; urgency=low
+
+  * This change adds simple file metrics.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 13 Feb 2003 16:57:34 +1100
+
+cook (2.21.D011-1) unstable; urgency=low
+
+  * This change fixes a small inconsistency in how fingerprints adjust the times
+    of files once they are discovered to be different.
+  * My thanks to Robin Lee Powell <rlpowell@digitalkingdom.org> for reporting
+    this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 11 Feb 2003 10:28:58 +1100
+
+cook (2.21.D010-1) unstable; urgency=low
+
+  * This change adds the Cook Tutorial contributed by Aryeh M. Friedman
+    <aryeh@m-net.arbornet.org>
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 28 Dec 2002 13:15:47 +1100
+
+cook (2.21.D009-1) unstable; urgency=low
+
+  * This change allows non-ascii characters in comments.
+  * My thanks to <kwatch@lycos.jp> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 05 Dec 2002 10:33:52 +1100
+
+cook (2.21.D008-1) unstable; urgency=low
+
+  * This change adds an example to the [execute] documentation.
+  * My thanks to Chuck Eaker <ceaker@nycap.rr.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 14 Nov 2002 00:02:18 +1100
+
+cook (2.21.D007-1) unstable; urgency=low
+
+  * This change upgrades Cook to use GNU Autoconf 2.54 or later.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 13 Nov 2002 23:53:17 +1100
+
+cook (2.21.D006-1) unstable; urgency=low
+
+  * This change adds the LICENSE file to the tarball.  I have no idea how it
+    managed to get itself omitted.
+  * My thanks to Thomas Maier-Komor <maierkom@lpr.e-technik.tu-muenchen.de> for
+    reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 15 Oct 2002 22:13:29 +1000
+
+cook (2.21.D005-1) unstable; urgency=low
+
+  * This change adds a C++ cookbook.
+  * My thanks to Alexis Lee <lxs@sdf-eu.org> for this contribution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 02 Oct 2002 15:50:57 +1000
+
+cook (2.21.D004-1) unstable; urgency=low
+
+  * This change fixes a test failure on Cygwin, because of a CRLF not accounted
+    for in the fingerprint.
+  * My thanks to Peter Fraser <pjf@thinkage.ca> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 08 Sep 2002 21:18:42 +1000
+
+cook (2.21.D003-1) unstable; urgency=low
+
+  * This change adds the [read] and [read_lines] builtin functions.
+  * My thanks to Jeff Lawson <jlawson@bovine.net> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 07 Sep 2002 23:25:24 +1000
+
+cook (2.21.D002-1) unstable; urgency=low
+
+  * This change fixes a number of documenattion changes.
+  * My thanks to Jeff Lawson for reporting these problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 07 Sep 2002 22:57:19 +1000
+
+cook (2.21.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 26 Aug 2002 22:35:22 +1000
+
+cook (2.20.D007-1) unstable; urgency=low
+
+  * This change adds the -stripdot and -nostripdot options.
+  * My thanks to Jeff Lawson <jlawson@bovine.net> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 26 Aug 2002 17:06:42 +1000
+
+cook (2.20.D006-1) unstable; urgency=low
+
+  * This change fixes a problem where cascade recipes did not take the stripdot
+    flag into account.
+  * My thanks to Jeff Lawson <jlawson@bovine.net> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 25 Aug 2002 22:20:07 +1000
+
+cook (2.20.D005-1) unstable; urgency=low
+
+  * This change adds a [stripdots] function.
+  * My thanks to Jeff Lawson for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 25 Aug 2002 20:31:58 +1000
+
+cook (2.20.D004-1) unstable; urgency=low
+
+  * This change fixes a number of innaccuracies in the documentation.  It also
+    gets the table of contents moved to the front of the Reference Manual and
+    the User Guide.
+  * My thanks to Jeff Lawson <jlawson@bovine.net> for reporting these problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 15 Aug 2002 11:29:38 +1000
+
+cook (2.20.D003-1) unstable; urgency=low
+
+  * This change fixes a problem with how the graph_build function is called.
+    This manifested in the [cook], [cando] and [uptodate] builtin functions,
+    which would occasionally free an invalid string when leading dot prefixes
+    were stripped.
+  * My thanks to Jeff Lawson <jlawson@bovine.net> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 14 Aug 2002 23:08:45 +1000
+
+cook (2.20.D002-1) unstable; urgency=low
+
+  * This change fixes the declaration of wint_t, and makes sure that wchar.h is
+    included wherever wint_t is used.
+  * My thanks to Christopher JS Vance <vance@aurema.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 09 Jul 2002 10:50:49 +1000
+
+cook (2.20.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 06 Jun 2002 14:52:03 +1000
+
+cook (2.19.D010-1) unstable; urgency=low
+
+  * This change update the web page for the changed mailing list address and
+    subscription procedures.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 06 Jun 2002 12:55:57 +1000
+
+cook (2.19.D009-1) unstable; urgency=low
+
+  * This change fixes some build problems experienced on solaris.
+  * My thanks to Christian Goetz for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 06 Jun 2002 10:23:19 +1000
+
+cook (2.19.D008-1) unstable; urgency=low
+
+  * This change adds documentation to the cook(1) man page, saying that the
+    ``@'' character means in the -star output.
+  * My thanks to Christian Goetze for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 23 May 2002 10:55:24 +1000
+
+cook (2.19.D007-1) unstable; urgency=low
+
+  * This change is another attempt to get fingerprint behavior right in the face
+    of all the horrible things ClearCase does to file time stamps.
+  * My thanks to Christian Goetze for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 23 May 2002 09:46:02 +1000
+
+cook (2.19.D006-1) unstable; urgency=low
+
+  * This change improves they way fingerprints are managed. An additional field
+    has been added to accurately track the actual st_mtime of the file, rather
+    than assuming that it *will* be "newest". This should give much better
+    behaviour when the file mod time moves into the past.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 20 May 2002 23:18:54 +1000
+
+cook (2.19.D005-1) unstable; urgency=low
+
+  * This change adds code to the build to check line lengths, so that files are
+    well formatted.  (Or at least encourage it.)
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 20 May 2002 22:01:12 +1000
+
+cook (2.19.D004-1) unstable; urgency=low
+
+  * This change copes with recent GNU gettext changes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 20 May 2002 20:41:12 +1000
+
+cook (2.19.D003-1) unstable; urgency=low
+
+  * This change copes with resent Bison changes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 May 2002 09:43:00 +1000
+
+cook (2.19.D002-1) unstable; urgency=low
+
+  * This change adds a number of things to the web archive:
+  * 1. the documentation is now in PDF format
+  * 2. there is a .ae file, for people who want to use Aegis to develop Cook
+  * 3. the RPM file is built for upload, too.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 May 2002 09:01:36 +1000
+
+cook (2.19.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 19 Feb 2002 11:48:43 +1100
+
+cook (2.18.D008-1) unstable; urgency=low
+
+  * This change fixes a problem with a variable name clash with the generate
+    dbison parser, in newer versions of Bison.
+  * My thanks to Laurent Latil" <laurent.latil@medes.fr> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 15 Feb 2002 22:06:38 +1100
+
+cook (2.18.D007-1) unstable; urgency=low
+
+  * This change fixes the configure scripts and Makefile.in to use the INSTALL_
+    SCRIPT define when installing executable scripts. This avoids problems when
+    the INSTALL_PROGRAM define uses the -s (strip) option.
+  * My thanks to Jason Evans <jasone@canonware.com> for reporting this probelm.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 07 Jan 2002 09:03:54 +1100
+
+cook (2.18.D006-1) unstable; urgency=low
+
+  * This change copes with a piece of stupidity thas OSF1 indulges in w.r.t. the
+    stat() symbol.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 19 Nov 2001 21:02:09 +1100
+
+cook (2.18.D005-1) unstable; urgency=low
+
+  * This change causes the parse to halt when the "fail" statement is executed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 19 Nov 2001 19:47:51 +1100
+
+cook (2.18.D004-1) unstable; urgency=low
+
+  * This change fixes a problem introduced with recent versions of bison.  It
+    adds multiplke include insulation to the generated .h file (which is good)
+    bu they uses a Y symbol instead of a YY symbol (so the automatic symbol
+    renaming didn't work).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 19 Nov 2001 18:13:37 +1100
+
+cook (2.18.D003-1) unstable; urgency=low
+
+  * This change fixes a minor problem with te generated Makefile.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 06 Nov 2001 10:55:38 +1100
+
+cook (2.18.D002-1) unstable; urgency=low
+
+  * This change adds documentation about cook_rsh to the Parallel chapter of the
+    User Guide.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 16 Oct 2001 17:21:10 +1000
+
+cook (2.18.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 16 Oct 2001 16:57:04 +1000
+
+cook (2.17.D010-1) unstable; urgency=low
+
+  * This change adds some release notes for the previous changes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Jul 2001 11:13:24 +1000
+
+cook (2.17.D009-1) unstable; urgency=low
+
+  * This change adds an OpenBSD link to the web page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Jul 2001 10:21:09 +1000
+
+cook (2.17.D008-1) unstable; urgency=low
+
+  * This change tides up some of the work done to fix the ingredients-
+    fingerprint problem.  In particular, it regularises the quite handler usage,
+    to take out the ugly hack imposed upon cook/main.c, and preplaces it with
+    the idea of a "priority" quit handler, to be run first.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Jul 2001 10:13:12 +1000
+
+cook (2.17.D007-1) unstable; urgency=low
+
+  * This change adds the cook_rsh command, which may be used to load balance
+    across machine classes, not just simple machine lists in the host-binding
+    recipe attribute.
+  * My thanks to Jerry Pendergraft <jerry@endocardial.com> for this
+    contribution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Jul 2001 09:50:02 +1000
+
+cook (2.17.D006-1) unstable; urgency=low
+
+  * This change fixed a bug in the ingredients-fingerprint processing which was
+    failing to detect a change when the number of ingredients decreased.
+  * My thanks to Pieter Nagel <pieter@nagel.co.za> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 11 Jul 2001 22:39:56 +1000
+
+cook (2.17.D005-1) unstable; urgency=low
+
+  * This change fixed a problem where the use of (exists) implied `set shallow',
+    when it clearly should not.
+  * My thanks to Jerry Pendergraft <jerry@endocardial.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 11 Jul 2001 21:45:06 +1000
+
+cook (2.17.D004-1) unstable; urgency=low
+
+  * This change fixes a small build problem on Cygwin.
+  * My thanks to David Copelovici <DavidC@thinkage.ca> for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 12 Jun 2001 10:32:57 +1000
+
+cook (2.17.D003-1) unstable; urgency=low
+
+  * This change adds some configuratiuon insulation around signal.h
+  * This change also removes the gcc inlining optimizations in common/input.h,
+    because of a known gcc 2.96 optimization bug.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 02 May 2001 14:32:18 +1000
+
+cook (2.17.D002-1) unstable; urgency=low
+
+  * This change adds more include keywords to the M4 include scanning, to cope
+    with the m4 -P option.
+  * My thanks to Gilles Lamiral <lamiral@mail.dotcom.fr> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 26 Apr 2001 12:16:28 +1000
+
+cook (2.17.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for its next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 25 Apr 2001 20:09:56 +1000
+
+cook (2.16.D012-1) unstable; urgency=low
+
+  * This change changes the way the .cook.fp file is written, so that the
+    fingerprint of the containing directory is recalculated much less often.
+  * My thanks to Christian Goetze <cg@digisle.net> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 25 Apr 2001 10:24:17 +1000
+
+cook (2.16.D011-1) unstable; urgency=low
+
+  * This change fixes some typos in the User Guide.
+  * My thanks to Scott Finneran for this feedback.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 24 Apr 2001 22:37:19 +1000
+
+cook (2.16.D010-1) unstable; urgency=low
+
+  * This change fixes a problem with the [quote] function.  You can't quote
+    single quote within single quotes AND you cant quote ! within double quotes.
+    Need to cange mode.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 24 Apr 2001 22:12:03 +1000
+
+cook (2.16.D009-1) unstable; urgency=low
+
+  * This change adds a file check utility to enforce some coding standards.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 24 Apr 2001 20:17:37 +1000
+
+cook (2.16.D008-1) unstable; urgency=low
+
+  * This change fixes a bug in fingerprinting archive file members under Cygwin.
+  * My thanks to Larry Wagner <wagner@weru.ksu.edu> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 06 Mar 2001 10:30:34 +1100
+
+cook (2.16.D007-1) unstable; urgency=low
+
+  * This change adds the ability to write recipes which can detect when their
+    ingredients change, particularly if one of their ingredients vanishes.  This
+    is useful for libraries and packages, etc.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 28 Jan 2001 21:22:18 +1100
+
+cook (2.16.D006-1) unstable; urgency=low
+
+  * This change fixed a bug in the uptodate function.
+  * My thanks to Aaron Denney <wnoise@ugcs.caltech.edu> and Pieter Nagel
+    <pieter@nagel.co.za> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 26 Jan 2001 12:33:28 +1100
+
+cook (2.16.D005-1) unstable; urgency=low
+
+  * This change adds edge types.  Edge types are the ability to attribute graph
+    edges with type information.  The implicit type being "istrictly younger
+    than" or "(strict)".  Two more edge types have been added: "(weak)" meaning
+    <= time, useful for symlinks and hard links; and "(exist)" requiring mere
+    existence, useful for some types of version files.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 25 Jan 2001 15:37:41 +1100
+
+cook (2.16.D004-1) unstable; urgency=low
+
+  * This change copes with RPM 4 changes which automagically compress man pages,
+    whether you wanted it to or not.
+  * My thanks to Pieter Nagel <pieter@nagel.co.za> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 09 Jan 2001 17:40:07 +1100
+
+cook (2.16.D003-1) unstable; urgency=low
+
+  * This change updates the BUILDING file documentation, now that the Groff
+    patch is no longer required.
+  * My thanks to Mike Shannon <mike@the-force.net> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 22 Nov 2000 11:33:00 +1100
+
+cook (2.16.D002-1) unstable; urgency=low
+
+  * This change adds some information about installing programs to the User
+    Guide.
+  * My thanks to Ken Estes <kestes@staff.mail.com> for thsi suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 06 Nov 2000 12:28:19 +1100
+
+cook (2.16.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 25 Oct 2000 09:57:14 +1100
+
+cook (2.15.D007-1) unstable; urgency=low
+
+  * This change contains a couple of fixes to make Cook work a little better on
+    Cygwin.
+  * * cook/os.c (os_mtime_adjust): Fixed bug preventing the time-adjust feature
+    from working on .exe files for Cygwin.
+  * * common/fp.c: Fingerprint is now checked in binary for Cygwin systems.
+  * My thanks to Adam Schlegel <aceschle@thinkage.ca> for sending this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 25 Oct 2000 06:33:32 +1100
+
+cook (2.15.D006-1) unstable; urgency=low
+
+  * This change fixed a bug which only manifested when fingerprints *and* the -
+    reason option were being used, and even then only sometimes.
+  * My thanks to Adam Schlegel <aceschle@thinkage.ca> for sending this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 24 Oct 2000 17:48:56 +1100
+
+cook (2.15.D005-1) unstable; urgency=low
+
+  * This change adds some commentary and documentation, explaining that % and %N
+    patterns may not match the empty string.  They can cause problems by
+    unintentionally matching absolute paths.
+  * My thanks to Christian Goetze <cg@digisle.net> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 24 Oct 2000 15:25:17 +1100
+
+cook (2.15.D004-1) unstable; urgency=low
+
+  * This change make it possible for use stdin as an input file for the c_incl
+    program.
+  * My thanks to Jerry Pendergraft <jerry@endocardial.com> for this suggstion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 18 Oct 2000 22:54:56 +1100
+
+cook (2.15.D003-1) unstable; urgency=low
+
+  * This change adds a plus operator to the stringset function (it means you can
+    cancel the - operator easily)
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 18 Oct 2000 21:59:32 +1100
+
+cook (2.15.D002-1) unstable; urgency=low
+
+  * This change fixed a bug in the lib/c file, which was getting .h dependency
+    files wrong.
+  * My thanks to Thimble Smith <tim@mysql.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 14 Apr 2000 13:12:25 +1000
+
+cook (2.15.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 14 Apr 2000 08:36:07 +1000
+
+cook (2.12.D004-1) unstable; urgency=low
+
+  * This change fixes the c_incl -I problem.  It was getting absolute paths
+    wrong.
+  * My thanks to Ray Merkert <merkert@charter.net> and Scott J. Bertin
+    <bertins@db.erau.edu> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 08 Apr 2000 12:45:21 +1000
+
+cook (2.12.D003-1) unstable; urgency=low
+
+  * This change copes with the bug in the Solaris implementation of wait4().  It
+    randomly returns No child processes.
+  * My thanks to Gregory Steuck <greg@nest.cx> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 03 Apr 2000 14:34:00 +1000
+
+cook (2.12.D002-1) unstable; urgency=low
+
+  * This change fixes the Y2K glitch on the Cook web page.
+  * My thanks to Florin Iucha <fiucha@neta.com>, Leif Eriksen
+    <leif.eriksen@hds.com.au> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 03 Apr 2000 12:32:58 +1000
+
+cook (2.12.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for its next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 29 Mar 2000 07:01:28 +1000
+
+cook (2.11.D018-1) unstable; urgency=low
+
+  * This change adds the c_incl -quote-filenames option.  This means that
+    filenames containing spaces and other Cook special characters may be used.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 28 Feb 2000 23:48:40 +1100
+
+cook (2.11.D017-1) unstable; urgency=low
+
+  * This change fixed a bug in c_incl's path flattening, where it would elide
+    too many .. in some cases.
+  * My thanks to Dennis Flanigan Jr. <flanigan@vexcel.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 02 Feb 2000 15:17:05 +1100
+
+cook (2.11.D016-1) unstable; urgency=low
+
+  * This change adds a mention of the FreeBSD port to the Cook web page.
+  * My thanks to Jason Evans <jasone@canonware.com> for doing the port.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 02 Feb 2000 13:04:59 +1100
+
+cook (2.11.D015-1) unstable; urgency=low
+
+  * This change corrects a number of typographical errors in the User Guide.
+  * My thanks to Gilles Lamiral <lamiral@mail.dotcom.fr> for reporting these
+    problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 27 Jan 2000 21:32:17 +1100
+
+cook (2.11.D014-1) unstable; urgency=low
+
+  * This change fixes an introduced defect in the previous wait3 change.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 27 Jan 2000 14:36:49 +1100
+
+cook (2.11.D013-1) unstable; urgency=low
+
+  * This change fixed a bug where Cook could sometimes wait for a process and
+    then forget its exit status. Then the graph walker would wait forever for
+    the already terminated process to terminate.  (In particular, this happened
+    when you used [execute] in a recipe body.)
+  * My thanks to Kirill A. Kornilov <kirill.kornilov@trustworks.com> for
+    reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 25 Jan 2000 11:29:54 +1100
+
+cook (2.11.D012-1) unstable; urgency=low
+
+  * This change adds fingerprint documentation to the Large Projects chapter.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 25 Jan 2000 10:24:33 +1100
+
+cook (2.11.D011-1) unstable; urgency=low
+
+  * This change fixed a Y2K bug in the date parsing functions.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 24 Jan 2000 09:48:25 +1100
+
+cook (2.11.D010-1) unstable; urgency=low
+
+  * This change removed the "if SGI" conditionals from around the "if directory
+    already exists, do nothing" code in the os_mkdir function.	This means this
+    test is *always* performed.	 It turns out that the Solaris automounter
+    always returns ENOSYS for all names in the top-level directory of an
+    indirect map - i.e. it doesn't test for existence first (amd does the right
+    thing, fortunately).
+  * My thanks to Greg Steuck <greg@nexprise.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 03 Dec 1999 11:19:38 +1100
+
+cook (2.11.D009-1) unstable; urgency=low
+
+  * This change fixes a segfault in the fingerprint code.
+  * My thanks to Ole Engel <engel@tu-harburg.de> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 29 Nov 1999 15:45:12 +1100
+
+cook (2.11.D008-1) unstable; urgency=low
+
+  * This change fixed a problem with finding cookbook with a capitalized name.
+  * My thanks to Peter Simons <simons@cys.de> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 29 Nov 1999 13:25:32 +1100
+
+cook (2.11.D007-1) unstable; urgency=low
+
+  * This change fixed a bug in the double colon rules processing, which caused
+    the second and subsequent recipes to (aparrently) not activate.  In fact,
+    cook sometime erroneously concluded the target was up-to-date, creating the
+    appearance of not building the graph with those recipes included.
+  * My thanks to  Peter Simons <simons@cys.de> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 29 Nov 1999 12:52:05 +1100
+
+cook (2.11.D006-1) unstable; urgency=low
+
+  * This change relaxes the %0 pattern restrictions.  It need no longer appear
+    only at the start of a string or after a slash.  This will not break any
+    existing cookbooks, but is does mean that some errors will no longer be
+    reported.  This change is being made to bring Cook in line with the
+    expectations of the majority of users.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 12 Nov 1999 12:32:44 +1100
+
+cook (2.11.D005-1) unstable; urgency=low
+
+  * This change updates test 125 to cope with fast machines.
+  * My thanks to jerry.pendergraft@endocardial.com for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 11 Nov 1999 12:19:37 +1100
+
+cook (2.11.D004-1) unstable; urgency=low
+
+  * This change fixes a probelm when Cook is executed from a CGI script.  It
+    seems that there are cases where there is no HOME environment variable set,
+    causing Cook to exit with a fatal error.
+  * My thanks to Bud P. Bruegger <bud@sistema.it> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 10 Nov 1999 11:46:53 +1100
+
+cook (2.11.D003-1) unstable; urgency=low
+
+  * This change adds the mailing list to the information on the web page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 09 Nov 1999 12:03:11 +1100
+
+cook (2.11.D002-1) unstable; urgency=low
+
+  * This change fixes some portability issues.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 05 Nov 1999 21:41:14 +1100
+
+cook (2.11.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 04 Nov 1999 23:25:45 +1100
+
+cook (2.10.D010-1) unstable; urgency=low
+
+  * This change adds a --ignore option to cook_bom. This is useful for ignoring
+    things link CVS directories.
+  * I have a suggestion which may be worth implementing. We have our source code
+    under CVS control and it's rather annoying that manifest is getting
+    contaminated with CVS directories and their content. I couldn't think of an
+    easy way to modify the recipe not to include CVS directories, so I patched
+    cook_bom to ignore CVS directories on it's own. Now, I did it in a quick and
+    hacky way: just patched ignore() in sniff.c to ignore CVS as well as . and
+    '..'. But it may be worth doing to add command line options to cook_bom to
+    make it ignore certain directories/files. Or maybe it can be achived easily
+    with a correct recipe?
+  * My thanks to Gregory Steuck <steuck@iname.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 03 Nov 1999 15:11:05 +1100
+
+cook (2.10.D009-1) unstable; urgency=low
+
+  * This change makes Cook's configure script work correctly on the HPUX native
+    compiler.
+  * My thanks to Albert Chin-A-Young <china@thewrittenword.com> sending this
+    patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Nov 1999 12:57:11 +1100
+
+cook (2.10.D008-1) unstable; urgency=low
+
+  * This change fixes a bug where Cook misbehaves when called by cron. This is
+    because cron sets SIGCHILD to SIG_IGN, and Cook needs it to be SIG_DFL.
+  * My thanks to Tom Satter <tsatter@purecode.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Nov 1999 09:25:25 +1100
+
+cook (2.10.D007-1) unstable; urgency=low
+
+  * This change adds a pointer to the Debian pacakges on the Cook home page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Nov 1999 15:19:45 +1100
+
+cook (2.10.D006-1) unstable; urgency=low
+
+  * This change moves os.h to opsys.h, because os.h is a system header on sime
+    unix systems.
+  * My thanks to Christophe Broult <christophe.broult@info.unicaen.fr> for
+    reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 06 Oct 1999 15:16:41 +1000
+
+cook (2.10.D005-1) unstable; urgency=low
+
+  * This change fixed a memory leak in the fingerprint code.
+  * My thanks to Ole Engel <engel@tu-harburg.de> for reporting this bug.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 27 Sep 1999 13:35:07 +1000
+
+cook (2.10.D004-1) unstable; urgency=low
+
+  * This change adds a [__FUNCTION__] function, similar to the [__FILE__] and [_
+    _LINE__] functions.
+  * My thanks to Mark Veltzer <mark@schema.co.il> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 27 Sep 1999 11:58:48 +1000
+
+cook (2.10.D003-1) unstable; urgency=low
+
+  * This change adds variables which have local scope for each function (each
+    call stack frame).
+  * My thanks to the uncountable number of users who nagged me for so long to
+    add this feature.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 16 Sep 1999 17:32:05 +1000
+
+cook (2.10.D002-1) unstable; urgency=low
+
+  * This change fixes some minor portability problems found during pre-release
+    testing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 07 Sep 1999 13:08:03 +1000
+
+cook (2.10.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 06 Sep 1999 23:37:06 +1000
+
+cook (2.9.D019-1) unstable; urgency=low
+
+  * This change makes the [write] and [print] function as expected when the
+    ``cook -script'' option is used.
+  * My thanks to Robert Dick <dickrp@ee.Princeton.EDU> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 06 Sep 1999 15:26:47 +1000
+
+cook (2.9.D018-1) unstable; urgency=low
+
+  * This change improves the behaviour of the fingerprint code, to reduce the
+    number of re-calculation instances substantially.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 01 Sep 1999 11:15:48 +1000
+
+cook (2.9.D017-1) unstable; urgency=low
+
+  * This improves the behaviour of the remote shell invocation to cope with more
+    boundary conditions.  In particular, it copes with rshd at the remote end
+    failing to span a shell, and it copes with the default shell at the remote
+    end not being the Bourne shell.
+  * My thanks to Jerry Pendergraf <jerry.pendergraf@endocardial.com> and Arnout
+    Vandecappelle <vdcappel@imec.be> for these suggestions.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 24 Aug 1999 09:30:39 +1000
+
+cook (2.9.D016-1) unstable; urgency=low
+
+  * This change improves the portability to Solaris and IRIX.
+  * My thanks to Albert Chin-A-Young <china@thewrittenword.com> for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Aug 1999 10:12:00 +1000
+
+cook (2.9.D015-1) unstable; urgency=low
+
+  * This change fixes a bug where fingerprinting made evrything slower because
+    it kept recalculating fingerprints over and over. The correct behaviour is
+    for ./.cook.fp to be written out if either . or one of the unwritables has
+    changed, but when it is written out, . and <i>all</i> of the unwritables get
+    written (not just the dirty ones).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 20 Aug 1999 14:56:12 +1000
+
+cook (2.9.D014-1) unstable; urgency=low
+
+  * This change fixes a stuff up in the previous change.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 19 Aug 1999 23:12:14 +1000
+
+cook (2.9.D013-1) unstable; urgency=low
+
+  * This change improves Cook's parallel behaviour. Previously Cook was looking
+    for more parallel jobs to do before it was waiting for jobs completing. On
+    systems with the wait3 system call (almost all moder Unix boxes) this has
+    been improved to look for exiting jobs first.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 19 Aug 1999 16:31:40 +1000
+
+cook (2.9.D012-1) unstable; urgency=low
+
+  * This change causes the fingerprint handling to turn absolute filenames into
+    relative filesnames if possible.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 17 Aug 1999 14:51:59 +1000
+
+cook (2.9.D011-1) unstable; urgency=low
+
+  * This change copes with the case (common with ClearCase) where the mtime of a
+    file moves backwards.  (The file needs to be re-built.)
+  * My thanks to Cristian Goetze <cg@resolute.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Aug 1999 12:28:28 +1000
+
+cook (2.9.D010-1) unstable; urgency=low
+
+  * This change adds a new builtin function, [mtime-seconds], which is like the
+    existing [mtime] function, except that is returns seconds since the epoch,
+    rather than a human-readable time.	This is more useful for doing arithmetic
+    on.
+  * My thanks to Gus <gus@getsystems.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Aug 1999 09:13:53 +1000
+
+cook (2.9.D009-1) unstable; urgency=low
+
+  * This change improves some sections of the User Guide.
+  * My thanks to Ken Estes <kestes@staff.mail.com> for these suggestions.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 10 Aug 1999 08:53:20 +1000
+
+cook (2.9.D008-1) unstable; urgency=low
+
+  * This change adds a work around for a bug in IRIX 5.3 mkdir implementation,
+    which check for permissions before it checks for existence (unlike every
+    other unix implementation).
+  * My thanks to Jerry Pendergraft <jerry@endocardial.com> for providing this
+    solution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 04 Aug 1999 10:30:21 +1000
+
+cook (2.9.D007-1) unstable; urgency=low
+
+  * This change corrects the source field in the generated spec file, and
+    similar changes to the lsm and readme files.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 01 Jul 1999 10:40:39 +1000
+
+cook (2.9.D006-1) unstable; urgency=low
+
+  * This change makes it valid to use double colons when specifying ingredients
+    recipes (recipes with no recipe body) when there is more than one target.
+    Some users seem to find this an intuitive use of double colons.
+  * My thanks to Sandra Carney <scarney@endocardial.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 29 Jun 1999 10:22:05 +1000
+
+cook (2.9.D005-1) unstable; urgency=low
+
+  * The change fixes a bug where the expr-function would silently return wrong
+    answers when expressions contained numbers too big to represent.  An error
+    is now produced.  (How big is too big depends on your system.)
+  * My thanks to Gus <gus@getsystems.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 24 Jun 1999 12:24:18 +1000
+
+cook (2.9.D004-1) unstable; urgency=low
+
+  * This change improves the generated RPM spec file, so that it sets the file
+    owners correctly when the RPM is built by a mortal user.
+  * My thanks to John Interrante <interran@crd.ge.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 10 Jun 1999 10:41:44 +1000
+
+cook (2.9.D003-1) unstable; urgency=low
+
+  * This change fixes a minor bug on the Cook web page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 28 May 1999 15:04:07 +1000
+
+cook (2.9.D002-1) unstable; urgency=low
+
+  * this change fixes a regex bug revealed when checking Cook on Windows-NT.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 28 May 1999 13:29:09 +1000
+
+cook (2.9.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for thenext public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 27 May 1999 22:41:15 +1000
+
+cook (2.8.D029-1) unstable; urgency=low
+
+  * This change adds the [write] function.  It is very useful for making command
+    files for coping with Windows-NT's crippled command lines.
+  * My thanks to Peter Fraser <pjfraser@thinkage.on.ca> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 26 May 1999 23:32:22 +1000
+
+cook (2.8.D028-1) unstable; urgency=low
+
+  * This change adds regex patterns to Cook's pattern matching.	 You can select
+    which style of pattern matching via the ``set pattern-mode-regex;'' flag.
+  * My thanks to Peter Fraser <pjfraser@thinkage.on.ca> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 26 May 1999 22:25:58 +1000
+
+cook (2.8.D027-1) unstable; urgency=low
+
+  * This change introduces a new looping statement, rater like a foreach loop.
+  * My thanks to Peter Fraser <pjfraser@thinkage.on.ca> for prompting me to
+    finally add this long-awaited feature.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 26 May 1999 17:02:12 +1000
+
+cook (2.8.D026-1) unstable; urgency=low
+
+  * This change adds regex to Cook's configure and build.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 26 May 1999 15:59:00 +1000
+
+cook (2.8.D025-1) unstable; urgency=low
+
+  * This change updates the [in] function to return the word index, not just
+    ``1''
+  * My thanks to Peter Fraser <pjfraser@thinkage.on.ca> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 24 May 1999 17:16:36 +1000
+
+cook (2.8.D024-1) unstable; urgency=low
+
+  * This change adds more information to the Cook web page, and to the README
+    file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 23 May 1999 16:29:01 +1000
+
+cook (2.8.D023-1) unstable; urgency=low
+
+  * This change adds code to cache unwritable directories in the ``.'' cahce.
+    This is similar to the situation before the per-directory caching was
+    introduced.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 23 May 1999 14:47:00 +1000
+
+cook (2.8.D022-1) unstable; urgency=low
+
+  * This change fixes a bug in how user defined functions are invoked.
+  * My thanks to Peter Fraser <pjfraser@thinkage.on.ca> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 20 May 1999 09:46:00 +1000
+
+cook (2.8.D021-1) unstable; urgency=low
+
+  * This change removes a greater range of executable file suffixes, when it
+    needs to.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 19 May 1999 11:45:31 +1000
+
+cook (2.8.D020-1) unstable; urgency=low
+
+  * This change adds the cook -fingerprint-update option.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 04 May 1999 22:27:14 +1000
+
+cook (2.8.D019-1) unstable; urgency=low
+
+  * This change factors most stat error messages into two common function calls.
+    No user visable change.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 04 May 1999 21:35:42 +1000
+
+cook (2.8.D018-1) unstable; urgency=low
+
+  * This change adds more config insulation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 24 Apr 1999 23:29:05 +1000
+
+cook (2.8.D017-1) unstable; urgency=low
+
+  * This change adds the ability to generate a web page describing the
+    dependency graph.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 24 Apr 1999 21:03:17 +1000
+
+cook (2.8.D016-1) unstable; urgency=low
+
+  * none
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 20 Apr 1999 21:30:27 +1000
+
+cook (2.8.D015-1) unstable; urgency=low
+
+  * This change adds the c_incl -exclude option, letting you deny the use of
+    certain include files.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 12 Apr 1999 17:57:36 +1000
+
+cook (2.8.D014-1) unstable; urgency=low
+
+  * This change copes with the changes required to work (without warnings) with
+    Linux libc6 (i.e. glibc2).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 09 Apr 1999 07:01:49 +1000
+
+cook (2.8.D013-1) unstable; urgency=low
+
+  * This change fixes a bug where a core dump will happen if host-binding
+    references an undefined variable.
+  * My thanks to Jerry Pendergraft for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 01 Apr 1999 17:31:15 +1000
+
+cook (2.8.D012-1) unstable; urgency=low
+
+  * This change adds support for mapping CRLF into NL so that .d files written
+    by Windows NT can be read on Unix.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 31 Mar 1999 18:23:32 +1000
+
+cook (2.8.D011-1) unstable; urgency=low
+
+  * This change modified the [cand], [uptodate] and [cook] functions to return
+    the names of the successful files.
+  * My thanks to Christian Goetze <cg@resolute.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 30 Mar 1999 06:37:01 +1000
+
+cook (2.8.D010-1) unstable; urgency=low
+
+  * This change relaxes some of the argument constraints for builtin functions.
+    Most involve allowing zero arguments, rather thsan demanding at least one.
+  * I probably had good reasons for wanting at least one argument a decade ago,
+    but I completely forget why, and allowing empty argument lists is nore
+    useful.
+  * My thanks to Christian Goetze <cg@resolute.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 18 Mar 1999 21:09:26 +1100
+
+cook (2.8.D009-1) unstable; urgency=low
+
+  * This change corrects a Y2K bug which would have screwed up the [mtime]
+    built-in function next year.
+  * My thanks to Ralf Fassel for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 22 Feb 1999 12:43:19 +1100
+
+cook (2.8.D008-1) unstable; urgency=low
+
+  * This change corrects bugs found when porting to Cygwin.
+  * My thanks to Larry Wagner <wagner@weru.ksu.edu> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 22 Feb 1999 09:59:28 +1100
+
+cook (2.8.D007-1) unstable; urgency=low
+
+  * The noreturn Linux patch needs attention.
+  * My thanks to Scott J Burtin <bertins@db.erau.edu> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 19 Feb 1999 21:57:47 +1100
+
+cook (2.8.D006-1) unstable; urgency=low
+
+  * The [cook] function managed to escape documentation when it was implemented.
+  * My thanks to Aaron Optimizer Digulla <digulla@hepe.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 18 Feb 1999 07:31:50 +1100
+
+cook (2.8.D005-1) unstable; urgency=low
+
+  * This change fixes a portability problem, reported in cook/opcode/command.c
+    but relating to the presence/absence of L_tmpnam in <stdio.h>
+  * My thanks to Christian Goetze <cg@resolute.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 12 Feb 1999 10:12:24 +1100
+
+cook (2.8.D004-1) unstable; urgency=low
+
+  * This change corrects some flaws in the documentation.
+  * My thanks to Aaron Optimizer Digulla <digulla@hepe.com> for reporting these
+    problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 11 Feb 1999 23:12:25 +1100
+
+cook (2.8.D003-1) unstable; urgency=low
+
+  * This change improves the web page and the announcement text.
+  * My thanks to Richard U <ru@river.org> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 04 Feb 1999 19:11:16 +1100
+
+cook (2.8.D002-1) unstable; urgency=low
+
+  * The building file contains a minor glitch.
+  * My thanks to Ralf Fassel <ralf@akutech.de> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 03 Feb 1999 13:55:41 +1100
+
+cook (2.8.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Feb 1999 12:44:26 +1100
+
+cook (2.7.D009-1) unstable; urgency=low
+
+  * This change improves rsh usage when given long command lines (very long
+    command lines!)
+  * My thanks to Jerry Pendergraft <jerry@endocardial.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Feb 1999 11:05:42 +1100
+
+cook (2.7.D008-1) unstable; urgency=low
+
+  * This change combines common error message preparation into some error
+    reporting functions.  Makes the non-error code portions much easier to read.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Feb 1999 08:28:22 +1100
+
+cook (2.7.D007-1) unstable; urgency=low
+
+  * This change alters some of cook's path functions to better cope with
+    automounters.
+  * My thanks to Jerry Pendergraft <jerry@endocardial.com> for thsi suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 30 Jan 1999 09:56:11 +1100
+
+cook (2.7.D006-1) unstable; urgency=low
+
+  * This change adds the [cook] function, a natural complement to the [cando]
+    and [uptodate] functions.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 29 Jan 1999 12:45:28 +1100
+
+cook (2.7.D005-1) unstable; urgency=low
+
+  * This change allows the #include directive to take multiple arguments, and
+    not insist on being given just one.
+  * My thanks to Christian Goetze <cg@resolute.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 29 Jan 1999 11:52:13 +1100
+
+cook (2.7.D004-1) unstable; urgency=low
+
+  * This change corrected a bug in cooktime where it reported the wrong reason
+    for utime failing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 29 Jan 1999 11:11:53 +1100
+
+cook (2.7.D003-1) unstable; urgency=low
+
+  * This change improves the way the GNU Autoconf is used, to produce more
+    portable ./configure scripts.
+  * My thanks to Ted Byers <rtbyers@bconnex.net> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 27 Jan 1999 21:35:25 +1100
+
+cook (2.7.D002-1) unstable; urgency=low
+
+  * This change improves the release procedure notes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 23 Jan 1999 00:32:32 +1100
+
+cook (2.7.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for public release.  Remember: releases are *post*
+    numbered.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 30 Dec 1998 22:27:25 +1100
+
+cook (2.6.D014-1) unstable; urgency=low
+
+  * This change adds the cook_bom program, useful for automatically determining
+    the file manifest, in the absence of good SCM.
+  * This development was inspired by the ideas of Christian Goetze
+    <cg@resolute.com>.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 30 Dec 1998 00:01:23 +1100
+
+cook (2.6.D013-1) unstable; urgency=low
+
+  * This change adds the relative_dirname function, which returns ``.'' for
+    files with no directory, rather than the abs path of the current directory.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 29 Dec 1998 18:04:33 +1100
+
+cook (2.6.D012-1) unstable; urgency=low
+
+  * This change stops using the obsolescent diff3_command and starts using the
+    merge_command, in the Aeis project condig file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 29 Dec 1998 11:25:56 +1100
+
+cook (2.6.D011-1) unstable; urgency=low
+
+  * This change factors out the duplicate option messages into a common
+    function.  Ditto for options needing strings arguments.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 29 Dec 1998 11:02:30 +1100
+
+cook (2.6.D010-1) unstable; urgency=low
+
+  * This change adds the += assignment, to append to a variable.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 28 Dec 1998 20:18:33 +1100
+
+cook (2.6.D009-1) unstable; urgency=low
+
+  * This change adds discussion about moving include files to the include
+    chapter.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 28 Dec 1998 18:51:20 +1100
+
+cook (2.6.D008-1) unstable; urgency=low
+
+  * This change adds the [interior-files] function.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 27 Dec 1998 11:07:07 +1100
+
+cook (2.6.D007-1) unstable; urgency=low
+
+  * This change adds an --interior-files option to c_incl.  This means you can
+    tell it about as-yet-ungenerated include files.
+  * My thanks to Christian Goetze <cg@resolute.com> for this contribution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 24 Dec 1998 23:13:24 +1100
+
+cook (2.6.D006-1) unstable; urgency=low
+
+  * This change adds the no-include-cooked-warning flag.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 24 Dec 1998 00:31:54 +1100
+
+cook (2.6.D005-1) unstable; urgency=low
+
+  * This change corrects some minor problems with the include dependency chapter
+    of the User Guide.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 22 Dec 1998 18:54:40 +1100
+
+cook (2.6.D004-1) unstable; urgency=low
+
+  * This change adds the gate-first recipe flag.
+  * My thanks to Tom Satter <tsatter@purecode.com> for this contribution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 16 Nov 1998 14:33:22 +1100
+
+cook (2.6.D003-1) unstable; urgency=low
+
+  * This change improves the F77 library to do include file dependencies.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 16 Nov 1998 12:04:51 +1100
+
+cook (2.6.D002-1) unstable; urgency=low
+
+  * This change adds the parallel)_hosts and parallel_rsh variables to the
+    documentation.
+  * My thanks to Stuart Inglis <singlis@cs.waikato.ac.nz> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 15 Nov 1998 12:50:01 +1100
+
+cook (2.6.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for public release.  Remember: releases are *post*
+    numbered.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 09 Nov 1998 16:44:25 +1100
+
+cook (2.5.D010-1) unstable; urgency=low
+
+  * This change adds the dos-path and un-dos-path functions, used to convert
+    UNIX style pathname to dos style, and back again.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 07 Nov 1998 00:34:01 +1100
+
+cook (2.5.D009-1) unstable; urgency=low
+
+  * This change brings together all of the common string accumulation activities
+    through the api already in place in cook/lex.c.  But it was moved into
+    common/, because it was of more use there.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 06 Nov 1998 23:50:02 +1100
+
+cook (2.5.D008-1) unstable; urgency=low
+
+  * This change includes more updates to get Cook woring on Cygwin32.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 06 Nov 1998 21:52:29 +1100
+
+cook (2.5.D007-1) unstable; urgency=low
+
+  * This change adds consistent (and more useful) fingerprints for directories.
+  * My thanks to Christian Goetze <cg@resolute.com> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 05 Nov 1998 13:00:14 +1100
+
+cook (2.5.D006-1) unstable; urgency=low
+
+  * This change adds documentation to the BUILDING file, detailing my
+    experiences porting Cook to Cygwin32.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 04 Nov 1998 23:01:35 +1100
+
+cook (2.5.D005-1) unstable; urgency=low
+
+  * I am advised that ftime does not set timezone on all systems.  This change
+    removes the use of the ftime system call, on those systems which have it.
+  * My thanks to Dima Barsky <D.Barsky@ee.surrey.ac.uk> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 21 Oct 1998 11:12:09 +1000
+
+cook (2.5.D004-1) unstable; urgency=low
+
+  * This change makes Cook less optimistic when using fingerprints in
+    combination with the search_list.  It would infreqently conclude that a
+    shallow target was up-to-date when a shallow ingredient was editied to be
+    the same as a deeper ingredient.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 28 Sep 1998 12:04:43 +1000
+
+cook (2.5.D003-1) unstable; urgency=low
+
+  * This change increases cook's portability, when faced with international
+    characters.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 28 Sep 1998 08:56:48 +1000
+
+cook (2.5.D002-1) unstable; urgency=low
+
+  * This change fixes a pattern matching bug, which sometimes caused core dumps.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 13 Sep 1998 09:06:09 +1000
+
+cook (2.5.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 03 Sep 1998 06:36:13 +1000
+
+cook (2.4.D012-1) unstable; urgency=low
+
+  * This change adds a Year 2000 status blurb to the Web page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 02 Sep 1998 13:52:43 +1000
+
+cook (2.4.D011-1) unstable; urgency=low
+
+  * This change corrects some build problems.
+  * My thanks to Henrik Weber <Henrik.Weber@bku.db.de> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 01 Sep 1998 14:04:03 +1000
+
+cook (2.4.D010-1) unstable; urgency=low
+
+  * This change improves the chapter of the User Guide of how to handle larger
+    projects.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 13 Aug 1998 17:28:27 +1000
+
+cook (2.4.D009-1) unstable; urgency=low
+
+  * This change makes a couple of tests more robust.
+  * My thanks to Scott J. Burtin <bertins@db.erau.edu> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 13 Aug 1998 16:48:48 +1000
+
+cook (2.4.D008-1) unstable; urgency=low
+
+  * This change adds the setenv statement to the User Guide.  For some reason it
+    has managed to elude coumentation for many years.
+  * My thanks to Scott J. Bertin <bertins@db.erau.edu> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 10 Aug 1998 15:16:07 +1000
+
+cook (2.4.D007-1) unstable; urgency=low
+
+  * This change updates all tests to use COOK_TMP (if set) to locate the
+    temporary directory.  This allows testing away from /tmp - which causes
+    spurious fails on Solaris, because tmpfs has no locking.
+  * My thanks to Scott J. Bertin <bertins@db.erau.edu> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 10 Aug 1998 13:14:52 +1000
+
+cook (2.4.D006-1) unstable; urgency=low
+
+  * This change updates the announcement in the release notes and the web page
+    to point the reader at the release notes.
+  * My thanks to Fergus Henderson <fjh@cs.mu.OZ.AU> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 31 Jul 1998 17:28:48 +1000
+
+cook (2.4.D005-1) unstable; urgency=low
+
+  * This change fixes a couple of minor problems in tests.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 28 Jul 1998 08:31:00 +1000
+
+cook (2.4.D004-1) unstable; urgency=low
+
+  * This change corrects a bug in cooktime on 64-bit systems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 27 Jul 1998 15:08:43 +1000
+
+cook (2.4.D003-1) unstable; urgency=low
+
+  * This change corrects the page alignment of the Reference Manual's table of
+    contents to work better with double-sided printing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 24 Jul 1998 11:58:24 +1000
+
+cook (2.4.D002-1) unstable; urgency=low
+
+  * This change updates the release procedure document.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 23 Jul 1998 14:02:48 +1000
+
+cook (2.4.D001-1) unstable; urgency=low
+
+  * This change prepares cook for the next release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 21 Jul 1998 23:12:50 +1000
+
+cook (2.3.D017-1) unstable; urgency=low
+
+  * This change updates the release notes to include the new features.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 21 Jul 1998 22:18:03 +1000
+
+cook (2.3.D016-1) unstable; urgency=low
+
+  * This change corrects a bug in the repeat function for use in cookbooks.
+  * My thanks to Pieter Nagel <pnagel@epiuse.co.za> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 Jul 1998 17:38:59 +1000
+
+cook (2.3.D015-1) unstable; urgency=low
+
+  * This change correts and expression evaluation bug.
+  * My thanks to Pieter Nagel <pnagel@epiuse.co.za> for reporting this bug.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 Jul 1998 15:16:46 +1000
+
+cook (2.3.D014-1) unstable; urgency=low
+
+  * This change adds a chapter to the Cook User's Guide, giving an outline of
+    how to build large projects using Cook in a single build pass.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 26 Jun 1998 16:57:00 +1000
+
+cook (2.3.D013-1) unstable; urgency=low
+
+  * This change adds the [expr] function, to calculate simple arithmetic
+    expressions.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 25 Jun 1998 22:39:13 +1000
+
+cook (2.3.D012-1) unstable; urgency=low
+
+  * This change adds a function [exists-symlink] for testing the existence of
+    symlinks.  Just like [exists], but it doesn't follow symbolic links.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 23 Jun 1998 20:48:12 +1000
+
+cook (2.3.D011-1) unstable; urgency=low
+
+  * This change documents the caccade-for recipes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 23 Jun 1998 19:18:14 +1000
+
+cook (2.3.D010-1) unstable; urgency=low
+
+  * This change corrects a problem where casecade use was returning a false
+    positive, thus generating spurious warning messages.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 18 Jun 1998 18:51:40 +1000
+
+cook (2.3.D009-1) unstable; urgency=low
+
+  * This change renames the ``aux'' directory to be ``etc''.	     This is
+    motivated by an attempt to port Cook to the CygWin32 system.   the problem
+    is that the string ``aux'' anywhere in the path is interpreted to mean the
+    "aux:" device.   The win32 API is typically brain-dead.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 05 Jun 1998 12:43:30 +1000
+
+cook (2.3.D008-1) unstable; urgency=low
+
+  * This change alters cascade from a recipe form to an explicit assignment
+    form.  This gives better error messages when the user mis-types the keyword.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 05 Jun 1998 09:48:00 +1000
+
+cook (2.3.D007-1) unstable; urgency=low
+
+  * This change updates Cook's own build process to use the cascade-for
+    functionality.  This should result in a slightly more efficient build
+    procedure, and also exersize significant portions of the new code.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Jun 1998 17:19:41 +1000
+
+cook (2.3.D006-1) unstable; urgency=low
+
+  * This change adds some explanatory commands about the [basename] cook
+    function.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Jun 1998 12:03:32 +1000
+
+cook (2.3.D005-1) unstable; urgency=low
+
+  * This change enhances the derived include file warnings to also work with
+    cascaded ingredients.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 31 May 1998 23:06:43 +1000
+
+cook (2.3.D004-1) unstable; urgency=low
+
+  * This change adds the cascade flag, and -CAScade command line option.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 28 May 1998 21:07:17 +1000
+
+cook (2.3.D003-1) unstable; urgency=low
+
+  * This change introduces the cascade-ingredients-for statement.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 26 May 1998 22:30:47 +1000
+
+cook (2.3.D002-1) unstable; urgency=low
+
+  * This change adds the c_incl -norecursive option, to support the new cascade-
+    for cook rule.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 26 May 1998 16:57:27 +1000
+
+cook (2.3.D001-1) unstable; urgency=low
+
+  * This change prepares Cook for release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 22 May 1998 21:55:20 +1000
+
+cook (2.2.D035-1) unstable; urgency=low
+
+  * This change updates the mailing list address.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 20 May 1998 10:30:38 +1000
+
+cook (2.2.D034-1) unstable; urgency=low
+
+  * This change corrects a few install problems.
+  * My thanks to Larry E Wagner <wagner@weru.ksu.edu> for reporting these
+    problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 18 May 1998 21:31:55 +1000
+
+cook (2.2.D033-1) unstable; urgency=low
+
+  * This change copes with yet more internationalization include problems.
+  * My thanks to Nikhil Nair <nn201@cus.cam.ac.uk> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 28 Apr 1998 11:21:19 +1000
+
+cook (2.2.D032-1) unstable; urgency=low
+
+  * This change fixes a bug in the string reconstruction code.	If an error
+    occurred in the pattern reconstruction, a null pointer would get
+    dereferenced.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 11 Apr 1998 21:26:10 +1000
+
+cook (2.2.D031-1) unstable; urgency=low
+
+  * This change improves the building instructions, to say what to do when
+    installing GNU gettext.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 03 Apr 1998 23:06:10 +1000
+
+cook (2.2.D030-1) unstable; urgency=low
+
+  * This change adds the graph_exterior_file and graph_exterior_pattern
+    variables.
+  * This change also introduces more consistent naming for the graph_leaf_file,
+    graph_leaf_pattern, graph_interior_file and graph_interior_pattern
+    variables.
+  * Minor inconsistencies in the -reason option were also repaired.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 27 Mar 1998 21:23:19 +1100
+
+cook (2.2.D029-1) unstable; urgency=low
+
+  * This change documents the leaf_file_accept, leaf_file_reject, leaf_pattern_
+    accept and leaf_pattern_reject variables.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 13 Mar 1998 09:32:05 +1100
+
+cook (2.2.D028-1) unstable; urgency=low
+
+  * This change corrects a number of install problems on various platforms.
+  * My thanks to Ralf Fassel <ralf@atg.venture.de> for reporting these problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 13 Mar 1998 08:24:52 +1100
+
+cook (2.2.D027-1) unstable; urgency=low
+
+  * This change corrects some minor install problems.
+  * My thanks to Charlie Brady <cbrady@ind.tansu.com.au> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Mar 1998 12:38:17 +1100
+
+cook (2.2.D026-1) unstable; urgency=low
+
+  * This change makes changes to the build to take advantage of the new leaf
+    file specifiucation abilities.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 05 Mar 1998 22:12:59 +1100
+
+cook (2.2.D025-1) unstable; urgency=low
+
+  * This change introduces special variables so that the cookbook writer can
+    tell Cook explicitly which files are (or are not) leaf nodes.  This makes
+    graph building faster, and allows for more informative error messages.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 27 Feb 1998 15:29:28 +1100
+
+cook (2.2.D024-1) unstable; urgency=low
+
+  * This change corrects a subtle bug in the interaction between fingerprints
+    and the time-adjust-back flag.	   It detects and corrects the case
+    where the newest and oldest times can become reversed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 18 Feb 1998 17:23:58 +1100
+
+cook (2.2.D023-1) unstable; urgency=low
+
+  * This change adds a specific icon for cook.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 17 Feb 1998 20:56:20 +1100
+
+cook (2.2.D022-1) unstable; urgency=low
+
+  * This change adds a --escape-newlinw option to the c_incl command, for use
+    with tolls which need the newline escaped (unlike cook which is free form).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 13 Feb 1998 22:52:36 +1100
+
+cook (2.2.D021-1) unstable; urgency=low
+
+  * This change makes %0 a tad more liberal with absolute paths.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 12 Feb 1998 12:24:10 +1100
+
+cook (2.2.D020-1) unstable; urgency=low
+
+  * This change updates the Cook web page, to add the new Aegis URL.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 19 Jan 1998 21:54:45 +1100
+
+cook (2.2.D019-1) unstable; urgency=low
+
+  * This change introduces a substitution context.  This corrects a number of
+    problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Jan 1998 22:18:22 +1100
+
+cook (2.2.D018-1) unstable; urgency=low
+
+  * This function improves the debug output by debugging the function name.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 11 Jan 1998 22:39:56 +1100
+
+cook (2.2.D017-1) unstable; urgency=low
+
+  * resync with baseline
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 11 Jan 1998 21:59:25 +1100
+
+cook (2.2.D015-1) unstable; urgency=low
+
+  * This change copes with the fact that different installation mechanisms put
+    the autoconf library in different places.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 23 Dec 1997 12:59:21 +1100
+
+cook (2.2.D014-1) unstable; urgency=low
+
+  * This change adds a -environment flag to make2cook.	This mirrors the make -e
+    flag, which says to notice environment variables.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 18 Dec 1997 15:47:04 +1100
+
+cook (2.2.D013-1) unstable; urgency=low
+
+  * This change corrects an inconsistency in the RPM spec file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 18 Dec 1997 15:30:33 +1100
+
+cook (2.2.D012-1) unstable; urgency=low
+
+  * This change corrects two problems found by Purify.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 09 Dec 1997 17:46:38 +1100
+
+cook (2.2.D011-1) unstable; urgency=low
+
+  * This change adds the ability to call a function as a subroutine.
+    They treat the return value as an exit status, and fail for non-zero values.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 03 Dec 1997 22:00:17 +1100
+
+cook (2.2.D010-1) unstable; urgency=low
+
+  * This change corrects a number of small bugs.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Dec 1997 22:48:45 +1100
+
+cook (2.2.D009-1) unstable; urgency=low
+
+  * This change adds the builtin print function.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Dec 1997 21:15:04 +1100
+
+cook (2.2.D008-1) unstable; urgency=low
+
+  * This change corrects a problem where the installed man pages are missing
+    some include files.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Dec 1997 13:37:02 +1100
+
+cook (2.2.D007-1) unstable; urgency=low
+
+  * The FSF have moved.	 This change updates their address.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 25 Nov 1997 07:31:47 +1100
+
+cook (2.2.D006-1) unstable; urgency=low
+
+  * This change defaults the error message language to English if not specified.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 20 Nov 1997 07:47:22 +1100
+
+cook (2.2.D005-1) unstable; urgency=low
+
+  * This change modifies the cookbook and the generated makefile to use -mm
+    instead of -mgm.
+  * My thanks to Pinwu Xu <pxu@perigee.net> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 12 Nov 1997 15:38:27 +1100
+
+cook (2.2.D003-1) unstable; urgency=low
+
+  * This change copes with an upgrade of my development system, allowing Aegis
+    to recognize the architecture as the same.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 11 Nov 1997 16:38:11 +1100
+
+cook (2.2.D002-1) unstable; urgency=low
+
+  * This change corrects problems found when verifying release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 02 Nov 1997 23:51:32 +1100
+
+cook (2.2.D001-1) unstable; urgency=low
+
+  * Prepare for Release
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 02 Nov 1997 09:43:31 +1100
+
+cook (2.2.2.D004-1) unstable; urgency=low
+
+  * This change re-syncs with files which changed in the baseline.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 23 Dec 1997 13:50:02 +1100
+
+cook (2.2.2.D003-1) unstable; urgency=low
+
+  * This change enhances the configure script to test for a working iswprint
+    function, not just existence.  This is because Glibc v2 has a bug.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 11 Dec 1997 08:31:07 +1100
+
+cook (2.2.2.D002-1) unstable; urgency=low
+
+  * This change indexes implicit recipes where the last filename component
+    contains no pattern elements.  This will accellerate some classes of inclide
+    file dependencies.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 10 Dec 1997 15:31:12 +1100
+
+cook (2.2.2.D001-1) unstable; urgency=low
+
+  * This change enhances c_incl to accept multiple --prefix options, and
+    generate the list multipole times, once for each prefix.  This allows the
+    separation of explicit and implicit prefixes into separate recipes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 10 Dec 1997 13:52:54 +1100
+
+cook (2.2.1.D002-1) unstable; urgency=low
+
+  * This change adds commentary on what was changed in this release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 11 Nov 1997 16:44:38 +1100
+
+cook (2.2.1.D001-1) unstable; urgency=low
+
+  * This change corrects a bug in the determination of whether a recipy body
+    should be run. It should be run if any one of the targets does not exist,
+    however it only runs if *all* the targets do not exist.  This bug was
+    introduced in the 1.11 -> 2.0 transition.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 04 Nov 1997 22:17:37 +1100
+
+cook (2.1.D016-1) unstable; urgency=low
+
+  * Back merge a couple of files.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 30 Oct 1997 22:57:26 +1100
+
+cook (2.1.D015-1) unstable; urgency=low
+
+  * This change corrects the translation made of the % pattern substitution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 30 Oct 1997 22:25:23 +1100
+
+cook (2.1.D014-1) unstable; urgency=low
+
+  * problems with this method of adding the change file
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 28 Oct 1997 21:38:21 +1100
+
+cook (2.1.D013-1) unstable; urgency=low
+
+  * Prepare for release, again.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 26 Oct 1997 23:13:15 +1100
+
+cook (2.1.D012-1) unstable; urgency=low
+
+  * This change cleans up a few things in preparation for release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 26 Oct 1997 22:44:06 +1100
+
+cook (2.1.D011-1) unstable; urgency=low
+
+  * Need to issue a warning for any non-leaf file A which depends on a non-leaf
+    file B when A is the subject of a #include-cooked directive (usually the .d
+    file itself) and the A:B dependecy does no appear in any explicit recipe in
+    either (a) an explicit file, or (b) a leaf #include-cooked file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 26 Oct 1997 14:52:03 +1100
+
+cook (2.1.D010-1) unstable; urgency=low
+
+  * This change ensures that graph walking is properly responsive to being
+    interrupted.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 26 Oct 1997 14:06:52 +1100
+
+cook (2.1.D009-1) unstable; urgency=low
+
+  * This change adds several canned functions to the files installed by the
+    distribution.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 26 Oct 1997 12:36:21 +1100
+
+cook (2.1.D008-1) unstable; urgency=low
+
+  * This chnage fixes a bug when an implicit recipe has more than one target,
+    and the file matches both targets, but it really needed to notice the second
+    one.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 25 Oct 1997 13:06:06 +1000
+
+cook (2.1.D007-1) unstable; urgency=low
+
+  * This change adds a -no_absolute option to c_incl, to tell it to avoid
+    obsolute file names.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 25 Oct 1997 00:24:57 +1000
+
+cook (2.1.D006-1) unstable; urgency=low
+
+  * This change corrects and installation problem where ${prefix} can sometimes
+    arrive in aux/libdir-h, causing locatization problems.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 24 Oct 1997 00:12:58 +1000
+
+cook (2.1.D005-1) unstable; urgency=low
+
+  * This change adds the ``optimistic'' language to c_incl, which is quite
+    generous about what it will accept.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 23 Oct 1997 22:16:28 +1000
+
+cook (2.1.D004-1) unstable; urgency=low
+
+  * This change adds more information to match error messages, and makes match
+    stacks local to each opcode context.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 23 Oct 1997 21:52:06 +1000
+
+cook (2.1.D003-1) unstable; urgency=low
+
+  * This change adds the make2cook -no-internal-rules option to supress all
+    internal make rules.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 19 Oct 1997 14:35:08 +1000
+
+cook (2.1.D002-1) unstable; urgency=low
+
+  * This change adds M4 to the languages understood by c_incl.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 18 Oct 1997 23:28:51 +1000
+
+cook (2.1.D001-1) unstable; urgency=low
+
+  * Prepare For Release
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 13 Oct 1997 22:15:37 +1000
+
+cook (2.0.D020-1) unstable; urgency=low
+
+  * This change improves the description of cook in the readme, spec and lsm
+    files.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 12 Oct 1997 22:55:41 +1000
+
+cook (2.0.D019-1) unstable; urgency=low
+
+  * This change improves the way the virtual parallel machine is implemented,
+    allowing it to work with the fact that rsh(1) does not return a useful exit
+    status.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 12 Oct 1997 13:05:23 +1000
+
+cook (2.0.D018-1) unstable; urgency=low
+
+  * This change fixes a bug where the fingerprints did not get applied to
+    #include-cooked files, causing build runs which wer longer than necessary.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 12 Oct 1997 11:32:58 +1000
+
+cook (2.0.D017-1) unstable; urgency=low
+
+  * This change adds the [command_line_goals] variable, giving the cookbook
+    access to the goals specified by the user on the command line.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 12 Oct 1997 11:05:06 +1000
+
+cook (2.0.D016-1) unstable; urgency=low
+
+  * This change enhances the finger-print functionality to time-adjust files
+    where an ingredient has been re-cooked, but the fingerprint indicates that
+    it was unchanged.  This allows subsequent finger-print-less cook runs to
+    *not* find anything to do, because the file modification times are
+    consistent.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 11 Oct 1997 23:32:42 +1000
+
+cook (2.0.D015-1) unstable; urgency=low
+
+  * This changes separates out the recipe flags so that they are handled better.
+    This allows more than the present 31 flag limit, and also reduces the number
+    of files to edit when adding a new flag.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 Oct 1997 20:41:25 +1000
+
+cook (2.0.D014-1) unstable; urgency=low
+
+  * This change adds the wordlist function.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 06 Oct 1997 10:20:44 +1000
+
+cook (2.0.D013-1) unstable; urgency=low
+
+  * This change alters the default development build targets.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 06 Oct 1997 08:51:53 +1000
+
+cook (2.0.D012-1) unstable; urgency=low
+
+  * This change implements the #line preprocessor directive.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Oct 1997 23:15:13 +1000
+
+cook (2.0.D011-1) unstable; urgency=low
+
+  * This change adds the thread-id function, which may be used to construct
+    thread-unique variable names, thread-unique temporary file names, or
+    anything else that needs to be thread unique.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 04 Oct 1997 22:46:46 +1000
+
+cook (2.0.D010-1) unstable; urgency=low
+
+  * correct bug in __FILE__ implementation
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 02 Oct 1997 23:12:14 +1000
+
+cook (2.0.D009-1) unstable; urgency=low
+
+  * This change adds the __FILE__ and __LINE__ variables (functions actually) so
+    that cookbooks can know more about themselves.  This can improve error
+    messages, but is also very useful in writing modular sub-cookbooks.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 28 Sep 1997 19:52:16 +1000
+
+cook (2.0.D008-1) unstable; urgency=low
+
+  * This change fixes a number opf memory leaks.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 27 Sep 1997 10:15:55 +1000
+
+cook (2.0.D007-1) unstable; urgency=low
+
+  * This change impliments the host-binding feature.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 23 Sep 1997 22:13:36 +1000
+
+cook (2.0.D005-1) unstable; urgency=low
+
+  * This change improves the way the source_files are obtained by the Cookbook,
+    to improve build times by a couple of seconds.  Sigh.  A couple of secnds
+    out of a couple of minutes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 15 Sep 1997 21:34:26 +1000
+
+cook (2.0.D004-1) unstable; urgency=low
+
+  * This change adds an index file for Cook in the primary archive.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 13 Sep 1997 23:17:12 +1000
+
+cook (2.0.D003-1) unstable; urgency=low
+
+  * This change ensures that the MANIFEST file is immune to the search path
+    variations.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 13 Sep 1997 00:31:16 +1000
+
+cook (2.0.D002-1) unstable; urgency=low
+
+  * prepare for release
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 12 Sep 1997 23:46:13 +1000
+
+cook (2.0.D001-1) unstable; urgency=low
+
+  * The parallel enhancements inadvertently made a subtle change to the
+    inpmlicit ingredients recipe semantics, this change restores their pre-2.0
+    meaning.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 12 Sep 1997 23:04:40 +1000
+
+cook (2.0.1.D007-1) unstable; urgency=low
+
+  * more merging
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 21 Sep 1997 22:42:00 +1000
+
+cook (2.0.1.D006-1) unstable; urgency=low
+
+  * merge aux/Howto.cook from parent branch
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 21 Sep 1997 22:17:24 +1000
+
+cook (2.0.1.D005-1) unstable; urgency=low
+
+  * This change adds a RedHat spec file to the archive files.
+  * My thanks to Pieter Nagel <pieter.nagel@epiuse.co.za> for this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 21 Sep 1997 10:48:50 +1000
+
+cook (2.0.1.D004-1) unstable; urgency=low
+
+  * This change corrects a number of spelling errors in the user guide.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 21 Sep 1997 00:13:58 +1000
+
+cook (2.0.1.D003-1) unstable; urgency=low
+
+  * The archive name of the package needs to separate the version number from
+    the name with a minus, otherwise the Linux archive complains.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 16 Sep 1997 23:31:40 +1000
+
+cook (2.0.1.D002-1) unstable; urgency=low
+
+  * This change augments ac/stdio.h for bumb systems
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 15 Sep 1997 22:39:20 +1000
+
+cook (2.0.1.D001-1) unstable; urgency=low
+
+  * This change corrects Makefile.in, which was trying to install too much from
+    the documentation.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 15 Sep 1997 22:12:32 +1000
+
+cook (1.11.D041-1) unstable; urgency=low
+
+  * minor porting problems
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 09 Sep 1997 21:59:32 +1000
+
+cook (1.11.D040-1) unstable; urgency=low
+
+  * This change adds a ``Parallel Processing'' chapter to the User Guide.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 08 Sep 1997 00:29:28 +1000
+
+cook (1.11.D039-1) unstable; urgency=low
+
+  * Time adjust back for files created by terminal recipes (``fred: { ... }'')
+    get adjusted back to 1970.	They are meant to be ``now''.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 04 Sep 1997 12:42:31 +1000
+
+cook (1.11.D038-1) unstable; urgency=low
+
+  * This change introduces the ability to prevent transitive closure, for
+    backwards compatibility with make (i.e. a cripple mode).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 04 Sep 1997 11:07:57 +1000
+
+cook (1.11.D037-1) unstable; urgency=low
+
+  * This change introduces a new error in the case where a double-colon recipe
+    has more than one target.  The semantics in this case are not defined.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Sep 1997 12:56:21 +1000
+
+cook (1.11.D036-1) unstable; urgency=low
+
+  * have the verbose uptodate message at end of clean run be subject to silent
+    flag
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Sep 1997 11:45:52 +1000
+
+cook (1.11.D035-1) unstable; urgency=low
+
+  * This change adds functions to the cookbook language.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Sep 1997 15:01:09 +1000
+
+cook (1.11.D034-1) unstable; urgency=low
+
+  * This change corrects a number of portability problems found when testing on
+    various platforms.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Sep 1997 11:02:45 +1000
+
+cook (1.11.D033-1) unstable; urgency=low
+
+  * This change adds the ``shallow'' flag, with requires recipes to ensure that
+    their targets are in the top-most directory of the search_list.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 30 Aug 1997 23:02:44 +1000
+
+cook (1.11.D032-1) unstable; urgency=low
+
+  * 1. This change corrects some defects in the Makefile which did not clean
+    correctly.
+  * 2. This change improves the configure script to set the libdir and datadir
+    locations better.
+  * 3. This change improves the libintl.c file to conform to the usualy
+    prototype much better.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 29 Aug 1997 17:59:58 +1000
+
+cook (1.11.D031-1) unstable; urgency=low
+
+  * This change adds the ability to single thread some recipe bodies, usually
+    because those recipe bodies share temporary file names, but also possibly
+    for other resources.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 28 Aug 1997 22:07:17 +1000
+
+cook (1.11.D030-1) unstable; urgency=low
+
+  * This change corrects a number of small problesm found in testing the
+    release.
+  * 1. the Makefile did not do distclean properly
+  * 2. the program cookbook was flawed
+  * 3. change cooktime.date.y so that Berkeley yacc doesn't choke
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 24 Aug 1997 22:13:31 +1000
+
+cook (1.11.D029-1) unstable; urgency=low
+
+  * This change adds a note to the README file acknowledginf Endocardial
+    Solutions, Inc. as supporting this release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 24 Aug 1997 00:24:44 +1000
+
+cook (1.11.D028-1) unstable; urgency=low
+
+  * This change corrects a subtle flaw in the parallel semantics, only revealed
+    when the user has interrupted the processing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 23 Aug 1997 23:27:03 +1000
+
+cook (1.11.D027-1) unstable; urgency=low
+
+  * This change adds parallel execution of commands.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 23 Aug 1997 01:39:07 +1000
+
+cook (1.11.D026-1) unstable; urgency=low
+
+  * This change separates code generation form code interpratation. This is in
+    preparation for having multiple concurrent interpretation states, and being
+    able to suspend one and run others.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 17 Aug 1997 23:16:36 +1000
+
+cook (1.11.D025-1) unstable; urgency=low
+
+  * Many non-GNU implimentations of locales are pretty brain-dead.  This change
+    avoids the use of the LANG environent variable in the tests.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 05 Aug 1997 22:03:37 +1000
+
+cook (1.11.D024-1) unstable; urgency=low
+
+  * This change improves the speed at which patterns are matched.  Depending on
+    the cookbook andf the size of you project, this can result is significant
+    performance improvements.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 03 Aug 1997 22:14:24 +1000
+
+cook (1.11.D023-1) unstable; urgency=low
+
+  * This change adds ``-'' to the list of ``stars'' printed, to indicate the
+    execution of a sub-shell.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 03 Aug 1997 04:02:09 +1000
+
+cook (1.11.D022-1) unstable; urgency=low
+
+  * This change causes phony files to be considered out-of-date only if one or
+    more of their ingredients are out of date.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 03 Aug 1997 02:55:26 +1000
+
+cook (1.11.D021-1) unstable; urgency=low
+
+  * This change separates dependency graph creation from graph traversal.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 03 Aug 1997 00:29:36 +1000
+
+cook (1.11.D020-1) unstable; urgency=low
+
+  * This function moves assert out of the common/error.c and into common/trace.c
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 16 Jul 1997 22:37:56 +1000
+
+cook (1.11.D019-1) unstable; urgency=low
+
+  * This change improves the encapsulation of recipes.	It was weaker before,
+    althogh even more could be done.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 08 Jul 1997 21:18:10 +1000
+
+cook (1.11.D018-1) unstable; urgency=low
+
+  * This change changes the stmt code to be object orientaed done manually. this
+    is to pave the way to introducing interpretation context.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 06 Jul 1997 03:52:44 +1000
+
+cook (1.11.D017-1) unstable; urgency=low
+
+  * This change correects some of the install locations.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 06 Jul 1997 02:41:32 +1000
+
+cook (1.11.D016-1) unstable; urgency=low
+
+  * This change correects a subtle bug in the pattern matcher, where %0 could
+    fail to match the empty string under some circumstances.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 Jul 1997 23:29:14 +1000
+
+cook (1.11.D015-1) unstable; urgency=low
+
+  * This change introduces additional activity indicators into the progress
+    stars.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 Jul 1997 21:50:03 +1000
+
+cook (1.11.D014-1) unstable; urgency=low
+
+  * This change explicitly makes the expression tree code into object oriented
+    code done manually.	 This is to pave the way for introducing an
+    interpretation context.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 28 Jun 1997 01:39:48 +1000
+
+cook (1.11.D013-1) unstable; urgency=low
+
+  * This change takes advantage of the new c_incl options to improve the
+    cookbook.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 28 Jun 1997 01:06:11 +1000
+
+cook (1.11.D012-1) unstable; urgency=low
+
+  * This change records the changes in the 1.10 release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 28 Jun 1997 00:40:01 +1000
+
+cook (1.11.D011-1) unstable; urgency=low
+
+  * more string list enhacements
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 28 Jun 1997 00:11:31 +1000
+
+cook (1.11.D010-1) unstable; urgency=low
+
+  * This change updates the config file to move the merge results back over the
+    source file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 27 Jun 1997 21:29:42 +1000
+
+cook (1.11.D009-1) unstable; urgency=low
+
+  * update test template for aegis 3.0 ``no result''
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 27 Jun 1997 21:03:05 +1000
+
+cook (1.11.D008-1) unstable; urgency=low
+
+  * 1. This change adds an option to c_incl to warn of "" includes.
+  * 2. This change adds a -remove_leading_patj option.
+  * 3. This option adds a -subsitute_leading_path option.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 26 Jun 1997 23:12:53 +1000
+
+cook (1.11.D007-1) unstable; urgency=low
+
+  * rename word.c to str_list.c
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 23 Jun 1997 22:25:50 +1000
+
+cook (1.11.D006-1) unstable; urgency=low
+
+  * notdir function
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jun 1997 22:54:22 +1000
+
+cook (1.11.D005-1) unstable; urgency=low
+
+  * 1. This change corrected a number of install problems, particularly with
+    directories not being made and the manual entries being left out entirely.
+  * 2. This change makes the Makefile conform better to the GNU filesystem
+    standards, and takes advantage of the configure script install directory
+    options.
+  * 3. This change corrects the wording in the BUILDING file about using GNU
+    Gettext.	   My thanks to Ulrich Drepper <drepper@myware.rz.uni-
+    karlsruhe.de> for this correction.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Jun 1997 00:02:57 +1000
+
+cook (1.11.D004-1) unstable; urgency=low
+
+  * This change introduces a check to make sure statements are terminated inside
+    include files.  This is specifically to catch problems in generated include
+    files (e.g. for C include dependencies).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 15 Jun 1997 10:59:14 +1000
+
+cook (1.11.D003-1) unstable; urgency=low
+
+  * Pathconf: HPUX return EOPNOTSUPP ``Operation not supported on transport
+    endpoint'' when it should return ENOSYS ``Function not implemented''.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 15 Jun 1997 10:29:03 +1000
+
+cook (1.11.D002-1) unstable; urgency=low
+
+  * update the project to cope with aegis 3.0 branching
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 15 Jun 1997 00:15:04 +1000
+
+cook (1.11.D001-1) unstable; urgency=low
+
+  * New release derived from cook.1.10-old.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 14 Jun 1997 22:19:58 +1000
+

@@ -1,6 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993-2007 Peter Miller
+ *      Copyright (C) 1993-2007, 2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -126,8 +126,7 @@ open_include(string_ty *filename, int local)
     size_t          j;
     string_ty       *path;
 
-    trace(("open_include(filename = %08lX, local = %d) entry", filename,
-        local));
+    trace(("open_include(filename = %p, local = %d) entry", filename, local));
     trace_string(filename->str_text);
     if (filename->str_text[0] != '/')
     {
@@ -482,7 +481,7 @@ hash_if(expr_ty *ep)
 {
     cond            *c;
 
-    trace(("hash_if(ep = %08lX)\n{\n", ep));
+    trace(("hash_if(ep = %p)\n{\n", ep));
     c = cond_alloc();
     c->next = stack;
     if (stack && !stack->pass)
@@ -538,7 +537,7 @@ hash_ifdef(expr_ty *ep)
     expr_ty         *e2;
     string_ty       *s;
 
-    trace(("hash_ifdef(ep = %08lX)\n{\n", ep));
+    trace(("hash_ifdef(ep = %p)\n{\n", ep));
     s = str_from_c("defined");
     e1 = expr_constant_new(s, curpos());
     str_free(s);
@@ -572,7 +571,7 @@ hash_ifndef(expr_ty *ep)
     expr_ty         *e3;
     string_ty       *s;
 
-    trace(("hash_ifndef(ep = %08lX)\n{\n", ep));
+    trace(("hash_ifndef(ep = %p)\n{\n", ep));
     s = str_from_c("defined");
     e1 = expr_constant_new(s, curpos());
     str_free(s);
@@ -608,7 +607,7 @@ hash_ifndef(expr_ty *ep)
 static void
 hash_elif(expr_ty *ep)
 {
-    trace(("hash_elif(ep = %08lX)\n{\n", ep));
+    trace(("hash_elif(ep = %p)\n{\n", ep));
     if (!stack)
         yyerror("#elif without matching #if");
     else
@@ -754,7 +753,7 @@ hash_line(expr_list_ty *elp)
 {
     string_list_ty  *result;
 
-    trace(("hash_line(elp = %08lX)\n{\n", elp));
+    trace(("hash_line(elp = %p)\n{\n", elp));
     if (stack && !stack->pass)
         goto ret;
 
@@ -807,7 +806,7 @@ hash_pragma(expr_list_ty *elp)
 {
     static expr_ty  *once;
 
-    trace(("hash_pragma(elp = %08lX)\n{\n", elp));
+    trace(("hash_pragma(elp = %p)\n{\n", elp));
     if (stack && !stack->pass)
         goto ret;
 

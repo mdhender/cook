@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2006-2008, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -20,7 +19,7 @@
 
 #include <common/str.h>
 #include <common/sub/expr_lex.h>
-#include <common/sub/expr_gram.gen.h>
+#include <common/sub/expr_gram.yacc.h>
 
 
 static string_ty *text;

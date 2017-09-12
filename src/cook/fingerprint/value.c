@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -39,7 +38,7 @@
 void
 fp_value_constructor(fp_value_ty *this)
 {
-    trace(("fp_value_constructor(this = %08lX)\n{\n", (long)this));
+    trace(("fp_value_constructor(this = %p)\n{\n", this));
     this->oldest = 0;
     this->newest = 0;
     this->stat_mod_time = 0;
@@ -65,8 +64,7 @@ fp_value_constructor(fp_value_ty *this)
 void
 fp_value_constructor_copy(fp_value_ty *this, const fp_value_ty *fp)
 {
-    trace(("fp_value_constructor_copy(this = %08lX, fp = %08lX)\n{\n",
-        (long)this, (long)fp));
+    trace(("fp_value_constructor_copy(this = %p, fp = %p)\n{\n", this, fp));
     this->oldest = fp->oldest;
     this->newest = fp->newest;
     this->stat_mod_time = fp->stat_mod_time;
@@ -99,9 +97,8 @@ fp_value_constructor_copy(fp_value_ty *this, const fp_value_ty *fp)
 void
 fp_value_constructor3(fp_value_ty *this, time_t a1, time_t a2, string_ty *a3)
 {
-    trace(("fp_value_constructor3(this = %08lX, oldest = %ld, "
-        "youngest = %ld, crypto = \"%s\")\n{\n", (long)this, a1, a2,
-        (a3 ? a3->str_text : "")));
+    trace(("fp_value_constructor3(this = %p, oldest = %ld, youngest = %ld, "
+        "crypto = \"%s\")\n{\n", this, a1, a2, (a3 ? a3->str_text : "")));
     if (a1 > a2)
         a1 = a2;
     this->oldest = a1;
@@ -130,8 +127,8 @@ void
 fp_value_constructor4(fp_value_ty *this, time_t a1, time_t a2, string_ty *a3,
     string_ty *a4)
 {
-    trace(("fp_value_constructor4(this = %08lX, oldest = %ld, youngest = %ld, "
-        "cfp = \"%s\", ifp = \"%s\")\n{\n", (long)this, a1, a2,
+    trace(("fp_value_constructor4(this = %p, oldest = %ld, youngest = %ld, "
+        "cfp = \"%s\", ifp = \"%s\")\n{\n", this, a1, a2,
         (a3 ? a3->str_text : ""), (a4 ? a4->str_text : "")));
     if (a1 > a2)
         a1 = a2;
@@ -161,9 +158,9 @@ void
 fp_value_constructor5(fp_value_ty *this, time_t a1, time_t a2, time_t a3,
     string_ty *a4, string_ty *a5)
 {
-    trace(("fp_value_constructor5(this = %08lX, oldest = %ld, youngest = %ld, "
-        "stat_mod_time = %ld, cfp = \"%s\", ifp = \"%s\")\n{\n", (long)this, a1,
-        a2, a3, (a4 ? a4->str_text : ""), (a5 ? a5->str_text : "")));
+    trace(("fp_value_constructor5(this = %p, oldest = %ld, youngest = %ld, "
+        "stat_mod_time = %ld, cfp = \"%s\", ifp = \"%s\")\n{\n", this, a1, a2,
+        a3, (a4 ? a4->str_text : ""), (a5 ? a5->str_text : "")));
     if (a1 > a2)
         a1 = a2;
     this->oldest = a1;
@@ -190,7 +187,7 @@ fp_value_constructor5(fp_value_ty *this, time_t a1, time_t a2, time_t a3,
 void
 fp_value_destructor(fp_value_ty *this)
 {
-    trace(("fp_value_destructor(this = %08lX)\n{\n", (long)this));
+    trace(("fp_value_destructor(this = %p)\n{\n", this));
     this->oldest = 0;
     this->newest = 0;
     this->stat_mod_time = 0;
@@ -226,7 +223,7 @@ fp_value_new(void)
     trace(("fp_value_new()\n{\n"));
     this = mem_alloc(sizeof(fp_value_ty));
     fp_value_constructor(this);
-    trace(("return %08lX;\n", (long)this));
+    trace(("return %p;\n", this));
     trace(("}\n"));
     return this;
 }
@@ -247,7 +244,7 @@ fp_value_new(void)
 void
 fp_value_delete(fp_value_ty *this)
 {
-    trace(("fp_value_delete(this = %08lX)\n{\n", (long)this));
+    trace(("fp_value_delete(this = %p)\n{\n", this));
     fp_value_destructor(this);
     mem_free(this);
     trace(("}\n"));
@@ -270,8 +267,7 @@ fp_value_delete(fp_value_ty *this)
 void
 fp_value_copy(fp_value_ty *to, const fp_value_ty *from)
 {
-    trace(("fp_value_copy(to = %08lX, from = %08lX)\n{\n", (long)to,
-        (long)from));
+    trace(("fp_value_copy(to = %p, from = %p)\n{\n", to, from));
     if (from == to)
     {
         trace(("}\n"));
@@ -317,8 +313,8 @@ fp_value_write(fp_value_ty *this, string_ty *key, FILE *fp)
 {
     if (!this->contents_fingerprint && !this->ingredients_fingerprint)
         return;
-    trace(("fp_value_write(this = %08lX, key = \"%s\", fp = %08lX)\n{\n",
-        (long)this, key->str_text, (long)fp));
+    trace(("fp_value_write(this = %p, key = \"%s\", fp = %p)\n{\n", this,
+        key->str_text, fp));
     fprintf(fp, "\"%s\" = { %ld", key->str_text, (long)this->oldest);
     if (this->oldest != this->newest || this->newest != this->stat_mod_time)
     {

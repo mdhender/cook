@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1998, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1998, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -140,7 +139,7 @@ sa_close(stracc *sap)
     assert(sap->sa_inuse);
     val = str_n_from_c(sap->sa_buf, sap->sa_len);
     sap->sa_inuse = 0;
-    trace(("return %08lX;\n", val));
+    trace(("return %p;\n", val));
     trace(("}\n"));
     return val;
 }

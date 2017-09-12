@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -54,7 +53,7 @@ fp_search(string_ty *path)
         trace(("}\n"));
         return 0;
     }
-    trace(("return %08lX;\n", (long)&p->value));
+    trace(("return %p;\n", &p->value));
     trace(("}\n"));
     return &p->value;
 }
@@ -80,8 +79,7 @@ fp_assign(string_ty *path, fp_value_ty *fp)
 {
     fp_record_ty    *p;
 
-    trace(("fp_assign(path = \"%s\", fp = %08lX)\n{\n",
-            path->str_text, (long)fp));
+    trace(("fp_assign(path = \"%s\", fp = %p)\n{\n", path->str_text, fp));
     p = fp_find_record(path);
     fp_record_update(p, fp);
     trace(("}\n"));

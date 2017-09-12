@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -43,7 +42,7 @@
 void
 match_stack_push(match_stack_ty *msp, const match_ty *field)
 {
-    trace(("match_stack_push(field = %08X)\n{\n", field));
+    trace(("match_stack_push(field = %p)\n{\n", field));
     if (msp->stack_depth >= msp->stack_depth_max)
     {
         size_t          nbytes;
@@ -115,7 +114,7 @@ match_stack_pop(match_stack_ty *msp)
     }
     else
         field = 0;
-    trace(("return %08X;\n", field));
+    trace(("return %p;\n", field));
     trace(("}\n"));
     return field;
 }

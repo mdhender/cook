@@ -1,7 +1,6 @@
 '\" t
 .\"     cook - file construction tool
-.\"     Copyright (C) 1997, 1998, 2002, 2007 Peter Miller;
-.\"     All rights reserved.
+.\"     Copyright (C) 1997, 1998, 2002, 2007-2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -28,8 +27,8 @@
 .if n .ftr C  R
 .pn -1 \" the first (unnumbered) is -1, second is 0,
 .\"       the third is 1, just like I wanted.  Sheesh!
-.so toc.so \"from the etc directory
-.so version.so \"from the etc directory
+.so etc/toc.so \"from the etc directory
+.so etc/version.so \"from the etc directory
 .\" ---------------------------------------------------------------------------
 .\" stuff for figuring dates
 .\"
@@ -69,7 +68,7 @@ Reference Manual
 .vs 20
 .ce 2
 Peter Miller
-\fImillerp@canb.auug.org.au\fP
+\fIpmiller@opensource.org.au\fP
 .\" ---------------------------------------------------------------------------
 .bp
 .ps 12
@@ -89,9 +88,8 @@ are
 .br
 Copyright \*(C)
 .nr d) \n(.d
-\*(Y) Peter Miller;
+\*(Y) Peter Miller
 .if '\n(d)'\n(.d' .br
-All rights reserved.
 .sp
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -109,13 +107,13 @@ with this program. If not, see <http://www.gnu.org/licenses/>.
 .\" ----------  Include the Other Stuff  --------------------------------------
 .\"
 .nr C 1 \"continuous page numbers (see GNU groff tmac.an)
-.so ../readme/main.man
-.so ../building/main.man
-.so i18n.so
+.so lib/en/readme/main.man
+.so lib/en/building/main.man
+.so lib/en/refman/i18n.so
 .\"
 .\" ----------  Include the Manual Pages  -------------------------------------
 .\"
-.so parts.so
+.so lib/en/refman/parts.so
 .\"
 .\" ----------  Include the Table of Contents  --------------------------------
 .\"
@@ -149,4 +147,4 @@ with this program. If not, see <http://www.gnu.org/licenses/>.
 .\"
 .TH "Permuted Index" "Cook" "Cook" "Reference Manual"
 .in 0
-.so index.so
+.so lib/en/refman/index.so

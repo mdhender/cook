@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1997, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -399,7 +398,7 @@ default_setting(string_ty *name)
         string_list_destructor(&wl);
     }
     result = stmt_assign_alloc(0, lhs, stmt_assign_op_default, rhs);
-    trace(("return %8.8lX;\n", (long)result));
+    trace(("return %p;\n", result));
     trace(("}\n"));
     return result;
 }
@@ -425,7 +424,7 @@ stmt_assign_default(stmt_ty *sp)
             result = default_setting(name);
             assert(string_list_member(&result->cdef, name));
             assert(string_list_member(&result->mdef, name));
-            trace(("return %d;\n", result));
+            trace(("return %p;\n", result));
             trace(("}\n"));
             return result;
         }
@@ -443,7 +442,7 @@ stmt_assign_default(stmt_ty *sp)
             result = default_setting(name);
             assert(string_list_member(&result->cdef, name));
             assert(string_list_member(&result->mdef, name));
-            trace(("return %d;\n", result));
+            trace(("return %p;\n", result));
             trace(("}\n"));
             return result;
         }

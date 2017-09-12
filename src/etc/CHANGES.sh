@@ -1,8 +1,7 @@
 #! /bin/sh
 #
 #       cook - file construction tool
-#       Copyright (C) 1992, 1993, 1997, 2007 Peter Miller;
-#       All rights reserved.
+#       Copyright (C) 1992, 1993, 1997, 2007, 2008, 2010 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -29,11 +28,12 @@ case $# in
         ;;
 esac
 set -e
-aegis -l changes -p $project -v -pl 66 -pw 72 < /dev/null
+aegis -l changes -p $project -v -pl 66 -pw 72 < /dev/null | expand
 changes=`aegis -list changes -terse -project $project`
 for n in $changes
 do
         echo '' | tr '\12' '\14'
-        aegis -l change_details -p $project -c $n -v -pl 66 -pw 72 < /dev/null
+        aegis -l change_details -p $project -c $n -v \
+            -pl 66 -pw 72 < /dev/null | expand
 done
 exit 0

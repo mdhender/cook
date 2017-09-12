@@ -1,0 +1,37 @@
+/*
+ * NAME
+ *      sccs - extract files from SCCS
+ *
+ * DESCRIPTION
+ *      This cookbook is used to extract files from SCCS
+ *
+ * RECIPES
+ *      %: SCCS/s.%     extract files from SCCS
+ *      %: s.%          extract files from SCCS
+ *
+ * VARIABLES
+ *      get             the SCCS get command
+ *      get_flags       flags for the get command, default empty
+ * Copyright (C) 1997-2007, 2010 Peter Miller
+ */
+
+#pragma once
+
+if [not [defined get]] then
+        get = get;
+if [not [defined get_flags]] then
+        get_flags = ;
+
+%0%: %0SCCS/s.%
+        set no-implicit-ingredients
+        if [exists %0SCCS/s.%]
+{
+        [get] [get_flags] -p %0SCCS/s.% > %0%;
+}
+
+%0%: %0s.%
+        set no-implicit-ingredients
+        if [exists %0s.%]
+{
+        [get] [get_flags] -p %0s.% > %0%;
+}

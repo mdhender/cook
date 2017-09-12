@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -58,7 +57,7 @@ graph_file_new(string_ty *fn)
     gfp->previous_backtrack = 0;
     gfp->previous_error = 0;
     gfp->primary_target = 0;
-    trace(("return %08lX;\n", (long)gfp));
+    trace(("return %p;\n", gfp));
     trace(("}\n"));
     return gfp;
 }
@@ -79,7 +78,7 @@ graph_file_new(string_ty *fn)
 void
 graph_file_delete(graph_file_ty *gfp)
 {
-    trace(("graph_file_delete(gfp = %08lX)\n{\n", gfp));
+    trace(("graph_file_delete(gfp = %p)\n{\n", gfp));
     assert(gfp);
     assert(gfp->reference_count > 0);
     gfp->reference_count--;

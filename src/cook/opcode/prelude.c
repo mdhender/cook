@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -82,7 +81,7 @@ execute(const opcode_ty *op, opcode_context_ty *icp)
         string_ty       *name;
         string_list_ty  value;
 
-        name = str_format("@%d", j);
+        name = str_format("@%ld", (long)j);
         string_list_constructor(&value);
         if (j <= slp->nstrings)
             string_list_append(&value, slp->string[j - 1]);
@@ -142,7 +141,7 @@ opcode_prelude_new(void)
 
     trace(("opcode_prelude_new()\n{\n"));
     op = opcode_new(&method);
-    trace(("return %08lX;\n", (long)op));
+    trace(("return %p;\n", op));
     trace(("}\n"));
     return op;
 }

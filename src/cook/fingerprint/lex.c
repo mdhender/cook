@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997-1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1997-1999, 2001, 2006-2008, 2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -28,7 +27,7 @@
 #include <common/input/null.h>
 #include <common/str.h>
 #include <cook/fingerprint/lex.h>
-#include <cook/fingerprint/gram.gen.h>  /* after str.h */
+#include <cook/fingerprint/gram.yacc.h>  /* after str.h */
 
 static input_ty *fp;
 static int      nerr;

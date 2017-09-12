@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993, 1994, 1996-1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1993, 1994, 1996-1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -82,7 +81,7 @@ globber(char *formal, const expr_position_ty * pp)
     int             retval;
     sub_context_ty  *scp;
 
-    trace(("globber(formal = %8.8lX)\n{\n", formal));
+    trace(("globber(formal = %p)\n{\n", formal));
     trace_string(formal);
     retval = 0;
     gmatch_error_handler(error_handler, (void *)pp);
@@ -102,7 +101,8 @@ globber(char *formal, const expr_position_ty * pp)
             size_t          n;
 
             /* nothing special */
-            trace(("ordinary = \"%.*s\";\n", formal_end - formal, formal));
+            trace(("ordinary = \"%.*s\";\n",
+                (int)(formal_end - formal), formal));
             for (cp = formal; cp < formal_end; ++cp)
                 sa_char(&temp, *cp);
             n = sa_mark(&temp);
@@ -156,7 +156,7 @@ globber(char *formal, const expr_position_ty * pp)
             struct dirent   *dep;
 
             /* need to expand wild characters */
-            trace(("expand = \"%.*s\";\n", formal_end - formal, formal));
+            trace(("expand = \"%.*s\";\n", (int)(formal_end - formal), formal));
             n = sa_mark(&temp);
             sa_char(&temp, 0);
             dp = opendir(n ? temp.sa_buf : ".");
@@ -285,7 +285,7 @@ interpret(string_list_ty *result, const string_list_ty *args,
     size_t          start;
     int             retval;
 
-    trace(("glob(result = %08X, args = %08X)\n{\n", result, args));
+    trace(("glob(result = %p, args = %p)\n{\n", result, args));
     (void)ocp;
     retval = 0;
     where = result;

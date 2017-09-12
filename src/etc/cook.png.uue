@@ -1,7 +1,6 @@
 #
 #       cook - file construction tool
-#       Copyright (C) 2007 Peter Miller;
-#       All rights reserved.
+#       Copyright (C) 2007, 2008, 2010 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -18,20 +17,28 @@
 #       <http://www.gnu.org/licenses/>.
 #
 begin 644 cook.png
-MB5!.1PT*&@H````-24A$4@```&<```!G`@,```!@+[1J````"5!,5$6_O[\`
-M``#____-ZSO<`````7123E,`0.;89@````%B2T=$`(@%'4@````)<$A9<P``
-M"Q,```L3`0":G!@````'=$E-10?7`PT`!!+A\)!V```![4E$051(Q^V5,9+#
-M(`Q%2>$#;.'[I-@#I$#,F#[%<A^V2*_,H%,N0C((VWN#J$C&?D820GPY][&/
-MN14`_"6Y03-Y^)K0`FK?SO5/Q&"VQ^0O4C',^HM4#3NZF_Q(K+X-1-EXY&=C
-M9>SC)OZ&91BA$F$R"'NP=:`BKGLPSD(12D+9CRP0HT4(8U=8%&FN&JQE\6-1
-MI/P8H2RJ'M#W#1=%N:$ME.910J4P$&Z!6D&:OY)>`^5G_9BWQO[V4)3Y'[`=
-MT=UQ`0?BG0?^;2AQ8%/@$J#M^L$HEVC1%E"*53^IZ&7J_HSL$04E>Y:("0SZ
-MM2?Y+BV8HOF4^=3>@O1$N*7:1_R,$\H`VG6)4VM(CIT)(SUH002]0;E$P2(N
-MG1)>S0P4U99``)M,"9*&+!G;9K<A^%;>EL+87&T#[(CLHII)]=H1@2T'I`S1
-MNS42S2W/&5?_%04Z53%O`.3=$H[N-'\OMRL<47WG^?KO=\>FV%"]7D?$7@HW
-M*42,9]3:?H$K)-</X`*)#*PGQ)7RE^I0T:XK9U1V-5I/J(O1&75U6Z*V5-BK
-M,40ETJZ'25%7O:0=I:P,L5RCT<ET1$9>#P@-ZHHBL?H(X&&0#+(RS<UJ5QEQ
-M7V:E7^U$60_(SP/&"OUA+!ET=_.(^7>:+?"9Z!]S[@]G%[43I(#:UP````!)
-'14Y$KD)@@@``
+MB5!.1PT*&@H````-24A$4@```&<```!G"`8````=05SY`````7-21T(`KLX<
+MZ0````9B2T=$`/\`_P#_H+VGDP````EP2%ES```+$P``"Q,!`)J<&`````=T
+M24U%!]H)#P0&-K3K?0T```-T241!5'C:[9QACN,@#(5CA/8TNY>>BWI_K"IU
+MHP`&;&/(>U(UTC0EP&<;F]!>%P1!$`1!$`1!$`1!$`1!$`1!$`1!$`2YB8S:
+MY>#]>R4<WMB@[N.@K[_;P^%@1B>=6([JS708E!.6!+4;B,$PMR\E(D!2:IAG
+M871U-#8XBM0H>T&QA";MJ_`>%`%.&##N[M&&1"OAO!9,!R1:`6<*S/>`3@#I
+M`2B?G"[?)U#3*#YM%2"I%*])JY,[6+9%QE<9/WO`&0IG1%2<C$WK&7=`J0%%
+M+0&(X&&6?6#F4OMLZ3E3@SS-2VH1H3(WK`D'*?.$H6D!2E9@5D+T\M:/%SUY
+M4P40C\"96F-:[GYO8[=P-]+?1J+0A)2]PQ@S7T2T57A\\@II#26HAXJ%:](&
+M(ZDO5H`9O:=6WP6?X[M'I3<L_%IC*7F!M/W>?M"3YVA8V=WU=X0]$\X4UC#*
+M&A!:Z\LIWE<#\WEOQ(M*ZU'R2`!VKVFD8+2SNJ0]B%[OVG&]\BH)LH?[GPBE
+M!$;3$)/5P$[;YI&,1WO/,6MXQXJBLL<[+?JFD;6UYBWO8+6S8=+:>+KKET(X
+MO/\_SW3(RGM6KEF]VS*6RK,6HP4H0A+1VGIR#]WW'0*M_33E`WNN]=7D<YMA
+MS[R_IP*G-J!2>[U03D@X>L"HPK'PA(CI>*\1MN#4=B*2]N1J3&CD.JG4M]:\
+MC<RK:1$Z<D)GE^)U!%`WT$OQD8%7\18]S$FV>4J?^2_[_;RG#>BTL]&C@'K`
+MW*]/%@O[:6?5+.>A>FKV^SKK//[M($1`OMK)M?5G-C2]^0"BBJ$_M:-!_8UP
+M-)[OM-8<PGJBXQVSN]6IXE%4`A7U;-II7B<I0A\A28[?0G/)1,\C@\>:"(#L
+MLKR1[1O04)AX2>09W5LC0#*OB6CV#`%=[_UA(LM"E7K7'``R]I29A`"R`5.\
+M0`N.J?>,9H3!?R2I>;$6'%X)H;>]Q06R>)`F82WZ5^&==S/(_8,MSY%\P3>J
+ME$\@#0\TK[;:Z(OXRA"8`476[\%(0.'@*'ZY*,R/DJ_PIH@_7>SM8FQHA%-C
+M28$F<]5^W?!]_VU>_KF(?B(86=7Z1EYA$S;YZQ=?UV^3L9%S:-@M*^"5\YJ=
+MPL:N(J-U=:GGG/RLA[V,$0_,]"%A3B$(@B`(@B`(@B`(@B`(@B`(@B`(@J`=
+6]1?'$Q6/$YOE@P````!)14Y$KD)@@@``
 `
 end

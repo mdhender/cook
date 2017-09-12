@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1995, 1997-2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1995, 1997-2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -73,7 +72,7 @@ interrupt(int n)
 void
 sniff_language(sniff_ty *lp)
 {
-    trace(("sniff_language(lp = %08lX)\n{\n", lp));
+    trace(("sniff_language(lp = %p)\n{\n", lp));
     assert(lp);
     lang = lp;
     trace(("}\n"));

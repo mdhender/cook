@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2002, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -283,7 +282,7 @@ opcode_recipe_new(opcode_list_ty *need1, opcode_list_ty *need2,
     this->out_of_date = out_of_date;
     this->up_to_date = up_to_date;
     expr_position_copy_constructor(&this->pos, pp);
-    trace(("return %08lX;\n", (long)op));
+    trace(("return %p;\n", op));
     trace(("}\n"));
     return op;
 }

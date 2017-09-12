@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -43,7 +42,7 @@
 void
 recipe_list_append(recipe_list_ty *rlp, recipe_ty *rp)
 {
-    trace(("rl_append(rlp = %08lX, rp = %08lX)\n{\n", rlp, rp));
+    trace(("rl_append(rlp = %p, rp = %p)\n{\n", rlp, rp));
     assert(rlp);
     assert(rp);
 
@@ -64,7 +63,7 @@ recipe_list_append(recipe_list_ty *rlp, recipe_ty *rp)
 void
 recipe_list_constructor(recipe_list_ty *rlp)
 {
-    trace(("recipe_list_constructor(rlp = %08lX)\n{\n", (long)rlp));
+    trace(("recipe_list_constructor(rlp = %p)\n{\n", rlp));
     rlp->recipe = 0;
     rlp->nrecipes = 0;
     rlp->nrecipes_max = 0;
@@ -77,7 +76,7 @@ recipe_list_destructor(recipe_list_ty *rlp)
 {
     size_t          j;
 
-    trace(("recipe_list_destructor(rlp = %08lX)\n{\n", (long)rlp));
+    trace(("recipe_list_destructor(rlp = %p)\n{\n", rlp));
     assert(rlp);
     for (j = 0; j < rlp->nrecipes; ++j)
         recipe_delete(rlp->recipe[j]);

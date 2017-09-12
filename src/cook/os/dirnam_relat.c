@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -48,7 +47,7 @@ os_dirname_relative(string_ty *path)
 {
     char            *cp;
 
-    trace(("os_dirname_relative(path = %08lX)\n{\n", path));
+    trace(("os_dirname_relative(path = %p)\n{\n", path));
     trace_string(path->str_text);
     cp = strrchr(path->str_text, '/');
     if (cp)
@@ -63,7 +62,7 @@ os_dirname_relative(string_ty *path)
     else
         path = str_from_c(".");
     trace_string(path->str_text);
-    trace(("return %08lX;\n", path));
+    trace(("return %p;\n", path));
     trace(("}\n"));
     return path;
 }

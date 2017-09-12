@@ -1,6 +1,6 @@
 '\" t
 .\"     cook - file construction tool
-.\"     Copyright (C) 1993-2007 Peter Miller
+.\"     Copyright (C) 1993-2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 .if n .ftr CW R
 .if n .ftr C  R
 .TH Build Cook Cook "Reference Manual"
-.so version.so
+.so etc/version.so
 .if n .hy 0
 .if n .ad l
 .if n .nr IN 8n
@@ -663,7 +663,7 @@ program,
 please do not hesitate to contact the author at
 .RS
 .ft CW
-Peter Miller <millerp@canb.auug.org.au>
+Peter Miller <pmiller@opensource.org.au>
 .ft R
 .RE
 Any and all feedback is welcome.
@@ -706,7 +706,7 @@ it turns on execution traces in those source files.
 It is best to put this option on the end of the command,
 so that the names of the files to be traced are not confused
 with any other filenames or strings on the command line.
-.so ../building/windows-nt.so
+.so lib/en/building/windows-nt.so
 .br
 .ne 2i
 .SH COPYRIGHT
@@ -717,9 +717,8 @@ Copyright
 .if n (C)
 .if t \(co
 .nr d) \n(.d
-\*(Y) Peter Miller;
+\*(Y) Peter Miller
 .if '\n(d)'\n(.d' .br
-All rights reserved.
 .PP
 The
 .I Cook
@@ -738,6 +737,6 @@ file included with this distribution.
 .TS
 tab(;);
 l r l.
-Peter Miller;E-Mail:;millerp@canb.auug.org.au
-\f(CW/\e/\e*\fP;WWW:;http://www.canb.auug.org.au/~millerp/
+Peter Miller;E-Mail:;pmiller@opensource.org.au
+\f(CW/\e/\e*\fP;WWW:;http://miller.emu.id.au/pmiller/
 .TE

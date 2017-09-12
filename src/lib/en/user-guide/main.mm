@@ -1,7 +1,6 @@
 .\"
 .\"     cook - file construction tool
-.\"     Copyright (C) 1990-1994, 1997, 1998, 2007 Peter Miller;
-.\"     All rights reserved.
+.\"     Copyright (C) 1990-1994, 1997, 1998, 2007-2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -27,8 +26,8 @@
 .if t .ds HP 16 14 12 12 10 10 10 10 10 10
 .PH "''''"
 .PF "''''"
-.so libdir.so \"from the etc directory, by configure
-.so version.so \"from the etc directory
+.so etc/libdir.so
+.so etc/version.so
 .\" stuff for figuring dates
 .\"
 .ds MONTH1 January
@@ -83,7 +82,7 @@ User Guide
 Peter Miller
 .ft I
 .ce 1
-millerp@canb.auug.org.au
+pmiller@opensource.org.au
 .ft P
 .\" ---------------------------------------------------------------------------
 .bp
@@ -104,9 +103,8 @@ are
 .br
 Copyright \*(C)
 .nr d) \n(.d
-\*(Y) Peter Miller;
+\*(Y) Peter Miller
 .if '\n(d)'\n(.d' .br
-All rights reserved.
 .sp
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -127,22 +125,22 @@ with this program. If not, see <http://www.gnu.org/licenses/>.
 .\" .MT 4 1
 .SK
 .nr Ej 1
-.so intro.so
-.so history.so
-.so intro1.so
-.so intro2.so
-.so parallel.so
-.so include.so
-.so large.so
-.so language.so
-.so builtin.so
-.so variables.so
-.so functions.so
-.so how.so
-.so option.so
-.so match.so
-.so system.so
-.so glossary.so
+.so lib/en/user-guide/intro.so
+.so lib/en/user-guide/history.so
+.so lib/en/user-guide/intro1.so
+.so lib/en/user-guide/intro2.so
+.so lib/en/user-guide/parallel.so
+.so lib/en/user-guide/include.so
+.so lib/en/user-guide/large.so
+.so lib/en/user-guide/language.so
+.so lib/en/user-guide/builtin.so
+.so lib/en/user-guide/variables.so
+.so lib/en/user-guide/functions.so
+.so lib/en/user-guide/how.so
+.so lib/en/user-guide/option.so
+.so lib/en/user-guide/match.so
+.so lib/en/user-guide/system.so
+.so lib/en/user-guide/glossary.so
 .if o .bp
 .pn 1001
 .TC

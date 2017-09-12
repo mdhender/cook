@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1996, 1997, 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1996, 1997, 1999, 2001, 2006-2008 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -106,7 +105,6 @@ typedef unsigned long uint32;
  * comp.sources.unix edition by Rich Salz <rsalz@osf.org>.
  *
  * Original Xerox copyright:
- *      Copyright (C) Xerox Corporation 1989.  All rights reserved.
  *
  *      License to copy and use this software is granted provided that it
  *      is identified as the 'Xerox Secure Hash Function' in all material

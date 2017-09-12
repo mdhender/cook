@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999-2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999-2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -225,7 +224,7 @@ destructor(match_ty *mp)
     match_cook_ty   *this;
     size_t          j;
 
-    trace(("match_cook::destructor(mp = %08X)\n{\n", mp));
+    trace(("match_cook::destructor(mp = %p)\n{\n", mp));
     this = (match_cook_ty *)mp;
 #ifdef DEBUG
     check_magic(this, __LINE__, MAGIC_DESTROYED);
@@ -253,7 +252,7 @@ constructor(match_ty *mp)
     match_cook_ty   *this;
     size_t          j;
 
-    trace(("match_cook::constructor(mp = %08X)\n{\n", mp));
+    trace(("match_cook::constructor(mp = %p)\n{\n", mp));
     this = (match_cook_ty *) mp;
     this->formal = 0;
     for (j = 0; j < SIZEOF(this->fill); ++j)
@@ -295,9 +294,8 @@ attempt_inner(match_cook_ty *this, char *formal_begin, char *formal_end,
     char            *q;
     int             sub_result;
 
-    trace(("attempt_inner(this = %08lX, formal_begin = %08lX, "
-        "actual_begin = %08lX)\n{\n", (long)this, (long)formal_begin,
-        (long)actual_begin));
+    trace(("attempt_inner(this = %p, formal_begin = %p, "
+        "actual_begin = %p)\n{\n", this, formal_begin, actual_begin));
     trace(("formal = \"%.*s\";\n", (int)(formal_end - formal_begin),
         formal_begin));
     trace(("actual = \"%.*s\";\n", (int)(actual_end - actual_begin),
@@ -665,8 +663,7 @@ compile(match_ty *mp, string_ty *formal, const expr_position_ty *pp)
     size_t          j;
     int             result;
 
-    trace(("match_cook::compile(mp = %08lX, formal = %08lX)\n{\n", (long)mp,
-        (long)formal));
+    trace(("match_cook::compile(mp = %p, formal = %p)\n{\n", mp, formal));
     trace(("formal = \"%s\";\n", formal->str_text));
     (void)pp;
     this = (match_cook_ty *)mp;
@@ -707,8 +704,7 @@ execute(match_ty *mp, string_ty *actual, const expr_position_ty *pp)
     size_t          j;
     int             result;
 
-    trace(("match_cook::execute(mp = %08lX, actual = %08lX)\n{\n", (long)mp,
-        (long)actual));
+    trace(("match_cook::execute(mp = %p, actual = %p)\n{\n", mp, actual));
     trace(("actual = \"%s\";\n", actual->str_text));
     this = (match_cook_ty *)mp;
 #ifdef DEBUG
@@ -777,8 +773,8 @@ reconstruct(const match_ty *mp, string_ty *pattern, const expr_position_ty *pp)
     string_ty       *s;
     int             idx;
 
-    trace(("match_cook::reconstruct(mp = %08lX, pattern = %08X)\n{\n", (long)mp,
-        (long)pattern));
+    trace(("match_cook::reconstruct(mp = %p, pattern = %p)\n{\n", mp,
+        pattern));
     this = (const match_cook_ty *)mp;
 #ifdef DEBUG
     /* magic is mutable */
@@ -820,7 +816,7 @@ reconstruct(const match_ty *mp, string_ty *pattern, const expr_position_ty *pp)
 
     s = sa_close(&buffer);
     trace_string(s->str_text);
-    trace(("return %08lX;\n", s));
+    trace(("return %p;\n", s));
     trace(("}\n"));
     return s;
 }

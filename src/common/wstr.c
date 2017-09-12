@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -299,7 +298,10 @@ wstr_n_from_c(const char *s, size_t length)
     /*
      * Reset the mbtowc internal state.
      */
-    mbtowc((wchar_t *) 0, (char *)0, 0);
+    if (mbtowc((wchar_t *) 0, (char *)0, 0) == -1)
+    {
+        assert(!"assume success");
+    }
 
     /*
      * scan the string and extract the wide characters
@@ -343,7 +345,10 @@ wstr_n_from_c(const char *s, size_t length)
              * be "error" or broken, or otherwise useless.
              * Reset it so that we can keep going.
              */
-            mbtowc((wchar_t *) 0, (char *)0, 0);
+            if (mbtowc((wchar_t *) 0, (char *)0, 0) == -1)
+            {
+                assert(!"assume success");
+            }
         }
         else
         {
@@ -422,7 +427,10 @@ wstr_to_mbs(wstring_ty *s, char **result_p, size_t *result_length_p)
     /*
      * The wctomb function has internal state.  It needs to be reset.
      */
-    wctomb((char *)0, (wchar_t) 0);
+    if (wctomb((char *)0, (wchar_t) 0) == -1)
+    {
+        assert(!"assume success");
+    }
 
     ip = s->wstr_text;
     remainder = s->wstr_length;
@@ -446,7 +454,10 @@ wstr_to_mbs(wstring_ty *s, char **result_p, size_t *result_length_p)
              * be "error" or broken, or otherwise useless.
              * Reset it so that we can keep going.
              */
-            wctomb((char *)0, (wchar_t) 0);
+            if (wctomb((char *)0, (wchar_t) 0) == -1)
+            {
+                assert(!"assume success");
+            }
         }
         else
         {

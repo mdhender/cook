@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997-1999, 2001, 2005-2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1997-1999, 2001, 2005-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -667,11 +666,11 @@ ai_magic(archive_file_ty *afp)
         return -1;
     }
     afp->start = number(fh.fl_fstmoff, sizeof(fh.fl_fstmoff));
-    trace(("start = %08lX\n", afp->start));
+    trace(("start = %ld\n", afp->start));
     if (afp->start < 0)
         goto broken;
     afp->finish = number(fh.fl_lstmoff, sizeof(fh.fl_lstmoff));
-    trace(("finish = %08lX\n", afp->finish));
+    trace(("finish = %ld\n", afp->finish));
     if (afp->finish < 0)
         goto broken;
     trace(("return 0;\n"));
@@ -742,7 +741,7 @@ ai_advance(archive_file_ty *afp)
     if (afp->size < 0)
         goto broken;
     afp->next = number(h->ar_nxtmem, sizeof(h->ar_nxtmem));
-    trace(("afp->next = %08lX\n", afp->next));
+    trace(("afp->next = %ld\n", afp->next));
     if (afp->next < 0)
         goto broken;
     trace(("return 0;\n"));
@@ -1067,7 +1066,7 @@ archive_file_open(string_ty *path, int mode)
      * here for all exits
      */
     done:
-    trace(("return %08lX; /* errno = %s */\n", (long)afp, strerror(errno)));
+    trace(("return %p; /* errno = %s */\n", afp, strerror(errno)));
     trace(("}\n"));
     return afp;
 }
@@ -1078,7 +1077,7 @@ archive_file_close(archive_file_ty *afp)
 {
     int             err;
 
-    trace(("archive_file_close(afp = %08lX)\n{\n", (long)afp));
+    trace(("archive_file_close(afp = %p)\n{\n", afp));
     if (afp->method->close)
         afp->method->close(afp);
     if (afp->header)
@@ -1102,8 +1101,8 @@ archive_file_stat(archive_file_ty *afp, string_ty *member, struct stat *st)
     /*
      * walk each entry
      */
-    trace(("archive_file_stat(afp = %08lX, member = \"%s\")\n{\n",
-        (long)afp, member->str_text));
+    trace(("archive_file_stat(afp = %p, member = \"%s\")\n{\n", afp,
+        member->str_text));
     result = -1;
     afp->current = afp->start;
     for (;;)
@@ -1170,8 +1169,8 @@ archive_file_utime(archive_file_ty *afp, string_ty *member, struct utimbuf *utp)
      * the input file, adjust this forward 1 second, so that the
      * archive member looks "younger" than the input file.
      */
-    trace(("archive_file_utime(afp = %08lX, member = \"%s\")\n{\n",
-            (long)afp, member->str_text));
+    trace(("archive_file_utime(afp = %p, member = \"%s\")\n{\n", afp,
+        member->str_text));
     ut.modtime = utp->modtime - 1;
     ut.actime = utp->actime;
 
@@ -1236,8 +1235,8 @@ archive_file_fingerprint(archive_file_ty *afp, string_ty *member,
     /*
      * walk each entry
      */
-    trace(("archive_file_fngrprnt(afp = %08lX, member = \"%s\")\n{\n",
-        (long)afp, member->str_text));
+    trace(("archive_file_fngrprnt(afp = %p, member = \"%s\")\n{\n", afp,
+        member->str_text));
     result = -1;
     afp->current = afp->start;
     for (;;)

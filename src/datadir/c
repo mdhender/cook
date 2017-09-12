@@ -1,0 +1,124 @@
+/*
+ * NAME
+ *      c - the C compiler cookbook
+ *
+ * DESCRIPTION
+ *      This cookbook describes how to work with C files.
+ *      Include file dependencies are automatically determined.
+ *
+ * RECIPES
+ *      %.o: %.c        make object files form C source files
+ *      %.ln: %.c       make lint object files from C source files
+ *
+ * VARIABLES
+ *      c_incl          The C indude dependency sniffer command.
+ *                      Not altered if already defined.
+ *      cc              The C compiler command
+ *                      Not altered if already defined.
+ *      lint            The lint command.
+ *                      Not altered if already defined.
+ *      cc_flags        options to pass to the C compiler command
+ *                      Not altered if already defined.
+ *                      The default is "-O".
+ *      cc_include_flags Options passed to the C compiler and c_incl
+ *                      controlling include file searching.
+ *                      Not altered if already defined.
+ *                      The default is empty.
+ *      cc_src          C source files in the current directory.
+ *      dot_src         Source files constructable in the current directory
+ *                      (unioned with existing setting, if necessary).
+ *      dot_obj         Object files constructable in the current directory
+ *                      (unioned with existing setting, if necessary).
+ *      dot_clean       Files which may be removed from the current directory
+ *                      in a clean target.
+ *      dot_lint_obj    Lint object files constructable in the current directory
+ *                      (unioned with existing setting, if necessary).
+ *
+ * SEE ALSO
+ *      program         The program cookbook:
+ *         ld              The linker program
+ *         ld_flags        The linker flags, NOT libraries
+ *         ld_libraries    The linker flags (-L, -l) for libraries
+ * Copyright (C) 1997-2007, 2010 Peter Miller
+ */
+
+#pragma once
+
+if [not [defined c_incl]] then
+        c_incl = [find_command c_incl];
+if [not [defined cc]] then
+        cc = cc;
+if [not [defined cc_flags]] then
+        cc_flags = -O;
+if [not [defined cc_include_flags]] then
+        cc_include_flags = ;
+if [not [defined cc_link_flags]] then
+        cc_link_flags = ;
+if [not [defined lint]] then
+        lint = lint;
+cc_src = [glob "*.c" ];
+if [not [defined dot_src]] then
+        dot_src = ;
+dot_src = [stringset [dot_src] [cc_src] - [fromto %.c %.s [cc_src]]];
+if [not [defined dot_obj]] then
+        dot_obj = ;
+dot_obj = [stringset [dot_obj] [fromto %.c %.o [cc_src]]];
+if [not [defined dot_clean]] then
+        dot_clean = ;
+dot_clean =
+        [stringset
+                [dot_clean]
+                [fromto %.c %.o [cc_src]]
+                [fromto %.c %.ln [cc_src]]
+                [fromto %.c %.s [cc_src]]
+        ];
+if [not [defined dot_lint_obj]] then
+        dot_lint_obj = ;
+dot_lint_obj = [stringset [dot_lint_obj] [fromto %.c %.ln [cc_src]]];
+
+%.o: %.c
+{
+        [cc] [cc_include_flags] [cc_flags]
+                [addprefix "-I" [search_list]]
+                -c [resolve %.c];
+}
+
+%.ln: %.c
+{
+        [lint] [cc_include_flags] [cc_flags]
+                [addprefix "-I" [search_list]]
+                -c [resolve %.c];
+}
+
+/*
+ * if the c_incl command is available, then check dependencies
+ */
+#if [c_incl]
+
+%.c.d: %.c
+{
+        [c_incl] -nc -ns -nrec
+                [cc_include_flags]
+                [resolve %.c]
+                [addprefix "-I" [search_list]]
+                -prefix "'cascade %.c ='"
+                -suffix "';'"
+                [addprefix "-rlp=" [split ":" [search_list]]]
+                -o [target];
+}
+
+%.h.d: %.h
+{
+        [c_incl] -nc -ns -nrec
+                [cc_include_flags]
+                [resolve %.h]
+                [addprefix "-I" [search_list]]
+                -prefix "'cascade %.h ='"
+                -suffix "';'"
+                [addprefix "-rlp=" [split ":" [search_list]]]
+                -o [target];
+}
+
+cc_dep_files = [addsuffix ".d" [cc_src] [glob "*.h"]];
+#include-cooked [cc_dep_files]
+#endif

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1998, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1998, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -120,12 +119,13 @@ yyerror(char *s)
  */
 #define fprintf trace_where_, yydebugger
 
-void
+static void
 yydebugger(void *junk, char *fmt, ...)
 {
     va_list         ap;
     string_ty       *s;
 
+    (void)junk;
     va_start(ap, fmt);
     s = str_vformat(fmt, ap);
     va_end(ap);

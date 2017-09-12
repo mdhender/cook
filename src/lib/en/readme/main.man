@@ -1,7 +1,6 @@
 '\" t
 .\"     cook - a file construction tool
-.\"     Copyright (C) 1992-1995, 1997-1999, 2007 Peter Miller;
-.\"     All rights reserved.
+.\"     Copyright (C) 1992-1995, 1997-1999, 2007-2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -178,9 +177,8 @@ is available on the Web from:
 tab(;);
 l l s
 l l l.
-URL:;http://www.canb.auug.org.au/~millerp/cook/
+URL:;http://miller.emu.id.au/pmiller/cook/
 File:;cook-\*(v).README;# the README from the tar file
-File:;cook-\*(v).lsm;# LSM format description
 File:;cook-\*(v).spec;# RedHat package specification
 .\" File:;cook-\*(v).patch.gz;# patch to take \*(w) to \*(v)
 File:;cook-\*(v).rm.ps.gz;# PostScript of the Reference Manual
@@ -191,62 +189,18 @@ File:;cook-\*(v).tar.gz;# the complete source
 .PP
 This Web page also contains a few other pieces of software written by me.
 Please have a look if you are interested.
-.PP
-Cook is also carried by \f(CWsunsite.unc.edu\fP in its Linux archives.
-You will be able to find Cook on any of its mirrors.
-.RS 4m
-.TS
-tab(;);
-l l s
-l l l.
-URL:;ftp://sunsite.unc.edu/pub/Linux/devel/make/
-File:;cook-\*(v).README;# the README from the tar file
-File:;cook-\*(v).lsm;# LSM format description
-File:;cook-\*(v).spec;# RedHat package specification
-.\" File:;cook-\*(v).patch.gz;# patch to take \*(w) to \*(v)
-File:;cook-\*(v).rm.ps.gz;# PostScript of the Reference Manual
-File:;cook-\*(v).ug.ps.gz;# PostScript of the User Guide
-File:;cook-\*(v).tar.gz;# the complete source
-.TE
-.RE
-This site is extensively mirrored around the world,
-so look for a copy near you (you will get much better response).
-.\" .SS FTP by EMail
-.\" For those of you without Web or FTP access,
-.\" I recommend the use of an ftp-by-email server.
-.\" Here is a list of a few (there may be more):
-.\" .TS
-.\" center,tab(;);
-.\" l l.
-.\" ftpmail@cs.uow.edu.au;Australia
-.\" ftpmail@ftp.uni-stuttgart.de;Germany
-.\" ftpmail@grasp.insa-lyon.fr;France
-.\" ftpmail@doc.ic.ac.uk;Great Britain
-.\" ftpmail@ieunet.ie;Ireland
-.\" ftpmail@sunsite.unc.edu;USA
-.\" ftpmail@ftp.uu.net;USA
-.\" .TE
-.\" .PP
-.\" In general, you can get a help message about how to use each system
-.\" by sending email with a subject of "help"
-.\" and a message body containing just the word "help".
 .br
 .ne 2i
 .SH MAILING LIST
-A mailing list has been created so that users of
-.I cook
-may exchange ideas about how to use the
-.I cook
-program.
-Discussion may include,
-but is not limited to:
-bugs, enhancements, and applications.
-The list is not moderated.
+A mailing list has been created so that users of \f[I]cook\fP
+may exchange ideas about how to use the \f[I]cook\fP program.
+Discussion may include, but is not limited to: bugs, enhancements, and
+applications.  The list is not moderated.
 .PP
 The address of the mailing list is
 .RS
 .ft CW
-cook-users@canb.auug.org.au
+cook-users@lists.auug.org.au
 .ft R
 .RE
 Please
@@ -254,24 +208,10 @@ Please
 .if n DO NOT
 send subscribe requests to this address.
 .PP
-To subscribe to this mailing list,
-send an email message to \f(CWmajordomo@canb.auug.org.au\fP with
-a message body containing the single line
-.RS
-.ft CW
-subscribe cook-users
-.ft R
-.RE
-If you have an email address which is not readily derived from
-your mail headers (majordomo is only a Perl program, after all)
-you will need to use a message of the form:
-.RS
-.ft CW
-subscribe cook-users \fIaddress\fP
-.ft R
-.RE
-where \fIaddress\fP is the email address to which
-you want messages sent.
+To subscribe to this mailing list, visit the cook-users mailing list
+page, and go through the \f[B]subscribe\fP dialogue.
+.br
+\f[CW]http://lists.auug.org.au/listinfo/cook-users\fP,
 .PP
 The software which handles this mailing list
 .if n CANNOT
@@ -297,9 +237,8 @@ Copyright
 .nr d) \n(.d
 .if t \(co
 .if n (C)
-\*(Y) Peter Miller;
+\*(Y) Peter Miller
 .if '\n(d)'\n(.d' .br
-All rights reserved.
 .PP
 This program is free software;
 you can redistribute it
@@ -327,8 +266,8 @@ file included with this distribution.
 .TS
 tab(;);
 l l l.
-Peter Miller;E-Mail:;millerp@canb.auug.org.au
-\f(CW/\e/\e*\fP;WWW:;http://www.canb.auug.org.au/~millerp/
+Peter Miller;E-Mail:;pmiller@opensource.org.au
+\f(CW/\e/\e*\fP;WWW:;http://miller.emu.id.au/pmiller/
 .TE
 .br
 .bp
@@ -338,4 +277,4 @@ A number of features have been added to \fIcook\fP with this release.
 The following list is only a summary; for excruciating detail, and also
 acknowledgements of those who generously sent me feedback, please see
 the \fIetc/CHANGES.*\fP files included in this distribution.
-.so new.so
+.so lib/en/readme/new.so

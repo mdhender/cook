@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1993-1995, 1997-1999, 2001, 2003, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1993-1995, 1997-1999, 2001, 2003, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -113,7 +112,7 @@ parse(string_ty *filename)
 {
     int yyparse(void); /* forward */
 
-    trace(("parse(filename = %08lX)\n{\n", filename));
+    trace(("parse(filename = %p)\n{\n", filename));
     trace_string(filename->str_text);
     lex_open(filename, filename);
 #if YYDEBUG

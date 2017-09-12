@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997, 1998, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997, 1998, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -57,7 +56,7 @@ destructor(stmt_ty *sp)
 {
     stmt_loop_ty    *this;
 
-    trace(("stmt_loop::destructor(sp = %08X)\n{\n", sp));
+    trace(("stmt_loop::destructor(sp = %p)\n{\n", sp));
     assert(sp);
     /* assert(sp->method == &method); */
     this = (stmt_loop_ty *) sp;
@@ -90,7 +89,7 @@ code_generate(stmt_ty *sp, opcode_list_ty *olp)
     opcode_label_ty *continue_hold;
     opcode_label_ty *break_hold;
 
-    trace(("stmt_loop::code_generate(sp = %08X)\n{\n", sp));
+    trace(("stmt_loop::code_generate(sp = %p)\n{\n", sp));
     assert(sp);
     this = (stmt_loop_ty *)sp;
     assert(this->body);
@@ -163,12 +162,12 @@ stmt_loop_new(stmt_ty *body)
     stmt_ty         *sp;
     stmt_loop_ty    *this;
 
-    trace(("stmt_loop_new(body = %08lX)\n{\n", (long)body));
+    trace(("stmt_loop_new(body = %p)\n{\n", body));
     sp = stmt_private_new(&method);
     this = (stmt_loop_ty *)sp;
     this->body = stmt_copy(body);
     assert(this->body);
-    trace(("return %8.8lX;\n", (long)sp));
+    trace(("return %p;\n", sp));
     trace(("}\n"));
     return sp;
 }
@@ -203,7 +202,7 @@ loopstop_destructor(stmt_ty *sp)
 {
     stmt_loopstop_ty *this;
 
-    trace(("stmt_loopstop::destructor(sp = %08X)\n{\n", sp));
+    trace(("stmt_loopstop::destructor(sp = %p)\n{\n", sp));
     assert(sp);
     /* assert(sp->method == &loopstop_method); */
     this = (stmt_loopstop_ty *)sp;
@@ -233,7 +232,7 @@ loopstop_code_generate(stmt_ty *sp, opcode_list_ty *olp)
     stmt_loopstop_ty *this;
     stmt_result_ty  status;
 
-    trace(("stmt_loopstop::code_generate(sp = %08X)\n{\n", sp));
+    trace(("stmt_loopstop::code_generate(sp = %p)\n{\n", sp));
     assert(sp);
     this = (stmt_loopstop_ty *)sp;
     status = STMT_OK;
@@ -306,7 +305,7 @@ stmt_loopstop_new(expr_position_ty *pp)
     sp = stmt_private_new(&loopstop_method);
     this = (stmt_loopstop_ty *)sp;
     expr_position_copy_constructor(&this->pos, pp);
-    trace(("return %8.8lX;\n", (long)sp));
+    trace(("return %p;\n", sp));
     trace(("}\n"));
     return sp;
 }

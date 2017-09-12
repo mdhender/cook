@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1997-1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1997-1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -51,14 +50,7 @@ static int      desist_flag;
 static RETSIGTYPE
 interrupt(int n)
 {
-    sub_context_ty  *scp;
-
-    star_eoln();
-    desist_flag++;
-    scp = sub_context_new();
-    sub_var_set(scp, "Name", "%s", safe_strsignal(n));
-    error_intl(scp, i18n("interrupted by $name"));
-    sub_context_delete(scp);
+    desist_flag = n;
     signal(n, interrupt);
 }
 
@@ -80,9 +72,19 @@ desist_requested(void)
 {
     int             result;
 
-    result = (desist_flag != 0);
+    result = desist_flag;
     desist_flag = 0;
-    return result;
+    if (result != 0)
+    {
+        sub_context_ty  *scp;
+
+        star_eoln();
+        scp = sub_context_new();
+        sub_var_set(scp, "Name", "%s", safe_strsignal(result));
+        error_intl(scp, i18n("interrupted by $name"));
+        sub_context_delete(scp);
+    }
+    return (result != 0);
 }
 
 

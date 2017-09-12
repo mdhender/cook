@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997, 1998, 2001, 2002, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1994, 1997, 1998, 2001, 2002, 2006-2010 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -27,7 +26,7 @@
 #include <common/trace.h>
 #include <make2cook/vargram.h>
 #include <make2cook/variable.h>
-#include <make2cook/vargram.gen.h>      /* must be last */
+#include <make2cook/vargram.yacc.h>      /* must be last */
 
 
 static blob_ty *source;
@@ -487,8 +486,7 @@ variable_rename(blob_ty *in, blob_list_ty *out, string_list_ty *ref, int flags)
 {
     size_t          j;
 
-    trace(("variable_rename(in = %08lX, out = %08lX, ref = %08lX)\n{\n",
-            (long)in, (long)out, (long)ref));
+    trace(("variable_rename(in = %p, out = %p, ref = %p)\n{\n", in, out, ref));
     trace_string(in->text->str_text);
     init();
     source = in;
@@ -654,6 +652,7 @@ vargram_trace2(void *garbage, char *s, ...)
     char            *cp;
     static char     line[1024];
 
+    (void)garbage;
     va_start(ap, s);
     buffer = str_vformat(s, ap);
     va_end(ap);

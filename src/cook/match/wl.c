@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1999, 2001, 2006, 2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1999, 2001, 2006-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -54,9 +53,8 @@ match_wl_attempt(match_ty *mp, string_list_ty *formal, string_ty *actual,
     size_t          j;
     int             result;
 
-    trace(("match_wl_attempt(mp = %08lX, formal = %08lX, actual = \"%s\", "
-        "pp = %08lX)\n{\n", (long)mp, (long)formal, actual->str_text,
-        (long)pp));
+    trace(("match_wl_attempt(mp = %p, formal = %p, actual = \"%s\", pp = %p)\n"
+        "{\n", mp, formal, actual->str_text, pp));
     result = 0;
     for (j = 0; j < formal->nstrings; j++)
     {

@@ -1,7 +1,6 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1991, 1993, 1994, 1997, 2001, 2005-2007 Peter Miller;
- *      All rights reserved.
+ *      Copyright (C) 1991, 1993, 1994, 1997, 2001, 2005-2009 Peter Miller
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -309,7 +308,7 @@ fstrcmp(const char *s1, const char *s2)
     long            line1;      /* current line in file A */
     long            line2;      /* current line in file B */
 
-    trace(("fstrcmp(s1 = %08lX, s2 = %08lX)\n{\n", s1, s2));
+    trace(("fstrcmp(s1 = %p, s2 = %p)\n{\n", s1, s2));
     trace(("s1 = \"%s\";\n", s1));
     trace(("s2 = \"%s\";\n", s2));
     fc.fileA.f_lines = s1;
@@ -372,7 +371,8 @@ fstrcmp(const char *s1, const char *s2)
     for (sp = snake_table; sp < nextsnake; sp++)
     {
         trace(("%d: line1 = %ld; line2 = %ld; count = %ld;\n",
-            sp - snake_table, sp->line1, sp->line2, sp->count));
+            (int)(sp - snake_table), (long)sp->line1, (long)sp->line2,
+            (long)sp->count));
     }
 #endif
 
