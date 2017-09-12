@@ -1,0 +1,84 @@
+# ignore
+IGNOREME.md
+archives/
+
+# autogen from configure
+Makefile
+common/config.h
+config.log
+config.status
+etc/libdir-h
+
+# compilation artifacts
+.bin
+bin/
+common/sub/expr_gram.yacc.c
+common/sub/expr_gram.yacc.h
+cook/builtin/expr_parse.yacc.c
+cook/builtin/expr_parse.yacc.h
+cook/fingerprint/gram.yacc.c
+cook/fingerprint/gram.yacc.h
+cook/hashline.yacc.c
+cook/hashline.yacc.h
+cook/parse.yacc.c
+cook/parse.yacc.h
+cooktime/date.yacc.c
+cooktime/date.yacc.h
+make2cook/gram.yacc.c
+make2cook/gram.yacc.h
+make2cook/vargram.yacc.c
+make2cook/vargram.yacc.h
+script/cook_rsh
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf

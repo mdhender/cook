@@ -77,12 +77,12 @@ ARCHIVE	SITE
        The latest version of cook is available on the Web from:
 
 	   URL:	   http://www.canb.auug.org.au/~millerp/cook/
-	   File:   cook-2.26.README	# the README from the tar file
-	   File:   cook-2.26.lsm	# LSM format description
-	   File:   cook-2.26.spec	# RedHat package specification
-	   File:   cook-2.26.rm.ps.gz	# PostScript of	the Reference Manual
-	   File:   cook-2.26.ug.ps.gz	# PostScript of	the User Guide
-	   File:   cook-2.26.tar.gz	# the complete source
+	   File:   cook-2.27.README	# the README from the tar file
+	   File:   cook-2.27.lsm	# LSM format description
+	   File:   cook-2.27.spec	# RedHat package specification
+	   File:   cook-2.27.rm.ps.gz	# PostScript of	the Reference Manual
+	   File:   cook-2.27.ug.ps.gz	# PostScript of	the User Guide
+	   File:   cook-2.27.tar.gz	# the complete source
 
        This Web	page also contains a few other pieces of software written by
        me.  Please have	a look if you are interested.
@@ -91,12 +91,12 @@ ARCHIVE	SITE
        will be able to find Cook on any	of its mirrors.
 
 	   URL:	   ftp://sunsite.unc.edu/pub/Linux/devel/make/
-	   File:   cook-2.26.README	# the README from the tar file
-	   File:   cook-2.26.lsm	# LSM format description
-	   File:   cook-2.26.spec	# RedHat package specification
-	   File:   cook-2.26.rm.ps.gz	# PostScript of	the Reference Manual
-	   File:   cook-2.26.ug.ps.gz	# PostScript of	the User Guide
-	   File:   cook-2.26.tar.gz	# the complete source
+	   File:   cook-2.27.README	# the README from the tar file
+	   File:   cook-2.27.lsm	# LSM format description
+	   File:   cook-2.27.spec	# RedHat package specification
+	   File:   cook-2.27.rm.ps.gz	# PostScript of	the Reference Manual
+	   File:   cook-2.27.ug.ps.gz	# PostScript of	the User Guide
+	   File:   cook-2.27.tar.gz	# the complete source
        This site is extensively	mirrored around	the world, so look for a copy
        near you	(you will get much better response).
 
@@ -128,9 +128,9 @@ BUILDING COOK
        BUILDING	file included in this distribution.
 
 COPYRIGHT
-       cook version 2.26
+       cook version 2.27
        Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996,
-       1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Peter
+       1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007	Peter
        Miller; All rights reserved.
 
        This program is free software; you can redistribute it and/or modify it
@@ -159,6 +159,21 @@ NEW IN THIS RELEASE
        acknowlegements of those	who generously sent me feedback, please	see
        the etc/CHANGES.* files included	in this	distribution.
 
+   Version 2.27	(2007-Mar-13)
+       * An ANSI C compiler is now required to build Cook.
+
+       * A bug has been	fixed in the cook_bom command's	-prefix	and -suffix
+       options.
+
+       * The fingerprint code is now more robust when faced with file
+       modification time trickery by users.
+
+       * A few things have been	improved for using Cook	on Cygwin.
+
+       * The c_incl -r option now understands .PSPIC directives, as well as
+       .so directives.
+
+   Version 2.26	(2006-Jan-17)
        * A number of build problems have been fixed.
 
        * A bug has been	fixed in the tell-position flag. It wasn't actually
@@ -186,7 +201,7 @@ NEW IN THIS RELEASE
        executed, but instead constructed a command of a	different shape	than
        the user	expected.
 
-   Version 2.25	(10-Jun-2004)
+   Version 2.25	(2004-Jun-10)
        * The ./configure script	now understands	the --with-nlsdir option, used
        to specify the install location of the .mo files.
 
@@ -209,7 +224,7 @@ NEW IN THIS RELEASE
        * A bug has been	fixed in the output line wrapping.  Once again it
        adapts to the window width.
 
-   Version 2.24	(17-Jul-2003)
+   Version 2.24	(2003-Jul-17)
        * A major problem with parallel execution and hangs has been fixed.
        The table indexed by process ID was now growing correctly.
 
@@ -223,7 +238,7 @@ NEW IN THIS RELEASE
 
        * Building on AIX has been improved.
 
-   Version 2.23	(1-May-2003)
+   Version 2.23	(2003-May-01)
        * Build problem encountered using newer bersions	of GNU Bison mave been
        fixed.
 
@@ -231,7 +246,7 @@ NEW IN THIS RELEASE
 
        * An error in the documentation of the errok flag has been fixed.
 
-   Version 2.22	(28-Feb-2003)
+   Version 2.22	(2003-Feb-28)
        * A small problem with fingerprints has been fixed.
 
        * A tutorial has	been contributed.
@@ -245,7 +260,7 @@ NEW IN THIS RELEASE
        * The [read] and	[read_lines] builtin functions have been added.	 See
        the Reference Manual for	more information.
 
-   Version 2.21	(26-Aug-2002)
+   Version 2.21	(2002-Aug-26)
        * The c_incl(1) command now accepts the -stripdot and -nostripdot
        options.	 These may be used to control the removal of redundant leading
        dot directories.
@@ -260,7 +275,7 @@ NEW IN THIS RELEASE
        build graphs were called.  This fixed a problem with freeing a string
        which had already been freed.
 
-   Version 2.20	(6-Jun-2002)
+   Version 2.20	(2002-Jun-06)
        * There is a fix	for the	build problems caused by recent	GNU Gettext
        releases.
 
@@ -270,7 +285,7 @@ NEW IN THIS RELEASE
        * There is a fix	for the	build problems caused by recent	Bison
        releases.
 
-   Version 2.19	(19-Feb-2002)
+   Version 2.19	(2002-Feb-19)
        * Some introduced with recent versions of GNU Bison have	been fixed.
        Bison's include file insulation didn't use YY in	the insulating symbol
        (just to	be completely inconsistent) and	in another case	a namespace
@@ -286,7 +301,7 @@ NEW IN THIS RELEASE
        * Documentation about cook_rsh(1) has been added	to the Parallel
        chapter of the User Guide.
 
-   Version 2.18	(15-Oct-2001)
+   Version 2.18	(2001-Oct-15)
        * A bug has been	fixed in the ingredients-fingerprint recipe attribute.
        It was failing to save the fingerprint cache file in some cases,	and
        thus came to incorrect conclusions on following runs.
@@ -303,7 +318,7 @@ NEW IN THIS RELEASE
 
        * More keywords are now understood for M4 include directives.
 
-   Version 2.17	(25-Apr-2001)
+   Version 2.17	(2001-Apr-25)
        * When using file fingerprints, the way the .cook.fp file is written
        has been	changed, so that the timestamp of the containing directory is
        modified	much less often.  This is useul	in combination with the
@@ -327,7 +342,7 @@ NEW IN THIS RELEASE
        edge type is useful for managing	version	stamps.	 See the User Guide
        for more	information.
 
-   Version 2.16	(25-Oct-2000)
+   Version 2.16	(2000-Oct-25)
        * The stringset function	now accepts a `+' operator.  While union is
        implicit, the apparrently redundant `+' operator	is useful for
        cancelling the other operators.
@@ -349,13 +364,13 @@ NEW IN THIS RELEASE
        * A bug in the ``c'' cookbook has been fixed, which was getting .h
        dependency files	wrong.
 
-   Version 2.15	(11-Apr-2000)
+   Version 2.15	(2000-Apr-11)
        * The C_incl(1) problem with absolute paths has been fixed.
 
        * A bug has been	fixed which caused problems on Solaris and SGI,	where
        Cook would report a No child processes error.
 
-   Version 2.12	(28-Mar-2000)
+   Version 2.12	(2000-Mar-28)
        * The c_incl program now	has a -quote-filenames option, which means
        that you	can have filenames with	spaces and special characters in them.
 
@@ -374,7 +389,7 @@ NEW IN THIS RELEASE
        * Cook now copes	with the absence of the	HOME environment variable.
        This was	a problem for CGI scripts.
 
-   Version 2.11	(4-Nov-1999)
+   Version 2.11	(1999-Nov-04)
        * Numerous portability problems have been fixed in the configure	and
        build.
 
@@ -392,7 +407,7 @@ NEW IN THIS RELEASE
        left-hand-side of the first assignment.	Local variables	are reentrant
        and thread-safe.
 
-   Version 2.10	(6-Sep-1999)
+   Version 2.10	(1999-Sep-06)
        * The [print] and [write] functions now work more sensably with the
        -SCript option.
 
@@ -436,7 +451,7 @@ NEW IN THIS RELEASE
 
        * Cook now works	with GNU Regex correctly on Windows-NT.
 
-   Version 2.9 (27-May-1999)
+   Version 2.9 (1999-May-27)
        * There is a new	``for each'' style looping construct.  See the User
        Guide for more information.
 
@@ -474,7 +489,7 @@ NEW IN THIS RELEASE
        * There is a new	[write]	function for writing text files.  This is
        useful for coping with Windows-NT's absurdly short command lines.
 
-   Version 2.8 (1-Feb-1999)
+   Version 2.8 (1999-Feb-01)
        * The remote host-binding code has been improved	to cope	with
        staggeringly long commands (which tended	to make	rsh(1) barf), and also
        wierd and wonderfull $SHELL settings.
@@ -491,7 +506,7 @@ NEW IN THIS RELEASE
        [cando] and [uptodate] functions.  See the Cook User Guide for more
        information.
 
-   Version 2.7 (30-Dec-1998)
+   Version 2.7 (1998-Dec-30)
        * There is a new	cook_bom(1) command (Bill Of Materials).  This may be
        used to efficiently scan	a directory tree for files, so that
        ingredients lists may be	produced automatically.	 See cook_bom(1) for
@@ -522,7 +537,7 @@ NEW IN THIS RELEASE
        existing	dirname	function, but it returns ``.'' for files with no
        directory part, rather than the absolute	path of	the current directory.
 
-   Version 2.6 (0-Nov-1998)
+   Version 2.6 (1998-Nov-09)
        * Cook has been ported to Windows-NT using CygWin32.  See the BUILDING
        file for	details.
 
@@ -543,7 +558,7 @@ NEW IN THIS RELEASE
        * A bug has been	fixed in cooktime.  It would use an inappropriate
        timezone	offset on some systems.
 
-   Release 2.5 (2-Sep-1998)
+   Release 2.5 (1998-Sep-02)
        * A problem which caused	some tests to fail on Solaris' tmpfs now has a
        work-around.
 
@@ -553,7 +568,7 @@ NEW IN THIS RELEASE
 
        * A number of build problems on various systems have been fixed.
 
-   Release 2.4 (21-Jul-1998)
+   Release 2.4 (1998-Jul-21)
        * There is a new	form of	dependencies.  Known as	cascaded dependencies,
        they allow the user to associate	additional dependencies	with an
        ingredient.  For	example, a C source file can be	associated with
@@ -575,7 +590,7 @@ NEW IN THIS RELEASE
        for the existence of symlinks.  The [exists] function follows symbolic
        links, and is not useful	when manipulating the links themselves.
 
-   Release 2.3 (20-May-1998)
+   Release 2.3 (1998-May-20)
        * There are 6 new special variables: graph_leaf_file,
        graph_leaf_pattern, graph_interior_file,	graph_interior_pattern,
        graph_exterior_file and graph_exterior_pattern.	These variables	may be
@@ -589,7 +604,7 @@ NEW IN THIS RELEASE
        * The %0	pattern	element	has been extended to permit the	matching of
        absolute	paths.
 
-   Release 2.2.2 (10-Dec-1997)
+   Release 2.2.2 (1997-Dec-10)
        * There is a new	statement type,	allowing functions to be invoked as
        subroutines in any place	where a	command	may be invoked.	 See the User
        Guide for more information.
@@ -608,12 +623,12 @@ NEW IN THIS RELEASE
        LANG nor	LANGUAGE environment variable was set.	This gives better
        error messages.
 
-   Release 2.2.1 (04-Nov-1997)
+   Release 2.2.1 (1997-Nov-04)
        * A bug was fixed where a recipe	would fail to trigger if some, but not
        all, of its targets were	not present, but the existing targets were up-
        to-date.	 This bug was introduced in the	inference engine re-write.
 
-   Release 2.2 (31-Oct-1997)
+   Release 2.2 (1997-Oct-31)
        * The c_incl utility has	had two	new languages added.  It now
        understands M4, and also	has an ``optimistic'' language which can scan
        many assemblers and even	some high-level	languages.  See	c_incl(1) for
@@ -639,7 +654,7 @@ NEW IN THIS RELEASE
        * This release fixes a bug where	make2cook did not correctly translate
        ``%'' into sematicly equivalent Cook constructs.
 
-   Release 2.1 (12-Oct-1997)
+   Release 2.1 (1997-Oct-12)
        * It is possible	to specify that	a command is to	be executed on a
        specific	machine	or machines.  This can be useful for restrictively
        licensed	third party software tools.
@@ -666,7 +681,7 @@ NEW IN THIS RELEASE
        * An install problem in the generated Makefile, to do with the the
        manuals,	has been fixed.
 
-   Release 2.0 (11-Sep1997)
+   Release 2.0 (1997-Sep-11)
    Version 2.26	(17-Jan-2005)
        Development of this release was generously supported by Endocardial
        Solutions, Inc.
@@ -710,7 +725,7 @@ NEW IN THIS RELEASE
        detail: + means that the	cook book is being read, * means that the
        graph is	being constructed, and # means that the	graph is being walked.
 
-   Release 1.11	(14-Jun-1977)
+   Release 1.11	(1997-Jun-14)
        * Fixed a bug in	the pattern matching which caused %0 (when not at the
        start of	the pattern) to	fail to	match the empty	string.
 
