@@ -1,38 +1,36 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1994, 1995, 1997 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1994, 1995, 1997, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manipulate version-stmps
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
-#include <patchlevel.h>
-#include <version-stmp.h>
+#include <common/patchlevel.h>
+#include <common/version-stmp.h>
 
 
 char *
-version_stamp()
+version_stamp(void)
 {
-	return PATCHLEVEL;
+        return PATCHLEVEL;
 }
 
 
 char *
-copyright_years()
+copyright_years(void)
 {
-	return COPYRIGHT_YEARS;
+        return COPYRIGHT_YEARS;
 }

@@ -1,23 +1,21 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1997-1999, 2002 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1997-1999, 2002, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: insulate against <wchar.h> presence or absence
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
 #ifndef COMMON_AC_WCHAR_H
@@ -26,34 +24,34 @@
 /*
  * From the ``believe it or not'' category: The Dec Alpha OSF/1
  * <wchar.h> includes <time.h>, but we need to make sure our own
- * <ac/time.h> is invoked first.
+ * <common/ac/time.h> is invoked first.
  */
 #ifdef __alpha___
-#include <ac/time.h>
+#include <common/ac/time.h>
 #endif
 
 /*
  * Cygwin's wchar.h has a missing size_t dependency, so include that first.
  */
-#include <ac/stddef.h>
+#include <common/ac/stddef.h>
 
 #ifdef HAVE_WCHAR_H
 #include <wchar.h>
 #else
 
-#include <ac/stddef.h>
-#include <main.h>
+#include <common/ac/stddef.h>
+#include <common/main.h>
 typedef int mbstate_t;
 #ifndef WEOF
 #define WEOF (wchar_t)(-1);
 #endif
-int mbsinit _((const mbstate_t *));
-size_t wcslen _((const wchar_t *));
-size_t mbrlen _((const char *, size_t, mbstate_t *));
-size_t mbrtowc _((wchar_t *, const char *, size_t, mbstate_t *));
-size_t wcrtomb _((char *, wchar_t, mbstate_t *));
-size_t mbsrtowcs _((wchar_t *, const char **, size_t, mbstate_t *));
-size_t wcsrtombs _((char *, const wchar_t **, size_t, mbstate_t *));
+int mbsinit(const mbstate_t *);
+size_t wcslen(const wchar_t *);
+size_t mbrlen(const char *, size_t, mbstate_t *);
+size_t mbrtowc(wchar_t *, const char *, size_t, mbstate_t *);
+size_t wcrtomb(char *, wchar_t, mbstate_t *);
+size_t mbsrtowcs(wchar_t *, const char **, size_t, mbstate_t *);
+size_t wcsrtombs(char *, const wchar_t **, size_t, mbstate_t *);
 
 #endif
 

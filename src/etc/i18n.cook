@@ -1,41 +1,39 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 2002 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 2002, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: etc/i18n.cook
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
 all,I =
-	[fromto %0%.y %0%.gen.c,I [match_mask %0%.y [source_files]]]
-	[fromto %0%.c %0%.c,I [match_mask %0%.c [source_files]]]
-	;
+        [fromto %0%.y %0%.gen.c,I [match_mask %0%.y [source_files]]]
+        [fromto %0%.c %0%.c,I [match_mask %0%.c [source_files]]]
+        ;
 
 common,I =
-	[fromto
-		common/%0%.c
-		common/%0%.c,I
-		[match_mask common/%0%.c [source_files]]
-	]
-	[fromto
-		common/%0%.y
-		common/%0%.gen.c,I
-		[match_mask common/%0%.y [source_files]]
-	];
+        [fromto
+                common/%0%.c
+                common/%0%.c,I
+                [match_mask common/%0%.c [source_files]]
+        ]
+        [fromto
+                common/%0%.y
+                common/%0%.gen.c,I
+                [match_mask common/%0%.y [source_files]]
+        ];
 
 /*
  * Translate the locatization files into their binary form.  This will
@@ -44,36 +42,36 @@ common,I =
  */
 
 internationalization:
-	lib/common.ok
-	[fromto lib/%0%.po [arch]/lib/%0%.mo
-		[match_mask lib/%0%.po [source_files]]
-	]
-	[fromto lib/%0%.po lib/%0%.merge
-		[match_mask lib/%0%.po [source_files]]
-	]
-	LICENSE
-	;
+        lib/common.ok
+        [fromto lib/%0%.po [arch]/lib/%0%.mo
+                [match_mask lib/%0%.po [source_files]]
+        ]
+        [fromto lib/%0%.po lib/%0%.merge
+                [match_mask lib/%0%.po [source_files]]
+        ]
+        LICENSE
+        ;
 
 lib/common.ok: lib/common.pot etc/zer-len-msg.sh
 {
-	sh [resolve etc/zer-len-msg.sh lib/common.pot];
-	touch [target];
+        sh [resolve etc/zer-len-msg.sh lib/common.pot];
+        touch [target];
 }
 
 msgcomm = msgcomm;
 
 lib/common.pot: [prepost "lib/" ".po" [commands]]
 {
-	[msgcomm]
-		--force-po
-		--omit-header
-		--sort-output
-		--add-location
-		--indent
-		--width\=75
-		-o [target]
-		[prepost "--dir=" "" [search_list]]
-		[need];
+        [msgcomm]
+                --force-po
+                --omit-header
+                --sort-output
+                --add-location
+                --indent
+                --width\=75
+                -o [target]
+                [prepost "--dir=" "" [search_list]]
+                [need];
 }
 
 
@@ -81,39 +79,44 @@ msgmerge = msgmerge;
 
 lib/%0%.merge: lib/%0%.po lib/%.po
 {
-	[msgmerge]
-		--indent
-		--sort-output
-		--width\=75
-		-v -v
-		--no-location
-		--force-po
-		-o [target]
-		[resolve lib/%0%.po lib/%.po]
-		;
+        [msgmerge]
+                --indent
+                --sort-output
+                --width\=75
+                -v -v
+                --no-location
+                --force-po
+                -o [target]
+                [resolve lib/%0%.po lib/%.po]
+                ;
 
-	/*
-	 * There should be no differences.
-	 * If there are, this next command will show them.
-	 */
-	diff -c [resolve lib/%0%.po] [target];
+        /*
+         * There should be no differences.
+         * If there are, this next command will show them.
+         */
+        diff -b -u [resolve lib/%0%.po] [target];
+
+        /*
+         * we only need the timestamp
+         */
+        > [target];
 }
 
 
 [arch]/lib/%0%.mo: lib/%0%.po: lib/%0common.po
-	etc/msgfmt.sh
-	set ['if' [not [defined baseline]] 'then' shallow]
+        etc/msgfmt.sh
+        set ['if' [not [defined baseline]] 'then' shallow]
 {
-	/*
-	 * This only works for GNU gettext (and Solaris).
-	 * The SunOS msgfmt program does not grok the -o option.
-	 */
-	sh [resolve etc/msgfmt.sh]
-		--msgfmt\=[msgfmt]
-		--msgcat\=[msgcat]
-		--output\=[target]
-		[resolve lib/%0%.po lib/%0common.po]
-		;
+        /*
+         * This only works for GNU gettext (and Solaris).
+         * The SunOS msgfmt program does not grok the -o option.
+         */
+        sh [resolve etc/msgfmt.sh]
+                --msgfmt\=[msgfmt]
+                --msgcat\=[msgcat]
+                --output\=[target]
+                [resolve lib/%0%.po lib/%0common.po]
+                ;
 }
 
 
@@ -126,66 +129,66 @@ xgettext = xgettext;
 
 lib/common.po: [all,I] [prepost "lib/en/LC_MESSAGES/" ".po" [commands]]
 {
-	/*
-	 * The author only speaks English, so the master translation is
-	 * "en", hence lib/en/LC_MESSAGES/....po are the files intended.
-	 */
-	[xgettext]
-		--sort-output
-		--indent
-		--omit-header
-		--add-location
-		--force-po
-		--width\=75
-		-o [target]
-		[prepost "--dir=" "" [search_list]]
-		[prepost "--exclude-file=lib/en/LC_MESSAGES/" ".po" [commands]]
-		--language\=PO
-		[all,I];
+        /*
+         * The author only speaks English, so the master translation is
+         * "en", hence lib/en/LC_MESSAGES/....po are the files intended.
+         */
+        [xgettext]
+                --sort-output
+                --indent
+                --omit-header
+                --add-location
+                --force-po
+                --width\=75
+                -o [target]
+                [prepost "--dir=" "" [search_list]]
+                [prepost "--exclude-file=lib/en/LC_MESSAGES/" ".po" [commands]]
+                --language\=PO
+                [all,I];
 }
 
 lib/%.po: [%,I]: lib/en/LC_MESSAGES/common.po
 {
-	/*
-	 * The author only speaks English, so the master translation is
-	 * "en", hence lib/en/LC_MESSAGES/common.po is the file
-	 * intended.
-	 */
-	[xgettext]
-		--sort-output
-		--indent
-		--omit-header
-		--add-location
-		--force-po
-		-o [target]
-		[prepost "--dir=" "" [search_list]]
-		--exclude-file\=lib/en/LC_MESSAGES/common.po
-		--language\=PO
-		[%,I];
+        /*
+         * The author only speaks English, so the master translation is
+         * "en", hence lib/en/LC_MESSAGES/common.po is the file
+         * intended.
+         */
+        [xgettext]
+                --sort-output
+                --indent
+                --omit-header
+                --add-location
+                --force-po
+                -o [target]
+                [prepost "--dir=" "" [search_list]]
+                --exclude-file\=lib/en/LC_MESSAGES/common.po
+                --language\=PO
+                [%,I];
 }
 
 %0%.c,I: %0%.c
-	set no-cascade
+        set no-cascade
 {
-	[xgettext]
-		--sort-output
-		--indent
-		--omit-header
-		--force-po
-		--add-location
-		-o [target]
-		--msgstr-prefix\=
-		--msgstr-suffix\=
-		--keyword\=i18n
-		--keyword\=error_intl
-		--keyword\=fatal_intl
-		--keyword\=verbose_intl
-		--keyword\=subst_intl
-		--keyword\=fngrprnt_error
-		--keyword\=lex_error
-		--keyword\=lex_warning
-		[prepost "--dir=" "" [search_list]]
-		%0%.c;
+        [xgettext]
+                --sort-output
+                --indent
+                --omit-header
+                --force-po
+                --add-location
+                -o [target]
+                --msgstr-prefix\=
+                --msgstr-suffix\=
+                --keyword\=i18n
+                --keyword\=error_intl
+                --keyword\=fatal_intl
+                --keyword\=verbose_intl
+                --keyword\=subst_intl
+                --keyword\=fngrprnt_error
+                --keyword\=lex_error
+                --keyword\=lex_warning
+                [prepost "--dir=" "" [search_list]]
+                %0%.c;
 }
 
 
@@ -212,17 +215,17 @@ lib/%.po: [%,I]: lib/en/LC_MESSAGES/common.po
  * And then, to add insult to injury, it wastes space in the tarball.
  *
  * My project uses a directory tree
- * 	lib/
- *	    <LL>/
- *		LC_MESSAGES/
- *		    all of the various .po files go here
- *		man<N>/
- *		    all of the man<N> pages go here
- *		user-guide/
- *		    all of the files which make the
- *		    user guide go here.
- *		<other-docs>/
- *		    and so on...
+ *      lib/
+ *          <LL>/
+ *              LC_MESSAGES/
+ *                  all of the various .po files go here
+ *              man<N>/
+ *                  all of the man<N> pages go here
+ *              user-guide/
+ *                  all of the files which make the
+ *                  user guide go here.
+ *              <other-docs>/
+ *                  and so on...
  *
  * As you can see, this can accomodate translated .po files,
  * AND ALSO any other documentation, once it is translated.
@@ -230,23 +233,23 @@ lib/%.po: [%,I]: lib/en/LC_MESSAGES/common.po
 
 po/[project_short].pot: [match_mask lib/en/LC_MESSAGES/%.po [source_files]]
 {
-	msgcat
-		--use-first
-		--indent
-		--sort-output
-		--width\=75
-		-o [target]
-		[resolve
-		    /*
-		     * Put common.po at the start, it has an informative
-		     * comment at the beginning (which gets bound to
-		     * "", and is subject a the --use-first clause).
-		     */
-		    lib/en/LC_MESSAGES/common.po
-		    [stringset
-			[need]
-		    -
-			lib/en/LC_MESSAGES/common.po
-		    ]
-		];
+        msgcat
+                --use-first
+                --indent
+                --sort-output
+                --width\=75
+                -o [target]
+                [resolve
+                    /*
+                     * Put common.po at the start, it has an informative
+                     * comment at the beginning (which gets bound to
+                     * "", and is subject a the --use-first clause).
+                     */
+                    lib/en/LC_MESSAGES/common.po
+                    [stringset
+                        [need]
+                    -
+                        lib/en/LC_MESSAGES/common.po
+                    ]
+                ];
 }

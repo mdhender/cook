@@ -1,24 +1,22 @@
 .\"
-.\"	cook - file construction tool
-.\"	Copyright (C) 2002 Aryeh M. Friedman
-.\"	Groff formatting general editorial work
-.\"	Copyright (C) 2002, 2003 Peter Miller
+.\"     cook - file construction tool
+.\"     Copyright (C) 2002 Aryeh M. Friedman
+.\"     Groff formatting general editorial work
+.\"     Copyright (C) 2002, 2003, 2007 Peter Miller
 .\"
-.\"	This program is free software; you can redistribute it and/or modify
-.\"	it under the terms of the GNU General Public License as published by
-.\"	the Free Software Foundation; either version 2 of the License, or
-.\"	(at your option) any later version.
+.\"     This program is free software; you can redistribute it and/or modify
+.\"     it under the terms of the GNU General Public License as published by
+.\"     the Free Software Foundation; either version 3 of the License, or
+.\"     (at your option) any later version.
 .\"
-.\"	This program is distributed in the hope that it will be useful,
-.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
-.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-.\"	GNU General Public License for more details.
+.\"     This program is distributed in the hope that it will be useful,
+.\"     but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"     GNU General Public License for more details.
 .\"
-.\"	You should have received a copy of the GNU General Public License
-.\"	along with this program; if not, write to the Free Software
-.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-.\"
-.\" MANIFEST: Tutorial
+.\"     You should have received a copy of the GNU General Public License
+.\"     along with this program. If not, see
+.\"     <http://www.gnu.org/licenses/>.
 .\"
 .if n .ftr CB B
 .if n .ftr CI I
@@ -103,7 +101,7 @@ Copyright \*(C) \*(Y) Peter Miller
 .sp
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
+the Free Software Foundation; either version 3 of the License, or
 (at your option) any later version.
 .sp
 This program is distributed in the hope that it will be useful,
@@ -111,9 +109,8 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 .sp
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <http://www.gnu.org/licenses/>.
 .\" ------------------------------------------------------------------------
 .PH "'Cook''Tutorial'"
 .bp 1
@@ -910,22 +907,22 @@ So here are the rewritten sections of our sample cookbook:
 /* names of the programs */
 progs = [fromto %/main.c %
          [match_mask %/main.c
-	  [manifest]]];
+          [manifest]]];
 .sp 0.5
 .\" -----------------------|
 /* top level target */
 all:
     [addprefix [ibin_dir]/
-	[progs]]
+        [progs]]
     [prepost [idoc_dir]/ /manual
-	[progs]];
+        [progs]];
 .sp 0.5
 .\" -----------------------|
 /* how to build each program */
 loop prog = [progs]
 {
     [prog]_obj = [match_mask
-	[prog]/%.o [obj]];
+        [prog]/%.o [obj]];
 }
 bin/%: [%_obj] lib/lib.a;
 .eE
@@ -999,22 +996,22 @@ obj = [fromto %0%.c %0%.o
 /* names of the programs */
 progs = [fromto %/main.c %
          [match_mask %/main.c
-	  [manifest]]];
+          [manifest]]];
 .sp 0.5
 .\" -----------------------|
 /* top level target */
 all:
     [addprefix [ibin_dir]/
-	[progs]]
+        [progs]]
     [prepost [idoc_dir]/ /manual
-	[progs]];
+        [progs]];
 .sp 0.5
 .\" -----------------------|
 /* how to build each program */
 loop prog = [progs]
 {
     [prog]_obj = [match_mask
-	[prog]/%.o [obj]];
+        [prog]/%.o [obj]];
 }
 bin/%: [%_obj]
 {

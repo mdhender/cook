@@ -1,5 +1,7 @@
 /*
- * MANIFEST: cookbook for using g77
+ * Public Domain 2007 Peter Miller
+ *
+ * cookbook for using g77
  */
 #pragma once
 #include "f77"

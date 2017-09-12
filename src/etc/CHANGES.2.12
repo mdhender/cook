@@ -1,245 +1,247 @@
 
 
 
-Project "cook.2.12"						  Page 1
-List of Changes					Tue Apr 11 11:46:22 2000
+Project "cook.2.12"                                               Page 1
+List of Changes                                 Tue Apr 11 11:46:22 2000
 
-Change	State		Description
-------- -------		-------------
-  10	completed	Prepare for release
-  11	completed	web page year "100"
-  12	completed	Solaris wait4 bug: No child processes
-  15	completed	c_incl
-
+Change  State           Description
+------- -------         -------------
+  10    completed       Prepare for release
+  11    completed       web page year "100"
+  12    completed       Solaris wait4 bug: No child processes
+  15    completed       c_incl
 
 
-Project "cook.2.12", Change 10					  Page 1
-Change Details					Tue Apr 11 11:46:23 2000
+
+Project "cook.2.12", Change 10                                    Page 1
+Change Details                                  Tue Apr 11 11:46:23 2000
 
 NAME
-	Project "cook.2.12", Delta 1, Change 10.
+        Project "cook.2.12", Delta 1, Change 10.
 
 SUMMARY
-	Prepare for release
+        Prepare for release
 
 DESCRIPTION
-	This change prepares Cook for its next public release.
+        This change prepares Cook for its next public release.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 175  BUILDING
-	build	modify	   27 -> 163  MANIFEST
-	build	modify	   29 -> 162  Makefile.in
-	build	modify	   12 -> 99   README
-	build	modify	    3 -> 20   common/config.h.in
-	build	modify	   43 -> 278  common/patchlevel.h
-	build	modify	    7 -> 29   configure
-	source	create	    1	      etc/CHANGES.2.11
-	build	modify	  139 -> 140  etc/version.so
-	source	create	    1	      lib/en/readme/new.2.12.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 175  BUILDING
+        build   modify     27 -> 163  MANIFEST
+        build   modify     29 -> 162  Makefile.in
+        build   modify     12 -> 99   README
+        build   modify      3 -> 20   common/config.h.in
+        build   modify     43 -> 278  common/patchlevel.h
+        build   modify      7 -> 29   configure
+        source  create      1         etc/CHANGES.2.11
+        build   modify    139 -> 140  etc/version.so
+        source  create      1         lib/en/readme/new.2.12.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Tue Mar 28	pmiller
-			07:10:45 2000
-	develop_begin	Tue Mar 28	pmiller	 Elapsed time: 1.000
-			07:11:00 2000		 days.
-	develop_end	Tue Mar 28	pmiller
-			21:37:01 2000
-	review_pass	Tue Mar 28	pmiller
-			21:37:06 2000
-	integrate_begin Tue Mar 28	pmiller	 Elapsed time: 1.000
-			21:37:31 2000		 days.
-	integrate_pass	Wed Mar 29	pmiller
-			07:01:28 2000
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Tue Mar 28      pmiller
+                        07:10:45 2000
+        develop_begin   Tue Mar 28      pmiller  Elapsed time: 1.000
+                        07:11:00 2000            days.
+        develop_end     Tue Mar 28      pmiller
+                        21:37:01 2000
+        review_pass     Tue Mar 28      pmiller
+                        21:37:06 2000
+        integrate_begin Tue Mar 28      pmiller  Elapsed time: 1.000
+                        21:37:31 2000            days.
+        integrate_pass  Wed Mar 29      pmiller
+                        07:01:28 2000
 
 
-Project "cook.2.12", Change 11					  Page 1
-Change Details					Tue Apr 11 11:46:24 2000
+
+Project "cook.2.12", Change 11                                    Page 1
+Change Details                                  Tue Apr 11 11:46:24 2000
 
 NAME
-	Project "cook.2.12", Delta 2, Change 11.
+        Project "cook.2.12", Delta 2, Change 11.
 
 SUMMARY
-	web page year "100"
+        web page year "100"
 
 DESCRIPTION
-	This change fixes the Y2K glitch on the Cook web page.
+        This change fixes the Y2K glitch on the Cook web page.
 
-	My thanks to Florin Iucha <fiucha@neta.com>, Leif Eriksen
-	<leif.eriksen@hds.com.au> for reporting this problem.
+        My thanks to Florin Iucha <fiucha@neta.com>, Leif Eriksen
+        <leif.eriksen@hds.com.au> for reporting this problem.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 176  BUILDING
-	build	modify	   27 -> 163  MANIFEST
-	build	modify	   29 -> 162  Makefile.in
-	build	modify	   12 -> 99   README
-	build	modify	    3 -> 20   common/config.h.in
-	build	modify	   43 -> 279  common/patchlevel.h
-	build	modify	    7 -> 29   configure
-	source	modify	   10 -> 11   etc/cook.html
-	build	modify	  139 -> 141  etc/version.so
-	source	modify	   12 -> 13   lib/en/lsm/main.roff
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 176  BUILDING
+        build   modify     27 -> 163  MANIFEST
+        build   modify     29 -> 162  Makefile.in
+        build   modify     12 -> 99   README
+        build   modify      3 -> 20   common/config.h.in
+        build   modify     43 -> 279  common/patchlevel.h
+        build   modify      7 -> 29   configure
+        source  modify     10 -> 11   etc/cook.html
+        build   modify    139 -> 141  etc/version.so
+        source  modify     12 -> 13   lib/en/lsm/main.roff
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Apr	 3	pmiller
-			11:53:05 2000
-	develop_begin	Mon Apr	 3	pmiller	 Elapsed time: 0.049
-			11:53:41 2000		 days.
-	develop_end	Mon Apr	 3	pmiller
-			12:15:35 2000
-	review_pass	Mon Apr	 3	pmiller
-			12:15:40 2000
-	integrate_begin Mon Apr	 3	pmiller	 Elapsed time: 0.038
-			12:16:01 2000		 days.
-	integrate_pass	Mon Apr	 3	pmiller
-			12:32:58 2000
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Apr  3      pmiller
+                        11:53:05 2000
+        develop_begin   Mon Apr  3      pmiller  Elapsed time: 0.049
+                        11:53:41 2000            days.
+        develop_end     Mon Apr  3      pmiller
+                        12:15:35 2000
+        review_pass     Mon Apr  3      pmiller
+                        12:15:40 2000
+        integrate_begin Mon Apr  3      pmiller  Elapsed time: 0.038
+                        12:16:01 2000            days.
+        integrate_pass  Mon Apr  3      pmiller
+                        12:32:58 2000
 
 
-Project "cook.2.12", Change 12					  Page 1
-Change Details					Tue Apr 11 11:46:25 2000
+
+Project "cook.2.12", Change 12                                    Page 1
+Change Details                                  Tue Apr 11 11:46:25 2000
 
 NAME
-	Project "cook.2.12", Delta 3, Change 12.
+        Project "cook.2.12", Delta 3, Change 12.
 
 SUMMARY
-	Solaris wait4 bug: No child processes
+        Solaris wait4 bug: No child processes
 
 DESCRIPTION
-	This change copes with the bug in the Solaris implementation of
-	wait4().  It randomly returns No child processes.
+        This change copes with the bug in the Solaris implementation of
+        wait4().  It randomly returns No child processes.
 
-	My thanks to Gregory Steuck <greg@nest.cx> for reporting this
-	problem.
+        My thanks to Gregory Steuck <greg@nest.cx> for reporting this
+        problem.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 177  BUILDING
-	build	modify	   27 -> 163  MANIFEST
-	build	modify	   29 -> 162  Makefile.in
-	build	modify	   12 -> 99   README
-	build	modify	    3 -> 20   common/config.h.in
-	source	modify	    1 -> 2    common/config.messy.h
-	build	modify	   43 -> 280  common/patchlevel.h
-	build	modify	    7 -> 29   configure
-	source	modify	    2 -> 3    cook/os/wait.c
-	build	modify	  139 -> 142  etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 177  BUILDING
+        build   modify     27 -> 163  MANIFEST
+        build   modify     29 -> 162  Makefile.in
+        build   modify     12 -> 99   README
+        build   modify      3 -> 20   common/config.h.in
+        source  modify      1 -> 2    common/config.messy.h
+        build   modify     43 -> 280  common/patchlevel.h
+        build   modify      7 -> 29   configure
+        source  modify      2 -> 3    cook/os/wait.c
+        build   modify    139 -> 142  etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Apr	 3	pmiller
-			12:17:36 2000
-	develop_begin	Mon Apr	 3	pmiller	 Elapsed time: 0.189
-			12:17:53 2000		 days.
-	develop_end	Mon Apr	 3	pmiller
-			13:42:54 2000
-	review_pass	Mon Apr	 3	pmiller
-			13:45:55 2000
-	integrate_begin Mon Apr	 3	pmiller	 Elapsed time: 0.106
-			13:46:17 2000		 days.
-	integrate_pass	Mon Apr	 3	pmiller
-			14:34:00 2000
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Apr  3      pmiller
+                        12:17:36 2000
+        develop_begin   Mon Apr  3      pmiller  Elapsed time: 0.189
+                        12:17:53 2000            days.
+        develop_end     Mon Apr  3      pmiller
+                        13:42:54 2000
+        review_pass     Mon Apr  3      pmiller
+                        13:45:55 2000
+        integrate_begin Mon Apr  3      pmiller  Elapsed time: 0.106
+                        13:46:17 2000            days.
+        integrate_pass  Mon Apr  3      pmiller
+                        14:34:00 2000
 
 
-Project "cook.2.12", Change 15					  Page 1
-Change Details					Tue Apr 11 11:46:26 2000
+
+Project "cook.2.12", Change 15                                    Page 1
+Change Details                                  Tue Apr 11 11:46:26 2000
 
 NAME
-	Project "cook.2.12", Delta 4, Change 15.
+        Project "cook.2.12", Delta 4, Change 15.
 
 SUMMARY
-	c_incl
+        c_incl
 
 DESCRIPTION
-	This change fixes the c_incl -I problem.  It was getting
-	absolute paths wrong.
+        This change fixes the c_incl -I problem.  It was getting
+        absolute paths wrong.
 
-	My thanks to Ray Merkert <merkert@charter.net> and Scott J.
-	Bertin <bertins@db.erau.edu> for reporting this problem.
+        My thanks to Ray Merkert <merkert@charter.net> and Scott J.
+        Bertin <bertins@db.erau.edu> for reporting this problem.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 178  BUILDING
-	build	modify	   27 -> 164  MANIFEST
-	build	modify	   29 -> 163  Makefile.in
-	build	modify	   12 -> 99   README
-	source	modify	    1 -> 2    c_incl/flatten.c
-	build	modify	    3 -> 20   common/config.h.in
-	build	modify	   43 -> 281  common/patchlevel.h
-	source	modify	   10 -> 11   common/str_list.c
-	source	modify	    7 -> 8    common/str_list.h
-	build	modify	    7 -> 29   configure
-	build	modify	  139 -> 143  etc/version.so
-	test	create	    1	      test/01/t0191a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 178  BUILDING
+        build   modify     27 -> 164  MANIFEST
+        build   modify     29 -> 163  Makefile.in
+        build   modify     12 -> 99   README
+        source  modify      1 -> 2    c_incl/flatten.c
+        build   modify      3 -> 20   common/config.h.in
+        build   modify     43 -> 281  common/patchlevel.h
+        source  modify     10 -> 11   common/str_list.c
+        source  modify      7 -> 8    common/str_list.h
+        build   modify      7 -> 29   configure
+        build   modify    139 -> 143  etc/version.so
+        test    create      1         test/01/t0191a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Sat Apr	 8	pmiller
-			09:08:33 2000
-	develop_begin	Sat Apr	 8	pmiller	 Elapsed time: 0.242
-			09:08:48 2000		 days.
-	develop_end	Sat Apr	 8	pmiller
-			10:57:40 2000
-	review_pass	Sat Apr	 8	pmiller
-			11:02:18 2000
-	integrate_begin Sat Apr	 8	pmiller	 Elapsed time: 0.228
-			11:02:58 2000		 days.
-	integrate_pass	Sat Apr	 8	pmiller
-			12:45:21 2000
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Sat Apr  8      pmiller
+                        09:08:33 2000
+        develop_begin   Sat Apr  8      pmiller  Elapsed time: 0.242
+                        09:08:48 2000            days.
+        develop_end     Sat Apr  8      pmiller
+                        10:57:40 2000
+        review_pass     Sat Apr  8      pmiller
+                        11:02:18 2000
+        integrate_begin Sat Apr  8      pmiller  Elapsed time: 0.228
+                        11:02:58 2000            days.
+        integrate_pass  Sat Apr  8      pmiller
+                        12:45:21 2000
+
+Copyright (C) 1997-2007 Peter Miller

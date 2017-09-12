@@ -1,24 +1,21 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1999 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1999, 2007 Peter Miller
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: Test the cook_bom --ignore functionality
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 work=${COOK_TMP:-/tmp}/$$
 PAGER=cat
@@ -34,26 +31,26 @@ bin="$here/${1-.}/bin"
 
 pass()
 {
-	set +x
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        cd $here
+        rm -rf $work
+        exit 0
 }
 fail()
 {
-	set +x
-	echo 'FAILED test of the cook_bom --ignore functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 1
+        set +x
+        echo 'FAILED test of the cook_bom --ignore functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 1
 }
 no_result()
 {
-	set +x
-	echo 'NO RESULT for test of the cook_bom --ignore functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 2
+        set +x
+        echo 'NO RESULT for test of the cook_bom --ignore functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 2
 }
 trap \"no_result\" 1 2 3 15
 
@@ -76,8 +73,8 @@ unset LANGUAGE
 #
 for f in a b c1 c2 c3a d e fu g h i j k
 do
-	echo $f > $f
-	if test $? -ne 0 ; then no_result; fi
+  echo $f > $f
+  if test $? -ne 0 ; then no_result; fi
 done
 
 $bin/cook_bom --ignore  '??' -o test.out
@@ -86,35 +83,35 @@ if test $? -ne 0 ; then fail; fi
 cat > test.ok << 'fubar'
 .cook.bom.dir = [relative_dirname [__FILE__]];
 if [in [.cook.bom.dir] "."] then
-	.cook.bom/dir = '';
+    .cook.bom/dir = '';
 else
-	.cook.bom/dir = [.cook.bom.dir]/;
+    .cook.bom/dir = [.cook.bom.dir]/;
 
 files_in_[.cook.bom.dir] =
-	a
-	b
-	c3a
-	d
-	e
-	g
-	h
-	i
-	j
-	k
-	;
+    a
+    b
+    c3a
+    d
+    e
+    g
+    h
+    i
+    j
+    k
+    ;
 all_files_in_[.cook.bom.dir] = [files_in_[.cook.bom.dir]];
 
 specials_in_[.cook.bom.dir] =
-	;
+    ;
 all_specials_in_[.cook.bom.dir] = [specials_in_[.cook.bom.dir]];
 
 directories_in_[.cook.bom.dir] =
-	lib
-	;
+    lib
+    ;
 all_directories_in_[.cook.bom.dir] = [directories_in_[.cook.bom.dir]];
 
 #include-cooked-nowarn [prepost [.cook.bom/dir] /manifest.cook \
-	[directories_in_[.cook.bom.dir]]]
+    [directories_in_[.cook.bom.dir]]]
 
 /*
  * These variables must be calculated again, as the above includes will
@@ -122,19 +119,19 @@ all_directories_in_[.cook.bom.dir] = [directories_in_[.cook.bom.dir]];
  */
 .cook.bom.dir = [relative_dirname [__FILE__]];
 if [in [.cook.bom.dir] "."] then
-	.cook.bom/dir = '';
+    .cook.bom/dir = '';
 else
-	.cook.bom/dir = [.cook.bom.dir]/;
+    .cook.bom/dir = [.cook.bom.dir]/;
 
 if [defined all_files_in_[.cook.bom/dir]lib] then
-	all_files_in_[.cook.bom.dir] +=
-		[addprefix lib/ [all_files_in_[.cook.bom/dir]lib]];
+    all_files_in_[.cook.bom.dir] +=
+        [addprefix lib/ [all_files_in_[.cook.bom/dir]lib]];
 if [defined all_specials_in_[.cook.bom/dir]lib] then
-	all_specials_in_[.cook.bom.dir] +=
-		[addprefix lib/ [all_specials_in_[.cook.bom/dir]lib]];
+    all_specials_in_[.cook.bom.dir] +=
+        [addprefix lib/ [all_specials_in_[.cook.bom/dir]lib]];
 if [defined all_directories_in_[.cook.bom/dir]lib] then
-	all_directories_in_[.cook.bom.dir] +=
-		[addprefix lib/ [all_directories_in_[.cook.bom/dir]lib]];
+    all_directories_in_[.cook.bom.dir] +=
+        [addprefix lib/ [all_directories_in_[.cook.bom/dir]lib]];
 
 .cook.bom.dir = ;
 .cook.bom/dir = ;

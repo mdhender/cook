@@ -1,0 +1,209 @@
+.\"
+.\"     cook - file construction tool
+.\"     Copyright (C) 1997-1999, 2001-2003, 2006, 2007 Peter Miller
+.\"
+.\"     This program is free software; you can redistribute it and/or modify
+.\"     it under the terms of the GNU General Public License as published by
+.\"     the Free Software Foundation; either version 3 of the License, or
+.\"     (at your option) any later version.
+.\"
+.\"     This program is distributed in the hope that it will be useful,
+.\"     but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"     GNU General Public License for more details.
+.\"
+.\"     You should have received a copy of the GNU General Public License
+.\"     along with this program. If not, see
+.\"     <http://www.gnu.org/licenses/>.
+.\"
+.de an-p-footer
+..
+.ad l
+.hy 0
+.so version.so
+<html>
+<head>
+.br
+<link rel="icon" href="cook.ico" type="image/x-icon">
+.br
+<link rel="shortcut icon" href="cook.ico" type="image/x-icon">
+.br
+<title>Cook \*(v)</title></head>
+<body bgcolor="white">
+<img src="cook.png" align=left>
+        <table align=right>
+        <tr><td>
+        <img src="cook.png">
+        <br clear=all>
+        <p>
+        <table border=1><tr><td>
+        <a href="download.html">Download</a><br>
+        <a href="mail-list.html">Mailing List</a><br>
+        <a href="y2k.html">Year 2000</a><br>
+        </td></tr></table>
+        </td></tr></table>
+<h1 align=center>Cook \*(v)</h1>
+Cook is a tool for constructing files. It is given a set of files to
+create, and recipes of how to create them.  In any non-trivial program
+there will be prerequisites to performing the actions necessary to
+creating any file, such as include files.  Cook provides a
+mechanism to define these.
+.br
+<p>
+When a program is being developed or maintained, the programmer will
+typically change one file of several which comprise the program.  Cook
+examines the last-modified times of the files to see when the
+prerequisites of a file have changed, implying that the file needs to be
+recreated as it is logically out of date.
+.br
+<p>
+Cook also provides a facility for implicit recipes, allowing users to
+specify how to form a file with a given suffix from a file with a
+different suffix.  For example, to create <tt><i>filename</i>.o</tt>
+from <tt><i>filename</i>.c</tt>
+.br
+<br clear=both><table>
+<tr><td valign=top width="50%"><ul><li>
+Cook is a replacement for the traditional <i>make</i>(1) tool.
+</ul></td><td valign=top rowspan=2 width="50%"><ul><li>
+There is a <i>make2cook</i> utility included in the distribution
+to help convert makefiles into cookbooks.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+Cook is more powerful than the traditional <i>make</i> tool.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+Cook has true variables, not simple macros.
+</ul></td><td valign=top rowspan=2><ul><li>
+Cook has a simple but powerful string-based description language with
+many built-in functions.  This allows sophisticated filename
+specification and manipulation without loss of readability or
+performance.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+Cook has user defined functions.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+Cook can build in parallel.
+</ul></td><td valign=top rowspan=2><ul><li>
+Cook is able to build your project with multiple parallel threads, with
+support for rules which must be single threaded.  It is possible to
+distribute parallel builds over your LAN, allowing you to turn your
+network into a virtual parallel build engine.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+Cook can distribute builds across your LAN.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+Cook is able to use fingerprints to supplement file modification
+times.  This allows build optimization without contorted rules.
+</ul></td><td valign=top rowspan=2><ul><li>
+Cook can be configured with an explicit list of primary source files.
+This allow the dependency graph to be constructed faster by not going
+down dead ends, and also allows better error messages when the graph
+can't be constructed.  This requires an accurate source file manifest.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+In addition to walking the dependency graph,
+Cook can turn the input rules into a shell script, or a web page.
+</ul></td></tr>
+.br
+<tr><td valign=top><ul><li>
+Cook runs on almost any flavor of UNIX.  The source distribution is self
+configuring using a GNU Autoconf generated configure script.
+</ul></td><td valign=top><ul><li>
+Cook has special <i>cascade</i> dependencies, allowing powerful include
+dependency specification, amongst other things.
+</ul></td></tr>
+</table>
+.br
+<hr>
+See the <a href="cook-\*(v).README">README</a> file for a description
+of the new features and bug-fixes in this release.  This is also in the
+<a href="cook-\*(v).rm.pdf">Cook Reference Manual</a>, along with the
+build and installation instructions, and all of the manual pages.
+.br
+<hr>
+If you are putting together a source-code distribution and planning to
+write a makefile, consider writing a cookbook instead.  Although
+Cook takes a day or two to learn, it is much more powerful and a bit
+more intuitive than the traditional <i>make</i>(1) tool.
+And Cook doesn't interpret tab differently to 8 space characters!
+.br
+<hr>
+<table border=0><tr><td width=129>
+<a href="http://www.fsf.org/">
+<img
+.br
+src="http://www.fsf.org/graphics/gnu-head-sm.jpg"
+border=0 width=129 height=122></a>
+.br
+</td><td width="30%">
+.br
+Cook is written and owned by
+<a href="mailto:millerp@canb.auug.org.au"
+>Peter Miller &lt;millerp@canb.auug.org.au&gt;</a>
+and is freely distributable under the terms and conditions of the
+<a href="http://www.gnu.org/licenses/gpl.txt">GNU GPL</a>.
+.br
+</td><td width=110>
+.br
+<a href="http://www.opensource.org/docs/definition.php">
+<img
+.nf
+src="http://www.opensource.org/trademarks/opensource/web/opensource-110x95.png"
+border="0" width="110" height="95"></a>
+.fi
+</td><td width="30%" align="right">
+Cook is developed using <a
+href="http://aegis.sourceforge.net/" >Aegis</a> SCM.  The Aegis <a
+.nf
+href="http://miller.emu.id.au/cgi-bin/aeget/cook.\*(v)/?menu"
+.fi
+>repository</a> for this project is available.
+</td><td width=64>
+<a href="http://aegis.sourceforge.net/">
+<img width=64 height=64 src="http://aegis.sourceforge.net/aegis.png" border=0>
+</a>
+</td><td width="30%" align="right">
+There is more <a
+href="http://miller.emu.id.au/pmiller/">
+Software by Peter Miller</a>
+at his home page.
+</td><td width=75>
+<a href="http://miller.emu.id.au/pmiller/">
+<img src="http://miller.emu.id.au/pmiller/pmiller_2003_colour.64.png"
+border=0>
+</a>
+</td></tr></table>
+.br
+<hr>
+This page has been accessed approximately
+<img
+.nf
+src="http://miller.emu.id.au/cgi-bin/web_hit_counter?pmiller_cook_\*(v)"
+.fi
+>
+times since
+.ds MO1 Jan
+.ds MO2 Feb
+.ds MO3 Mar
+.ds MO4 Apr
+.ds MO5 May
+.ds MO6 Jun
+.ds MO7 Jul
+.ds MO8 Aug
+.ds MO9 Sep
+.ds MO10 Oct
+.ds MO11 Nov
+.ds MO12 Dec
+.nr y4 \n[yr]+1900
+\n[dy]-\*[MO\n[mo]]-\n[y4].
+</body></html>

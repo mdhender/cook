@@ -1,23 +1,20 @@
 '\" t
-.\"	cook - file construction tool
-.\"	Copyright (C) 1993-1995, 1997-1999, 2001, 2003, 2004 Peter Miller;
-.\"	All rights reserved.
+.\"     cook - file construction tool
+.\"     Copyright (C) 1993-2007 Peter Miller
 .\"
-.\"	This program is free software; you can redistribute it and/or modify
-.\"	it under the terms of the GNU General Public License as published by
-.\"	the Free Software Foundation; either version 2 of the License, or
-.\"	(at your option) any later version.
+.\"     This program is free software; you can redistribute it and/or modify
+.\"     it under the terms of the GNU General Public License as published by
+.\"     the Free Software Foundation; either version 3 of the License, or
+.\"     (at your option) any later version.
 .\"
-.\"	This program is distributed in the hope that it will be useful,
-.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
-.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-.\"	GNU General Public License for more details.
+.\"     This program is distributed in the hope that it will be useful,
+.\"     but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"     GNU General Public License for more details.
 .\"
-.\"	You should have received a copy of the GNU General Public License
-.\"	along with this program; if not, write to the Free Software
-.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-.\"
-.\" MANIFEST: source of the BUILDING file
+.\"     You should have received a copy of the GNU General Public License
+.\"     along with this program. If not, see
+.\"     <http://www.gnu.org/licenses/>.
 .\"
 .if n .ftr CB B
 .if n .ftr CI I
@@ -35,7 +32,7 @@ cook \- a file construction tool
 You will need about 5MB to unpack and build the
 .I Cook
 package.
-Your milage may vary.
+Your mileage may vary.
 .br
 .ne 1i
 .SH BEFORE YOU START
@@ -46,8 +43,13 @@ Please note: if you install these packages into \fI/usr/local\fP (for
 example) you must ensure that the \fI./configure\fP script is told
 to also look in \fI/usr/local/include\fP for include files (CFLAGS),
 and \fI/usr/local/lib\fP for library files (LDFLAGS).  Otherwise the
-\&\fI./configure\fP script will incorrecly conclude that they have not
+\&\fI./configure\fP script will incorrectly conclude that they have not
 been installed.
+.TP 8n
+ANSI C compiler
+You will need an ANSI C compiler to be able to compile cook.  If you
+don't have one, you may wish to consider installing the GNU C compiler,
+it's free.
 .TP 8n
 GNU Gettext
 .RS
@@ -60,7 +62,7 @@ In order to do this, the GNU Gettext package must be installed
 you run the configure script as detailed in the next section.
 This is because the configure script looks for it.
 On systems which use the GNU C library, version 2.0 or later,
-there is no need to explictly do this as GNU Gettext is included.
+there is no need to explicitly do this as GNU Gettext is included.
 Remember to use the GNU Gettext configure \fI--with-gnu-gettext\fP option
 if your system has native gettext tools.
 .RE
@@ -70,7 +72,7 @@ GNU rx
 Cook needs regular expressions to operate correctly.
 Get a copy from your nearest GNU mirror.
 On systems which use the GNU C library, version 2.0 or later,
-there is no need to explictly do this as GNU rx is included.
+there is no need to explicitly do this as GNU rx is included.
 .RE
 .TP 8n
 GNU Groff
@@ -432,7 +434,7 @@ The
 .I roffpp
 program is a utility distributed with
 .I Cook
-which acts as a proprocessor for *roff
+which acts as a preprocessor for *roff
 files,
 removing source (\&.so) directives.
 It accepts include search path command line options
@@ -620,7 +622,7 @@ you run the
 script, the
 .I Makefile
 will contain instructions for constructing the documentation.
-If you alreday used the
+If you already used the
 .I make
 command, above, this has already been done.
 The following command

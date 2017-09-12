@@ -1,903 +1,905 @@
 
 
 
-Project "cook.2.4"						 Page 1
-List of Changes				       Wed Sep	2 17:11:24 1998
+Project "cook.2.4"                                               Page 1
+List of Changes                                Wed Sep  2 17:11:24 1998
 
-Change	State		Description
-------- -------		-------------
-  10	completed	prepare for release
-  11	completed	update release procedure
-  12	completed	ref man page alignment
-  13	completed	cooktime bug
-  14	completed	test buglets
-  15	completed	see the README file for release notes
-  16	completed	tests and /tmp
-  17	completed	user guide omits setenv statement
-  18	completed	more test robustnes
-  19	completed	improve large project chapter
-  20	completed	ifix build problems
-  21	completed	Y2K status
-
+Change  State           Description
+------- -------         -------------
+  10    completed       prepare for release
+  11    completed       update release procedure
+  12    completed       ref man page alignment
+  13    completed       cooktime bug
+  14    completed       test buglets
+  15    completed       see the README file for release notes
+  16    completed       tests and /tmp
+  17    completed       user guide omits setenv statement
+  18    completed       more test robustnes
+  19    completed       improve large project chapter
+  20    completed       ifix build problems
+  21    completed       Y2K status
 
 
-Project "cook.2.4", Change 10					 Page 1
-Change Details				       Wed Sep	2 17:11:24 1998
+
+Project "cook.2.4", Change 10                                    Page 1
+Change Details                                 Wed Sep  2 17:11:24 1998
 
 NAME
-	Project "cook.2.4", Delta 1, Change 10.
+        Project "cook.2.4", Delta 1, Change 10.
 
 SUMMARY
-	prepare for release
+        prepare for release
 
 DESCRIPTION
-	This change prepares cook for the next release.
+        This change prepares cook for the next release.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 46   BUILDING
-	build	modify	   27 -> 93   MANIFEST
-	build	modify	   29 -> 93   Makefile.in
-	build	modify	   12 -> 46   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 149  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	source	create	    1	      etc/CHANGES.2.3
-	build	modify	   10 -> 11   etc/version.so
-	source	create	    1	      lib/en/readme/new.2.4.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 46   BUILDING
+        build   modify     27 -> 93   MANIFEST
+        build   modify     29 -> 93   Makefile.in
+        build   modify     12 -> 46   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 149  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        source  create      1         etc/CHANGES.2.3
+        build   modify     10 -> 11   etc/version.so
+        source  create      1         lib/en/readme/new.2.4.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Tue Jul 21	pmiller
-			22:54:21 1998
-	develop_begin	Tue Jul 21	pmiller	 Elapsed time: 0.024
-			22:54:31 1998		 days.
-	develop_end	Tue Jul 21	pmiller
-			23:05:23 1998
-	review_pass	Tue Jul 21	pmiller
-			23:05:27 1998
-	integrate_begin Tue Jul 21	pmiller
-			23:05:36 1998
-	integrate_pass	Tue Jul 21	pmiller
-			23:12:50 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Tue Jul 21      pmiller
+                        22:54:21 1998
+        develop_begin   Tue Jul 21      pmiller  Elapsed time: 0.024
+                        22:54:31 1998            days.
+        develop_end     Tue Jul 21      pmiller
+                        23:05:23 1998
+        review_pass     Tue Jul 21      pmiller
+                        23:05:27 1998
+        integrate_begin Tue Jul 21      pmiller
+                        23:05:36 1998
+        integrate_pass  Tue Jul 21      pmiller
+                        23:12:50 1998
 
 
-Project "cook.2.4", Change 11					 Page 1
-Change Details				       Wed Sep	2 17:11:25 1998
+
+Project "cook.2.4", Change 11                                    Page 1
+Change Details                                 Wed Sep  2 17:11:25 1998
 
 NAME
-	Project "cook.2.4", Delta 2, Change 11.
+        Project "cook.2.4", Delta 2, Change 11.
 
 SUMMARY
-	update release procedure
+        update release procedure
 
 DESCRIPTION
-	This change updates the release procedure document.
+        This change updates the release procedure document.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 47   BUILDING
-	build	modify	   27 -> 93   MANIFEST
-	build	modify	   29 -> 93   Makefile.in
-	build	modify	   12 -> 46   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 150  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	build	modify	   10 -> 12   etc/version.so
-	source	modify	    6 -> 7    lib/en/release/main.man
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 47   BUILDING
+        build   modify     27 -> 93   MANIFEST
+        build   modify     29 -> 93   Makefile.in
+        build   modify     12 -> 46   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 150  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        build   modify     10 -> 12   etc/version.so
+        source  modify      6 -> 7    lib/en/release/main.man
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Thu Jul 23	pmiller
-			13:27:23 1998
-	develop_begin	Thu Jul 23	pmiller	 Elapsed time: 0.061
-			13:27:41 1998		 days.
-	develop_end	Thu Jul 23	pmiller
-			13:55:06 1998
-	review_pass	Thu Jul 23	pmiller
-			13:55:11 1998
-	integrate_begin Thu Jul 23	pmiller
-			13:55:20 1998
-	integrate_pass	Thu Jul 23	pmiller
-			14:02:48 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Thu Jul 23      pmiller
+                        13:27:23 1998
+        develop_begin   Thu Jul 23      pmiller  Elapsed time: 0.061
+                        13:27:41 1998            days.
+        develop_end     Thu Jul 23      pmiller
+                        13:55:06 1998
+        review_pass     Thu Jul 23      pmiller
+                        13:55:11 1998
+        integrate_begin Thu Jul 23      pmiller
+                        13:55:20 1998
+        integrate_pass  Thu Jul 23      pmiller
+                        14:02:48 1998
 
 
-Project "cook.2.4", Change 12					 Page 1
-Change Details				       Wed Sep	2 17:11:25 1998
+
+Project "cook.2.4", Change 12                                    Page 1
+Change Details                                 Wed Sep  2 17:11:25 1998
 
 NAME
-	Project "cook.2.4", Delta 3, Change 12.
+        Project "cook.2.4", Delta 3, Change 12.
 
 SUMMARY
-	ref man page alignment
+        ref man page alignment
 
 DESCRIPTION
-	This change corrects the page alignment of the Reference
-	Manual's table of contents to work better with double-sided
-	printing.
+        This change corrects the page alignment of the Reference
+        Manual's table of contents to work better with double-sided
+        printing.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_improvement.
+        This change was caused by internal_improvement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 48   BUILDING
-	build	modify	   27 -> 93   MANIFEST
-	build	modify	   29 -> 93   Makefile.in
-	build	modify	   12 -> 46   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 151  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	source	modify	    2 -> 3    etc/Howto.cook
-	build	modify	   10 -> 13   etc/version.so
-	source	modify	   10 -> 11   lib/en/man1/cook.1
-	source	modify	    6 -> 7    lib/en/refman/main.man
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 48   BUILDING
+        build   modify     27 -> 93   MANIFEST
+        build   modify     29 -> 93   Makefile.in
+        build   modify     12 -> 46   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 151  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        source  modify      2 -> 3    etc/Howto.cook
+        build   modify     10 -> 13   etc/version.so
+        source  modify     10 -> 11   lib/en/man1/cook.1
+        source  modify      6 -> 7    lib/en/refman/main.man
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Fri Jul 24	pmiller
-			09:37:12 1998
-	develop_begin	Fri Jul 24	pmiller	 Elapsed time: 0.302
-			09:37:19 1998		 days.
-	develop_end	Fri Jul 24	pmiller
-			11:53:04 1998
-	review_pass	Fri Jul 24	pmiller
-			11:53:08 1998
-	integrate_begin Fri Jul 24	pmiller
-			11:53:16 1998
-	integrate_pass	Fri Jul 24	pmiller
-			11:58:24 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Fri Jul 24      pmiller
+                        09:37:12 1998
+        develop_begin   Fri Jul 24      pmiller  Elapsed time: 0.302
+                        09:37:19 1998            days.
+        develop_end     Fri Jul 24      pmiller
+                        11:53:04 1998
+        review_pass     Fri Jul 24      pmiller
+                        11:53:08 1998
+        integrate_begin Fri Jul 24      pmiller
+                        11:53:16 1998
+        integrate_pass  Fri Jul 24      pmiller
+                        11:58:24 1998
 
 
-Project "cook.2.4", Change 13					 Page 1
-Change Details				       Wed Sep	2 17:11:25 1998
+
+Project "cook.2.4", Change 13                                    Page 1
+Change Details                                 Wed Sep  2 17:11:25 1998
 
 NAME
-	Project "cook.2.4", Delta 4, Change 13.
+        Project "cook.2.4", Delta 4, Change 13.
 
 SUMMARY
-	cooktime bug
+        cooktime bug
 
 DESCRIPTION
-	This change corrects a bug in cooktime on 64-bit systems.
+        This change corrects a bug in cooktime on 64-bit systems.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_bug.
+        This change was caused by internal_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 49   BUILDING
-	build	modify	   27 -> 93   MANIFEST
-	build	modify	   29 -> 93   Makefile.in
-	build	modify	   12 -> 46   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 152  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	source	modify	    4 -> 5    cooktime/date.y
-	build	modify	   10 -> 14   etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 49   BUILDING
+        build   modify     27 -> 93   MANIFEST
+        build   modify     29 -> 93   Makefile.in
+        build   modify     12 -> 46   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 152  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        source  modify      4 -> 5    cooktime/date.y
+        build   modify     10 -> 14   etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Jul 27	pmiller
-			14:34:37 1998
-	develop_begin	Mon Jul 27	pmiller	 Elapsed time: 0.050
-			14:34:44 1998		 days.
-	develop_end	Mon Jul 27	pmiller
-			14:57:24 1998
-	review_pass	Mon Jul 27	pmiller
-			14:57:31 1998
-	integrate_begin Mon Jul 27	pmiller	 Elapsed time: 0.025
-			14:57:40 1998		 days.
-	integrate_pass	Mon Jul 27	pmiller
-			15:08:43 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Jul 27      pmiller
+                        14:34:37 1998
+        develop_begin   Mon Jul 27      pmiller  Elapsed time: 0.050
+                        14:34:44 1998            days.
+        develop_end     Mon Jul 27      pmiller
+                        14:57:24 1998
+        review_pass     Mon Jul 27      pmiller
+                        14:57:31 1998
+        integrate_begin Mon Jul 27      pmiller  Elapsed time: 0.025
+                        14:57:40 1998            days.
+        integrate_pass  Mon Jul 27      pmiller
+                        15:08:43 1998
 
 
-Project "cook.2.4", Change 14					 Page 1
-Change Details				       Wed Sep	2 17:11:25 1998
+
+Project "cook.2.4", Change 14                                    Page 1
+Change Details                                 Wed Sep  2 17:11:25 1998
 
 NAME
-	Project "cook.2.4", Delta 5, Change 14.
+        Project "cook.2.4", Delta 5, Change 14.
 
 SUMMARY
-	test buglets
+        test buglets
 
 DESCRIPTION
-	This change fixes a couple of minor problems in tests.
+        This change fixes a couple of minor problems in tests.
 
-	This change is exempt from testing against the baseline.
+        This change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_bug.
+        This change was caused by internal_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 50   BUILDING
-	build	modify	   27 -> 93   MANIFEST
-	build	modify	   29 -> 93   Makefile.in
-	build	modify	   12 -> 46   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 153  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	build	modify	   10 -> 15   etc/version.so
-	test	modify	    2 -> 3    test/01/t0147a.sh
-	test	modify	    1 -> 2    test/01/t0149a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 50   BUILDING
+        build   modify     27 -> 93   MANIFEST
+        build   modify     29 -> 93   Makefile.in
+        build   modify     12 -> 46   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 153  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        build   modify     10 -> 15   etc/version.so
+        test    modify      2 -> 3    test/01/t0147a.sh
+        test    modify      1 -> 2    test/01/t0149a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Jul 27	pmiller
-			14:45:49 1998
-	develop_begin	Mon Jul 27	pmiller	 Elapsed time: 0.042
-			14:46:05 1998		 days.
-	develop_end	Mon Jul 27	pmiller
-			15:05:00 1998
-	review_pass	Mon Jul 27	pmiller	 Elapsed time: 1.000
-			15:05:07 1998		 days.
-	integrate_begin Tue Jul 28	pmiller	 Elapsed time: 0.024
-			08:20:08 1998		 days.
-	integrate_pass	Tue Jul 28	pmiller
-			08:31:00 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Jul 27      pmiller
+                        14:45:49 1998
+        develop_begin   Mon Jul 27      pmiller  Elapsed time: 0.042
+                        14:46:05 1998            days.
+        develop_end     Mon Jul 27      pmiller
+                        15:05:00 1998
+        review_pass     Mon Jul 27      pmiller  Elapsed time: 1.000
+                        15:05:07 1998            days.
+        integrate_begin Tue Jul 28      pmiller  Elapsed time: 0.024
+                        08:20:08 1998            days.
+        integrate_pass  Tue Jul 28      pmiller
+                        08:31:00 1998
 
 
-Project "cook.2.4", Change 15					 Page 1
-Change Details				       Wed Sep	2 17:11:25 1998
+
+Project "cook.2.4", Change 15                                    Page 1
+Change Details                                 Wed Sep  2 17:11:25 1998
 
 NAME
-	Project "cook.2.4", Delta 6, Change 15.
+        Project "cook.2.4", Delta 6, Change 15.
 
 SUMMARY
-	see the README file for release notes
+        see the README file for release notes
 
 DESCRIPTION
-	This change updates the announcement in the release notes and
-	the web page to point the reader at the release notes.
+        This change updates the announcement in the release notes and
+        the web page to point the reader at the release notes.
 
-	My thanks to Fergus Henderson <fjh@cs.mu.OZ.AU> for this
-	suggestion.
+        My thanks to Fergus Henderson <fjh@cs.mu.OZ.AU> for this
+        suggestion.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_improvement.
+        This change was caused by external_improvement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 51   BUILDING
-	build	modify	   27 -> 93   MANIFEST
-	build	modify	   29 -> 93   Makefile.in
-	build	modify	   12 -> 46   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 154  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	source	modify	    1 -> 2    etc/cook.html
-	build	modify	   10 -> 16   etc/version.so
-	source	modify	    7 -> 8    lib/en/release/main.man
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 51   BUILDING
+        build   modify     27 -> 93   MANIFEST
+        build   modify     29 -> 93   Makefile.in
+        build   modify     12 -> 46   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 154  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        source  modify      1 -> 2    etc/cook.html
+        build   modify     10 -> 16   etc/version.so
+        source  modify      7 -> 8    lib/en/release/main.man
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Wed Jul 29	pmiller
-			13:11:43 1998
-	develop_begin	Wed Jul 29	pmiller	 Elapsed time: 0.046
-			13:11:50 1998		 days.
-	develop_end	Wed Jul 29	pmiller	 Elapsed time: 2.472
-			13:32:28 1998		 days.
-	review_pass	Fri Jul 31	pmiller
-			17:04:48 1998
-	integrate_begin Fri Jul 31	pmiller	 Elapsed time: 0.053
-			17:05:07 1998		 days.
-	integrate_pass	Fri Jul 31	pmiller
-			17:28:48 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Wed Jul 29      pmiller
+                        13:11:43 1998
+        develop_begin   Wed Jul 29      pmiller  Elapsed time: 0.046
+                        13:11:50 1998            days.
+        develop_end     Wed Jul 29      pmiller  Elapsed time: 2.472
+                        13:32:28 1998            days.
+        review_pass     Fri Jul 31      pmiller
+                        17:04:48 1998
+        integrate_begin Fri Jul 31      pmiller  Elapsed time: 0.053
+                        17:05:07 1998            days.
+        integrate_pass  Fri Jul 31      pmiller
+                        17:28:48 1998
 
 
-Project "cook.2.4", Change 16					 Page 1
-Change Details				       Wed Sep	2 17:11:26 1998
+
+Project "cook.2.4", Change 16                                    Page 1
+Change Details                                 Wed Sep  2 17:11:26 1998
 
 NAME
-	Project "cook.2.4", Delta 7, Change 16.
+        Project "cook.2.4", Delta 7, Change 16.
 
 SUMMARY
-	tests and /tmp
+        tests and /tmp
 
 DESCRIPTION
-	This change updates all tests to use COOK_TMP (if set) to
-	locate the temporary directory.	 This allows testing away from
-	/tmp - which causes spurious fails on Solaris, because tmpfs
-	has no locking.
+        This change updates all tests to use COOK_TMP (if set) to
+        locate the temporary directory.  This allows testing away from
+        /tmp - which causes spurious fails on Solaris, because tmpfs
+        has no locking.
 
-	My thanks to Scott J. Bertin <bertins@db.erau.edu> for
-	reporting this problem.
+        My thanks to Scott J. Bertin <bertins@db.erau.edu> for
+        reporting this problem.
 
-	This change is exempt from testing against the baseline.
+        This change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 52   BUILDING
-	build	modify	   27 -> 93   MANIFEST
-	build	modify	   29 -> 93   Makefile.in
-	build	modify	   12 -> 46   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 155  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	source	modify	    1 -> 2    etc/template/test
-	build	modify	   10 -> 17   etc/version.so
-	source	modify	   10 -> 11   lib/en/building/main.man
-	test	modify	    3 -> 4    test/00/t0001a.sh
-	test	modify	    3 -> 4    test/00/t0002a.sh
-	test	modify	    3 -> 4    test/00/t0003a.sh
-	test	modify	    3 -> 4    test/00/t0004a.sh
-	test	modify	    3 -> 4    test/00/t0005a.sh
-	test	modify	    3 -> 4    test/00/t0006a.sh
-	test	modify	    3 -> 4    test/00/t0007a.sh
-	test	modify	    3 -> 4    test/00/t0008a.sh
-	test	modify	    3 -> 4    test/00/t0009a.sh
-	test	modify	    3 -> 4    test/00/t0010a.sh
-	test	modify	    3 -> 4    test/00/t0011a.sh
-	test	modify	    3 -> 4    test/00/t0012a.sh
-	test	modify	    3 -> 4    test/00/t0013a.sh
-	test	modify	    3 -> 4    test/00/t0014a.sh
-	test	modify	    3 -> 4    test/00/t0015a.sh
-	test	modify	    3 -> 4    test/00/t0016a.sh
-	test	modify	    3 -> 4    test/00/t0017a.sh
-	test	modify	    3 -> 4    test/00/t0018a.sh
-	test	modify	    3 -> 4    test/00/t0019a.sh
-
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 52   BUILDING
+        build   modify     27 -> 93   MANIFEST
+        build   modify     29 -> 93   Makefile.in
+        build   modify     12 -> 46   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 155  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        source  modify      1 -> 2    etc/template/test
+        build   modify     10 -> 17   etc/version.so
+        source  modify     10 -> 11   lib/en/building/main.man
+        test    modify      3 -> 4    test/00/t0001a.sh
+        test    modify      3 -> 4    test/00/t0002a.sh
+        test    modify      3 -> 4    test/00/t0003a.sh
+        test    modify      3 -> 4    test/00/t0004a.sh
+        test    modify      3 -> 4    test/00/t0005a.sh
+        test    modify      3 -> 4    test/00/t0006a.sh
+        test    modify      3 -> 4    test/00/t0007a.sh
+        test    modify      3 -> 4    test/00/t0008a.sh
+        test    modify      3 -> 4    test/00/t0009a.sh
+        test    modify      3 -> 4    test/00/t0010a.sh
+        test    modify      3 -> 4    test/00/t0011a.sh
+        test    modify      3 -> 4    test/00/t0012a.sh
+        test    modify      3 -> 4    test/00/t0013a.sh
+        test    modify      3 -> 4    test/00/t0014a.sh
+        test    modify      3 -> 4    test/00/t0015a.sh
+        test    modify      3 -> 4    test/00/t0016a.sh
+        test    modify      3 -> 4    test/00/t0017a.sh
+        test    modify      3 -> 4    test/00/t0018a.sh
+        test    modify      3 -> 4    test/00/t0019a.sh
 
 
-Project "cook.2.4", Change 16					 Page 2
-Change Details				       Wed Sep	2 17:11:26 1998
 
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	test	modify	    3 -> 4    test/00/t0020a.sh
-	test	modify	    3 -> 4    test/00/t0021a.sh
-	test	modify	    3 -> 4    test/00/t0022a.sh
-	test	modify	    3 -> 4    test/00/t0023a.sh
-	test	modify	    3 -> 4    test/00/t0024a.sh
-	test	modify	    3 -> 4    test/00/t0025a.sh
-	test	modify	    3 -> 4    test/00/t0026a.sh
-	test	modify	    3 -> 4    test/00/t0027a.sh
-	test	modify	    3 -> 4    test/00/t0028a.sh
-	test	modify	    3 -> 4    test/00/t0029a.sh
-	test	modify	    3 -> 4    test/00/t0031a.sh
-	test	modify	    3 -> 4    test/00/t0032a.sh
-	test	modify	    3 -> 4    test/00/t0033a.sh
-	test	modify	    4 -> 5    test/00/t0034a.sh
-	test	modify	    5 -> 6    test/00/t0035a.sh
-	test	modify	    3 -> 4    test/00/t0036a.sh
-	test	modify	    3 -> 4    test/00/t0037a.sh
-	test	modify	    3 -> 4    test/00/t0038a.sh
-	test	modify	    3 -> 4    test/00/t0039a.sh
-	test	modify	    3 -> 4    test/00/t0040a.sh
-	test	modify	    4 -> 5    test/00/t0041a.sh
-	test	modify	    3 -> 4    test/00/t0042a.sh
-	test	modify	    3 -> 4    test/00/t0043a.sh
-	test	modify	    3 -> 4    test/00/t0044a.sh
-	test	modify	    4 -> 5    test/00/t0045a.sh
-	test	modify	    3 -> 4    test/00/t0046a.sh
-	test	modify	    3 -> 4    test/00/t0047a.sh
-	test	modify	    4 -> 5    test/00/t0048a.sh
-	test	modify	    3 -> 4    test/00/t0049a.sh
-	test	modify	    4 -> 5    test/00/t0050a.sh
-	test	modify	    4 -> 5    test/00/t0051a.sh
-	test	modify	    3 -> 4    test/00/t0052a.sh
-	test	modify	    3 -> 4    test/00/t0053a.sh
-	test	modify	    3 -> 4    test/00/t0054a.sh
-	test	modify	    3 -> 4    test/00/t0055a.sh
-	test	modify	    4 -> 5    test/00/t0056a.sh
-	test	modify	    3 -> 4    test/00/t0057a.sh
-	test	modify	    3 -> 4    test/00/t0058a.sh
-	test	modify	    3 -> 4    test/00/t0059a.sh
-	test	modify	    3 -> 4    test/00/t0060a.sh
-	test	modify	    3 -> 4    test/00/t0061a.sh
-	test	modify	    3 -> 4    test/00/t0062a.sh
-	test	modify	    3 -> 4    test/00/t0063a.sh
-	test	modify	    3 -> 4    test/00/t0064a.sh
-	test	modify	    5 -> 6    test/00/t0065a.sh
-	test	modify	    6 -> 7    test/00/t0066a.sh
-	test	modify	    4 -> 5    test/00/t0067a.sh
-	test	modify	    3 -> 4    test/00/t0068a.sh
-	test	modify	    3 -> 4    test/00/t0069a.sh
-	test	modify	    6 -> 7    test/00/t0070a.sh
-	test	modify	    5 -> 6    test/00/t0071a.sh
-	test	modify	    3 -> 4    test/00/t0072a.sh
-	test	modify	    3 -> 4    test/00/t0073a.sh
-	test	modify	    3 -> 4    test/00/t0074a.sh
-	test	modify	    3 -> 4    test/00/t0075a.sh
-
+Project "cook.2.4", Change 16                                    Page 2
+Change Details                                 Wed Sep  2 17:11:26 1998
 
-
-Project "cook.2.4", Change 16					 Page 3
-Change Details				       Wed Sep	2 17:11:26 1998
-
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	test	modify	    3 -> 4    test/00/t0076a.sh
-	test	modify	    4 -> 5    test/00/t0077a.sh
-	test	modify	    3 -> 4    test/00/t0078a.sh
-	test	modify	    4 -> 5    test/00/t0079a.sh
-	test	modify	    3 -> 4    test/00/t0081a.sh
-	test	modify	    3 -> 4    test/00/t0082a.sh
-	test	modify	    3 -> 4    test/00/t0083a.sh
-	test	modify	    6 -> 7    test/00/t0084a.sh
-	test	modify	    3 -> 4    test/00/t0085a.sh
-	test	modify	    3 -> 4    test/00/t0086a.sh
-	test	modify	    3 -> 4    test/00/t0087a.sh
-	test	modify	    3 -> 4    test/00/t0088a.sh
-	test	modify	    3 -> 4    test/00/t0089a.sh
-	test	modify	    3 -> 4    test/00/t0090a.sh
-	test	modify	    3 -> 4    test/00/t0091a.sh
-	test	modify	    3 -> 4    test/00/t0092a.sh
-	test	modify	    4 -> 5    test/00/t0093a.sh
-	test	modify	    3 -> 4    test/00/t0094a.sh
-	test	modify	    3 -> 4    test/00/t0095a.sh
-	test	modify	    3 -> 4    test/00/t0096a.sh
-	test	modify	    4 -> 5    test/00/t0097a.sh
-	test	modify	    3 -> 4    test/00/t0098a.sh
-	test	modify	    3 -> 4    test/00/t0099a.sh
-	test	modify	    3 -> 4    test/01/t0100a.sh
-	test	modify	    6 -> 7    test/01/t0101a.sh
-	test	modify	    3 -> 4    test/01/t0102a.sh
-	test	modify	    3 -> 4    test/01/t0103a.sh
-	test	modify	    4 -> 5    test/01/t0104a.sh
-	test	modify	    5 -> 6    test/01/t0105a.sh
-	test	modify	    5 -> 6    test/01/t0106a.sh
-	test	modify	    3 -> 4    test/01/t0107a.sh
-	test	modify	    4 -> 5    test/01/t0108a.sh
-	test	modify	    3 -> 4    test/01/t0109a.sh
-	test	modify	    3 -> 4    test/01/t0111a.sh
-	test	modify	    3 -> 4    test/01/t0112a.sh
-	test	modify	    3 -> 4    test/01/t0113a.sh
-	test	modify	    3 -> 4    test/01/t0114a.sh
-	test	modify	    3 -> 4    test/01/t0115a.sh
-	test	modify	    3 -> 4    test/01/t0116a.sh
-	test	modify	    3 -> 4    test/01/t0117a.sh
-	test	modify	    2 -> 3    test/01/t0118a.sh
-	test	modify	    2 -> 3    test/01/t0119a.sh
-	test	modify	    2 -> 3    test/01/t0120a.sh
-	test	modify	    2 -> 3    test/01/t0121a.sh
-	test	modify	    2 -> 3    test/01/t0122a.sh
-	test	modify	    2 -> 3    test/01/t0123a.sh
-	test	modify	    2 -> 3    test/01/t0124a.sh
-	test	modify	    2 -> 3    test/01/t0125a.sh
-	test	modify	    2 -> 3    test/01/t0126a.sh
-	test	modify	    2 -> 3    test/01/t0127a.sh
-	test	modify	    2 -> 3    test/01/t0128a.sh
-	test	modify	    2 -> 3    test/01/t0129a.sh
-	test	modify	    2 -> 3    test/01/t0130a.sh
-	test	modify	    3 -> 4    test/01/t0131a.sh
-	test	modify	    2 -> 3    test/01/t0132a.sh
-
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        test    modify      3 -> 4    test/00/t0020a.sh
+        test    modify      3 -> 4    test/00/t0021a.sh
+        test    modify      3 -> 4    test/00/t0022a.sh
+        test    modify      3 -> 4    test/00/t0023a.sh
+        test    modify      3 -> 4    test/00/t0024a.sh
+        test    modify      3 -> 4    test/00/t0025a.sh
+        test    modify      3 -> 4    test/00/t0026a.sh
+        test    modify      3 -> 4    test/00/t0027a.sh
+        test    modify      3 -> 4    test/00/t0028a.sh
+        test    modify      3 -> 4    test/00/t0029a.sh
+        test    modify      3 -> 4    test/00/t0031a.sh
+        test    modify      3 -> 4    test/00/t0032a.sh
+        test    modify      3 -> 4    test/00/t0033a.sh
+        test    modify      4 -> 5    test/00/t0034a.sh
+        test    modify      5 -> 6    test/00/t0035a.sh
+        test    modify      3 -> 4    test/00/t0036a.sh
+        test    modify      3 -> 4    test/00/t0037a.sh
+        test    modify      3 -> 4    test/00/t0038a.sh
+        test    modify      3 -> 4    test/00/t0039a.sh
+        test    modify      3 -> 4    test/00/t0040a.sh
+        test    modify      4 -> 5    test/00/t0041a.sh
+        test    modify      3 -> 4    test/00/t0042a.sh
+        test    modify      3 -> 4    test/00/t0043a.sh
+        test    modify      3 -> 4    test/00/t0044a.sh
+        test    modify      4 -> 5    test/00/t0045a.sh
+        test    modify      3 -> 4    test/00/t0046a.sh
+        test    modify      3 -> 4    test/00/t0047a.sh
+        test    modify      4 -> 5    test/00/t0048a.sh
+        test    modify      3 -> 4    test/00/t0049a.sh
+        test    modify      4 -> 5    test/00/t0050a.sh
+        test    modify      4 -> 5    test/00/t0051a.sh
+        test    modify      3 -> 4    test/00/t0052a.sh
+        test    modify      3 -> 4    test/00/t0053a.sh
+        test    modify      3 -> 4    test/00/t0054a.sh
+        test    modify      3 -> 4    test/00/t0055a.sh
+        test    modify      4 -> 5    test/00/t0056a.sh
+        test    modify      3 -> 4    test/00/t0057a.sh
+        test    modify      3 -> 4    test/00/t0058a.sh
+        test    modify      3 -> 4    test/00/t0059a.sh
+        test    modify      3 -> 4    test/00/t0060a.sh
+        test    modify      3 -> 4    test/00/t0061a.sh
+        test    modify      3 -> 4    test/00/t0062a.sh
+        test    modify      3 -> 4    test/00/t0063a.sh
+        test    modify      3 -> 4    test/00/t0064a.sh
+        test    modify      5 -> 6    test/00/t0065a.sh
+        test    modify      6 -> 7    test/00/t0066a.sh
+        test    modify      4 -> 5    test/00/t0067a.sh
+        test    modify      3 -> 4    test/00/t0068a.sh
+        test    modify      3 -> 4    test/00/t0069a.sh
+        test    modify      6 -> 7    test/00/t0070a.sh
+        test    modify      5 -> 6    test/00/t0071a.sh
+        test    modify      3 -> 4    test/00/t0072a.sh
+        test    modify      3 -> 4    test/00/t0073a.sh
+        test    modify      3 -> 4    test/00/t0074a.sh
+        test    modify      3 -> 4    test/00/t0075a.sh
 
 
-Project "cook.2.4", Change 16					 Page 4
-Change Details				       Wed Sep	2 17:11:26 1998
 
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	test	modify	    2 -> 3    test/01/t0133a.sh
-	test	modify	    2 -> 3    test/01/t0134a.sh
-	test	modify	    2 -> 3    test/01/t0135a.sh
-	test	modify	    3 -> 4    test/01/t0136a.sh
-	test	modify	    2 -> 3    test/01/t0137a.sh
-	test	modify	    1 -> 2    test/01/t0138a.sh
-	test	modify	    1 -> 2    test/01/t0139a.sh
-	test	modify	    1 -> 2    test/01/t0140a.sh
-	test	modify	    1 -> 2    test/01/t0141a.sh
-	test	modify	    1 -> 2    test/01/t0142a.sh
-	test	modify	    2 -> 3    test/01/t0144a.sh
-	test	modify	    1 -> 2    test/01/t0145a.sh
-	test	modify	    1 -> 2    test/01/t0146a.sh
-	test	modify	    3 -> 4    test/01/t0147a.sh
-	test	modify	    1 -> 2    test/01/t0148a.sh
-	test	modify	    2 -> 3    test/01/t0149a.sh
-	test	modify	    1 -> 2    test/01/t0150a.sh
-	test	modify	    1 -> 2    test/01/t0151a.sh
-	test	modify	    1 -> 2    test/01/t0152a.sh
+Project "cook.2.4", Change 16                                    Page 3
+Change Details                                 Wed Sep  2 17:11:26 1998
+
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        test    modify      3 -> 4    test/00/t0076a.sh
+        test    modify      4 -> 5    test/00/t0077a.sh
+        test    modify      3 -> 4    test/00/t0078a.sh
+        test    modify      4 -> 5    test/00/t0079a.sh
+        test    modify      3 -> 4    test/00/t0081a.sh
+        test    modify      3 -> 4    test/00/t0082a.sh
+        test    modify      3 -> 4    test/00/t0083a.sh
+        test    modify      6 -> 7    test/00/t0084a.sh
+        test    modify      3 -> 4    test/00/t0085a.sh
+        test    modify      3 -> 4    test/00/t0086a.sh
+        test    modify      3 -> 4    test/00/t0087a.sh
+        test    modify      3 -> 4    test/00/t0088a.sh
+        test    modify      3 -> 4    test/00/t0089a.sh
+        test    modify      3 -> 4    test/00/t0090a.sh
+        test    modify      3 -> 4    test/00/t0091a.sh
+        test    modify      3 -> 4    test/00/t0092a.sh
+        test    modify      4 -> 5    test/00/t0093a.sh
+        test    modify      3 -> 4    test/00/t0094a.sh
+        test    modify      3 -> 4    test/00/t0095a.sh
+        test    modify      3 -> 4    test/00/t0096a.sh
+        test    modify      4 -> 5    test/00/t0097a.sh
+        test    modify      3 -> 4    test/00/t0098a.sh
+        test    modify      3 -> 4    test/00/t0099a.sh
+        test    modify      3 -> 4    test/01/t0100a.sh
+        test    modify      6 -> 7    test/01/t0101a.sh
+        test    modify      3 -> 4    test/01/t0102a.sh
+        test    modify      3 -> 4    test/01/t0103a.sh
+        test    modify      4 -> 5    test/01/t0104a.sh
+        test    modify      5 -> 6    test/01/t0105a.sh
+        test    modify      5 -> 6    test/01/t0106a.sh
+        test    modify      3 -> 4    test/01/t0107a.sh
+        test    modify      4 -> 5    test/01/t0108a.sh
+        test    modify      3 -> 4    test/01/t0109a.sh
+        test    modify      3 -> 4    test/01/t0111a.sh
+        test    modify      3 -> 4    test/01/t0112a.sh
+        test    modify      3 -> 4    test/01/t0113a.sh
+        test    modify      3 -> 4    test/01/t0114a.sh
+        test    modify      3 -> 4    test/01/t0115a.sh
+        test    modify      3 -> 4    test/01/t0116a.sh
+        test    modify      3 -> 4    test/01/t0117a.sh
+        test    modify      2 -> 3    test/01/t0118a.sh
+        test    modify      2 -> 3    test/01/t0119a.sh
+        test    modify      2 -> 3    test/01/t0120a.sh
+        test    modify      2 -> 3    test/01/t0121a.sh
+        test    modify      2 -> 3    test/01/t0122a.sh
+        test    modify      2 -> 3    test/01/t0123a.sh
+        test    modify      2 -> 3    test/01/t0124a.sh
+        test    modify      2 -> 3    test/01/t0125a.sh
+        test    modify      2 -> 3    test/01/t0126a.sh
+        test    modify      2 -> 3    test/01/t0127a.sh
+        test    modify      2 -> 3    test/01/t0128a.sh
+        test    modify      2 -> 3    test/01/t0129a.sh
+        test    modify      2 -> 3    test/01/t0130a.sh
+        test    modify      3 -> 4    test/01/t0131a.sh
+        test    modify      2 -> 3    test/01/t0132a.sh
+
+
+
+Project "cook.2.4", Change 16                                    Page 4
+Change Details                                 Wed Sep  2 17:11:26 1998
+
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        test    modify      2 -> 3    test/01/t0133a.sh
+        test    modify      2 -> 3    test/01/t0134a.sh
+        test    modify      2 -> 3    test/01/t0135a.sh
+        test    modify      3 -> 4    test/01/t0136a.sh
+        test    modify      2 -> 3    test/01/t0137a.sh
+        test    modify      1 -> 2    test/01/t0138a.sh
+        test    modify      1 -> 2    test/01/t0139a.sh
+        test    modify      1 -> 2    test/01/t0140a.sh
+        test    modify      1 -> 2    test/01/t0141a.sh
+        test    modify      1 -> 2    test/01/t0142a.sh
+        test    modify      2 -> 3    test/01/t0144a.sh
+        test    modify      1 -> 2    test/01/t0145a.sh
+        test    modify      1 -> 2    test/01/t0146a.sh
+        test    modify      3 -> 4    test/01/t0147a.sh
+        test    modify      1 -> 2    test/01/t0148a.sh
+        test    modify      2 -> 3    test/01/t0149a.sh
+        test    modify      1 -> 2    test/01/t0150a.sh
+        test    modify      1 -> 2    test/01/t0151a.sh
+        test    modify      1 -> 2    test/01/t0152a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Aug 10	pmiller
-			11:08:51 1998
-	develop_begin	Mon Aug 10	pmiller	 Elapsed time: 0.075
-			11:09:04 1998		 days.
-	develop_end	Mon Aug 10	pmiller	 Elapsed time: 0.188
-			11:43:00 1998		 days.
-	review_pass	Mon Aug 10	pmiller
-			13:07:27 1998
-	integrate_begin Mon Aug 10	pmiller
-			13:07:39 1998
-	integrate_pass	Mon Aug 10	pmiller
-			13:14:52 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Aug 10      pmiller
+                        11:08:51 1998
+        develop_begin   Mon Aug 10      pmiller  Elapsed time: 0.075
+                        11:09:04 1998            days.
+        develop_end     Mon Aug 10      pmiller  Elapsed time: 0.188
+                        11:43:00 1998            days.
+        review_pass     Mon Aug 10      pmiller
+                        13:07:27 1998
+        integrate_begin Mon Aug 10      pmiller
+                        13:07:39 1998
+        integrate_pass  Mon Aug 10      pmiller
+                        13:14:52 1998
 
 
-Project "cook.2.4", Change 17					 Page 1
-Change Details				       Wed Sep	2 17:11:26 1998
+
+Project "cook.2.4", Change 17                                    Page 1
+Change Details                                 Wed Sep  2 17:11:26 1998
 
 NAME
-	Project "cook.2.4", Delta 8, Change 17.
+        Project "cook.2.4", Delta 8, Change 17.
 
 SUMMARY
-	user guide omits setenv statement
+        user guide omits setenv statement
 
 DESCRIPTION
-	This change adds the setenv statement to the User Guide.  For
-	some reason it has managed to elude coumentation for many
-	years.
+        This change adds the setenv statement to the User Guide.  For
+        some reason it has managed to elude coumentation for many
+        years.
 
-	My thanks to Scott J. Bertin <bertins@db.erau.edu> for
-	reporting this problem.
+        My thanks to Scott J. Bertin <bertins@db.erau.edu> for
+        reporting this problem.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 53   BUILDING
-	build	modify	   27 -> 94   MANIFEST
-	build	modify	   29 -> 94   Makefile.in
-	build	modify	   12 -> 47   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 156  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	build	modify	   10 -> 18   etc/version.so
-	source	modify	    1 -> 2    lib/en/readme/new.2.4.so
-	source	create	    1	      lib/en/user-guide/lang.seten.pic
-	source	modify	   13 -> 14   lib/en/user-guide/language.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 53   BUILDING
+        build   modify     27 -> 94   MANIFEST
+        build   modify     29 -> 94   Makefile.in
+        build   modify     12 -> 47   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 156  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        build   modify     10 -> 18   etc/version.so
+        source  modify      1 -> 2    lib/en/readme/new.2.4.so
+        source  create      1         lib/en/user-guide/lang.seten.pic
+        source  modify     13 -> 14   lib/en/user-guide/language.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Aug 10	pmiller
-			14:05:41 1998
-	develop_begin	Mon Aug 10	pmiller	 Elapsed time: 0.140
-			14:06:04 1998		 days.
-	develop_end	Mon Aug 10	pmiller
-			15:09:00 1998
-	review_pass	Mon Aug 10	pmiller
-			15:09:05 1998
-	integrate_begin Mon Aug 10	pmiller
-			15:09:13 1998
-	integrate_pass	Mon Aug 10	pmiller
-			15:16:07 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Aug 10      pmiller
+                        14:05:41 1998
+        develop_begin   Mon Aug 10      pmiller  Elapsed time: 0.140
+                        14:06:04 1998            days.
+        develop_end     Mon Aug 10      pmiller
+                        15:09:00 1998
+        review_pass     Mon Aug 10      pmiller
+                        15:09:05 1998
+        integrate_begin Mon Aug 10      pmiller
+                        15:09:13 1998
+        integrate_pass  Mon Aug 10      pmiller
+                        15:16:07 1998
 
 
-Project "cook.2.4", Change 18					 Page 1
-Change Details				       Wed Sep	2 17:11:27 1998
+
+Project "cook.2.4", Change 18                                    Page 1
+Change Details                                 Wed Sep  2 17:11:27 1998
 
 NAME
-	Project "cook.2.4", Delta 9, Change 18.
+        Project "cook.2.4", Delta 9, Change 18.
 
 SUMMARY
-	more test robustnes
+        more test robustnes
 
 DESCRIPTION
-	This change makes a couple of tests more robust.
+        This change makes a couple of tests more robust.
 
-	My thanks to Scott J. Burtin <bertins@db.erau.edu> for
-	reporting this problem.
+        My thanks to Scott J. Burtin <bertins@db.erau.edu> for
+        reporting this problem.
 
-	This change is exempt from testing against the baseline.
+        This change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 54   BUILDING
-	build	modify	   27 -> 94   MANIFEST
-	build	modify	   29 -> 94   Makefile.in
-	build	modify	   12 -> 47   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 157  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	build	modify	   10 -> 19   etc/version.so
-	source	modify	   11 -> 12   lib/en/building/main.man
-	test	modify	    3 -> 4    test/01/t0121a.sh
-	test	modify	    3 -> 4    test/01/t0122a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 54   BUILDING
+        build   modify     27 -> 94   MANIFEST
+        build   modify     29 -> 94   Makefile.in
+        build   modify     12 -> 47   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 157  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        build   modify     10 -> 19   etc/version.so
+        source  modify     11 -> 12   lib/en/building/main.man
+        test    modify      3 -> 4    test/01/t0121a.sh
+        test    modify      3 -> 4    test/01/t0122a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Tue Aug 11	pmiller
-			08:57:25 1998
-	develop_begin	Tue Aug 11	pmiller	 Elapsed time: 1.000
-			08:57:32 1998		 days.
-	develop_end	Wed Aug 12	pmiller	 Elapsed time: 2.000
-			08:33:04 1998		 days.
-	review_pass	Thu Aug 13	pmiller
-			16:43:19 1998
-	integrate_begin Thu Aug 13	pmiller
-			16:43:30 1998
-	integrate_pass	Thu Aug 13	pmiller
-			16:48:48 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Tue Aug 11      pmiller
+                        08:57:25 1998
+        develop_begin   Tue Aug 11      pmiller  Elapsed time: 1.000
+                        08:57:32 1998            days.
+        develop_end     Wed Aug 12      pmiller  Elapsed time: 2.000
+                        08:33:04 1998            days.
+        review_pass     Thu Aug 13      pmiller
+                        16:43:19 1998
+        integrate_begin Thu Aug 13      pmiller
+                        16:43:30 1998
+        integrate_pass  Thu Aug 13      pmiller
+                        16:48:48 1998
 
 
-Project "cook.2.4", Change 19					 Page 1
-Change Details				       Wed Sep	2 17:11:27 1998
+
+Project "cook.2.4", Change 19                                    Page 1
+Change Details                                 Wed Sep  2 17:11:27 1998
 
 NAME
-	Project "cook.2.4", Delta 10, Change 19.
+        Project "cook.2.4", Delta 10, Change 19.
 
 SUMMARY
-	improve large project chapter
+        improve large project chapter
 
 DESCRIPTION
-	This change improves the chapter of the User Guide of how to
-	handle larger projects.
+        This change improves the chapter of the User Guide of how to
+        handle larger projects.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_improvement.
+        This change was caused by internal_improvement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 55   BUILDING
-	build	modify	   27 -> 94   MANIFEST
-	build	modify	   29 -> 94   Makefile.in
-	build	modify	   12 -> 47   README
-	build	modify	    3 -> 9    common/config.h.in
-	build	modify	   43 -> 158  common/patchlevel.h
-	build	modify	    7 -> 15   configure
-	build	modify	   10 -> 20   etc/version.so
-	source	modify	    1 -> 2    lib/en/user-guide/large.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 55   BUILDING
+        build   modify     27 -> 94   MANIFEST
+        build   modify     29 -> 94   Makefile.in
+        build   modify     12 -> 47   README
+        build   modify      3 -> 9    common/config.h.in
+        build   modify     43 -> 158  common/patchlevel.h
+        build   modify      7 -> 15   configure
+        build   modify     10 -> 20   etc/version.so
+        source  modify      1 -> 2    lib/en/user-guide/large.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Thu Aug 13	pmiller
-			16:57:21 1998
-	develop_begin	Thu Aug 13	pmiller	 Elapsed time: 0.031
-			16:57:33 1998		 days.
-	develop_end	Thu Aug 13	pmiller
-			17:11:21 1998
-	review_pass	Thu Aug 13	pmiller
-			17:11:22 1998
-	integrate_begin Thu Aug 13	pmiller	 Elapsed time: 0.038
-			17:11:32 1998		 days.
-	integrate_pass	Thu Aug 13	pmiller
-			17:28:27 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Thu Aug 13      pmiller
+                        16:57:21 1998
+        develop_begin   Thu Aug 13      pmiller  Elapsed time: 0.031
+                        16:57:33 1998            days.
+        develop_end     Thu Aug 13      pmiller
+                        17:11:21 1998
+        review_pass     Thu Aug 13      pmiller
+                        17:11:22 1998
+        integrate_begin Thu Aug 13      pmiller  Elapsed time: 0.038
+                        17:11:32 1998            days.
+        integrate_pass  Thu Aug 13      pmiller
+                        17:28:27 1998
 
 
-Project "cook.2.4", Change 20					 Page 1
-Change Details				       Wed Sep	2 17:11:27 1998
+
+Project "cook.2.4", Change 20                                    Page 1
+Change Details                                 Wed Sep  2 17:11:27 1998
 
 NAME
-	Project "cook.2.4", Delta 11, Change 20.
+        Project "cook.2.4", Delta 11, Change 20.
 
 SUMMARY
-	ifix build problems
+        ifix build problems
 
 DESCRIPTION
-	This change corrects some build problems.
+        This change corrects some build problems.
 
-	My thanks to Henrik Weber <Henrik.Weber@bku.db.de> for
-	reporting this problem.
+        My thanks to Henrik Weber <Henrik.Weber@bku.db.de> for
+        reporting this problem.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 56   BUILDING
-	build	modify	   27 -> 95   MANIFEST
-	build	modify	   29 -> 95   Makefile.in
-	build	modify	   12 -> 47   README
-	source	modify	    1 -> 2    common/ac/ctype.h
-	source	modify	    2 -> 3    common/ac/dirent.h
-	source	modify	    2 -> 3    common/ac/fcntl.h
-	source	modify	    2 -> 3    common/ac/limits.h
-	source	modify	    2 -> 3    common/ac/stdarg.h
-	source	modify	    2 -> 3    common/ac/stddef.h
-	source	modify	    2 -> 3    common/ac/stdlib.h
-	source	modify	    2 -> 3    common/ac/string.c
-	source	modify	    3 -> 4    common/ac/string.h
-	source	modify	    2 -> 3    common/ac/time.h
-	source	modify	    3 -> 4    common/ac/unistd.h
-	source	modify	    4 -> 5    common/ac/wchar.h
-	source	modify	    2 -> 3    common/ac/wctype.c
-	source	modify	    4 -> 5    common/ac/wctype.h
-	build	modify	    3 -> 10   common/config.h.in
-	build	modify	   43 -> 159  common/patchlevel.h
-	build	modify	    7 -> 16   configure
-	source	modify	    4 -> 5    cook/desist.c
-	source	modify	   10 -> 11   cook/os.c
-	source	modify	    5 -> 6    cook/os.h
-	source	modify	    1 -> 2    etc/config.h.in
-	source	modify	    1 -> 2    etc/configure.in
-	build	modify	   10 -> 21   etc/version.so
-
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 56   BUILDING
+        build   modify     27 -> 95   MANIFEST
+        build   modify     29 -> 95   Makefile.in
+        build   modify     12 -> 47   README
+        source  modify      1 -> 2    common/ac/ctype.h
+        source  modify      2 -> 3    common/ac/dirent.h
+        source  modify      2 -> 3    common/ac/fcntl.h
+        source  modify      2 -> 3    common/ac/limits.h
+        source  modify      2 -> 3    common/ac/stdarg.h
+        source  modify      2 -> 3    common/ac/stddef.h
+        source  modify      2 -> 3    common/ac/stdlib.h
+        source  modify      2 -> 3    common/ac/string.c
+        source  modify      3 -> 4    common/ac/string.h
+        source  modify      2 -> 3    common/ac/time.h
+        source  modify      3 -> 4    common/ac/unistd.h
+        source  modify      4 -> 5    common/ac/wchar.h
+        source  modify      2 -> 3    common/ac/wctype.c
+        source  modify      4 -> 5    common/ac/wctype.h
+        build   modify      3 -> 10   common/config.h.in
+        build   modify     43 -> 159  common/patchlevel.h
+        build   modify      7 -> 16   configure
+        source  modify      4 -> 5    cook/desist.c
+        source  modify     10 -> 11   cook/os.c
+        source  modify      5 -> 6    cook/os.h
+        source  modify      1 -> 2    etc/config.h.in
+        source  modify      1 -> 2    etc/configure.in
+        build   modify     10 -> 21   etc/version.so
 
 
-Project "cook.2.4", Change 20					 Page 2
-Change Details				       Wed Sep	2 17:11:27 1998
+
+Project "cook.2.4", Change 20                                    Page 2
+Change Details                                 Wed Sep  2 17:11:27 1998
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Tue Sep	 1	pmiller
-			09:07:02 1998
-	develop_begin	Tue Sep	 1	pmiller	 Elapsed time: 0.618
-			09:07:10 1998		 days.
-	develop_end	Tue Sep	 1	pmiller
-			13:45:19 1998
-	review_pass	Tue Sep	 1	pmiller
-			13:45:24 1998
-	integrate_begin Tue Sep	 1	pmiller	 Elapsed time: 0.041
-			13:45:36 1998		 days.
-	integrate_pass	Tue Sep	 1	pmiller
-			14:04:03 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Tue Sep  1      pmiller
+                        09:07:02 1998
+        develop_begin   Tue Sep  1      pmiller  Elapsed time: 0.618
+                        09:07:10 1998            days.
+        develop_end     Tue Sep  1      pmiller
+                        13:45:19 1998
+        review_pass     Tue Sep  1      pmiller
+                        13:45:24 1998
+        integrate_begin Tue Sep  1      pmiller  Elapsed time: 0.041
+                        13:45:36 1998            days.
+        integrate_pass  Tue Sep  1      pmiller
+                        14:04:03 1998
 
 
-Project "cook.2.4", Change 21					 Page 1
-Change Details				       Wed Sep	2 17:11:27 1998
+
+Project "cook.2.4", Change 21                                    Page 1
+Change Details                                 Wed Sep  2 17:11:27 1998
 
 NAME
-	Project "cook.2.4", Delta 12, Change 21.
+        Project "cook.2.4", Delta 12, Change 21.
 
 SUMMARY
-	Y2K status
+        Y2K status
 
 DESCRIPTION
-	This change adds a Year 2000 status blurb to the Web page.
+        This change adds a Year 2000 status blurb to the Web page.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_improvement.
+        This change was caused by internal_improvement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 57   BUILDING
-	build	modify	   27 -> 95   MANIFEST
-	build	modify	   29 -> 95   Makefile.in
-	build	modify	   12 -> 47   README
-	build	modify	    3 -> 10   common/config.h.in
-	build	modify	   43 -> 160  common/patchlevel.h
-	build	modify	    7 -> 16   configure
-	source	modify	    2 -> 3    etc/cook.html
-	build	modify	   10 -> 22   etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 57   BUILDING
+        build   modify     27 -> 95   MANIFEST
+        build   modify     29 -> 95   Makefile.in
+        build   modify     12 -> 47   README
+        build   modify      3 -> 10   common/config.h.in
+        build   modify     43 -> 160  common/patchlevel.h
+        build   modify      7 -> 16   configure
+        source  modify      2 -> 3    etc/cook.html
+        build   modify     10 -> 22   etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Wed Sep	 2	pmiller
-			08:48:40 1998
-	develop_begin	Wed Sep	 2	pmiller
-			08:48:46 1998
-	develop_end	Wed Sep	 2	pmiller	 Elapsed time: 0.592
-			08:53:44 1998		 days.
-	review_pass	Wed Sep	 2	pmiller
-			13:20:18 1998
-	integrate_begin Wed Sep	 2	pmiller	 Elapsed time: 0.072
-			13:20:30 1998		 days.
-	integrate_pass	Wed Sep	 2	pmiller
-			13:52:43 1998
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Wed Sep  2      pmiller
+                        08:48:40 1998
+        develop_begin   Wed Sep  2      pmiller
+                        08:48:46 1998
+        develop_end     Wed Sep  2      pmiller  Elapsed time: 0.592
+                        08:53:44 1998            days.
+        review_pass     Wed Sep  2      pmiller
+                        13:20:18 1998
+        integrate_begin Wed Sep  2      pmiller  Elapsed time: 0.072
+                        13:20:30 1998            days.
+        integrate_pass  Wed Sep  2      pmiller
+                        13:52:43 1998
+
+Copyright (C) 1997-2007 Peter Miller

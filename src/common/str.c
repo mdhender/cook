@@ -1,23 +1,21 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1993-1995, 1997-1999, 2001, 2003 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1993-1995, 1997-1999, 2001, 2003, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manipulate shared strings
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  *
  * Strings are the most heavily used resource in cook.  They are manipulated
  * inside the match functions, and hence are in the inside loop.  For this
@@ -31,17 +29,17 @@
  * a pointer test, and thus very fast.
  */
 
-#include <ac/ctype.h>
-#include <ac/stddef.h>
-#include <ac/stdio.h>
-#include <ac/stdlib.h>
-#include <ac/string.h>
+#include <common/ac/ctype.h>
+#include <common/ac/stddef.h>
+#include <common/ac/stdio.h>
+#include <common/ac/stdlib.h>
+#include <common/ac/string.h>
 
-#include <error.h>
-#include <mem.h>
-#include <mprintf.h>
-#include <str.h>
-#include <trace.h> /* for assert */
+#include <common/error.h>
+#include <common/mem.h>
+#include <common/mprintf.h>
+#include <common/str.h>
+#include <common/trace.h> /* for assert */
 
 
 /*
@@ -61,20 +59,20 @@ static str_hash_ty hash_load;
 
 /*
  * NAME
- *	hash_generate - hash string to number
+ *      hash_generate - hash string to number
  *
  * SYNOPSIS
- *	str_hash_ty hash_generate(char *s, size_t n);
+ *      str_hash_ty hash_generate(char *s, size_t n);
  *
  * DESCRIPTION
- *	The hash_generate function is used to make a number from a string.
+ *      The hash_generate function is used to make a number from a string.
  *
  * RETURNS
- *	str_hash_ty - the magic number
+ *      str_hash_ty - the magic number
  *
  * CAVEAT
- *	Only the last MAX_HASH_LEN characters are used.
- *	It is important that str_hash_ty be unsigned (int or long).
+ *      Only the last MAX_HASH_LEN characters are used.
+ *      It is important that str_hash_ty be unsigned (int or long).
  */
 
 static str_hash_ty
@@ -84,15 +82,15 @@ hash_generate(const char *s, size_t n)
 
     if (n > MAX_HASH_LEN)
     {
-	s += n - MAX_HASH_LEN;
-	n = MAX_HASH_LEN;
+        s += n - MAX_HASH_LEN;
+        n = MAX_HASH_LEN;
     }
 
     retval = 0;
     while (n > 0)
     {
-	retval = (retval + (retval << 1)) ^ *s++;
-	--n;
+        retval = (retval + (retval << 1)) ^ *s++;
+        --n;
     }
     return retval;
 }
@@ -100,20 +98,20 @@ hash_generate(const char *s, size_t n)
 
 /*
  * NAME
- *	str_valid - test a string
+ *      str_valid - test a string
  *
  * SYNOPSIS
- *	int str_valid(string_ty *s);
+ *      int str_valid(string_ty *s);
  *
  * DESCRIPTION
- *	The str_valid function is used to test if a pointer points to a valid
- *	string.
+ *      The str_valid function is used to test if a pointer points to a valid
+ *      string.
  *
  * RETURNS
- *	int: zero if the string is not valid, nonzero if the string is valid.
+ *      int: zero if the string is not valid, nonzero if the string is valid.
  *
  * CAVEAT
- *	This function is only available then the DEBUG symbol is #define'd.
+ *      This function is only available then the DEBUG symbol is #define'd.
  */
 
 #ifdef DEBUG
@@ -121,14 +119,14 @@ hash_generate(const char *s, size_t n)
 int
 str_valid(string_ty *s)
 {
-return
-(
-    s->str_references > 0
-&&
-    strlen(s->str_text) == s->str_length
-&&
-    s->str_hash == hash_generate(s->str_text, s->str_length)
-);
+    return
+    (
+        s->str_references > 0
+    &&
+        strlen(s->str_text) == s->str_length
+    &&
+        s->str_hash == hash_generate(s->str_text, s->str_length)
+    );
 }
 
 #endif
@@ -136,20 +134,20 @@ return
 
 /*
 * NAME
-*	str_initialize - start up string table
+*       str_initialize - start up string table
 *
 * SYNOPSIS
-*	void str_initialize(void);
+*       void str_initialize(void);
 *
 * DESCRIPTION
-*	The str_initialize function is used to create the hash table and
-*	initialize it to empty.
+*       The str_initialize function is used to create the hash table and
+*       initialize it to empty.
 *
 * RETURNS
-*	void
+*       void
 *
 * CAVEAT
-*	This function must be called before any other defined in this file.
+*       This function must be called before any other defined in this file.
 */
 
 void
@@ -162,7 +160,7 @@ str_initialize(void)
     hash_load = 0;
     hash_table = mem_alloc(hash_modulus * sizeof(string_ty *));
     for (j = 0; j < hash_modulus; ++j)
-	    hash_table[j] = 0;
+            hash_table[j] = 0;
 
     str_true = str_from_c("1");
     str_false = str_from_c("");
@@ -171,19 +169,19 @@ str_initialize(void)
 
 /*
  * NAME
- *	split - reduce table loading
+ *      split - reduce table loading
  *
  * SYNOPSIS
- *	void split(void);
+ *      void split(void);
  *
  * DESCRIPTION
- *	The split function is used to reduce the load factor on the hash table.
+ *      The split function is used to reduce the load factor on the hash table.
  *
  * RETURNS
- *	void
+ *      void
  *
  * CAVEAT
- *	A load factor of about 80% is suggested.
+ *      A load factor of about 80% is suggested.
  */
 
 static void
@@ -214,23 +212,23 @@ split(void)
      */
     for (j = 0; j < hash_modulus; ++j)
     {
-	string_ty       *p;
+        string_ty       *p;
 
-	p = hash_table[j];
-	new_hash_table[j] = 0;
-	new_hash_table[hash_modulus + j] = 0;
-	while (p)
-	{
-	    string_ty       *p2;
-	    str_hash_ty     idx;
+        p = hash_table[j];
+        new_hash_table[j] = 0;
+        new_hash_table[hash_modulus + j] = 0;
+        while (p)
+        {
+            string_ty       *p2;
+            str_hash_ty     idx;
 
-	    p2 = p;
-	    p = p->str_next;
+            p2 = p;
+            p = p->str_next;
 
-	    idx = p2->str_hash & new_hash_mask;
-	    p2->str_next = new_hash_table[idx];
-	    new_hash_table[idx] = p2;
-	}
+            idx = p2->str_hash & new_hash_mask;
+            p2->str_next = new_hash_table[idx];
+            new_hash_table[idx] = p2;
+        }
     }
 
     /*
@@ -245,21 +243,21 @@ split(void)
 
 /*
  * NAME
- *	str_from_c - make string from C string
+ *      str_from_c - make string from C string
  *
  * SYNOPSIS
- *	string_ty *str_from_c(char*);
+ *      string_ty *str_from_c(char*);
  *
  * DESCRIPTION
- *	The str_from_c function is used to make a string from a null terminated
- *	C string.
+ *      The str_from_c function is used to make a string from a null terminated
+ *      C string.
  *
  * RETURNS
- *	string_ty * - a pointer to a string in dynamic memory.
- *	Use str_free when finished with.
+ *      string_ty * - a pointer to a string in dynamic memory.
+ *      Use str_free when finished with.
  *
  * CAVEAT
- *	The contents of the structure pointed to MUST NOT be altered.
+ *      The contents of the structure pointed to MUST NOT be altered.
  */
 
 string_ty *
@@ -271,21 +269,21 @@ str_from_c(const char *s)
 
 /*
  * NAME
- *	str_n_from_c - make string
+ *      str_n_from_c - make string
  *
  * SYNOPSIS
- *	string_ty *str_n_from_c(char *s, size_t n);
+ *      string_ty *str_n_from_c(char *s, size_t n);
  *
  * DESCRIPTION
- *	The str_n_from_c function is used to make a string from an array of
- *	characters.  No null terminator is assumed.
+ *      The str_n_from_c function is used to make a string from an array of
+ *      characters.  No null terminator is assumed.
  *
  * RETURNS
- *	string_ty * - a pointer to a string in dynamic memory.
- *	Use str_free when finished with.
+ *      string_ty * - a pointer to a string in dynamic memory.
+ *      Use str_free when finished with.
  *
  * CAVEAT
- *	The contents of the structure pointed to MUST NOT be altered.
+ *      The contents of the structure pointed to MUST NOT be altered.
  */
 
 string_ty *
@@ -299,25 +297,25 @@ str_n_from_c(const char *s, size_t length)
 
 #ifdef DEBUG
     if (!hash_table)
-	fatal_raw("you must call str_initialize early in main()");
+        fatal_raw("you must call str_initialize early in main()");
 #endif
     idx = hash & hash_mask;
     assert(idx < hash_modulus);
 
     for (p = hash_table[idx]; p; p = p->str_next)
     {
-	if
-	(
-	    p->str_hash == hash
-	&&
-	    p->str_length == length
-	&&
-	    0 == memcmp(p->str_text, s, length)
-	)
-	{
-	    p->str_references++;
-	    return p;
-	}
+        if
+        (
+            p->str_hash == hash
+        &&
+            p->str_length == length
+        &&
+            0 == memcmp(p->str_text, s, length)
+        )
+        {
+            p->str_references++;
+            return p;
+        }
     }
 
     p = mem_alloc(sizeof(string_ty) + length);
@@ -329,12 +327,12 @@ str_n_from_c(const char *s, size_t length)
 #if 0
     /* silence purify */
     {
-	    /*
-	     * probably sizeof(int) bytes,
-	     * but is compiler dependent
-	     */
-	    size_t n = sizeof(string_ty) - offsetof(string_ty, str_text);
-	    memset(p->str_text, 0, n);
+            /*
+             * probably sizeof(int) bytes,
+             * but is compiler dependent
+             */
+            size_t n = sizeof(string_ty) - offsetof(string_ty, str_text);
+            memset(p->str_text, 0, n);
     }
 #endif
     memcpy(p->str_text, s, length);
@@ -342,27 +340,27 @@ str_n_from_c(const char *s, size_t length)
 
     hash_load++;
     if (hash_load * 10 > hash_modulus * 8)
-	split();
+        split();
     return p;
 }
 
 
 /*
  * NAME
- *	str_copy - make a copy of a string
+ *      str_copy - make a copy of a string
  *
  * SYNOPSIS
- *	string_ty *str_copy(string_ty *s);
+ *      string_ty *str_copy(string_ty *s);
  *
  * DESCRIPTION
- *	The str_copy function is used to make a copy of a string.
+ *      The str_copy function is used to make a copy of a string.
  *
  * RETURNS
- *	string_ty * - a pointer to a string in dynamic memory.
- *	Use str_free when finished with.
+ *      string_ty * - a pointer to a string in dynamic memory.
+ *      Use str_free when finished with.
  *
  * CAVEAT
- *	The contents of the structure pointed to MUST NOT be altered.
+ *      The contents of the structure pointed to MUST NOT be altered.
  */
 
 string_ty *
@@ -375,20 +373,20 @@ str_copy(string_ty *s)
 
 /*
  * NAME
- *	str_free - release a string
+ *      str_free - release a string
  *
  * SYNOPSIS
- *	void str_free(string_ty *s);
+ *      void str_free(string_ty *s);
  *
  * DESCRIPTION
- *	The str_free function is used to indicate that a string hash been
- *	finished with.
+ *      The str_free function is used to indicate that a string hash been
+ *      finished with.
  *
  * RETURNS
- *	void
+ *      void
  *
  * CAVEAT
- *	This is the only way to release strings DO NOT use the free function.
+ *      This is the only way to release strings DO NOT use the free function.
  */
 
 void
@@ -400,8 +398,8 @@ str_free(string_ty *s)
     assert(str_valid(s));
     if (s->str_references > 1)
     {
-	s->str_references--;
-	return;
+        s->str_references--;
+        return;
     }
     assert(s->str_references == 1);
 
@@ -413,13 +411,13 @@ str_free(string_ty *s)
     assert(idx < hash_modulus);
     for (spp = &hash_table[idx]; *spp; spp = &(*spp)->str_next)
     {
-	if (*spp == s)
-	{
-	    *spp = s->str_next;
-	    free(s);
-	    --hash_load;
-	    return;
-	}
+        if (*spp == s)
+        {
+            *spp = s->str_next;
+            free(s);
+            --hash_load;
+            return;
+        }
     }
     /* should never reach here! */
     fatal_raw("attempted to free non-existent string (bug)");
@@ -428,20 +426,20 @@ str_free(string_ty *s)
 
 /*
  * NAME
- *	str_equal - test equality of strings
+ *      str_equal - test equality of strings
  *
  * SYNOPSIS
- *	int str_equal(string_ty *, string_ty *);
+ *      int str_equal(string_ty *, string_ty *);
  *
  * DESCRIPTION
- *	The str_equal function is used to test if two strings are equal.
+ *      The str_equal function is used to test if two strings are equal.
  *
  * RETURNS
- *	int; zero if the strings are not equal, nonzero if the strings are
- *	equal.
+ *      int; zero if the strings are not equal, nonzero if the strings are
+ *      equal.
  *
  * CAVEAT
- *	This function is implemented as a macro in strings.h
+ *      This function is implemented as a macro in strings.h
  */
 
 #ifndef str_equal
@@ -457,19 +455,19 @@ str_equal(string_ty *s1, string_ty *s2)
 
 /*
  * NAME
- *	str_bool - get boolean value
+ *      str_bool - get boolean value
  *
  * SYNOPSIS
- *	int str_bool(string_ty *s);
+ *      int str_bool(string_ty *s);
  *
  * DESCRIPTION
- *	The str_bool function is used to determine the boolean value of the
- *	given string.  A "false" result is if the string is empty or
- *	0 or blank, and "true" otherwise.
+ *      The str_bool function is used to determine the boolean value of the
+ *      given string.  A "false" result is if the string is empty or
+ *      0 or blank, and "true" otherwise.
  *
  * RETURNS
- *	int: zero to indicate a "false" result, nonzero to indicate a "true"
- *	result.
+ *      int: zero to indicate a "false" result, nonzero to indicate a "true"
+ *      result.
  */
 
 int
@@ -480,9 +478,9 @@ str_bool(string_ty *s)
     cp = s->str_text;
     while (*cp)
     {
-	if (*cp != ' ' && *cp != '0')
-    	    return 1;
-	++cp;
+        if (*cp != ' ' && *cp != '0')
+            return 1;
+        ++cp;
     }
     return 0;
 }
@@ -490,19 +488,19 @@ str_bool(string_ty *s)
 
 /*
  * NAME
- *	str_field - extract a field from a string
+ *      str_field - extract a field from a string
  *
  * SYNOPSIS
- *	string_ty *str_field(string_ty *, char separator, int field_number);
+ *      string_ty *str_field(string_ty *, char separator, int field_number);
  *
  * DESCRIPTION
- *	The str_field functipon is used to erxtract a field from a string.
- *	Fields of the string are separated by ``separator'' characters.
- *	Fields are numbered from 0.
+ *      The str_field functipon is used to erxtract a field from a string.
+ *      Fields of the string are separated by ``separator'' characters.
+ *      Fields are numbered from 0.
  *
  * RETURNS
- *	Asking for a field off the end of the string will result in a null
- *	pointer return.  The null string is considered to have one empty field.
+ *      Asking for a field off the end of the string will result in a null
+ *      pointer return.  The null string is considered to have one empty field.
  */
 
 string_ty *
@@ -514,34 +512,34 @@ str_field(string_ty *s, int sep, int fldnum)
     cp = s->str_text;
     while (fldnum > 0)
     {
-	ep = strchr(cp, sep);
-	if (!ep)
-    	    return 0;
-	cp = ep + 1;
-	--fldnum;
+        ep = strchr(cp, sep);
+        if (!ep)
+            return 0;
+        cp = ep + 1;
+        --fldnum;
     }
     ep = strchr(cp, sep);
     if (ep)
-	return str_n_from_c(cp, ep - cp);
+        return str_n_from_c(cp, ep - cp);
     return str_from_c(cp);
 }
 
 
 /*
  * NAME
- *	str_format - analog of sprintf
+ *      str_format - analog of sprintf
  *
  * SYNOPSIS
- *	string_ty *str_format(char *, ...);
+ *      string_ty *str_format(char *, ...);
  *
  * DESCRIPTION
- *	The str_format function is used to create new strings
- *	using a format specification similar to printf(3).
- *	The "%S" specifier is used to mean a ``string_ty *'' string.
+ *      The str_format function is used to create new strings
+ *      using a format specification similar to printf(3).
+ *      The "%S" specifier is used to mean a ``string_ty *'' string.
  *
  * RETURNS
- *	string_ty * - a pointer to a string in dynamic memory.
- *	Use str_free when finished with.
+ *      string_ty * - a pointer to a string in dynamic memory.
+ *      Use str_free when finished with.
  */
 
 
@@ -551,7 +549,7 @@ str_format(const char *fmt, ...)
     va_list         ap;
     string_ty       *result;
 
-    sva_init(ap, fmt);
+    va_start(ap, fmt);
     result = vmprintfes(fmt, ap);
     va_end(ap);
     return result;

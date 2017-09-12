@@ -1,509 +1,511 @@
 
 
 
-Project "cook.2.18"						  Page 1
-List of Changes					Tue Feb 19 11:01:52 2002
+Project "cook.2.18"                                               Page 1
+List of Changes                                 Tue Feb 19 11:01:52 2002
 
-Change	State		Description
-------- -------		-------------
-  10	completed	prepare for release
-  11	completed	cook_rsh doco
-  12	completed	fail
-  15	completed	tests and CC insulation
-  16	completed	bison .h defines
-  17	completed	OSF1 stat shenanigans
-  18	completed	cook_rsh install
-  19	completed	bison again
-
+Change  State           Description
+------- -------         -------------
+  10    completed       prepare for release
+  11    completed       cook_rsh doco
+  12    completed       fail
+  15    completed       tests and CC insulation
+  16    completed       bison .h defines
+  17    completed       OSF1 stat shenanigans
+  18    completed       cook_rsh install
+  19    completed       bison again
 
 
-Project "cook.2.18", Change 10					  Page 1
-Change Details					Tue Feb 19 11:01:52 2002
+
+Project "cook.2.18", Change 10                                    Page 1
+Change Details                                  Tue Feb 19 11:01:52 2002
 
 NAME
-	Project "cook.2.18", Delta 1, Change 10.
+        Project "cook.2.18", Delta 1, Change 10.
 
 SUMMARY
-	prepare for release
+        prepare for release
 
 DESCRIPTION
-	This change prepares Cook for the next public release.
+        This change prepares Cook for the next public release.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 212  BUILDING
-	build	modify	   27 -> 182  MANIFEST
-	build	modify	   29 -> 181  Makefile.in
-	build	modify	   12 -> 114  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 315  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	source	create	    1	      etc/CHANGES.2.17
-	source	modify	    9 -> 10   etc/Howto.cook
-	source	modify	    5 -> 6    etc/Makefi.file.sh
-	source	modify	   13 -> 14   etc/cook.html
-	source	modify	    3 -> 4    etc/rpm-build.sh
-	build	modify	  176 -> 177  etc/version.so
-	source	modify	    2 -> 3    lib/en/readme/new.2.17.so
-	source	create	    1	      lib/en/readme/new.2.18.so
-	source	modify	    8 -> 9    lib/en/user-guide/parallel.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 212  BUILDING
+        build   modify     27 -> 182  MANIFEST
+        build   modify     29 -> 181  Makefile.in
+        build   modify     12 -> 114  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 315  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        source  create      1         etc/CHANGES.2.17
+        source  modify      9 -> 10   etc/Howto.cook
+        source  modify      5 -> 6    etc/Makefi.file.sh
+        source  modify     13 -> 14   etc/cook.html
+        source  modify      3 -> 4    etc/rpm-build.sh
+        build   modify    176 -> 177  etc/version.so
+        source  modify      2 -> 3    lib/en/readme/new.2.17.so
+        source  create      1         lib/en/readme/new.2.18.so
+        source  modify      8 -> 9    lib/en/user-guide/parallel.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Oct 15	pmiller
-			17:39:09 2001
-	develop_begin	Mon Oct 15	pmiller	 Elapsed time: 0.706
-			17:39:10 2001		 days.
-	develop_end	Mon Oct 15	pmiller
-			22:56:43 2001
-	review_pass	Mon Oct 15	pmiller
-			22:56:43 2001
-	integrate_begin Mon Oct 15	pmiller	 Elapsed time: 1.000
-			22:56:43 2001		 days.
-	integrate_	Tue Oct 16	pmiller
-	begin_undo	16:47:01 2001
-
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Oct 15      pmiller
+                        17:39:09 2001
+        develop_begin   Mon Oct 15      pmiller  Elapsed time: 0.706
+                        17:39:10 2001            days.
+        develop_end     Mon Oct 15      pmiller
+                        22:56:43 2001
+        review_pass     Mon Oct 15      pmiller
+                        22:56:43 2001
+        integrate_begin Mon Oct 15      pmiller  Elapsed time: 1.000
+                        22:56:43 2001            days.
+        integrate_      Tue Oct 16      pmiller
+        begin_undo      16:47:01 2001
 
 
-Project "cook.2.18", Change 10					  Page 2
-Change Details					Tue Feb 19 11:01:52 2002
-
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	develop_end_	Tue Oct 16	pmiller
-	undo		16:47:04 2001
-	develop_end	Tue Oct 16	pmiller
-			16:48:24 2001
-	review_pass	Tue Oct 16	pmiller
-			16:48:35 2001
-	integrate_begin Tue Oct 16	pmiller
-			16:48:35 2001
-	integrate_pass	Tue Oct 16	pmiller
-			16:57:04 2001
-
 
 
-Project "cook.2.18", Change 11					  Page 1
-Change Details					Tue Feb 19 11:01:52 2002
+Project "cook.2.18", Change 10                                    Page 2
+Change Details                                  Tue Feb 19 11:01:52 2002
+
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        develop_end_    Tue Oct 16      pmiller
+        undo            16:47:04 2001
+        develop_end     Tue Oct 16      pmiller
+                        16:48:24 2001
+        review_pass     Tue Oct 16      pmiller
+                        16:48:35 2001
+        integrate_begin Tue Oct 16      pmiller
+                        16:48:35 2001
+        integrate_pass  Tue Oct 16      pmiller
+                        16:57:04 2001
+
+
+
+Project "cook.2.18", Change 11                                    Page 1
+Change Details                                  Tue Feb 19 11:01:52 2002
 
 NAME
-	Project "cook.2.18", Delta 2, Change 11.
+        Project "cook.2.18", Delta 2, Change 11.
 
 SUMMARY
-	cook_rsh doco
+        cook_rsh doco
 
 DESCRIPTION
-	This change adds documentation about cook_rsh to the Parallel
-	chapter of the User Guide.
+        This change adds documentation about cook_rsh to the Parallel
+        chapter of the User Guide.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 213  BUILDING
-	build	modify	   27 -> 183  MANIFEST
-	build	modify	   29 -> 182  Makefile.in
-	build	modify	   12 -> 115  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 316  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	build	modify	  176 -> 178  etc/version.so
-	source	modify	    3 -> 4    lib/en/readme/new.2.17.so
-	source	create	    1	      lib/en/user-guide/cook_rsh.so
-	source	modify	    9 -> 10   lib/en/user-guide/parallel.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 213  BUILDING
+        build   modify     27 -> 183  MANIFEST
+        build   modify     29 -> 182  Makefile.in
+        build   modify     12 -> 115  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 316  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        build   modify    176 -> 178  etc/version.so
+        source  modify      3 -> 4    lib/en/readme/new.2.17.so
+        source  create      1         lib/en/user-guide/cook_rsh.so
+        source  modify      9 -> 10   lib/en/user-guide/parallel.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Tue Oct 16	pmiller	 Cloned from change 100.
-			17:00:17 2001
-	develop_begin	Tue Oct 16	pmiller	 Elapsed time: 0.032
-			17:00:17 2001		 days.
-	develop_end	Tue Oct 16	pmiller
-			17:14:48 2001
-	review_pass	Tue Oct 16	pmiller
-			17:14:51 2001
-	integrate_begin Tue Oct 16	pmiller
-			17:14:54 2001
-	integrate_pass	Tue Oct 16	pmiller
-			17:21:10 2001
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Tue Oct 16      pmiller  Cloned from change 100.
+                        17:00:17 2001
+        develop_begin   Tue Oct 16      pmiller  Elapsed time: 0.032
+                        17:00:17 2001            days.
+        develop_end     Tue Oct 16      pmiller
+                        17:14:48 2001
+        review_pass     Tue Oct 16      pmiller
+                        17:14:51 2001
+        integrate_begin Tue Oct 16      pmiller
+                        17:14:54 2001
+        integrate_pass  Tue Oct 16      pmiller
+                        17:21:10 2001
 
 
-Project "cook.2.18", Change 12					  Page 1
-Change Details					Tue Feb 19 11:01:52 2002
+
+Project "cook.2.18", Change 12                                    Page 1
+Change Details                                  Tue Feb 19 11:01:52 2002
 
 NAME
-	Project "cook.2.18", Delta 5, Change 12.
+        Project "cook.2.18", Delta 5, Change 12.
 
 SUMMARY
-	fail
+        fail
 
 DESCRIPTION
-	This change causes the parse to halt when the "fail" statement
-	is executed.
+        This change causes the parse to halt when the "fail" statement
+        is executed.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 216  BUILDING
-	build	modify	   27 -> 183  MANIFEST
-	build	modify	   29 -> 184  Makefile.in
-	build	modify	   12 -> 116  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 319  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	source	modify	   29 -> 30   cook/parse.y
-	build	modify	  176 -> 181  etc/version.so
-	source	modify	    1 -> 2    lib/en/readme/new.2.18.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 216  BUILDING
+        build   modify     27 -> 183  MANIFEST
+        build   modify     29 -> 184  Makefile.in
+        build   modify     12 -> 116  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 319  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        source  modify     29 -> 30   cook/parse.y
+        build   modify    176 -> 181  etc/version.so
+        source  modify      1 -> 2    lib/en/readme/new.2.18.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Thu Oct 18	pmiller
-			21:48:39 2001
-	develop_begin	Thu Oct 18	pmiller	 Elapsed time: 22.000
-			21:48:40 2001		 days.
-	develop_end	Mon Nov 19	pmiller
-			18:13:42 2001
-	review_pass	Mon Nov 19	pmiller
-			18:18:37 2001
-	integrate_begin Mon Nov 19	pmiller	 Elapsed time: 0.198
-			18:18:40 2001		 days.
-	integrate_pass	Mon Nov 19	pmiller
-			19:47:51 2001
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Thu Oct 18      pmiller
+                        21:48:39 2001
+        develop_begin   Thu Oct 18      pmiller  Elapsed time: 22.000
+                        21:48:40 2001            days.
+        develop_end     Mon Nov 19      pmiller
+                        18:13:42 2001
+        review_pass     Mon Nov 19      pmiller
+                        18:18:37 2001
+        integrate_begin Mon Nov 19      pmiller  Elapsed time: 0.198
+                        18:18:40 2001            days.
+        integrate_pass  Mon Nov 19      pmiller
+                        19:47:51 2001
 
 
-Project "cook.2.18", Change 15					  Page 1
-Change Details					Tue Feb 19 11:01:52 2002
+
+Project "cook.2.18", Change 15                                    Page 1
+Change Details                                  Tue Feb 19 11:01:52 2002
 
 NAME
-	Project "cook.2.18", Delta 3, Change 15.
+        Project "cook.2.18", Delta 3, Change 15.
 
 SUMMARY
-	tests and CC insulation
+        tests and CC insulation
 
 DESCRIPTION
-	This change fixes a minor problem with te generated Makefile.
+        This change fixes a minor problem with te generated Makefile.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_bug.
+        This change was caused by internal_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 214  BUILDING
-	build	modify	   27 -> 183  MANIFEST
-	build	modify	   29 -> 183  Makefile.in
-	build	modify	   12 -> 115  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 317  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	source	modify	    6 -> 7    etc/Makefi.file.sh
-	build	modify	  176 -> 179  etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 214  BUILDING
+        build   modify     27 -> 183  MANIFEST
+        build   modify     29 -> 183  Makefile.in
+        build   modify     12 -> 115  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 317  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        source  modify      6 -> 7    etc/Makefi.file.sh
+        build   modify    176 -> 179  etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Tue Nov	 6	pmiller
-			10:50:43 2001
-	develop_begin	Tue Nov	 6	pmiller
-			10:50:44 2001
-	develop_end	Tue Nov	 6	pmiller
-			10:53:46 2001
-	review_pass	Tue Nov	 6	pmiller
-			10:53:52 2001
-	integrate_begin Tue Nov	 6	pmiller
-			10:53:54 2001
-	integrate_pass	Tue Nov	 6	pmiller
-			10:55:38 2001
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Tue Nov  6      pmiller
+                        10:50:43 2001
+        develop_begin   Tue Nov  6      pmiller
+                        10:50:44 2001
+        develop_end     Tue Nov  6      pmiller
+                        10:53:46 2001
+        review_pass     Tue Nov  6      pmiller
+                        10:53:52 2001
+        integrate_begin Tue Nov  6      pmiller
+                        10:53:54 2001
+        integrate_pass  Tue Nov  6      pmiller
+                        10:55:38 2001
 
 
-Project "cook.2.18", Change 16					  Page 1
-Change Details					Tue Feb 19 11:01:52 2002
+
+Project "cook.2.18", Change 16                                    Page 1
+Change Details                                  Tue Feb 19 11:01:52 2002
 
 NAME
-	Project "cook.2.18", Delta 4, Change 16.
+        Project "cook.2.18", Delta 4, Change 16.
 
 SUMMARY
-	bison .h defines
+        bison .h defines
 
 DESCRIPTION
-	This change fixes a problem introduced with recent versions of
-	bison.	It adds multiplke include insulation to the generated .h
-	file (which is good) bu they uses a Y symbol instead of a YY
-	symbol (so the automatic symbol renaming didn't work).
+        This change fixes a problem introduced with recent versions of
+        bison.  It adds multiplke include insulation to the generated .h
+        file (which is good) bu they uses a Y symbol instead of a YY
+        symbol (so the automatic symbol renaming didn't work).
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 215  BUILDING
-	build	modify	   27 -> 183  MANIFEST
-	build	modify	   29 -> 184  Makefile.in
-	build	modify	   12 -> 115  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 318  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	source	modify	   10 -> 11   etc/Howto.cook
-	source	modify	    7 -> 8    etc/Makefi.file.sh
-	build	modify	  176 -> 180  etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 215  BUILDING
+        build   modify     27 -> 183  MANIFEST
+        build   modify     29 -> 184  Makefile.in
+        build   modify     12 -> 115  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 318  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        source  modify     10 -> 11   etc/Howto.cook
+        source  modify      7 -> 8    etc/Makefi.file.sh
+        build   modify    176 -> 180  etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Tue Nov 13	pmiller
-			15:48:22 2001
-	develop_begin	Tue Nov 13	pmiller	 Elapsed time: 4.301
-			15:48:22 2001		 days.
-	develop_end	Mon Nov 19	pmiller
-			18:03:57 2001
-	review_pass	Mon Nov 19	pmiller
-			18:04:00 2001
-	integrate_begin Mon Nov 19	pmiller
-			18:04:03 2001
-	integrate_pass	Mon Nov 19	pmiller
-			18:13:37 2001
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Tue Nov 13      pmiller
+                        15:48:22 2001
+        develop_begin   Tue Nov 13      pmiller  Elapsed time: 4.301
+                        15:48:22 2001            days.
+        develop_end     Mon Nov 19      pmiller
+                        18:03:57 2001
+        review_pass     Mon Nov 19      pmiller
+                        18:04:00 2001
+        integrate_begin Mon Nov 19      pmiller
+                        18:04:03 2001
+        integrate_pass  Mon Nov 19      pmiller
+                        18:13:37 2001
 
 
-Project "cook.2.18", Change 17					  Page 1
-Change Details					Tue Feb 19 11:01:52 2002
+
+Project "cook.2.18", Change 17                                    Page 1
+Change Details                                  Tue Feb 19 11:01:52 2002
 
 NAME
-	Project "cook.2.18", Delta 6, Change 17.
+        Project "cook.2.18", Delta 6, Change 17.
 
 SUMMARY
-	OSF1 stat shenanigans
+        OSF1 stat shenanigans
 
 DESCRIPTION
-	This change copes with a piece of stupidity thas OSF1 indulges
-	in w.r.t. the stat() symbol.
+        This change copes with a piece of stupidity thas OSF1 indulges
+        in w.r.t. the stat() symbol.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_bug.
+        This change was caused by internal_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 217  BUILDING
-	build	modify	   27 -> 184  MANIFEST
-	build	modify	   29 -> 185  Makefile.in
-	build	modify	   12 -> 116  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 320  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	source	modify	    8 -> 9    cook/archive.c
-	source	modify	   23 -> 24   cook/opcode/command.c
-	source	modify	   25 -> 26   cook/os.c
-	source	create	    1	      cook/tempfilename.c
-	source	create	    1	      cook/tempfilename.h
-	build	modify	  176 -> 182  etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 217  BUILDING
+        build   modify     27 -> 184  MANIFEST
+        build   modify     29 -> 185  Makefile.in
+        build   modify     12 -> 116  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 320  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        source  modify      8 -> 9    cook/archive.c
+        source  modify     23 -> 24   cook/opcode/command.c
+        source  modify     25 -> 26   cook/os.c
+        source  create      1         cook/tempfilename.c
+        source  create      1         cook/tempfilename.h
+        build   modify    176 -> 182  etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Nov 19	pmiller
-			14:14:52 2001
-	develop_begin	Mon Nov 19	pmiller	 Elapsed time: 0.891
-			14:14:52 2001		 days.
-	develop_end	Mon Nov 19	pmiller
-			20:55:43 2001
-	review_pass	Mon Nov 19	pmiller
-			20:55:57 2001
-	integrate_begin Mon Nov 19	pmiller
-			20:56:01 2001
-	integrate_pass	Mon Nov 19	pmiller
-			21:02:09 2001
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Nov 19      pmiller
+                        14:14:52 2001
+        develop_begin   Mon Nov 19      pmiller  Elapsed time: 0.891
+                        14:14:52 2001            days.
+        develop_end     Mon Nov 19      pmiller
+                        20:55:43 2001
+        review_pass     Mon Nov 19      pmiller
+                        20:55:57 2001
+        integrate_begin Mon Nov 19      pmiller
+                        20:56:01 2001
+        integrate_pass  Mon Nov 19      pmiller
+                        21:02:09 2001
 
 
-Project "cook.2.18", Change 18					  Page 1
-Change Details					Tue Feb 19 11:01:53 2002
+
+Project "cook.2.18", Change 18                                    Page 1
+Change Details                                  Tue Feb 19 11:01:53 2002
 
 NAME
-	Project "cook.2.18", Delta 7, Change 18.
+        Project "cook.2.18", Delta 7, Change 18.
 
 SUMMARY
-	cook_rsh install
+        cook_rsh install
 
 DESCRIPTION
-	This change fixes the configure scripts and Makefile.in to use
-	the INSTALL_SCRIPT define when installing executable scripts.
-	This avoids problems when the INSTALL_PROGRAM define uses the -s
-	(strip) option.
+        This change fixes the configure scripts and Makefile.in to use
+        the INSTALL_SCRIPT define when installing executable scripts.
+        This avoids problems when the INSTALL_PROGRAM define uses the -s
+        (strip) option.
 
-	My thanks to Jason Evans <jasone@canonware.com> for reporting
-	this probelm.
+        My thanks to Jason Evans <jasone@canonware.com> for reporting
+        this probelm.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 218  BUILDING
-	build	modify	   27 -> 184  MANIFEST
-	build	modify	   29 -> 186  Makefile.in
-	build	modify	   12 -> 117  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 321  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	source	modify	    8 -> 9    etc/Makefi.file.sh
-	source	modify	    4 -> 5    etc/Makefile.head
-	build	modify	  176 -> 183  etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 218  BUILDING
+        build   modify     27 -> 184  MANIFEST
+        build   modify     29 -> 186  Makefile.in
+        build   modify     12 -> 117  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 321  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        source  modify      8 -> 9    etc/Makefi.file.sh
+        source  modify      4 -> 5    etc/Makefile.head
+        build   modify    176 -> 183  etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Jan	 7	pmiller
-			08:37:54 2002
-	develop_begin	Mon Jan	 7	pmiller	 Elapsed time: 0.045
-			08:37:54 2002		 days.
-	develop_end	Mon Jan	 7	pmiller
-			08:58:05 2002
-	review_pass	Mon Jan	 7	pmiller
-			08:58:07 2002
-	integrate_begin Mon Jan	 7	pmiller
-			08:58:10 2002
-	integrate_pass	Mon Jan	 7	pmiller
-			09:03:54 2002
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Jan  7      pmiller
+                        08:37:54 2002
+        develop_begin   Mon Jan  7      pmiller  Elapsed time: 0.045
+                        08:37:54 2002            days.
+        develop_end     Mon Jan  7      pmiller
+                        08:58:05 2002
+        review_pass     Mon Jan  7      pmiller
+                        08:58:07 2002
+        integrate_begin Mon Jan  7      pmiller
+                        08:58:10 2002
+        integrate_pass  Mon Jan  7      pmiller
+                        09:03:54 2002
 
 
-Project "cook.2.18", Change 19					  Page 1
-Change Details					Tue Feb 19 11:01:53 2002
+
+Project "cook.2.18", Change 19                                    Page 1
+Change Details                                  Tue Feb 19 11:01:53 2002
 
 NAME
-	Project "cook.2.18", Delta 8, Change 19.
+        Project "cook.2.18", Delta 8, Change 19.
 
 SUMMARY
-	bison again
+        bison again
 
 DESCRIPTION
-	This change fixes a problem with a variable name clash with the
-	generate dbison parser, in newer versions of Bison.
+        This change fixes a problem with a variable name clash with the
+        generate dbison parser, in newer versions of Bison.
 
-	My thanks to Laurent Latil" <laurent.latil@medes.fr> for
-	reporting this problem.
+        My thanks to Laurent Latil" <laurent.latil@medes.fr> for
+        reporting this problem.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 219  BUILDING
-	build	modify	   27 -> 184  MANIFEST
-	build	modify	   29 -> 186  Makefile.in
-	build	modify	   12 -> 117  README
-	build	modify	    3 -> 22   common/config.h.in
-	build	modify	   43 -> 322  common/patchlevel.h
-	build	modify	    7 -> 30   configure
-	build	modify	  176 -> 184  etc/version.so
-	source	modify	    5 -> 6    make2cook/vargram.y
-	source	modify	   10 -> 11   make2cook/variable.c
-	source	modify	    3 -> 4    make2cook/variable.h
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 219  BUILDING
+        build   modify     27 -> 184  MANIFEST
+        build   modify     29 -> 186  Makefile.in
+        build   modify     12 -> 117  README
+        build   modify      3 -> 22   common/config.h.in
+        build   modify     43 -> 322  common/patchlevel.h
+        build   modify      7 -> 30   configure
+        build   modify    176 -> 184  etc/version.so
+        source  modify      5 -> 6    make2cook/vargram.y
+        source  modify     10 -> 11   make2cook/variable.c
+        source  modify      3 -> 4    make2cook/variable.h
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Fri Feb 15	pmiller
-			16:34:40 2002
-	develop_begin	Fri Feb 15	pmiller	 Elapsed time: 0.714
-			16:34:42 2002		 days.
-	develop_end	Fri Feb 15	pmiller
-			21:56:11 2002
-	review_pass	Fri Feb 15	pmiller
-			21:56:16 2002
-	integrate_begin Fri Feb 15	pmiller	 Elapsed time: 0.023
-			21:56:20 2002		 days.
-	integrate_pass	Fri Feb 15	pmiller
-			22:06:38 2002
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Fri Feb 15      pmiller
+                        16:34:40 2002
+        develop_begin   Fri Feb 15      pmiller  Elapsed time: 0.714
+                        16:34:42 2002            days.
+        develop_end     Fri Feb 15      pmiller
+                        21:56:11 2002
+        review_pass     Fri Feb 15      pmiller
+                        21:56:16 2002
+        integrate_begin Fri Feb 15      pmiller  Elapsed time: 0.023
+                        21:56:20 2002            days.
+        integrate_pass  Fri Feb 15      pmiller
+                        22:06:38 2002
+
+Copyright (C) 1997-2007 Peter Miller

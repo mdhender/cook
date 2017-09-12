@@ -1,34 +1,32 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 2003 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 2003, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manipulate meters
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
-#include <ac/stdio.h>
-#include <ac/string.h>
+#include <common/ac/stdio.h>
+#include <common/ac/string.h>
 
-#include <mem.h>
-#include <meter.h>
+#include <common/mem.h>
+#include <cook/meter.h>
 
 
 meter_ty *
-meter_alloc()
+meter_alloc(void)
 {
     meter_ty        *result;
 
@@ -39,8 +37,7 @@ meter_alloc()
 
 
 void
-meter_free(mp)
-    meter_ty        *mp;
+meter_free(meter_ty *mp)
 {
     mem_free(mp);
 }
@@ -59,13 +56,8 @@ meter_free(mp)
  *    title string.
  */
 
-static void meter_ptime _((double, char *, double));
-
 static void
-meter_ptime(t, s, elapsed)
-    double          t;
-    char            *s;
-    double          elapsed;
+meter_ptime(double t, char *s, double elapsed)
 {
     long            hour;
     long            min;
@@ -74,9 +66,9 @@ meter_ptime(t, s, elapsed)
     char            buffer[50];
 
     if (elapsed > 0)
-	sprintf(buffer, " %5.1f%%", 100. * t / elapsed);
+        snprintf(buffer, sizeof(buffer), " %5.1f%%", 100. * t / elapsed);
     else
-	buffer[0] = 0;
+        buffer[0] = 0;
 
     frac = t * 1000 + 0.5;
     sec = frac / 1000;
@@ -87,14 +79,14 @@ meter_ptime(t, s, elapsed)
     min %= 60;
     fprintf
     (
-	stderr,
-	"%2ld:%02ld:%02ld.%03ld %s%s\n",
-	hour,
-	min,
-	sec,
-	frac,
-	s,
-	buffer
+        stderr,
+        "%2ld:%02ld:%02ld.%03ld %s%s\n",
+        hour,
+        min,
+        sec,
+        frac,
+        s,
+        buffer
     );
 }
 
@@ -114,8 +106,7 @@ meter_ptime(t, s, elapsed)
  */
 
 void
-meter_print(mp)
-    meter_ty        *mp;
+meter_print(meter_ty *mp)
 {
     double          elapsed;
 #ifdef HAVE_WAIT3
@@ -125,17 +116,17 @@ meter_print(mp)
 
 #ifdef HAVE_GETTIMEOFDAY
     {
-	struct timeval  tv;
+        struct timeval  tv;
 
-	gettimeofday(&tv, 0);
-	elapsed = timeval2double(tv) - timeval2double(mp->start);
+        gettimeofday(&tv, 0);
+        elapsed = timeval2double(tv) - timeval2double(mp->start);
     }
 #else
     {
-	time_t          now;
+        time_t          now;
 
-	time(&now);
-	elapsed = now - mp->start;
+        time(&now);
+        elapsed = now - mp->start;
     }
 #endif
     meter_ptime(elapsed, "elapsed", 0);
@@ -149,8 +140,7 @@ meter_print(mp)
 
 
 void
-meter_begin(mp)
-    meter_ty        *mp;
+meter_begin(meter_ty *mp)
 {
 #ifdef HAVE_GETTIMEOFDAY
     gettimeofday(&mp->start, 0);

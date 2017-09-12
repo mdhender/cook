@@ -1,23 +1,21 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1993, 1994, 1996-1999, 2001, 2003, 2004 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1993-2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manage command line options
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  *
  * The options may be set at various levels.  The level with the highest
  * precedence which has actually been set is used to determine the option
@@ -71,518 +69,521 @@
  *     to document it, if you added a new command line option
  */
 
-#include <ac/ctype.h>
-#include <ac/limits.h>
-#include <ac/stddef.h>
-#include <ac/stdio.h>
-#include <ac/stdlib.h>
-#include <ac/string.h>
-#include <ac/time.h>
+#include <common/ac/ctype.h>
+#include <common/ac/limits.h>
+#include <common/ac/stddef.h>
+#include <common/ac/stdio.h>
+#include <common/ac/stdlib.h>
+#include <common/ac/string.h>
+#include <common/ac/time.h>
 
-#include <libdir.h>
-#include <mem.h>
-#include <option.h>
-#include <os_interface.h>
-#include <progname.h>
-#include <trace.h>
+#include <common/libdir.h>
+#include <common/mem.h>
+#include <common/progname.h>
+#include <common/trace.h>
+#include <cook/option.h>
+#include <cook/os_interface.h>
 
 
 typedef struct flag_ty flag_ty;
 struct flag_ty
 {
-	unsigned long o_flag[OPTION_max];
+    unsigned long   o_flag[OPTION_max];
 };
 
-option_ty option;
-static flag_ty flag;
+option_ty       option;
+static flag_ty  flag;
 
 
 /*
  * NAME
- *	option_set - set an option
+ *      option_set - set an option
  *
  * SYNOPSIS
- *	void option_set(option_number_ty num, option_level_ty lvl, int state);
+ *      void option_set(option_number_ty num, option_level_ty lvl, int state);
  *
  * DESCRIPTION
- *	The option_set function is used to set the given option at the given
- *	level to the given state.
+ *      The option_set function is used to set the given option at the given
+ *      level to the given state.
  *
  * RETURNS
- *	void
+ *      void
  */
 
 void
-option_set(o, level, state)
-	option_number_ty o;
-	option_level_ty	level;
-	int		state;
+option_set(option_number_ty o, option_level_ty level, int state)
 {
-	trace(("option_set(o = %s, level = %s, state = %d)\n{\n",
-		option_number_name(o), option_level_name(level), state));
-	assert((int)o >= 0 && (int)o < (int)OPTION_max);
-	flag.o_flag[(size_t)o] &= ~(3L << (2 * (int)level));
-	if (state)
-		flag.o_flag[(size_t)o] |= 3L << (2 * (int)level);
-	else
-		flag.o_flag[(size_t)o] |= 1L << (2 * (int)level);
-	trace(("}\n"));
+    trace(("option_set(o = %s, level = %s, state = %d)\n{\n",
+        option_number_name(o), option_level_name(level), state));
+    assert((int)o >= 0 && (int)o < (int)OPTION_max);
+    flag.o_flag[(size_t) o] &= ~(3L << (2 * (int)level));
+    if (state)
+        flag.o_flag[(size_t) o] |= 3L << (2 * (int)level);
+    else
+        flag.o_flag[(size_t) o] |= 1L << (2 * (int)level);
+    trace(("}\n"));
 }
 
 
 /*
  * NAME
- *	option_already - see if an option is already set
+ *      option_already - see if an option is already set
  *
  * SYNOPSIS
- *	int option_already(option_number_ty num, option_level_ty lvl);
+ *      int option_already(option_number_ty num, option_level_ty lvl);
  *
  * DESCRIPTION
- *	The option_already function is used to test if a given option at a
- *	given level has been set.
+ *      The option_already function is used to test if a given option at a
+ *      given level has been set.
  *
  * RETURNS
- *	int: zero if the option has not been set, nonzero if it has.
+ *      int: zero if the option has not been set, nonzero if it has.
  */
 
 int
-option_already(o, level)
-	option_number_ty o;
-	option_level_ty	level;
+option_already(option_number_ty o, option_level_ty level)
 {
-	int		result;
+    int             result;
 
-	trace(("option_already(o = %s, level = %s)\n{\n",
-		option_number_name(o), option_level_name(level)));
-	assert((int)o >= 0 && (int)o < (int)OPTION_max);
-	result = (((flag.o_flag[(size_t)o] >> (2 * (int)level)) & 1) != 0);
-	trace(("return %d;\n", result));
-	trace(("}\n"));
-	return result;
+    trace(("option_already(o = %s, level = %s)\n{\n",
+            option_number_name(o), option_level_name(level)));
+    assert((int)o >= 0 && (int)o < (int)OPTION_max);
+    result = (((flag.o_flag[(size_t) o] >> (2 * (int)level)) & 1) != 0);
+    trace(("return %d;\n", result));
+    trace(("}\n"));
+    return result;
 }
 
 
 /*
  * NAME
- *	option_undo - remove option setting
+ *      option_undo - remove option setting
  *
  * SYNOPSIS
- *	void option_undo(option_number_ty num, option_level_ty lvl);
+ *      void option_undo(option_number_ty num, option_level_ty lvl);
  *
  * DESCRIPTION
- *	The option_undo function is used to is used to remove the option
- *	setting for the given option at the given level.
+ *      The option_undo function is used to is used to remove the option
+ *      setting for the given option at the given level.
  *
  * RETURNS
- *	void
+ *      void
  */
 
 void
-option_undo(o, level)
-	option_number_ty	o;
-	option_level_ty	level;
+option_undo(option_number_ty o, option_level_ty level)
 {
-	trace(("option_undo(o = %s, level = %s)\n{\n", option_number_name(o),
-		option_level_name(level)));
-	assert((int)o >= 0 && (int)o < (int)OPTION_max);
-	flag.o_flag[(size_t)o] &= ~(3L << (2 * (int)level));
-	trace(("}\n"));
+    trace(("option_undo(o = %s, level = %s)\n{\n", option_number_name(o),
+        option_level_name(level)));
+    assert((int)o >= 0 && (int)o < (int)OPTION_max);
+    flag.o_flag[(size_t) o] &= ~(3L << (2 * (int)level));
+    trace(("}\n"));
 }
 
 
 /*
  * NAME
- *	option_undo_level - remove options settings
+ *      option_undo_level - remove options settings
  *
  * SYNOPSIS
- *	void option_undo_level(option_level_ty lvl);
+ *      void option_undo_level(option_level_ty lvl);
  *
  * DESCRIPTION
- *	The option_undo_level function is used to remove the settings for all
- *	options at a given level.
+ *      The option_undo_level function is used to remove the settings for all
+ *      options at a given level.
  *
  * RETURNS
- *	void
+ *      void
  */
 
 void
-option_undo_level(level)
-	option_level_ty	level;
+option_undo_level(option_level_ty level)
 {
-	int		o;
+    int             o;
 
-	trace(("option_undo_level(level = %s)\n{\n", option_level_name(level)));
-	for (o = 0; o < (int)OPTION_max; ++o)
-		option_undo((option_number_ty)o, level);
-	trace(("}\n"));
+    trace(("option_undo_level(level = %s)\n{\n", option_level_name(level)));
+    for (o = 0; o < (int)OPTION_max; ++o)
+        option_undo((option_number_ty) o, level);
+    trace(("}\n"));
 }
 
 
 /*
  * NAME
- *	option_test - test an option
+ *      option_test - test an option
  *
  * SYNOPSIS
- *	int option_test(option_number_ty num);
+ *      int option_test(option_number_ty num);
  *
  * DESCRIPTION
- *	The option_test function is used to test the setting of an option.
- *	The level of highest precedence which hash been set is used.
+ *      The option_test function is used to test the setting of an option.
+ *      The level of highest precedence which hash been set is used.
  *
  * RETURNS
- *	int: zero if the option is off, nonzero if the option is on.
+ *      int: zero if the option is off, nonzero if the option is on.
  */
 
 int
-option_test(o)
-	option_number_ty o;
+option_test(option_number_ty o)
 {
-	unsigned long	*op;
-	unsigned long	mask;
-	int		result;
+    unsigned long   *op;
+    unsigned long   mask;
+    int             result;
 
-	trace(("option_test(o = %s)\n{\n", option_number_name(o)));
-	assert((int)o >= 0 && (int)o < (int)OPTION_max);
-	op = &flag.o_flag[(size_t)o];
-	mask = *op & 0x55555555;
-	mask &= -mask; /* get LSB */
-	result = ((*op & (mask << 1)) != 0);
-	trace(("return %d;\n", result));
-	trace(("}\n"));
-	return result;
+    trace(("option_test(o = %s)\n{\n", option_number_name(o)));
+    assert((int)o >= 0 && (int)o < (int)OPTION_max);
+    op = &flag.o_flag[(size_t) o];
+    mask = *op & 0x55555555;
+    mask &= -mask; /* get LSB */
+    result = ((*op & (mask << 1)) != 0);
+    trace(("return %d;\n", result));
+    trace(("}\n"));
+    return result;
 }
 
-
-static string_ty *Capitalize _((string_ty *));
 
 static string_ty *
-Capitalize(s)
-	string_ty	*s;
+Capitalize(string_ty *s)
 {
-	if (s->str_length < 1 || !islower((unsigned char)s->str_text[0]))
-		return str_copy(s);
-	return
-		str_format
-		(
-			"%c%s",
-			toupper((unsigned char)s->str_text[0]),
-			s->str_text + 1
-		);
+    if (s->str_length < 1 || !islower((unsigned char)s->str_text[0]))
+        return str_copy(s);
+    return
+        str_format
+        (
+            "%c%s",
+            toupper((unsigned char)s->str_text[0]),
+            s->str_text + 1
+        );
 }
 
 
 /*
  * NAME
- *	option_tidy_up - mother hen
+ *      option_tidy_up - mother hen
  *
  * SYNOPSIS
- *	void option_tidy_up(void);
+ *      void option_tidy_up(void);
  *
  * DESCRIPTION
- *	The option_tidy_up function is used to set a few defaults, and tidy up
- *	after the command line.
+ *      The option_tidy_up function is used to set a few defaults, and tidy up
+ *      after the command line.
  *
  * RETURNS
- *	void
+ *      void
  *
  * CAVEAT
- *	Must be called after the command line has been parsed.
+ *      Must be called after the command line has been parsed.
  */
 
 void
-option_tidy_up()
+option_tidy_up(void)
 {
-	string_ty	*s;
-	string_ty	*s1;
+    string_ty       *s;
+    string_ty       *s1;
 
-	/*
-	 * Set the defaults before we do anything else,
-	 * the rest of tidy_up depends on them.
-	 */
-	trace(("option_tidy_up()\n{\n"));
-	option_set(OPTION_ACTION, OPTION_LEVEL_DEFAULT, 1);
-	option_set(OPTION_CASCADE, OPTION_LEVEL_DEFAULT, 1);
-	option_set(OPTION_FINGERPRINT_WRITE, OPTION_LEVEL_DEFAULT, 1);
-	option_set(OPTION_INCLUDE_COOKED, OPTION_LEVEL_DEFAULT, 1);
-	option_set(OPTION_INCLUDE_COOKED_WARNING, OPTION_LEVEL_DEFAULT, 1);
-	option_set(OPTION_LOGGING, OPTION_LEVEL_DEFAULT, 1);
-	option_set(OPTION_STRIP_DOT, OPTION_LEVEL_DEFAULT, 1);
-	option_set(OPTION_TERMINAL, OPTION_LEVEL_DEFAULT, 1);
+    /*
+     * Set the defaults before we do anything else,
+     * the rest of tidy_up depends on them.
+     */
+    trace(("option_tidy_up()\n{\n"));
+    option_set(OPTION_ACTION, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_CASCADE, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_FINGERPRINT_WRITE, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_INCLUDE_COOKED, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_INCLUDE_COOKED_WARNING, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_LOGGING, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_STRIP_DOT, OPTION_LEVEL_DEFAULT, 1);
+    option_set(OPTION_TERMINAL, OPTION_LEVEL_DEFAULT, 1);
 
-	/*
-	 * user's library
-	 */
-	s = os_accdir();
-	assert(s);
-	s1 = str_format("%S/.%s", s, progname_get());
-	str_free(s);
-	string_list_append_unique(&option.o_search_path, s1);
-	str_free(s1);
+    /*
+     * user's library
+     */
+    s = os_accdir();
+    assert(s);
+    s1 = str_format("%s/.%s", s->str_text, progname_get());
+    str_free(s);
+    string_list_append_unique(&option.o_search_path, s1);
+    str_free(s1);
 
-	/*
-	 * cook's library
-	 *	architecture-specific, then architecture-neutral
-	 */
-	s = str_from_c(library_directory_get());
-	string_list_append_unique(&option.o_search_path, s);
-	str_free(s);
-	s = str_from_c(data_directory_get());
-	string_list_append_unique(&option.o_search_path, s);
-	str_free(s);
+    /*
+     * cook's library
+     *      architecture-specific, then architecture-neutral
+     */
+    s = str_from_c(library_directory_get());
+    string_list_append_unique(&option.o_search_path, s);
+    str_free(s);
+    s = str_from_c(data_directory_get());
+    string_list_append_unique(&option.o_search_path, s);
+    str_free(s);
 
-	if (!option.o_book)
-	{
-		static char *name[] =
-		{
-			".how.to.%s",
-			".howto.%s",
-			"how.to.%s",
-			"howto.%s",
-			"%s.file",
-			"%sfile",
-			"%s.book",
-			"%sbook",
-			".%s.rc",
-			".%src",
-		};
-		int	j;
+    if (!option.o_book)
+    {
+        static char *name[] =
+        {
+            ".how.to.%s",
+            ".howto.%s",
+            "how.to.%s",
+            "howto.%s",
+            "%s.file",
+            "%sfile",
+            "%s.book",
+            "%sbook",
+            ".%s.rc",
+            ".%src",
+        };
+        size_t          j;
 
-		/*
-		 * A huge range of alternative default names is given.
-		 * The first found will be used.
-		 */
-		for (j = 0; j < SIZEOF(name); j++)
-		{
-			s = str_format(name[j], progname_get());
-			switch (os_exists(s))
-			{
-			case -1:
-				exit(1);
+        /*
+         * A huge range of alternative default names is given.
+         * The first found will be used.
+         */
+        for (j = 0; j < SIZEOF(name); j++)
+        {
+            s = str_format(name[j], progname_get());
+            switch (os_exists(s))
+            {
+            case -1:
+                exit(1);
 
-			case 0:
-				s1 = Capitalize(s);
-				str_free(s);
-				s = s1;
-				switch (os_exists(s))
-				{
-				case -1:
-					exit(1);
+            case 0:
+                s1 = Capitalize(s);
+                str_free(s);
+                s = s1;
+                switch (os_exists(s))
+                {
+                case -1:
+                    exit(1);
 
-				case 0:
-					str_free(s);
-					continue;
+                case 0:
+                    str_free(s);
+                    continue;
 
-				case 1:
-					option.o_book = s;
-					break;
-				}
-				break;
+                case 1:
+                    option.o_book = s;
+                    break;
+                }
+                break;
 
-			case 1:
-				option.o_book = s;
-				break;
-			}
-			break;
-		}
-	}
+            case 1:
+                option.o_book = s;
+                break;
+            }
+            break;
+        }
+    }
 
-	if (!option.o_logfile && option.o_book)
-	{
-		char		*sp;
-		char		*cp;
+    if (!option.o_logfile && option.o_book)
+    {
+        char            *sp;
+        char            *cp;
 
-		sp = option.o_book->str_text;
-		/* skip first char in case it's a '.' */
-		cp = strrchr(sp + 1, '.');
-		if (cp)
-			s = str_n_from_c(sp, cp - sp);
-		else
-			s = str_copy(option.o_book);
-		sp = (option_test(OPTION_CMDFILE) ? "sh" : "list");
-		option.o_logfile = str_format("%S.%s", s, sp);
-		str_free(s);
-	}
-	trace(("}\n"));
+        sp = option.o_book->str_text;
+        /* skip first char in case it's a '.' */
+        cp = strrchr(sp + 1, '.');
+        if (cp)
+            s = str_n_from_c(sp, cp - sp);
+        else
+            s = str_copy(option.o_book);
+        sp = (option_test(OPTION_CMDFILE) ? "sh" : "list");
+        option.o_logfile = str_format("%s.%s", s->str_text, sp);
+        str_free(s);
+    }
+    trace(("}\n"));
 }
 
 
 /*
  * NAME
- *	option_set_errors - set error flags
+ *      option_set_errors - set error flags
  *
  * SYNOPSIS
- *	void option_set_errors(void);
+ *      void option_set_errors(void);
  *
  * DESCRIPTION
- *	The option_set_errors function is used to set the appropriate options
- *	to prevent undesirable side effects when errors occur.
+ *      The option_set_errors function is used to set the appropriate options
+ *      to prevent undesirable side effects when errors occur.
  *
  * RETURNS
- *	void
+ *      void
  */
 
 void
-option_set_errors()
+option_set_errors(void)
 {
-	trace(("option_set_errors()\n{\n"));
-	option_set(OPTION_SILENT, OPTION_LEVEL_ERROR, 0);
-	option_set(OPTION_ACTION, OPTION_LEVEL_ERROR, 0);
-	option_set(OPTION_ERROK, OPTION_LEVEL_ERROR, 0);
-	option_set(OPTION_METER, OPTION_LEVEL_ERROR, 0);
-	option_set(OPTION_PERSEVERE, OPTION_LEVEL_ERROR, 0);
-	trace(("}\n"));
+    trace(("option_set_errors()\n{\n"));
+    option_set(OPTION_SILENT, OPTION_LEVEL_ERROR, 0);
+    option_set(OPTION_ACTION, OPTION_LEVEL_ERROR, 0);
+    option_set(OPTION_ERROK, OPTION_LEVEL_ERROR, 0);
+    option_set(OPTION_METER, OPTION_LEVEL_ERROR, 0);
+    option_set(OPTION_PERSEVERE, OPTION_LEVEL_ERROR, 0);
+    trace(("}\n"));
 }
 
 
 void *
-option_flag_state_get()
+option_flag_state_get(void)
 {
-	flag_ty		*fp;
+    flag_ty         *fp;
 
-	fp = mem_alloc(sizeof(flag_ty));
-	*fp = flag;
-	return fp;
+    fp = mem_alloc(sizeof(flag_ty));
+    *fp = flag;
+    return fp;
 }
 
 
 void
-option_flag_state_set(p)
-	void		*p;
+option_flag_state_set(void *p)
 {
-	flag_ty		*fp;
+    flag_ty         *fp;
 
-	fp = p;
-	flag = *fp;
-	mem_free(p);
+    fp = p;
+    flag = *fp;
+    mem_free(p);
 }
 
 
 const char *
-option_level_name(lvl)
-	option_level_ty	lvl;
+option_level_name(option_level_ty lvl)
 {
-	switch (lvl)
-	{
-	case OPTION_LEVEL_ERROR: return "OPTION_LEVEL_ERROR";
-	case OPTION_LEVEL_AUTO: return "OPTION_LEVEL_AUTO";
-	case OPTION_LEVEL_COMMAND_LINE: return "OPTION_LEVEL_COMMAND_LINE";
-	case OPTION_LEVEL_EXECUTE: return "OPTION_LEVEL_EXECUTE";
-	case OPTION_LEVEL_RECIPE: return "OPTION_LEVEL_RECIPE";
-	case OPTION_LEVEL_COOKBOOK: return "OPTION_LEVEL_COOKBOOK";
-	case OPTION_LEVEL_ENVIRONMENT: return "OPTION_LEVEL_ENVIRONMENT";
-	case OPTION_LEVEL_DEFAULT: return "OPTION_LEVEL_DEFAULT";
-	}
-	return "option level unknown";
+    switch (lvl)
+    {
+    case OPTION_LEVEL_ERROR:
+        return "OPTION_LEVEL_ERROR";
+
+    case OPTION_LEVEL_AUTO:
+        return "OPTION_LEVEL_AUTO";
+
+    case OPTION_LEVEL_COMMAND_LINE:
+        return "OPTION_LEVEL_COMMAND_LINE";
+
+    case OPTION_LEVEL_EXECUTE:
+        return "OPTION_LEVEL_EXECUTE";
+
+    case OPTION_LEVEL_RECIPE:
+        return "OPTION_LEVEL_RECIPE";
+
+    case OPTION_LEVEL_COOKBOOK:
+        return "OPTION_LEVEL_COOKBOOK";
+
+    case OPTION_LEVEL_ENVIRONMENT:
+        return "OPTION_LEVEL_ENVIRONMENT";
+
+    case OPTION_LEVEL_DEFAULT:
+        return "OPTION_LEVEL_DEFAULT";
+    }
+    return "option level unknown";
 }
 
 
 const char *
-option_number_name(o)
-	option_number_ty o;
+option_number_name(option_number_ty o)
 {
-	switch (o)
-	{
-	case OPTION_ACTION:
-		return "OPTION_ACTION";
+    switch (o)
+    {
+    case OPTION_ACTION:
+        return "OPTION_ACTION";
 
-	case OPTION_BOOK:
-		return "OPTION_BOOK";
+    case OPTION_BOOK:
+        return "OPTION_BOOK";
 
-	case OPTION_CASCADE:
-		return "OPTION_CASCADE";
+    case OPTION_CASCADE:
+        return "OPTION_CASCADE";
 
-	case OPTION_CMDFILE:
-		return "OPTION_CMDFILE";
+    case OPTION_CMDFILE:
+        return "OPTION_CMDFILE";
 
-	case OPTION_DISASSEMBLE:
-		return "OPTION_DISASSEMBLE";
+    case OPTION_DISASSEMBLE:
+        return "OPTION_DISASSEMBLE";
 
-	case OPTION_ERROK:
-		return "OPTION_ERROK";
+    case OPTION_ERROK:
+        return "OPTION_ERROK";
 
-	case OPTION_FINGERPRINT:
-		return "OPTION_FINGERPRINT";
+    case OPTION_FINGERPRINT:
+        return "OPTION_FINGERPRINT";
 
-	case OPTION_FINGERPRINT_WRITE:
-		return "OPTION_FINGERPRINT_WRITE";
+    case OPTION_FINGERPRINT_WRITE:
+        return "OPTION_FINGERPRINT_WRITE";
 
-	case OPTION_FORCE:
-		return "OPTION_FORCE";
+    case OPTION_FORCE:
+        return "OPTION_FORCE";
 
-	case OPTION_GATEFIRST:
-		return "OPTION_GATEFIRST";
+    case OPTION_GATEFIRST:
+        return "OPTION_GATEFIRST";
 
-	case OPTION_IMPLICIT_ALLOWED:
-		return "OPTION_IMPLICIT_ALLOWED";
+    case OPTION_IMPLICIT_ALLOWED:
+        return "OPTION_IMPLICIT_ALLOWED";
 
-	case OPTION_INCLUDE_COOKED:
-		return "OPTION_INCLUDE_COOKED";
+    case OPTION_INCLUDE_COOKED:
+        return "OPTION_INCLUDE_COOKED";
 
-	case OPTION_INCLUDE_COOKED_WARNING:
-		return "OPTION_INCLUDE_COOKED_WARNING";
+    case OPTION_INCLUDE_COOKED_WARNING:
+        return "OPTION_INCLUDE_COOKED_WARNING";
 
-	case OPTION_INGREDIENTS_FINGERPRINT:
-		return "OPTION_INGREDIENTS_FINGERPRINT";
+    case OPTION_INGREDIENTS_FINGERPRINT:
+        return "OPTION_INGREDIENTS_FINGERPRINT";
 
-	case OPTION_INVALIDATE_STAT_CACHE:
-		return "OPTION_INVALIDATE_STAT_CACHE";
+    case OPTION_INVALIDATE_STAT_CACHE:
+        return "OPTION_INVALIDATE_STAT_CACHE";
 
-	case OPTION_LOGGING:
-		return "OPTION_LOGGING";
+    case OPTION_LOGGING:
+        return "OPTION_LOGGING";
 
-	case OPTION_METER:
-		return "OPTION_METER";
+    case OPTION_METER:
+        return "OPTION_METER";
 
-	case OPTION_MKDIR:
-		return "OPTION_MKDIR";
+    case OPTION_MKDIR:
+        return "OPTION_MKDIR";
 
-	case OPTION_PERSEVERE:
-		return "OPTION_PERSEVERE";
+    case OPTION_PERSEVERE:
+        return "OPTION_PERSEVERE";
 
-	case OPTION_PRECIOUS:
-		return "OPTION_PRECIOUS";
+    case OPTION_PRECIOUS:
+        return "OPTION_PRECIOUS";
 
-	case OPTION_REASON:
-		return "OPTION_REASON";
+    case OPTION_REASON:
+        return "OPTION_REASON";
 
-	case OPTION_RECURSE:
-		return "OPTION_RECURSE";
+    case OPTION_RECURSE:
+        return "OPTION_RECURSE";
 
-	case OPTION_SHALLOW:
-		return "OPTION_SHALLOW";
+    case OPTION_SHALLOW:
+        return "OPTION_SHALLOW";
 
-	case OPTION_SILENT:
-		return "OPTION_SILENT";
+    case OPTION_SILENT:
+        return "OPTION_SILENT";
 
-	case OPTION_STAR:
-		return "OPTION_STAR";
+    case OPTION_STAR:
+        return "OPTION_STAR";
 
-	case OPTION_STRIP_DOT:
-		return "OPTION_STRIP_DOT";
+    case OPTION_STRIP_DOT:
+        return "OPTION_STRIP_DOT";
 
-	case OPTION_TERMINAL:
-		return "OPTION_TERMINAL";
+    case OPTION_SYMLINK_INGREDIENTS:
+        return "OPTION_SYMLINK_INGREDIENTS";
 
-	case OPTION_TOUCH:
-		return "OPTION_TOUCH";
+    case OPTION_TERMINAL:
+        return "OPTION_TERMINAL";
 
-	case OPTION_UNLINK:
-		return "OPTION_UNLINK";
+    case OPTION_TOUCH:
+        return "OPTION_TOUCH";
 
-	case OPTION_UPDATE:
-		return "OPTION_UPDATE";
+    case OPTION_UNLINK:
+        return "OPTION_UNLINK";
 
-	case OPTION_UPDATE_MAX:
-		return "OPTION_UPDATE_MAX";
+    case OPTION_UPDATE:
+        return "OPTION_UPDATE";
 
-	case OPTION_MATCH_MODE_REGEX:
-		return "OPTION_MATCH_MODE_REGEX";
+    case OPTION_UPDATE_MAX:
+        return "OPTION_UPDATE_MAX";
 
-	case OPTION_TELL_POSITION:
-		return "OPTION_TELL_POSITION";
+    case OPTION_MATCH_MODE_REGEX:
+        return "OPTION_MATCH_MODE_REGEX";
 
-	case OPTION_max:
-		break;
-	}
-	return "option number unknown";
+    case OPTION_TELL_POSITION:
+        return "OPTION_TELL_POSITION";
+
+    case OPTION_max:
+        break;
+    }
+    return "option number unknown";
 }

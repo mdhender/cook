@@ -1,24 +1,22 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1997, 1998, 1999 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1997-1999, 2007 Peter Miller;
+#       All rights reserved.
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: Test the parallel_hosts functionality
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 work=${COOK_TMP:-/tmp}/$$
 PAGER=cat
@@ -33,53 +31,53 @@ export SHELL
 bin="$here/${1-.}/bin"
 
 rsh=rsh
-IFS="${IFS= 	}"; ifs="$IFS"; IFS=":"
+IFS="${IFS=     }"; ifs="$IFS"; IFS=":"
 dummy="$PATH"
 for dir in $dummy
 do
-	test -z "$dir" && dir=.
-	if test -f $dir/remsh; then
-		rsh="remsh"
-		break
-	fi
+        test -z "$dir" && dir=.
+        if test -f $dir/remsh; then
+                rsh="remsh"
+                break
+        fi
 done
 IFS="$ifs"
 
 pass()
 {
-	set +x
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        cd $here
+        rm -rf $work
+        exit 0
 }
 fail()
 {
-	set +x
-	echo 'FAILED test of the parallel_hosts functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 1
+        set +x
+        echo 'FAILED test of the parallel_hosts functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 1
 }
 no_result()
 {
-	set +x
-	echo 'NO RESULT for test of the parallel_hosts functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 2
+        set +x
+        echo 'NO RESULT for test of the parallel_hosts functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 2
 }
 no_point_testing()
 {
-	set +x
-	echo ''
-	echo "	The $rsh command on your system does not appear to work."
-	echo '	This means that the parallel virtual machine'
-	echo '	functionality of Cook will probably not work, either.'
-	echo '	This test is declared to pass by default.'
-	echo ''
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        echo ''
+        echo "  The $rsh command on your system does not appear to work."
+        echo '  This means that the parallel virtual machine'
+        echo '  functionality of Cook will probably not work, either.'
+        echo '  This test is declared to pass by default.'
+        echo ''
+        cd $here
+        rm -rf $work
+        exit 0
 }
 trap \"no_result\" 1 2 3 15
 
@@ -99,7 +97,7 @@ COOK_MESSAGE_LIBRARY=$work/no-such-dir
 #
 echo "$$ chuckle $$" > test.in
 if test $? -ne 0 ; then no_result; fi
-$rsh localhost "cat $work/test.in" > test.out
+$rsh localhost "cat $work/test.in" < /dev/null > test.out
 if test $? -ne 0; then no_point_testing; fi
 diff test.in test.out
 if test $? -ne 0; then no_point_testing; fi
@@ -116,7 +114,7 @@ parallel_hosts = localhost localhost;
 
 test.out2: test.in
 {
-	cat '\${${magic}:-test.in}' > [target];
+        cat '\${${magic}:-test.in}' > [target];
 }
 fubar
 if test $? -ne 0 ; then no_result; fi

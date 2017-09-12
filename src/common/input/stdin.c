@@ -1,121 +1,107 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1999 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1999, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to read the standard inptu
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
-#include <ac/stdio.h>
+#include <common/ac/stdio.h>
 
-#include <error_intl.h>
-#include <input/private.h>
-#include <input/stdin.h>
-#include <sub.h>
-#include <str.h>
+#include <common/error_intl.h>
+#include <common/input/private.h>
+#include <common/input/stdin.h>
+#include <common/sub.h>
+#include <common/str.h>
 
-
-static string_ty *standard_input _((void));
 
 static string_ty *
-standard_input()
+standard_input(void)
 {
-	static string_ty *name;
-	sub_context_ty	*scp;
+    static string_ty *name;
+    sub_context_ty  *scp;
 
-	if (!name)
-	{
-		scp = sub_context_new();
-		name = subst_intl(scp, i18n("standard input"));
-		sub_context_delete(scp);
-	}
-	return name;
+    if (!name)
+    {
+        scp = sub_context_new();
+        name = subst_intl(scp, i18n("standard input"));
+        sub_context_delete(scp);
+    }
+    return name;
 }
 
-
-static void destruct _((input_ty *));
 
 static void
-destruct(this)
-	input_ty	*this;
+destruct(input_ty *this)
 {
+    (void)this;
 }
 
-
-static long iread _((input_ty *, void *, long));
 
 static long
-iread(this, data, len)
-	input_ty	*this;
-	void		*data;
-	long		len;
+iread(input_ty *this, void *data, long len)
 {
-	long		result;
+    long            result;
 
-	if (len <= 0)
-		return 0;
-	result = fread(data, 1, len, stdin);
-	if (result <= 0 && ferror(stdin))
-		fatal_intl_read(standard_input()->str_text);
-	return result;
+    (void)this;
+    if (len <= 0)
+        return 0;
+    result = fread(data, 1, len, stdin);
+    if (result <= 0 && ferror(stdin))
+        fatal_intl_read(standard_input()->str_text);
+    return result;
 }
 
-
-static int get _((input_ty *));
 
 static int
-get(this)
-	input_ty	*this;
+get(input_ty *this)
 {
-	int		c;
+    int             c;
 
-	c = getchar();
-	if (c == EOF)
-	{
-		if (ferror(stdin))
-			fatal_intl_read(standard_input()->str_text);
-		return INPUT_EOF;
-	}
-	return c;
+    (void)this;
+    c = getchar();
+    if (c == EOF)
+    {
+        if (ferror(stdin))
+            fatal_intl_read(standard_input()->str_text);
+        return INPUT_EOF;
+    }
+    return c;
 }
 
 
-static string_ty *filename _((input_ty *));
-
 static string_ty *
-filename(this)
-	input_ty	*this;
+filename(input_ty *this)
 {
-	return standard_input();
+    (void)this;
+    return standard_input();
 }
 
 
 static input_vtbl_ty vtbl =
 {
-	sizeof(input_ty),
-	destruct,
-	iread,
-	get,
-	filename,
+    sizeof(input_ty),
+    destruct,
+    iread,
+    get,
+    filename,
 };
 
 
 input_ty *
-input_stdin()
+input_stdin(void)
 {
-	return input_new(&vtbl);
+    return input_new(&vtbl);
 }

@@ -1,21 +1,20 @@
 /*
  * NAME
- *	home - define installation locations
+ *      home - define installation locations
  *
  * DESCRIPTION
- *	This cookbook defined where certain directoris are,
- *	and some common uses of those directories,
- *	relative to $HOME.
+ *      This cookbook defined where certain directoris are,
+ *      and some common uses of those directories,
+ *      relative to $HOME.
  *
  * VARIABLES
- *	home		users' home directory.
- *	bin		directory to place program binaries into
- *	include		directory to place include files into
- *	lib		directory to place libraries into
- *	cc_include_flags The [include] directory is added to the search args
- *	cc_link_flags	The [lib] directory is added to the search args
- *
- * MANIFEST: cookbook for locations in home directory
+ *      home            users' home directory.
+ *      bin             directory to place program binaries into
+ *      include         directory to place include files into
+ *      lib             directory to place libraries into
+ *      cc_include_flags The [include] directory is added to the search args
+ *      cc_link_flags   The [lib] directory is added to the search args
+ * Copyright (C) 1997-2007 Peter Miller
  */
 
 #pragma once

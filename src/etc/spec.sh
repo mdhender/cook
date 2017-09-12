@@ -1,24 +1,22 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1993-1997, 1999, 2001, 2003, 2004 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1993-1997, 1999, 2001, 2003, 2004, 2007 Peter Miller;
+#       All rights reserved.
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: shell script to generate RedHat spec file
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 version=${version-0.0.0}
 echo 'Summary: a file construction tool'
@@ -30,7 +28,7 @@ echo 'Group: Development/Building'
 echo "Source: http://www.canb.auug.org.au/~millerp/cook/cook-${version}.tar.gz"
 echo 'URL: http://www.canb.auug.org.au/~millerp/cook/'
 echo 'BuildRoot: /tmp/cook-build-root'
-echo 'Icon: cook-${version}/cook.gif'
+echo 'Icon: cook-${version}/cook.png'
 echo 'Provides: perl(host_lists.pl)'
 
 echo ''
@@ -119,103 +117,103 @@ dvidocs=
 
 remember_prog()
 {
-	if eval "test \"\${prog_${1}-no}\" != yes"
-	then
-		eval "prog_${1}=yes"
-		binfiles="$binfiles %_prefix/bin/${1}"
-	fi
+        if eval "test \"\${prog_${1}-no}\" != yes"
+        then
+                eval "prog_${1}=yes"
+                binfiles="$binfiles %_prefix/bin/${1}"
+        fi
 }
 
 for file in $*
 do
-	case $file in
+        case $file in
 
-	common/*)
-		;;
-	fstrcmp/* | file_check/*)
-		;;
-	etc/*)
-		;;
+        common/*)
+                ;;
+        fstrcmp/* | file_check/*)
+                ;;
+        etc/*)
+                ;;
 
-	*/main.c)
-		dir=`echo $file | sed 's|/.*||'`
-		remember_prog $dir
-		;;
+        */main.c)
+                dir=`echo $file | sed 's|/.*||'`
+                remember_prog $dir
+                ;;
 
-	test/*/*)
-		;;
-	lib/*/building/*)
-		;;
-	lib/*/lsm/*)
-		;;
-	lib/*/readme/*)
-		;;
-	lib/*/release/*)
-		;;
+        test/*/*)
+                ;;
+        lib/*/building/*)
+                ;;
+        lib/*/lsm/*)
+                ;;
+        lib/*/readme/*)
+                ;;
+        lib/*/release/*)
+                ;;
 
-	lib/*/LC_MESSAGES/common.po)
-		;;
-	lib/*/LC_MESSAGES/fstrcmp.po)
-		;;
+        lib/*/LC_MESSAGES/common.po)
+                ;;
+        lib/*/LC_MESSAGES/fstrcmp.po)
+                ;;
 
-	lib/*.po)
-		stem=`echo $file | sed 's|^lib/\(.*\)\.po$|\1|'`
-		dst="%_prefix/lib/cook/$stem.mo"
-		files="$files $dst"
-		;;
+        lib/*.po)
+                stem=`echo $file | sed 's|^lib/\(.*\)\.po$|\1|'`
+                dst="%_prefix/lib/cook/$stem.mo"
+                files="$files $dst"
+                ;;
 
-	lib/*/*/*.so)
-		;;
-	lib/*/*/*.pic)
-		;;
+        lib/*/*/*.so)
+                ;;
+        lib/*/*/*.pic)
+                ;;
 
-	lib/*/man?/*)
-		# some versions of RPM gzip man pages for free, so use a
-		# wild card to find them, rather than an exact name.  Sigh.
-		stem=`echo $file | sed 's|^lib/||'`
-		files="$files %_prefix/share/cook/${stem}*"
+        lib/*/man?/*)
+                # some versions of RPM gzip man pages for free, so use a
+                # wild card to find them, rather than an exact name.  Sigh.
+                stem=`echo $file | sed 's|^lib/||'`
+                files="$files %_prefix/share/cook/${stem}*"
 
-		case $file in
-		lib/en/*)
-			stem2=`echo $file | sed 's|^lib/en/||'`
-			files="$files %_prefix/share/man/${stem2}*"
-			;;
-		esac
-		;;
+                case $file in
+                lib/en/*)
+                        stem2=`echo $file | sed 's|^lib/en/||'`
+                        files="$files %_prefix/share/man/${stem2}*"
+                        ;;
+                esac
+                ;;
 
-	lib/*/*/main.*)
-		stem=`echo $file | sed 's|^lib/\(.*\)/main.*$|\1|'`
-		psdocs="$psdocs %_prefix/share/cook/$stem.ps"
-		dvidocs="$dvidocs %_prefix/share/cook/$stem.dvi"
-		txtdocs="$txtdocs %_prefix/share/cook/$stem.txt"
-		;;
+        lib/*/*/main.*)
+                stem=`echo $file | sed 's|^lib/\(.*\)/main.*$|\1|'`
+                psdocs="$psdocs %_prefix/share/cook/$stem.ps"
+                dvidocs="$dvidocs %_prefix/share/cook/$stem.dvi"
+                txtdocs="$txtdocs %_prefix/share/cook/$stem.txt"
+                ;;
 
-	lib/*)
-		rest=`echo $file | sed 's|^lib/||'`
-		dst="%_prefix/share/cook/$rest"
-		files="$files $dst"
-		;;
+        lib/*)
+                rest=`echo $file | sed 's|^lib/||'`
+                dst="%_prefix/share/cook/$rest"
+                files="$files $dst"
+                ;;
 
-	script/*.in)
-		rest=`echo $file | sed 's|^script/\(.*\)\.in|\1|'`
-		binfiles="$binfiles %_prefix/bin/$rest"
-		;;
-	*)
-		;;
-	esac
+        script/*.in)
+                rest=`echo $file | sed 's|^script/\(.*\)\.in|\1|'`
+                binfiles="$binfiles %_prefix/bin/$rest"
+                ;;
+        *)
+                ;;
+        esac
 done
 (
 for file in $binfiles
 do
-	echo "%attr(0755,root,bin) $file"
+        echo "%attr(0755,root,bin) $file"
 done
 for file in $files
 do
-	echo "%attr(0644,root,bin) $file"
+        echo "%attr(0644,root,bin) $file"
 done
 for file in $txtdocs
 do
-	echo "%attr(0644,root,bin) $file"
+        echo "%attr(0644,root,bin) $file"
 done
 ) | sort +1
 
@@ -223,12 +221,12 @@ echo ''
 echo '%files psdocs'
 for file in $psdocs
 do
-	echo "%attr(0644,root,bin) $file"
+        echo "%attr(0644,root,bin) $file"
 done
 
 echo ''
 echo '%files dvidocs'
 for file in $dvidocs
 do
-	echo "%attr(0644,root,bin) $file"
+        echo "%attr(0644,root,bin) $file"
 done

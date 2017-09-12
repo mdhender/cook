@@ -1,123 +1,122 @@
 /*
  * NAME
- *	library - construct a library
+ *      library - construct a library
  *
  * DESCRIPTION
- *	This cookbook defines how to construct a library.
+ *      This cookbook defines how to construct a library.
  *
- *	If an include file (or files) are defined for this file,
- *	you will have to append them to [install] in your Howto.cook file.
+ *      If an include file (or files) are defined for this file,
+ *      you will have to append them to [install] in your Howto.cook file.
  *
  * VARIABLES
- *	all		targets of the all recipe
- *	install		targets of the install recipe
- *	me		the name of the library to be constructed.
- *			Defaults to the last component of the pathname
- *			of the current directory.
- *	ar		The archive command.
- *	install		targets of the install command.
+ *      all             targets of the all recipe
+ *      install         targets of the install recipe
+ *      me              the name of the library to be constructed.
+ *                      Defaults to the last component of the pathname
+ *                      of the current directory.
+ *      ar              The archive command.
+ *      install         targets of the install command.
  *
  * RECIPES
- *	all:		construct the targets defined in [all].
- *	clean:		remove the files named in [dot_clean].
- *	clobber:	remove the files name in [dot_clean] and [all].
+ *      all:            construct the targets defined in [all].
+ *      clean:          remove the files named in [dot_clean].
+ *      clobber:        remove the files name in [dot_clean] and [all].
  *
  * If the [lib] variable is defined
- *	install:	construct the files named in [install].
- *	uninstall:	remove the files named in [install].
- *
- * MANIFEST: cookbook for constructing libraries
+ *      install:        construct the files named in [install].
+ *      uninstall:      remove the files named in [install].
+ * Copyright (C) 1997-2007 Peter Miller
  */
 
 #pragma once
 
 if [not [defined dot_obj]] then
 {
-	echo "'The [dot_obj] variable is not set.'" set silent;
-	echo "'You probably want to use the \"c\" or \"f77\" cookbook'"
-		set silent;
-	echo "'before you use the \"library\" cookbook.'" set silent;
-	fail;
+        echo "'The [dot_obj] variable is not set.'" set silent;
+        echo "'You probably want to use the \"c\" or \"f77\" cookbook'"
+                set silent;
+        echo "'before you use the \"library\" cookbook.'" set silent;
+        fail;
 }
 
 if [not [defined ar]] then
-	ar = [find_command ar];
+        ar = [find_command ar];
 if [not [defined ranlib]] then
-	ranlib = [find_command ranlib];
+        ranlib = [find_command ranlib];
 if [not [defined me]] then
-	me = [entryname [dir [pathname x]]];
+        me = [entryname [dir [pathname x]]];
 
 all = lib[me].a;
 if [defined dot_lint_obj] then
 if [find_command [lint]] then
-	all = [all] llib-l[me].ln;
+        all = [all] llib-l[me].ln;
 
 all: [all];
 
 clean:
 {
-	rm -f [dot_clean]
-		set clearstat;
+        rm -f [dot_clean]
+                set clearstat;
 }
 
 clobber: clean
 {
-	rm -f [all]
-		set clearstat;
+        rm -f [all]
+                set clearstat;
 }
 
 if [defined lib] then
 {
-	if [not [defined install]] then
-		install = ;
-	install = [install] [lib]/lib[me].a;
-	if [defined dot_lint_obj] then
-		install = [install] [lib]/llib-l[me].ln;
+        if [not [defined install]] then
+                install = ;
+        install = [install] [lib]/lib[me].a;
+        if [defined dot_lint_obj] then
+                install = [install] [lib]/llib-l[me].ln;
 
-	[lib]/%: %
-	{
-		cp -p % [lib]/%;
-		chmod og-w [lib]/%;
-	}
+        [lib]/%: %
+        {
+                cp -p % [lib]/%;
+                chmod og-w [lib]/%;
+        }
 }
 
 if [defined include] then
 {
-	if [not [defined install]] then
-		install = ;
-	install = [install] [include]/[me].h;
+        if [not [defined install]] then
+                install = ;
+        install = [install] [include]/[me].h;
 
-	[include]/%: %
-	{
-		cp -p % [include]/%;
-		chmod og-w [include]/%;
-	}
+        [include]/%: %
+        {
+                cp -p % [include]/%;
+                chmod og-w [include]/%;
+        }
 }
 
 if [defined install] then
 {
-	install: [install];
+        install: [install];
 
-	uninstall:
-	{
-		rm -f [install]
-			set clearstat;
-	}
+        uninstall:
+        {
+                rm -f [install]
+                        set clearstat;
+        }
 }
 
 
 lib[me].a: [dot_obj]
-	set unlink
+        set unlink
 {
-	[ar] r [target] [dot_obj];
-	if [ranlib] then
-		[ranlib] [target];
+        [ar] r [target] [dot_obj];
+        if [ranlib] then
+                [ranlib] [target];
 }
 
 if [defined dot_lint_obj] then
 {
-	llib-l[me].ln: [dot_lint_obj]
-	{
-		[lint] [dot_lint_obj] -o [me];
-	}
+        llib-l[me].ln: [dot_lint_obj]
+        {
+                [lint] [dot_lint_obj] -o [me];
+        }
 }

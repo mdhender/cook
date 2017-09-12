@@ -1,666 +1,668 @@
 
 
 
-Project "cook.2.5"						 Page 1
-List of Changes				       Mon Nov	9 10:46:10 1998
+Project "cook.2.5"                                               Page 1
+List of Changes                                Mon Nov  9 10:46:10 1998
 
-Change	State		Description
-------- -------		-------------
-  10	completed	prepare for release
-  11	completed	pattern match bug
-  12	completed	portability
-  13	completed	fingerprints + search_list less optimistic
-  14	completed	don't use ftime
-  15	completed	Windows NT speil
-  16	completed	fingerprint directories
-  17	completed	more NT
-  18	completed	dos-path function
-  19	completed	common string accumulator
-
+Change  State           Description
+------- -------         -------------
+  10    completed       prepare for release
+  11    completed       pattern match bug
+  12    completed       portability
+  13    completed       fingerprints + search_list less optimistic
+  14    completed       don't use ftime
+  15    completed       Windows NT speil
+  16    completed       fingerprint directories
+  17    completed       more NT
+  18    completed       dos-path function
+  19    completed       common string accumulator
 
 
-Project "cook.2.5", Change 10					 Page 1
-Change Details				       Mon Nov	9 10:46:11 1998
+
+Project "cook.2.5", Change 10                                    Page 1
+Change Details                                 Mon Nov  9 10:46:11 1998
 
 NAME
-	Project "cook.2.5", Delta 1, Change 10.
+        Project "cook.2.5", Delta 1, Change 10.
 
 SUMMARY
-	prepare for release
+        prepare for release
 
 DESCRIPTION
-	This change prepares Cook for release.
+        This change prepares Cook for release.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 59   BUILDING
-	build	modify	   27 -> 97   MANIFEST
-	build	modify	   29 -> 96   Makefile.in
-	build	modify	   12 -> 49   README
-	build	modify	    3 -> 10   common/config.h.in
-	build	modify	   43 -> 162  common/patchlevel.h
-	build	modify	    7 -> 16   configure
-	source	create	    1	      etc/CHANGES.2.4
-	build	modify	   23 -> 24   etc/version.so
-	source	modify	    2 -> 3    lib/en/readme/new.2.4.so
-	source	create	    1	      lib/en/readme/new.2.5.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 59   BUILDING
+        build   modify     27 -> 97   MANIFEST
+        build   modify     29 -> 96   Makefile.in
+        build   modify     12 -> 49   README
+        build   modify      3 -> 10   common/config.h.in
+        build   modify     43 -> 162  common/patchlevel.h
+        build   modify      7 -> 16   configure
+        source  create      1         etc/CHANGES.2.4
+        build   modify     23 -> 24   etc/version.so
+        source  modify      2 -> 3    lib/en/readme/new.2.4.so
+        source  create      1         lib/en/readme/new.2.5.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Wed Sep	 2	pmiller
-			14:51:05 1998
-	develop_begin	Wed Sep	 2	pmiller	 Elapsed time: 0.329
-			14:51:11 1998		 days.
-	develop_end	Wed Sep	 2	pmiller	 Elapsed time: 0.091
-			17:19:06 1998		 days.
-	review_pass	Wed Sep	 2	pmiller
-			17:59:58 1998
-	integrate_begin Wed Sep	 2	pmiller	 Elapsed time: 1.000
-			18:00:08 1998		 days.
-	integrate_pass	Thu Sep	 3	pmiller
-			06:36:13 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Wed Sep  2      pmiller
+                        14:51:05 1998
+        develop_begin   Wed Sep  2      pmiller  Elapsed time: 0.329
+                        14:51:11 1998            days.
+        develop_end     Wed Sep  2      pmiller  Elapsed time: 0.091
+                        17:19:06 1998            days.
+        review_pass     Wed Sep  2      pmiller
+                        17:59:58 1998
+        integrate_begin Wed Sep  2      pmiller  Elapsed time: 1.000
+                        18:00:08 1998            days.
+        integrate_pass  Thu Sep  3      pmiller
+                        06:36:13 1998
 
 
-Project "cook.2.5", Change 11					 Page 1
-Change Details				       Mon Nov	9 10:46:11 1998
+
+Project "cook.2.5", Change 11                                    Page 1
+Change Details                                 Mon Nov  9 10:46:11 1998
 
 NAME
-	Project "cook.2.5", Delta 2, Change 11.
+        Project "cook.2.5", Delta 2, Change 11.
 
 SUMMARY
-	pattern match bug
+        pattern match bug
 
 DESCRIPTION
-	This change fixes a pattern matching bug, which sometimes
-	caused core dumps.
+        This change fixes a pattern matching bug, which sometimes
+        caused core dumps.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_bug.
+        This change was caused by internal_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 60   BUILDING
-	build	modify	   27 -> 98   MANIFEST
-	build	modify	   29 -> 97   Makefile.in
-	build	modify	   12 -> 49   README
-	build	modify	    3 -> 10   common/config.h.in
-	build	modify	   43 -> 163  common/patchlevel.h
-	build	modify	    7 -> 16   configure
-	source	modify	   14 -> 15   cook/match.c
-	source	modify	    9 -> 10   cook/opcode/command.c
-	build	modify	   23 -> 25   etc/version.so
-	test	create	    1	      test/01/t0153a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 60   BUILDING
+        build   modify     27 -> 98   MANIFEST
+        build   modify     29 -> 97   Makefile.in
+        build   modify     12 -> 49   README
+        build   modify      3 -> 10   common/config.h.in
+        build   modify     43 -> 163  common/patchlevel.h
+        build   modify      7 -> 16   configure
+        source  modify     14 -> 15   cook/match.c
+        source  modify      9 -> 10   cook/opcode/command.c
+        build   modify     23 -> 25   etc/version.so
+        test    create      1         test/01/t0153a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Sun Sep 13	pmiller
-			00:01:47 1998
-	develop_begin	Sun Sep 13	pmiller	 Elapsed time: 1.000
-			00:01:56 1998		 days.
-	develop_end	Sun Sep 13	pmiller
-			08:58:05 1998
-	review_pass	Sun Sep 13	pmiller
-			08:59:23 1998
-	integrate_begin Sun Sep 13	pmiller
-			08:59:32 1998
-	integrate_pass	Sun Sep 13	pmiller
-			09:06:09 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Sun Sep 13      pmiller
+                        00:01:47 1998
+        develop_begin   Sun Sep 13      pmiller  Elapsed time: 1.000
+                        00:01:56 1998            days.
+        develop_end     Sun Sep 13      pmiller
+                        08:58:05 1998
+        review_pass     Sun Sep 13      pmiller
+                        08:59:23 1998
+        integrate_begin Sun Sep 13      pmiller
+                        08:59:32 1998
+        integrate_pass  Sun Sep 13      pmiller
+                        09:06:09 1998
 
 
-Project "cook.2.5", Change 12					 Page 1
-Change Details				       Mon Nov	9 10:46:11 1998
+
+Project "cook.2.5", Change 12                                    Page 1
+Change Details                                 Mon Nov  9 10:46:11 1998
 
 NAME
-	Project "cook.2.5", Delta 3, Change 12.
+        Project "cook.2.5", Delta 3, Change 12.
 
 SUMMARY
-	portability
+        portability
 
 DESCRIPTION
-	This change increases cook's portability, when faced with
-	international characters.
+        This change increases cook's portability, when faced with
+        international characters.
 
-	This change is exempt from testing against the development
-	directory.  This change is exempt from testing against the
-	baseline.
+        This change is exempt from testing against the development
+        directory.  This change is exempt from testing against the
+        baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_bug.
+        This change was caused by internal_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 61   BUILDING
-	build	modify	   27 -> 98   MANIFEST
-	build	modify	   29 -> 97   Makefile.in
-	build	modify	   12 -> 49   README
-	build	modify	    3 -> 10   common/config.h.in
-	build	modify	   43 -> 164  common/patchlevel.h
-	source	modify	    5 -> 6    common/str.c
-	build	modify	    7 -> 16   configure
-	build	modify	   23 -> 26   etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 61   BUILDING
+        build   modify     27 -> 98   MANIFEST
+        build   modify     29 -> 97   Makefile.in
+        build   modify     12 -> 49   README
+        build   modify      3 -> 10   common/config.h.in
+        build   modify     43 -> 164  common/patchlevel.h
+        source  modify      5 -> 6    common/str.c
+        build   modify      7 -> 16   configure
+        build   modify     23 -> 26   etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Wed Sep 23	pmiller
-			22:17:35 1998
-	develop_begin	Wed Sep 23	pmiller
-			22:17:41 1998
-	develop_end	Wed Sep 23	pmiller
-			22:25:29 1998
-	review_pass	Wed Sep 23	pmiller
-			22:25:32 1998
-	integrate_begin Wed Sep 23	pmiller	 Elapsed time: 3.000
-			22:25:43 1998		 days.
-	integrate_pass	Mon Sep 28	pmiller
-			08:56:48 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Wed Sep 23      pmiller
+                        22:17:35 1998
+        develop_begin   Wed Sep 23      pmiller
+                        22:17:41 1998
+        develop_end     Wed Sep 23      pmiller
+                        22:25:29 1998
+        review_pass     Wed Sep 23      pmiller
+                        22:25:32 1998
+        integrate_begin Wed Sep 23      pmiller  Elapsed time: 3.000
+                        22:25:43 1998            days.
+        integrate_pass  Mon Sep 28      pmiller
+                        08:56:48 1998
 
 
-Project "cook.2.5", Change 13					 Page 1
-Change Details				       Mon Nov	9 10:46:11 1998
+
+Project "cook.2.5", Change 13                                    Page 1
+Change Details                                 Mon Nov  9 10:46:11 1998
 
 NAME
-	Project "cook.2.5", Delta 4, Change 13.
+        Project "cook.2.5", Delta 4, Change 13.
 
 SUMMARY
-	fingerprints + search_list less optimistic
+        fingerprints + search_list less optimistic
 
 DESCRIPTION
-	This change makes Cook less optimistic when using fingerprints
-	in combination with the search_list.  It would infreqently
-	conclude that a shallow target was up-to-date when a shallow
-	ingredient was editied to be the same as a deeper ingredient.
+        This change makes Cook less optimistic when using fingerprints
+        in combination with the search_list.  It would infreqently
+        conclude that a shallow target was up-to-date when a shallow
+        ingredient was editied to be the same as a deeper ingredient.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_bug.
+        This change was caused by internal_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 62   BUILDING
-	build	modify	   27 -> 99   MANIFEST
-	build	modify	   29 -> 98   Makefile.in
-	build	modify	   12 -> 49   README
-	build	modify	    3 -> 10   common/config.h.in
-	build	modify	   43 -> 165  common/patchlevel.h
-	build	modify	    7 -> 16   configure
-	source	modify	    8 -> 9    cook/builtin/cook.c
-	source	modify	   22 -> 23   cook/cook.c
-	source	modify	   13 -> 14   cook/cook.h
-	source	modify	   20 -> 21   cook/graph/build.c
-	source	modify	    3 -> 4    cook/graph/check.c
-	source	modify	    2 -> 3    cook/graph/leaf.c
-	source	modify	   17 -> 18   cook/graph/run.c
-	build	modify	   23 -> 27   etc/version.so
-	test	create	    1	      test/01/t0154a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 62   BUILDING
+        build   modify     27 -> 99   MANIFEST
+        build   modify     29 -> 98   Makefile.in
+        build   modify     12 -> 49   README
+        build   modify      3 -> 10   common/config.h.in
+        build   modify     43 -> 165  common/patchlevel.h
+        build   modify      7 -> 16   configure
+        source  modify      8 -> 9    cook/builtin/cook.c
+        source  modify     22 -> 23   cook/cook.c
+        source  modify     13 -> 14   cook/cook.h
+        source  modify     20 -> 21   cook/graph/build.c
+        source  modify      3 -> 4    cook/graph/check.c
+        source  modify      2 -> 3    cook/graph/leaf.c
+        source  modify     17 -> 18   cook/graph/run.c
+        build   modify     23 -> 27   etc/version.so
+        test    create      1         test/01/t0154a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Mon Sep 28	pmiller
-			08:59:15 1998
-	develop_begin	Mon Sep 28	pmiller	 Elapsed time: 0.389
-			09:00:36 1998		 days.
-	develop_end	Mon Sep 28	pmiller
-			11:55:27 1998
-	review_pass	Mon Sep 28	pmiller
-			11:55:38 1998
-	integrate_begin Mon Sep 28	pmiller
-			11:55:46 1998
-	integrate_pass	Mon Sep 28	pmiller
-			12:04:43 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Mon Sep 28      pmiller
+                        08:59:15 1998
+        develop_begin   Mon Sep 28      pmiller  Elapsed time: 0.389
+                        09:00:36 1998            days.
+        develop_end     Mon Sep 28      pmiller
+                        11:55:27 1998
+        review_pass     Mon Sep 28      pmiller
+                        11:55:38 1998
+        integrate_begin Mon Sep 28      pmiller
+                        11:55:46 1998
+        integrate_pass  Mon Sep 28      pmiller
+                        12:04:43 1998
 
 
-Project "cook.2.5", Change 14					 Page 1
-Change Details				       Mon Nov	9 10:46:11 1998
+
+Project "cook.2.5", Change 14                                    Page 1
+Change Details                                 Mon Nov  9 10:46:11 1998
 
 NAME
-	Project "cook.2.5", Delta 5, Change 14.
+        Project "cook.2.5", Delta 5, Change 14.
 
 SUMMARY
-	don't use ftime
+        don't use ftime
 
 DESCRIPTION
-	I am advised that ftime does not set timezone on all systems.
-	This change removes the use of the ftime system call, on those
-	systems which have it.
+        I am advised that ftime does not set timezone on all systems.
+        This change removes the use of the ftime system call, on those
+        systems which have it.
 
-	My thanks to Dima Barsky <D.Barsky@ee.surrey.ac.uk> for
-	reporting this problem.
+        My thanks to Dima Barsky <D.Barsky@ee.surrey.ac.uk> for
+        reporting this problem.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_bug.
+        This change was caused by external_bug.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 63   BUILDING
-	build	modify	   27 -> 100  MANIFEST
-	build	modify	   29 -> 98   Makefile.in
-	build	modify	   12 -> 50   README
-	build	modify	    3 -> 11   common/config.h.in
-	build	modify	   43 -> 166  common/patchlevel.h
-	build	modify	    7 -> 17   configure
-	source	modify	    5 -> 6    cooktime/date.y
-	source	modify	    2 -> 3    etc/configure.in
-	build	modify	   23 -> 28   etc/version.so
-	source	modify	    1 -> 2    lib/en/readme/new.2.5.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 63   BUILDING
+        build   modify     27 -> 100  MANIFEST
+        build   modify     29 -> 98   Makefile.in
+        build   modify     12 -> 50   README
+        build   modify      3 -> 11   common/config.h.in
+        build   modify     43 -> 166  common/patchlevel.h
+        build   modify      7 -> 17   configure
+        source  modify      5 -> 6    cooktime/date.y
+        source  modify      2 -> 3    etc/configure.in
+        build   modify     23 -> 28   etc/version.so
+        source  modify      1 -> 2    lib/en/readme/new.2.5.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Wed Oct 21	pmiller
-			08:51:13 1998
-	develop_begin	Wed Oct 21	pmiller	 Elapsed time: 0.194
-			08:51:20 1998		 days.
-	develop_end	Wed Oct 21	pmiller
-			10:18:43 1998
-	review_pass	Wed Oct 21	pmiller
-			10:18:47 1998
-	integrate_begin Wed Oct 21	pmiller	 Elapsed time: 0.027
-			10:18:55 1998		 days.
-	integrate_fail	Wed Oct 21	pmiller	 need to mention it in
-			10:31:16 1998		 release notes
-						 Elapsed time: 0.028
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Wed Oct 21      pmiller
+                        08:51:13 1998
+        develop_begin   Wed Oct 21      pmiller  Elapsed time: 0.194
+                        08:51:20 1998            days.
+        develop_end     Wed Oct 21      pmiller
+                        10:18:43 1998
+        review_pass     Wed Oct 21      pmiller
+                        10:18:47 1998
+        integrate_begin Wed Oct 21      pmiller  Elapsed time: 0.027
+                        10:18:55 1998            days.
+        integrate_fail  Wed Oct 21      pmiller  need to mention it in
+                        10:31:16 1998            release notes
+                                                 Elapsed time: 0.028
 
 
-Project "cook.2.5", Change 14					 Page 2
-Change Details				       Mon Nov	9 10:46:11 1998
 
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-						 days.
-	develop_end	Wed Oct 21	pmiller
-			10:43:59 1998
-	review_pass	Wed Oct 21	pmiller
-			10:44:02 1998
-	integrate_begin Wed Oct 21	pmiller	 Elapsed time: 0.062
-			10:44:13 1998		 days.
-	integrate_pass	Wed Oct 21	pmiller
-			11:12:09 1998
-
+Project "cook.2.5", Change 14                                    Page 2
+Change Details                                 Mon Nov  9 10:46:11 1998
+
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+                                                 days.
+        develop_end     Wed Oct 21      pmiller
+                        10:43:59 1998
+        review_pass     Wed Oct 21      pmiller
+                        10:44:02 1998
+        integrate_begin Wed Oct 21      pmiller  Elapsed time: 0.062
+                        10:44:13 1998            days.
+        integrate_pass  Wed Oct 21      pmiller
+                        11:12:09 1998
 
 
-Project "cook.2.5", Change 15					 Page 1
-Change Details				       Mon Nov	9 10:46:12 1998
+
+Project "cook.2.5", Change 15                                    Page 1
+Change Details                                 Mon Nov  9 10:46:12 1998
 
 NAME
-	Project "cook.2.5", Delta 6, Change 15.
+        Project "cook.2.5", Delta 6, Change 15.
 
 SUMMARY
-	Windows NT speil
+        Windows NT speil
 
 DESCRIPTION
-	This change adds documentation to the BUILDING file, detailing
-	my experiences porting Cook to Cygwin32.
+        This change adds documentation to the BUILDING file, detailing
+        my experiences porting Cook to Cygwin32.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 64   BUILDING
-	build	modify	   27 -> 101  MANIFEST
-	build	modify	   29 -> 99   Makefile.in
-	build	modify	   12 -> 50   README
-	build	modify	    3 -> 11   common/config.h.in
-	build	modify	   43 -> 167  common/patchlevel.h
-	build	modify	    7 -> 18   configure
-	source	modify	   11 -> 12   cook/os.c
-	source	modify	    1 -> 2    etc/Makefile.sh
-	source	modify	    3 -> 4    etc/configure.in
-	source	modify	    2 -> 3    etc/template/test
-	build	modify	   23 -> 29   etc/version.so
-	source	modify	   12 -> 13   lib/en/building/main.man
-	source	create	    1	      lib/en/building/windows-nt.so
-	test	modify	    4 -> 5    test/00/t0007a.sh
-	test	modify	    4 -> 5    test/00/t0012a.sh
-	test	modify	    4 -> 5    test/00/t0024a.sh
-	test	modify	    5 -> 6    test/00/t0041a.sh
-	test	modify	    5 -> 6    test/00/t0056a.sh
-	test	modify	    5 -> 6    test/00/t0077a.sh
-	test	modify	    7 -> 8    test/00/t0084a.sh
-	test	modify	    5 -> 6    test/00/t0093a.sh
-	test	modify	    4 -> 5    test/01/t0111a.sh
-	test	modify	    3 -> 4    test/01/t0123a.sh
-	test	modify	    4 -> 5    test/01/t0136a.sh
-	test	modify	    4 -> 5    test/01/t0147a.sh
-	test	modify	    3 -> 4    test/01/t0149a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 64   BUILDING
+        build   modify     27 -> 101  MANIFEST
+        build   modify     29 -> 99   Makefile.in
+        build   modify     12 -> 50   README
+        build   modify      3 -> 11   common/config.h.in
+        build   modify     43 -> 167  common/patchlevel.h
+        build   modify      7 -> 18   configure
+        source  modify     11 -> 12   cook/os.c
+        source  modify      1 -> 2    etc/Makefile.sh
+        source  modify      3 -> 4    etc/configure.in
+        source  modify      2 -> 3    etc/template/test
+        build   modify     23 -> 29   etc/version.so
+        source  modify     12 -> 13   lib/en/building/main.man
+        source  create      1         lib/en/building/windows-nt.so
+        test    modify      4 -> 5    test/00/t0007a.sh
+        test    modify      4 -> 5    test/00/t0012a.sh
+        test    modify      4 -> 5    test/00/t0024a.sh
+        test    modify      5 -> 6    test/00/t0041a.sh
+        test    modify      5 -> 6    test/00/t0056a.sh
+        test    modify      5 -> 6    test/00/t0077a.sh
+        test    modify      7 -> 8    test/00/t0084a.sh
+        test    modify      5 -> 6    test/00/t0093a.sh
+        test    modify      4 -> 5    test/01/t0111a.sh
+        test    modify      3 -> 4    test/01/t0123a.sh
+        test    modify      4 -> 5    test/01/t0136a.sh
+        test    modify      4 -> 5    test/01/t0147a.sh
+        test    modify      3 -> 4    test/01/t0149a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Thu Oct 29	pmiller
-			10:33:11 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Thu Oct 29      pmiller
+                        10:33:11 1998
 
 
-Project "cook.2.5", Change 15					 Page 2
-Change Details				       Mon Nov	9 10:46:12 1998
 
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	develop_begin	Thu Oct 29	pmiller	 Elapsed time: 5.000
-			10:33:26 1998		 days.
-	develop_end	Wed Nov	 4	pmiller
-			18:27:02 1998
-	review_pass	Wed Nov	 4	pmiller
-			18:28:55 1998
-	integrate_begin Wed Nov	 4	pmiller	 Elapsed time: 0.606
-			18:29:05 1998		 days.
-	integrate_pass	Wed Nov	 4	pmiller
-			23:01:35 1998
-
+Project "cook.2.5", Change 15                                    Page 2
+Change Details                                 Mon Nov  9 10:46:12 1998
+
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        develop_begin   Thu Oct 29      pmiller  Elapsed time: 5.000
+                        10:33:26 1998            days.
+        develop_end     Wed Nov  4      pmiller
+                        18:27:02 1998
+        review_pass     Wed Nov  4      pmiller
+                        18:28:55 1998
+        integrate_begin Wed Nov  4      pmiller  Elapsed time: 0.606
+                        18:29:05 1998            days.
+        integrate_pass  Wed Nov  4      pmiller
+                        23:01:35 1998
 
 
-Project "cook.2.5", Change 16					 Page 1
-Change Details				       Mon Nov	9 10:46:12 1998
+
+Project "cook.2.5", Change 16                                    Page 1
+Change Details                                 Mon Nov  9 10:46:12 1998
 
 NAME
-	Project "cook.2.5", Delta 7, Change 16.
+        Project "cook.2.5", Delta 7, Change 16.
 
 SUMMARY
-	fingerprint directories
+        fingerprint directories
 
 DESCRIPTION
-	This change adds consistent (and more useful) fingerprints for
-	directories.
+        This change adds consistent (and more useful) fingerprints for
+        directories.
 
-	My thanks to Christian Goetze <cg@resolute.com> for this
-	suggestion.
+        My thanks to Christian Goetze <cg@resolute.com> for this
+        suggestion.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by external_enhancement.
+        This change was caused by external_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 65   BUILDING
-	build	modify	   27 -> 102  MANIFEST
-	build	modify	   29 -> 100  Makefile.in
-	build	modify	   12 -> 51   README
-	build	modify	    3 -> 11   common/config.h.in
-	source	modify	    2 -> 3    common/fp.c
-	build	modify	   43 -> 168  common/patchlevel.h
-	source	modify	    9 -> 10   common/str_list.c
-	source	modify	    6 -> 7    common/str_list.h
-	build	modify	    7 -> 18   configure
-	build	modify	   23 -> 30   etc/version.so
-	source	modify	    2 -> 3    lib/en/readme/new.2.5.so
-	test	create	    1	      test/01/t0155a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 65   BUILDING
+        build   modify     27 -> 102  MANIFEST
+        build   modify     29 -> 100  Makefile.in
+        build   modify     12 -> 51   README
+        build   modify      3 -> 11   common/config.h.in
+        source  modify      2 -> 3    common/fp.c
+        build   modify     43 -> 168  common/patchlevel.h
+        source  modify      9 -> 10   common/str_list.c
+        source  modify      6 -> 7    common/str_list.h
+        build   modify      7 -> 18   configure
+        build   modify     23 -> 30   etc/version.so
+        source  modify      2 -> 3    lib/en/readme/new.2.5.so
+        test    create      1         test/01/t0155a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Wed Nov	 4	pmiller
-			23:05:16 1998
-	develop_begin	Wed Nov	 4	pmiller	 Elapsed time: 0.272
-			23:05:24 1998		 days.
-	develop_end	Thu Nov	 5	pmiller	 Elapsed time: 1.000
-			01:07:57 1998		 days.
-	review_pass	Thu Nov	 5	pmiller
-			12:49:30 1998
-	integrate_begin Thu Nov	 5	pmiller	 Elapsed time: 0.023
-			12:49:41 1998		 days.
-	integrate_pass	Thu Nov	 5	pmiller
-			13:00:14 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Wed Nov  4      pmiller
+                        23:05:16 1998
+        develop_begin   Wed Nov  4      pmiller  Elapsed time: 0.272
+                        23:05:24 1998            days.
+        develop_end     Thu Nov  5      pmiller  Elapsed time: 1.000
+                        01:07:57 1998            days.
+        review_pass     Thu Nov  5      pmiller
+                        12:49:30 1998
+        integrate_begin Thu Nov  5      pmiller  Elapsed time: 0.023
+                        12:49:41 1998            days.
+        integrate_pass  Thu Nov  5      pmiller
+                        13:00:14 1998
 
 
-Project "cook.2.5", Change 17					 Page 1
-Change Details				       Mon Nov	9 10:46:12 1998
+
+Project "cook.2.5", Change 17                                    Page 1
+Change Details                                 Mon Nov  9 10:46:12 1998
 
 NAME
-	Project "cook.2.5", Delta 8, Change 17.
+        Project "cook.2.5", Delta 8, Change 17.
 
 SUMMARY
-	more NT
+        more NT
 
 DESCRIPTION
-	This change includes more updates to get Cook woring on
-	Cygwin32.
+        This change includes more updates to get Cook woring on
+        Cygwin32.
 
-	This change is exempt from testing against the baseline.
+        This change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 66   BUILDING
-	build	modify	   27 -> 102  MANIFEST
-	build	modify	   29 -> 101  Makefile.in
-	build	modify	   12 -> 52   README
-	build	modify	    3 -> 11   common/config.h.in
-	source	modify	    3 -> 4    common/fp.c
-	build	modify	   43 -> 169  common/patchlevel.h
-	build	modify	    7 -> 19   configure
-	source	modify	   10 -> 11   cook/opcode/command.c
-	source	modify	   12 -> 13   cook/os.c
-	source	modify	    1 -> 2    etc/Makefile.head
-	source	modify	    2 -> 3    etc/Makefile.sh
-	source	modify	    4 -> 5    etc/configure.in
-	build	modify	   23 -> 31   etc/version.so
-	source	modify	    1 -> 2    lib/en/building/windows-nt.so
-	source	modify	    3 -> 4    lib/en/readme/new.2.5.so
-	test	modify	    6 -> 7    test/00/t0056a.sh
-	test	modify	    4 -> 5    test/01/t0116a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 66   BUILDING
+        build   modify     27 -> 102  MANIFEST
+        build   modify     29 -> 101  Makefile.in
+        build   modify     12 -> 52   README
+        build   modify      3 -> 11   common/config.h.in
+        source  modify      3 -> 4    common/fp.c
+        build   modify     43 -> 169  common/patchlevel.h
+        build   modify      7 -> 19   configure
+        source  modify     10 -> 11   cook/opcode/command.c
+        source  modify     12 -> 13   cook/os.c
+        source  modify      1 -> 2    etc/Makefile.head
+        source  modify      2 -> 3    etc/Makefile.sh
+        source  modify      4 -> 5    etc/configure.in
+        build   modify     23 -> 31   etc/version.so
+        source  modify      1 -> 2    lib/en/building/windows-nt.so
+        source  modify      3 -> 4    lib/en/readme/new.2.5.so
+        test    modify      6 -> 7    test/00/t0056a.sh
+        test    modify      4 -> 5    test/01/t0116a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Fri Nov	 6	pmiller
-			11:22:33 1998
-	develop_begin	Fri Nov	 6	pmiller	 Elapsed time: 0.870
-			11:22:40 1998		 days.
-	develop_end	Fri Nov	 6	pmiller
-			17:54:18 1998
-	review_pass	Fri Nov	 6	pmiller
-			17:54:21 1998
-	integrate_begin Fri Nov	 6	pmiller	 Elapsed time: 0.529
-			17:54:30 1998		 days.
-	integrate_pass	Fri Nov	 6	pmiller
-			21:52:29 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Fri Nov  6      pmiller
+                        11:22:33 1998
+        develop_begin   Fri Nov  6      pmiller  Elapsed time: 0.870
+                        11:22:40 1998            days.
+        develop_end     Fri Nov  6      pmiller
+                        17:54:18 1998
+        review_pass     Fri Nov  6      pmiller
+                        17:54:21 1998
+        integrate_begin Fri Nov  6      pmiller  Elapsed time: 0.529
+                        17:54:30 1998            days.
+        integrate_pass  Fri Nov  6      pmiller
+                        21:52:29 1998
 
 
-Project "cook.2.5", Change 18					 Page 1
-Change Details				       Mon Nov	9 10:46:12 1998
+
+Project "cook.2.5", Change 18                                    Page 1
+Change Details                                 Mon Nov  9 10:46:12 1998
 
 NAME
-	Project "cook.2.5", Delta 10, Change 18.
+        Project "cook.2.5", Delta 10, Change 18.
 
 SUMMARY
-	dos-path function
+        dos-path function
 
 DESCRIPTION
-	This change adds the dos-path and un-dos-path functions, used
-	to convert UNIX style pathname to dos style, and back again.
+        This change adds the dos-path and un-dos-path functions, used
+        to convert UNIX style pathname to dos style, and back again.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 68   BUILDING
-	build	modify	   27 -> 104  MANIFEST
-	build	modify	   29 -> 103  Makefile.in
-	build	modify	   12 -> 53   README
-	build	modify	    3 -> 11   common/config.h.in
-	build	modify	   43 -> 171  common/patchlevel.h
-	build	modify	    7 -> 19   configure
-	source	modify	   10 -> 11   cook/builtin.c
-	source	create	    1	      cook/builtin/dos.c
-	source	create	    1	      cook/builtin/dos.h
-	build	modify	   23 -> 33   etc/version.so
-	source	modify	    4 -> 5    lib/en/readme/new.2.5.so
-	source	create	    1	      lib/en/user-guide/function/dos_
-				      path.so
-	source	create	    1	      lib/en/user-guide/function/un_
-				      dos_path.so
-	test	create	    1	      test/01/t0156a.sh
-	test	create	    1	      test/01/t0157a.sh
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 68   BUILDING
+        build   modify     27 -> 104  MANIFEST
+        build   modify     29 -> 103  Makefile.in
+        build   modify     12 -> 53   README
+        build   modify      3 -> 11   common/config.h.in
+        build   modify     43 -> 171  common/patchlevel.h
+        build   modify      7 -> 19   configure
+        source  modify     10 -> 11   cook/builtin.c
+        source  create      1         cook/builtin/dos.c
+        source  create      1         cook/builtin/dos.h
+        build   modify     23 -> 33   etc/version.so
+        source  modify      4 -> 5    lib/en/readme/new.2.5.so
+        source  create      1         lib/en/user-guide/function/dos_
+                                      path.so
+        source  create      1         lib/en/user-guide/function/un_
+                                      dos_path.so
+        test    create      1         test/01/t0156a.sh
+        test    create      1         test/01/t0157a.sh
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Fri Nov	 6	pmiller
-			17:53:40 1998
-	develop_begin	Fri Nov	 6	pmiller	 Elapsed time: 0.869
-			17:53:50 1998		 days.
-	develop_end	Sat Nov	 7	pmiller
-			00:24:48 1998
-	review_pass	Sat Nov	 7	pmiller
-			00:24:54 1998
-	integrate_begin Sat Nov	 7	pmiller
-			00:25:02 1998
-	integrate_pass	Sat Nov	 7	pmiller
-			00:34:01 1998
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Fri Nov  6      pmiller
+                        17:53:40 1998
+        develop_begin   Fri Nov  6      pmiller  Elapsed time: 0.869
+                        17:53:50 1998            days.
+        develop_end     Sat Nov  7      pmiller
+                        00:24:48 1998
+        review_pass     Sat Nov  7      pmiller
+                        00:24:54 1998
+        integrate_begin Sat Nov  7      pmiller
+                        00:25:02 1998
+        integrate_pass  Sat Nov  7      pmiller
+                        00:34:01 1998
 
 
-Project "cook.2.5", Change 19					 Page 1
-Change Details				       Mon Nov	9 10:46:12 1998
+
+Project "cook.2.5", Change 19                                    Page 1
+Change Details                                 Mon Nov  9 10:46:12 1998
 
 NAME
-	Project "cook.2.5", Delta 9, Change 19.
+        Project "cook.2.5", Delta 9, Change 19.
 
 SUMMARY
-	common string accumulator
+        common string accumulator
 
 DESCRIPTION
-	This change brings together all of the common string
-	accumulation activities through the api already in place in
-	cook/lex.c.  But it was moved into common/, because it was of
-	more use there.
+        This change brings together all of the common string
+        accumulation activities through the api already in place in
+        cook/lex.c.  But it was moved into common/, because it was of
+        more use there.
 
-	This change must pass a full regression test.  This change is
-	exempt from testing against the development directory.	This
-	change is exempt from testing against the baseline.
+        This change must pass a full regression test.  This change is
+        exempt from testing against the development directory.  This
+        change is exempt from testing against the baseline.
 
 
 ARCHITECTURE
-	This change must build and test in the "linux-i486"
-	architecture.
+        This change must build and test in the "linux-i486"
+        architecture.
 
 CAUSE
-	This change was caused by internal_enhancement.
+        This change was caused by internal_enhancement.
 
 FILES
-	Type	Action	 Edit	      File Name
-	------- -------- -------      -----------
-	build	modify	    5 -> 67   BUILDING
-	build	modify	   27 -> 103  MANIFEST
-	build	modify	   29 -> 102  Makefile.in
-	build	modify	   12 -> 52   README
-	build	modify	    3 -> 11   common/config.h.in
-	build	modify	   43 -> 170  common/patchlevel.h
-	source	modify	    6 -> 7    common/str.c
-	source	create	    1	      common/str/cat2.c
-	source	create	    1	      common/str/cat3.c
-	source	create	    1	      common/str/downcase.c
-	source	create	    1	      common/str/substitute.c
-	source	create	    1	      common/str/upcase.c
-	source	create	    1	      common/stracc.c
-	source	create	    1	      common/stracc.h
-	build	modify	    7 -> 19   configure
-	source	modify	    7 -> 8    cook/builtin/strip.c
-	source	modify	    8 -> 9    cook/builtin/text.c
-	source	modify	   19 -> 20   cook/lex.c
-	build	modify	   23 -> 32   etc/version.so
+        Type    Action   Edit         File Name
+        ------- -------- -------      -----------
+        build   modify      5 -> 67   BUILDING
+        build   modify     27 -> 103  MANIFEST
+        build   modify     29 -> 102  Makefile.in
+        build   modify     12 -> 52   README
+        build   modify      3 -> 11   common/config.h.in
+        build   modify     43 -> 170  common/patchlevel.h
+        source  modify      6 -> 7    common/str.c
+        source  create      1         common/str/cat2.c
+        source  create      1         common/str/cat3.c
+        source  create      1         common/str/downcase.c
+        source  create      1         common/str/substitute.c
+        source  create      1         common/str/upcase.c
+        source  create      1         common/stracc.c
+        source  create      1         common/stracc.h
+        build   modify      7 -> 19   configure
+        source  modify      7 -> 8    cook/builtin/strip.c
+        source  modify      8 -> 9    cook/builtin/text.c
+        source  modify     19 -> 20   cook/lex.c
+        build   modify     23 -> 32   etc/version.so
 
 HISTORY
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-	new_change	Fri Nov	 6	pmiller
-			23:22:24 1998
-	develop_begin	Fri Nov	 6	pmiller	 Elapsed time: 0.039
-			23:22:27 1998		 days.
-	develop_end	Fri Nov	 6	pmiller
-			23:39:55 1998
-	review_pass	Fri Nov	 6	pmiller
-
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+        new_change      Fri Nov  6      pmiller
+                        23:22:24 1998
+        develop_begin   Fri Nov  6      pmiller  Elapsed time: 0.039
+                        23:22:27 1998            days.
+        develop_end     Fri Nov  6      pmiller
+                        23:39:55 1998
+        review_pass     Fri Nov  6      pmiller
 
 
-Project "cook.2.5", Change 19					 Page 2
-Change Details				       Mon Nov	9 10:46:12 1998
 
-	What		When		Who	 Comment
-	------		------		-----	 ---------
-			23:40:13 1998
-	integrate_begin Fri Nov	 6	pmiller
-			23:40:22 1998
-	integrate_pass	Fri Nov	 6	pmiller
-			23:50:02 1998
+Project "cook.2.5", Change 19                                    Page 2
+Change Details                                 Mon Nov  9 10:46:12 1998
+
+        What            When            Who      Comment
+        ------          ------          -----    ---------
+                        23:40:13 1998
+        integrate_begin Fri Nov  6      pmiller
+                        23:40:22 1998
+        integrate_pass  Fri Nov  6      pmiller
+                        23:50:02 1998
+
+Copyright (C) 1997-2007 Peter Miller

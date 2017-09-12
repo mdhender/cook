@@ -1,11 +1,11 @@
 /*
  *      cook - file construction tool
- *      Copyright (C) 1994, 1997-1999, 2001, 2005 Peter Miller;
+ *      Copyright (C) 1994, 1997-1999, 2001, 2005-2007 Peter Miller;
  *      All rights reserved.
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
- *      the Free Software Foundation; either version 2 of the License, or
+ *      the Free Software Foundation; either version 3 of the License, or
  *      (at your option) any later version.
  *
  *      This program is distributed in the hope that it will be useful,
@@ -14,28 +14,26 @@
  *      GNU General Public License for more details.
  *
  *      You should have received a copy of the GNU General Public License
- *      along with this program; if not, write to the Free Software
- *      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manipulate archive files
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
-#include <ac/ctype.h>
-#include <ac/stdio.h>
-#include <ac/errno.h>
-#include <ac/ar.h>
-#include <ac/fcntl.h>
-#include <ac/stdlib.h>
-#include <ac/string.h>
+#include <common/ac/ctype.h>
+#include <common/ac/stdio.h>
+#include <common/ac/errno.h>
+#include <common/ac/ar.h>
+#include <common/ac/fcntl.h>
+#include <common/ac/stdlib.h>
+#include <common/ac/string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <ac/utime.h>
-#include <ac/unistd.h>
+#include <common/ac/utime.h>
+#include <common/ac/unistd.h>
 
-#include <archive.h>
-#include <fp.h>
-#include <mem.h>
-#include <trace.h>
+#include <cook/archive.h>
+#include <common/fp.h>
+#include <common/mem.h>
+#include <common/trace.h>
 
 
 struct archive_file_ty;
@@ -44,12 +42,12 @@ typedef struct method_ty method_ty;
 struct method_ty
 {
     size_t  header_size;
-    int (*magic)_((struct archive_file_ty *));
-    int (*advance)_((struct archive_file_ty *));
-    int (*name_compare)_((struct archive_file_ty *, string_ty *));
-    int (*do_stat)_((struct archive_file_ty *, struct stat *));
-    int (*utime)_((struct archive_file_ty *, struct utimbuf *));
-    void (*close)_((struct archive_file_ty *));
+    int (*magic)(struct archive_file_ty *);
+    int (*advance)(struct archive_file_ty *);
+    int (*name_compare)(struct archive_file_ty *, string_ty *);
+    int (*do_stat)(struct archive_file_ty *, struct stat *);
+    int (*utime)(struct archive_file_ty *, struct utimbuf *);
+    void (*close)(struct archive_file_ty *);
 };
 
 typedef struct archive_file_ty archive_file_ty;
@@ -66,34 +64,25 @@ struct archive_file_ty
     long            size;
     long            next;
     char            *name_map;
-    long            name_map_len;
+    size_t          name_map_len;
 };
 
 
 #ifndef AIAMAG
 
 
-static int look_for_name_map _((archive_file_ty *, char *, size_t));
-
 static int
-look_for_name_map(afp, name, len)
-    archive_file_ty *afp;
-    char            *name;
-    size_t          len;
+look_for_name_map(archive_file_ty *afp, char *name, size_t len)
 {
     int             nbytes;
     char            *cp;
     char            *ep;
 
+    (void)len;
     if (afp->name_map)
-	return 0;
-    if
-    (
-	memcmp(name, "//", 2)
-    &&
-	memcmp(name, "ARFILENAMES/", 12)
-    )
-	return 0;
+        return 0;
+    if (memcmp(name, "//", 2) && memcmp(name, "ARFILENAMES/", 12))
+        return 0;
 
     /*
      * read the data
@@ -101,14 +90,14 @@ look_for_name_map(afp, name, len)
     afp->name_map_len = afp->size;
     afp->name_map = mem_alloc(afp->size);
     if (lseek(afp->fd, afp->data, SEEK_SET) == -1)
-	return -1;
+        return -1;
     nbytes = read(afp->fd, afp->name_map, afp->size);
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != afp->size)
     {
-	errno = EINVAL;
-	return -1;
+        errno = EINVAL;
+        return -1;
     }
 
     /*
@@ -117,23 +106,15 @@ look_for_name_map(afp, name, len)
      */
     ep = afp->name_map + afp->name_map_len;
     for (cp = afp->name_map; cp < ep; ++cp)
-	if (*cp == '\n')
-    	    *cp = 0;
+        if (*cp == '\n')
+            *cp = 0;
     return 1;
 }
 
 
-static int grope_name _((archive_file_ty *, char *, size_t, char **, size_t *,
-    int *));
-
 static int
-grope_name(afp, hnam, hnamlen, name_p, len_p, trunc_p)
-    archive_file_ty *afp;
-    char            *hnam;
-    size_t          hnamlen;
-    char            **name_p;
-    size_t          *len_p;
-    int             *trunc_p;
+grope_name(archive_file_ty *afp, char *hnam, size_t hnamlen, char **name_p,
+    size_t *len_p, int *trunc_p)
 {
     char            *ep;
 
@@ -142,25 +123,25 @@ grope_name(afp, hnam, hnamlen, name_p, len_p, trunc_p)
      */
     if
     (
-	afp->name_map
+        afp->name_map
     &&
-	(hnam[0] == ' ' || hnam[0] == '/')
+        (hnam[0] == ' ' || hnam[0] == '/')
     &&
-	isdigit(hnam[1])
+        isdigit(hnam[1])
     )
     {
-	size_t          offset;
+        size_t          offset;
 
-	offset = atoi(hnam + 1);
-	if (offset >= afp->name_map_len)
-	{
-	    errno = EINVAL;
-	    return -1;
-	}
-	*name_p = afp->name_map + offset;
-	*len_p = strlen(*name_p);
-	*trunc_p = 0;
-	return 0;
+        offset = atoi(hnam + 1);
+        if (offset >= afp->name_map_len)
+        {
+            errno = EINVAL;
+            return -1;
+        }
+        *name_p = afp->name_map + offset;
+        *len_p = strlen(*name_p);
+        *trunc_p = 0;
+        return 0;
     }
 
     /*
@@ -168,37 +149,37 @@ grope_name(afp, hnam, hnamlen, name_p, len_p, trunc_p)
      */
     if (!memcmp(hnam, "#1/", 3) && isdigit(hnam[3]))
     {
-	static char     *buf;
-	static size_t   bufmax;
-	size_t          buflen;
-	int             nbytes;
+        static char     *buf;
+        static size_t   bufmax;
+        size_t          buflen;
+        int             nbytes;
 
-	buflen = atoi(hnam + 3);
-	if (buflen > bufmax)
-	{
-	    bufmax = buflen;
-	    buf = mem_change_size(buf, bufmax);
-	}
-	nbytes = read(afp->fd, buf, buflen);
-	if (nbytes < 0)
-	    return -1;
-	if (nbytes != nbytes)
-	{
-	    errno = EINVAL;
-	    return -1;
-	}
-	*name_p = buf;
-	*len_p = buflen;
-	*trunc_p = 0;
+        buflen = atoi(hnam + 3);
+        if (buflen > bufmax)
+        {
+            bufmax = buflen;
+            buf = mem_change_size(buf, bufmax);
+        }
+        nbytes = read(afp->fd, buf, buflen);
+        if (nbytes < 0)
+            return -1;
+        if (nbytes != nbytes)
+        {
+            errno = EINVAL;
+            return -1;
+        }
+        *name_p = buf;
+        *len_p = buflen;
+        *trunc_p = 0;
 
-	/*
-	 * adjust data address
-	 */
-	afp->data += nbytes;
-	afp->next = afp->data + afp->size;
-	if (afp->next & 1)
-	    afp->next++;
-	return 0;
+        /*
+         * adjust data address
+         */
+        afp->data += nbytes;
+        afp->next = afp->data + afp->size;
+        if (afp->next & 1)
+            afp->next++;
+        return 0;
     }
 
     /*
@@ -207,10 +188,10 @@ grope_name(afp, hnam, hnamlen, name_p, len_p, trunc_p)
     ep = memchr(hnam, '/', hnamlen);
     if (ep)
     {
-	*name_p = hnam;
-	*len_p = ep - hnam;
-	*trunc_p = (*len_p >= hnamlen - 2);
-	return 0;
+        *name_p = hnam;
+        *len_p = ep - hnam;
+        *trunc_p = (*len_p >= hnamlen - 2);
+        return 0;
     }
 
     /*
@@ -219,10 +200,10 @@ grope_name(afp, hnam, hnamlen, name_p, len_p, trunc_p)
     ep = memchr(hnam, ' ', hnamlen);
     if (ep)
     {
-	*name_p = hnam;
-	*len_p = ep - hnam;
-	*trunc_p = 0;
-	return 0;
+        *name_p = hnam;
+        *len_p = ep - hnam;
+        *trunc_p = 0;
+        return 0;
     }
 
     /*
@@ -237,14 +218,9 @@ grope_name(afp, hnam, hnamlen, name_p, len_p, trunc_p)
 }
 
 
-static int cmp_grope_name _((archive_file_ty *, string_ty *, char *, size_t));
-
 static int
-cmp_grope_name(afp, member, hnam, hnamlen)
-    archive_file_ty *afp;
-    string_ty       *member;
-    char            *hnam;
-    size_t          hnamlen;
+cmp_grope_name(archive_file_ty *afp, string_ty *member, char *hnam,
+    size_t hnamlen)
 {
     char            *name;
     size_t          len;
@@ -253,115 +229,102 @@ cmp_grope_name(afp, member, hnam, hnamlen)
 
     flag = look_for_name_map(afp, hnam, hnamlen);
     if (flag < 0)
-	return -1;
+        return -1;
     if (flag)
-	return 0;
+        return 0;
     if (grope_name(afp, hnam, hnamlen, &name, &len, &trunc))
-	return -1;
+        return -1;
 
     return
     (
-	(trunc ? member->str_length >= len : member->str_length == len)
+        (trunc ? member->str_length >= len : member->str_length == len)
     &&
-	!memcmp(member->str_text, name, len)
+        !memcmp(member->str_text, name, len)
     );
 }
 
 #endif /* !AIAMAG */
 #if (defined(SARMAG) && !PORT5AR) || defined(AIAMAG)
 
-static long number _((char *, size_t len));
-
 static long
-number(s, len)
-    char            *s;
-    size_t          len;
+number(char *s, size_t len)
 {
     int             ndigits;
     long            n;
 
     while (len > 0 && isspace(*s))
     {
-	--len;
-	++s;
+        --len;
+        ++s;
     }
     ndigits = 0;
     n = 0;
     while (len > 0 && isdigit(*s))
     {
-	n = n * 10 + *s - '0';
-	--len;
-	++s;
-	++ndigits;
+        n = n * 10 + *s - '0';
+        --len;
+        ++s;
+        ++ndigits;
     }
     if (!ndigits)
-	return -1;
+        return -1;
     while (len > 0 && isspace(*s))
     {
-	--len;
-	++s;
+        --len;
+        ++s;
     }
     if (len && *s)
-	return -1;
+        return -1;
     return n;
 }
 
 
-static long octal _((char *, size_t len));
-
 static long
-octal(s, len)
-    char            *s;
-    size_t          len;
+octal(char *s, size_t len)
 {
     int             ndigits;
     long            n;
 
     while (len > 0 && isspace(*s))
     {
-	--len;
-	++s;
+        --len;
+        ++s;
     }
     ndigits = 0;
     n = 0;
     while (len > 0 && isdigit(*s) && *s != '8' && *s != '9')
     {
-	n = n * 8 + *s - '0';
-	--len;
-	++s;
-	++ndigits;
+        n = n * 8 + *s - '0';
+        --len;
+        ++s;
+        ++ndigits;
     }
     if (!ndigits)
-	return -1;
+        return -1;
     while (len > 0 && isspace(*s))
     {
-	--len;
-	++s;
+        --len;
+        ++s;
     }
     if (len && *s)
-	return -1;
+        return -1;
     return n;
 }
 
 
-static void numset _((char *, size_t, long));
-
 static void
-numset(s, len, n)
-    char            *s;
-    size_t          len;
-    long            n;
+numset(char *s, size_t len, long n)
 {
-    sprintf(s, "%ld", n);
+    snprintf(s, len, "%ld", n);
     while (len > 0 && *s)
     {
-	++s;
-	--len;
+        ++s;
+        --len;
     }
     while (len > 0)
     {
-	*s++ = ' ';
-	--len;
+        *s++ = ' ';
+        --len;
     }
 }
 
@@ -369,53 +332,43 @@ numset(s, len, n)
 #endif /* SARMAG || AIAMAG */
 #if PORT5AR
 
-static int port5_magic _((archive_file_ty *));
-
 static int
-port5_magic(afp)
-    archive_file_ty *afp;
+port5_magic(archive_file_ty *afp)
 {
     int             nbytes;
     struct ar_hdr   magic;
 
     nbytes = read(afp->fd, &magic, sizeof(magic));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(magic) || memcmp(magic.ar_magic, ARMAG, SARMAG))
     {
-	errno = EINVAL;
-	return -1;
+        errno = EINVAL;
+        return -1;
     }
     afp->start = sizeof(magic);
     return 0;
 }
 
 
-static long b4r _((char *));
-
 static long
-b4r(cp)
-    char            *cp;
+b4r(char *cp)
 {
     return
     (
-	((long)(unsigned char)cp[0] << 24)
+        ((long)(unsigned char)cp[0] << 24)
     ||
-	((long)(unsigned char)cp[1] << 16)
+        ((long)(unsigned char)cp[1] << 16)
     ||
-	((unsigned char)cp[2] << 8)
+        ((unsigned char)cp[2] << 8)
     ||
-	(unsigned char)cp[3]
+        (unsigned char)cp[3]
     );
 }
 
 
-static void b4w _((char *, long));
-
 static void
-b4w(cp, n)
-    char            *cp;
-    long            n;
+b4w(char *cp, long n)
 {
     cp[0] = n >> 24;
     cp[1] = n >> 16;
@@ -424,11 +377,8 @@ b4w(cp, n)
 }
 
 
-static int port5_advance _((archive_file_ty *));
-
 static int
-port5_advance(afp)
-    archive_file_ty *afp;
+port5_advance(archive_file_ty *afp)
 {
     int             nbytes;
     struct arf_hdr  *h;
@@ -437,36 +387,32 @@ port5_advance(afp)
     assert(h);
     nbytes = read(afp->fd, h, sizeof(*h));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes == 0)
     {
-	errno = ENOENT;
-	return -1;
+        errno = ENOENT;
+        return -1;
     }
     if (nbytes != sizeof(*h))
     {
-	broken:
-	errno = EINVAL;
-	return -1;
+        broken:
+        errno = EINVAL;
+        return -1;
     }
 
     afp->size = b4r(h->arf_size);
     if (afp->size < 0)
-	goto broken;
+        goto broken;
     afp->data = afp->current + sizeof(*h);
     afp->next = afp->data + afp->size;
     if (afp->size & 1)
-	afp->next++;
+        afp->next++;
     return 0;
 }
 
 
-static int port5_name_compare _((archive_file_ty *, string_ty *));
-
 static int
-port5_name_compare(afp, name)
-    archive_file_ty *afp;
-    string_ty       *name;
+port5_name_compare(archive_file_ty *afp, string_ty *name)
 {
     struct arf_hdr  *h;
 
@@ -476,12 +422,8 @@ port5_name_compare(afp, name)
 }
 
 
-static int port5_stat _((archive_file_ty *, struct stat *));
-
 static int
-port5_stat(afp, st)
-    archive_file_ty *afp;
-    struct stat     *st;
+port5_stat(archive_file_ty *afp, struct stat *st)
 {
     struct arf_hdr  *h;
 
@@ -498,12 +440,8 @@ port5_stat(afp, st)
 }
 
 
-static int port5_utime _((archive_file_ty *, struct utimbuf *));
-
 static int
-port5_utime(afp, ut)
-    archive_file_ty *afp;
-    struct utimbuf  *ut;
+port5_utime(archive_file_ty *afp, struct utimbuf *ut)
 {
     struct arf_hdr  *h;
     int             nbytes;
@@ -519,38 +457,38 @@ port5_utime(afp, ut)
     assert(b4r(h->arf_date) == ut->modtime);
     nbytes = write(afp->fd, h, sizeof(*h));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(*h))
     {
-	errno = EIO;
-	return -1;
+        errno = EIO;
+        return -1;
     }
 
     /*
      * must also set the file header
      */
     if (fstat(afp->fd, &st))
-	return -1;
+        return -1;
     if (lseek(afp->fd, 0L, SEEK_SET) == -1)
-	return -1;
+        return -1;
     nbytes = read(afp->fd, &fh, sizeof(fh));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(fh))
     {
-	errno = EIO;
-	return -1;
+        errno = EIO;
+        return -1;
     }
     b4w(fh.ar_date, st.st_mtime);
     if (lseek(afp->fd, 0L, SEEK_SET) == -1)
-	return -1;
+        return -1;
     nbytes = write(afp->fd, &fh, sizeof(fh));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(fh))
     {
-	errno = EIO;
-	return -1;
+        errno = EIO;
+        return -1;
     }
 
     /*
@@ -574,33 +512,27 @@ static method_ty port5 =
 #endif /* PORT5AR */
 #if defined(SARMAG) && !PORT5AR
 
-static int standard_magic _((archive_file_ty *));
-
 static int
-standard_magic(afp)
-    archive_file_ty *afp;
+standard_magic(archive_file_ty *afp)
 {
     int             nbytes;
     char            magic[SARMAG];
 
     nbytes = read(afp->fd, magic, sizeof(magic));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(magic) || memcmp(magic, ARMAG, sizeof(magic)))
     {
-	errno = EINVAL;
-	return -1;
+        errno = EINVAL;
+        return -1;
     }
     afp->start = sizeof(magic);
     return 0;
 }
 
 
-static int standard_advance _((archive_file_ty *));
-
 static int
-standard_advance(afp)
-    archive_file_ty *afp;
+standard_advance(archive_file_ty *afp)
 {
     int             nbytes;
     struct ar_hdr   *h;
@@ -609,40 +541,36 @@ standard_advance(afp)
     assert(h);
     nbytes = read(afp->fd, h, sizeof(*h));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes == 0)
     {
-	errno = ENOENT;
-	return -1;
+        errno = ENOENT;
+        return -1;
     }
     if (nbytes != sizeof(*h))
     {
-	broken:
-	errno = EINVAL;
-	return -1;
+        broken:
+        errno = EINVAL;
+        return -1;
     }
 #ifdef ARFMAG
     if (memcmp(h->ar_fmag, ARFMAG, sizeof(h->ar_fmag)))
-	goto broken;
+        goto broken;
 #endif
 
     afp->size = number(h->ar_size, sizeof(h->ar_size));
     if (afp->size < 0)
-	goto broken;
+        goto broken;
     afp->data = afp->current + sizeof(*h);
     afp->next = afp->data + afp->size;
     if (afp->next & 1)
-	afp->next++;
+        afp->next++;
     return 0;
 }
 
 
-static int standard_name_compare _((archive_file_ty *, string_ty *));
-
 static int
-standard_name_compare(afp, name)
-    archive_file_ty *afp;
-    string_ty       *name;
+standard_name_compare(archive_file_ty *afp, string_ty *name)
 {
     struct ar_hdr   *h;
 
@@ -652,12 +580,8 @@ standard_name_compare(afp, name)
 }
 
 
-static int standard_stat _((archive_file_ty *, struct stat *));
-
 static int
-standard_stat(afp, st)
-    archive_file_ty *afp;
-    struct stat     *st;
+standard_stat(archive_file_ty *afp, struct stat *st)
 {
     struct ar_hdr   *h;
     long            value;
@@ -667,9 +591,9 @@ standard_stat(afp, st)
     value = number(h->ar_date, sizeof(h->ar_date));
     if (value < 0)
     {
-	broken:
-	errno = EINVAL;
-	return -1;
+        broken:
+        errno = EINVAL;
+        return -1;
     }
     st->st_mtime = value;
     st->st_atime = value;
@@ -677,12 +601,12 @@ standard_stat(afp, st)
 
     value = number(h->ar_uid, sizeof(h->ar_uid));
     if (value < 0)
-	goto broken;
+        goto broken;
     st->st_uid = value;
 
     value = octal(h->ar_mode, sizeof(h->ar_mode));
     if (value < 0)
-	goto broken;
+        goto broken;
     st->st_mode = value;
 
     st->st_size = afp->size;
@@ -690,12 +614,8 @@ standard_stat(afp, st)
 }
 
 
-static int standard_utime _((archive_file_ty *, struct utimbuf *));
-
 static int
-standard_utime(afp, ut)
-    archive_file_ty *afp;
-    struct utimbuf  *ut;
+standard_utime(archive_file_ty *afp, struct utimbuf *ut)
 {
     struct ar_hdr   *h;
     int             nbytes;
@@ -706,11 +626,11 @@ standard_utime(afp, ut)
     assert(number(h->ar_date, sizeof(h->ar_date)) == ut->modtime);
     nbytes = write(afp->fd, h, sizeof(*h));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(*h))
     {
-	errno = EIO;
-	return -1;
+        errno = EIO;
+        return -1;
     }
     return 0;
 }
@@ -730,11 +650,8 @@ static method_ty standard =
 #endif /* SARMAG && !PORT5AR */
 #ifdef AIAMAG
 
-static int ai_magic _((archive_file_ty *));
-
 static int
-ai_magic(afp)
-    archive_file_ty *afp;
+ai_magic(archive_file_ty *afp)
 {
     FL_HDR          fh;
     int             nbytes;
@@ -743,31 +660,28 @@ ai_magic(afp)
     nbytes = read(afp->fd, &fh, FL_HSZ);
     if (nbytes != FL_HSZ || memcmp(fh.fl_magic, AIAMAG, SAIAMAG))
     {
-	broken:
-	errno = EINVAL;
-	trace(("return -1;\n"));
-	trace(("}\n"));
-	return -1;
+        broken:
+        errno = EINVAL;
+        trace(("return -1;\n"));
+        trace(("}\n"));
+        return -1;
     }
     afp->start = number(fh.fl_fstmoff, sizeof(fh.fl_fstmoff));
     trace(("start = %08lX\n", afp->start));
     if (afp->start < 0)
-	goto broken;
+        goto broken;
     afp->finish = number(fh.fl_lstmoff, sizeof(fh.fl_lstmoff));
     trace(("finish = %08lX\n", afp->finish));
     if (afp->finish < 0)
-	goto broken;
+        goto broken;
     trace(("return 0;\n"));
     trace(("}\n"));
     return 0;
 }
 
 
-static int ai_advance _((archive_file_ty *));
-
 static int
-ai_advance(afp)
-    archive_file_ty *afp;
+ai_advance(archive_file_ty *afp)
 {
     int             nbytes;
     struct ar_hdr   *h;
@@ -778,11 +692,11 @@ ai_advance(afp)
     trace(("ai_advance()\n{\n"));
     if (afp->current > afp->finish)
     {
-	errno = ENOENT;
-	trace(("at finish\n"));
-	trace(("return -1;\n"));
-	trace(("}\n"));
-	return -1;
+        errno = ENOENT;
+        trace(("at finish\n"));
+        trace(("return -1;\n"));
+        trace(("}\n"));
+        return -1;
     }
 
     h = afp->header;
@@ -793,56 +707,52 @@ ai_advance(afp)
     nbytes = read(afp->fd, h, h_len);
     if (nbytes < 0)
     {
-	trace(("return -1;\n"));
-	trace(("}\n"));
-	return -1;
+        trace(("return -1;\n"));
+        trace(("}\n"));
+        return -1;
     }
     /* end of file not valid here */
     if (nbytes != h_len)
     {
-	broken:
-	errno = EINVAL;
-	trace(("return -1;\n"));
-	trace(("}\n"));
-	return -1;
+        broken:
+        errno = EINVAL;
+        trace(("return -1;\n"));
+        trace(("}\n"));
+        return -1;
     }
     name_len = number(h->ar_namlen, sizeof(h->ar_namlen));
     if (name_len < 0 || name_len > 255)
-	goto broken;
+        goto broken;
 
     nbytes = read(afp->fd, name, name_len);
     if (nbytes < 0)
     {
-	trace(("return -1;\n"));
-	trace(("}\n"));
-	return -1;
+        trace(("return -1;\n"));
+        trace(("}\n"));
+        return -1;
     }
     if (nbytes != name_len)
-	goto broken;
+        goto broken;
     name[name_len] = 0;
 
     afp->data = afp->current + h_len + name_len + 2;
     if (afp->data & 1)
-	afp->data++;
+        afp->data++;
     afp->size = number(h->ar_size, sizeof(h->ar_size));
     if (afp->size < 0)
-	goto broken;
+        goto broken;
     afp->next = number(h->ar_nxtmem, sizeof(h->ar_nxtmem));
     trace(("afp->next = %08lX\n", afp->next));
     if (afp->next < 0)
-	goto broken;
+        goto broken;
     trace(("return 0;\n"));
     trace(("}\n"));
     return 0;
 }
 
 
-static int ai_name_compare _((archive_file_ty *, string_ty *));
-
 static int
-ai_name_compare(afp, member)
-    archive_file_ty *afp;
-    string_ty       *member;
+ai_name_compare(archive_file_ty *afp, string_ty *member)
 {
     struct ar_hdr   *h;
     char            *name;
@@ -854,12 +764,8 @@ ai_name_compare(afp, member)
 }
 
 
-static int ai_stat _((archive_file_ty *, struct stat *));
-
 static int
-ai_stat(afp, st)
-    archive_file_ty *afp;
-    struct stat     *st;
+ai_stat(archive_file_ty *afp, struct stat *st)
 {
     struct ar_hdr   *h;
     long            value;
@@ -870,11 +776,11 @@ ai_stat(afp, st)
     value = number(h->ar_date, sizeof(h->ar_date));
     if (value < 0)
     {
-	broken:
-	errno = EINVAL;
-	trace(("return -1;\n"));
-	trace(("}\n"));
-	return -1;
+        broken:
+        errno = EINVAL;
+        trace(("return -1;\n"));
+        trace(("}\n"));
+        return -1;
     }
     st->st_mtime = value;
     st->st_atime = value;
@@ -882,17 +788,17 @@ ai_stat(afp, st)
 
     value = number(h->ar_uid, sizeof(h->ar_uid));
     if (value < 0)
-	goto broken;
+        goto broken;
     st->st_uid = value;
 
     value = number(h->ar_gid, sizeof(h->ar_gid));
     if (value < 0)
-	goto broken;
+        goto broken;
     st->st_gid = value;
 
     value = octal(h->ar_mode, sizeof(h->ar_mode));
     if (value < 0)
-	goto broken;
+        goto broken;
     st->st_mode = value;
     st->st_size = afp->size;
     trace(("return 0;\n"));
@@ -901,12 +807,8 @@ ai_stat(afp, st)
 }
 
 
-static int ai_utime _((archive_file_ty *, struct utimbuf *));
-
 static int
-ai_utime(afp, ut)
-    archive_file_ty *afp;
-    struct utimbuf  *ut;
+ai_utime(archive_file_ty *afp, struct utimbuf *ut)
 {
     struct ar_hdr   *h;
     int             h_len;
@@ -920,11 +822,11 @@ ai_utime(afp, ut)
     h_len = AR_HSZ - sizeof(h->_ar_name);
     nbytes = write(afp->fd, h, h_len);
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != h_len)
     {
-	errno = EIO;
-	return -1;
+        errno = EIO;
+        return -1;
     }
 
     /*
@@ -948,11 +850,8 @@ static method_ty ai =
 #endif /* AIAMAG */
 #if defined(ARMAG) && !defined(SARMAG)
 
-static int old_magic _((archive_file_ty *));
-
 static int
-old_magic(afp)
-    archive_file_ty *afp;
+old_magic(archive_file_ty *afp)
 {
 #ifndef M_XENIX
     int             magic;
@@ -963,22 +862,19 @@ old_magic(afp)
 
     nbytes = read(afp->fd, &magic, sizeof(magic));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(magic) || magic != ARMAG)
     {
-	errno = EINVAL;
-	return -1;
+        errno = EINVAL;
+        return -1;
     }
     afp->start = sizeof(magic);
     return 0;
 }
 
 
-static int old_advance _((archive_file_ty *));
-
 static int
-old_advance(afp)
-    archive_file_ty *afp;
+old_advance(archive_file_ty *afp)
 {
     struct ar_hdr   *h;
     int             nbytes;
@@ -987,16 +883,16 @@ old_advance(afp)
     assert(h);
     nbytes = read(afp->fd, h, sizeof(*h));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (!nbytes)
     {
-	errno = ENOENT;
-	return -1;
+        errno = ENOENT;
+        return -1;
     }
     if (nbytes != sizeof(*h))
     {
-	errno = EINVAL;
-	return -1;
+        errno = EINVAL;
+        return -1;
     }
 
     /*
@@ -1006,7 +902,7 @@ old_advance(afp)
     afp->data = afp->current + sizeof(*h);
     afp->next = afp->data + afp->size;
     if (afp->next & 1)
-	afp->next++;
+        afp->next++;
 
     /*
      * success
@@ -1015,12 +911,8 @@ old_advance(afp)
 }
 
 
-static int old_name_compare _((archive_file_ty *, string_ty *));
-
 static int
-old_name_compare(afp, name)
-    archive_file_ty *afp;
-    string_ty       *name;
+old_name_compare(archive_file_ty *afp, string_ty *name)
 {
     struct ar_hdr   *h;
 
@@ -1030,12 +922,8 @@ old_name_compare(afp, name)
 }
 
 
-static int old_stat _((archive_file_ty *, struct stat *));
-
 static int
-old_stat(afp, st)
-    archive_file_ty *afp;
-    struct stat     *st;
+old_stat(archive_file_ty *afp, struct stat *st)
 {
     struct ar_hdr   *h;
 
@@ -1051,12 +939,8 @@ old_stat(afp, st)
 }
 
 
-static int old_utime _((archive_file_ty *, struct utimbuf *));
-
 static int
-old_utime(afp, ut)
-    archive_file_ty *afp;
-    struct utimbuf  *ut;
+old_utime(archive_file_ty *afp, struct utimbuf *ut)
 {
     struct ar_hdr   *h;
     int             nbytes;
@@ -1066,11 +950,11 @@ old_utime(afp, ut)
     h->ar_date = ut->modtime;
     nbytes = write(afp->fd, h, sizeof(*h));
     if (nbytes < 0)
-	return -1;
+        return -1;
     if (nbytes != sizeof(*h))
     {
-	errno = EIO;
-	return -1;
+        errno = EIO;
+        return -1;
     }
     return 0;
 }
@@ -1111,12 +995,9 @@ static method_ty *table[] =
     0
 };
 
-static archive_file_ty *archive_file_open _((string_ty *, int));
 
 static archive_file_ty *
-archive_file_open(path, mode)
-    string_ty       *path;
-    int             mode;
+archive_file_open(string_ty *path, int mode)
 {
     int             fd;
     int             err;
@@ -1126,15 +1007,15 @@ archive_file_open(path, mode)
     /*
      * open the file as specified
      */
-    trace(("archive_file_open(path = \"%s\", mode = %d)\n{\n"/*}*/,
-	path->str_text, mode));
+    trace(("archive_file_open(path = \"%s\", mode = %d)\n{\n",
+        path->str_text, mode));
     assert(mode == (O_RDONLY | O_BINARY) || mode == (O_RDWR | O_BINARY));
     trace(("open\n"));
     fd = open(path->str_text, mode, 0666);
     if (fd < 0)
     {
-	afp = 0;
-	goto done;
+        afp = 0;
+        goto done;
     }
 
     trace(("alloc\n"));
@@ -1154,32 +1035,32 @@ archive_file_open(path, mode)
      */
     for (j = 0; table[j]; ++j)
     {
-	if (!table[j])
-	{
-	    errno = EINVAL;
-	    bomb:
-	    err = errno;
-	    close(afp->fd);
-	    if (afp->header)
-		mem_free(afp->header);
-	    mem_free(afp);
-	    errno = err;
-	    afp = 0;
-	    goto done;
-	}
-	if (lseek(afp->fd, 0L, SEEK_SET) == -1)
-    	    goto bomb;
-	afp->method = table[j];
-	if (afp->method->header_size > afp->header_size)
-	{
-    	    afp->header_size = afp->method->header_size;
-    	    afp->header = mem_change_size(afp->header, afp->header_size);
-	}
-	err = afp->method->magic(afp);
-	if (!err)
-    	    break;
-	if (err != EINVAL)
-    	    goto bomb;
+        if (!table[j])
+        {
+            errno = EINVAL;
+            bomb:
+            err = errno;
+            close(afp->fd);
+            if (afp->header)
+                mem_free(afp->header);
+            mem_free(afp);
+            errno = err;
+            afp = 0;
+            goto done;
+        }
+        if (lseek(afp->fd, 0L, SEEK_SET) == -1)
+            goto bomb;
+        afp->method = table[j];
+        if (afp->method->header_size > afp->header_size)
+        {
+            afp->header_size = afp->method->header_size;
+            afp->header = mem_change_size(afp->header, afp->header_size);
+        }
+        err = afp->method->magic(afp);
+        if (!err)
+            break;
+        if (err != EINVAL)
+            goto bomb;
     }
 
     /*
@@ -1187,41 +1068,33 @@ archive_file_open(path, mode)
      */
     done:
     trace(("return %08lX; /* errno = %s */\n", (long)afp, strerror(errno)));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     return afp;
 }
 
 
-static int archive_file_close _((archive_file_ty *));
-
 static int
-archive_file_close(afp)
-    archive_file_ty *afp;
+archive_file_close(archive_file_ty *afp)
 {
     int             err;
 
-    trace(("archive_file_close(afp = %08lX)\n{\n"/*}*/, (long)afp));
+    trace(("archive_file_close(afp = %08lX)\n{\n", (long)afp));
     if (afp->method->close)
-	afp->method->close(afp);
+        afp->method->close(afp);
     if (afp->header)
-	mem_free(afp->header);
+        mem_free(afp->header);
     if (afp->name_map)
-	mem_free(afp->name_map);
+        mem_free(afp->name_map);
     err = close(afp->fd);
     mem_free(afp);
     trace(("return %d;\n", err));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     return err;
 }
 
 
-static int archive_file_stat _((archive_file_ty *, string_ty *, struct stat *));
-
 static int
-archive_file_stat(afp, member, st)
-    archive_file_ty *afp;
-    string_ty       *member;
-    struct stat     *st;
+archive_file_stat(archive_file_ty *afp, string_ty *member, struct stat *st)
 {
     int             result;
     int             flag;
@@ -1229,33 +1102,33 @@ archive_file_stat(afp, member, st)
     /*
      * walk each entry
      */
-    trace(("archive_file_stat(afp = %08lX, member = \"%s\")\n{\n"/*}*/,
-	(long)afp, member->str_text));
+    trace(("archive_file_stat(afp = %08lX, member = \"%s\")\n{\n",
+        (long)afp, member->str_text));
     result = -1;
     afp->current = afp->start;
     for (;;)
     {
-	/*
-	 * read the next entry in the archive
-	 */
-	if (lseek(afp->fd, afp->current, SEEK_SET) == -1)
-	    goto done;
-	if (afp->method->advance(afp))
-	    goto done;
+        /*
+         * read the next entry in the archive
+         */
+        if (lseek(afp->fd, afp->current, SEEK_SET) == -1)
+            goto done;
+        if (afp->method->advance(afp))
+            goto done;
 
-	/*
-	 * see if it is the one we want
-	 */
-	flag = afp->method->name_compare(afp, member);
-	if (flag < 0)
-	    goto done;
-	if (flag)
-	    break;
+        /*
+         * see if it is the one we want
+         */
+        flag = afp->method->name_compare(afp, member);
+        if (flag < 0)
+            goto done;
+        if (flag)
+            break;
 
-	/*
-	 * advance to next entry
-	 */
-	afp->current = afp->next;
+        /*
+         * advance to next entry
+         */
+        afp->current = afp->next;
     }
 
     /*
@@ -1264,7 +1137,7 @@ archive_file_stat(afp, member, st)
     trace(("found\n"));
     memset(st, 0, sizeof(*st));
     if (afp->method->do_stat(afp, st))
-	goto done;
+        goto done;
 
     /*
      * Because archive members are given the exact same mtime as
@@ -1280,19 +1153,13 @@ archive_file_stat(afp, member, st)
      */
     done:
     trace(("return %d;\n", result));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     return result;
 }
 
 
-static int archive_file_utime _((archive_file_ty *, string_ty *,
-    struct utimbuf *));
-
 static int
-archive_file_utime(afp, member, utp)
-    archive_file_ty *afp;
-    string_ty       *member;
-    struct utimbuf  *utp;
+archive_file_utime(archive_file_ty *afp, string_ty *member, struct utimbuf *utp)
 {
     int             result;
     int             flag;
@@ -1303,8 +1170,8 @@ archive_file_utime(afp, member, utp)
      * the input file, adjust this forward 1 second, so that the
      * archive member looks "younger" than the input file.
      */
-    trace(("archive_file_utime(afp = %08lX, member = \"%s\")\n{\n"/*}*/,
-	    (long)afp, member->str_text));
+    trace(("archive_file_utime(afp = %08lX, member = \"%s\")\n{\n",
+            (long)afp, member->str_text));
     ut.modtime = utp->modtime - 1;
     ut.actime = utp->actime;
 
@@ -1315,27 +1182,27 @@ archive_file_utime(afp, member, utp)
     afp->current = afp->start;
     for (;;)
     {
-	/*
-	 * read the next entry in the archive
-	 */
-	if (lseek(afp->fd, afp->current, SEEK_SET) == -1)
-	    goto done;
-	if (afp->method->advance(afp))
-	    goto done;
+        /*
+         * read the next entry in the archive
+         */
+        if (lseek(afp->fd, afp->current, SEEK_SET) == -1)
+            goto done;
+        if (afp->method->advance(afp))
+            goto done;
 
-	/*
-	 * find the length of the member name
-	 */
-	flag = afp->method->name_compare(afp, member);
-	if (flag < 0)
-	    goto done;
-	if (flag)
-	    break;
+        /*
+         * find the length of the member name
+         */
+        flag = afp->method->name_compare(afp, member);
+        if (flag < 0)
+            goto done;
+        if (flag)
+            break;
 
-	/*
-	 * advance to next entry
-	 */
-	afp->current = afp->next;
+        /*
+         * advance to next entry
+         */
+        afp->current = afp->next;
     }
 
     /*
@@ -1343,9 +1210,9 @@ archive_file_utime(afp, member, utp)
      * and write it back
      */
     if (lseek(afp->fd, afp->current, SEEK_SET) == -1)
-	goto done;
+        goto done;
     if (afp->method->utime(afp, &ut))
-	goto done;
+        goto done;
     result = 0;
 
     /*
@@ -1353,55 +1220,49 @@ archive_file_utime(afp, member, utp)
      */
     done:
     trace(("return %d;\n", result));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     return result;
 }
 
 
-static int archive_file_fingerprint _((archive_file_ty *, string_ty *,
-    fingerprint_ty *, char *));
-
 static int
-archive_file_fingerprint(afp, member, fp, buf)
-    archive_file_ty *afp;
-    string_ty       *member;
-    fingerprint_ty  *fp;
-    char            *buf;
+archive_file_fingerprint(archive_file_ty *afp, string_ty *member,
+    fingerprint_ty *fp, char *buf, size_t buf_len)
 {
     int             result;
     int             flag;
-    long            size;
+    size_t          size;
 
     /*
      * walk each entry
      */
-    trace(("archive_file_fngrprnt(afp = %08lX, member = \"%s\")\n{\n"/*}*/,
-	(long)afp, member->str_text));
+    trace(("archive_file_fngrprnt(afp = %08lX, member = \"%s\")\n{\n",
+        (long)afp, member->str_text));
     result = -1;
     afp->current = afp->start;
     for (;;)
     {
-	/*
-	 * read the next entry in the archive
-	 */
-	if (lseek(afp->fd, afp->current, SEEK_SET) == -1)
-	    goto done;
-	if (afp->method->advance(afp))
-	    goto done;
+        /*
+         * read the next entry in the archive
+         */
+        if (lseek(afp->fd, afp->current, SEEK_SET) == -1)
+            goto done;
+        if (afp->method->advance(afp))
+            goto done;
 
-	/*
-	 * is it the one we want
-	 */
-	flag = afp->method->name_compare(afp, member);
-	if (flag < 0)
-	    goto done;
-	if (flag)
-	    break;
+        /*
+         * is it the one we want
+         */
+        flag = afp->method->name_compare(afp, member);
+        if (flag < 0)
+            goto done;
+        if (flag)
+            break;
 
-	/*
-	 * advance to next entry
-	 */
-	afp->current = afp->next;
+        /*
+         * advance to next entry
+         */
+        afp->current = afp->next;
     }
 
     /*
@@ -1410,26 +1271,26 @@ archive_file_fingerprint(afp, member, fp, buf)
      */
     size = afp->size;
     if (lseek(afp->fd, afp->data, SEEK_SET) == -1)
-	goto done;
+        goto done;
     while (size > 0)
     {
-	unsigned char   ibuf[1024];
-	int             len;
-	int             nbytes;
+        unsigned char   ibuf[1024];
+        size_t          len;
+        int             nbytes;
 
-	len = (size > sizeof(ibuf) ? sizeof(ibuf) : size);
-	nbytes = read(afp->fd, ibuf, len);
-	if (nbytes < 0)
-	    goto done;
-	if (nbytes == 0)
-	{
-	    errno = EINVAL;
-	    goto done;
-	}
-	fingerprint_addn(fp, ibuf, nbytes);
-	size -= nbytes;
+        len = (size > sizeof(ibuf) ? sizeof(ibuf) : size);
+        nbytes = read(afp->fd, ibuf, len);
+        if (nbytes < 0)
+            goto done;
+        if (nbytes == 0)
+        {
+            errno = EINVAL;
+            goto done;
+        }
+        fingerprint_addn(fp, ibuf, nbytes);
+        size -= nbytes;
     }
-    fingerprint_sum(fp, buf);
+    fingerprint_sum(fp, buf, buf_len);
     result = 0;
 
     /*
@@ -1437,53 +1298,46 @@ archive_file_fingerprint(afp, member, fp, buf)
      */
     done:
     trace(("return %d;\n", result));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     return result;
 }
 
 
-static int archive_match _((string_ty *, string_ty **, string_ty **));
-
 static int
-archive_match(name, path_p, member_p)
-    string_ty       *name;
-    string_ty       **path_p;
-    string_ty       **member_p;
+archive_match(string_ty *name, string_ty **path_p, string_ty **member_p)
 {
     char            *s;
     char            *p;
     char            *mp;
 
     s = name->str_text;
-    p = strchr(s, '('/*)*/);
+    p = strchr(s, '(');
     if
     (
-	!p
+        !p
     ||
-	p == s
+        p == s
     ||
-	s[name->str_length - 1] != /*(*/')'
+        s[name->str_length - 1] != ')'
     ||
-	s[name->str_length - 2] == '/'
+        s[name->str_length - 2] == '/'
     ||
-	(p - s) == name->str_length - 2
+        (size_t)(p - s) == name->str_length - 2
     )
-	return 0;
+        return 0;
     *path_p = str_n_from_c(s, p - s);
     mp = strrchr(p, '/');
     if (mp)
-	++mp;
+        ++mp;
     else
-	mp = p + 1;
+        mp = p + 1;
     *member_p = str_n_from_c(mp, name->str_length - 1 - (mp - s));
     return 1;
 }
 
 
 int
-archive_stat(name, st)
-    string_ty       *name;
-    struct stat     *st;
+archive_stat(string_ty *name, struct stat *st)
 {
     string_ty       *path;
     string_ty       *member;
@@ -1494,18 +1348,18 @@ archive_stat(name, st)
     /*
      * extract path and member name
      */
-    trace(("archive_stat(name = \"%s\")\n{\n"/*}*/, name->str_text));
+    trace(("archive_stat(name = \"%s\")\n{\n", name->str_text));
     result = -1;
     path = 0;
     member = 0;
     if (!archive_match(name, &path, &member))
     {
-	/*
-	 * this gives the cleanest error handling
-	 * in cook/os.c and cook/stat.cache.c
-	 */
-	errno = ENOENT;
-	goto done;
+        /*
+         * this gives the cleanest error handling
+         * in cook/os.c and cook/stat.cache.c
+         */
+        errno = ENOENT;
+        goto done;
     }
     assert(path);
     assert(member);
@@ -1517,9 +1371,9 @@ archive_stat(name, st)
     afp = archive_file_open(path, O_RDONLY | O_BINARY);
     if (!afp)
     {
-	str_free(member);
-	str_free(path);
-	goto done;
+        str_free(member);
+        str_free(path);
+        goto done;
     }
 
     /*
@@ -1528,12 +1382,12 @@ archive_stat(name, st)
     trace(("stat\n"));
     if (archive_file_stat(afp, member, st))
     {
-	errno_hold = errno;
-	archive_file_close(afp);
-	str_free(member);
-	str_free(path);
-	errno = errno_hold;
-	goto done;
+        errno_hold = errno;
+        archive_file_close(afp);
+        str_free(member);
+        str_free(path);
+        errno = errno_hold;
+        goto done;
     }
 
     /*
@@ -1543,7 +1397,7 @@ archive_stat(name, st)
     str_free(member);
     str_free(path);
     if (archive_file_close(afp))
-	goto done;
+        goto done;
 
     /*
      * success
@@ -1558,7 +1412,7 @@ archive_stat(name, st)
 #ifdef DEBUG
     errno_hold = errno;
     trace(("return %d; /* errno = %d */\n", result, errno_hold));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     errno = errno_hold;
 #endif
     return result;
@@ -1566,9 +1420,7 @@ archive_stat(name, st)
 
 
 int
-archive_utime(name, ut)
-    string_ty       *name;
-    struct utimbuf  *ut;
+archive_utime(string_ty *name, struct utimbuf *ut)
 {
     string_ty       *path;
     string_ty       *member;
@@ -1579,18 +1431,18 @@ archive_utime(name, ut)
     /*
      * extract path and member name
      */
-    trace(("archive_utime(name = \"%s\")\n{\n"/*}*/, name->str_text));
+    trace(("archive_utime(name = \"%s\")\n{\n", name->str_text));
     result = -1;
     path = 0;
     member = 0;
     if (!archive_match(name, &path, &member))
     {
-	/*
-	 * this gives the cleanest error handling
-	 * in cook/os.c and cook/stat.cache.c
-	 */
-	errno = ENOENT;
-	goto done;
+        /*
+         * this gives the cleanest error handling
+         * in cook/os.c and cook/stat.cache.c
+         */
+        errno = ENOENT;
+        goto done;
     }
     assert(path);
     assert(member);
@@ -1601,9 +1453,9 @@ archive_utime(name, ut)
     afp = archive_file_open(path, O_RDWR | O_BINARY);
     if (!afp)
     {
-	str_free(member);
-	str_free(path);
-	goto done;
+        str_free(member);
+        str_free(path);
+        goto done;
     }
 
     /*
@@ -1611,12 +1463,12 @@ archive_utime(name, ut)
      */
     if (archive_file_utime(afp, member, ut))
     {
-	err = errno;
-	archive_file_close(afp);
-	str_free(member);
-	str_free(path);
-	errno = err;
-	goto done;
+        err = errno;
+        archive_file_close(afp);
+        str_free(member);
+        str_free(path);
+        errno = err;
+        goto done;
     }
 
     /*
@@ -1625,7 +1477,7 @@ archive_utime(name, ut)
     str_free(member);
     str_free(path);
     if (archive_file_close(afp))
-	goto done;
+        goto done;
 
     /*
      * success
@@ -1638,16 +1490,14 @@ archive_utime(name, ut)
      */
     done:
     trace(("return %d;\n", result));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     return result;
 }
 
 
 int
-archive_fingerprint(fp, name, buf)
-    fingerprint_ty  *fp;
-    string_ty       *name;
-    char            *buf;
+archive_fingerprint(fingerprint_ty *fp, string_ty *name, char *buf,
+    size_t buf_len)
 {
     string_ty       *path;
     string_ty       *member;
@@ -1658,18 +1508,18 @@ archive_fingerprint(fp, name, buf)
     /*
      * extract path and member name
      */
-    trace(("archive_fingerprint(name = \"%s\")\n{\n"/*}*/, name->str_text));
+    trace(("archive_fingerprint(name = \"%s\")\n{\n", name->str_text));
     result = -1;
     path = 0;
     member = 0;
     if (!archive_match(name, &path, &member))
     {
-	/*
-	 * this gives the cleanest error handling
-	 * in cook/os.c and cook/stat.cache.c
-	 */
-	errno = ENOENT;
-	goto done;
+        /*
+         * this gives the cleanest error handling
+         * in cook/os.c and cook/stat.cache.c
+         */
+        errno = ENOENT;
+        goto done;
     }
     assert(path);
     assert(member);
@@ -1680,22 +1530,22 @@ archive_fingerprint(fp, name, buf)
     afp = archive_file_open(path, O_RDONLY | O_BINARY);
     if (!afp)
     {
-	str_free(member);
-	str_free(path);
-	goto done;
+        str_free(member);
+        str_free(path);
+        goto done;
     }
 
     /*
      * read the relevant entry
      */
-    if (archive_file_fingerprint(afp, member, fp, buf))
+    if (archive_file_fingerprint(afp, member, fp, buf, buf_len))
     {
-	err = errno;
-	archive_file_close(afp);
-	str_free(member);
-	str_free(path);
-	errno = err;
-	goto done;
+        err = errno;
+        archive_file_close(afp);
+        str_free(member);
+        str_free(path);
+        errno = err;
+        goto done;
     }
 
     /*
@@ -1704,7 +1554,7 @@ archive_fingerprint(fp, name, buf)
     str_free(member);
     str_free(path);
     if (archive_file_close(afp))
-	goto done;
+        goto done;
 
     /*
      * success
@@ -1717,6 +1567,6 @@ archive_fingerprint(fp, name, buf)
      */
     done:
     trace(("return %d;\n", result));
-    trace((/*{*/"}\n"));
+    trace(("}\n"));
     return result;
 }

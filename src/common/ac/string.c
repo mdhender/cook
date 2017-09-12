@@ -1,34 +1,32 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1991, 1992, 1993, 1994, 1997, 1998 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1991-1994, 1997, 1998, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to implement missing ANSI C <string.h> functions
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  *
  * This file contains functions for use with non-ANSI conforming systems
  * to implement absent ANSI functionality.
  */
 
-#include <ac/stddef.h>
-#include <ac/stdlib.h>
-#include <ac/string.h>
-#include <ac/stdio.h>
+#include <common/ac/stddef.h>
+#include <common/ac/stdlib.h>
+#include <common/ac/string.h>
+#include <common/ac/stdio.h>
 
-#include <main.h>
+#include <common/main.h>
 
 
 /*
@@ -57,18 +55,18 @@
 
 char *
 strerror(n)
-	int		n;
+        int             n;
 {
-	extern int	sys_nerr;
-	extern char	*sys_errlist[];
-	static char	buffer[16];
+        extern int      sys_nerr;
+        extern char     *sys_errlist[];
+        static char     buffer[16];
 
-	if (n < 1 || n > sys_nerr)
-	{
-		sprintf(buffer, "Error %d", n);
-		return buffer;
-	}
-	return sys_errlist[n];
+        if (n < 1 || n > sys_nerr)
+        {
+                sprintf(buffer, "Error %d", n);
+                return buffer;
+        }
+        return sys_errlist[n];
 }
 
 #endif /* !HAVE_STRERROR */
@@ -78,36 +76,36 @@ strerror(n)
 
 int
 strcasecmp(s1, s2)
-	const char	*s1;
-	const char	*s2;
+        const char      *s1;
+        const char      *s2;
 {
-	int		c1;
-	int		c2;
+        int             c1;
+        int             c2;
 
-	for (;;)
-	{
-		c1 = *s1++;
-		if (islower(c1))
-			c1 = toupper(c1);
-		c2 = *s2++;
-		if (islower(c2))
-			c2 = toupper(c2);
-		if (c1 != c2)
-		{
-			/*
-			 * if s1 is a leading substring of s2, must
-			 * return -1, even if the next character of s2
-			 * is negative.
-			 */
-			if (!c1)
-				return -1;
-			if (c1 < c2)
-				return -1;
-			return 1;
-		}
-		if (!c1)
-			return 0;
-	}
+        for (;;)
+        {
+                c1 = *s1++;
+                if (islower(c1))
+                        c1 = toupper(c1);
+                c2 = *s2++;
+                if (islower(c2))
+                        c2 = toupper(c2);
+                if (c1 != c2)
+                {
+                        /*
+                         * if s1 is a leading substring of s2, must
+                         * return -1, even if the next character of s2
+                         * is negative.
+                         */
+                        if (!c1)
+                                return -1;
+                        if (c1 < c2)
+                                return -1;
+                        return 1;
+                }
+                if (!c1)
+                        return 0;
+        }
 }
 
 #endif /* !HAVE_STRCASECMP */
@@ -116,112 +114,133 @@ strcasecmp(s1, s2)
 #ifndef HAVE_STRSIGNAL
 
 char *
-strsignal(n)
-	int	n;
+strsignal(int n)
 {
-	static char buffer[16];
+        static char buffer[16];
 
-	switch (n)
-	{
+        switch (n)
+        {
 #ifdef SIGHUP
-	case SIGHUP:
-		return "hang up [SIGHUP]";
+        case SIGHUP:
+                return "hang up [SIGHUP]";
 #endif /* SIGHUP */
 
 #ifdef SIGINT
-	case SIGINT:
-		return "user interrupt [SIGINT]";
+        case SIGINT:
+                return "user interrupt [SIGINT]";
 #endif /* SIGINT */
 
 #ifdef SIGQUIT
-	case SIGQUIT:
-		return "user quit [SIGQUIT]";
+        case SIGQUIT:
+                return "user quit [SIGQUIT]";
 #endif /* SIGQUIT */
 
 #ifdef SIGILL
-	case SIGILL:
-		return "illegal instruction [SIGILL]";
+        case SIGILL:
+                return "illegal instruction [SIGILL]";
 #endif /* SIGILL */
 
 #ifdef SIGTRAP
-	case SIGTRAP:
-		return "trace trap [SIGTRAP]";
+        case SIGTRAP:
+                return "trace trap [SIGTRAP]";
 #endif /* SIGTRAP */
 
 #ifdef SIGIOT
-	case SIGIOT:
-		return "abort [SIGIOT]";
+        case SIGIOT:
+                return "abort [SIGIOT]";
 #endif /* SIGIOT */
 
 #ifdef SIGEMT
-	case SIGEMT:
-		return "EMT instruction [SIGEMT]";
+        case SIGEMT:
+                return "EMT instruction [SIGEMT]";
 #endif /* SIGEMT */
 
 #ifdef SIGFPE
-	case SIGFPE:
-		return "floating point exception [SIGFPE]";
+        case SIGFPE:
+                return "floating point exception [SIGFPE]";
 #endif /* SIGFPE */
 
 #ifdef SIGKILL
-	case SIGKILL:
-		return "kill [SIGKILL]";
+        case SIGKILL:
+                return "kill [SIGKILL]";
 #endif /* SIGKILL */
 
 #ifdef SIGBUS
-	case SIGBUS:
-		return "bus error [SIGBUS]";
+        case SIGBUS:
+                return "bus error [SIGBUS]";
 #endif /* SIGBUS */
 
 #ifdef SIGSEGV
-	case SIGSEGV:
-		return "segmentation violation [SIGSEGV]";
+        case SIGSEGV:
+                return "segmentation violation [SIGSEGV]";
 #endif /* SIGSEGV */
 
 #ifdef SIGSYS
-	case SIGSYS:
-		return "bad argument to system call [SIGSYS]";
+        case SIGSYS:
+                return "bad argument to system call [SIGSYS]";
 #endif /* SIGSYS */
 
 #ifdef SIGPIPE
-	case SIGPIPE:
-		return "write on a pipe with no one to read it [SIGPIPE]";
+        case SIGPIPE:
+                return "write on a pipe with no one to read it [SIGPIPE]";
 #endif /* SIGPIPE */
 
 #ifdef SIGALRM
-	case SIGALRM:
-		return "alarm clock [SIGALRM]";
+        case SIGALRM:
+                return "alarm clock [SIGALRM]";
 #endif /* SIGALRM */
 
 #ifdef SIGTERM
-	case SIGTERM:
-		return "software termination [SIGTERM]";
+        case SIGTERM:
+                return "software termination [SIGTERM]";
 #endif /* SIGTERM */
 
 #ifdef SIGUSR1
-	case SIGUSR1:
-		return "user defined signal one [SIGUSR1]";
+        case SIGUSR1:
+                return "user defined signal one [SIGUSR1]";
 #endif /* SIGUSR1 */
 
 #ifdef SIGUSR2
-	case SIGUSR2:
-		return "user defined signal two [SIGUSR2]";
+        case SIGUSR2:
+                return "user defined signal two [SIGUSR2]";
 #endif /* SIGUSR2 */
 
 #ifdef SIGCLD
-	case SIGCLD:
-		return "death of child [SIGCLD]";
+        case SIGCLD:
+                return "death of child [SIGCLD]";
 #endif /* SIGCLD */
 
 #ifdef SIGPWR
-	case SIGPWR:
-		return "power failure [SIGPWR]";
+        case SIGPWR:
+                return "power failure [SIGPWR]";
 #endif /* SIGPWR */
 
-	default:
-		sprintf(buffer, "signal %d", n);
-		return buffer;
-	}
+        default:
+                snprintf(buffer, 16, "signal %d", n);
+                return buffer;
+        }
 }
 
 #endif /* !HAVE_STRSIGNAL */
+#ifndef HAVE_STRENDCPY
+
+char *
+strendcpy(char *dst, const char *src, const char *end)
+{
+    if (dst < end)
+    {
+        /* leave room for terminating NUL */
+        end--;
+        while (dst < end && *src)
+            *dst++ = *src++;
+        *dst = '\0';
+        if (*src)
+        {
+            /* return end parameter if truncated */
+            dst++;
+        }
+    }
+    return dst;
+}
+
+#endif /* !HAVE_STRENDCPY */

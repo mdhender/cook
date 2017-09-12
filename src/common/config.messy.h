@@ -1,23 +1,21 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1999, 2003 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1999, 2003, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: more configuration stuff
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  *
  * This file is included by the generated ``common/config.h'' file.
  * These actions are performed here, to insulate them from the attentions
@@ -32,7 +30,7 @@
  * Make sure Solaris includes POSIX extensions.
  */
 #if (defined(__sun) || defined(__sun__) || defined(sun)) && \
-	(defined(__svr4__) || defined(svr4))
+        (defined(__svr4__) || defined(svr4))
 
 #ifndef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 1
@@ -78,14 +76,6 @@
 #define _POSIX_SOURCE
 #define _GNU_SOURCE
 #define _BSD_SOURCE
-#endif
-
-#ifdef __PRIMOS__
-#define TIMESTAMP_GRANULARITY 4
-#elif __CYGWIN__
-#define TIMESTAMP_GRANULARITY 2
-#else
-#define TIMESTAMP_GRANULARITY 1
 #endif
 
 #endif /* COMMON_CONFIG_MESSY_H */

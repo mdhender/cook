@@ -1,24 +1,21 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1997, 1998, 2001 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1997, 1998, 2001, 2007 Peter Miller
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: Test the make2cook archive pattern functionality
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 work=${COOK_TMP:-/tmp}/$$
 PAGER=cat
@@ -32,26 +29,26 @@ bin="$here/${1-.}/bin"
 
 pass()
 {
-	set +x
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        cd $here
+        rm -rf $work
+        exit 0
 }
 fail()
 {
-	set +x
-	echo 'FAILED test of the make2cook archive pattern functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 1
+        set +x
+        echo 'FAILED test of the make2cook archive pattern functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 1
 }
 no_result()
 {
-	set +x
+        set +x
        echo 'NO RESULT test of the make2cook archive pattern functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 2
+        cd $here
+        rm -rf $work
+        exit 2
 }
 trap \"no_result\" 1 2 3 15
 
@@ -68,14 +65,16 @@ COOK_MESSAGE_LIBRARY=$work/no-such-dir
 export COOK_MESSAGE_LIBRARY
 unset LANG
 
+TAB=`awk 'BEGIN{printf("%c",9)}' /dev/null`
+test $? -eq 0 || no_result
+
 #
 # test the make2cook archive pattern functionality
 #
 cat > test.in << 'fubar'
 .SUFFIXES:
 
-a: b
-	(echo hello) > $@
+a: b;(echo hello) > $@
 fubar
 if test $? -ne 0 ; then no_result; fi
 
@@ -83,8 +82,8 @@ cat > test.ok << 'fubar'
 #line 3 "test.in"
 a: b
 {
-#line 4 "test.in"
-	(echo hello) > [target];
+#line 3 "test.in"
+        (echo hello) > [target];
 }
 fubar
 if test $? -ne 0 ; then no_result; fi
@@ -98,71 +97,71 @@ if test $? -ne 0 ; then fail; fi
 #
 # test the make2cook archive pattern functionality
 #
-cat > test.in << 'fubar'
+sed "s|<TAB>|$TAB|g" > test.in << 'fubar'
 .SUFFIXES:
 .SUFFIXES: .a .o
 
 libfoo.a: libfoo.a(x.o) libfoo.a(y.o z.o)
-	ranlib $@
+<TAB>ranlib $@
 
 (%.o): %.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $*.o
-	$(AR) r $@ $*.o
-	$(RM) $*.o
+<TAB>$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $*.o
+<TAB>$(AR) r $@ $*.o
+<TAB>$(RM) $*.o
 fubar
 if test $? -ne 0 ; then no_result; fi
 
 cat > test.ok << 'fubar'
 if [not [defined ARFLAGS]] then
-	ARFLAGS = rv;
+        ARFLAGS = rv;
 if [not [defined LDLIBS]] then
-	LDLIBS = ;
+        LDLIBS = ;
 if [not [defined LOADLIBES]] then
-	LOADLIBES = ;
+        LOADLIBES = ;
 if [not [defined TARGET_ARCH]] then
-	TARGET_ARCH = ;
+        TARGET_ARCH = ;
 if [not [defined LDFLAGS]] then
-	LDFLAGS = ;
+        LDFLAGS = ;
 if [not [defined CC]] then
-	CC = cc;
+        CC = cc;
 if [not [defined LINK.o]] then
-	LINK.o = [CC] [LDFLAGS] [TARGET_ARCH];
+        LINK.o = [CC] [LDFLAGS] [TARGET_ARCH];
 if [not [defined RM]] then
-	RM = rm -f;
+        RM = rm -f;
 if [not [defined AR]] then
-	AR = ar;
+        AR = ar;
 if [not [defined CPPFLAGS]] then
-	CPPFLAGS = ;
+        CPPFLAGS = ;
 if [not [defined CFLAGS]] then
-	CFLAGS = ;
+        CFLAGS = ;
 
 #line 4 "test.in"
 libfoo.a: libfoo.a(x.o) libfoo.a(y.o) libfoo.a(z.o)
 {
 #line 5 "test.in"
-	ranlib [target];
+        ranlib [target];
 }
 %0%1(%.o): %0%.c
 {
 #line 8 "test.in"
-	[CC] [CFLAGS] [CPPFLAGS] -c [resolve [head [need]]] -o %0%.o;
-	[AR] r %0%1 %0%.o;
-	[RM] %0%.o;
+        [CC] [CFLAGS] [CPPFLAGS] -c [resolve [head [need]]] -o %0%.o;
+        [AR] r %0%1 %0%.o;
+        [RM] %0%.o;
 }
 
 %0%: %0%.o
 {
-	[LINK.o] [resolve [need]] [LOADLIBES] [LDLIBS] -o [target];
+        [LINK.o] [resolve [need]] [LOADLIBES] [LDLIBS] -o [target];
 }
 %0%1.a(%.o): %0%.o
-	single-thread %0%1.a
+        single-thread %0%1.a
 {
-	[AR] [ARFLAGS] %0%1.a [resolve [head [need]]];
+        [AR] [ARFLAGS] %0%1.a [resolve [head [need]]];
 }
 %0%1(%): %0%
-	single-thread %0%1
+        single-thread %0%1
 {
-	[AR] [ARFLAGS] %0%1 [resolve [head [need]]];
+        [AR] [ARFLAGS] %0%1 [resolve [head [need]]];
 }
 fubar
 if test $? -ne 0 ; then no_result; fi

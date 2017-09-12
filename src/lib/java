@@ -1,25 +1,24 @@
 /*
  * NAME
- *	java - the JAVA compiler cookbook
+ *      java - the JAVA compiler cookbook
  *
  * DESCRIPTION
- *	This cookbook describes how to work with .java files.
+ *      This cookbook describes how to work with .java files.
  *
- *	This cookbook will only work with jikes, not javac.  It assumes
- *	that source in java/src/%0%1.java is being compiled into
- *	java/bin/com/companyName/projectName/%0%1.class.The recipe at the end
- *	generates a .jar file (java .tar file).
+ *      This cookbook will only work with jikes, not javac.  It assumes
+ *      that source in java/src/%0%1.java is being compiled into
+ *      java/bin/com/companyName/projectName/%0%1.class.The recipe at the end
+ *      generates a .jar file (java .tar file).
  *
  * RECIPES
- *	%.class: %.java	make class files form Java source files
+ *      %.class: %.java make class files form Java source files
  *
  * VARIABLES
- *	javac		The Java compiler command
+ *      javac           The Java compiler command
  *
  * CONTRIBUTED BY
- *	Matthew Lee
- *
- * MANIFEST: cookbook for using Java
+ *      Matthew Lee
+ * Copyright (C) 2004, 2007 Peter Miller
  */
 
 #pragma once
@@ -34,7 +33,7 @@ function rev =
     local foo = ;
     loop foo = [@1]
     {
-	result = [foo] [result];
+        result = [foo] [result];
     }
     return [result];
 }
@@ -45,14 +44,14 @@ manifest = [find java/src -name "*.java" -print];
 
 classpath =
     [unsplit ":"
-	/usr/j2se/src.zip
-	/usr/j2se/jre/lib/rt.jar
-	[addsuffix "/java/bin" [search_list]]
-	[addsuffix "/java/src" [search_list]]
+        /usr/j2se/src.zip
+        /usr/j2se/jre/lib/rt.jar
+        [addsuffix "/java/bin" [search_list]]
+        [addsuffix "/java/src" [search_list]]
     ];
 sourcepath =
     [unsplit ":"
-	[addsuffix "/java/src/" [search_list]]
+        [addsuffix "/java/src/" [search_list]]
     ];
 
 all = ;
@@ -65,23 +64,23 @@ all: [all]
 java/bin/[java_domain]/%0%1.class: java/src/%0%1.java
 {
     jikes
-	+F
-	-nowarn /* because jikes is VERY pedantic */
-	-classpath [classpath]
-	-sourcepath [sourcepath]
-	-d java/bin
-	[resolve
+        +F
+        -nowarn /* because jikes is VERY pedantic */
+        -classpath [classpath]
+        -sourcepath [sourcepath]
+        -d java/bin
+        [resolve
 #if 1
-	    /*
+            /*
              * Note: this recipe skips all of the problems of figuring
              * out Java dependencies by always compiling everything.
-	     */
-	    [match_mask java/src/%%0%%1.java [manifest]]
+             */
+            [match_mask java/src/%%0%%1.java [manifest]]
 #else
-	    java/src/%0%1.java
+            java/src/%0%1.java
 #endif
-	]
-       	;
+        ]
+        ;
 }
 
 /*
@@ -89,9 +88,9 @@ java/bin/[java_domain]/%0%1.class: java/src/%0%1.java
  */
 install/lib/[java_project].jar:
     [fromto
-	java/src/%0%1.java
-	java/bin/[java_domain]/%0%1.class
-	[match_mask java/src/%0%1.java [manifest]]
+        java/src/%0%1.java
+        java/bin/[java_domain]/%0%1.class
+        [match_mask java/src/%0%1.java [manifest]]
     ]
 {
     /*
@@ -103,16 +102,16 @@ install/lib/[java_project].jar:
      */
     loop tmp = [need]
     {
-	if [not [exists [tmp]]] then
-	{
-	    /* The file doesn't exist in this changeset's source tree */
-	    if [not [exists [dirname [tmp]]]] then
-	    {
-		/* Make the directory before copying the file */
-		mkdir -p [dirname [tmp]];
-	    }
-	    cp -p -r [resolve [tmp]] [tmp];
-	}
+        if [not [exists [tmp]]] then
+        {
+            /* The file doesn't exist in this changeset's source tree */
+            if [not [exists [dirname [tmp]]]] then
+            {
+                /* Make the directory before copying the file */
+                mkdir -p [dirname [tmp]];
+            }
+            cp -p -r [resolve [tmp]] [tmp];
+        }
     }
 
     /*
