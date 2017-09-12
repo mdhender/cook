@@ -1,0 +1,157 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1994, 1995, 1997 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: manual entry for the cookfp command
+.\"
+.ds n) cookfp
+.TH \*(n) 1 Cook "Reference Manual"
+.SH NAME
+\*(n) \- calculate file fingerprint
+.XX "cookfp(1)" "calculate file fingerprint"
+.SH SYNOPSIS
+.B \*(n)
+[
+.IR option \&...
+][
+.IR filename \&...
+]
+.br
+.B \*(n)
+.B -Help
+.br
+.B \*(n)
+.B -VERSion
+.SH DESCRIPTION
+The
+.I \*(n)
+program is used to
+calculate the fingerprints of files.
+A fingerprint is a hash of the contents of a file.
+The default fingerprint is cryptographically strong,
+so the probability of two different files having the
+same fingerprint is less than 1 in 2**200.
+.PP
+The fingerprint is based on Dan Berstien <djb@silverton.berkeley.edu>
+public domain fingerprint 0.50 beta package 930809,
+posted to the alt.sources newsgroup.
+This program produces identical results;
+the expected test results were generated using Dan's package.
+.PP
+The
+fingerprint is a base-64-sanely-encoded fingerprint of the input.
+Imagine this fingerprint as something universal and permanent.
+A fingerprint is 76 characters long, containing the following:
+.TP 4n
+1.
+A Snefru-8 (version 2.5, 8 passes, 512->256) hash.
+(Derived from the Xerox Secure Hash Function.)
+.TP 4n
+2.
+An MD5 hash, as per RFC 1321.
+(Derived from the RSADSI MD5 Message-Digest Algorithm.)
+.TP 4n
+3.
+A CRC checksum, as in the new cksum utility.
+.TP 4n
+4.
+Length modulo 2^40.
+.PP
+The output format is not expected to be compatible with anything.
+However,
+options are available to produce
+the purported output of Merkle's snefru program,
+the purported output of RSADSI's mddriver -x,
+or the purported output of the POSIX cksum program.
+.PP
+If no files are named as input,
+the standard input will be used.
+The special file name ``-'' is understood to mean the standard input.
+.br
+.ne 1i
+.SH OPTIONS
+The following options are understood:
+.TP 8n
+.B -Checksum
+Print the CRC32 checksum and length of the named file(s).
+.TP 8n
+.B -Identifier
+Print a condensed form of the fingerprint (obtained by performing a
+CRC32 checksum on the full fingerprint described above - a definite
+overkill).
+This is an 8-digit hexadecimal number,
+useful for generating unique short identifiers out of long names.
+The first character is forced to be a letter (g-p),
+so there is no problem in using the output as a variable name.
+.TP 8n
+.B -Help
+.br
+Provide some help with using the
+.I \*(n)
+program.
+.TP 8n
+.B -Message_Digest
+Print the
+RSA Data Security, Inc. MD5 Message-Digest Algorithm
+hash of the named file(s).
+.TP 8n
+.B -Snefru
+Print the Snefru hash of the named file(s),
+derived from the Xerox Secure Hash Function.
+.TP 8n
+.B -VERSion
+.br
+Print the version of the
+.I \*(n)
+program being executed.
+.PP
+All other options will produce a diagnostic error.
+.so o__rules.so
+.so z_exit.so
+.so copyright.so
+.PP
+Portions of this program are derived from sources from other people,
+sometimes with liberal copyrights, and sometimes in the public domain.
+These include:
+.TP 8n
+Dan Bernstien
+See
+.I common/fp/README
+for details.
+.TP 8n
+Gary S Brown.
+See
+.I common/fp/crc32.c
+for details.
+.TP 8n
+RSA Data Security, Inc.
+See
+.I common/fp/md5.c
+for details.
+.TP 8n
+Xerox Corporation
+See
+.I common/fp/snefru.c
+for details.
+.PP
+In addition to the above copyright holders,
+there have been numerous authors and contributors,
+see the named files for details.
+Files names are relative to the root of the
+.I cook
+distribution.

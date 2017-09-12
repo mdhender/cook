@@ -1,0 +1,32 @@
+The fingerprinting code is derived from a package
+which describes itself as follows
+
+	Do you want a powerful, uniform interface to MD5, a standard
+	CRC-32, Snefru-8, and a combined universal fingerprint, in
+	highly efficient library form or as easy-to-use programs?
+	That's what this package provides.  The code is freely reusable
+	so you can distribute it along with your own applications.
+	Have fun.
+
+	fingerprint 0.50 package, beta.
+	930809
+	Daniel J. Bernstein, djb@silverton.berkeley.edu.
+
+	Fingerprint produces a base-64-sanely-encoded fingerprint of
+	its input.  There are no options. I imagine this fingerprint as
+	something universal and permanent, which people will use
+	forever. If the fingerprint is ever broken, I'd rather make an
+	entirely new program than try to extend this one.
+
+	A fingerprint is 76 characters long. What does it contain?
+	Here's a list:
+
+	1. A Snefru-8 (version 2.5, 8 passes, 512->256) hash.
+	   (Derived from the Xerox Secure Hash Function.)
+	2. An MD5 hash, as per RFC 1321.
+	   (Derived from the RSADSI MD5 Message-Digest Algorithm.)
+	3. A CRC checksum, as in the new cksum utility.
+	4. Length modulo 2^40.
+
+	The output format is not expected to be compatible with
+	anything.

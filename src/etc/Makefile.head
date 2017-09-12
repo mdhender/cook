@@ -1,0 +1,190 @@
+#
+#	cook - file construction tool
+#	Copyright (C) 1992-1994, 1997-1999, 2001, 2002 Peter Miller;
+#	All rights reserved.
+#
+#	This program is free software; you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation; either version 2 of the License, or
+#	(at your option) any later version.
+#
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
+#
+#	You should have received a copy of the GNU General Public License
+#	along with this program; if not, write to the Free Software
+#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+#
+# MANIFEST: instructions to make, how to build the cook package
+#
+# @configure_input@
+#
+# The configure script generates 4 files:
+#	1. This Makefile
+#	2. etc/libdir.so
+#	3. etc/libdir.h
+#	4. common/config.h
+# If you change this Makefile, you may also need to change these files.
+# To see what is configured by the configure script, search for @ in the
+# Makefile.in file.
+#
+# If you wish to reconfigure the installation directories it is
+# RECOMMENDED that you re-run the configure script.
+#	Use ``./configure --help'' for a list options.
+#
+
+#
+# directory containing the source
+#
+srcdir = @srcdir@
+VPATH = @srcdir@
+
+#
+# the name of the install program to use
+#
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_DATA = @INSTALL_DATA@
+
+#
+# the name of the compiler to use
+#
+CC = @CC@
+
+#
+# The compiler flags to use
+#
+CFLAGS = @CFLAGS@
+
+#
+# The preprocessor flags to use
+#
+CPPFLAGS = @CPPFLAGS@
+
+#
+# The linker flags to use
+#
+LDFLAGS = @LDFLAGS@
+
+#
+# prefix for installation path
+#
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+#
+# where to put the data directories
+#
+# ${datadir} is for architecture-neutral files
+#	On a network, this would be shared between all machines
+#	on the network.  It can be read-only.
+#
+datadir = $(RPM_BUILD_ROOT)@datadir@
+
+#
+# ${libdir} is for architecture-specific files
+#	On a network, this would only be shared between machines
+#	of identical cpu-hw-os flavour.  It can be read-only.
+#
+libdir = $(RPM_BUILD_ROOT)@libdir@
+
+#
+# where to put the executables
+#	On a network, this would only be shared between machines
+#	of identical cpu-hw-os flavour.  It can be read-only.
+#
+bindir = $(RPM_BUILD_ROOT)@bindir@
+
+#
+# where to put the manuals
+#	On a network, this would be shared between all machines
+#	on the network.  It can be read-only.
+#
+mandir = $(RPM_BUILD_ROOT)@mandir@
+
+#
+# Which yacc to use
+#
+YACC = @YACC@
+
+#
+# extra libraries required for your system
+#
+LIBS = @LIBS@
+
+#
+# The program used to compile the message catalogues.  Ideally, you
+# should use the msgfmt in the GNU Gettext package.  (The SunOS one is
+# brain-dead, and the Solaris one is hardly better.)
+#
+MSGFMT = @MSGFMT@
+MSGCAT = @MSGCAT@
+
+#
+# The program used to format the documentation.
+#
+GROFF = @GROFF@
+
+#
+# shell to use to run tests and commands
+#
+SH = @SH@
+
+#
+# command used to construct libraries
+#
+AR = ar
+
+#
+# program used to place index within libraries
+#
+RANLIB = @RANLIB@
+
+#
+# Set MANLANG to English, to select the man pages to be installed into
+# $(mandir).  If you want your manual pages in some other (supported)
+# language, set it here.
+#
+# The man pages for all supported languages are also installed into
+# $(libdir)/$(MANLANG)/manX/Y.X, so that it is only necessary to append
+# $(libdir) to $MANPATH, if your man understands $LANG.
+#
+MANLANG = en
+
+#
+# This is the prefix to add to the start of program names.
+# Usually left empty.
+#
+PROGRAM_PREFIX = @PROGRAM_PREFIX@
+
+#
+# This is the suffix to add to the end of program names, before the
+# exe extension.  Usually left empty.
+#
+PROGRAM_SUFFIX = @PROGRAM_SUFFIX@
+
+#
+# This is the file extension for executable files.  Includes the dot, if any.
+# This is empty on UNIX, and .EXE on the unmentionable one.
+#
+EXEEXT = @EXEEXT@
+
+#
+# This is the file extension for object files.  NO DOT.
+# This is o on UNIX, and O or OBJ on the unmentionable one.
+#
+OBJEXT = @OBJEXT@
+
+#
+# This is the file extension for library files.  NO DOT.
+# This is a on UNIX, and A or LIB on the unmentionable one.
+#
+LIBEXT = a
+
+#
+# The default target
+#
+default_target: all

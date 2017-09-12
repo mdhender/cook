@@ -1,0 +1,100 @@
+/*
+ * NAME
+ *	yacc_many - how to use yacc several times in the same directory
+ *
+ * DESCRIPTION
+ *	This cookbook describes how to use yacc.
+ *	The difference with the "yacc" cookbook is that this cookbook
+ *	allows you to have more that one yacc generated parser in the same
+ *	program, by using the classic sed(1) hack of the output.
+ *
+ *	You will have to add "-d" to the [yacc_flags] variable
+ *	if you want %.h files generated.
+ *
+ *	If a y.output file is constructed, it will be moved to %.list
+ *
+ * RECIPES
+ *	%.c %.h: %.y	applied if -d in [yacc_flags]
+ *	%.c: %.y	applied if -d not in [yacc_flags]
+ *
+ * VARIABLES
+ *	yacc_src	Yacc source files in the current directory.
+ *	dot_src		Source files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_obj		Object files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_clean	Files which may be removed from the current directory
+ *			in a clean target.
+ *	dot_lint_obj	Lint object files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *
+ * MANIFEST: cookbook for using yacc more than once in same program
+ */
+
+#pragma once
+
+#include "c"
+
+if [not [defined yacc]] then
+	yacc = yacc;
+if [not [defined yacc_flags]] then
+	yacc_flags = ;
+yacc_src = [glob *.y];
+cc_src = [stringset [cc_src] - [fromto %.y %.c [yacc_src]]];
+dot_src =
+	[stringset
+		[dot_src] [yacc_src]
+	-
+		[fromto %.y %.c [yacc_src]] [fromto %.y %.s [yacc_src]]
+	];
+dot_obj = [stringset [dot_obj] [fromto %.y %.o [yacc_src]]];
+dot_clean =
+	[stringset
+		[dot_clean]
+		[fromto %.y %.o [yacc_src]]
+		[fromto %.y %.c [yacc_src]]
+		[fromto %.y %.list [yacc_src]]
+		[fromto %.y %.ln [yacc_src]]
+		[fromto %.y %.s [yacc_src]]
+		y.tab.c y.tab.h y.output
+	];
+dot_lint_obj = [stringset [dot_lint_obj] [fromto %.y %.ln [yacc_src]]];
+
+
+%.c %.h: %.y
+	if [in -d [yacc_flags]]
+	single-thread y.tab.c y.tab.h y.output
+{
+	if [exists %.list] then
+		rm -f %.list
+			set clearstat;
+	if [exists y.output] then
+		rm -f y.output
+			set clearstat;
+	[yacc] [yacc_flags] %.y;
+	sed -e \'s/\[yY\]\[yY\]/%_/g\' y.tab.c > %.c;
+	rm -f y.tab.c;
+	sed -e \'s/\[yY\]\[yY\]/%_/g\' y.tab.h > %.h;
+	rm -f y.tab.h;
+	if [exists y.output] then
+		mv y.output %.list
+			set clearstat;
+}
+
+%.c: %.y
+	if [not [in -d [yacc_flags]]]
+	single-thread y.tab.c y.output
+{
+	if [exists %.list] then
+		rm -f %.list
+			set clearstat;
+	if [exists y.output] then
+		rm -f y.output
+			set clearstat;
+	[yacc] [yacc_flags] %.y;
+	sed -e \'s/\[yY\]\[yY\]/%_/g\' y.tab.c > %.c;
+	rm -f y.tab.c;
+	if [exists y.output] then
+		mv y.output %.list
+			set clearstat;
+}

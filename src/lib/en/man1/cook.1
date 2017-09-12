@@ -1,0 +1,575 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1992-1994, 1996, 1997, 1999, 2001-2003 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: manual entry for the cook command
+.\"
+.TH COOK 1 Cook "Reference Manual"
+.so z_name.so
+.so ../etc/libdir.so
+.SH NAME
+cook \- a file construction tool
+.XX "cook(1)" "a file construction tool"
+.SH SYNOPSIS
+.B \*(n)
+[
+.IR option ...
+][
+.IR filename ...
+]
+.br
+.B \*(n)
+.B -Help
+.br
+.B \*(n)
+.B -VERSion
+.SH DESCRIPTION
+The
+.I \*(n)
+program is a tool for constructing files.
+It is given a set of files to create,
+and instructions detailing how to construct them.
+In any non-trivial program
+there will be prerequisites to performing
+the actions necessary to creating any file,
+such as extraction from a source-control system.
+The
+.I \*(n)
+program provides a mechanism to define these.
+.PP
+When a program is being developed or maintained,
+the programmer will typically change one file of several
+which comprise the program.
+The
+.I \*(n)
+program examines the last-modified times of the files to see when
+the prerequisites of a file have changed,
+implying that the file
+needs to be recreated as it is logically out of date.
+.PP
+The
+.I \*(n)
+program also provides a facility for implicit recipes,
+allowing users to specify how to form a file with a given suffix from
+a file with a different suffix.
+For example,
+to create
+.IB filename .o
+from
+.IB filename .c
+.PP
+Options and filenames may be arbitrarily mixed on the command line;
+no processing is done until all options and filenames
+on the command line have been scanned.
+.PP
+The
+.I \*(n)
+program will attempt to create the named files from the recipes
+given to it.
+The recipes are contained in a file called
+.I Howto.cook
+in the currect directory.
+This file may,
+in turn,
+include other files containing additional recipes.
+.PP
+If no
+.IR filename s
+are given on the command line
+the targets of the first recipe defined are cooked.
+.br
+.ne 1i
+.SH OPTIONS
+The valid options for
+.I \*(n)
+are listed below.
+Any other options
+(words on the command line beginning with `\fB-\fP')
+will cause a diagnostic message to be issued.
+.\" ------------------------------------ A ------------------------------------
+.TP 8n
+.B -Action
+.br
+Execute the commands given in the recipes.
+This is the default.
+.TP 8n
+.B -No_Action
+.br
+Do not execute the commands given in the recipes.
+.\" ------------------------------------ B ------------------------------------
+.TP 8n
+\fB-Book\fP \fIfilename\fP
+.br
+Tells \*(n) to used the named cookbook,
+rather than the default ``Howto.cook'' file.
+.\" ------------------------------------ C ------------------------------------
+.TP 8n
+.B -CAScade
+.br
+This option may be used to enable the use of cascaded ingredients.
+This is the default.
+.TP 8n
+.B -No_CAScade
+.br
+This option may be used to disable the use of cascaded ingredients.
+.TP 8n
+.B -Continue
+.br
+If cooking a target should fail,
+continue with other recipes for which the
+failed target is not an ingredient,
+directly or indirectly.
+.TP 8n
+.B -No_Continue
+.br
+If cooking a target should fail,
+.I \*(n)
+will exit.
+This is the default.
+.\" ------------------------------------ D ------------------------------------
+.\" ------------------------------------ E ------------------------------------
+.TP 8n
+.B -Errok
+.br
+When a command is executed,
+the exit code will be ignored.
+.TP 8n
+.B -No_Errok
+.br
+When a command is executed,
+if the exit code is positive
+it will be deemed to fail,
+and thus the recipe containing it to have failed.
+This is the default.
+.\" ------------------------------------ F ------------------------------------
+.TP 8n
+.B -FingerPrint
+.br
+When
+.I cook
+examines a file to determine if it has changed,
+it uses the last-modified time information available in the file system.
+There are times when this is altered,
+but the file contents do not actually change.
+The fingerprinting facility examines the file contents
+when it appears to have changed,
+and compares the old fingerprint against the present file contents.
+(See
+.IR cookfp (1)
+for a description of the fingerprinting algorithm.)
+If the fingerprint did not change,
+the last-modified time in the file system is ignored.
+Note that this has implications if you
+are in the habit of using the
+.IR touch (1)
+command \-
+.I cook
+will do nothing until you actually change the file.
+.TP 8n
+.B -No_FingerPrint
+.br
+Do not use fingerprints
+to supplement the last-modified time file information.
+This is the default.
+.TP 8n
+.B -FingerPrint_Update
+This option may be used to scan the directory tree below the current
+directory and update the file fingerprints.  This helps when you use
+another tool (such as RCS or ClearCase) which alters the file but
+preserves the file's modification time.
+.TP 8n
+.B -Force
+.br
+Always perform the actions of recipes,
+irrespective of the last-modified times of any of the ingredients.
+This option is useful if something beyond the scope of the cookbook
+has been modified;
+for example, a bug fix in a compiler.
+.TP 8n
+.B -No_Force
+.br
+Perform the actions of the recipes
+if any of the ingredients are logically out of date.
+This is the default.
+.\" ------------------------------------ G ------------------------------------
+.\" ------------------------------------ H ------------------------------------
+.TP 8n
+.B -Help
+.br
+Provide information about how to execute
+.I \*(n)
+on
+.IR stdout ,
+and perform no other function.
+.\" ------------------------------------ I ------------------------------------
+.TP 8n
+.BI -Include " filename"
+.br
+Search the named directory before the standard places for
+included cookbooks.
+Each directory so named will be scanned in the order given.
+The standard places are
+.I $HOME/.cook
+then
+.IR \*(d) .
+.TP 8n
+.B -Include_Cooked
+This option may be used to require the cooking of files named on
+.I #include-cooked
+and
+.I #include-cooked-nowarn
+include lines in cookbooks.
+The files named will be included, if present.
+If the files named need to be updated or created,
+this will be done, and then the cookbook re-read.
+This is the default.
+.TP 8n
+.B -No_Include_Cooked
+This option may be used to inhibit the implicit cooking of files named on
+.I #include-cooked
+and
+.I #include-cooked-nowarn
+include lines in cookbooks.
+The files will be included,
+if present,
+but they will not be updated or created,
+even if required.
+.TP 8n
+.B -Include_Cooked_Warning
+This option enables the warnings about derived dependencies in derived
+cookbooks.  This is usually the default.
+.TP 8n
+.B -No_Include_Cooked_Warning
+This option disables the warnings about derived dependencies in derived
+cookbooks.
+.\" ------------------------------------ J ------------------------------------
+.\" -Jobs is an alias for -PARallel
+.\" ------------------------------------ K ------------------------------------
+.\" ------------------------------------ L ------------------------------------
+.TP 8n
+.B -List
+.br
+Causes
+.I \*(n)
+to automatically redirect the
+.I stdout
+and
+.I stderr
+of the session.
+Output will continue to come to the terminal,
+unless
+.I \*(n)
+is executing in the background.
+The name of the file will be the name of the cookbook with any suffix
+removed and "\f(CW.list\fP" appended;
+this will usually be
+.IR Howto.list .
+This is the default.
+.TP 8n
+.BI -List " filename"
+.br
+Causes
+.I \*(n)
+to automatically redirect the
+.I stdout
+and
+.I stderr
+of the session into the named file.
+Output will continue to come to the terminal,
+unless
+.I \*(n)
+is executing in the background.
+.TP 8n
+.B -No_List
+.br
+No automatic redirection of the output of the session will be made.
+.TP 8n
+.BI -No_List " filename"
+.br
+No automatic redirection of the output of the session will be made,
+however subsequent
+.B -List
+options will default to listing to the named file.
+.\" ------------------------------------ M ------------------------------------
+.TP 8n
+.B -Meter
+.br
+After each command is executed,
+print a summary of the command's CPU usage.
+.TP 8n
+.B -No_Meter
+.br
+Do not print a CPU usage summary after each command.
+This is the default.
+.\" ------------------------------------ N ------------------------------------
+.\" ------------------------------------ O ------------------------------------
+.\" ------------------------------------ P ------------------------------------
+.TP 8n
+.B -Pairs
+.br
+This option may be used to generate a list of pair-wise file
+dependencies, similar to
+.IR lorder (1)
+output.
+This may be used to draw file dependency diagrams.
+It can also be useful when debugging cookbooks.
+.TP 8n
+\fB-PARallel\fP [ \fInumber\fP ]
+.RS
+This option may be used to specify the number of parallel executions
+threads.  The number defaults to 4 if no specific number of threads is
+specified.  See also the \fIparallel_jobs\fP variable.
+.PP
+Use of this option on single-processor machines needs to be done with
+great care, as it can bring other processing to a complete halt.
+Several users doing so simultaneously on a multi-processor machine will
+have a similar effect.  It is also to rapidly run out of virtual memory
+and temporary disk space if the parallel tasks are complex.
+.RE
+.TP 8n
+.B -No_PARallel
+This option may be used to specify that a single execution thread is to
+be used.  This is the default.
+.TP 8n
+.B -Precious
+.br
+When commands in the body of a recipe fail,
+do not delete the targets of the recipe.
+.TP 8n
+.B -No_Precious
+.br
+When commands in the body of a recipe fail,
+delete the targets of the recipe.
+This is the default.
+.\" ------------------------------------ Q ------------------------------------
+.\" ------------------------------------ R ------------------------------------
+.TP 8n
+.B -Reason
+.br
+Two options are provided for
+tracing the inferences
+.B \*(n)
+makes when attempting to cook a target.
+The
+.B -Reason
+option will cause
+.I \*(n)
+will emit copious amounts of information
+about the inferences it is making when cooking targets.
+This option may be used when you think
+.B \*(n)
+is acting strangely,
+or are just curious.
+.TP 8n
+.B -No_Reason
+.br
+This option may be used to cause
+.I \*(n)
+will not emit information
+about the inferences it is making when cooking targets.
+This is the default.
+.\" ------------------------------------ S ------------------------------------
+.TP 8n
+.B -SCript
+.br
+This option may be used to request a shell script be printed on the
+standard output.
+This shell script may be used to construct the files;
+it captures many of the semantics of the cookbook.
+This can be useful when a project needs to be distributed,
+and the recipients do not have
+.IR cook(1)
+installed.
+It can also be very useful when debugging cookbooks.
+.TP 8n
+.B -Silent
+.br
+Do not echo commands before they are executed.
+.TP 8n
+.B -No_Silent
+.br
+Echo commands before they are executed.
+This is the default.
+.TP 8n
+.B -STar
+.br
+Emit progress indicators once a second.
+These progress indicators include
+.TS
+center;
+l l.
++	Reading the cookbook
+-	Executing a collect function
+*	Building the dependency graph
+#	Walking the dependency graph
+@	Writing fingerprint files.
+.TE
+.TP 8n
+.B -No_STar
+.br
+Do not emit progress indicators.
+This is the default.
+.TP 8n
+.B -Strip_Dot
+.br
+Remove leading "./" from filenames before
+attempting to cook them;
+applies to all filenames and all recipes.
+This is the default.
+.TP 8n
+.B -No_Strip_Dot
+.br
+Leave leading "./" on filenames while cooking.
+.\" ------------------------------------ T ------------------------------------
+.TP 8n
+.B -Tell_Position
+.br
+This option may be used to cause the position of commands (filename
+and line number) to be printed along with the command just before it is
+executed (provided the \fB\-No_Silent\fP option is in force).
+.TP 8n
+.B -No_Tell_Position
+.br
+This option may be used to suppress printing the position of commands
+(filename and line number) along with the command just before it is
+executed.  This is the default.
+.TP 8n
+.B -Touch
+.br
+Update the last-modified times of the
+target files,
+rather than execute the actions bound to recipes.
+This can be useful if you have made a modification to a file that
+you know will make a
+system of files logically out of date,
+but has no significance;
+for example,
+adding a comment to a widely used include file.
+.TP 8n
+.B -No_Touch
+.br
+Execute the actions bound to recipes,
+rather than update the last-modified times of the target files.
+This is the default.
+.TP 8n
+.B -TErminal
+.br
+When listing,
+also send the output stream to the terminal.
+This is the default.
+.TP 8n
+.B -No_TErminal
+.br
+When listing,
+do not send the output to the terminal.
+.\" ------------------------------------ U ------------------------------------
+.TP 8n
+.B -Time_Adjust
+.br
+This option causes
+.B cook
+to check the last-modified time of the targets of recipes,
+and updates them if necessary,
+to make sure they are consistent with (younger than) the last-modified
+times of the ingredients.
+This results in more system calls,
+and can slow things down on some systems.
+This correspondes to the \fItime-adjust\fP recipe flag.
+.TP 8n
+.B -No_Time_Adjust
+.br
+Do not update the file last-modified times after performing
+the body of a recipe.
+This is the default.
+This correspondes to the \fIno-time-adjust\fP recipe flag.
+.\" ------------------------------------ V ------------------------------------
+.\" ------------------------------------ W ------------------------------------
+.TP 8n
+.B -Web
+.br
+This option may be used to request a HTML web page be printed on
+the standard output.  This web page may be used to document the file
+dependencies; it captures many of the semantics of the cookbook.
+It can also be very useful when debugging cookbooks.
+.\" ------------------------------------ X ------------------------------------
+.\" ------------------------------------ Y ------------------------------------
+.\" ------------------------------------ Z ------------------------------------
+.\" ---------------------------------------------------------------------------
+.TP 8n
+.IB name = value
+.br
+Assign the
+.I value
+to the named variable.
+The value may contain spaces
+if you can convince the shell to pass them through.
+.so o__rules.so
+.so z_exit.so
+.SH FILES
+The following files are used by \fBcook\fP:
+.TP 8n
+\fIHowto.cook\fP
+This file contains instructions to
+.I cook
+for how to construct files.
+.TP 8n
+\fI\*(d)\fP
+This directory contains "system" cookbooks
+for various tools and activities.
+.TP 8n
+\&\fI.cook.fp\fP
+This text file is used to remember fingerprints between invokations.
+.SH ENVIRONMENT VARIABLES
+The following environment variables are used by \fBcook\fP:
+.TP
+COOK
+May be set to contain command-line options,
+changing the default behaviour of
+.IR cook .
+May be overridden by the command line.
+.TP 8n
+PAGER
+Use to paginate the output of the
+.B -Help
+and
+.B -VERSion
+options.
+Defaults to
+.IR more (1)
+if not set.
+.TP 8n
+COOK_AUTOMOUNT_POINTS
+.RS
+A colon-separated list of directories which the automounter may use
+to mount file systems.  Use with extreme care, as this distorts Cook's
+idea of the shape of the filesystem.
+.PP
+This feature assumes that paths below the automounter's mount directory
+are echoes of paths without it.
+\fIE.g.\fP When \f[CW]/home\fP is the trigger, and
+\f[CW]/tmp_mnt/home\fP is where the on-demand NFS mount is performed, with
+\f[CW]/home\fP appearing to processes to be a symlink.
+.PP
+This is the behavior of the Sun automounter.  The AMD automounter is
+capable of being configured in this way, though it is not typical of the
+examples in the manual.  Nor is it typical of the out-of-the-box Linux
+AMD configuration in many distributions.
+.PP
+Defauls to ``\f(CW/tmp_mnt:/a:/.automount\fP'' if not set.
+.RE
+.so copyright.so

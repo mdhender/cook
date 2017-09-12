@@ -1,0 +1,151 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1991, 1992, 1993, 1994, 1997, 2001 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: manual entry for the roffpp command
+.\"
+.TH ROFFPP 1 Cook "Reference Manual"
+.so z_name.so
+.ds n) roffpp
+.SH NAME
+\*(n) \- replace \&.so requests within *roff sources
+.XX "roffpp(1)" "replace .so requests within *roff sources"
+.SH SYNOPSIS
+.B \*(n)
+[
+.IR option ...
+][
+.I infile
+[
+.I outfile
+]]
+.br
+.B \*(n)
+.B -Help
+.br
+.B \*(n)
+.B -VERSion
+.SH DESCRIPTION
+The
+.I \*(n)
+command may be used to
+copies the input file to the output file,
+including files named using
+.I \&.so
+directives along the way,
+and removing the
+.I \&.so
+directives.
+.PP
+This is useful when processing large multi-file documents
+with filters such as
+.IR tbl (1)
+or
+.IR eqn (1)
+which do not understand the
+.I .so
+directive.
+The
+.I \&.nx
+directive is not understood.
+The
+.I \*(n)
+program is not a general *roff interpreter,
+so many constructs will be beyond it,
+fortunately, most of them have nothing to do with include files.
+Include files which cannot be found,
+probably from uninterpreted *roff constructs,
+if the files really does exist,
+will simply be passed through unchanged,
+for *roff to interpret at a later time.
+.PP
+The
+.I \*(n)
+program also allows the user to specify an include search path.
+This allows, for example, common files to be kept in a central location.
+.PP
+Only directives of the form
+.RS
+.B \&.so
+.I filename
+.RE
+are processed.
+If the directive is introduced using the single quote form,
+or the dot is not the first character of the line,
+the directive will be ignored.
+.PP
+Any extra arguments on the line are ignored,
+and quoting is not understood.
+All characters are interpreted literally.
+.PP
+Examples of directives which will be ignored include
+.RS
+.nf
+\&'so /usr/lib/tmac/tmac.an
+\&.if n .so yuck
+.fi
+.RE
+This list is not exhaustive.
+.PP
+The special file name
+.RB ` \- '
+on the command line
+means the standard input or standard output,
+as appropriate.
+Files which are omitted are also assumed to be
+the standard input or standard output,
+as appropriate.
+.PP
+The output attempts to keep file names and line numbers in sync
+by using the
+.B \&.lf
+directive.
+The
+.B \&.lf
+directive is also understood as input.
+This is compatible with
+.IR groff (1)
+and the other GNU text utilities included in the groff package.
+.br
+.ne 1i
+.SH OPTIONS
+The following options are understood.
+.TP 8n
+.BI -I path
+.br
+Specify include path, a la
+.IR cc (1).
+Include paths are searched in the order specified.
+The include search path defaults to the current directory
+if and only if the user does not specify any include search paths.
+.TP 8n
+.B -Help
+.br
+Give information on how to use
+.IR \*(n) .
+.TP 8n
+.B -VERSion
+.br
+Tell what version of
+.I \*(n)
+is being run.
+.PP
+Any other option will generate a diagnostic error.
+.so o__rules.so
+.so z_exit.so
+.so copyright.so

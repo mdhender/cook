@@ -1,0 +1,85 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1991, 1992, 1993, 1994, 1997, 2001 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: manual entry for the cooktime command
+.\"
+.TH COOKTIME 1 Cook "Reference Manual"
+.so z_name.so
+.ds n) cooktime
+.SH NAME
+\*(n) \- set file times
+.XX "cooktime(1)" "set file times"
+.SH SYNOPSIS
+.B \*(n)
+[
+.IR option \&...
+]
+.IR filename \&...
+.br
+.B \*(n)
+.B -Help
+.br
+.B \*(n)
+.B -VERSion
+.SH DESCRIPTION
+The
+.I \*(n)
+program is used to
+set the modified time or access time of a file.
+This can be used to defend against unwanted
+logical dependencies when making "minor" changes to files.
+.PP
+If no option is specified,
+the default action is as if "\fI\-Modify now\fP" was specified.
+.br
+.ne 1i
+.SH OPTIONS
+The following options are understood.
+.TP 8n
+\fB-Access\fP \fIdate\fP
+.br
+This option may be used to
+set the last-access time of the files.
+The date is relatively free-format;
+rember to use quotes to insulate spaces from the shell.
+.TP 8n
+\fB-Modify\fP \fIdate\fP
+.br
+This option may be used to
+set the last-modify time of the files.
+The date is relatively free-format;
+rember to use quotes to insulate spaces from the shell.
+.TP 8n
+.B -Report
+.br
+When use alone,
+produces a listing of access times and modify times for the named files.
+When used with -Access or -Modify,
+produces a listing of the changes made.
+.TP 8n
+.B -Help
+.br
+Give some information on how to use the
+.I \*(n)
+command.
+.PP
+Any other option will generate a diagnostic error.
+.so o__rules.so
+.so z_exit.so
+.so copyright.so

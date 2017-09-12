@@ -1,0 +1,167 @@
+/*
+ * NAME
+ *	program - construct a program
+ *
+ * DESCRIPTION
+ *	This cookbook defines how to construct a program.
+ *
+ *	If you program uses any libraries, you will have to append
+ *	them to cc_link_flags in your Howto.cook file.
+ *
+ * VARIABLES
+ *	all		targets of the all recipe
+ *	install		targets of the install recipe
+ *	me		the name of the program to be constructed.
+ *			Defaults to the last component of the pathname
+ *			of the current directory.
+ *	install		targets of the install command.
+ *	ld		The name of the linker program
+ *	ld_flags	Command line arguments for the linker
+ *	ld_libraries	Library command line arguments for the linker
+ *
+ * RECIPES
+ *	all:		construct the targets defined in [all].
+ *	clean:		remove the files named in [dot_clean].
+ *	clobber:	remove the files name in [dot_clean] and [all].
+ *
+ * If the [lib] variable is defined
+ *	install:	construct the files named in [install].
+ *	uninstall:	remove the files named in [install].
+ *
+ * MANIFEST: cookbook for constructing programs
+ */
+
+#pragma once
+
+if [not [defined me]] then
+    me = [entryname [dir [pathname x]]];
+
+all = [me];
+if [find_command lint] then
+if [defined dot_lint_obj] then
+	all = [all] [me].lint;
+dot_clean = [dot_clean] [me]~;
+
+if [not [defined ld]] then
+{
+	if [defined c++] then
+		ld = [c++];
+	else if [defined cc] then
+		ld = [cc];
+	else if [defined f77] then
+		ld = [f77];
+	else
+		ld = ld;
+}
+
+all: [all]
+    set default;
+
+run: all
+{
+	[me]
+		set errok silent;
+}
+
+clean:
+{
+	rm -f [dot_clean]
+		set clearstat;
+}
+
+clobber: clean
+{
+	rm -f [all]
+		set clearstat;
+}
+
+if [defined bin] then
+{
+	install = [bin]/[me];
+
+	install: [install];
+
+	uninstall:
+	{
+		rm -f [install]
+			set clearstat;
+	}
+
+	[bin]/%: %
+	{
+		cp % [bin]/%;
+		chmod og-w [bin]/%;
+	}
+
+	[lib]/%: %
+	{
+		cp % [lib]/%;
+		chmod og-w [lib]/%;
+	}
+}
+
+find_libs = [find_command find_libs];
+
+function ld_flags_careful =
+{
+    local result = ;
+    if [defined ld_flags] then
+	result += [ld_flags];
+    if [defined cc_link_flags] then
+    	result += [cc_link_flags];
+    if [defined c++_link_flags] then
+    	result += [c++_link_flags];
+    if [defined f77_link_flags] then
+    	result += [f77_link_flags];
+    return [result];
+}
+
+/*
+ * The cc_link_flags are an historical accident.  They can't be removed
+ * without breaking existing installed sites.	Sigh.
+ */
+
+if [find_libs] then
+{
+	if [not [defined ld_libraries]] then
+		ld_libraries = ;
+	[me]: [dot_obj] [collect [find_libs] [match_mask -L%0%
+		[ld_flags_careful] [ld_libraries]]]
+	{
+		if [not [defined ld_flags]] then
+			ld_flags = ;
+		if [exists [me]~] then
+			rm -f [me]~
+				set clearstat;
+		if [exists [me]] then
+			mv [me] [me]~
+				set clearstat;
+		[ld] [ld_flags_careful] [dot_obj] [ld_libraries]
+			-o [me];
+	}
+}
+else
+{
+	[me]: [dot_obj]
+	{
+		if [not [defined ld_flags]] then
+			ld_flags = ;
+		if [exists [me]~] then
+			rm -f [me]~
+				set clearstat;
+		if [exists [me]] then
+			mv [me] [me]~
+				set clearstat;
+		[ld] [ld_flags_careful] [dot_obj] [ld_libraries]
+			-o [me];
+	}
+}
+
+if [find_command lint] then
+if [defined dot_lint_obj] then
+{
+	[me].lint: [dot_lint_obj]
+	{
+		[lint] [dot_lint_obj] [ld_libraries] [cc_link_flags];
+	}
+}

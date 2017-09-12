@@ -1,0 +1,49 @@
+.\"
+.\"	cook - file construction tool
+.\"	Copyright (C) 2002, 2003 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: input for archive/cook.html
+.\"
+.de an-p-footer
+..
+.ad l
+.hy 0
+.so version.so
+<html>
+<head><title>Cook \*(v)</title></head>
+<body bgcolor="white">
+<img src="cook.gif" align=left>
+<img src="cook.gif" align=right>
+<h1 align=center>Cook \*(v)<br>
+Year 2000 Status</h1>
+Cook does not suffer from Year 2000 problems.
+<ul>
+<li>
+Cook stores dates internally in Unix style (<i>i.e.</i> seconds
+offset), so internal storage of times and dates does not suffer from
+any Y2K problems.
+<li>
+Cook always uses the ANSI C standard <tt>strftime</tt> function to display
+times and dates.  (This assumes that your vendor has supplied a compliant
+<tt>strftime</tt>.)  This means that displaying dates does not assume
+fixed field widths, nor will it display the year 2000 as ``100''.
+<li>
+When a user enters dates, they may specify years with an explicit century.
+If a user enters a year with an implicit century, the closest is assumed.
+</ul>
+</body></html>

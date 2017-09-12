@@ -1,0 +1,335 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1994, 1997 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: manual entry for the make2cook command
+.\"
+.TH make2cook 1 Cook "Reference Manual"
+.so z_name.so
+.ds n) make2cook
+.SH NAME
+\*(n) \- translate makefiles into cookbooks
+.XX "make2cook(1)" "translate makefiles into cookbooks"
+.SH SYNOPSIS
+.B \*(n)
+[
+.IR option \&...
+][
+.I infile
+[
+.I outfile
+]]
+.br
+.B \*(n)
+.B -Help
+.br
+.B \*(n)
+.B -VERSion
+.SH DESCRIPTION
+The
+.I \*(n)
+program is used to
+translate
+.IR Makefile s
+into cookbooks.
+This command is provided to ease the transition to using the
+.I cook
+command.
+.PP
+If no input file is named,
+or the special name  ``-'' is used,
+input will be taken from the standard input.
+If no output file is named,
+or the special name  ``-'' is used,
+output will be taken from the standard output.
+.SH SEMANTICS
+There is no one-to-one semantic mapping between
+.I make
+semantics
+and
+.I cook
+semantics,
+so the results will probably need some manual editing.
+.PP
+The functionality provided by classic
+.I make (1)
+implementations is accurately reproduced.
+Extensions,
+such as those offered by GNU Make or BSD make,
+are not always understood,
+or are sometimes not reproduced identically.
+.PP
+The following subsections enumerate a few of the things
+which are understood and not understood.
+They are probably not complete.
+.SS Understood
+The
+.I cook
+program requires variables to be defined before they are used,
+whereas
+.I make
+will default them to be empty.
+This is understood,
+and empty definitions are inserted as required.
+.PP
+Most of the builtin variables of GNU Make are understood.
+.PP
+Most of the builtin rules of classic make, GNU Make and BSD make are
+reproduced.
+.PP
+.B "For best results"
+there should be a blank line after every rule, so that there can be no
+confusion where one rule ends and a new one begins.
+.PP
+Builtin variables are defaulted from the environment,
+if an environment variable of the same name is set.
+.PP
+The GNU Make
+.I override
+variable assignment is understood.
+.PP
+The GNU Make
+``+='' assignment is understood.
+.PP
+The GNU Make
+``:='' variable assignment is understood.
+.PP
+Traditional make assignments are macros,
+they are expanded on use,
+rather than on assignment.
+The
+.I cook
+program has only variables.
+Assignment statements are re-arranged to ensure the correct results
+when variables are referenced.
+.PP
+Single and double suffix rules are understood.
+The .SUFFIXES rules are understood and honoured.
+Hint: if you want to suppress the builtin-recipes,
+use a .SUFFIXES rule with no dependencies.
+.PP
+The .PHONY rule is understood, and is translated into a
+.I "set forced"
+flag in appropriate recipes,
+except files from implicit recipes.
+.PP
+The .PRECIOUS rule is understood, and is translated into a
+.I "set precious"
+flag in the appropriate recipes,
+except files from implicit recipes.
+.PP
+The .DEFAULT rule is understood,
+and is translated into an implicit recipe.
+.PP
+The .IGNORE rule is understood, and is translated into a
+.I "set errok"
+statement.
+.PP
+The .SILENT rule is understood, and is translated into a
+.I "set silent"
+statement.
+.PP
+Most GNU Make functions are understood.
+The
+.I filter
+and
+.I filter-out
+functions only understand a single pattern.
+The
+.I sort
+function does not remove duplicates (wrap the
+.I stringset
+function around it if you need this).
+.PP
+The GNU Make
+static pattern rules
+are understood.
+They are translated into recipe predicates.
+.PP
+The GNU Make and BSD make
+.I include
+variants are understood.
+.PP
+The bizarre irregularities surrounding archive files in automatic
+variables and suffix rules are understood, and translated into
+consistent readable recipes.
+The
+.I make
+semantics are preserved.
+.PP
+The BSD make
+.I \&.CURDIR
+variable is understood,
+and translated to an equivalent expression.
+It cannot be assigned to.
+.PP
+The GNU Make and BSD make conditionals are understood,
+provided that they bracket whole segments of the makefile,
+and that these segments are syntactically valid.
+Cconditionals may also appear within rule body commands.
+Conditionals are
+.I not
+understood within the lines of a
+.IR define .
+.PP
+The GNU Make
+.I define
+is understood, but its use as a kind of ``function definition'' is
+.I not
+understood.
+.PP
+The GNU Make
+.I export
+and
+.I unexport
+directives are understood.
+.SS Not Understood
+The
+.I cook
+program tokenizes its input,
+whereas make does textual replacement.
+The shennanigans required to construct
+a make macro containing
+a single space
+are not understood.
+The translation will result in a
+.I cook
+variable which is empty.
+.PP
+References to automatic variables within macro definitions
+will not work.
+.PP
+The
+GNU Make
+.I foreach
+function is olny partially understood.
+This has no exact
+.I cook
+equivalent.
+.PP
+The GNU Make
+.I origin
+function is not understood.
+This has no
+.I cook
+equivalent.
+.PP
+The
+.IR archive (( member ))
+notation is not understood.
+These semantics are not available from
+.IR cook .
+.PP
+The
+.I MAKEFILES
+and
+.I MAKELEVEL
+variables are not translated,
+If you wish to reproduce this functionality,
+you must edit the output.
+.PP
+The
+.I MAKEFLAGS
+and
+.I MFLAGS
+variables will be translated to use the Cook
+.I options
+function,
+which has a different range of values.
+.PP
+Many variants of make can use builtin rules
+to make the Makefile if it is absent.
+.I Cook
+is unable to cook the cookbook if it is absent.
+.PP
+Wildcards are not understood in rule targets, rule dependencies
+or include directives.
+If you want these,
+you will have to edit the output to use the
+.I "[wildcard]"
+function.
+.PP
+Home directory tildes (~) are not understood in targets and
+dependencies.
+If you want this, you will have to edit the output to use the
+.I "[home]"
+function.
+.PP
+The \f(CW-l\fP\f(CIhome\fP dependency is not understood to mean a
+library.
+If you want this, you will have to edit the output to use the
+.IR "[collect findlibs -l" name "]"
+function.
+.PP
+The
+.I \&.EXPORT_ALL_VARIABLES
+rule is not understood.
+This has no
+.I cook
+equivalent.
+.br
+.ne 1i
+.SH OPTIONS
+The following options are understood:
+.TP 8n
+.B -Help
+.br
+Provide some help with using the
+.I make2cook
+command.
+.TP 8n
+.B -Environment
+.br
+This option causes fragments to test for environment variables
+when performing the default settings for variables.
+(This corresponds to the make -e option.)
+.TP 8n
+.B -History_Commands
+.br
+This option causes
+.I make2cook
+to include recipes for
+.I RCS
+and
+.I SCCS
+in the output.
+.TP 8n
+.B -Line_Numbers
+.br
+Insert line number directives into the output,
+so that it is possible to tell where the lines came from.
+Most useful when debugging.
+.I \*(n)
+program.
+.TP 8n
+.B -No_Internal_Rules
+.br
+This option may be used to supress all generation of recipes
+corresponding to make's internal rules.
+(This corresponds to the make -r option.)
+.TP 8n
+.B -VERSion
+.br
+Print the version of the
+.I \*(n)
+program being executed.
+.PP
+All other options will produce a diagnostic error.
+.so o__rules.so
+.so z_exit.so
+.so copyright.so

@@ -1,0 +1,448 @@
+/*
+ *	cook - file construction tool
+ *	Copyright (C) 2002, 2006 Peter Miller;
+ *	All rights reserved.
+ *
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+ *
+ * MANIFEST: instructions to Cook, how to build the archive directory
+ */
+
+/*
+ * Integration builds also make the files for distribution.
+ */
+if [not [defined baseline]] then
+{
+	all += integration-build-targets;
+
+	/*
+	 * Adjust the mtime of recipe targets to be exactly 1 second
+	 * younger than the youngest ingredient.  This helps aeipass
+	 * compress the mtimes.
+	 */
+	set time-adjust-back;
+}
+
+if [in [fromto %1.D%2 %2 [version]] 001 002 003] then
+if [find_command rpmbuild] then
+	all += RPM;
+
+integration-build-targets:
+	archive/[project_minus].tar.gz
+	/* archive/[project_minus].shar.01.gz */
+	/* archive/[project_minus].patch.gz */
+	[fromto etc/%.html archive/%.html
+		[match_mask etc/%.html [source_files]]
+       	]
+	archive/[project_short].gif
+	archive/[project_minus].ug.pdf
+	archive/[project_minus].rm.pdf
+	archive/[project_minus].tut.pdf
+	/* archive/[project_minus].faq */
+	archive/[project_minus].lsm
+	archive/[project_minus].spec
+	archive/[project_minus].README
+	archive/[project_minus].ae
+
+	/*
+	 * This next file is for the benefit of the Translation Project's
+	 * email robot.  (Yes, that's right, a bloody robot.)
+	 *
+	 * See http://www.iro.umontreal.ca/contrib/po/HTML/maintainers.html
+	 * for more information.
+	 *
+	 * I particularly dislike this approach, because it is incredibly
+	 * short sighted.  This approach fails to take into account that
+	 * you may want to have translations of manual pages and other
+	 * documentation, AS WELL AS translations of error messages.
+	 *
+	 * Would it make sense to ask authors to catenate all of
+	 * ther man pages together, and have a po/PACKAGE.man file?
+	 * No, of course not.  Would it make sense to ask authors to
+	 * catenate all of their other documentation together, and
+	 * have a po/PACKAGE.latex file?  No, of course not.  Well then,
+	 * why on Earth does it make sense to catenate together all of
+	 * the messages into a po/PACKAGE.pot file?  Betch.
+	 *
+	 * And then, to add insult to injury, it wastes space in the tarball.
+	 *
+	 * My project uses a directory tree
+	 * 	lib/
+	 *	    <LL>/
+	 *		LC_MESSAGES/
+	 *		    all of the various .po files go here
+	 *		man<N>/
+	 *		    all of the man<N> pages go here
+	 *		user-guide/
+	 *		    all of the files which make the
+	 *		    user guide go here.
+	 *		<other-docs>/
+	 *		    and so on...
+	 *
+	 * As you can see, this can accomodate translated .po files,
+	 * AND ALSO any other documentation, once it is translated.
+	 */
+	po/[project_short].pot
+	;
+
+%0%.y,M:: %0%.gen.c,Md;
+%0%.c,M:: %0%.c,Md;
+
+%1/%0%2.c,Md: %1/%0%2.c
+{
+	c_incl
+		-nc /* no cache */
+		-ns /* no system */
+		-eia /* empty if absent */
+		[stringset
+			[cc_include_flags]
+			[prepost "-I" "/%1" [search_list]]
+		]
+		[resolve %1/%0%2.c]
+		-nsri /* no source relative includes */
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-rlp [arch] /* remove leading architecture */
+		-o [target];
+}
+
+/*
+ * These recipes build a Makefile for a user.  They do not build a
+ * Makefile useful for a development build, because no arch
+ * information is included in the Makefile.
+ */
+
+makefile-per-file = [prepost "" ",M" [source_files]];
+
+Makefile.in: etc/Makefile.head etc/Makefile.sh etc/Makefile.awk [vs_file]
+	[makefile-per-file]
+{
+	cat [resolve etc/Makefile.head [makefile-per-file]] > [target];
+	sh [resolve etc/Makefile.sh] [source_files]
+		| [awk] -f [resolve etc/Makefile.awk]
+		>> [target];
+}
+
+%0%,M: etc/Makefi.file.sh etc/Makefile.awk
+{
+	depfile = [match_mask %%0%%,Md [need]];
+	sh [resolve etc/Makefi.file.sh] %0% [resolve %0%]
+			[resolve [depfile]]
+		| [awk] -f [resolve etc/Makefile.awk]
+		> [target];
+}
+
+CHANGES = etc/CHANGES.[version_short];
+
+source_file_order =
+	README
+	[sort
+		[stringset
+			[CHANGES] [source_files]
+			install-sh
+			BUILDING
+			LICENSE
+			MANIFEST
+			Makefile.in
+			etc/version.so
+			common/config.h.in
+			common/patchlevel.h
+			configure
+			[project_short].spec
+			[project_short].gif
+		-
+			README
+		]
+	]
+
+	/*
+	 * This next file is for the benefit of the Translation Project's
+	 * email robot.  (Yes, that's right, a bloody robot.)
+	 *
+	 * See http://www.iro.umontreal.ca/contrib/po/HTML/maintainers.html
+	 * for more information.
+	 *
+	 * I particularly dislike this approach, because it is incredibly
+	 * short sighted.  This approach fails to take into account that
+	 * you may want to have translations of manual pages and other
+	 * documentation, AS WELL AS translations of error messages.
+	 *
+	 * Would it make sense to ask authors to catenate all of
+	 * ther man pages together, and have a po/PACKAGE.man file?
+	 * No, of course not.  Would it make sense to ask authors to
+	 * catenate all of their other documentation together, and
+	 * have a po/PACKAGE.latex file?  No, of course not.  Well then,
+	 * why on Earth does it make sense to catenate together all of
+	 * the messages into a po/PACKAGE.pot file?  Betch.
+	 *
+	 * And then, to add insult to injury, it wastes space in the tarball.
+	 *
+	 * My project uses a directory tree
+	 * 	lib/
+	 *	    <LL>/
+	 *		LC_MESSAGES/
+	 *		    all of the various .po files go here
+	 *		man<N>/
+	 *		    all of the man<N> pages go here
+	 *		user-guide/
+	 *		    all of the files which make the
+	 *		    user guide go here.
+	 *		<other-docs>/
+	 *		    and so on...
+	 *
+	 * As you can see, this can accomodate translated .po files,
+	 * AND ALSO any other documentation, once it is translated.
+	 */
+	po/[project_short].pot
+	;
+
+archive/[project_minus].shar.01.gz: [source_file_order]
+	set shallow
+{
+	parts = [glob archive/[project_minus].shar.*];
+	if [parts] then
+		rm [parts]
+			set clearstat;
+	/* assumes shar.3.49 available */
+	shar -n[project_minus] -a -c -oarchive/[project_minus].shar -L200
+		-s "'Peter Miller <millerp@canb.auug.org.au>'"
+		[resolve [source_file_order]];
+	gzip -9 -v archive/[project_minus].shar.*;
+}
+
+archive/[project_minus].tar.gz: [source_file_order]
+	set shallow
+{
+	tar cf - [resolve [source_file_order]] |
+	tardy -unu 0 -gnu 0 -una Peter -gna Miller -p [project_minus] -ms 0644
+		-mc 07022 -now [prepost "-rp=" "" [search_list]]
+		> archive/[project_minus].tar;
+	gzip -9 -v archive/[project_minus].tar;
+}
+
+archive/[project_minus].ae: [source_files]
+	set shallow
+{
+	if [find_command aedist] then
+	{
+		/*
+		 * must be *system* aedist, not just built aedist,
+		 * since it uses the existing project, which may
+		 * not even be readable by the newly built aedist
+		 */
+		aedist --send --entire-source -ndh -naa
+			-p\=[project] -c\=[change]
+			-o [target];
+	}
+	else
+		[print Skipping [target], since no aedist(1) found];
+}
+
+[CHANGES]: etc/CHANGES.sh [vs_file]
+{
+	sh [resolve etc/CHANGES.sh] [project] > [target];
+}
+
+lib/%3/man%1/%2.%1,M:: lib/%3/man%1/%2.%1,Md;
+
+lib/%3/man%1/%2.%1,Md: lib/%3/man%1/%2.%1
+{
+	c_incl -nc -ns -eia -r
+		[stringset
+			[prepost "-I" "/lib/%3/man%1" [search_list]]
+			[prepost "-I" /[arch]/etc [search_list]]
+			[prepost "-I" "/etc" [search_list]]
+			[cc_include_flags]
+		]
+		[resolve lib/%3/man%1/%2.%1]
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-rlp [arch] /* remove leading architecture */
+		-o [target];
+}
+
+lib/%1/%2/main.%3,M:: lib/%1/%2/main.%3,Md;
+
+lib/%1/%2/main.%3,Md: lib/%1/%2/main.%3
+{
+	c_incl -nc -ns -eia -r
+		[prepost "-I" "/lib/%1/%2" [search_list]]
+		[prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve lib/%1/%2/main.%3]
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-rlp [arch] /* remove leading architecture */
+		-o [target];
+}
+
+archive/[project_minus].ug.pdf: lib/en/user-guide/user-guide.pdf
+	set shallow
+{
+	cp [resolve [need]] [target];
+}
+
+archive/[project_minus].rm.pdf: lib/en/refman/refman.pdf
+	set shallow
+{
+	cp [resolve [need]] [target];
+}
+
+archive/[project_minus].tut.pdf: lib/en/tutorial/tutorial.pdf
+	set shallow
+{
+	cp [resolve [need]] [target];
+}
+
+archive/[project_minus].faq: lib/en/faq/faq.txt
+	set shallow
+{
+	cp [resolve [need]] [target];
+}
+
+archive/[project_minus].lsm: lib/en/lsm/lsm.txt
+	set shallow
+{
+	cp [resolve [need]] [target];
+}
+
+README: lib/en/readme/readme.txt
+{
+	cp [resolve [need]] [target];
+}
+
+BUILDING: lib/en/building/building.txt
+{
+	cp [resolve [need]] [target];
+}
+
+archive/[project_minus].README: lib/en/readme/readme.txt
+	set shallow
+{
+	cp [resolve [need]] [target];
+}
+
+%0%,m: %0%: etc/MANIFEST.sh
+{
+	sh [resolve etc/MANIFEST.sh] %0% [resolve %0%] > [target];
+}
+
+MANIFEST: etc/MANIFEST.head
+	[addsuffix ",m" [stringset [source_files] - MANIFEST] [CHANGES]]
+{
+	cat [resolve [need]] > [target];
+}
+
+patch-files =
+	[prepost "" ",P"
+		common/patchlevel.h
+		[stringset
+			[source_file_order]
+		-
+			common/patchlevel.h
+		]
+	];
+
+archive/[project_minus].patch.gz: etc/patches.sh [patch-files]
+	set shallow
+{
+	sh [resolve [need]] | gzip -9 > [target];
+}
+
+%0%,P: %0%: etc/patch.file.sh
+{
+	sh [resolve etc/patch.file.sh] [project] [change] %0% [resolve %0%]
+		> [target];
+}
+
+etc/%.html.d: etc/%.html
+    set nocascade
+{
+	c_incl -nc -ns -eia -r -nrec
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		-prefix "'cascade etc/"%".html ='"
+		-suffix "';'" [resolve etc/%.html]
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-slp [arch] "'[arch]'" /* substitute leading path */
+		-o [target];
+}
+#include-cooked-nowarn [addsuffix ".d" [match_mask etc/%.html [source_files]]]
+
+
+archive/%.html: etc/%.html: etc/ssp.awk etc/version.so
+	set shallow
+{
+	roffpp
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve etc/%.html]
+	| groff -Tascii -t -P-hub -man
+	| [awk] -f [resolve etc/ssp.awk]
+	> [target];
+}
+
+
+[project_short].spec: etc/spec.sh [source_files]
+{
+	version\=[version_short]
+	sh [resolve etc/spec.sh] [source_files]
+		> [target];
+}
+
+
+archive/[project_minus].spec: [project_short].spec
+	set shallow
+{
+	cat [need] > [target];
+}
+
+archive/%.gif: etc/%.gif.uue
+	set shallow
+{
+	uudecode [resolve [need]] -o [target];
+}
+
+%.gif: etc/%.gif.uue
+	set shallow
+{
+	uudecode [resolve [need]] -o [target];
+}
+
+
+/*
+ * This is not in the integration build taregs because it takes far too
+ * long to do.
+ */
+
+RPM: archive/[project_minus]-1.i386.rpm;
+
+archive/[project_minus]-1.i386.rpm archive/[project_minus]-1.src.rpm:
+		archive/[project_minus].tar.gz etc/rpm-build.sh
+		archive/[project_short].gif
+	set shallow
+{
+	sh [resolve etc/rpm-build.sh]
+		RPM-temporary
+		[resolve archive/[project_minus].tar.gz]
+		;
+	mv RPM-temporary/RPMS/i386/[project_minus]-1.i386.rpm
+		archive/[project_minus]-1.i386.rpm
+		;
+	mv RPM-temporary/SRPMS/[project_minus]-1.src.rpm
+		archive/[project_minus]-1.src.rpm
+		;
+	rm -r RPM-temporary;
+}

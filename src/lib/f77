@@ -1,0 +1,100 @@
+/*
+ * NAME
+ *	f77 - the Fortran compiler cookbook
+ *
+ * DESCRIPTION
+ *	This cookbook describes how to work with C files.
+ *	Include file dependencies are automatically determined.
+ *
+ * RECIPES
+ *	%.o: %.f77	make object files form C source files
+ *
+ * VARIABLES
+ *	f77		The Fortran compiler command
+ *			Not altered if already defined.
+ *	f77_flags	options to pass to the Fortran compiler command
+ *			Not altered if already defined.
+ *			The default is empty.
+ *	ld_flags	Options passed to the compiler when linking,
+ *			these are typically library search paths and libraries.
+ *			Not altered if already defined.
+ *			The default is empty.
+ *	f77_src		Fortran source files in the current directory.
+ *	dot_src		Source files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_obj		Object files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_clean	Files which may be removed from the current directory
+ *			in a clean target.
+ *
+ * SEE ALSO
+ *	program		The program cookbook:
+ *	   ld		   The linker program
+ *	   ld_flags	   The linker options, NOT libraries.
+ *	   ld_libraries	   The linker options (-L, -l) for libraries.
+ *
+ * MANIFEST: cookbook for using Fortran
+ */
+
+#pragma once
+
+if [not [defined c_incl]] then
+	c_incl = [find_command c_incl];
+if [not [defined f77]] then
+	f77 = f77;
+if [not [defined f77_flags]] then
+	f77_flags = ;
+f77_src = [glob "*.f77" ];
+if [not [defined dot_src]] then
+	dot_src = ;
+dot_src = [stringset [dot_src] [f77_src] - [fromto %.f77 %.s [f77_src]]];
+if [not [defined dot_obj]] then
+	dot_obj = ;
+dot_obj = [stringset [dot_obj] [fromto %.f77 %.o [f77_src]]];
+if [not [defined dot_clean]] then
+	dot_clean = ;
+dot_clean =
+	[stringset
+		[dot_clean]
+		[fromto %.f77 %.o [f77_src]]
+		[fromto %.f77 %.s [f77_src]]
+	];
+
+%.o: %.f77
+{
+	[f77] [f77_flags]
+		[addprefix "-I" [search_list]]
+		-c [resolve %.f77];
+}
+
+/*
+ * if the c_incl command is available, then check dependencies
+ */
+#if [c_incl]
+
+%.f77.d: %.f77
+{
+	[c_incl] -nc -ns -nrec
+		--language\=optimistic
+		[cc_include_flags]
+		[resolve %.f77]
+		[addprefix "-I" [search_list]]
+		-prefix "'cascade %.f77 ='"
+		-suffix "';'"
+		> [target];
+}
+
+%.inc.d: %.inc
+{
+	[c_incl] -nc -ns -nrec
+		[cc_include_flags]
+		[resolve %.inc]
+		[addprefix "-I" [search_list]]
+		-prefix "'cascade %.inc ='"
+		-suffix "';'"
+		> [target];
+}
+
+f77_dep_files = [addsuffix ".d" [f77_src] [glob "*.inc"]];
+#include-cooked [f77_dep_files]
+#endif

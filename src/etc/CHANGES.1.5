@@ -1,0 +1,3574 @@
+
+
+
+Project "cook.1.5"						 Page 1
+List of Changes				       Sun Apr 17 06:26:04 1994
+
+Change	State		Description
+------- -------		-------------
+   1	completed	New release derived from cook.1.4.
+   2	completed	error in ULTRIX config
+   3	completed	add HP/UX config
+   4	completed	add the sort-newest function
+   5	completed	improve c_incl's handling of ifdef'ed out
+			include files
+   6	completed	add IRIX port
+   7	completed	Fixed a problem in c_incl for .. in paths
+   8	completed	note that IRIX has the tcgetpgrp function
+   9	completed	add progress stars
+  10	completed	better handling of bogus empty files
+  11	completed	recipes with no ingredients should not be
+			forced
+  12	completed	add fingerprinting
+  13	completed	add the txt2c helper program
+  14	completed	add '#include-cooked' feature
+  15	completed	tests must unset COOK environment variable
+  16	completed	fix bug in cookfp
+  17	completed	Use autoconf to configure
+  18	completed	improve timekeeping
+  19	completed	improve fingerprint usage
+  20	completed	command line variable settings are lost when
+			restarting after include-cooked files are
+			recooked
+  21	completed	fix problems with generated Makefile
+  22	completed	another generated Makefile.in fix
+  23	completed	test 14 makes an assumption
+  24	completed	Use pathconf to determine pathname and
+			filename limits.
+  25	completed	add solaris to the list of hetero development
+  26	completed	aegis now passes architecture as $arch not
+			$uname
+  27	completed	create "mprintf" and friends
+  28	completed	fix problems revealed by ULTRIX testing
+  29	completed	more problems revealed by cross-platform
+			testing
+  30	completed	Add the "nodefault" recipe flag.
+  31	completed	gives erroneous "already up to date" messages.
+  32	completed	the #include-cooked directive can sometimes
+			run out of file descriptors
+  33	completed	improve feedback when including large number
+			of files
+  34	completed	improve search_list semantics
+  35	completed	additional builtin functions
+  36	completed	add old change files
+  37	completed	add make2cook program
+  38	completed	add archives
+  39	completed	improve make2cook translator
+  40	completed	add VPATH to make2cook
+  41	completed	misc small improvements
+  42	completed	add archive long-name extensions
+  43	completed	fix Makefile problems
+  44	completed	yet another Pyramid problem!
+  45	being_		silent echo commands conflict with progress
+	integrated	stars
+
+
+
+Project "cook.1.5", Change 1					 Page 1
+Change Details				       Sun Apr 17 06:26:12 1994
+
+NAME
+	Project "cook.1.5", Delta 1, Change 1.
+
+SUMMARY
+	New release derived from cook.1.4.
+
+DESCRIPTION
+	New release derived from cook.1.4.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	LICENSE
+	source	create	1	aux/BUILDING.man
+	source	create	1	aux/CHANGES.sh
+	source	create	1	aux/Howto.cook
+	source	create	1	aux/MANIFEST.sh
+	source	create	1	aux/Makefile.awk
+	source	create	1	aux/Makefile.sh
+	source	create	1	aux/README.man
+	source	create	1	aux/patches.sh
+	source	create	1	c_incl/cache.c
+	source	create	1	c_incl/cache.h
+	source	create	1	c_incl/lang_c.c
+	source	create	1	c_incl/lang_roff.c
+	source	create	1	c_incl/main.c
+	source	create	1	c_incl/os.c
+	source	create	1	c_incl/os.h
+	source	create	1	c_incl/sniff.c
+	source	create	1	c_incl/sniff.h
+	source	create	1	common/ansi.c
+	source	create	1	common/arglex.c
+	source	create	1	common/arglex.h
+	source	create	1	common/error.c
+	source	create	1	common/error.h
+	source	create	1	common/help.c
+	source	create	1	common/help.h
+	source	create	1	common/main.h
+	source	create	1	common/mem.c
+	source	create	1	common/mem.h
+	source	create	1	common/s-v-arg.h
+	source	create	1	common/str.c
+	source	create	1	common/str.h
+	source	create	1	common/trace.c
+	source	create	1	common/trace.h
+	source	create	1	common/version.c
+
+
+
+Project "cook.1.5", Change 1					 Page 2
+Change Details				       Sun Apr 17 06:26:12 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	common/version.h
+	source	create	1	common/word.c
+	source	create	1	common/word.h
+	source	create	1	conf/ConvexOS-10
+	source	create	1	conf/SunOS-4.1.2
+	source	create	1	conf/SunOS-4.1.3
+	source	create	1	conf/SysV-4.0
+	source	create	1	conf/ULTRIX-4.2
+	source	create	1	conf/dcosx
+	source	create	1	conf/dgux-5.4.1
+	source	create	1	config
+	source	create	1	cook/builtin.c
+	source	create	1	cook/builtin.h
+	source	create	1	cook/cook.c
+	source	create	1	cook/cook.h
+	source	create	1	cook/env.c
+	source	create	1	cook/env.h
+	source	create	1	cook/expr.c
+	source	create	1	cook/expr.h
+	source	create	1	cook/glob.c
+	source	create	1	cook/glob.h
+	source	create	1	cook/hashline.h
+	source	create	1	cook/hashline.y
+	source	create	1	cook/id.c
+	source	create	1	cook/id.h
+	source	create	1	cook/lex.c
+	source	create	1	cook/lex.h
+	source	create	1	cook/listing.c
+	source	create	1	cook/listing.h
+	source	create	1	cook/main.c
+	source	create	1	cook/match.c
+	source	create	1	cook/match.h
+	source	create	1	cook/option.c
+	source	create	1	cook/option.h
+	source	create	1	cook/os.c
+	source	create	1	cook/os.h
+	source	create	1	cook/parse.h
+	source	create	1	cook/parse.y
+	source	create	1	cook/stmt.c
+	source	create	1	cook/stmt.h
+	source	create	1	cooktime/date.h
+	source	create	1	cooktime/date.y
+	source	create	1	cooktime/main.c
+	source	create	1	doc/builtin
+	source	create	1	doc/cmdline
+	source	create	1	doc/conditions
+	source	create	1	doc/glossary
+	source	create	1	doc/history
+	source	create	1	doc/how
+	source	create	1	doc/intro
+	source	create	1	doc/intro.aa
+	source	create	1	doc/intro.bb
+	source	create	1	doc/language
+	source	create	1	doc/match
+	source	create	1	doc/option
+
+
+
+Project "cook.1.5", Change 1					 Page 3
+Change Details				       Sun Apr 17 06:26:12 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	doc/refman.t
+	source	create	1	doc/system
+	source	create	1	doc/variables
+	source	create	1	find_libs/main.c
+	source	create	1	find_libs/os.c
+	source	create	1	find_libs/os.h
+	source	create	1	h/float.h
+	source	create	1	h/limits.h
+	source	create	1	h/stdarg.h-min
+	source	create	1	h/stddef.h
+	source	create	1	h/stdlib.h
+	source	create	1	h/string.h
+	source	create	1	h/time.h
+	source	create	1	lib/as
+	source	create	1	lib/bison
+	source	create	1	lib/c
+	source	create	1	lib/gcc
+	source	create	1	lib/home
+	source	create	1	lib/lex
+	source	create	1	lib/library
+	source	create	1	lib/print
+	source	create	1	lib/program
+	source	create	1	lib/sccs
+	source	create	1	lib/text
+	source	create	1	lib/usr
+	source	create	1	lib/usr.local
+	source	create	1	lib/yacc
+	source	create	1	lib/yacc_many
+	source	create	1	man1/c_incl.1
+	source	create	1	man1/cook.1
+	source	create	1	man1/cooktime.1
+	source	create	1	man1/copyright.so
+	source	create	1	man1/find_libs.1
+	source	create	1	man1/install.sh
+	source	create	1	man1/o__rules.so
+	source	create	1	man1/roffpp.1
+	source	create	1	roffpp/main.c
+	source	create	1	roffpp/preprocess.c
+	source	create	1	roffpp/preprocess.h
+	test	create	1	test/00/t0001a.sh
+	test	create	1	test/00/t0002a.sh
+	test	create	1	test/00/t0003a.sh
+	test	create	1	test/00/t0004a.sh
+	test	create	1	test/00/t0005a.sh
+	test	create	1	test/00/t0006a.sh
+	test	create	1	test/00/t0007a.sh
+	test	create	1	test/00/t0008a.sh
+	test	create	1	test/00/t0009a.sh
+	test	create	1	test/00/t0010a.sh
+	test	create	1	test/00/t0011a.sh
+	test	create	1	test/00/t0012a.sh
+	test	create	1	test/00/t0013a.sh
+	test	create	1	test/00/t0014a.sh
+	test	create	1	test/00/t0015a.sh
+	test	create	1	test/00/t0016a.sh
+
+
+
+Project "cook.1.5", Change 1					 Page 4
+Change Details				       Sun Apr 17 06:26:12 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	test	create	1	test/00/t0017a.sh
+	test	create	1	test/00/t0018a.sh
+	test	create	1	test/00/t0019a.sh
+	test	create	1	test/00/t0020a.sh
+	test	create	1	test/00/t0021a.sh
+	test	create	1	test/00/t0022a.sh
+	test	create	1	test/00/t0023a.sh
+	test	create	1	test/00/t0024a.sh
+	test	create	1	test/00/t0025a.sh
+	test	create	1	test/00/t0026a.sh
+	test	create	1	test/00/t0027a.sh
+	test	create	1	test/00/t0028a.sh
+	test	create	1	test/00/t0029a.sh
+	test	create	1	test/00/t0030a.sh
+	test	create	1	test/00/t0031a.sh
+	test	create	1	test/00/t0032a.sh
+	test	create	1	test/00/t0033a.sh
+	test	create	1	test/00/t0034a.sh
+	test	create	1	test/00/t0035a.sh
+	test	create	1	test/00/t0036a.sh
+	test	create	1	test/00/t0037a.sh
+	test	create	1	test/00/t0038a.sh
+	test	create	1	test/00/t0039a.sh
+	test	create	1	test/00/t0040a.sh
+	test	create	1	test/00/t0041a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Mar 28	pmiller
+			21:08:00 1993
+	develop_begin	Sun Mar 28	pmiller
+			21:08:00 1993
+	develop_end	Sun Mar 28	pmiller
+			21:08:00 1993
+	review_pass	Sun Mar 28	pmiller
+			21:08:00 1993
+	integrate_begin Sun Mar 28	pmiller
+			21:08:00 1993
+	integrate_pass	Sun Mar 28	pmiller
+			21:17:54 1993
+
+
+
+Project "cook.1.5", Change 2					 Page 1
+Change Details				       Sun Apr 17 06:26:13 1994
+
+NAME
+	Project "cook.1.5", Delta 2, Change 2.
+
+SUMMARY
+	error in ULTRIX config
+
+DESCRIPTION
+	An error in the ULTRIX config meant that cook always thought
+	it was in the background.
+
+	My thanks to Stuart Hungerford <stuarth@csis.dit.csiro.au> for
+	reporting this problem.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	conf/ULTRIX-4.2
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon May 17	pmiller
+			16:08:34 1993
+	develop_begin	Mon May 17	pmiller
+			16:08:56 1993
+	develop_end	Mon May 17	pmiller
+			16:17:19 1993
+	review_pass	Mon May 17	pmiller
+			16:17:25 1993
+	integrate_begin Mon May 17	pmiller	 Elapsed time: 0.040
+			16:18:05 1993		 days.
+	integrate_pass	Mon May 17	pmiller
+			16:36:10 1993
+
+
+
+Project "cook.1.5", Change 3					 Page 1
+Change Details				       Sun Apr 17 06:26:14 1994
+
+NAME
+	Project "cook.1.5", Delta 3, Change 3.
+
+SUMMARY
+	add HP/UX config
+
+DESCRIPTION
+	add HP/UX configuration information.
+
+	My thanks to Thierry Excoffier <exco@ligiahp.univ-lyon1.fr>
+	for this information.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	aux/BUILDING.man
+	source	modify	2	aux/Makefile.sh
+	source	modify	2	aux/README.man
+	source	create	1	conf/hpux-8.07
+	source	modify	2	cook/builtin.c
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue May 25	pmiller
+			09:37:14 1993
+	develop_begin	Tue May 25	pmiller	 Elapsed time: 0.114
+			09:37:22 1993		 days.
+	develop_end	Tue May 25	pmiller
+			10:28:36 1993
+	review_pass	Tue May 25	pmiller
+			10:29:36 1993
+	integrate_begin Tue May 25	pmiller	 Elapsed time: 0.186
+			10:30:25 1993		 days.
+	integrate_pass	Tue May 25	pmiller
+			11:53:55 1993
+
+
+
+Project "cook.1.5", Change 4					 Page 1
+Change Details				       Sun Apr 17 06:26:15 1994
+
+NAME
+	Project "cook.1.5", Delta 4, Change 4.
+
+SUMMARY
+	add the sort-newest function
+
+DESCRIPTION
+	add the sort-newest function
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	3	cook/builtin.c
+	source	modify	2	cook/cook.c
+	source	modify	2	cook/cook.h
+	source	modify	2	doc/builtin
+	test	create	1	test/00/t0042a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri May 28	pmiller
+			15:24:55 1993
+	develop_begin	Fri May 28	pmiller	 Elapsed time: 0.849
+			15:25:10 1993		 days.
+	develop_end	Fri May 28	pmiller
+			21:47:26 1993
+	review_pass	Fri May 28	pmiller
+			21:50:13 1993
+	integrate_begin Fri May 28	pmiller	 Elapsed time: 0.045
+			21:51:06 1993		 days.
+	integrate_pass	Fri May 28	pmiller
+			22:11:20 1993
+
+
+
+Project "cook.1.5", Change 5					 Page 1
+Change Details				       Sun Apr 17 06:26:15 1994
+
+NAME
+	Project "cook.1.5", Delta 5, Change 5.
+
+SUMMARY
+	improve c_incl's handling of ifdef'ed out include files
+
+DESCRIPTION
+	improve c_incl's handling of ifdef'ed out include files
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	aux/Howto.cook
+	source	modify	2	c_incl/lang_c.c
+	source	modify	2	c_incl/sniff.c
+	source	modify	2	config
+	source	modify	2	cook/hashline.y
+	source	modify	2	cook/parse.y
+	source	modify	2	cooktime/date.y
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jun 17	pmiller
+			12:36:50 1993
+	develop_begin	Thu Jun 17	pmiller	 Elapsed time: 0.201
+			12:37:05 1993		 days.
+	develop_end	Thu Jun 17	pmiller
+			14:07:38 1993
+	review_pass	Thu Jun 17	pmiller
+			14:07:49 1993
+	integrate_begin Thu Jun 17	pmiller	 Elapsed time: 0.039
+			14:08:20 1993		 days.
+	integrate_pass	Thu Jun 17	pmiller
+			14:25:53 1993
+
+
+
+Project "cook.1.5", Change 6					 Page 1
+Change Details				       Sun Apr 17 06:26:16 1994
+
+NAME
+	Project "cook.1.5", Delta 6, Change 6.
+
+SUMMARY
+	add IRIX port
+
+DESCRIPTION
+	My thanks to Timothy Shimeall
+	<shimeall@gravy3.cs.nps.navy.mil> for reporting this problem.
+
+	Other than using the System V config.h file, the porting
+	changes were  restricted to "cook/os.c" had to deal with two
+	incompatabilities: (a) the routine "readlink" returns ENXIO
+	when called with a non-symbolic on the IRIS workstations
+	(instead of EINVAL); (b) and "cook/listing.c": the symbol
+	TIOCGETPGRP is not defined on the IRIS, but TIOCGPGRP is, with
+	equivalent functionality.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	3	aux/BUILDING.man
+	source	modify	3	aux/Makefile.sh
+	source	modify	2	conf/ConvexOS-10
+	source	create	1	conf/IRIX-4.0
+	source	modify	2	conf/SunOS-4.1.2
+	source	modify	2	conf/SunOS-4.1.3
+	source	modify	2	conf/SysV-4.0
+	source	modify	3	conf/ULTRIX-4.2
+	source	modify	2	conf/dcosx
+	source	modify	2	conf/dgux-5.4.1
+	source	modify	2	conf/hpux-8.07
+	source	modify	3	config
+	source	modify	2	cook/listing.c
+	source	modify	2	cook/os.c
+	source	modify	3	cooktime/date.y
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat Aug 14	pmiller
+			23:41:31 1993
+	develop_begin	Sat Aug 14	pmiller	 Elapsed time: 0.739
+			23:41:47 1993		 days.
+	develop_end	Sun Aug 15	pmiller
+			21:44:27 1993
+
+
+
+Project "cook.1.5", Change 6					 Page 2
+Change Details				       Sun Apr 17 06:26:16 1994
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	review_pass	Sun Aug 15	pmiller
+			21:44:35 1993
+	integrate_begin Sun Aug 15	pmiller	 Elapsed time: 0.000
+			21:45:18 1993		 days.
+	integrate_pass	Mon Aug 16	pmiller
+			08:40:28 1993
+
+
+
+Project "cook.1.5", Change 7					 Page 1
+Change Details				       Sun Apr 17 06:26:17 1994
+
+NAME
+	Project "cook.1.5", Delta 7, Change 7.
+
+SUMMARY
+	Fixed a problem in c_incl for .. in paths
+
+DESCRIPTION
+	Fixed a problem with c_incl where it did not handle flattening
+	.. in paths correctly.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	3	c_incl/sniff.c
+	test	create	1	test/00/t0043a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Sep 21	pmiller
+			13:20:25 1993
+	develop_begin	Tue Sep 21	pmiller	 Elapsed time: 0.053
+			13:20:53 1993		 days.
+	develop_end	Tue Sep 21	pmiller
+			13:44:43 1993
+	review_pass	Tue Sep 21	pmiller
+			13:44:50 1993
+	integrate_begin Tue Sep 21	pmiller	 Elapsed time: 0.074
+			13:45:36 1993		 days.
+	integrate_pass	Tue Sep 21	pmiller
+			14:18:50 1993
+
+
+
+Project "cook.1.5", Change 8					 Page 1
+Change Details				       Sun Apr 17 06:26:18 1994
+
+NAME
+	Project "cook.1.5", Delta 8, Change 8.
+
+SUMMARY
+	note that IRIX has the tcgetpgrp function
+
+DESCRIPTION
+	note that IRIX has the tcgetpgrp function
+
+	My thanks to John D. McCalpin
+	<mccalpin@perelandra.cms.udel.edu> for suggesting this
+	improvement.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by external_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	conf/IRIX-4.0
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Oct 10	pmiller
+			23:14:24 1993
+	develop_begin	Sun Oct 10	pmiller
+			23:14:29 1993
+	develop_end	Sun Oct 10	pmiller
+			23:21:02 1993
+	review_pass	Sun Oct 10	pmiller
+			23:21:40 1993
+	integrate_begin Sun Oct 10	pmiller	 Elapsed time: 0.042
+			23:22:46 1993		 days.
+	integrate_pass	Sun Oct 10	pmiller
+			23:41:37 1993
+
+
+
+Project "cook.1.5", Change 9					 Page 1
+Change Details				       Sun Apr 17 06:26:19 1994
+
+NAME
+	Project "cook.1.5", Delta 9, Change 9.
+
+SUMMARY
+	add progress stars
+
+DESCRIPTION
+	A new option is added, to emit an asterisk once a second, or
+	once for each file fount up-to-date, whichever is slower.  For
+	large projects, it can be comforting to know cook is working
+	and not hung.  This behaviour is NOT the default.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	4	aux/BUILDING.man
+	source	modify	3	aux/README.man
+	source	modify	2	common/error.c
+	source	modify	2	common/error.h
+	source	modify	2	common/help.c
+	source	modify	4	cook/builtin.c
+	source	modify	3	cook/cook.c
+	source	modify	2	cook/main.c
+	source	modify	2	cook/option.h
+	source	modify	3	cook/os.c
+	source	modify	2	cook/os.h
+	source	modify	2	cook/stmt.c
+	source	modify	2	doc/conditions
+	source	modify	2	man1/cook.1
+	source	modify	2	man1/copyright.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat Jan	 8	pmiller
+			06:57:12 1994
+	develop_begin	Sat Jan	 8	pmiller	 Elapsed time: 1.158
+			06:57:19 1994		 days.
+	develop_end	Sun Jan	 9	pmiller
+			08:08:32 1994
+	review_pass	Sun Jan	 9	pmiller
+			08:08:38 1994
+	integrate_begin Sun Jan	 9	pmiller	 Elapsed time: 0.036
+			08:09:21 1994		 days.
+	integrate_pass	Sun Jan	 9	pmiller
+			08:25:24 1994
+
+
+
+Project "cook.1.5", Change 10					 Page 1
+Change Details				       Sun Apr 17 06:26:20 1994
+
+NAME
+	Project "cook.1.5", Delta 10, Change 10.
+
+SUMMARY
+	better handling of bogus empty files
+
+DESCRIPTION
+	c_incl forgets to mention bogus empty files, resulting in
+	their not being cooked before the compilation.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	4	c_incl/sniff.c
+	test	create	1	test/00/t0044a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Jan 16	pmiller
+			08:30:06 1994
+	develop_begin	Sun Jan 16	pmiller	 Elapsed time: 0.060
+			08:30:10 1994		 days.
+	develop_end	Sun Jan 16	pmiller
+			08:57:20 1994
+	review_pass	Sun Jan 16	pmiller
+			08:57:25 1994
+	integrate_begin Sun Jan 16	pmiller	 Elapsed time: 0.030
+			08:58:09 1994		 days.
+	integrate_pass	Sun Jan 16	pmiller
+			09:11:35 1994
+
+
+
+Project "cook.1.5", Change 11					 Page 1
+Change Details				       Sun Apr 17 06:26:21 1994
+
+NAME
+	Project "cook.1.5", Delta 11, Change 11.
+
+SUMMARY
+	recipes with no ingredients should not be forced
+
+DESCRIPTION
+	Reciped with no ingredients are expected by users to only be
+	performed if the target doe4s not exist, because it is not out-
+	of-date with respect to its ingredients.  Unfortunately, cook
+	was doing the reverese, and always cooking them.  This change
+	corrects this.	The old behaviour is available withe 'set'
+	claus attached to each recipe; use 'set force'
+
+	My thanks to Antonio Celso Martinez <amg@dit.upm.es> for
+	reporting this bug.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	4	aux/README.man
+	source	modify	4	cook/cook.c
+	source	remove	1	doc/how
+				Moved to doc/how.so
+	source	create	1	doc/how.so
+				Moved from doc/how
+	source	modify	2	doc/refman.t
+	test	create	1	test/00/t0045a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jan 20	pmiller
+			09:51:27 1994
+	develop_begin	Thu Jan 20	pmiller	 Elapsed time: 0.084
+			09:51:32 1994		 days.
+	develop_end	Thu Jan 20	pmiller
+			10:29:15 1994
+	review_pass	Thu Jan 20	pmiller
+			10:29:23 1994
+	integrate_begin Thu Jan 20	pmiller	 Elapsed time: 0.028
+			10:29:54 1994		 days.
+	integrate_pass	Thu Jan 20	pmiller
+			10:42:19 1994
+
+
+
+Project "cook.1.5", Change 12					 Page 1
+Change Details				       Sun Apr 17 06:26:22 1994
+
+NAME
+	Project "cook.1.5", Delta 13, Change 12.
+
+SUMMARY
+	add fingerprinting
+
+DESCRIPTION
+	Fingerprinting is used to supplement last-modified times on
+	files, to determine if a file hash changed. It is not enabled
+	by default, because it can sometime cause surprizes to users
+	who are not expecting it.  The fingerprint is a
+	cryptographically strong hash of the file contents, resulting
+	in a 57-byte string, which is remembered as a base-64 number
+	of 76 bytes.
+
+	The fingerprinting is based on the 'fingerprint' package by
+	Dan Bernstien <djb@silverton.berkeley.edu> with the interface
+	rather drastically altered.  The tests cases for the cookfp
+	output were generated using Dan's package.  I therefore
+	believe the output to be identical.
+
+	My thanks to Mitch Davis <cscmd@lux.latrobe.edu.au> for
+	suggesting this improvement.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by external_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	4	aux/Howto.cook
+	source	modify	5	aux/Makefile.sh
+	source	modify	6	aux/README.man
+	source	create	1	aux/new.1.4.so
+	source	create	1	aux/new.1.5.so
+	source	create	1	aux/template/c
+	source	create	1	aux/template/generic
+	source	create	1	aux/template/h
+	source	create	1	aux/template/man
+	source	create	1	aux/template/ms
+	source	create	1	aux/template/sh
+	source	create	1	aux/template/test
+	source	modify	2	c_incl/cache.c
+	source	modify	2	c_incl/cache.h
+	source	modify	3	c_incl/lang_c.c
+	source	modify	2	c_incl/lang_roff.c
+	source	modify	5	c_incl/sniff.c
+	source	modify	2	common/arglex.c
+	source	create	1	common/fp.c
+	source	create	1	common/fp.h
+	source	create	1	common/fp/README
+	source	create	1	common/fp/cksum.c
+	source	create	1	common/fp/cksum.h
+
+
+
+Project "cook.1.5", Change 12					 Page 2
+Change Details				       Sun Apr 17 06:26:22 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	common/fp/combined.c
+	source	create	1	common/fp/combined.h
+	source	create	1	common/fp/crc32.c
+	source	create	1	common/fp/crc32.h
+	source	create	1	common/fp/len.c
+	source	create	1	common/fp/len.h
+	source	create	1	common/fp/md5.c
+	source	create	1	common/fp/md5.h
+	source	create	1	common/fp/snefru.c
+	source	create	1	common/fp/snefru.h
+	source	modify	4	common/help.c
+	source	modify	3	common/mem.c
+	source	modify	3	common/mem.h
+	source	modify	2	common/str.c
+	source	modify	2	common/str.h
+	source	create	1	common/symtab.c
+	source	create	1	common/symtab.h
+	source	modify	2	common/word.c
+	source	modify	4	config
+	source	modify	5	cook/builtin.c
+	source	modify	2	cook/builtin.h
+	source	modify	6	cook/cook.c
+	source	modify	3	cook/cook.h
+	source	modify	2	cook/env.c
+	source	modify	2	cook/expr.c
+	source	create	1	cook/fngrprnt.h
+	source	create	1	cook/fngrprnt.y
+	source	create	1	cook/fngrprnt_lex.c
+	source	create	1	cook/fngrprnt_lex.h
+	source	modify	2	cook/glob.c
+	source	modify	3	cook/id.c
+	source	modify	2	cook/id.h
+	source	modify	2	cook/lex.c
+	source	modify	4	cook/main.c
+	source	modify	2	cook/match.c
+	source	modify	3	cook/option.h
+	source	modify	4	cook/os.c
+	source	modify	3	cook/os.h
+	source	modify	3	cook/parse.y
+	source	create	1	cook/stat.cache.c
+	source	create	1	cook/stat.cache.h
+	source	modify	3	cook/stmt.c
+	source	create	1	cookfp/main.c
+	source	remove	1	doc/cmdline
+				Moved to doc/cmdline.so
+	source	create	1	doc/cmdline.so
+				Moved from doc/cmdline
+	source	remove	1	doc/glossary
+				Moved to doc/glossary.so
+	source	create	1	doc/glossary.so
+				Moved from doc/glossary
+	source	modify	2	doc/how.so
+	source	remove	1	doc/language
+				Moved to doc/language.so
+	source	create	1	doc/language.so
+
+
+
+Project "cook.1.5", Change 12					 Page 3
+Change Details				       Sun Apr 17 06:26:22 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				Moved from doc/language
+	source	modify	3	doc/refman.t
+	source	modify	4	man1/cook.1
+	source	create	1	man1/cookfp.1
+	source	modify	2	roffpp/preprocess.c
+	test	create	1	test/00/t0046a.sh
+	test	create	1	test/00/t0047a.sh
+	source	modify	2	txt2c/main.c
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Jan 23	pmiller
+			07:15:40 1994
+	develop_begin	Sun Jan 23	pmiller	 Elapsed time: 5.261
+			07:15:47 1994		 days.
+	develop_end	Sun Jan 30	pmiller
+			09:13:13 1994
+	review_pass	Sun Jan 30	pmiller
+			09:13:20 1994
+	integrate_begin Sun Jan 30	pmiller	 Elapsed time: 0.583
+			09:14:17 1994		 days.
+	integrate_pass	Mon Jan 31	pmiller
+			06:06:43 1994
+
+
+
+Project "cook.1.5", Change 13					 Page 1
+Change Details				       Sun Apr 17 06:26:23 1994
+
+NAME
+	Project "cook.1.5", Delta 12, Change 13.
+
+SUMMARY
+	add the txt2c helper program
+
+DESCRIPTION
+	The txt2c program translates text files into C strings, for
+	inclusion into C sources.  This allows the -Help text to be
+	identical to the manual pages, with no manual intervention
+	required.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	5	aux/BUILDING.man
+	source	modify	3	aux/Howto.cook
+	source	modify	4	aux/Makefile.sh
+	source	modify	5	aux/README.man
+	source	modify	2	c_incl/main.c
+	source	modify	3	common/help.c
+	source	modify	2	common/help.h
+	source	modify	2	common/mem.c
+	source	modify	2	common/mem.h
+	source	create	1	common/version-stmp.c
+	source	create	1	common/version-stmp.h
+	source	modify	2	common/version.c
+	source	modify	5	cook/cook.c
+	source	modify	2	cook/id.c
+	source	modify	3	cook/main.c
+	source	modify	2	cooktime/main.c
+	source	modify	3	doc/conditions
+	source	modify	2	find_libs/main.c
+	source	modify	2	man1/c_incl.1
+	source	modify	3	man1/cook.1
+	source	modify	2	man1/cooktime.1
+	source	modify	3	man1/copyright.so
+	source	modify	2	man1/find_libs.1
+	source	modify	2	man1/roffpp.1
+	source	create	1	man1/z_exit.so
+	source	create	1	man1/z_name.so
+	source	modify	2	roffpp/main.c
+	source	create	1	txt2c/main.c
+	source	create	1	txt2c/txt2c.c
+	source	create	1	txt2c/txt2c.h
+
+
+
+Project "cook.1.5", Change 13					 Page 2
+Change Details				       Sun Apr 17 06:26:23 1994
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Jan 26	pmiller
+			08:23:23 1994
+	develop_begin	Wed Jan 26	pmiller	 Elapsed time: 1.363
+			08:23:28 1994		 days.
+	develop_end	Thu Jan 27	pmiller
+			11:07:01 1994
+	review_pass	Thu Jan 27	pmiller
+			11:07:19 1994
+	integrate_begin Thu Jan 27	pmiller	 Elapsed time: 0.066
+			11:08:13 1994		 days.
+	integrate_pass	Thu Jan 27	pmiller
+			11:38:05 1994
+
+
+
+Project "cook.1.5", Change 14					 Page 1
+Change Details				       Sun Apr 17 06:26:24 1994
+
+NAME
+	Project "cook.1.5", Delta 16, Change 14.
+
+SUMMARY
+	add '#include-cooked' feature
+
+DESCRIPTION
+	Add the '#include-cooked' preprocessor directive.  Cook make
+	sure such files are up-to-date, and if not, brinks them up-to-
+	date, and the re-read the cookbook and thus the include files.
+	This idea came from GNU Make.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	5	aux/Howto.cook
+	source	modify	7	aux/README.man
+	source	modify	2	aux/new.1.5.so
+	source	modify	2	aux/patches.sh
+	source	modify	3	aux/template/test
+	source	modify	3	c_incl/main.c
+	source	modify	6	c_incl/sniff.c
+	source	modify	2	c_incl/sniff.h
+	source	modify	6	cook/builtin.c
+	source	modify	7	cook/cook.c
+	source	modify	4	cook/cook.h
+	source	modify	3	cook/hashline.y
+	source	modify	4	cook/id.c
+	source	modify	3	cook/id.h
+	source	modify	3	cook/lex.c
+	source	modify	2	cook/lex.h
+	source	modify	5	cook/main.c
+	source	modify	4	cook/option.h
+	source	modify	2	doc/language.so
+	source	modify	3	man1/c_incl.1
+	test	create	1	test/00/t0048a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Jan 31	pmiller	 Elapsed time: 0.350
+			06:15:56 1994		 days.
+	develop_begin	Mon Jan 31	pmiller	 Elapsed time: 0.774
+			08:53:39 1994		 days.
+	develop_end	Tue Feb	 1	pmiller
+			07:11:57 1994
+	review_pass	Tue Feb	 1	pmiller
+			07:12:08 1994
+	integrate_begin Tue Feb	 1	pmiller	 Elapsed time: 0.197
+			07:13:07 1994		 days.
+
+
+
+Project "cook.1.5", Change 14					 Page 2
+Change Details				       Sun Apr 17 06:26:24 1994
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_fail	Tue Feb	 1	pmiller	 problems with doc/
+			08:41:47 1994		 language.so
+						 Elapsed time: 0.102
+						 days.
+	develop_end	Tue Feb	 1	pmiller
+			09:27:28 1994
+	review_pass	Tue Feb	 1	pmiller
+			09:27:36 1994
+	integrate_begin Tue Feb	 1	pmiller	 Elapsed time: 0.140
+			09:28:36 1994		 days.
+	integrate_pass	Tue Feb	 1	pmiller
+			10:31:40 1994
+
+
+
+Project "cook.1.5", Change 15					 Page 1
+Change Details				       Sun Apr 17 06:26:24 1994
+
+NAME
+	Project "cook.1.5", Delta 14, Change 15.
+
+SUMMARY
+	tests must unset COOK environment variable
+
+DESCRIPTION
+	The COOK environment has the potential to alter the tesults of
+	the automatic tests.  All tests need to make sure it is not
+	set, unless the test is explictly testing it.
+
+	This change is exempt from testing against the baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	aux/template/test
+	test	modify	2	test/00/t0001a.sh
+	test	modify	2	test/00/t0002a.sh
+	test	modify	2	test/00/t0003a.sh
+	test	modify	2	test/00/t0004a.sh
+	test	modify	2	test/00/t0005a.sh
+	test	modify	2	test/00/t0006a.sh
+	test	modify	2	test/00/t0007a.sh
+	test	modify	2	test/00/t0008a.sh
+	test	modify	2	test/00/t0009a.sh
+	test	modify	2	test/00/t0010a.sh
+	test	modify	2	test/00/t0011a.sh
+	test	modify	2	test/00/t0012a.sh
+	test	modify	2	test/00/t0013a.sh
+	test	modify	2	test/00/t0014a.sh
+	test	modify	2	test/00/t0015a.sh
+	test	modify	2	test/00/t0016a.sh
+	test	modify	2	test/00/t0017a.sh
+	test	modify	2	test/00/t0018a.sh
+	test	modify	2	test/00/t0019a.sh
+	test	modify	2	test/00/t0020a.sh
+	test	modify	2	test/00/t0021a.sh
+	test	modify	2	test/00/t0022a.sh
+	test	modify	2	test/00/t0023a.sh
+	test	modify	2	test/00/t0024a.sh
+	test	modify	2	test/00/t0025a.sh
+	test	modify	2	test/00/t0026a.sh
+	test	modify	2	test/00/t0027a.sh
+	test	modify	2	test/00/t0028a.sh
+	test	modify	2	test/00/t0029a.sh
+	test	modify	2	test/00/t0030a.sh
+	test	modify	2	test/00/t0031a.sh
+	test	modify	2	test/00/t0032a.sh
+	test	modify	2	test/00/t0033a.sh
+
+
+
+Project "cook.1.5", Change 15					 Page 2
+Change Details				       Sun Apr 17 06:26:24 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	test	modify	2	test/00/t0034a.sh
+	test	modify	2	test/00/t0035a.sh
+	test	modify	2	test/00/t0036a.sh
+	test	modify	2	test/00/t0037a.sh
+	test	modify	2	test/00/t0038a.sh
+	test	modify	2	test/00/t0039a.sh
+	test	modify	2	test/00/t0040a.sh
+	test	modify	2	test/00/t0041a.sh
+	test	modify	2	test/00/t0042a.sh
+	test	modify	2	test/00/t0043a.sh
+	test	modify	2	test/00/t0044a.sh
+	test	modify	2	test/00/t0045a.sh
+	test	modify	2	test/00/t0046a.sh
+	test	modify	2	test/00/t0047a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Jan 31	pmiller
+			06:17:20 1994
+	develop_begin	Mon Jan 31	pmiller	 Elapsed time: 0.184
+			06:17:25 1994		 days.
+	develop_end	Mon Jan 31	pmiller
+			07:40:13 1994
+	review_pass	Mon Jan 31	pmiller
+			07:40:20 1994
+	integrate_begin Mon Jan 31	pmiller	 Elapsed time: 0.146
+			07:41:17 1994		 days.
+	integrate_pass	Mon Jan 31	pmiller
+			08:47:06 1994
+
+
+
+Project "cook.1.5", Change 16					 Page 1
+Change Details				       Sun Apr 17 06:26:25 1994
+
+NAME
+	Project "cook.1.5", Delta 17, Change 16.
+
+SUMMARY
+	fix bug in cookfp
+
+DESCRIPTION
+	Need to reset between calls to methods.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	common/fp/crc32.c
+	source	modify	2	common/fp/len.c
+	source	modify	2	common/fp/md5.c
+	source	modify	2	common/fp/snefru.c
+	source	modify	2	cookfp/main.c
+	test	create	1	test/00/t0049a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Feb	 1	pmiller
+			12:33:27 1994
+	develop_begin	Tue Feb	 1	pmiller	 Elapsed time: 0.079
+			12:33:44 1994		 days.
+	develop_end	Tue Feb	 1	pmiller
+			13:09:21 1994
+	review_pass	Tue Feb	 1	pmiller
+			13:10:28 1994
+	integrate_begin Tue Feb	 1	pmiller	 Elapsed time: 0.048
+			13:11:12 1994		 days.
+	integrate_pass	Tue Feb	 1	pmiller
+			13:32:47 1994
+
+
+
+Project "cook.1.5", Change 17					 Page 1
+Change Details				       Sun Apr 17 06:26:27 1994
+
+NAME
+	Project "cook.1.5", Delta 21, Change 17.
+
+SUMMARY
+	Use autoconf to configure
+
+DESCRIPTION
+	Previous versions of cook used configuration files included
+	with cook; this required editing by the end-user and was the
+	source of a number of problems.		In addition, only
+	systems which reported a configuration were able to be
+	supported.  The use of autoconf to produce a configure shell
+	script, which will dynamically adapt to any environment it is
+	placed in, makes cook more portable, and should result in
+	fewer configuration errors.
+
+	This change also starts using the hetrogeneous development
+	capabilities of aegis, necessitating some changes to the aux/
+	Howto.cook file, in particular using #include-cooked for
+	include file dependencies, rather than c_incl's cache, which
+	is host-architecture-specific in its cache file.
+
+	The generation of the patch file has also been changed, so
+	that it is much faster at integrat-build.
+
+	This change is exempt from testing against the baseline.
+
+ARCHITECTURE
+	This change must build and test in the "sun4" architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	create	1	BUILDING
+	build	create	1	MANIFEST
+	build	create	1	Makefile.in
+	build	create	1	README
+	source	modify	6	aux/BUILDING.man
+	source	create	1	aux/CHANGES.1.4
+	source	modify	7	aux/Howto.cook
+	source	modify	2	aux/MANIFEST.sh
+	source	create	1	aux/Makefi.file.sh
+	source	create	1	aux/Makefile.head
+	source	modify	6	aux/Makefile.sh
+	source	create	1	aux/config.h.in
+	source	create	1	aux/configure.in
+	source	modify	3	aux/new.1.5.so
+	build	create	1	aux/new.so
+	source	create	1	aux/patch.file.sh
+	source	modify	3	aux/patches.sh
+	source	modify	4	aux/template/test
+	source	modify	3	c_incl/cache.c
+	source	modify	4	c_incl/lang_c.c
+	source	modify	3	c_incl/lang_roff.c
+
+
+
+Project "cook.1.5", Change 17					 Page 2
+Change Details				       Sun Apr 17 06:26:27 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	4	c_incl/main.c
+	source	modify	7	c_incl/sniff.c
+	source	modify	3	c_incl/sniff.h
+	source	create	1	common/ac/dirent.h
+	source	create	1	common/ac/limits.h
+	source	create	1	common/ac/stddef.h
+	source	create	1	common/ac/stdlib.h
+	source	create	1	common/ac/string.h
+	source	create	1	common/ac/time.h
+	source	create	1	common/ac/unistd.h
+	source	modify	2	common/ansi.c
+	source	modify	3	common/arglex.c
+	build	create	1	common/config.h.in
+	source	modify	3	common/error.c
+	source	modify	2	common/fp.c
+	source	modify	5	common/help.c
+	source	modify	2	common/main.h
+	source	modify	4	common/mem.c
+	source	modify	4	common/mem.h
+	build	create	1	common/patchlevel.h
+	source	modify	2	common/s-v-arg.h
+	source	modify	3	common/str.c
+	source	modify	3	common/str.h
+	source	modify	2	common/trace.c
+	source	modify	2	common/trace.h
+	source	modify	3	common/version.c
+	source	modify	3	common/word.c
+	source	modify	2	common/word.h
+	source	remove	2	conf/ConvexOS-10
+	source	remove	2	conf/IRIX-4.0
+	source	remove	2	conf/SunOS-4.1.2
+	source	remove	2	conf/SunOS-4.1.3
+	source	remove	2	conf/SysV-4.0
+	source	remove	3	conf/ULTRIX-4.2
+	source	remove	2	conf/dcosx
+	source	remove	2	conf/dgux-5.4.1
+	source	remove	2	conf/hpux-8.07
+	source	modify	6	config
+	build	create	1	configure
+	source	modify	9	cook/builtin.c
+	source	modify	10	cook/cook.c
+	source	modify	7	cook/cook.h
+	source	modify	3	cook/env.c
+	source	modify	3	cook/expr.c
+	source	modify	2	cook/fngrprnt.h
+	source	modify	2	cook/fngrprnt.y
+	source	modify	3	cook/glob.c
+	source	modify	4	cook/hashline.y
+	source	modify	5	cook/id.c
+	source	modify	4	cook/lex.c
+	source	modify	3	cook/listing.c
+	source	modify	8	cook/main.c
+	source	modify	3	cook/match.c
+	source	modify	2	cook/option.c
+	source	modify	7	cook/os.c
+
+
+
+Project "cook.1.5", Change 17					 Page 3
+Change Details				       Sun Apr 17 06:26:27 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	5	cook/os.h
+	source	modify	5	cook/parse.y
+	source	modify	3	cook/stat.cache.c
+	source	modify	3	cook/stat.cache.h
+	source	modify	4	cook/stmt.c
+	source	modify	3	cookfp/main.c
+	source	modify	2	cooktime/date.h
+	source	modify	4	cooktime/date.y
+	source	modify	3	cooktime/main.c
+	build	create	1	doc/version.so
+	source	modify	3	find_libs/main.c
+	source	remove	1	h/float.h
+	source	remove	1	h/limits.h
+	source	remove	1	h/stdarg.h-min
+	source	remove	1	h/stddef.h
+	source	remove	1	h/stdlib.h
+	source	remove	1	h/string.h
+	source	remove	1	h/time.h
+	source	remove	1	man1/install.sh
+	source	modify	3	roffpp/main.c
+	source	modify	3	roffpp/preprocess.c
+	test	modify	3	test/00/t0001a.sh
+	test	modify	3	test/00/t0002a.sh
+	test	modify	3	test/00/t0003a.sh
+	test	modify	3	test/00/t0004a.sh
+	test	modify	3	test/00/t0005a.sh
+	test	modify	3	test/00/t0006a.sh
+	test	modify	3	test/00/t0007a.sh
+	test	modify	3	test/00/t0008a.sh
+	test	modify	3	test/00/t0009a.sh
+	test	modify	3	test/00/t0010a.sh
+	test	modify	3	test/00/t0011a.sh
+	test	modify	3	test/00/t0012a.sh
+	test	modify	3	test/00/t0013a.sh
+	test	modify	3	test/00/t0014a.sh
+	test	modify	3	test/00/t0015a.sh
+	test	modify	3	test/00/t0016a.sh
+	test	modify	3	test/00/t0017a.sh
+	test	modify	3	test/00/t0018a.sh
+	test	modify	3	test/00/t0019a.sh
+	test	modify	3	test/00/t0020a.sh
+	test	modify	3	test/00/t0021a.sh
+	test	modify	3	test/00/t0022a.sh
+	test	modify	3	test/00/t0023a.sh
+	test	modify	3	test/00/t0024a.sh
+	test	modify	3	test/00/t0025a.sh
+	test	modify	3	test/00/t0026a.sh
+	test	modify	3	test/00/t0027a.sh
+	test	modify	3	test/00/t0028a.sh
+	test	modify	3	test/00/t0029a.sh
+	test	modify	3	test/00/t0030a.sh
+	test	modify	3	test/00/t0031a.sh
+	test	modify	3	test/00/t0032a.sh
+	test	modify	3	test/00/t0033a.sh
+	test	modify	3	test/00/t0034a.sh
+
+
+
+Project "cook.1.5", Change 17					 Page 4
+Change Details				       Sun Apr 17 06:26:27 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	test	modify	3	test/00/t0035a.sh
+	test	modify	3	test/00/t0036a.sh
+	test	modify	3	test/00/t0037a.sh
+	test	modify	3	test/00/t0038a.sh
+	test	modify	3	test/00/t0039a.sh
+	test	modify	3	test/00/t0040a.sh
+	test	modify	3	test/00/t0041a.sh
+	test	modify	3	test/00/t0042a.sh
+	test	modify	3	test/00/t0043a.sh
+	test	modify	3	test/00/t0044a.sh
+	test	modify	3	test/00/t0045a.sh
+	test	modify	3	test/00/t0046a.sh
+	test	modify	3	test/00/t0047a.sh
+	test	modify	2	test/00/t0048a.sh
+	test	modify	2	test/00/t0049a.sh
+	test	modify	2	test/00/t0050a.sh
+	test	modify	2	test/00/t0051a.sh
+	test	modify	2	test/00/t0052a.sh
+	source	modify	3	txt2c/main.c
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Feb	 1	pmiller
+			15:39:02 1994
+	develop_begin	Tue Feb	 1	pmiller	 Elapsed time: 8.100
+			15:39:27 1994		 days.
+	develop_end	Sun Feb 13	pmiller
+			08:54:36 1994
+	review_pass	Sun Feb 13	pmiller
+			08:54:44 1994
+	integrate_begin Sun Feb 13	pmiller	 Elapsed time: 0.627
+			08:55:53 1994		 days.
+	integrate_pass	Mon Feb 14	pmiller
+			06:08:07 1994
+
+
+
+Project "cook.1.5", Change 18					 Page 1
+Change Details				       Sun Apr 17 06:26:28 1994
+
+NAME
+	Project "cook.1.5", Delta 18, Change 18.
+
+SUMMARY
+	improve timekeeping
+
+DESCRIPTION
+	The use of fingerprints revealed a deficiency in the way cook
+	tracked timestamps.  This change improves that.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	8	cook/cook.c
+	source	modify	5	cook/cook.h
+	source	modify	2	cook/hashline.h
+	source	modify	6	cook/main.c
+	source	modify	5	cook/option.h
+	source	modify	5	cook/os.c
+	source	modify	4	cook/parse.y
+	source	modify	2	doc/cmdline.so
+	source	modify	3	doc/language.so
+	source	modify	5	man1/cook.1
+	test	create	1	test/00/t0050a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Feb	 3	pmiller
+			05:56:32 1994
+	develop_begin	Thu Feb	 3	pmiller	 Elapsed time: 1.166
+			05:56:38 1994		 days.
+	develop_end	Fri Feb	 4	pmiller
+			07:11:20 1994
+	review_pass	Fri Feb	 4	pmiller
+			07:12:25 1994
+	integrate_begin Fri Feb	 4	pmiller	 Elapsed time: 0.955
+			07:13:20 1994		 days.
+	integrate_pass	Fri Feb	 4	pmiller
+			14:22:55 1994
+
+
+
+Project "cook.1.5", Change 19					 Page 1
+Change Details				       Sun Apr 17 06:26:28 1994
+
+NAME
+	Project "cook.1.5", Delta 19, Change 19.
+
+SUMMARY
+	improve fingerprint usage
+
+DESCRIPTION
+	improve fingerprint usage
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	5	config
+	source	modify	7	cook/builtin.c
+	source	modify	9	cook/cook.c
+	source	modify	6	cook/cook.h
+	source	modify	6	cook/os.c
+	source	modify	4	cook/os.h
+	source	modify	2	cook/stat.cache.c
+	source	modify	2	cook/stat.cache.h
+	test	create	1	test/00/t0051a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Feb	 8	pmiller
+			06:32:14 1994
+	develop_begin	Tue Feb	 8	pmiller	 Elapsed time: 0.603
+			06:32:19 1994		 days.
+	develop_end	Tue Feb	 8	pmiller	 Elapsed time: 0.143
+			11:03:33 1994		 days.
+	review_pass	Tue Feb	 8	pmiller
+			12:08:05 1994
+	integrate_begin Tue Feb	 8	pmiller	 Elapsed time: 0.159
+			12:09:30 1994		 days.
+	integrate_pass	Tue Feb	 8	pmiller
+			13:21:05 1994
+
+
+
+Project "cook.1.5", Change 20					 Page 1
+Change Details				       Sun Apr 17 06:26:29 1994
+
+NAME
+	Project "cook.1.5", Delta 20, Change 20.
+
+SUMMARY
+	command line variable settings are lost when restarting after
+	include-cooked files are recooked
+
+DESCRIPTION
+	none
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	6	aux/Howto.cook
+	source	modify	8	cook/builtin.c
+	source	modify	7	cook/main.c
+	source	modify	6	cook/option.h
+	test	create	1	test/00/t0052a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Feb 10	pmiller
+			07:24:22 1994
+	develop_begin	Thu Feb 10	pmiller	 Elapsed time: 0.000
+			07:24:29 1994		 days.
+	develop_end	Thu Feb 10	pmiller
+			17:00:47 1994
+	review_pass	Thu Feb 10	pmiller
+			17:01:09 1994
+	integrate_begin Thu Feb 10	pmiller	 Elapsed time: 0.000
+			17:02:04 1994		 days.
+	integrate_pass	Fri Feb 11	pmiller
+			06:35:47 1994
+
+
+
+Project "cook.1.5", Change 21					 Page 1
+Change Details				       Sun Apr 17 06:26:30 1994
+
+NAME
+	Project "cook.1.5", Delta 22, Change 21.
+
+SUMMARY
+	fix problems with generated Makefile
+
+DESCRIPTION
+	fix problems with generated Makefile, it failed to mention
+	include dependencies, and the ``all'' recipe was not at the
+	beginning, where it needs to be.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURE
+	This change must build and test in the "sun4" architecture.
+
+CAUSE
+	This change was caused by chain.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	2	MANIFEST
+	build	modify	2	Makefile.in
+	build	modify	2	README
+	source	modify	8	aux/Howto.cook
+	source	modify	2	aux/Makefi.file.sh
+	source	modify	2	aux/Makefile.head
+	source	modify	7	aux/Makefile.sh
+	build	modify	2	aux/new.so
+	source	modify	8	c_incl/sniff.c
+	build	modify	2	common/config.h.in
+	build	modify	2	common/patchlevel.h
+	build	modify	2	configure
+	build	modify	2	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 14	pmiller
+			06:41:33 1994
+	develop_begin	Mon Feb 14	pmiller	 Elapsed time: 0.463
+			06:41:38 1994		 days.
+	develop_end	Mon Feb 14	pmiller
+			10:09:55 1994
+	review_pass	Mon Feb 14	pmiller
+			10:10:53 1994
+	integrate_begin Mon Feb 14	pmiller	 Elapsed time: 0.151
+			10:11:52 1994		 days.
+	integrate_pass	Mon Feb 14	pmiller
+			11:19:46 1994
+
+
+
+Project "cook.1.5", Change 22					 Page 1
+Change Details				       Sun Apr 17 06:26:31 1994
+
+NAME
+	Project "cook.1.5", Delta 23, Change 22.
+
+SUMMARY
+	another generated Makefile.in fix
+
+DESCRIPTION
+	The generated Makefile does not have the txt2c use, and thus
+	fails to construct some include files.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "sun4" architecture.
+
+CAUSE
+	This change was caused by chain.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	3	MANIFEST
+	build	modify	3	Makefile.in
+	build	modify	3	README
+	source	modify	3	aux/Makefi.file.sh
+	build	modify	3	aux/new.so
+	build	modify	3	common/config.h.in
+	build	modify	3	common/patchlevel.h
+	build	modify	3	configure
+	build	modify	3	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 14	pmiller
+			11:33:09 1994
+	develop_begin	Mon Feb 14	pmiller	 Elapsed time: 0.032
+			11:33:14 1994		 days.
+	develop_end	Mon Feb 14	pmiller
+			11:47:28 1994
+	review_pass	Mon Feb 14	pmiller
+			11:47:37 1994
+	integrate_begin Mon Feb 14	pmiller	 Elapsed time: 0.057
+			11:50:00 1994		 days.
+	integrate_pass	Mon Feb 14	pmiller
+			12:15:38 1994
+
+
+
+Project "cook.1.5", Change 23					 Page 1
+Change Details				       Sun Apr 17 06:26:32 1994
+
+NAME
+	Project "cook.1.5", Delta 24, Change 23.
+
+SUMMARY
+	test 14 makes an assumption
+
+DESCRIPTION
+	Test 14 examines the getenv function, but assumes that LOGNAME
+	will be set in the environment.	 This is not valid.
+
+	This change is exempt from testing against the baseline.
+
+ARCHITECTURE
+	This change must build and test in the "sun4" architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	4	BUILDING
+	build	modify	4	MANIFEST
+	build	modify	4	Makefile.in
+	build	modify	4	README
+	source	modify	4	aux/Makefi.file.sh
+	build	modify	4	aux/new.so
+	build	modify	4	common/config.h.in
+	build	modify	4	common/patchlevel.h
+	build	modify	4	configure
+	build	modify	4	doc/version.so
+	test	modify	4	test/00/t0014a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 14	pmiller
+			12:51:04 1994
+	develop_begin	Mon Feb 14	pmiller	 Elapsed time: 0.093
+			12:51:13 1994		 days.
+	develop_end	Mon Feb 14	pmiller
+			13:32:51 1994
+	review_pass	Mon Feb 14	pmiller
+			13:33:07 1994
+	integrate_begin Mon Feb 14	pmiller	 Elapsed time: 0.044
+			13:35:39 1994		 days.
+	integrate_pass	Mon Feb 14	pmiller
+			13:55:28 1994
+
+
+
+Project "cook.1.5", Change 24					 Page 1
+Change Details				       Sun Apr 17 06:26:33 1994
+
+NAME
+	Project "cook.1.5", Delta 25, Change 24.
+
+SUMMARY
+	Use pathconf to determine pathname and filename limits.
+
+DESCRIPTION
+	Use pathconf to determine pathname and filename limits.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURE
+	This change must build and test in the "sun4" architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	5	BUILDING
+	build	modify	5	MANIFEST
+	build	modify	5	Makefile.in
+	build	modify	5	README
+	build	modify	5	aux/new.so
+	source	modify	2	common/ac/limits.h
+	build	modify	5	common/config.h.in
+	build	modify	5	common/patchlevel.h
+	build	modify	5	configure
+	source	modify	8	cook/os.c
+	build	modify	5	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 14	pmiller
+			13:51:57 1994
+	develop_begin	Mon Feb 14	pmiller	 Elapsed time: 0.068
+			13:57:38 1994		 days.
+	develop_end	Mon Feb 14	pmiller
+			14:28:14 1994
+	review_pass	Mon Feb 14	pmiller
+			14:28:25 1994
+	integrate_begin Mon Feb 14	pmiller	 Elapsed time: 0.100
+			14:32:18 1994		 days.
+	integrate_pass	Mon Feb 14	pmiller
+			15:17:14 1994
+
+
+
+Project "cook.1.5", Change 25					 Page 1
+Change Details				       Sun Apr 17 06:26:34 1994
+
+NAME
+	Project "cook.1.5", Delta 26, Change 25.
+
+SUMMARY
+	add solaris to the list of hetero development
+
+DESCRIPTION
+	add solaris to the list of hetero development
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	6	BUILDING
+	build	modify	6	MANIFEST
+	build	modify	6	Makefile.in
+	build	modify	6	README
+	source	modify	9	aux/Howto.cook
+	build	modify	6	aux/new.so
+	build	modify	6	common/config.h.in
+	build	modify	6	common/patchlevel.h
+	source	modify	7	config
+	build	modify	6	configure
+	source	modify	9	cook/os.c
+	build	modify	6	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 14	pmiller
+			14:22:09 1994
+	develop_begin	Mon Feb 14	pmiller	 Elapsed time: 0.800
+			14:22:21 1994		 days.
+	develop_end	Tue Feb 15	pmiller
+			12:52:23 1994
+	review_pass	Tue Feb 15	pmiller
+			12:52:32 1994
+	integrate_begin Tue Feb 15	pmiller	 Elapsed time: 0.131
+			13:00:51 1994		 days.
+	integrate_pass	Tue Feb 15	pmiller
+			13:59:35 1994
+
+
+
+Project "cook.1.5", Change 26					 Page 1
+Change Details				       Sun Apr 17 06:26:35 1994
+
+NAME
+	Project "cook.1.5", Delta 36, Change 26.
+
+SUMMARY
+	aegis now passes architecture as $arch not $uname
+
+DESCRIPTION
+	aegis now passes architecture as $arch not $uname
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	14	BUILDING
+	build	modify	14	MANIFEST
+	build	modify	14	Makefile.in
+	build	modify	14	README
+	source	modify	14	aux/Howto.cook
+	build	modify	14	aux/new.so
+	build	modify	14	common/config.h.in
+	build	modify	14	common/patchlevel.h
+	source	modify	9	config
+	build	modify	14	configure
+	build	modify	14	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Feb 15	pmiller
+			14:25:59 1994
+	develop_begin	Tue Feb 15	pmiller	 Elapsed time: 8.170
+			14:26:07 1994		 days.
+	develop_end	Sun Feb 27	pmiller
+			08:12:32 1994
+	review_pass	Sun Feb 27	pmiller
+			08:12:44 1994
+	integrate_begin Sun Feb 27	pmiller	 Elapsed time: 0.045
+			08:13:43 1994		 days.
+	integrate_fail	Sun Feb 27	pmiller	 be more careful about
+			08:33:57 1994		 using [baseline]
+						 Elapsed time: 0.042
+						 days.
+	develop_end	Sun Feb 27	pmiller
+			08:52:50 1994
+	review_pass	Sun Feb 27	pmiller
+			08:53:59 1994
+	integrate_begin Sun Feb 27	pmiller	 Elapsed time: 0.118
+
+
+
+Project "cook.1.5", Change 26					 Page 2
+Change Details				       Sun Apr 17 06:26:35 1994
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			08:54:52 1994		 days.
+	integrate_pass	Sun Feb 27	pmiller
+			09:47:47 1994
+
+
+
+Project "cook.1.5", Change 27					 Page 1
+Change Details				       Sun Apr 17 06:26:36 1994
+
+NAME
+	Project "cook.1.5", Delta 28, Change 27.
+
+SUMMARY
+	create "mprintf" and friends
+
+DESCRIPTION
+	Split the str_format function into a "memory printf" so that
+	it can be used by the error functions also, thus requiring
+	smaller buffers.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	7	BUILDING
+	build	modify	7	MANIFEST
+	build	modify	7	Makefile.in
+	build	modify	7	README
+	source	modify	10	aux/Howto.cook
+	source	modify	8	aux/Makefile.sh
+	build	modify	7	aux/new.so
+	build	modify	7	common/config.h.in
+	source	modify	4	common/error.c
+	source	create	1	common/mprintf.c
+	source	create	1	common/mprintf.h
+	build	modify	7	common/patchlevel.h
+	source	modify	4	common/str.c
+	source	modify	8	config
+	build	modify	7	configure
+	build	modify	7	doc/version.so
+	test	modify	3	test/00/t0051a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Feb 16	pmiller
+			09:16:45 1994
+	develop_begin	Wed Feb 16	pmiller	 Elapsed time: 0.622
+			09:16:52 1994		 days.
+	develop_end	Thu Feb 17	pmiller
+			06:26:44 1994
+	review_pass	Thu Feb 17	pmiller
+			06:32:20 1994
+	integrate_begin Thu Feb 17	pmiller
+			06:34:38 1994
+	integrate_fail	Thu Feb 17	pmiller	 Problems with the
+			06:38:22 1994		 build, it infinite
+
+
+
+Project "cook.1.5", Change 27					 Page 2
+Change Details				       Sun Apr 17 06:26:36 1994
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+						 loops on patchlevel.h
+						 Elapsed time: 0.000
+						 days.
+	develop_end	Thu Feb 17	pmiller
+			15:56:41 1994
+	review_pass	Thu Feb 17	pmiller	 Elapsed time: 0.046
+			15:57:57 1994		 days.
+	integrate_begin Thu Feb 17	pmiller	 Elapsed time: 0.000
+			16:18:43 1994		 days.
+	integrate_pass	Fri Feb 18	pmiller
+			05:50:23 1994
+
+
+
+Project "cook.1.5", Change 28					 Page 1
+Change Details				       Sun Apr 17 06:26:37 1994
+
+NAME
+	Project "cook.1.5", Delta 29, Change 28.
+
+SUMMARY
+	fix problems revealed by ULTRIX testing
+
+DESCRIPTION
+	fix problems revealed by ULTRIX testing
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	8	BUILDING
+	build	modify	8	MANIFEST
+	build	modify	8	Makefile.in
+	build	modify	8	README
+	source	modify	11	aux/Howto.cook
+	source	modify	5	aux/Makefi.file.sh
+	source	modify	2	aux/config.h.in
+	source	modify	2	aux/configure.in
+	build	modify	8	aux/new.so
+	build	modify	8	common/config.h.in
+	source	modify	3	common/main.h
+	source	modify	2	common/mprintf.c
+	build	modify	8	common/patchlevel.h
+	build	modify	8	configure
+	source	modify	4	cook/stat.cache.c
+	build	modify	8	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Feb 18	pmiller
+			10:49:02 1994
+	develop_begin	Fri Feb 18	pmiller	 Elapsed time: 0.454
+			10:49:12 1994		 days.
+	develop_end	Sat Feb 19	pmiller
+			06:43:42 1994
+	review_pass	Sat Feb 19	pmiller
+			06:44:15 1994
+	integrate_begin Sat Feb 19	pmiller	 Elapsed time: 0.117
+			06:45:32 1994		 days.
+	integrate_pass	Sat Feb 19	pmiller
+			07:38:02 1994
+
+
+
+Project "cook.1.5", Change 29					 Page 1
+Change Details				       Sun Apr 17 06:26:38 1994
+
+NAME
+	Project "cook.1.5", Delta 30, Change 29.
+
+SUMMARY
+	more problems revealed by cross-platform testing
+
+DESCRIPTION
+	Cross-platform testing revealed a number of improvements.
+	This change addresses those found by testing on convex,
+	aviion, ultrix and pyramid.  Not all platforms had all of the
+	problems.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	9	BUILDING
+	build	modify	9	MANIFEST
+	build	modify	9	Makefile.in
+	build	modify	9	README
+	source	modify	6	aux/Makefi.file.sh
+	source	modify	3	aux/Makefile.head
+	source	modify	9	aux/Makefile.sh
+	source	modify	3	aux/configure.in
+	build	modify	9	aux/new.so
+	source	modify	5	aux/template/test
+	build	modify	9	common/config.h.in
+	build	modify	9	common/patchlevel.h
+	build	modify	9	configure
+	source	modify	4	cookfp/main.c
+	build	modify	9	doc/version.so
+	test	modify	4	test/00/t0010a.sh
+	test	modify	4	test/00/t0029a.sh
+	test	modify	4	test/00/t0031a.sh
+	test	modify	4	test/00/t0033a.sh
+	test	modify	4	test/00/t0034a.sh
+	test	modify	4	test/00/t0040a.sh
+	test	modify	4	test/00/t0041a.sh
+	test	modify	4	test/00/t0043a.sh
+	test	modify	4	test/00/t0044a.sh
+	test	modify	4	test/00/t0045a.sh
+	test	modify	4	test/00/t0046a.sh
+	test	modify	4	test/00/t0047a.sh
+	test	modify	3	test/00/t0048a.sh
+	test	modify	3	test/00/t0049a.sh
+	test	modify	3	test/00/t0050a.sh
+	test	modify	4	test/00/t0051a.sh
+	test	modify	3	test/00/t0052a.sh
+
+
+
+Project "cook.1.5", Change 29					 Page 2
+Change Details				       Sun Apr 17 06:26:38 1994
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Feb 20	pmiller
+			06:29:39 1994
+	develop_begin	Sun Feb 20	pmiller	 Elapsed time: 0.253
+			06:29:45 1994		 days.
+	develop_end	Sun Feb 20	pmiller
+			08:23:45 1994
+	review_pass	Sun Feb 20	pmiller
+			08:23:53 1994
+	integrate_begin Sun Feb 20	pmiller	 Elapsed time: 0.147
+			08:26:22 1994		 days.
+	integrate_pass	Sun Feb 20	pmiller
+			09:32:18 1994
+
+
+
+Project "cook.1.5", Change 30					 Page 1
+Change Details				       Sun Apr 17 06:26:39 1994
+
+NAME
+	Project "cook.1.5", Delta 31, Change 30.
+
+SUMMARY
+	Add the "nodefault" recipe flag.
+
+DESCRIPTION
+	The "nodefault" recipe flag may be used on ingredients recipes
+	to indicate that it is not o be considered thje default
+	recipe.	  This is useful for generated include-cooked files.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	10	BUILDING
+	build	modify	10	MANIFEST
+	build	modify	10	Makefile.in
+	build	modify	10	README
+	build	modify	10	aux/new.so
+	build	modify	10	common/config.h.in
+	build	modify	10	common/patchlevel.h
+	build	modify	10	configure
+	source	modify	11	cook/cook.c
+	source	modify	8	cook/cook.h
+	source	modify	9	cook/main.c
+	source	modify	6	cook/parse.y
+	source	modify	4	doc/language.so
+	build	modify	10	doc/version.so
+	source	modify	2	lib/c
+	test	create	1	test/00/t0053a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 21	pmiller
+			05:59:17 1994
+	develop_begin	Mon Feb 21	pmiller	 Elapsed time: 0.176
+			05:59:23 1994		 days.
+	develop_end	Mon Feb 21	pmiller
+			07:18:48 1994
+	review_pass	Mon Feb 21	pmiller
+			07:18:56 1994
+	integrate_begin Mon Feb 21	pmiller	 Elapsed time: 0.378
+			07:21:21 1994		 days.
+	integrate_pass	Mon Feb 21	pmiller
+			10:11:33 1994
+
+
+
+Project "cook.1.5", Change 31					 Page 1
+Change Details				       Sun Apr 17 06:26:39 1994
+
+NAME
+	Project "cook.1.5", Delta 32, Change 31.
+
+SUMMARY
+	gives erroneous "already up to date" messages.
+
+DESCRIPTION
+	gives erroneous "already up to date" messages.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	11	BUILDING
+	build	modify	11	MANIFEST
+	build	modify	11	Makefile.in
+	build	modify	11	README
+	source	modify	12	aux/Howto.cook
+	build	modify	11	aux/new.so
+	build	modify	11	common/config.h.in
+	build	modify	11	common/patchlevel.h
+	build	modify	11	configure
+	source	modify	12	cook/cook.c
+	source	modify	9	cook/cook.h
+	source	modify	10	cook/os.c
+	source	modify	6	cook/os.h
+	build	modify	11	doc/version.so
+	test	modify	5	test/00/t0051a.sh
+	test	create	1	test/00/t0054a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 21	pmiller
+			10:20:12 1994
+	develop_begin	Mon Feb 21	pmiller	 Elapsed time: 0.688
+			10:20:19 1994		 days.
+	develop_end	Mon Feb 21	pmiller
+			15:29:48 1994
+	review_pass	Mon Feb 21	pmiller
+			15:30:12 1994
+	integrate_begin Mon Feb 21	pmiller	 Elapsed time: 0.058
+			15:33:10 1994		 days.
+	integrate_pass	Mon Feb 21	pmiller
+			15:59:03 1994
+
+
+
+Project "cook.1.5", Change 32					 Page 1
+Change Details				       Sun Apr 17 06:26:40 1994
+
+NAME
+	Project "cook.1.5", Delta 33, Change 32.
+
+SUMMARY
+	the #include-cooked directive can sometimes run out of file
+	descriptors
+
+DESCRIPTION
+	the #include-cooked directive can sometimes run out of file
+	descriptors
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	12	BUILDING
+	build	modify	12	MANIFEST
+	build	modify	12	Makefile.in
+	build	modify	12	README
+	source	modify	13	aux/Howto.cook
+	build	modify	12	aux/new.so
+	build	modify	12	common/config.h.in
+	build	modify	12	common/patchlevel.h
+	build	modify	12	configure
+	source	modify	5	cook/hashline.y
+	source	modify	5	cook/lex.c
+	source	modify	3	cook/lex.h
+	build	modify	12	doc/version.so
+	test	create	1	test/00/t0055a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Feb 22	pmiller
+			06:41:31 1994
+	develop_begin	Tue Feb 22	pmiller	 Elapsed time: 0.818
+			06:41:38 1994		 days.
+	develop_end	Tue Feb 22	pmiller
+			12:49:50 1994
+	review_pass	Tue Feb 22	pmiller
+			12:51:16 1994
+	integrate_begin Tue Feb 22	pmiller	 Elapsed time: 0.067
+			12:53:42 1994		 days.
+	integrate_pass	Wed Feb 23	pmiller
+			05:53:50 1994
+
+
+
+Project "cook.1.5", Change 33					 Page 1
+Change Details				       Sun Apr 17 06:26:41 1994
+
+NAME
+	Project "cook.1.5", Delta 34, Change 33.
+
+SUMMARY
+	improve feedback when including large number of files
+
+DESCRIPTION
+	The star progress feedback did not come on until after the
+	#include-cooked files were found to be up-to-date.  This
+	change turns the stars on earlier, and also adds feedback for
+	including ghte files themselves; often taking several seconds.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	13	BUILDING
+	build	modify	13	MANIFEST
+	build	modify	13	Makefile.in
+	build	modify	13	README
+	build	modify	13	aux/new.so
+	build	modify	13	common/config.h.in
+	build	modify	13	common/patchlevel.h
+	build	modify	13	configure
+	source	modify	6	cook/hashline.y
+	source	modify	10	cook/main.c
+	build	modify	13	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Feb 23	pmiller
+			15:14:14 1994
+	develop_begin	Wed Feb 23	pmiller	 Elapsed time: 0.077
+			15:14:21 1994		 days.
+	develop_end	Wed Feb 23	pmiller
+			15:48:50 1994
+	review_pass	Wed Feb 23	pmiller
+			15:49:01 1994
+	integrate_begin Wed Feb 23	pmiller	 Elapsed time: 0.074
+			15:52:39 1994		 days.
+	integrate_pass	Wed Feb 23	pmiller
+			16:26:06 1994
+
+
+
+Project "cook.1.5", Change 34					 Page 1
+Change Details				       Sun Apr 17 06:26:42 1994
+
+NAME
+	Project "cook.1.5", Delta 37, Change 34.
+
+SUMMARY
+	improve search_list semantics
+
+DESCRIPTION
+	Change the semantics of search_list, so that the depth of the
+	search list for targets is limited to the depth of the
+	shallowest of its ingredients.	This is to guarantee that when
+	ingredients change they result in targets earlier in the
+	search_list being updated.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	15	BUILDING
+	build	modify	15	MANIFEST
+	build	modify	15	Makefile.in
+	build	modify	15	README
+	source	modify	4	aux/new.1.5.so
+	build	modify	15	aux/new.so
+	build	modify	15	common/config.h.in
+	source	modify	5	common/error.c
+	build	modify	15	common/patchlevel.h
+	build	modify	15	configure
+	source	modify	10	cook/builtin.c
+	source	modify	13	cook/cook.c
+	source	modify	10	cook/cook.h
+	source	modify	7	cook/hashline.y
+	source	modify	6	cook/lex.c
+	build	modify	15	doc/version.so
+	test	create	1	test/00/t0056a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Feb 23	pmiller	 Elapsed time: 1.699
+			15:32:40 1994		 days.
+	develop_begin	Mon Feb 28	pmiller	 Elapsed time: 0.000
+			05:47:07 1994		 days.
+	develop_end	Mon Feb 28	pmiller
+			16:17:36 1994
+	review_pass	Mon Feb 28	pmiller	 Elapsed time: 0.061
+			16:21:02 1994		 days.
+	integrate_begin Mon Feb 28	pmiller	 Elapsed time: 0.000
+			16:48:33 1994		 days.
+	integrate_pass	Tue Mar	 1	pmiller
+			05:57:21 1994
+
+
+
+Project "cook.1.5", Change 35					 Page 1
+Change Details				       Sun Apr 17 06:26:43 1994
+
+NAME
+	Project "cook.1.5", Delta 39, Change 35.
+
+SUMMARY
+	additional builtin functions
+
+DESCRIPTION
+	1. Several more builtin functions have been added, mostly
+	inspired by GNU Make 3.70.  This should ease transition for
+	some folks.
+	2. The documentation of the builtin functions has been
+	improved a little.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	17	BUILDING
+	build	modify	17	MANIFEST
+	build	modify	17	Makefile.in
+	build	modify	17	README
+	source	modify	15	aux/Howto.cook
+	build	modify	17	aux/new.so
+	build	modify	17	common/config.h.in
+	build	modify	17	common/patchlevel.h
+	build	modify	17	configure
+	source	modify	11	cook/builtin.c
+	source	create	1	cook/builtin/addprefix.c
+	source	create	1	cook/builtin/addprefix.h
+	source	create	1	cook/builtin/addsuffix.c
+	source	create	1	cook/builtin/addsuffix.h
+	source	create	1	cook/builtin/basename.c
+	source	create	1	cook/builtin/basename.h
+	source	create	1	cook/builtin/boolean.c
+	source	create	1	cook/builtin/boolean.h
+	source	create	1	cook/builtin/collect.c
+	source	create	1	cook/builtin/collect.h
+	source	create	1	cook/builtin/cook.c
+	source	create	1	cook/builtin/cook.h
+	source	create	1	cook/builtin/defined.c
+	source	create	1	cook/builtin/defined.h
+	source	create	1	cook/builtin/execute.c
+	source	create	1	cook/builtin/execute.h
+	source	create	1	cook/builtin/exists.c
+	source	create	1	cook/builtin/exists.h
+	source	create	1	cook/builtin/filter_out.c
+	source	create	1	cook/builtin/filter_out.h
+	source	create	1	cook/builtin/find_command.c
+	source	create	1	cook/builtin/find_command.h
+	source	create	1	cook/builtin/getenv.c
+	source	create	1	cook/builtin/getenv.h
+
+
+
+Project "cook.1.5", Change 35					 Page 2
+Change Details				       Sun Apr 17 06:26:43 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	cook/builtin/glob.c
+				Moved from cook/glob.c
+	source	create	1	cook/builtin/glob.h
+				Moved from cook/glob.h
+	source	create	1	cook/builtin/join.c
+	source	create	1	cook/builtin/join.h
+	source	create	1	cook/builtin/match.c
+	source	create	1	cook/builtin/match.h
+	source	create	1	cook/builtin/opsys.c
+	source	create	1	cook/builtin/opsys.h
+	source	create	1	cook/builtin/pathname.c
+	source	create	1	cook/builtin/pathname.h
+	source	create	1	cook/builtin/stringset.c
+	source	create	1	cook/builtin/stringset.h
+	source	create	1	cook/builtin/subst.c
+	source	create	1	cook/builtin/subst.h
+	source	create	1	cook/builtin/suffix.c
+	source	create	1	cook/builtin/suffix.h
+	source	create	1	cook/builtin/text.c
+	source	create	1	cook/builtin/text.h
+	source	create	1	cook/builtin/word.c
+	source	create	1	cook/builtin/word.h
+	source	remove	3	cook/glob.c
+				Moved to cook/builtin/glob.c
+	source	remove	1	cook/glob.h
+				Moved to cook/builtin/glob.h
+	source	remove	2	doc/builtin
+				Moved to doc/builtin.so
+	source	create	1	doc/builtin.so
+				Moved from doc/builtin
+	source	create	1	doc/function.sh
+	build	create	1	doc/function.so
+	source	create	1	doc/function/addprefix.so
+	source	create	1	doc/function/addsuffix.so
+	source	create	1	doc/function/and.so
+	source	create	1	doc/function/basename.so
+	source	create	1	doc/function/cando.so
+	source	create	1	doc/function/catenate.so
+	source	create	1	doc/function/collect.so
+	source	create	1	doc/function/collect_ln.so
+	source	create	1	doc/function/count.so
+	source	create	1	doc/function/defined.so
+	source	create	1	doc/function/dir.so
+	source	create	1	doc/function/dirname.so
+	source	create	1	doc/function/downcase.so
+	source	create	1	doc/function/entryname.so
+	source	create	1	doc/function/execute.so
+	source	create	1	doc/function/exists.so
+	source	create	1	doc/function/filter.so
+	source	create	1	doc/function/filter_out.so
+	source	create	1	doc/function/find_cmd.so
+	source	create	1	doc/function/fromto.so
+	source	create	1	doc/function/getenv.so
+	source	create	1	doc/function/glob.so
+	source	create	1	doc/function/head.so
+
+
+
+Project "cook.1.5", Change 35					 Page 3
+Change Details				       Sun Apr 17 06:26:43 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	doc/function/if.so
+	source	create	1	doc/function/in.so
+	source	create	1	doc/function/join.so
+	source	create	1	doc/function/match_mask.so
+	source	create	1	doc/function/matches.so
+	source	create	1	doc/function/mtime.so
+	source	create	1	doc/function/not.so
+	source	create	1	doc/function/opsys.so
+	source	create	1	doc/function/or.so
+	source	create	1	doc/function/pathname.so
+	source	create	1	doc/function/patsubst.so
+	source	create	1	doc/function/prepost.so
+	source	create	1	doc/function/quote.so
+	source	create	1	doc/function/resolve.so
+	source	create	1	doc/function/shell.so
+	source	create	1	doc/function/sort.so
+	source	create	1	doc/function/sort_newest.so
+	source	create	1	doc/function/stringset.so
+	source	create	1	doc/function/subst.so
+	source	create	1	doc/function/suffix.so
+	source	create	1	doc/function/tail.so
+	source	create	1	doc/function/upcase.so
+	source	create	1	doc/function/uptodate.so
+	source	create	1	doc/function/wildcard.so
+	source	create	1	doc/function/word.so
+	source	create	1	doc/function/words.so
+	source	modify	4	doc/refman.t
+	build	modify	17	doc/version.so
+	test	create	1	test/00/t0057a.sh
+	test	create	1	test/00/t0058a.sh
+	test	create	1	test/00/t0059a.sh
+	test	create	1	test/00/t0060a.sh
+	test	create	1	test/00/t0061a.sh
+	test	create	1	test/00/t0062a.sh
+	test	create	1	test/00/t0063a.sh
+	test	create	1	test/00/t0064a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Mar	 1	pmiller
+			06:00:31 1994
+	develop_begin	Tue Mar	 1	pmiller	 Elapsed time: 6.125
+			06:00:38 1994		 days.
+	develop_end	Wed Mar	 9	pmiller
+			22:26:42 1994
+	review_pass	Wed Mar	 9	pmiller
+			22:30:26 1994
+	integrate_begin Wed Mar	 9	pmiller	 Elapsed time: 0.000
+			22:32:15 1994		 days.
+	integrate_pass	Thu Mar 10	pmiller
+			07:19:13 1994
+
+
+
+Project "cook.1.5", Change 36					 Page 1
+Change Details				       Sun Apr 17 06:26:44 1994
+
+NAME
+	Project "cook.1.5", Delta 38, Change 36.
+
+SUMMARY
+	add old change files
+
+DESCRIPTION
+	Add the change files for versions 1.2 and 1.3
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	16	BUILDING
+	build	modify	16	MANIFEST
+	build	modify	16	Makefile.in
+	build	modify	16	README
+	source	create	1	aux/CHANGES.1.2
+	source	create	1	aux/CHANGES.1.3
+	build	modify	16	aux/new.so
+	build	modify	16	common/config.h.in
+	build	modify	16	common/patchlevel.h
+	build	modify	16	configure
+	build	modify	16	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Mar	 7	pmiller
+			14:04:17 1994
+	develop_begin	Mon Mar	 7	pmiller	 Elapsed time: 0.127
+			14:06:16 1994		 days.
+	develop_end	Mon Mar	 7	pmiller
+			15:03:27 1994
+	review_pass	Mon Mar	 7	pmiller
+			15:03:36 1994
+	integrate_begin Mon Mar	 7	pmiller	 Elapsed time: 0.100
+			15:06:44 1994		 days.
+	integrate_pass	Mon Mar	 7	pmiller
+			15:51:47 1994
+
+
+
+Project "cook.1.5", Change 37					 Page 1
+Change Details				       Sun Apr 17 06:26:45 1994
+
+NAME
+	Project "cook.1.5", Delta 40, Change 37.
+
+SUMMARY
+	add make2cook program
+
+DESCRIPTION
+	The make2cook program has been added to ease the transition
+	from using make to using cook.	Note that an exact 1:1
+	semantic mapping is impossible.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	18	BUILDING
+	build	modify	18	MANIFEST
+	build	modify	18	Makefile.in
+	build	modify	18	README
+	source	modify	7	aux/BUILDING.man
+	source	modify	16	aux/Howto.cook
+	source	modify	7	aux/Makefi.file.sh
+	source	modify	4	aux/Makefile.head
+	source	modify	10	aux/Makefile.sh
+	source	modify	3	aux/config.h.in
+	source	modify	4	aux/configure.in
+	source	modify	5	aux/new.1.5.so
+	build	modify	18	aux/new.so
+	build	modify	18	common/config.h.in
+	build	modify	18	common/patchlevel.h
+	source	modify	10	config
+	build	modify	18	configure
+	source	modify	8	cook/hashline.y
+	build	modify	2	doc/function.so
+	build	modify	18	doc/version.so
+	source	create	1	make2cook/blob.c
+	source	create	1	make2cook/blob.h
+	source	create	1	make2cook/emit.c
+	source	create	1	make2cook/emit.h
+	source	create	1	make2cook/gram.h
+	source	create	1	make2cook/gram.y
+	source	create	1	make2cook/lex.c
+	source	create	1	make2cook/lex.h
+	source	create	1	make2cook/main.c
+	source	create	1	make2cook/stmt.c
+	source	create	1	make2cook/stmt.h
+	source	create	1	make2cook/stmt/assign.c
+	source	create	1	make2cook/stmt/assign.h
+	source	create	1	make2cook/stmt/blank.c
+	source	create	1	make2cook/stmt/blank.h
+	source	create	1	make2cook/stmt/comment.c
+
+
+
+Project "cook.1.5", Change 37					 Page 2
+Change Details				       Sun Apr 17 06:26:45 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	make2cook/stmt/comment.h
+	source	create	1	make2cook/stmt/compound.c
+	source	create	1	make2cook/stmt/compound.h
+	source	create	1	make2cook/stmt/define.c
+	source	create	1	make2cook/stmt/define.h
+	source	create	1	make2cook/stmt/if.c
+	source	create	1	make2cook/stmt/if.h
+	source	create	1	make2cook/stmt/rule.c
+	source	create	1	make2cook/stmt/rule.h
+	source	create	1	make2cook/vargram.h
+	source	create	1	make2cook/vargram.y
+	source	create	1	make2cook/variable.c
+	source	create	1	make2cook/variable.h
+	source	create	1	man1/make2cook.1
+	test	create	1	test/00/t0065a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Mar 10	pmiller	 Elapsed time: 0.032
+			07:10:49 1994		 days.
+	develop_begin	Thu Mar 10	pmiller	 Elapsed time: 11.910
+			07:25:10 1994		 days.
+	develop_end	Mon Mar 28	pmiller
+			06:44:46 1994
+	review_pass	Mon Mar 28	pmiller
+			06:44:55 1994
+	integrate_begin Mon Mar 28	pmiller	 Elapsed time: 0.238
+			06:49:03 1994		 days.
+	integrate_pass	Mon Mar 28	pmiller
+			08:36:14 1994
+
+
+
+Project "cook.1.5", Change 38					 Page 1
+Change Details				       Sun Apr 17 06:26:46 1994
+
+NAME
+	Project "cook.1.5", Delta 42, Change 38.
+
+SUMMARY
+	add archives
+
+DESCRIPTION
+	Cook now understands how to extract mtimes for archive members.
+	1. archive members are understood in stat caching.
+	2. archive members are understood in search_list
+	3. archive members are understood in fingerprinting
+	4. archive members are understood by make2cook.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	20	BUILDING
+	build	modify	20	MANIFEST
+	build	modify	20	Makefile.in
+	build	modify	20	README
+	source	modify	6	aux/configure.in
+	source	modify	6	aux/new.1.5.so
+	build	modify	20	aux/new.so
+	source	create	1	common/ac/ar.h
+	source	create	1	common/ac/fcntl.h
+	source	modify	2	common/ac/unistd.h
+	build	modify	20	common/config.h.in
+	source	modify	3	common/fp.c
+	build	modify	20	common/patchlevel.h
+	source	modify	2	common/symtab.c
+	build	modify	20	configure
+	source	create	1	cook/archive.c
+	source	create	1	cook/archive.h
+	source	modify	3	cook/fngrprnt.y
+	source	modify	11	cook/os.c
+	source	modify	5	cook/stat.cache.c
+	source	modify	4	cook/stat.cache.h
+	build	modify	4	doc/function.so
+	build	modify	20	doc/version.so
+	source	modify	3	make2cook/stmt/rule.c
+	source	modify	3	make2cook/vargram.y
+	source	modify	3	make2cook/variable.c
+	source	modify	2	make2cook/variable.h
+	source	modify	3	man1/make2cook.1
+	test	create	1	test/00/t0069a.sh
+	test	create	1	test/00/t0070a.sh
+
+
+
+Project "cook.1.5", Change 38					 Page 2
+Change Details				       Sun Apr 17 06:26:46 1994
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat Mar 26	pmiller	 Elapsed time: 1.561
+			17:22:24 1994		 days.
+	develop_begin	Wed Mar 30	pmiller	 Elapsed time: 4.961
+			06:34:52 1994		 days.
+	develop_end	Wed Apr	 6	pmiller
+			06:17:19 1994
+	review_pass	Wed Apr	 6	pmiller
+			06:17:28 1994
+	integrate_begin Wed Apr	 6	pmiller	 Elapsed time: 0.148
+			06:21:57 1994		 days.
+	integrate_pass	Wed Apr	 6	pmiller
+			07:28:27 1994
+
+
+
+Project "cook.1.5", Change 39					 Page 1
+Change Details				       Sun Apr 17 06:26:47 1994
+
+NAME
+	Project "cook.1.5", Delta 41, Change 39.
+
+SUMMARY
+	improve make2cook translator
+
+DESCRIPTION
+	1. now has all of the builtin rules
+	2. now re-orders assignments o preserve macro expension
+	semantics
+	3. cook now has heuristic to limit use of "%: %.o" type rules
+	4. cook now removes "./" prefixes from targets before cooking
+	them
+	5. strings are now protected from accidentally looking like
+	cook comments
+	6. now understands static pattern rules
+	7. now understands GNU and BSD include directives.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	19	BUILDING
+	build	modify	19	MANIFEST
+	build	modify	19	Makefile.in
+	build	modify	19	README
+	source	modify	11	aux/Makefile.sh
+	source	modify	4	aux/config.h.in
+	source	modify	5	aux/configure.in
+	build	modify	19	aux/new.so
+	build	modify	19	common/config.h.in
+	source	modify	6	common/help.c
+	build	modify	19	common/patchlevel.h
+	source	modify	5	common/str.c
+	source	modify	4	common/str.h
+	build	modify	19	configure
+	source	modify	2	cook/builtin/subst.c
+	source	modify	14	cook/cook.c
+	source	modify	11	cook/cook.h
+	source	modify	9	cook/hashline.y
+	source	modify	6	cook/id.c
+	source	modify	7	cook/lex.c
+	build	modify	3	doc/function.so
+	source	modify	5	doc/language.so
+	source	modify	5	doc/refman.t
+	source	remove	1	doc/system
+				Moved to doc/system.so
+	source	create	1	doc/system.so
+				Moved from doc/system
+	build	modify	19	doc/version.so
+	source	create	1	lib/rcs
+
+
+
+Project "cook.1.5", Change 39					 Page 2
+Change Details				       Sun Apr 17 06:26:47 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	lib/sccs
+	source	modify	2	make2cook/emit.c
+	source	modify	2	make2cook/emit.h
+	source	modify	2	make2cook/gram.y
+	source	modify	2	make2cook/lex.c
+	source	modify	2	make2cook/main.c
+	source	modify	2	make2cook/stmt.c
+	source	modify	2	make2cook/stmt.h
+	source	modify	2	make2cook/stmt/assign.c
+	source	modify	2	make2cook/stmt/blank.c
+	source	modify	2	make2cook/stmt/comment.c
+	source	modify	2	make2cook/stmt/compound.c
+	source	modify	2	make2cook/stmt/if.c
+	source	create	1	make2cook/stmt/include.c
+	source	create	1	make2cook/stmt/include.h
+	source	modify	2	make2cook/stmt/rule.c
+	source	modify	2	make2cook/stmt/rule.h
+	source	modify	2	make2cook/vargram.y
+	source	modify	2	make2cook/variable.c
+	source	modify	2	man1/make2cook.1
+	test	modify	2	test/00/t0065a.sh
+	test	create	1	test/00/t0066a.sh
+	test	create	1	test/00/t0067a.sh
+	test	create	1	test/00/t0068a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Mar 28	pmiller
+			08:41:27 1994
+	develop_begin	Mon Mar 28	pmiller	 Elapsed time: 0.000
+			08:41:40 1994		 days.
+	develop_end	Tue Mar 29	pmiller
+			16:50:17 1994
+	review_pass	Tue Mar 29	pmiller
+			16:50:27 1994
+	integrate_begin Tue Mar 29	pmiller	 Elapsed time: 0.000
+			16:51:57 1994		 days.
+	integrate_pass	Wed Mar 30	pmiller
+			06:27:25 1994
+
+
+
+Project "cook.1.5", Change 40					 Page 1
+Change Details				       Sun Apr 17 06:26:48 1994
+
+NAME
+	Project "cook.1.5", Delta 43, Change 40.
+
+SUMMARY
+	add VPATH to make2cook
+
+DESCRIPTION
+	This change makes a number of improvements to the make2cook
+	utility.
+	It adds translation of the VPATH variable and the vpath
+	directive, and generates an assignment to the search_list
+	variable.
+	This change also documents a number of limitations in
+	make2cook's functionality, and adds the [home] builtin
+	function to cook, so that users may take advantage of it when
+	editing the output of make2cook.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	21	BUILDING
+	build	modify	21	MANIFEST
+	build	modify	21	Makefile.in
+	build	modify	21	README
+	build	modify	21	aux/new.so
+	build	modify	21	common/config.h.in
+	build	modify	21	common/patchlevel.h
+	source	modify	4	common/word.c
+	source	modify	3	common/word.h
+	build	modify	21	configure
+	source	modify	12	cook/builtin.c
+	source	create	1	cook/builtin/home.c
+	source	create	1	cook/builtin/home.h
+	source	modify	11	cook/main.c
+	build	modify	5	doc/function.so
+	source	create	1	doc/function/home.so
+	build	modify	21	doc/version.so
+	source	modify	3	make2cook/gram.y
+	source	modify	3	make2cook/lex.c
+	source	modify	4	make2cook/stmt/rule.c
+	source	create	1	make2cook/stmt/vpath.c
+	source	create	1	make2cook/stmt/vpath.h
+	source	modify	4	man1/make2cook.1
+	test	create	1	test/00/t0071a.sh
+	test	create	1	test/00/t0072a.sh
+
+
+
+Project "cook.1.5", Change 40					 Page 2
+Change Details				       Sun Apr 17 06:26:48 1994
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Apr	 6	pmiller
+			07:38:14 1994
+	develop_begin	Wed Apr	 6	pmiller	 Elapsed time: 1.337
+			07:38:19 1994		 days.
+	develop_end	Thu Apr	 7	pmiller
+			10:10:08 1994
+	review_pass	Thu Apr	 7	pmiller
+			10:11:02 1994
+	integrate_begin Thu Apr	 7	pmiller	 Elapsed time: 0.420
+			10:15:52 1994		 days.
+	integrate_pass	Fri Apr	 8	pmiller
+			05:54:42 1994
+
+
+
+Project "cook.1.5", Change 41					 Page 1
+Change Details				       Sun Apr 17 06:26:49 1994
+
+NAME
+	Project "cook.1.5", Delta 44, Change 41.
+
+SUMMARY
+	misc small improvements
+
+DESCRIPTION
+	1. add the split, unsplit, findstring and strip functions to
+	cook
+	2. document a few minor limitations of make2cook
+	3. add uniform timestamps to the generated tar file.
+	4. remove references to vsprintf, because some systems don't
+	have it.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	21	BUILDING
+	build	modify	22	MANIFEST
+	build	modify	22	Makefile.in
+	build	modify	21	README
+	source	modify	17	aux/Howto.cook
+	build	modify	21	aux/new.so
+	build	modify	21	common/config.h.in
+	source	modify	7	common/help.c
+	build	modify	22	common/patchlevel.h
+	source	modify	3	common/trace.c
+	source	modify	5	common/word.c
+	source	modify	4	common/word.h
+	source	modify	11	config
+	build	modify	21	configure
+	source	modify	13	cook/builtin.c
+	source	modify	2	cook/builtin/collect.c
+	source	modify	2	cook/builtin/execute.c
+	source	create	1	cook/builtin/findstring.c
+	source	create	1	cook/builtin/findstring.h
+	source	create	1	cook/builtin/split.c
+	source	create	1	cook/builtin/split.h
+	source	create	1	cook/builtin/strip.c
+	source	create	1	cook/builtin/strip.h
+	source	create	1	cook/builtin/unsplit.c
+	source	create	1	cook/builtin/unsplit.h
+	source	modify	4	cook/expr.c
+	source	modify	2	cook/fngrprnt_lex.c
+	source	modify	8	cook/lex.c
+	source	modify	12	cook/os.c
+	source	modify	5	cook/stmt.c
+	source	modify	5	cooktime/date.y
+	build	modify	6	doc/function.so
+	source	create	1	doc/function/findstring.so
+
+
+
+Project "cook.1.5", Change 41					 Page 2
+Change Details				       Sun Apr 17 06:26:49 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	doc/function/split.so
+	source	create	1	doc/function/strip.so
+	source	create	1	doc/function/unsplit.so
+	build	modify	22	doc/version.so
+	source	modify	4	make2cook/lex.c
+	source	modify	4	make2cook/vargram.y
+	source	modify	5	man1/make2cook.1
+	test	create	1	test/00/t0073a.sh
+	test	create	1	test/00/t0074a.sh
+	test	create	1	test/00/t0075a.sh
+	test	create	1	test/00/t0076a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Apr	 8	pmiller
+			06:00:06 1994
+	develop_begin	Fri Apr	 8	pmiller	 Elapsed time: 1.331
+			06:00:12 1994		 days.
+	develop_end	Sat Apr	 9	pmiller	 Elapsed time: 0.886
+			08:29:02 1994		 days.
+	review_pass	Sun Apr 10	pmiller
+			07:37:57 1994
+	integrate_begin Sun Apr 10	pmiller	 Elapsed time: 0.134
+			07:42:38 1994		 days.
+	integrate_pass	Sun Apr 10	pmiller
+			08:42:59 1994
+
+
+
+Project "cook.1.5", Change 42					 Page 1
+Change Details				       Sun Apr 17 06:26:50 1994
+
+NAME
+	Project "cook.1.5", Delta 45, Change 42.
+
+SUMMARY
+	add archive long-name extensions
+
+DESCRIPTION
+	The GNU and BSD ar programs have a trick to access long names.
+	This change adds support for long names to cook's
+	understanding of .a files.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	21	BUILDING
+	build	modify	23	MANIFEST
+	build	modify	23	Makefile.in
+	build	modify	21	README
+	build	modify	21	aux/new.so
+	build	modify	21	common/config.h.in
+	build	modify	23	common/patchlevel.h
+	build	modify	21	configure
+	source	modify	2	cook/archive.c
+	build	modify	6	doc/function.so
+	build	modify	23	doc/version.so
+	test	create	1	test/00/t0077a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Apr 10	pmiller
+			08:50:53 1994
+	develop_begin	Sun Apr 10	pmiller	 Elapsed time: 1.659
+			08:51:00 1994		 days.
+	develop_end	Tue Apr 12	pmiller
+			06:17:44 1994
+	review_pass	Tue Apr 12	pmiller
+			06:21:31 1994
+	integrate_begin Tue Apr 12	pmiller	 Elapsed time: 0.061
+			06:25:19 1994		 days.
+	integrate_pass	Tue Apr 12	pmiller
+			06:52:33 1994
+
+
+
+Project "cook.1.5", Change 43					 Page 1
+Change Details				       Sun Apr 17 06:26:51 1994
+
+NAME
+	Project "cook.1.5", Delta 48, Change 43.
+
+SUMMARY
+	fix Makefile problems
+
+DESCRIPTION
+	This change fixes a number of problems reevealed in pre-
+	release testing.
+
+	This change is exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	21	BUILDING
+	build	modify	24	MANIFEST
+	build	modify	24	Makefile.in
+	build	modify	21	README
+	source	modify	8	aux/Makefi.file.sh
+	source	modify	12	aux/Makefile.sh
+	source	modify	7	aux/configure.in
+	build	modify	21	aux/new.so
+	build	modify	21	common/config.h.in
+	build	modify	24	common/patchlevel.h
+	source	modify	12	config
+	build	modify	22	configure
+	source	remove	3	doc/conditions
+				Moved to doc/conditions.so
+	source	create	1	doc/conditions.so
+				Moved from doc/conditions
+	build	modify	6	doc/function.so
+	source	remove	1	doc/history
+				Moved to doc/history.so
+	source	create	1	doc/history.so
+				Moved from doc/history
+	source	remove	1	doc/intro
+				Moved to doc/intro.so
+	source	remove	1	doc/intro.aa
+				Moved to doc/intro1.so
+	source	remove	1	doc/intro.bb
+				Moved to doc/intro2.so
+	source	create	1	doc/intro.so
+				Moved from doc/intro
+	source	create	1	doc/intro1.so
+				Moved from doc/intro.aa
+	source	create	1	doc/intro2.so
+				Moved from doc/intro.bb
+	source	remove	1	doc/match
+				Moved to doc/match.so
+
+
+
+Project "cook.1.5", Change 43					 Page 2
+Change Details				       Sun Apr 17 06:26:51 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	doc/match.so
+				Moved from doc/match
+	source	remove	1	doc/option
+				Moved to doc/option.so
+	source	create	1	doc/option.so
+				Moved from doc/option
+	source	modify	6	doc/refman.t
+	source	remove	1	doc/variables
+				Moved to doc/variables.so
+	source	create	1	doc/variables.so
+				Moved from doc/variables
+	build	modify	24	doc/version.so
+	source	modify	3	make2cook/main.c
+	source	modify	5	make2cook/stmt/rule.c
+	test	modify	2	test/00/t0068a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Apr 12	pmiller
+			07:14:44 1994
+	develop_begin	Tue Apr 12	pmiller	 Elapsed time: 0.053
+			07:14:49 1994		 days.
+	develop_end	Tue Apr 12	pmiller
+			07:38:46 1994
+	review_pass	Tue Apr 12	pmiller	 Elapsed time: 0.025
+			07:45:33 1994		 days.
+	integrate_begin Tue Apr 12	pmiller	 Elapsed time: 0.066
+			07:56:56 1994		 days.
+	integrate_fail	Tue Apr 12	pmiller	 more problems found
+			08:26:37 1994		 Elapsed time: 0.821
+						 days.
+	develop_end	Wed Apr 13	pmiller
+			07:05:53 1994
+	review_pass	Wed Apr 13	pmiller
+			07:06:00 1994
+	integrate_begin Wed Apr 13	pmiller	 Elapsed time: 1.234
+			07:10:54 1994		 days.
+	integrate_fail	Thu Apr 14	pmiller	 a few more problems
+			08:56:04 1994		 found
+						 Elapsed time: 0.715
+						 days.
+	develop_end	Thu Apr 14	pmiller
+			14:17:36 1994
+	review_pass	Thu Apr 14	pmiller
+			14:22:19 1994
+	integrate_begin Thu Apr 14	pmiller	 Elapsed time: 0.000
+			14:24:27 1994		 days.
+	integrate_pass	Fri Apr 15	pmiller
+			06:42:05 1994
+
+
+
+Project "cook.1.5", Change 44					 Page 1
+Change Details				       Sun Apr 17 06:26:52 1994
+
+NAME
+	Project "cook.1.5", Delta 49, Change 44.
+
+SUMMARY
+	yet another Pyramid problem!
+
+DESCRIPTION
+	Yet another change to the Pyramid config, even though we are
+	using autoconf.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	21	BUILDING
+	build	modify	24	MANIFEST
+	build	modify	24	Makefile.in
+	build	modify	21	README
+	source	modify	8	aux/configure.in
+	build	modify	21	aux/new.so
+	build	modify	21	common/config.h.in
+	build	modify	25	common/patchlevel.h
+	source	modify	6	common/word.c
+	build	modify	23	configure
+	build	modify	6	doc/function.so
+	build	modify	25	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Apr 15	pmiller
+			07:25:04 1994
+	develop_begin	Fri Apr 15	pmiller	 Elapsed time: 1.005
+			07:25:12 1994		 days.
+	develop_end	Sat Apr 16	pmiller
+			07:27:18 1994
+	develop_end_	Sat Apr 16	pmiller	 Elapsed time: 0.035
+	undo		07:29:54 1994		 days.
+	develop_end	Sat Apr 16	pmiller
+			07:45:45 1994
+	review_pass	Sat Apr 16	pmiller
+			07:46:15 1994
+	integrate_begin Sat Apr 16	pmiller	 Elapsed time: 0.080
+			07:51:09 1994		 days.
+	integrate_pass	Sat Apr 16	pmiller
+			08:27:15 1994
+
+
+
+Project "cook.1.5", Change 45					 Page 1
+Change Details				       Sun Apr 17 06:26:52 1994
+
+NAME
+	Project "cook.1.5", Delta 50, Change 45.
+
+SUMMARY
+	silent echo commands conflict with progress stars
+
+DESCRIPTION
+	This change makes cook a little smarter about silent echo
+	commands, and ends line line of stars so that the echo works
+	as expected.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+	architecture   host	aeb	    aet		aet -bl	    aet -reg
+	-------------- -------- ----------- ----------- ----------- -----------
+	sun4			required    exempt	exempt	    required
+	sun5			required    exempt	exempt	    required
+				----------- ----------- ----------- -----------
+				required    exempt	exempt	    required
+
+CAUSE
+	This change was caused by internal_improvement.
+
+STATE
+	This change is in the 'being_integrated' state.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	17	aux/Howto.cook
+	source	modify	5	cook/stmt.c
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat Apr 16	pmiller
+			08:34:35 1994
+	develop_begin	Sat Apr 16	pmiller	 Elapsed time: 0.665 days.
+			08:34:41 1994
+	develop_end	Sun Apr 17	pmiller
+			06:04:03 1994
+	review_pass	Sun Apr 17	pmiller
+			06:06:39 1994
+	integrate_begin Sun Apr 17	pmiller	 Elapsed time: 0.035 days.
+			06:11:15 1994

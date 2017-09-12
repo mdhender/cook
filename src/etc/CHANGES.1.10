@@ -1,0 +1,3328 @@
+
+
+
+Project "cook.1.10"						 Page 1
+List of Changes				       Wed Apr 30 22:31:17 1997
+
+Change	State		Description
+------- -------		-------------
+   1	completed	New release derived from cook.1.9.
+  10	completed	update change file
+  11	completed	make time-adjust cope with errors
+  12	completed	fix time-adjust-back some more
+  13	completed	use autoconf to figure long size
+  14	completed	add readlink builtin
+  15	completed	improve C cookbook
+  16	completed	improve portability
+  17	completed	fix mprintf bug
+  18	completed	fix problems in the tests for SCO
+  19	completed	interrupt handler for c_incl
+  20	completed	add a -no-cooked-include option
+  21	completed	correct documentation bug
+  22	completed	internationalize the error messages
+  23	completed	move manual entries to language specific
+			location
+  24	completed	bug in messages
+  25	completed	have -reason emit line numbers for actions
+  26	completed	teach make2cook about conditionals
+  27	completed	improve make2cook
+  28	completed	more GNU Make support in make2cook
+  29	completed	improve error message commentary
+  30	completed	documentation touch-ups
+  31	completed	fix wchar_t bugs
+  32	completed	fix lsm
+  33	being_		fix use clause documentation
+	integrated
+
+
+
+Project "cook.1.10", Change 1					 Page 1
+Change Details				       Wed Apr 30 22:31:19 1997
+
+NAME
+	Project "cook.1.10", Delta 1, Change 1.
+
+SUMMARY
+	New release derived from cook.1.9.
+
+DESCRIPTION
+	New release derived from cook.1.9.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	create	1	BUILDING
+	source	create	1	LICENSE
+	build	create	1	MANIFEST
+	build	create	1	Makefile.in
+	build	create	1	README
+	source	create	1	aux/BUILDING.man
+	source	create	1	aux/CHANGES.1.2
+	source	create	1	aux/CHANGES.1.3
+	source	create	1	aux/CHANGES.1.4
+	source	create	1	aux/CHANGES.1.5
+	source	create	1	aux/CHANGES.1.6
+	source	create	1	aux/CHANGES.1.7
+	source	create	1	aux/CHANGES.1.8
+	source	create	1	aux/CHANGES.sh
+	source	create	1	aux/Howto.conf.in
+	source	create	1	aux/Howto.cook
+	source	create	1	aux/MANIFEST.sh
+	source	create	1	aux/Makefi.file.sh
+	source	create	1	aux/Makefile.awk
+	source	create	1	aux/Makefile.head
+	source	create	1	aux/Makefile.sh
+	source	create	1	aux/README.man
+	source	create	1	aux/Release.man
+	source	create	1	aux/config.h.in
+	source	create	1	aux/config.h.in1
+	source	create	1	aux/config.h.in2
+	source	create	1	aux/configure.in
+	source	create	1	aux/lsm.roff
+	source	create	1	aux/new.1.4.so
+	source	create	1	aux/new.1.5.so
+	source	create	1	aux/new.1.6.so
+	source	create	1	aux/new.1.7.so
+	source	create	1	aux/new.1.8.so
+
+
+
+Project "cook.1.10", Change 1					 Page 2
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	aux/new.1.9.so
+	build	create	1	aux/new.so
+	source	create	1	aux/patch.file.sh
+	source	create	1	aux/patches.sh
+	source	create	1	aux/template/c
+	source	create	1	aux/template/generic
+	source	create	1	aux/template/h
+	source	create	1	aux/template/man
+	source	create	1	aux/template/ms
+	source	create	1	aux/template/sh
+	source	create	1	aux/template/test
+	source	create	1	c_incl/cache.c
+	source	create	1	c_incl/cache.h
+	source	create	1	c_incl/lang_c.c
+	source	create	1	c_incl/lang_roff.c
+	source	create	1	c_incl/main.c
+	source	create	1	c_incl/os.c
+	source	create	1	c_incl/os.h
+	source	create	1	c_incl/sniff.c
+	source	create	1	c_incl/sniff.h
+	source	create	1	common/ac/ar.h
+	source	create	1	common/ac/dirent.h
+	source	create	1	common/ac/fcntl.h
+	source	create	1	common/ac/limits.h
+	source	create	1	common/ac/stdarg.h
+	source	create	1	common/ac/stddef.h
+	source	create	1	common/ac/stdlib.h
+	source	create	1	common/ac/string.h
+	source	create	1	common/ac/time.h
+	source	create	1	common/ac/unistd.h
+	source	create	1	common/ansi.c
+	source	create	1	common/arglex.c
+	source	create	1	common/arglex.h
+	build	create	1	common/config.h.in
+	source	create	1	common/error.c
+	source	create	1	common/error.h
+	source	create	1	common/fp.c
+	source	create	1	common/fp.h
+	source	create	1	common/fp/README
+	source	create	1	common/fp/cksum.c
+	source	create	1	common/fp/cksum.h
+	source	create	1	common/fp/combined.c
+	source	create	1	common/fp/combined.h
+	source	create	1	common/fp/crc32.c
+	source	create	1	common/fp/crc32.h
+	source	create	1	common/fp/ident.c
+	source	create	1	common/fp/ident.h
+	source	create	1	common/fp/len.c
+	source	create	1	common/fp/len.h
+	source	create	1	common/fp/md5.c
+	source	create	1	common/fp/md5.h
+	source	create	1	common/fp/snefru.c
+	source	create	1	common/fp/snefru.h
+	source	create	1	common/fstrcmp.c
+	source	create	1	common/fstrcmp.h
+
+
+
+Project "cook.1.10", Change 1					 Page 3
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	common/help.c
+	source	create	1	common/help.h
+	source	create	1	common/main.h
+	source	create	1	common/mem.c
+	source	create	1	common/mem.h
+	source	create	1	common/mprintf.c
+	source	create	1	common/mprintf.h
+	build	create	1	common/patchlevel.h
+	source	create	1	common/str.c
+	source	create	1	common/str.h
+	source	create	1	common/symtab.c
+	source	create	1	common/symtab.h
+	source	create	1	common/trace.c
+	source	create	1	common/trace.h
+	source	create	1	common/version-stmp.c
+	source	create	1	common/version-stmp.h
+	source	create	1	common/version.c
+	source	create	1	common/version.h
+	source	create	1	common/word.c
+	source	create	1	common/word.h
+	source	create	1	config
+	build	create	1	configure
+	source	create	1	cook/archive.c
+	source	create	1	cook/archive.h
+	source	create	1	cook/builtin.c
+	source	create	1	cook/builtin.h
+	source	create	1	cook/builtin/addprefix.c
+	source	create	1	cook/builtin/addprefix.h
+	source	create	1	cook/builtin/addsuffix.c
+	source	create	1	cook/builtin/addsuffix.h
+	source	create	1	cook/builtin/basename.c
+	source	create	1	cook/builtin/basename.h
+	source	create	1	cook/builtin/boolean.c
+	source	create	1	cook/builtin/boolean.h
+	source	create	1	cook/builtin/collect.c
+	source	create	1	cook/builtin/collect.h
+	source	create	1	cook/builtin/cook.c
+	source	create	1	cook/builtin/cook.h
+	source	create	1	cook/builtin/defined.c
+	source	create	1	cook/builtin/defined.h
+	source	create	1	cook/builtin/execute.c
+	source	create	1	cook/builtin/execute.h
+	source	create	1	cook/builtin/exists.c
+	source	create	1	cook/builtin/exists.h
+	source	create	1	cook/builtin/filter_out.c
+	source	create	1	cook/builtin/filter_out.h
+	source	create	1	cook/builtin/find_command.c
+	source	create	1	cook/builtin/find_command.h
+	source	create	1	cook/builtin/findstring.c
+	source	create	1	cook/builtin/findstring.h
+	source	create	1	cook/builtin/getenv.c
+	source	create	1	cook/builtin/getenv.h
+	source	create	1	cook/builtin/glob.c
+	source	create	1	cook/builtin/glob.h
+	source	create	1	cook/builtin/home.c
+
+
+
+Project "cook.1.10", Change 1					 Page 4
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	cook/builtin/home.h
+	source	create	1	cook/builtin/join.c
+	source	create	1	cook/builtin/join.h
+	source	create	1	cook/builtin/match.c
+	source	create	1	cook/builtin/match.h
+	source	create	1	cook/builtin/opsys.c
+	source	create	1	cook/builtin/opsys.h
+	source	create	1	cook/builtin/options.c
+	source	create	1	cook/builtin/options.h
+	source	create	1	cook/builtin/pathname.c
+	source	create	1	cook/builtin/pathname.h
+	source	create	1	cook/builtin/split.c
+	source	create	1	cook/builtin/split.h
+	source	create	1	cook/builtin/stringset.c
+	source	create	1	cook/builtin/stringset.h
+	source	create	1	cook/builtin/strip.c
+	source	create	1	cook/builtin/strip.h
+	source	create	1	cook/builtin/subst.c
+	source	create	1	cook/builtin/subst.h
+	source	create	1	cook/builtin/suffix.c
+	source	create	1	cook/builtin/suffix.h
+	source	create	1	cook/builtin/text.c
+	source	create	1	cook/builtin/text.h
+	source	create	1	cook/builtin/unsplit.c
+	source	create	1	cook/builtin/unsplit.h
+	source	create	1	cook/builtin/word.c
+	source	create	1	cook/builtin/word.h
+	source	create	1	cook/cook.c
+	source	create	1	cook/cook.h
+	source	create	1	cook/env.c
+	source	create	1	cook/env.h
+	source	create	1	cook/expr.c
+	source	create	1	cook/expr.h
+	source	create	1	cook/fngrprnt.h
+	source	create	1	cook/fngrprnt.y
+	source	create	1	cook/fngrprnt_lex.c
+	source	create	1	cook/fngrprnt_lex.h
+	source	create	1	cook/hashline.h
+	source	create	1	cook/hashline.y
+	source	create	1	cook/id.c
+	source	create	1	cook/id.h
+	source	create	1	cook/lex.c
+	source	create	1	cook/lex.h
+	source	create	1	cook/listing.c
+	source	create	1	cook/listing.h
+	source	create	1	cook/main.c
+	source	create	1	cook/match.c
+	source	create	1	cook/match.h
+	source	create	1	cook/option.c
+	source	create	1	cook/option.h
+	source	create	1	cook/os.c
+	source	create	1	cook/os.h
+	source	create	1	cook/parse.h
+	source	create	1	cook/parse.y
+	source	create	1	cook/stat.cache.c
+
+
+
+Project "cook.1.10", Change 1					 Page 5
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	cook/stat.cache.h
+	source	create	1	cook/stmt.c
+	source	create	1	cook/stmt.h
+	source	create	1	cookfp/main.c
+	source	create	1	cooktime/date.h
+	source	create	1	cooktime/date.y
+	source	create	1	cooktime/main.c
+	source	create	1	doc/builtin.so
+	source	create	1	doc/cmdline.so
+	source	create	1	doc/conditions.so
+	source	create	1	doc/function.sh
+	build	create	1	doc/function.so
+	source	create	1	doc/function/addprefix.so
+	source	create	1	doc/function/addsuffix.so
+	source	create	1	doc/function/and.so
+	source	create	1	doc/function/basename.so
+	source	create	1	doc/function/cando.so
+	source	create	1	doc/function/catenate.so
+	source	create	1	doc/function/collect.so
+	source	create	1	doc/function/collect_ln.so
+	source	create	1	doc/function/count.so
+	source	create	1	doc/function/defined.so
+	source	create	1	doc/function/dir.so
+	source	create	1	doc/function/dirname.so
+	source	create	1	doc/function/downcase.so
+	source	create	1	doc/function/entryname.so
+	source	create	1	doc/function/execute.so
+	source	create	1	doc/function/exists.so
+	source	create	1	doc/function/filter.so
+	source	create	1	doc/function/filter_out.so
+	source	create	1	doc/function/find_cmd.so
+	source	create	1	doc/function/findstring.so
+	source	create	1	doc/function/fromto.so
+	source	create	1	doc/function/getenv.so
+	source	create	1	doc/function/glob.so
+	source	create	1	doc/function/head.so
+	source	create	1	doc/function/home.so
+	source	create	1	doc/function/if.so
+	source	create	1	doc/function/in.so
+	source	create	1	doc/function/join.so
+	source	create	1	doc/function/match_mask.so
+	source	create	1	doc/function/matches.so
+	source	create	1	doc/function/mtime.so
+	source	create	1	doc/function/not.so
+	source	create	1	doc/function/opsys.so
+	source	create	1	doc/function/options.so
+	source	create	1	doc/function/or.so
+	source	create	1	doc/function/pathname.so
+	source	create	1	doc/function/patsubst.so
+	source	create	1	doc/function/prepost.so
+	source	create	1	doc/function/quote.so
+	source	create	1	doc/function/resolve.so
+	source	create	1	doc/function/shell.so
+	source	create	1	doc/function/sort.so
+	source	create	1	doc/function/sort_newest.so
+
+
+
+Project "cook.1.10", Change 1					 Page 6
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	doc/function/split.so
+	source	create	1	doc/function/stringset.so
+	source	create	1	doc/function/strip.so
+	source	create	1	doc/function/subst.so
+	source	create	1	doc/function/suffix.so
+	source	create	1	doc/function/tail.so
+	source	create	1	doc/function/unsplit.so
+	source	create	1	doc/function/upcase.so
+	source	create	1	doc/function/uptodate.so
+	source	create	1	doc/function/wildcard.so
+	source	create	1	doc/function/word.so
+	source	create	1	doc/function/words.so
+	source	create	1	doc/glossary.so
+	source	create	1	doc/history.so
+	source	create	1	doc/how.so
+	source	create	1	doc/intro.so
+	source	create	1	doc/intro1.so
+	source	create	1	doc/intro2.so
+	source	create	1	doc/language.so
+	source	create	1	doc/match.so
+	source	create	1	doc/option.so
+	source	create	1	doc/refman.t
+	build	create	1	doc/system.list.so
+	source	create	1	doc/system.sh
+	source	create	1	doc/system.so
+	source	create	1	doc/system/as.so
+	source	create	1	doc/system/c.so
+	source	create	1	doc/system/f77.so
+	source	create	1	doc/system/g77.so
+	source	create	1	doc/system/gcc.so
+	source	create	1	doc/system/home.so
+	source	create	1	doc/system/lex.so
+	source	create	1	doc/system/library.so
+	source	create	1	doc/system/print.so
+	source	create	1	doc/system/program.so
+	source	create	1	doc/system/rcs.so
+	source	create	1	doc/system/recursive.so
+	source	create	1	doc/system/sccs.so
+	source	create	1	doc/system/text.so
+	source	create	1	doc/system/usr.local.so
+	source	create	1	doc/system/usr.so
+	source	create	1	doc/system/yacc.so
+	source	create	1	doc/system/yacc_many.so
+	source	create	1	doc/variables.so
+	build	create	1	doc/version.so
+	source	create	1	find_libs/main.c
+	source	create	1	find_libs/os.c
+	source	create	1	find_libs/os.h
+	source	create	1	find_sizes/main.c
+	source	create	1	fstrcmp/main.c
+	source	create	1	lib/as
+	source	create	1	lib/bison
+	source	create	1	lib/c
+	source	create	1	lib/f77
+	source	create	1	lib/g77
+
+
+
+Project "cook.1.10", Change 1					 Page 7
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	lib/gcc
+	source	create	1	lib/home
+	source	create	1	lib/lex
+	source	create	1	lib/library
+	source	create	1	lib/print
+	source	create	1	lib/program
+	source	create	1	lib/rcs
+	source	create	1	lib/recursive
+	source	create	1	lib/sccs
+	source	create	1	lib/text
+	source	create	1	lib/usr
+	source	create	1	lib/usr.local
+	source	create	1	lib/yacc
+	source	create	1	lib/yacc_many
+	source	create	1	make2cook/blob.c
+	source	create	1	make2cook/blob.h
+	source	create	1	make2cook/emit.c
+	source	create	1	make2cook/emit.h
+	source	create	1	make2cook/gram.h
+	source	create	1	make2cook/gram.y
+	source	create	1	make2cook/lex.c
+	source	create	1	make2cook/lex.h
+	source	create	1	make2cook/main.c
+	source	create	1	make2cook/stmt.c
+	source	create	1	make2cook/stmt.h
+	source	create	1	make2cook/stmt/assign.c
+	source	create	1	make2cook/stmt/assign.h
+	source	create	1	make2cook/stmt/blank.c
+	source	create	1	make2cook/stmt/blank.h
+	source	create	1	make2cook/stmt/comment.c
+	source	create	1	make2cook/stmt/comment.h
+	source	create	1	make2cook/stmt/compound.c
+	source	create	1	make2cook/stmt/compound.h
+	source	create	1	make2cook/stmt/define.c
+	source	create	1	make2cook/stmt/define.h
+	source	create	1	make2cook/stmt/if.c
+	source	create	1	make2cook/stmt/if.h
+	source	create	1	make2cook/stmt/include.c
+	source	create	1	make2cook/stmt/include.h
+	source	create	1	make2cook/stmt/rule.c
+	source	create	1	make2cook/stmt/rule.h
+	source	create	1	make2cook/stmt/vpath.c
+	source	create	1	make2cook/stmt/vpath.h
+	source	create	1	make2cook/vargram.h
+	source	create	1	make2cook/vargram.y
+	source	create	1	make2cook/variable.c
+	source	create	1	make2cook/variable.h
+	source	create	1	man1/c_incl.1
+	source	create	1	man1/cook.1
+	source	create	1	man1/cookfp.1
+	source	create	1	man1/cooktime.1
+	source	create	1	man1/copyright.so
+	source	create	1	man1/find_libs.1
+	source	create	1	man1/make2cook.1
+	source	create	1	man1/o__rules.so
+
+
+
+Project "cook.1.10", Change 1					 Page 8
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	man1/roffpp.1
+	source	create	1	man1/z_exit.so
+	source	create	1	man1/z_name.so
+	source	create	1	roffpp/main.c
+	source	create	1	roffpp/preprocess.c
+	source	create	1	roffpp/preprocess.h
+	source	create	1	ssp/main.c
+	source	create	1	ssp/ssp.c
+	source	create	1	ssp/ssp.h
+	test	create	1	test/00/t0001a.sh
+	test	create	1	test/00/t0002a.sh
+	test	create	1	test/00/t0003a.sh
+	test	create	1	test/00/t0004a.sh
+	test	create	1	test/00/t0005a.sh
+	test	create	1	test/00/t0006a.sh
+	test	create	1	test/00/t0007a.sh
+	test	create	1	test/00/t0008a.sh
+	test	create	1	test/00/t0009a.sh
+	test	create	1	test/00/t0010a.sh
+	test	create	1	test/00/t0011a.sh
+	test	create	1	test/00/t0012a.sh
+	test	create	1	test/00/t0013a.sh
+	test	create	1	test/00/t0014a.sh
+	test	create	1	test/00/t0015a.sh
+	test	create	1	test/00/t0016a.sh
+	test	create	1	test/00/t0017a.sh
+	test	create	1	test/00/t0018a.sh
+	test	create	1	test/00/t0019a.sh
+	test	create	1	test/00/t0020a.sh
+	test	create	1	test/00/t0021a.sh
+	test	create	1	test/00/t0022a.sh
+	test	create	1	test/00/t0023a.sh
+	test	create	1	test/00/t0024a.sh
+	test	create	1	test/00/t0025a.sh
+	test	create	1	test/00/t0026a.sh
+	test	create	1	test/00/t0027a.sh
+	test	create	1	test/00/t0028a.sh
+	test	create	1	test/00/t0029a.sh
+	test	create	1	test/00/t0030a.sh
+	test	create	1	test/00/t0031a.sh
+	test	create	1	test/00/t0032a.sh
+	test	create	1	test/00/t0033a.sh
+	test	create	1	test/00/t0034a.sh
+	test	create	1	test/00/t0035a.sh
+	test	create	1	test/00/t0036a.sh
+	test	create	1	test/00/t0037a.sh
+	test	create	1	test/00/t0038a.sh
+	test	create	1	test/00/t0039a.sh
+	test	create	1	test/00/t0040a.sh
+	test	create	1	test/00/t0041a.sh
+	test	create	1	test/00/t0042a.sh
+	test	create	1	test/00/t0043a.sh
+	test	create	1	test/00/t0044a.sh
+	test	create	1	test/00/t0045a.sh
+	test	create	1	test/00/t0046a.sh
+
+
+
+Project "cook.1.10", Change 1					 Page 9
+Change Details				       Wed Apr 30 22:31:19 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	test	create	1	test/00/t0047a.sh
+	test	create	1	test/00/t0048a.sh
+	test	create	1	test/00/t0049a.sh
+	test	create	1	test/00/t0050a.sh
+	test	create	1	test/00/t0051a.sh
+	test	create	1	test/00/t0052a.sh
+	test	create	1	test/00/t0053a.sh
+	test	create	1	test/00/t0054a.sh
+	test	create	1	test/00/t0055a.sh
+	test	create	1	test/00/t0056a.sh
+	test	create	1	test/00/t0057a.sh
+	test	create	1	test/00/t0058a.sh
+	test	create	1	test/00/t0059a.sh
+	test	create	1	test/00/t0060a.sh
+	test	create	1	test/00/t0061a.sh
+	test	create	1	test/00/t0062a.sh
+	test	create	1	test/00/t0063a.sh
+	test	create	1	test/00/t0064a.sh
+	test	create	1	test/00/t0065a.sh
+	test	create	1	test/00/t0066a.sh
+	test	create	1	test/00/t0067a.sh
+	test	create	1	test/00/t0068a.sh
+	test	create	1	test/00/t0069a.sh
+	test	create	1	test/00/t0070a.sh
+	test	create	1	test/00/t0071a.sh
+	test	create	1	test/00/t0072a.sh
+	test	create	1	test/00/t0073a.sh
+	test	create	1	test/00/t0074a.sh
+	test	create	1	test/00/t0075a.sh
+	test	create	1	test/00/t0076a.sh
+	test	create	1	test/00/t0077a.sh
+	test	create	1	test/00/t0078a.sh
+	test	create	1	test/00/t0079a.sh
+	test	create	1	test/00/t0081a.sh
+	test	create	1	test/00/t0082a.sh
+	test	create	1	test/00/t0083a.sh
+	test	create	1	test/00/t0084a.sh
+	test	create	1	test/00/t0085a.sh
+	test	create	1	test/00/t0086a.sh
+	test	create	1	test/00/t0087a.sh
+	test	create	1	test/00/t0088a.sh
+	test	create	1	test/00/t0089a.sh
+	test	create	1	test/00/t0090a.sh
+	test	create	1	test/00/t0091a.sh
+	test	create	1	test/00/t0092a.sh
+	test	create	1	test/00/t0093a.sh
+	test	create	1	test/00/t0094a.sh
+	source	create	1	txt2c/main.c
+	source	create	1	txt2c/txt2c.c
+	source	create	1	txt2c/txt2c.h
+
+
+
+Project "cook.1.10", Change 1					Page 10
+Change Details				       Wed Apr 30 22:31:19 1997
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 26	pmiller
+			22:06:19 1996
+	develop_begin	Mon Feb 26	pmiller
+			22:06:19 1996
+	develop_end	Mon Feb 26	pmiller
+			22:06:19 1996
+	review_pass	Mon Feb 26	pmiller
+			22:06:19 1996
+	integrate_begin Mon Feb 26	pmiller	 Elapsed time: 0.050
+			22:06:19 1996		 days.
+	integrate_pass	Mon Feb 26	pmiller
+			22:28:37 1996
+
+
+
+Project "cook.1.10", Change 10					 Page 1
+Change Details				       Wed Apr 30 22:31:20 1997
+
+NAME
+	Project "cook.1.10", Delta 2, Change 10.
+
+SUMMARY
+	update change file
+
+DESCRIPTION
+	update change file
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	2	MANIFEST
+	build	modify	2	Makefile.in
+	build	modify	2	README
+	source	create	1	aux/CHANGES.1.9
+	source	modify	2	aux/Howto.cook
+	build	modify	2	aux/new.so
+	build	modify	1	common/config.h.in
+	source	modify	2	common/fp.c
+	build	modify	2	common/patchlevel.h
+	build	modify	1	configure
+	build	modify	1	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	2	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 26	pmiller
+			22:29:27 1996
+	develop_begin	Mon Feb 26	pmiller	 Elapsed time: 0.937
+			22:29:35 1996		 days.
+	develop_end	Tue Feb 27	pmiller
+			22:01:23 1996
+	review_pass	Tue Feb 27	pmiller
+			22:01:27 1996
+	integrate_begin Tue Feb 27	pmiller	 Elapsed time: 0.089
+			22:01:31 1996		 days.
+	integrate_pass	Tue Feb 27	pmiller
+			22:41:35 1996
+
+
+
+Project "cook.1.10", Change 11					 Page 1
+Change Details				       Wed Apr 30 22:31:20 1997
+
+NAME
+	Project "cook.1.10", Delta 3, Change 11.
+
+SUMMARY
+	make time-adjust cope with errors
+
+DESCRIPTION
+	This change make the time-adjust and time-adjust-back
+	functions warn the user when the file time can't be adjusted
+	because the file ownership has changed.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	2	MANIFEST
+	build	modify	2	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	build	modify	1	common/config.h.in
+	build	modify	3	common/patchlevel.h
+	build	modify	1	configure
+	source	modify	2	cook/os.c
+	build	modify	1	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	3	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Mar	 4	pmiller
+			23:02:41 1996
+	develop_begin	Mon Mar	 4	pmiller	 Elapsed time: 0.072
+			23:02:58 1996		 days.
+	develop_end	Mon Mar	 4	pmiller
+			23:35:18 1996
+	review_pass	Mon Mar	 4	pmiller
+			23:35:25 1996
+	integrate_begin Mon Mar	 4	pmiller	 Elapsed time: 8.843
+			23:35:30 1996		 days.
+	integrate_pass	Fri Mar 15	pmiller
+			22:24:45 1996
+
+
+
+Project "cook.1.10", Change 12					 Page 1
+Change Details				       Wed Apr 30 22:31:20 1997
+
+NAME
+	Project "cook.1.10", Delta 4, Change 12.
+
+SUMMARY
+	fix time-adjust-back some more
+
+DESCRIPTION
+	fix time-adjust-back some more
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by chain.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	2	MANIFEST
+	build	modify	2	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	build	modify	1	common/config.h.in
+	build	modify	4	common/patchlevel.h
+	build	modify	1	configure
+	source	modify	3	cook/os.c
+	build	modify	1	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	4	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Mar 15	pmiller
+			22:32:57 1996
+	develop_begin	Fri Mar 15	pmiller
+			22:33:00 1996
+	develop_end	Fri Mar 15	pmiller
+			22:42:46 1996
+	review_pass	Fri Mar 15	pmiller
+			22:42:47 1996
+	integrate_begin Fri Mar 15	pmiller
+			22:42:48 1996
+	integrate_pass	Fri Mar 15	pmiller
+			22:51:51 1996
+
+
+
+Project "cook.1.10", Change 13					 Page 1
+Change Details				       Wed Apr 30 22:31:21 1997
+
+NAME
+	Project "cook.1.10", Delta 5, Change 13.
+
+SUMMARY
+	use autoconf to figure long size
+
+DESCRIPTION
+	use autoconf to figure long size
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	3	MANIFEST
+	build	modify	3	Makefile.in
+	build	modify	2	README
+	source	modify	3	aux/Howto.cook
+	source	modify	2	aux/Makefi.file.sh
+	source	modify	2	aux/Makefile.sh
+	source	modify	2	aux/configure.in
+	build	modify	2	aux/new.so
+	source	create	1	aux/ssp.awk
+	source	create	1	aux/txt2c.awk
+	build	modify	2	common/config.h.in
+	source	modify	2	common/fp/ident.c
+	source	modify	2	common/fp/md5.c
+	source	modify	2	common/fp/snefru.c
+	build	modify	5	common/patchlevel.h
+	build	modify	2	configure
+	build	modify	1	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	5	doc/version.so
+	source	remove	1	find_sizes/main.c
+	source	remove	1	ssp/main.c
+	source	remove	1	ssp/ssp.c
+	source	remove	1	ssp/ssp.h
+	source	remove	1	txt2c/main.c
+	source	remove	1	txt2c/txt2c.c
+	source	remove	1	txt2c/txt2c.h
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat May 11	pmiller
+			11:14:49 1996
+
+
+
+Project "cook.1.10", Change 13					 Page 2
+Change Details				       Wed Apr 30 22:31:21 1997
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	develop_begin	Sat May 11	pmiller	 Elapsed time: 0.199
+			11:14:56 1996		 days.
+	develop_end	Sat May 11	pmiller
+			12:44:36 1996
+	review_pass	Sat May 11	pmiller
+			12:44:41 1996
+	integrate_begin Sat May 11	pmiller	 Elapsed time: 0.186
+			12:44:45 1996		 days.
+	integrate_pass	Sat May 11	pmiller
+			14:08:20 1996
+
+
+
+Project "cook.1.10", Change 14					 Page 1
+Change Details				       Wed Apr 30 22:31:21 1997
+
+NAME
+	Project "cook.1.10", Delta 6, Change 14.
+
+SUMMARY
+	add readlink builtin
+
+DESCRIPTION
+	This function adds the ``readlink'' builtin function to cook.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	4	MANIFEST
+	build	modify	4	Makefile.in
+	build	modify	2	README
+	source	modify	4	aux/Howto.cook
+	build	modify	2	aux/new.so
+	build	modify	2	common/config.h.in
+	build	modify	6	common/patchlevel.h
+	build	modify	2	configure
+	source	modify	2	cook/builtin.c
+	source	modify	2	cook/builtin/glob.c
+	source	create	1	cook/builtin/readlink.c
+	source	create	1	cook/builtin/readlink.h
+	build	modify	2	doc/function.so
+	source	create	1	doc/function/readlink.so
+	build	modify	1	doc/system.list.so
+	build	modify	6	doc/version.so
+	test	create	1	test/00/t0095a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun May 19	pmiller
+			16:23:23 1996
+	develop_begin	Sun May 19	pmiller	 Elapsed time: 11.699
+			16:23:44 1996		 days.
+	develop_end	Sat Jun	 1	pmiller
+			21:38:12 1996
+	review_pass	Sat Jun	 1	pmiller
+			21:38:18 1996
+	integrate_begin Sat Jun	 1	pmiller
+			21:38:22 1996
+	integrate_fail	Sat Jun	 1	pmiller	 no documentation
+			21:42:32 1996
+	develop_end	Sat Jun	 1	pmiller
+			21:50:31 1996
+	review_pass	Sat Jun	 1	pmiller
+
+
+
+Project "cook.1.10", Change 14					 Page 2
+Change Details				       Wed Apr 30 22:31:21 1997
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			21:50:37 1996
+	integrate_begin Sat Jun	 1	pmiller
+			21:50:40 1996
+	integrate_pass	Sat Jun	 1	pmiller
+			21:59:56 1996
+
+
+
+Project "cook.1.10", Change 15					 Page 1
+Change Details				       Wed Apr 30 22:31:21 1997
+
+NAME
+	Project "cook.1.10", Delta 7, Change 15.
+
+SUMMARY
+	improve C cookbook
+
+DESCRIPTION
+	This change removes a small bug in the C cookbook, ensuring
+	that .d file are re-cooked when their .d file chanfes.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	4	MANIFEST
+	build	modify	4	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	build	modify	2	common/config.h.in
+	build	modify	7	common/patchlevel.h
+	build	modify	2	configure
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	7	doc/version.so
+	source	modify	2	lib/c
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Jun 30	pmiller
+			10:21:07 1996
+	develop_begin	Sun Jun 30	pmiller
+			10:21:10 1996
+	develop_end	Sun Jun 30	pmiller
+			10:23:30 1996
+	review_pass	Sun Jun 30	pmiller
+			10:23:34 1996
+	integrate_begin Sun Jun 30	pmiller
+			10:23:38 1996
+	integrate_pass	Sun Jun 30	pmiller
+			10:30:04 1996
+
+
+
+Project "cook.1.10", Change 16					 Page 1
+Change Details				       Wed Apr 30 22:31:21 1997
+
+NAME
+	Project "cook.1.10", Delta 8, Change 16.
+
+SUMMARY
+	improve portability
+
+DESCRIPTION
+	This change corrects problems found when attempting to pot
+	cook to an ancient and venerable sun3 running SunOS 4.0.3.  It
+	was not easy.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	5	MANIFEST
+	build	modify	5	Makefile.in
+	build	modify	2	README
+	source	modify	5	aux/Howto.cook
+	source	modify	3	aux/configure.in
+	build	modify	2	aux/new.so
+	source	modify	2	common/ac/dirent.h
+	source	create	1	common/ac/string.c
+				Moved from common/ansi.c
+	source	create	1	common/ac/sys/utsname.c
+	source	create	1	common/ac/sys/utsname.h
+	source	modify	2	common/ac/unistd.h
+	source	create	1	common/ac/utime.h
+	source	remove	1	common/ansi.c
+				Moved to common/ac/string.c
+	build	modify	3	common/config.h.in
+	build	modify	8	common/patchlevel.h
+	source	modify	2	config
+	build	modify	3	configure
+	source	modify	2	cook/archive.c
+	source	modify	3	cook/builtin/glob.c
+	source	modify	2	cook/builtin/opsys.c
+	source	modify	4	cook/os.c
+	source	modify	2	cooktime/main.c
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	8	doc/version.so
+
+
+
+Project "cook.1.10", Change 16					 Page 2
+Change Details				       Wed Apr 30 22:31:21 1997
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Jul 28	pmiller
+			22:25:47 1996
+	develop_begin	Sun Jul 28	pmiller	 Elapsed time: 1.266
+			22:25:50 1996		 days.
+	develop_end	Tue Jul 30	pmiller
+			00:25:44 1996
+	review_pass	Tue Jul 30	pmiller
+			00:25:51 1996
+	integrate_begin Tue Jul 30	pmiller	 Elapsed time: 0.074
+			00:26:01 1996		 days.
+	integrate_pass	Tue Jul 30	pmiller
+			00:59:12 1996
+
+
+
+Project "cook.1.10", Change 17					 Page 1
+Change Details				       Wed Apr 30 22:31:22 1997
+
+NAME
+	Project "cook.1.10", Delta 9, Change 17.
+
+SUMMARY
+	fix mprintf bug
+
+DESCRIPTION
+	This change fixes a bug in mprintf where it mangles the
+	semantics of the leading-zero format flag.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	5	MANIFEST
+	build	modify	5	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	build	modify	3	common/config.h.in
+	source	modify	2	common/mprintf.c
+	build	modify	9	common/patchlevel.h
+	build	modify	3	configure
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	9	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat Aug	 3	pmiller
+			11:27:26 1996
+	develop_begin	Sat Aug	 3	pmiller	 Elapsed time: 0.718
+			11:27:30 1996		 days.
+	develop_end	Sat Aug	 3	pmiller
+			16:50:23 1996
+	review_pass	Sat Aug	 3	pmiller
+			16:50:28 1996
+	integrate_begin Sat Aug	 3	pmiller	 Elapsed time: 0.064
+			16:50:31 1996		 days.
+	integrate_pass	Sat Aug	 3	pmiller
+			17:19:32 1996
+
+
+
+Project "cook.1.10", Change 18					 Page 1
+Change Details				       Wed Apr 30 22:31:22 1997
+
+NAME
+	Project "cook.1.10", Delta 13, Change 18.
+
+SUMMARY
+	fix problems in the tests for SCO
+
+DESCRIPTION
+	fix problems in the tests for SCO
+
+	This change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	6	MANIFEST
+	build	modify	6	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	build	modify	3	common/config.h.in
+	build	modify	13	common/patchlevel.h
+	build	modify	3	configure
+	source	modify	3	cook/builtin.c
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	13	doc/version.so
+	test	modify	2	test/00/t0037a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Aug	 9	pmiller
+			22:07:07 1996
+	develop_begin	Fri Aug	 9	pmiller	 Elapsed time: 112.545
+			22:07:13 1996		 days.
+	develop_end	Thu Jan 16	pmiller
+			12:12:21 1997
+	review_pass	Thu Jan 16	pmiller
+			12:12:32 1997
+	integrate_begin Thu Jan 16	pmiller
+			12:12:35 1997
+	integrate_pass	Thu Jan 16	pmiller
+			12:22:24 1997
+
+
+
+Project "cook.1.10", Change 19					 Page 1
+Change Details				       Wed Apr 30 22:31:22 1997
+
+NAME
+	Project "cook.1.10", Delta 10, Change 19.
+
+SUMMARY
+	interrupt handler for c_incl
+
+DESCRIPTION
+	This change adds an interrupt handler to the c_incl command,
+	to reduce the incidence of broken and damaged .d files.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	5	MANIFEST
+	build	modify	5	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	source	modify	2	c_incl/sniff.c
+	build	modify	3	common/config.h.in
+	build	modify	10	common/patchlevel.h
+	build	modify	3	configure
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	10	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Aug	 9	pmiller
+			23:35:25 1996
+	develop_begin	Fri Aug	 9	pmiller	 Elapsed time: 0.061
+			23:44:59 1996		 days.
+	develop_end	Sat Aug 10	pmiller
+			00:12:36 1996
+	review_pass	Sat Aug 10	pmiller
+			00:12:40 1996
+	integrate_begin Sat Aug 10	pmiller	 Elapsed time: 9.094
+			00:12:45 1996		 days.
+	integrate_pass	Sat Aug 24	pmiller
+			09:54:51 1996
+
+
+
+Project "cook.1.10", Change 20					 Page 1
+Change Details				       Wed Apr 30 22:31:22 1997
+
+NAME
+	Project "cook.1.10", Delta 12, Change 20.
+
+SUMMARY
+	add a -no-cooked-include option
+
+DESCRIPTION
+	This change adds a -no-cooked-include option to the cook
+	command, so that you can tell cook not to generate dependncy
+	files.	This is useful whe the target you are interested in
+	actually *deletes* those dependency files.
+
+	My thanks to Christian Goetz for this suggestion.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	6	MANIFEST
+	build	modify	6	Makefile.in
+	build	modify	2	README
+	source	create	1	aux/new.1.10.so
+	build	modify	2	aux/new.so
+	build	modify	3	common/config.h.in
+	build	modify	12	common/patchlevel.h
+	build	modify	3	configure
+	source	modify	2	cook/cook.c
+	source	modify	2	cook/main.c
+	source	modify	2	cook/option.c
+	source	modify	2	cook/option.h
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	12	doc/version.so
+	source	modify	2	man1/cook.1
+	test	create	1	test/00/t0096a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat Aug 24	pmiller
+			09:58:00 1996
+	develop_begin	Sat Aug 24	pmiller	 Elapsed time: 103.880
+			09:58:05 1996		 days.
+	develop_end	Wed Jan 15	pmiller
+			17:34:12 1997
+	review_pass	Wed Jan 15	pmiller
+			17:35:22 1997
+	integrate_begin Wed Jan 15	pmiller	 Elapsed time: 0.024
+			17:35:26 1997		 days.
+
+
+
+Project "cook.1.10", Change 20					 Page 2
+Change Details				       Wed Apr 30 22:31:22 1997
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_pass	Wed Jan 15	pmiller
+			17:46:09 1997
+
+
+
+Project "cook.1.10", Change 21					 Page 1
+Change Details				       Wed Apr 30 22:31:23 1997
+
+NAME
+	Project "cook.1.10", Delta 11, Change 21.
+
+SUMMARY
+	correct documentation bug
+
+DESCRIPTION
+	This change corrects a documentation bug.
+
+	My thanks to Ulrich Drepper <drepper@gnu.ai.mit.edu> for
+	reporting this problem.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	5	MANIFEST
+	build	modify	5	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	build	modify	3	common/config.h.in
+	build	modify	11	common/patchlevel.h
+	build	modify	3	configure
+	build	modify	2	doc/function.so
+	source	modify	2	doc/function/filter_out.so
+	build	modify	1	doc/system.list.so
+	build	modify	11	doc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Sep 18	pmiller
+			21:35:30 1996
+	develop_begin	Wed Sep 18	pmiller	 Elapsed time: 84.242
+			21:35:39 1996		 days.
+	develop_end	Wed Jan 15	pmiller
+			16:54:34 1997
+	review_pass	Wed Jan 15	pmiller
+			16:54:39 1997
+	integrate_begin Wed Jan 15	pmiller
+			16:54:43 1997
+	integrate_pass	Wed Jan 15	pmiller
+			17:02:29 1997
+
+
+
+Project "cook.1.10", Change 22					 Page 1
+Change Details				       Wed Apr 30 22:31:23 1997
+
+NAME
+	Project "cook.1.10", Delta 14, Change 22.
+
+SUMMARY
+	internationalize the error messages
+
+DESCRIPTION
+	This change commences the internationalization process by
+	extracting the error messages and constructing the PO files.
+
+	This change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	7	MANIFEST
+	build	modify	7	Makefile.in
+	build	modify	2	README
+	source	modify	6	aux/Howto.cook
+	source	modify	3	aux/Makefi.file.sh
+	source	modify	2	aux/Makefile.head
+	source	modify	3	aux/Makefile.sh
+	source	modify	2	aux/config.h.in
+	source	modify	4	aux/configure.in
+	build	modify	2	aux/new.so
+	source	modify	2	aux/template/test
+	source	create	1	aux/zer-len-msg.sh
+	source	modify	2	c_incl/cache.c
+	source	modify	2	c_incl/main.c
+	source	modify	2	c_incl/os.c
+	source	modify	3	c_incl/sniff.c
+	source	create	1	common/ac/libintl.c
+	source	create	1	common/ac/libintl.h
+	source	modify	2	common/ac/limits.h
+	source	create	1	common/ac/locale.h
+	source	create	1	common/ac/stdlib.c
+	source	create	1	common/ac/termios.h
+	source	create	1	common/ac/time.c
+	source	create	1	common/ac/wchar.c
+	source	create	1	common/ac/wchar.h
+	source	create	1	common/ac/wctype.c
+	source	create	1	common/ac/wctype.h
+	source	modify	2	common/arglex.c
+	source	modify	2	common/arglex.h
+	build	modify	4	common/config.h.in
+	source	modify	2	common/error.c
+	source	modify	2	common/error.h
+	source	create	1	common/error_intl.c
+
+
+
+Project "cook.1.10", Change 22					 Page 2
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	common/error_intl.h
+	source	modify	2	common/help.c
+	source	modify	2	common/help.h
+	source	create	1	common/language.c
+	source	create	1	common/language.h
+	source	modify	2	common/mem.c
+	source	modify	3	common/mprintf.c
+	source	create	1	common/page.c
+	source	create	1	common/page.h
+	build	modify	14	common/patchlevel.h
+	source	create	1	common/progname.c
+	source	create	1	common/progname.h
+	source	modify	2	common/str.c
+	source	create	1	common/sub.c
+	source	create	1	common/sub.h
+	source	create	1	common/sub/basename.c
+	source	create	1	common/sub/basename.h
+	source	create	1	common/sub/date.c
+	source	create	1	common/sub/date.h
+	source	create	1	common/sub/dirname.c
+	source	create	1	common/sub/dirname.h
+	source	create	1	common/sub/downcase.c
+	source	create	1	common/sub/downcase.h
+	source	create	1	common/sub/errno.c
+	source	create	1	common/sub/errno.h
+	source	create	1	common/sub/expr.c
+	source	create	1	common/sub/expr.h
+	source	create	1	common/sub/expr_gram.h
+	source	create	1	common/sub/expr_gram.y
+	source	create	1	common/sub/expr_lex.c
+	source	create	1	common/sub/expr_lex.h
+	source	create	1	common/sub/ident.c
+	source	create	1	common/sub/ident.h
+	source	create	1	common/sub/left.c
+	source	create	1	common/sub/left.h
+	source	create	1	common/sub/length.c
+	source	create	1	common/sub/length.h
+	source	create	1	common/sub/plural.c
+	source	create	1	common/sub/plural.h
+	source	create	1	common/sub/private.h
+	source	create	1	common/sub/progname.c
+	source	create	1	common/sub/progname.h
+	source	create	1	common/sub/right.c
+	source	create	1	common/sub/right.h
+	source	create	1	common/sub/upcase.c
+	source	create	1	common/sub/upcase.h
+	source	create	1	common/sub/zero_pad.c
+	source	create	1	common/sub/zero_pad.h
+	source	modify	2	common/trace.c
+	source	create	1	common/verbose.c
+	source	create	1	common/verbose.h
+	source	modify	2	common/version.c
+	source	create	1	common/wstr.c
+	source	create	1	common/wstr.h
+	source	create	1	common/wstr_list.c
+
+
+
+Project "cook.1.10", Change 22					 Page 3
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	common/wstr_list.h
+	build	modify	4	configure
+	source	modify	2	cook/builtin/collect.c
+	source	modify	2	cook/builtin/execute.c
+	source	modify	4	cook/builtin/glob.c
+	source	modify	2	cook/builtin/home.c
+	source	modify	2	cook/builtin/readlink.c
+	source	modify	3	cook/cook.c
+	source	modify	2	cook/expr.c
+	source	modify	2	cook/fngrprnt.y
+	source	modify	2	cook/fngrprnt_lex.c
+	source	modify	2	cook/fngrprnt_lex.h
+	source	modify	2	cook/hashline.y
+	source	modify	2	cook/id.c
+	source	modify	2	cook/lex.c
+	source	modify	2	cook/lex.h
+	source	modify	2	cook/listing.c
+	source	modify	3	cook/main.c
+	source	modify	2	cook/match.c
+	source	modify	3	cook/option.c
+	source	modify	3	cook/option.h
+	source	modify	5	cook/os.c
+	source	modify	2	cook/parse.y
+	source	modify	2	cook/stat.cache.c
+	source	modify	2	cook/stmt.c
+	source	modify	2	cookfp/main.c
+	source	modify	2	cooktime/date.y
+	source	modify	3	cooktime/main.c
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	14	doc/version.so
+	source	modify	2	find_libs/main.c
+	source	modify	2	find_libs/os.c
+	source	modify	2	fstrcmp/main.c
+	source	create	1	lib/en/LC_MESSAGES/c_incl.po
+	source	create	1	lib/en/LC_MESSAGES/common.po
+	source	create	1	lib/en/LC_MESSAGES/cook.po
+	source	create	1	lib/en/LC_MESSAGES/cookfp.po
+	source	create	1	lib/en/LC_MESSAGES/cooktime.po
+	source	create	1	lib/en/LC_MESSAGES/find_libs.po
+	source	create	1	lib/en/LC_MESSAGES/fstrcmp.po
+	source	create	1	lib/en/LC_MESSAGES/make2cook.po
+	source	create	1	lib/en/LC_MESSAGES/roffpp.po
+	source	modify	2	make2cook/blob.c
+	source	modify	2	make2cook/blob.h
+	source	modify	2	make2cook/emit.c
+	source	modify	2	make2cook/gram.y
+	source	modify	2	make2cook/lex.c
+	source	modify	2	make2cook/lex.h
+	source	modify	2	make2cook/main.c
+	source	modify	2	make2cook/variable.c
+	source	modify	2	roffpp/main.c
+	source	modify	2	roffpp/preprocess.c
+	test	modify	2	test/00/t0001a.sh
+	test	modify	2	test/00/t0002a.sh
+
+
+
+Project "cook.1.10", Change 22					 Page 4
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	test	modify	2	test/00/t0003a.sh
+	test	modify	2	test/00/t0004a.sh
+	test	modify	2	test/00/t0005a.sh
+	test	modify	2	test/00/t0006a.sh
+	test	modify	2	test/00/t0007a.sh
+	test	modify	2	test/00/t0008a.sh
+	test	modify	2	test/00/t0009a.sh
+	test	modify	2	test/00/t0010a.sh
+	test	modify	2	test/00/t0011a.sh
+	test	modify	2	test/00/t0012a.sh
+	test	modify	2	test/00/t0013a.sh
+	test	modify	2	test/00/t0014a.sh
+	test	modify	2	test/00/t0015a.sh
+	test	modify	2	test/00/t0016a.sh
+	test	modify	2	test/00/t0017a.sh
+	test	modify	2	test/00/t0018a.sh
+	test	modify	2	test/00/t0019a.sh
+	test	modify	2	test/00/t0020a.sh
+	test	modify	2	test/00/t0021a.sh
+	test	modify	2	test/00/t0022a.sh
+	test	modify	2	test/00/t0023a.sh
+	test	modify	2	test/00/t0024a.sh
+	test	modify	2	test/00/t0025a.sh
+	test	modify	2	test/00/t0026a.sh
+	test	modify	2	test/00/t0027a.sh
+	test	modify	2	test/00/t0028a.sh
+	test	modify	2	test/00/t0029a.sh
+	test	modify	2	test/00/t0030a.sh
+	test	modify	2	test/00/t0031a.sh
+	test	modify	2	test/00/t0032a.sh
+	test	modify	2	test/00/t0033a.sh
+	test	modify	2	test/00/t0034a.sh
+	test	modify	2	test/00/t0035a.sh
+	test	modify	2	test/00/t0036a.sh
+	test	modify	3	test/00/t0037a.sh
+	test	modify	2	test/00/t0038a.sh
+	test	modify	2	test/00/t0039a.sh
+	test	modify	2	test/00/t0040a.sh
+	test	modify	2	test/00/t0041a.sh
+	test	modify	2	test/00/t0042a.sh
+	test	modify	2	test/00/t0043a.sh
+	test	modify	2	test/00/t0044a.sh
+	test	modify	2	test/00/t0045a.sh
+	test	modify	2	test/00/t0046a.sh
+	test	modify	2	test/00/t0047a.sh
+	test	modify	2	test/00/t0048a.sh
+	test	modify	2	test/00/t0049a.sh
+	test	modify	2	test/00/t0050a.sh
+	test	modify	2	test/00/t0051a.sh
+	test	modify	2	test/00/t0052a.sh
+	test	modify	2	test/00/t0053a.sh
+	test	modify	2	test/00/t0054a.sh
+	test	modify	2	test/00/t0055a.sh
+	test	modify	2	test/00/t0056a.sh
+	test	modify	2	test/00/t0057a.sh
+
+
+
+Project "cook.1.10", Change 22					 Page 5
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	test	modify	2	test/00/t0058a.sh
+	test	modify	2	test/00/t0059a.sh
+	test	modify	2	test/00/t0060a.sh
+	test	modify	2	test/00/t0061a.sh
+	test	modify	2	test/00/t0062a.sh
+	test	modify	2	test/00/t0063a.sh
+	test	modify	2	test/00/t0064a.sh
+	test	modify	2	test/00/t0065a.sh
+	test	modify	2	test/00/t0066a.sh
+	test	modify	2	test/00/t0067a.sh
+	test	modify	2	test/00/t0068a.sh
+	test	modify	2	test/00/t0069a.sh
+	test	modify	2	test/00/t0070a.sh
+	test	modify	2	test/00/t0071a.sh
+	test	modify	2	test/00/t0072a.sh
+	test	modify	2	test/00/t0073a.sh
+	test	modify	2	test/00/t0074a.sh
+	test	modify	2	test/00/t0075a.sh
+	test	modify	2	test/00/t0076a.sh
+	test	modify	2	test/00/t0077a.sh
+	test	modify	2	test/00/t0078a.sh
+	test	modify	2	test/00/t0079a.sh
+	test	modify	2	test/00/t0081a.sh
+	test	modify	2	test/00/t0082a.sh
+	test	modify	2	test/00/t0083a.sh
+	test	modify	2	test/00/t0084a.sh
+	test	modify	2	test/00/t0085a.sh
+	test	modify	2	test/00/t0086a.sh
+	test	modify	2	test/00/t0087a.sh
+	test	modify	2	test/00/t0088a.sh
+	test	modify	2	test/00/t0089a.sh
+	test	modify	2	test/00/t0090a.sh
+	test	modify	2	test/00/t0091a.sh
+	test	modify	2	test/00/t0092a.sh
+	test	modify	2	test/00/t0093a.sh
+	test	modify	2	test/00/t0094a.sh
+	test	modify	2	test/00/t0095a.sh
+	test	modify	2	test/00/t0096a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Jan 17	pmiller
+			20:48:24 1997
+	develop_begin	Fri Jan 17	pmiller	 Elapsed time: 13.304
+			20:48:28 1997		 days.
+	develop_end	Wed Feb	 5	pmiller
+			23:05:04 1997
+	review_pass	Wed Feb	 5	pmiller
+			23:06:43 1997
+	integrate_begin Wed Feb	 5	pmiller	 Elapsed time: 0.055
+			23:06:50 1997		 days.
+	integrate_fail	Wed Feb	 5	pmiller	 need to add a file
+			23:31:36 1997
+	develop_end	Wed Feb	 5	pmiller
+
+
+
+Project "cook.1.10", Change 22					 Page 6
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			23:37:17 1997
+	review_pass	Wed Feb	 5	pmiller
+			23:37:26 1997
+	integrate_begin Wed Feb	 5	pmiller
+			23:37:31 1997
+	integrate_fail	Wed Feb	 5	pmiller	 still missing a file
+			23:43:02 1997
+	develop_end	Wed Feb	 5	pmiller
+			23:47:38 1997
+	review_pass	Wed Feb	 5	pmiller
+			23:51:09 1997
+	integrate_begin Wed Feb	 5	pmiller	 Elapsed time: 0.097
+			23:51:17 1997		 days.
+	integrate_pass	Thu Feb	 6	pmiller
+			00:34:47 1997
+
+
+
+Project "cook.1.10", Change 23					 Page 1
+Change Details				       Wed Apr 30 22:31:23 1997
+
+NAME
+	Project "cook.1.10", Delta 16, Change 23.
+
+SUMMARY
+	move manual entries to language specific location
+
+DESCRIPTION
+	This change moves the manual entries and documentation to a
+	language specific (English) location, as part of
+	internationalizing the sources.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	source	remove	1	LICENSE
+				Moved to lib/en/man1/cook_lic.1
+	build	modify	8	MANIFEST
+	build	modify	8	Makefile.in
+	build	modify	3	README
+	source	remove	1	aux/BUILDING.man
+				Moved to lib/en/building/main.man
+	source	modify	7	aux/Howto.cook
+	source	modify	4	aux/Makefi.file.sh
+	source	modify	3	aux/Makefile.head
+	source	modify	4	aux/Makefile.sh
+	source	remove	1	aux/README.man
+				Moved to lib/en/readme/main.man
+	source	modify	5	aux/configure.in
+	source	create	1	aux/function.sh
+				Moved from doc/function.sh
+	source	remove	1	aux/lsm.roff
+				Moved to lib/en/lsm/main.roff
+	source	remove	1	aux/new.1.10.so
+				Moved to lib/en/readme/new.1.10.so
+	source	remove	1	aux/new.1.4.so
+				Moved to lib/en/readme/new.1.4.so
+	source	remove	1	aux/new.1.5.so
+				Moved to lib/en/readme/new.1.5.so
+	source	remove	1	aux/new.1.6.so
+				Moved to lib/en/readme/new.1.6.so
+	source	remove	1	aux/new.1.7.so
+				Moved to lib/en/readme/new.1.7.so
+	source	remove	1	aux/new.1.8.so
+				Moved to lib/en/readme/new.1.8.so
+	source	remove	1	aux/new.1.9.so
+
+
+
+Project "cook.1.10", Change 23					 Page 2
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				Moved to lib/en/readme/new.1.9.so
+	build	modify	2	aux/new.so
+	source	create	1	aux/ptx.ignore
+	source	create	1	aux/ptx.sh
+	source	create	1	aux/ptx1.awk
+	source	create	1	aux/ptx2.awk
+	source	modify	2	aux/ssp.awk
+	source	create	1	aux/system.sh
+				Moved from doc/system.sh
+	source	modify	2	aux/template/man
+	source	create	1	aux/toc.so
+	source	remove	1	aux/txt2c.awk
+	build	create	1	aux/version.so
+				Moved from doc/version.so
+	source	modify	3	c_incl/main.c
+	build	modify	4	common/config.h.in
+	source	create	1	common/env.c
+				Moved from cook/env.c
+	source	create	1	common/env.h
+				Moved from cook/env.h
+	source	modify	3	common/help.c
+	source	modify	3	common/help.h
+	source	modify	2	common/language.c
+	source	create	1	common/libdir.c
+	source	create	1	common/libdir.h
+	build	modify	16	common/patchlevel.h
+	source	modify	3	common/version.c
+	build	modify	5	configure
+	source	remove	1	cook/env.c
+				Moved to common/env.c
+	source	remove	1	cook/env.h
+				Moved to common/env.h
+	source	modify	4	cook/main.c
+	source	modify	4	cook/option.c
+	source	modify	3	cookfp/main.c
+	source	modify	4	cooktime/main.c
+	source	remove	1	doc/builtin.so
+				Moved to lib/en/user-guide/builtin.so
+	source	remove	1	doc/cmdline.so
+				Moved to lib/en/user-guide/cmdline.so
+	source	remove	1	doc/conditions.so
+				Moved to lib/en/user-guide/
+				conditions.so
+	source	remove	1	doc/function.sh
+				Moved to aux/function.sh
+	build	modify	2	doc/function.so
+	source	remove	1	doc/function/addprefix.so
+				Moved to lib/en/user-guide/function/
+				addprefix.so
+	source	remove	1	doc/function/addsuffix.so
+				Moved to lib/en/user-guide/function/
+				addsuffix.so
+	source	remove	1	doc/function/and.so
+				Moved to lib/en/user-guide/function/
+				and.so
+
+
+
+Project "cook.1.10", Change 23					 Page 3
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	remove	1	doc/function/basename.so
+				Moved to lib/en/user-guide/function/
+				basename.so
+	source	remove	1	doc/function/cando.so
+				Moved to lib/en/user-guide/function/
+				cando.so
+	source	remove	1	doc/function/catenate.so
+				Moved to lib/en/user-guide/function/
+				catenate.so
+	source	remove	1	doc/function/collect.so
+				Moved to lib/en/user-guide/function/
+				collect.so
+	source	remove	1	doc/function/collect_ln.so
+				Moved to lib/en/user-guide/function/
+				collect_ln.so
+	source	remove	1	doc/function/count.so
+				Moved to lib/en/user-guide/function/
+				count.so
+	source	remove	1	doc/function/defined.so
+				Moved to lib/en/user-guide/function/
+				defined.so
+	source	remove	1	doc/function/dir.so
+				Moved to lib/en/user-guide/function/
+				dir.so
+	source	remove	1	doc/function/dirname.so
+				Moved to lib/en/user-guide/function/
+				dirname.so
+	source	remove	1	doc/function/downcase.so
+				Moved to lib/en/user-guide/function/
+				downcase.so
+	source	remove	1	doc/function/entryname.so
+				Moved to lib/en/user-guide/function/
+				entryname.so
+	source	remove	1	doc/function/execute.so
+				Moved to lib/en/user-guide/function/
+				execute.so
+	source	remove	1	doc/function/exists.so
+				Moved to lib/en/user-guide/function/
+				exists.so
+	source	remove	1	doc/function/filter.so
+				Moved to lib/en/user-guide/function/
+				filter.so
+	source	remove	2	doc/function/filter_out.so
+				Moved to lib/en/user-guide/function/
+				filter_out.so
+	source	remove	1	doc/function/find_cmd.so
+				Moved to lib/en/user-guide/function/
+				find_cmd.so
+	source	remove	1	doc/function/findstring.so
+				Moved to lib/en/user-guide/function/
+				findstring.so
+	source	remove	1	doc/function/fromto.so
+				Moved to lib/en/user-guide/function/
+				fromto.so
+	source	remove	1	doc/function/getenv.so
+
+
+
+Project "cook.1.10", Change 23					 Page 4
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				Moved to lib/en/user-guide/function/
+				getenv.so
+	source	remove	1	doc/function/glob.so
+				Moved to lib/en/user-guide/function/
+				glob.so
+	source	remove	1	doc/function/head.so
+				Moved to lib/en/user-guide/function/
+				head.so
+	source	remove	1	doc/function/home.so
+				Moved to lib/en/user-guide/function/
+				home.so
+	source	remove	1	doc/function/if.so
+				Moved to lib/en/user-guide/function/
+				if.so
+	source	remove	1	doc/function/in.so
+				Moved to lib/en/user-guide/function/
+				in.so
+	source	remove	1	doc/function/join.so
+				Moved to lib/en/user-guide/function/
+				join.so
+	source	remove	1	doc/function/match_mask.so
+				Moved to lib/en/user-guide/function/
+				match_mask.so
+	source	remove	1	doc/function/matches.so
+				Moved to lib/en/user-guide/function/
+				matches.so
+	source	remove	1	doc/function/mtime.so
+				Moved to lib/en/user-guide/function/
+				mtime.so
+	source	remove	1	doc/function/not.so
+				Moved to lib/en/user-guide/function/
+				not.so
+	source	remove	1	doc/function/opsys.so
+				Moved to lib/en/user-guide/function/
+				opsys.so
+	source	remove	1	doc/function/options.so
+				Moved to lib/en/user-guide/function/
+				options.so
+	source	remove	1	doc/function/or.so
+				Moved to lib/en/user-guide/function/
+				or.so
+	source	remove	1	doc/function/pathname.so
+				Moved to lib/en/user-guide/function/
+				pathname.so
+	source	remove	1	doc/function/patsubst.so
+				Moved to lib/en/user-guide/function/
+				patsubst.so
+	source	remove	1	doc/function/prepost.so
+				Moved to lib/en/user-guide/function/
+				prepost.so
+	source	remove	1	doc/function/quote.so
+				Moved to lib/en/user-guide/function/
+				quote.so
+	source	remove	1	doc/function/readlink.so
+				Moved to lib/en/user-guide/function/
+
+
+
+Project "cook.1.10", Change 23					 Page 5
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				readlink.so
+	source	remove	1	doc/function/resolve.so
+				Moved to lib/en/user-guide/function/
+				resolve.so
+	source	remove	1	doc/function/shell.so
+				Moved to lib/en/user-guide/function/
+				shell.so
+	source	remove	1	doc/function/sort.so
+				Moved to lib/en/user-guide/function/
+				sort.so
+	source	remove	1	doc/function/sort_newest.so
+				Moved to lib/en/user-guide/function/
+				sort_newest.so
+	source	remove	1	doc/function/split.so
+				Moved to lib/en/user-guide/function/
+				split.so
+	source	remove	1	doc/function/stringset.so
+				Moved to lib/en/user-guide/function/
+				stringset.so
+	source	remove	1	doc/function/strip.so
+				Moved to lib/en/user-guide/function/
+				strip.so
+	source	remove	1	doc/function/subst.so
+				Moved to lib/en/user-guide/function/
+				subst.so
+	source	remove	1	doc/function/suffix.so
+				Moved to lib/en/user-guide/function/
+				suffix.so
+	source	remove	1	doc/function/tail.so
+				Moved to lib/en/user-guide/function/
+				tail.so
+	source	remove	1	doc/function/unsplit.so
+				Moved to lib/en/user-guide/function/
+				unsplit.so
+	source	remove	1	doc/function/upcase.so
+				Moved to lib/en/user-guide/function/
+				upcase.so
+	source	remove	1	doc/function/uptodate.so
+				Moved to lib/en/user-guide/function/
+				uptodate.so
+	source	remove	1	doc/function/wildcard.so
+				Moved to lib/en/user-guide/function/
+				wildcard.so
+	source	remove	1	doc/function/word.so
+				Moved to lib/en/user-guide/function/
+				word.so
+	source	remove	1	doc/function/words.so
+				Moved to lib/en/user-guide/function/
+				words.so
+	source	remove	1	doc/glossary.so
+				Moved to lib/en/user-guide/glossary.so
+	source	remove	1	doc/history.so
+				Moved to lib/en/user-guide/history.so
+	source	remove	1	doc/how.so
+				Moved to lib/en/user-guide/how.so
+
+
+
+Project "cook.1.10", Change 23					 Page 6
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	remove	1	doc/intro.so
+				Moved to lib/en/user-guide/intro.so
+	source	remove	1	doc/intro1.so
+				Moved to lib/en/user-guide/intro1.so
+	source	remove	1	doc/intro2.so
+				Moved to lib/en/user-guide/intro2.so
+	source	remove	1	doc/language.so
+				Moved to lib/en/user-guide/language.so
+	source	remove	1	doc/match.so
+				Moved to lib/en/user-guide/match.so
+	source	remove	1	doc/option.so
+				Moved to lib/en/user-guide/option.so
+	source	remove	1	doc/refman.t
+				Moved to lib/en/user-guide/main.mm
+	build	modify	1	doc/system.list.so
+	source	remove	1	doc/system.sh
+				Moved to aux/system.sh
+	source	remove	1	doc/system.so
+				Moved to lib/en/user-guide/system.so
+	source	remove	1	doc/system/as.so
+				Moved to lib/en/user-guide/system/as.so
+	source	remove	1	doc/system/c.so
+				Moved to lib/en/user-guide/system/c.so
+	source	remove	1	doc/system/f77.so
+				Moved to lib/en/user-guide/system/
+				f77.so
+	source	remove	1	doc/system/g77.so
+				Moved to lib/en/user-guide/system/
+				g77.so
+	source	remove	1	doc/system/gcc.so
+				Moved to lib/en/user-guide/system/
+				gcc.so
+	source	remove	1	doc/system/home.so
+				Moved to lib/en/user-guide/system/
+				home.so
+	source	remove	1	doc/system/lex.so
+				Moved to lib/en/user-guide/system/
+				lex.so
+	source	remove	1	doc/system/library.so
+				Moved to lib/en/user-guide/system/
+				library.so
+	source	remove	1	doc/system/print.so
+				Moved to lib/en/user-guide/system/
+				print.so
+	source	remove	1	doc/system/program.so
+				Moved to lib/en/user-guide/system/
+				program.so
+	source	remove	1	doc/system/rcs.so
+				Moved to lib/en/user-guide/system/
+				rcs.so
+	source	remove	1	doc/system/recursive.so
+				Moved to lib/en/user-guide/system/
+				recursive.so
+	source	remove	1	doc/system/sccs.so
+				Moved to lib/en/user-guide/system/
+
+
+
+Project "cook.1.10", Change 23					 Page 7
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				sccs.so
+	source	remove	1	doc/system/text.so
+				Moved to lib/en/user-guide/system/
+				text.so
+	source	remove	1	doc/system/usr.local.so
+				Moved to lib/en/user-guide/system/
+				usr.local.so
+	source	remove	1	doc/system/usr.so
+				Moved to lib/en/user-guide/system/
+				usr.so
+	source	remove	1	doc/system/yacc.so
+				Moved to lib/en/user-guide/system/
+				yacc.so
+	source	remove	1	doc/system/yacc_many.so
+				Moved to lib/en/user-guide/system/yacc_
+				many.so
+	source	remove	1	doc/variables.so
+				Moved to lib/en/user-guide/variables.so
+	build	remove	13	doc/version.so
+				Moved to aux/version.so
+	source	modify	3	find_libs/main.c
+	source	modify	3	fstrcmp/main.c
+	source	modify	3	lib/en/LC_MESSAGES/common.po
+	source	modify	2	lib/en/LC_MESSAGES/cook.po
+	source	create	1	lib/en/building/main.man
+				Moved from aux/BUILDING.man
+	source	create	1	lib/en/lsm/main.roff
+				Moved from aux/lsm.roff
+	source	create	1	lib/en/man1/c_incl.1
+				Moved from man1/c_incl.1
+	source	create	1	lib/en/man1/cook.1
+				Moved from man1/cook.1
+	source	create	1	lib/en/man1/cook_lic.1
+				Moved from LICENSE
+	source	create	1	lib/en/man1/cookfp.1
+				Moved from man1/cookfp.1
+	source	create	1	lib/en/man1/cooktime.1
+				Moved from man1/cooktime.1
+	source	create	1	lib/en/man1/copyright.so
+				Moved from man1/copyright.so
+	source	create	1	lib/en/man1/find_libs.1
+				Moved from man1/find_libs.1
+	source	create	1	lib/en/man1/make2cook.1
+				Moved from man1/make2cook.1
+	source	create	1	lib/en/man1/o__rules.so
+				Moved from man1/o__rules.so
+	source	create	1	lib/en/man1/roffpp.1
+				Moved from man1/roffpp.1
+	source	create	1	lib/en/man1/z_exit.so
+				Moved from man1/z_exit.so
+	source	create	1	lib/en/man1/z_name.so
+				Moved from man1/z_name.so
+	source	create	1	lib/en/readme/main.man
+				Moved from aux/README.man
+	source	create	1	lib/en/readme/new.1.10.so
+
+
+
+Project "cook.1.10", Change 23					 Page 8
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				Moved from aux/new.1.10.so
+	source	create	1	lib/en/readme/new.1.4.so
+				Moved from aux/new.1.4.so
+	source	create	1	lib/en/readme/new.1.5.so
+				Moved from aux/new.1.5.so
+	source	create	1	lib/en/readme/new.1.6.so
+				Moved from aux/new.1.6.so
+	source	create	1	lib/en/readme/new.1.7.so
+				Moved from aux/new.1.7.so
+	source	create	1	lib/en/readme/new.1.8.so
+				Moved from aux/new.1.8.so
+	source	create	1	lib/en/readme/new.1.9.so
+				Moved from aux/new.1.9.so
+	source	create	1	lib/en/refman/i18n.so
+	build	create	1	lib/en/refman/index.so
+	source	create	1	lib/en/refman/main.man
+	build	create	1	lib/en/refman/parts.so
+	source	create	1	lib/en/user-guide/builtin.so
+				Moved from doc/builtin.so
+	source	create	1	lib/en/user-guide/cmdline.so
+				Moved from doc/cmdline.so
+	source	create	1	lib/en/user-guide/conditions.so
+				Moved from doc/conditions.so
+	build	create	1	lib/en/user-guide/function.so
+	source	create	1	lib/en/user-guide/function/addprefix.so
+				Moved from doc/function/addprefix.so
+	source	create	1	lib/en/user-guide/function/addsuffix.so
+				Moved from doc/function/addsuffix.so
+	source	create	1	lib/en/user-guide/function/and.so
+				Moved from doc/function/and.so
+	source	create	1	lib/en/user-guide/function/basename.so
+				Moved from doc/function/basename.so
+	source	create	1	lib/en/user-guide/function/cando.so
+				Moved from doc/function/cando.so
+	source	create	1	lib/en/user-guide/function/catenate.so
+				Moved from doc/function/catenate.so
+	source	create	1	lib/en/user-guide/function/collect.so
+				Moved from doc/function/collect.so
+	source	create	1	lib/en/user-guide/function/collect_
+				ln.so
+				Moved from doc/function/collect_ln.so
+	source	create	1	lib/en/user-guide/function/count.so
+				Moved from doc/function/count.so
+	source	create	1	lib/en/user-guide/function/defined.so
+				Moved from doc/function/defined.so
+	source	create	1	lib/en/user-guide/function/dir.so
+				Moved from doc/function/dir.so
+	source	create	1	lib/en/user-guide/function/dirname.so
+				Moved from doc/function/dirname.so
+	source	create	1	lib/en/user-guide/function/downcase.so
+				Moved from doc/function/downcase.so
+	source	create	1	lib/en/user-guide/function/entryname.so
+				Moved from doc/function/entryname.so
+	source	create	1	lib/en/user-guide/function/execute.so
+				Moved from doc/function/execute.so
+
+
+
+Project "cook.1.10", Change 23					 Page 9
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	lib/en/user-guide/function/exists.so
+				Moved from doc/function/exists.so
+	source	create	1	lib/en/user-guide/function/filter.so
+				Moved from doc/function/filter.so
+	source	create	1	lib/en/user-guide/function/filter_
+				out.so
+				Moved from doc/function/filter_out.so
+	source	create	1	lib/en/user-guide/function/find_cmd.so
+				Moved from doc/function/find_cmd.so
+	source	create	1	lib/en/user-guide/function/
+				findstring.so
+				Moved from doc/function/findstring.so
+	source	create	1	lib/en/user-guide/function/fromto.so
+				Moved from doc/function/fromto.so
+	source	create	1	lib/en/user-guide/function/getenv.so
+				Moved from doc/function/getenv.so
+	source	create	1	lib/en/user-guide/function/glob.so
+				Moved from doc/function/glob.so
+	source	create	1	lib/en/user-guide/function/head.so
+				Moved from doc/function/head.so
+	source	create	1	lib/en/user-guide/function/home.so
+				Moved from doc/function/home.so
+	source	create	1	lib/en/user-guide/function/if.so
+				Moved from doc/function/if.so
+	source	create	1	lib/en/user-guide/function/in.so
+				Moved from doc/function/in.so
+	source	create	1	lib/en/user-guide/function/join.so
+				Moved from doc/function/join.so
+	source	create	1	lib/en/user-guide/function/match_
+				mask.so
+				Moved from doc/function/match_mask.so
+	source	create	1	lib/en/user-guide/function/matches.so
+				Moved from doc/function/matches.so
+	source	create	1	lib/en/user-guide/function/mtime.so
+				Moved from doc/function/mtime.so
+	source	create	1	lib/en/user-guide/function/not.so
+				Moved from doc/function/not.so
+	source	create	1	lib/en/user-guide/function/opsys.so
+				Moved from doc/function/opsys.so
+	source	create	1	lib/en/user-guide/function/options.so
+				Moved from doc/function/options.so
+	source	create	1	lib/en/user-guide/function/or.so
+				Moved from doc/function/or.so
+	source	create	1	lib/en/user-guide/function/pathname.so
+				Moved from doc/function/pathname.so
+	source	create	1	lib/en/user-guide/function/patsubst.so
+				Moved from doc/function/patsubst.so
+	source	create	1	lib/en/user-guide/function/prepost.so
+				Moved from doc/function/prepost.so
+	source	create	1	lib/en/user-guide/function/quote.so
+				Moved from doc/function/quote.so
+	source	create	1	lib/en/user-guide/function/readlink.so
+				Moved from doc/function/readlink.so
+	source	create	1	lib/en/user-guide/function/resolve.so
+				Moved from doc/function/resolve.so
+
+
+
+Project "cook.1.10", Change 23					Page 10
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	lib/en/user-guide/function/shell.so
+				Moved from doc/function/shell.so
+	source	create	1	lib/en/user-guide/function/sort.so
+				Moved from doc/function/sort.so
+	source	create	1	lib/en/user-guide/function/sort_
+				newest.so
+				Moved from doc/function/sort_newest.so
+	source	create	1	lib/en/user-guide/function/split.so
+				Moved from doc/function/split.so
+	source	create	1	lib/en/user-guide/function/stringset.so
+				Moved from doc/function/stringset.so
+	source	create	1	lib/en/user-guide/function/strip.so
+				Moved from doc/function/strip.so
+	source	create	1	lib/en/user-guide/function/subst.so
+				Moved from doc/function/subst.so
+	source	create	1	lib/en/user-guide/function/suffix.so
+				Moved from doc/function/suffix.so
+	source	create	1	lib/en/user-guide/function/tail.so
+				Moved from doc/function/tail.so
+	source	create	1	lib/en/user-guide/function/unsplit.so
+				Moved from doc/function/unsplit.so
+	source	create	1	lib/en/user-guide/function/upcase.so
+				Moved from doc/function/upcase.so
+	source	create	1	lib/en/user-guide/function/uptodate.so
+				Moved from doc/function/uptodate.so
+	source	create	1	lib/en/user-guide/function/wildcard.so
+				Moved from doc/function/wildcard.so
+	source	create	1	lib/en/user-guide/function/word.so
+				Moved from doc/function/word.so
+	source	create	1	lib/en/user-guide/function/words.so
+				Moved from doc/function/words.so
+	source	create	1	lib/en/user-guide/glossary.so
+				Moved from doc/glossary.so
+	source	create	1	lib/en/user-guide/history.so
+				Moved from doc/history.so
+	source	create	1	lib/en/user-guide/how.so
+				Moved from doc/how.so
+	source	create	1	lib/en/user-guide/intro.so
+				Moved from doc/intro.so
+	source	create	1	lib/en/user-guide/intro1.so
+				Moved from doc/intro1.so
+	source	create	1	lib/en/user-guide/intro2.so
+				Moved from doc/intro2.so
+	source	create	1	lib/en/user-guide/language.so
+				Moved from doc/language.so
+	source	create	1	lib/en/user-guide/main.mm
+				Moved from doc/refman.t
+	source	create	1	lib/en/user-guide/match.so
+				Moved from doc/match.so
+	source	create	1	lib/en/user-guide/option.so
+				Moved from doc/option.so
+	build	create	1	lib/en/user-guide/system.list.so
+	source	create	1	lib/en/user-guide/system.so
+				Moved from doc/system.so
+	source	create	1	lib/en/user-guide/system/as.so
+
+
+
+Project "cook.1.10", Change 23					Page 11
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				Moved from doc/system/as.so
+	source	create	1	lib/en/user-guide/system/c.so
+				Moved from doc/system/c.so
+	source	create	1	lib/en/user-guide/system/f77.so
+				Moved from doc/system/f77.so
+	source	create	1	lib/en/user-guide/system/g77.so
+				Moved from doc/system/g77.so
+	source	create	1	lib/en/user-guide/system/gcc.so
+				Moved from doc/system/gcc.so
+	source	create	1	lib/en/user-guide/system/home.so
+				Moved from doc/system/home.so
+	source	create	1	lib/en/user-guide/system/lex.so
+				Moved from doc/system/lex.so
+	source	create	1	lib/en/user-guide/system/library.so
+				Moved from doc/system/library.so
+	source	create	1	lib/en/user-guide/system/print.so
+				Moved from doc/system/print.so
+	source	create	1	lib/en/user-guide/system/program.so
+				Moved from doc/system/program.so
+	source	create	1	lib/en/user-guide/system/rcs.so
+				Moved from doc/system/rcs.so
+	source	create	1	lib/en/user-guide/system/recursive.so
+				Moved from doc/system/recursive.so
+	source	create	1	lib/en/user-guide/system/sccs.so
+				Moved from doc/system/sccs.so
+	source	create	1	lib/en/user-guide/system/text.so
+				Moved from doc/system/text.so
+	source	create	1	lib/en/user-guide/system/usr.local.so
+				Moved from doc/system/usr.local.so
+	source	create	1	lib/en/user-guide/system/usr.so
+				Moved from doc/system/usr.so
+	source	create	1	lib/en/user-guide/system/yacc.so
+				Moved from doc/system/yacc.so
+	source	create	1	lib/en/user-guide/system/yacc_many.so
+				Moved from doc/system/yacc_many.so
+	source	create	1	lib/en/user-guide/variables.so
+				Moved from doc/variables.so
+	source	modify	3	make2cook/main.c
+	source	remove	1	man1/c_incl.1
+				Moved to lib/en/man1/c_incl.1
+	source	remove	2	man1/cook.1
+				Moved to lib/en/man1/cook.1
+	source	remove	1	man1/cookfp.1
+				Moved to lib/en/man1/cookfp.1
+	source	remove	1	man1/cooktime.1
+				Moved to lib/en/man1/cooktime.1
+	source	remove	1	man1/copyright.so
+				Moved to lib/en/man1/copyright.so
+	source	remove	1	man1/find_libs.1
+				Moved to lib/en/man1/find_libs.1
+	source	remove	1	man1/make2cook.1
+				Moved to lib/en/man1/make2cook.1
+	source	remove	1	man1/o__rules.so
+				Moved to lib/en/man1/o__rules.so
+	source	remove	1	man1/roffpp.1
+
+
+
+Project "cook.1.10", Change 23					Page 12
+Change Details				       Wed Apr 30 22:31:23 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+				Moved to lib/en/man1/roffpp.1
+	source	remove	1	man1/z_exit.so
+				Moved to lib/en/man1/z_exit.so
+	source	remove	1	man1/z_name.so
+				Moved to lib/en/man1/z_name.so
+	source	modify	3	roffpp/main.c
+	test	modify	3	test/00/t0030a.sh
+	test	modify	3	test/00/t0040a.sh
+	test	modify	3	test/00/t0068a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Feb	 5	pmiller
+			23:38:49 1997
+	develop_begin	Wed Feb	 5	pmiller	 Elapsed time: 11.134
+			23:38:58 1997		 days.
+	develop_end	Sun Feb 23	pmiller
+			09:39:26 1997
+	review_pass	Sun Feb 23	pmiller
+			09:39:32 1997
+	integrate_begin Sun Feb 23	pmiller	 Elapsed time: 0.152
+			09:39:39 1997		 days.
+	integrate_pass	Sun Feb 23	pmiller
+			10:48:13 1997
+
+
+
+Project "cook.1.10", Change 24					 Page 1
+Change Details				       Wed Apr 30 22:31:24 1997
+
+NAME
+	Project "cook.1.10", Delta 15, Change 24.
+
+SUMMARY
+	bug in messages
+
+DESCRIPTION
+	This change corrects an error message with a fualty
+	substitution
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	7	MANIFEST
+	build	modify	7	Makefile.in
+	build	modify	2	README
+	build	modify	2	aux/new.so
+	build	modify	4	common/config.h.in
+	source	modify	2	common/error_intl.c
+	build	modify	15	common/patchlevel.h
+	build	modify	4	configure
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	15	doc/version.so
+	source	modify	2	lib/en/LC_MESSAGES/common.po
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Feb	 9	pmiller
+			10:47:28 1997
+	develop_begin	Sun Feb	 9	pmiller	 Elapsed time: 0.032
+			10:47:44 1997		 days.
+	develop_end	Sun Feb	 9	pmiller
+			11:02:00 1997
+	review_pass	Sun Feb	 9	pmiller
+			11:02:05 1997
+	integrate_begin Sun Feb	 9	pmiller	 Elapsed time: 0.000
+			11:02:12 1997		 days.
+	integrate_fail	Sun Feb	 9	pmiller	 zpad around the wrong
+			23:48:26 1997		 way
+	develop_end	Sun Feb	 9	pmiller
+			23:53:53 1997
+	review_pass	Sun Feb	 9	pmiller
+
+
+
+Project "cook.1.10", Change 24					 Page 2
+Change Details				       Wed Apr 30 22:31:24 1997
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			23:54:04 1997
+	integrate_begin Sun Feb	 9	pmiller	 Elapsed time: 0.026
+			23:54:10 1997		 days.
+	integrate_pass	Mon Feb 10	pmiller
+			00:05:51 1997
+
+
+
+Project "cook.1.10", Change 25					 Page 1
+Change Details				       Wed Apr 30 22:31:24 1997
+
+NAME
+	Project "cook.1.10", Delta 17, Change 25.
+
+SUMMARY
+	have -reason emit line numbers for actions
+
+DESCRIPTION
+	1. This change renames -TRace to be -Reason.
+	2. This change modifies the interence reason output to use the
+	filenames and line number from the cookbooks to indicate which
+	recipes are being used.
+
+	My thanks to Oren Ben-Kiki <mibix@capella.co.il> for this
+	suggestion.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	8	MANIFEST
+	build	modify	8	Makefile.in
+	build	modify	4	README
+	build	modify	2	aux/new.so
+	build	modify	1	aux/version.so
+	build	modify	4	common/config.h.in
+	build	modify	17	common/patchlevel.h
+	source	modify	3	config
+	build	modify	5	configure
+	source	modify	2	cook/builtin/options.c
+	source	modify	4	cook/cook.c
+	source	modify	2	cook/cook.h
+	source	modify	3	cook/expr.c
+	source	modify	2	cook/expr.h
+	source	modify	5	cook/main.c
+	source	modify	4	cook/option.h
+	source	modify	3	cook/stat.cache.c
+	source	modify	3	cook/stmt.c
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	source	modify	3	lib/en/LC_MESSAGES/cook.po
+	source	modify	2	lib/en/man1/cook.1
+	source	modify	2	lib/en/readme/new.1.10.so
+	build	modify	1	lib/en/refman/index.so
+	build	modify	1	lib/en/refman/parts.so
+	source	modify	2	lib/en/user-guide/cmdline.so
+	build	modify	1	lib/en/user-guide/function.so
+
+
+
+Project "cook.1.10", Change 25					 Page 2
+Change Details				       Wed Apr 30 22:31:24 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	1	lib/en/user-guide/system.list.so
+	test	modify	4	test/00/t0030a.sh
+	test	modify	4	test/00/t0040a.sh
+	test	modify	4	test/00/t0068a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sat Feb 22	pmiller
+			21:49:17 1997
+	develop_begin	Sat Feb 22	pmiller	 Elapsed time: 0.000
+			21:49:29 1997		 days.
+	develop_end	Sun Feb 23	pmiller
+			11:45:23 1997
+	review_pass	Sun Feb 23	pmiller
+			11:47:36 1997
+	integrate_begin Sun Feb 23	pmiller	 Elapsed time: 4.694
+			11:47:41 1997		 days.
+	integrate_pass	Sun Mar	 2	pmiller
+			09:29:56 1997
+
+
+
+Project "cook.1.10", Change 26					 Page 1
+Change Details				       Wed Apr 30 22:31:25 1997
+
+NAME
+	Project "cook.1.10", Delta 18, Change 26.
+
+SUMMARY
+	teach make2cook about conditionals
+
+DESCRIPTION
+	This change teaches make2cook how to understand GNU Make
+	conditionals.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	9	MANIFEST
+	build	modify	9	Makefile.in
+	build	modify	4	README
+	source	modify	8	aux/Howto.cook
+	source	modify	5	aux/Makefi.file.sh
+	build	modify	2	aux/new.so
+	build	modify	1	aux/version.so
+	build	modify	4	common/config.h.in
+	build	modify	18	common/patchlevel.h
+	build	modify	5	configure
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	source	modify	2	lib/en/LC_MESSAGES/make2cook.po
+	source	modify	2	lib/en/man1/make2cook.1
+	build	modify	1	lib/en/refman/index.so
+	build	modify	1	lib/en/refman/parts.so
+	build	modify	1	lib/en/user-guide/function.so
+	build	modify	1	lib/en/user-guide/system.list.so
+	source	modify	3	make2cook/gram.y
+	source	modify	2	make2cook/stmt/assign.c
+	source	create	1	make2cook/stmt/command.c
+	source	create	1	make2cook/stmt/command.h
+	source	modify	2	make2cook/stmt/if.c
+	source	modify	2	make2cook/stmt/if.h
+	source	modify	2	make2cook/stmt/include.c
+	source	modify	2	make2cook/stmt/rule.c
+	source	modify	2	make2cook/stmt/rule.h
+	source	modify	3	make2cook/variable.c
+	source	modify	2	make2cook/variable.h
+	test	create	1	test/00/t0097a.sh
+
+
+
+Project "cook.1.10", Change 26					 Page 2
+Change Details				       Wed Apr 30 22:31:25 1997
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Feb 23	pmiller
+			11:53:45 1997
+	develop_begin	Sun Feb 23	pmiller	 Elapsed time: 3.854
+			11:53:53 1997		 days.
+	develop_end	Sun Mar	 2	pmiller
+			19:48:14 1997
+	review_pass	Sun Mar	 2	pmiller
+			19:48:17 1997
+	integrate_begin Sun Mar	 2	pmiller	 Elapsed time: 0.056
+			19:48:24 1997		 days.
+	integrate_pass	Sun Mar	 2	pmiller
+			20:13:46 1997
+
+
+
+Project "cook.1.10", Change 27					 Page 1
+Change Details				       Wed Apr 30 22:31:25 1997
+
+NAME
+	Project "cook.1.10", Delta 19, Change 27.
+
+SUMMARY
+	improve make2cook
+
+DESCRIPTION
+	This change increases the number of GNU Make features
+	understood by make2cook.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	10	MANIFEST
+	build	modify	10	Makefile.in
+	build	modify	4	README
+	build	modify	2	aux/new.so
+	source	modify	3	aux/template/test
+	build	modify	1	aux/version.so
+	source	create	1	common/ac/stdio.h
+	build	modify	4	common/config.h.in
+	source	modify	3	common/error.c
+	source	modify	3	common/language.c
+	build	modify	19	common/patchlevel.h
+	source	modify	3	common/str.c
+	source	modify	2	common/sub.c
+	source	modify	2	common/symtab.c
+	build	modify	5	configure
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	source	modify	3	lib/en/man1/make2cook.1
+	build	modify	1	lib/en/refman/index.so
+	build	modify	1	lib/en/refman/parts.so
+	build	modify	1	lib/en/user-guide/function.so
+	build	modify	1	lib/en/user-guide/system.list.so
+	source	modify	3	make2cook/emit.c
+	source	modify	4	make2cook/gram.y
+	source	modify	3	make2cook/lex.c
+	source	modify	3	make2cook/lex.h
+	source	modify	3	make2cook/stmt/assign.c
+	source	modify	2	make2cook/stmt/command.c
+	source	modify	2	make2cook/stmt/compound.c
+	source	create	1	make2cook/stmt/export.c
+	source	create	1	make2cook/stmt/export.h
+	source	modify	3	make2cook/stmt/if.c
+
+
+
+Project "cook.1.10", Change 27					 Page 2
+Change Details				       Wed Apr 30 22:31:25 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	3	make2cook/stmt/include.c
+	source	modify	3	make2cook/stmt/rule.c
+	source	create	1	make2cook/stmt/unexport.c
+	source	create	1	make2cook/stmt/unexport.h
+	source	modify	2	make2cook/vargram.y
+	source	modify	4	make2cook/variable.c
+	source	modify	3	make2cook/variable.h
+	test	modify	3	test/00/t0066a.sh
+	test	modify	3	test/00/t0071a.sh
+	test	modify	3	test/00/t0084a.sh
+	test	modify	3	test/00/t0093a.sh
+	test	create	1	test/00/t0098a.sh
+	test	create	1	test/00/t0099a.sh
+	test	create	1	test/01/t0100a.sh
+	test	create	1	test/01/t0101a.sh
+	test	create	1	test/01/t0102a.sh
+	test	create	1	test/01/t0103a.sh
+	test	create	1	test/01/t0104a.sh
+	test	create	1	test/01/t0105a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Mar	 2	pmiller
+			19:48:06 1997
+	develop_begin	Sun Mar	 2	pmiller	 Elapsed time: 10.055
+			19:48:45 1997		 days.
+	develop_end	Fri Mar 14	pmiller
+			20:13:43 1997
+	review_pass	Fri Mar 14	pmiller
+			20:13:52 1997
+	integrate_begin Fri Mar 14	pmiller
+			20:14:21 1997
+	integrate_fail	Fri Mar 14	pmiller	 common/language.c: In
+			20:20:15 1997		 function `language_
+						 init':
+						 common/language.c:66:
+						 `state' undeclared
+						 (first use this
+						 function)
+						 common/language.c:66:
+						 (Each undeclared
+						 identifier is
+						 reported only once
+						 common/language.c:66:
+						 for each function it
+						 appears in.)
+						 common/language.c:66:
+						 `state_uninitialized'
+						 undeclared (first use
+						 this function)
+						 common/language.c:68:
+						 `state_C' undeclared
+						 (first use this
+						 function)
+
+
+
+Project "cook.1.10", Change 27					 Page 3
+Change Details				       Wed Apr 30 22:31:25 1997
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+						 Elapsed time: 0.178
+						 days.
+	develop_end	Fri Mar 14	pmiller	 Elapsed time: 0.028
+			21:40:28 1997		 days.
+	review_pass	Fri Mar 14	pmiller
+			21:53:08 1997
+	integrate_begin Fri Mar 14	pmiller	 Elapsed time: 0.061
+			21:53:16 1997		 days.
+	integrate_pass	Fri Mar 14	pmiller
+			22:20:39 1997
+
+
+
+Project "cook.1.10", Change 28					 Page 1
+Change Details				       Wed Apr 30 22:31:26 1997
+
+NAME
+	Project "cook.1.10", Delta 20, Change 28.
+
+SUMMARY
+	more GNU Make support in make2cook
+
+DESCRIPTION
+	This change adds more GNU Make support to the  make2cook
+	program.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	11	MANIFEST
+	build	modify	11	Makefile.in
+	build	modify	4	README
+	build	modify	2	aux/new.so
+	build	modify	1	aux/version.so
+	build	modify	4	common/config.h.in
+	build	modify	20	common/patchlevel.h
+	build	modify	5	configure
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	source	modify	4	lib/en/LC_MESSAGES/common.po
+	build	modify	1	lib/en/refman/index.so
+	build	modify	1	lib/en/refman/parts.so
+	build	modify	1	lib/en/user-guide/function.so
+	build	modify	1	lib/en/user-guide/system.list.so
+	source	modify	5	make2cook/gram.y
+	source	modify	4	make2cook/lex.c
+	source	modify	2	make2cook/stmt.c
+	source	modify	2	make2cook/stmt.h
+	source	modify	4	make2cook/stmt/assign.c
+	source	modify	2	make2cook/stmt/comment.c
+	source	modify	2	make2cook/stmt/comment.h
+	source	modify	3	make2cook/stmt/compound.c
+	source	modify	4	make2cook/stmt/rule.c
+	source	modify	3	make2cook/vargram.y
+	source	modify	5	make2cook/variable.c
+	test	modify	2	test/00/t0065a.sh
+	test	create	1	test/01/t0106a.sh
+
+
+
+Project "cook.1.10", Change 28					 Page 2
+Change Details				       Wed Apr 30 22:31:26 1997
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Mar 14	pmiller
+			22:24:51 1997
+	develop_begin	Fri Mar 14	pmiller	 Elapsed time: 0.949
+			22:25:00 1997		 days.
+	develop_end	Sun Mar 16	pmiller
+			21:01:52 1997
+	review_pass	Sun Mar 16	pmiller
+			21:01:59 1997
+	integrate_begin Sun Mar 16	pmiller	 Elapsed time: 0.000
+			21:02:05 1997		 days.
+	integrate_pass	Mon Mar 17	pmiller
+			07:38:54 1997
+
+
+
+Project "cook.1.10", Change 29					 Page 1
+Change Details				       Wed Apr 30 22:31:26 1997
+
+NAME
+	Project "cook.1.10", Delta 21, Change 29.
+
+SUMMARY
+	improve error message commentary
+
+DESCRIPTION
+	This change increases the level of commentary in the PO files,
+	to make it more clear what each error message is used for.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	12	MANIFEST
+	build	modify	11	Makefile.in
+	build	modify	4	README
+	source	modify	9	aux/Howto.cook
+	build	modify	2	aux/new.so
+	build	modify	1	aux/version.so
+	build	modify	4	common/config.h.in
+	build	modify	21	common/patchlevel.h
+	build	modify	5	configure
+	source	modify	5	cook/cook.c
+	source	modify	6	cook/main.c
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	source	modify	2	lib/en/LC_MESSAGES/c_incl.po
+	source	modify	5	lib/en/LC_MESSAGES/common.po
+	source	modify	4	lib/en/LC_MESSAGES/cook.po
+	source	modify	2	lib/en/LC_MESSAGES/cookfp.po
+	source	modify	2	lib/en/LC_MESSAGES/cooktime.po
+	source	modify	2	lib/en/LC_MESSAGES/find_libs.po
+	source	modify	2	lib/en/LC_MESSAGES/fstrcmp.po
+	source	modify	3	lib/en/LC_MESSAGES/make2cook.po
+	source	modify	2	lib/en/LC_MESSAGES/roffpp.po
+	build	modify	1	lib/en/refman/index.so
+	build	modify	1	lib/en/refman/parts.so
+	build	modify	1	lib/en/user-guide/function.so
+	build	modify	1	lib/en/user-guide/system.list.so
+
+
+
+Project "cook.1.10", Change 29					 Page 2
+Change Details				       Wed Apr 30 22:31:26 1997
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Mar 17	pmiller
+			07:43:42 1997
+	develop_begin	Mon Mar 17	pmiller	 Elapsed time: 0.000
+			07:44:21 1997		 days.
+	develop_end	Mon Mar 17	pmiller
+			22:26:18 1997
+	review_pass	Mon Mar 17	pmiller	 Elapsed time: 0.000
+			22:26:46 1997		 days.
+	integrate_begin Tue Mar 18	pmiller	 Elapsed time: 0.051
+			09:49:49 1997		 days.
+	integrate_pass	Tue Mar 18	pmiller
+			10:12:56 1997
+
+
+
+Project "cook.1.10", Change 30					 Page 1
+Change Details				       Wed Apr 30 22:31:26 1997
+
+NAME
+	Project "cook.1.10", Delta 22, Change 30.
+
+SUMMARY
+	documentation touch-ups
+
+DESCRIPTION
+	1. This change makes very minor improvements to the Reference
+	Manual and the User Guide.
+	2. This change fixes a couple of portability problems found
+	when checking on Solaris and OSF/1.
+	3. This change removes the last of the compile-time warningis
+	(and adds -Werror to force this in the future).
+
+	This change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	13	MANIFEST
+	build	modify	12	Makefile.in
+	build	modify	4	README
+	source	modify	10	aux/Howto.cook
+	source	modify	6	aux/Makefi.file.sh
+	source	modify	5	aux/Makefile.sh
+	source	modify	2	aux/config.h.in2
+	source	modify	6	aux/configure.in
+	build	modify	2	aux/new.so
+	source	modify	4	aux/template/test
+	build	modify	1	aux/version.so
+	source	modify	2	common/ac/time.h
+	source	modify	3	common/ac/unistd.h
+	source	modify	2	common/ac/wchar.h
+	source	modify	2	common/ac/wctype.c
+	source	modify	3	common/arglex.c
+	build	modify	5	common/config.h.in
+	source	modify	3	common/fp/ident.c
+	build	modify	22	common/patchlevel.h
+	source	modify	3	common/sub.c
+	source	modify	2	common/sub/errno.c
+	source	modify	2	common/sub/expr_gram.y
+	source	modify	3	common/trace.c
+	build	modify	6	configure
+	source	modify	3	cook/archive.c
+	source	modify	3	cook/builtin/collect.c
+	source	modify	2	cook/builtin/cook.c
+	source	modify	3	cook/builtin/execute.c
+	source	modify	3	cook/fngrprnt.y
+
+
+
+Project "cook.1.10", Change 30					 Page 2
+Change Details				       Wed Apr 30 22:31:26 1997
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	3	cook/hashline.y
+	source	modify	3	cook/listing.c
+	source	modify	3	cook/match.c
+	source	modify	6	cook/os.c
+	source	modify	3	cook/parse.y
+	source	modify	4	cook/stat.cache.c
+	source	modify	4	cookfp/main.c
+	source	modify	3	cooktime/date.y
+	build	modify	2	doc/function.so
+	build	modify	1	doc/system.list.so
+	build	modify	1	lib/en/refman/index.so
+	source	modify	2	lib/en/refman/main.man
+	build	modify	1	lib/en/refman/parts.so
+	source	remove	1	lib/en/user-guide/conditions.so
+	build	modify	1	lib/en/user-guide/function.so
+	source	modify	2	lib/en/user-guide/history.so
+	source	modify	2	lib/en/user-guide/intro.so
+	source	modify	2	lib/en/user-guide/main.mm
+	build	modify	1	lib/en/user-guide/system.list.so
+	source	modify	6	make2cook/gram.y
+	source	modify	5	make2cook/stmt/rule.c
+	source	modify	3	make2cook/vargram.y
+	source	modify	6	make2cook/variable.c
+	source	modify	3	roffpp/preprocess.c
+	test	remove	4	test/00/t0030a.sh
+	test	modify	5	test/00/t0040a.sh
+	test	modify	3	test/00/t0048a.sh
+	test	modify	3	test/00/t0050a.sh
+	test	modify	5	test/00/t0068a.sh
+	test	modify	3	test/00/t0091a.sh
+	test	modify	3	test/00/t0094a.sh
+	test	modify	3	test/00/t0096a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Mar 18	pmiller
+			09:50:23 1997
+	develop_begin	Tue Mar 18	pmiller	 Elapsed time: 2.802
+			09:50:38 1997		 days.
+	develop_end	Sun Mar 23	pmiller
+			00:51:37 1997
+	review_pass	Sun Mar 23	pmiller
+			00:51:44 1997
+	integrate_begin Sun Mar 23	pmiller	 Elapsed time: 0.201
+			00:51:51 1997		 days.
+	integrate_pass	Sun Mar 23	pmiller
+			02:22:08 1997
+
+
+
+Project "cook.1.10", Change 31					 Page 1
+Change Details				       Wed Apr 30 22:31:26 1997
+
+NAME
+	Project "cook.1.10", Delta 23, Change 31.
+
+SUMMARY
+	fix wchar_t bugs
+
+DESCRIPTION
+	This change corrects a number of problems discovered while
+	testing on SunOS.  The problems involve the sizeof wchar_t and
+	the various multi-byte functions.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	14	MANIFEST
+	build	modify	13	Makefile.in
+	build	modify	4	README
+	build	modify	2	aux/new.so
+	build	modify	1	aux/version.so
+	source	modify	3	common/ac/limits.h
+	source	modify	3	common/ac/wctype.c
+	build	modify	5	common/config.h.in
+	build	modify	23	common/patchlevel.h
+	source	modify	2	common/wstr.c
+	build	modify	6	configure
+	build	remove	2	doc/function.so
+	build	remove	1	doc/system.list.so
+	build	modify	1	lib/en/refman/index.so
+	build	modify	1	lib/en/refman/parts.so
+	build	modify	1	lib/en/user-guide/function.so
+	build	modify	1	lib/en/user-guide/system.list.so
+	source	modify	3	make2cook/stmt/command.c
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Mar 23	pmiller
+			01:34:09 1997
+	develop_begin	Sun Mar 23	pmiller	 Elapsed time: 0.459
+			01:34:19 1997		 days.
+	develop_end	Sun Mar 23	pmiller
+			21:30:58 1997
+	review_pass	Sun Mar 23	pmiller
+			21:31:04 1997
+
+
+
+Project "cook.1.10", Change 31					 Page 2
+Change Details				       Wed Apr 30 22:31:26 1997
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_begin Sun Mar 23	pmiller	 Elapsed time: 0.175
+			21:31:09 1997		 days.
+	integrate_pass	Sun Mar 23	pmiller
+			22:49:46 1997
+
+
+
+Project "cook.1.10", Change 32					 Page 1
+Change Details				       Wed Apr 30 22:31:27 1997
+
+NAME
+	Project "cook.1.10", Delta 24, Change 32.
+
+SUMMARY
+	fix lsm
+
+DESCRIPTION
+	This change corrects the file names listed in the LSM to
+	include the Reference Manual and the User Guide
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	3	BUILDING
+	build	modify	14	MANIFEST
+	build	modify	13	Makefile.in
+	build	modify	4	README
+	build	modify	2	aux/new.so
+	build	modify	1	aux/version.so
+	build	modify	5	common/config.h.in
+	build	modify	24	common/patchlevel.h
+	build	modify	6	configure
+	source	modify	2	lib/en/lsm/main.roff
+	build	modify	1	lib/en/refman/index.so
+	build	modify	1	lib/en/refman/parts.so
+	build	modify	1	lib/en/user-guide/function.so
+	build	modify	1	lib/en/user-guide/system.list.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Mar 24	pmiller
+			00:45:45 1997
+	develop_begin	Mon Mar 24	pmiller	 Elapsed time: 0.402
+			00:45:52 1997		 days.
+	develop_end	Mon Mar 24	pmiller
+			20:16:37 1997
+	review_pass	Mon Mar 24	pmiller
+			20:16:42 1997
+	integrate_begin Mon Mar 24	pmiller	 Elapsed time: 0.029
+			20:16:48 1997		 days.
+	integrate_pass	Mon Mar 24	pmiller
+			20:29:58 1997
+
+
+
+Project "cook.1.10", Change 33					 Page 1
+Change Details				       Wed Apr 30 22:31:27 1997
+
+NAME
+	Project "cook.1.10", Delta 25, Change 33.
+
+SUMMARY
+	fix use clause documentation
+
+DESCRIPTION
+	This change corrects the documentation of the recipe use
+	clause.		The keyword for the clause was incorrectly
+	documented, and has been corrected to read ``then''
+
+	My thanks to Mark Meuer <markm@endo.com> for reporting this
+	problem.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+	arch.	 host	  aeb	    aet	      aet -bl	aet -reg
+	-------- -------- --------- --------- --------- ---------
+	linux-		  required  exempt    exempt	exempt
+	i486
+
+CAUSE
+	This change was caused by external_bug.
+
+STATE
+	This change is in the 'being_integrated' state.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	1	lib/en/user-guide/language.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Apr 30	pmiller
+			21:53:23 1997
+	develop_begin	Wed Apr 30	pmiller	 Elapsed time: 0.062
+			21:53:57 1997		 days.
+	develop_end	Wed Apr 30	pmiller
+			22:21:41 1997
+	review_pass	Wed Apr 30	pmiller
+			22:21:48 1997
+	integrate_begin Wed Apr 30	pmiller
+			22:21:54 1997

@@ -1,0 +1,111 @@
+
+
+
+Project "cook.2.26"						  Page 1
+List of Changes					Tue Jan 17 12:55:45 2006
+
+Change	State		Description
+------- -------		-------------
+  10	being_		prepare for release
+	integrated
+	pmiller
+
+
+
+Project "cook.2.26", Change 10					  Page 1
+Change Details					Tue Jan 17 12:55:45 2006
+
+NAME
+	Project "cook.2.26", Delta 1, Change 10.
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change prepares Cook for the next public release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory. This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+	arch.	 host	  aeb	      aet	  aet -bl     aet -reg
+	-------- -------- ---------   ---------	  ---------   ---------
+	linux-		  required    exempt	  exempt      required
+	i486
+
+CAUSE
+	This change was caused by internal_improvement.
+
+STATE
+	This change is in the 'being_integrated' state.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	config	modify	    1	      aegis.conf
+	source	modify	    4	      etc/archive.cook
+	source	create		      lib/en/readme/new.1.26.so
+	source	modify	    1	      lib/en/readme/new.2.25.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Jan 17	pmiller
+			11:18:25 2006
+	develop_begin	Tue Jan 17	pmiller	 Elapsed time: 0.046
+			11:18:26 2006		 days.
+	develop_end	Tue Jan 17	pmiller
+			11:39:12 2006
+	review_pass	Tue Jan 17	pmiller
+			11:39:17 2006
+	integrate_begin Tue Jan 17	pmiller
+			11:39:32 2006
+	integrate_fail	Tue Jan 17	pmiller	 cook: gzip -9 -v
+			11:39:57 2006		 archive/cook-2.26.tar
+						 archive/cook-2.26.tar:
+						 85.8% -- replaced with
+						 archive/cook-
+						 2.26.tar.gz
+						 cook: adjusting
+
+
+
+Project "cook.2.26", Change 10					  Page 2
+Change Details					Tue Jan 17 12:55:45 2006
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+						 "archive/cook-
+						 2.26.tar.gz" back 17
+						 seconds
+						 cook: sh bl/etc/rpm-
+						 build.sh RPM-temporary
+						 archive/cook-
+						 2.26.tar.gz
+						 bl/etc/rpm-build.sh:
+						 line 48: rpm: command
+						 not found
+						 bl/etc/rpm-build.sh:
+						 line 53: rpmbuild:
+						 command not found
+						 cook: command sh: exit
+						 status 1
+						 cook: all: not done
+						 because of errors
+						 cook: @
+						 aegis: command "cook -b
+						 /home/archives/cook/
+						 branc..." exit status 1
+						 Elapsed time: 0.166
+						 days.
+	develop_end	Tue Jan 17	pmiller
+			12:54:37 2006
+	review_pass	Tue Jan 17	pmiller
+			12:54:56 2006
+	integrate_begin Tue Jan 17	pmiller
+			12:55:37 2006

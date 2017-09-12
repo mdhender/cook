@@ -1,0 +1,1170 @@
+
+
+
+Project "cook.2.11"						  Page 1
+List of Changes					Tue Mar 28 07:12:52 2000
+
+Change	State		Description
+------- -------		-------------
+  10	completed	prepare for release
+  11	completed	portability issues
+  12	completed	mailing list on web page
+  15	completed	CGI vs Cook
+  16	completed	fingerprint SEGV
+  17	completed	relax %0 restrictions
+  18	completed	test 125 and fast machines
+  19	completed	double colon bug
+  20	completed	cookbook file names
+  21	completed	mkdir vs automounter
+  22	completed	fingerprint doco
+  23	completed	user guide typos
+  25	completed	cook wait()ed too much
+  26	completed	Y2K bug
+  27	completed	wait3 glitch
+  28	completed	c_incl path flattening bug
+  29	completed	Mention freebsd port on web page.
+  30	completed	c_incl -quote-filenames
+
+
+
+Project "cook.2.11", Change 10					  Page 1
+Change Details					Tue Mar 28 07:12:54 2000
+
+NAME
+	Project "cook.2.11", Delta 1, Change 10.
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change prepares Cook for the next public release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 156  BUILDING
+	build	modify	   27 -> 154  MANIFEST
+	build	modify	   29 -> 154  Makefile.in
+	build	modify	   12 -> 91   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 259  common/patchlevel.h
+	build	modify	    7 -> 27   configure
+	source	create	    1	      etc/CHANGES.2.10
+	source	modify	    2 -> 3    etc/rpm-build.sh
+	build	modify	  120 -> 121  etc/version.so
+	source	modify	    4 -> 5    lib/en/readme/new.2.10.so
+	source	create	    1	      lib/en/readme/new.2.11.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Nov	 4	pmiller
+			15:43:46 1999
+	develop_begin	Thu Nov	 4	pmiller	 Elapsed time: 0.861
+			15:43:58 1999		 days.
+	develop_end	Thu Nov	 4	pmiller	 Elapsed time: 0.113
+			22:11:13 1999		 days.
+	review_pass	Thu Nov	 4	pmiller
+			23:02:01 1999
+	integrate_begin Thu Nov	 4	pmiller	 Elapsed time: 0.052
+			23:02:29 1999		 days.
+	integrate_pass	Thu Nov	 4	pmiller
+			23:25:45 1999
+
+
+
+Project "cook.2.11", Change 11					  Page 1
+Change Details					Tue Mar 28 07:12:55 2000
+
+NAME
+	Project "cook.2.11", Delta 2, Change 11.
+
+SUMMARY
+	portability issues
+
+DESCRIPTION
+	This change fixes some portability issues.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 157  BUILDING
+	build	modify	   27 -> 154  MANIFEST
+	build	modify	   29 -> 154  Makefile.in
+	build	modify	   12 -> 91   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 260  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	source	modify	   13 -> 14   etc/configure.in
+	build	modify	  120 -> 122  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Nov	 5	pmiller
+			09:57:15 1999
+	develop_begin	Fri Nov	 5	pmiller	 Elapsed time: 0.110
+			09:57:27 1999		 days.
+	develop_end	Fri Nov	 5	pmiller	 Elapsed time: 0.799
+			10:47:09 1999		 days.
+	review_pass	Fri Nov	 5	pmiller
+			16:46:33 1999
+	integrate_begin Fri Nov	 5	pmiller
+			16:47:00 1999
+	integrate_	Fri Nov	 5	pmiller
+	begin_undo	16:50:21 1999
+	develop_end_	Fri Nov	 5	pmiller	 Elapsed time: 0.023
+	undo		16:50:35 1999		 days.
+	develop_end	Fri Nov	 5	pmiller
+			17:00:49 1999
+	review_pass	Fri Nov	 5	pmiller
+			17:01:32 1999
+	integrate_begin Fri Nov	 5	pmiller	 Elapsed time: 0.619
+			17:02:35 1999		 days.
+
+
+
+Project "cook.2.11", Change 11					  Page 2
+Change Details					Tue Mar 28 07:12:55 2000
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_pass	Fri Nov	 5	pmiller
+			21:41:14 1999
+
+
+
+Project "cook.2.11", Change 12					  Page 1
+Change Details					Tue Mar 28 07:12:56 2000
+
+NAME
+	Project "cook.2.11", Delta 3, Change 12.
+
+SUMMARY
+	mailing list on web page
+
+DESCRIPTION
+	This change adds the mailing list to the information on the web
+	page.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 158  BUILDING
+	build	modify	   27 -> 154  MANIFEST
+	build	modify	   29 -> 154  Makefile.in
+	build	modify	   12 -> 91   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 261  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	source	modify	    8 -> 9    etc/cook.html
+	build	modify	  120 -> 123  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Nov	 9	pmiller
+			09:15:54 1999
+	develop_begin	Tue Nov	 9	pmiller	 Elapsed time: 0.214
+			09:16:10 1999		 days.
+	develop_end	Tue Nov	 9	pmiller
+			10:52:28 1999
+	review_pass	Tue Nov	 9	pmiller
+			10:52:28 1999
+	integrate_begin Tue Nov	 9	pmiller	 Elapsed time: 0.156
+			10:52:51 1999		 days.
+	integrate_pass	Tue Nov	 9	pmiller
+			12:03:11 1999
+
+
+
+Project "cook.2.11", Change 15					  Page 1
+Change Details					Tue Mar 28 07:12:57 2000
+
+NAME
+	Project "cook.2.11", Delta 4, Change 15.
+
+SUMMARY
+	CGI vs Cook
+
+DESCRIPTION
+	This change fixes a probelm when Cook is executed from a CGI
+	script.	 It seems that there are cases where there is no HOME
+	environment variable set, causing Cook to exit with a fatal
+	error.
+
+	My thanks to Bud P. Bruegger <bud@sistema.it> for reporting this
+	problem.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 159  BUILDING
+	build	modify	   27 -> 155  MANIFEST
+	build	modify	   29 -> 155  Makefile.in
+	build	modify	   12 -> 92   README
+	build	modify	    3 -> 19   common/config.h.in
+	source	modify	    6 -> 7    common/env.c
+	source	modify	    2 -> 3    common/env.h
+	source	create	    1	      common/home_directo.c
+	source	create	    1	      common/home_directo.h
+	build	modify	   43 -> 262  common/patchlevel.h
+	source	modify	   11 -> 12   common/str.c
+	source	modify	    3 -> 4    common/str.h
+	build	modify	    7 -> 28   configure
+	source	modify	    8 -> 9    cook/builtin/home.c
+	source	modify	   19 -> 20   cook/os.c
+	build	modify	  120 -> 124  etc/version.so
+	source	modify	    1 -> 2    lib/en/readme/new.2.11.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Nov	 9	pmiller	 Elapsed time: 0.060
+			11:35:33 1999		 days.
+	develop_begin	Tue Nov	 9	pmiller	 Elapsed time: 1.000
+			12:02:44 1999		 days.
+	develop_end	Wed Nov 10	pmiller	 Elapsed time: 0.162
+			10:06:46 1999		 days.
+
+
+
+Project "cook.2.11", Change 15					  Page 2
+Change Details					Tue Mar 28 07:12:57 2000
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	review_pass	Wed Nov 10	pmiller
+			11:19:31 1999
+	integrate_begin Wed Nov 10	pmiller	 Elapsed time: 0.060
+			11:19:57 1999		 days.
+	integrate_pass	Wed Nov 10	pmiller
+			11:46:53 1999
+
+
+
+Project "cook.2.11", Change 16					  Page 1
+Change Details					Tue Mar 28 07:12:59 2000
+
+NAME
+	Project "cook.2.11", Delta 9, Change 16.
+
+SUMMARY
+	fingerprint SEGV
+
+DESCRIPTION
+	This change fixes a segfault in the fingerprint code.
+
+	My thanks to Ole Engel <engel@tu-harburg.de> for reporting this
+	problem.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 164  BUILDING
+	build	modify	   27 -> 158  MANIFEST
+	build	modify	   29 -> 158  Makefile.in
+	build	modify	   12 -> 93   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 267  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	source	modify	    8 -> 9    cook/fingerprint/find.c
+	build	modify	  120 -> 129  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Nov	 9	pmiller
+			17:25:47 1999
+	develop_begin	Tue Nov	 9	pmiller	 Elapsed time: 14.000
+			17:26:00 1999		 days.
+	develop_end	Mon Nov 29	pmiller
+			13:56:38 1999
+	review_pass	Mon Nov 29	pmiller
+			13:56:39 1999
+	integrate_begin Mon Nov 29	pmiller	 Elapsed time: 0.240
+			13:57:00 1999		 days.
+	integrate_pass	Mon Nov 29	pmiller
+			15:45:12 1999
+
+
+
+Project "cook.2.11", Change 17					  Page 1
+Change Details					Tue Mar 28 07:13:00 2000
+
+NAME
+	Project "cook.2.11", Delta 6, Change 17.
+
+SUMMARY
+	relax %0 restrictions
+
+DESCRIPTION
+	This change relaxes the %0 pattern restrictions.  It need no
+	longer appear only at the start of a string or after a slash.
+	This will not break any existing cookbooks, but is does mean
+	that some errors will no longer be reported.  This change is
+	being made to bring Cook in line with the expectations of the
+	majority of users.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 161  BUILDING
+	build	modify	   27 -> 156  MANIFEST
+	build	modify	   29 -> 156  Makefile.in
+	build	modify	   12 -> 93   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 264  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	source	modify	    1 -> 2    cook/match/cook.c
+	build	modify	  120 -> 126  etc/version.so
+	source	modify	    2 -> 3    lib/en/readme/new.2.11.so
+	test	create	    1	      test/01/t0185a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Nov 10	pmiller
+			14:07:39 1999
+	develop_begin	Wed Nov 10	pmiller	 Elapsed time: 1.211
+			14:08:22 1999		 days.
+	develop_end	Thu Nov 11	pmiller
+			15:43:12 1999
+	review_pass	Thu Nov 11	pmiller
+			15:48:01 1999
+	integrate_begin Thu Nov 11	pmiller	 Elapsed time: 1.000
+			15:52:38 1999		 days.
+	integrate_pass	Fri Nov 12	pmiller
+			12:32:44 1999
+
+
+
+Project "cook.2.11", Change 18					  Page 1
+Change Details					Tue Mar 28 07:13:01 2000
+
+NAME
+	Project "cook.2.11", Delta 5, Change 18.
+
+SUMMARY
+	test 125 and fast machines
+
+DESCRIPTION
+	This change updates test 125 to cope with fast machines.
+
+	My thanks to jerry.pendergraft@endocardial.com for this patch.
+
+	This change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 160  BUILDING
+	build	modify	   27 -> 155  MANIFEST
+	build	modify	   29 -> 155  Makefile.in
+	build	modify	   12 -> 92   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 263  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	build	modify	  120 -> 125  etc/version.so
+	test	modify	    4 -> 5    test/01/t0125a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Nov 11	pmiller
+			11:41:07 1999
+	develop_begin	Thu Nov 11	pmiller	 Elapsed time: 0.050
+			11:41:32 1999		 days.
+	develop_end	Thu Nov 11	pmiller
+			12:03:59 1999
+	review_pass	Thu Nov 11	pmiller
+			12:04:02 1999
+	integrate_begin Thu Nov 11	pmiller	 Elapsed time: 0.034
+			12:04:26 1999		 days.
+	integrate_pass	Thu Nov 11	pmiller
+			12:19:37 1999
+
+
+
+Project "cook.2.11", Change 19					  Page 1
+Change Details					Tue Mar 28 07:13:02 2000
+
+NAME
+	Project "cook.2.11", Delta 7, Change 19.
+
+SUMMARY
+	double colon bug
+
+DESCRIPTION
+	This change fixed a bug in the double colon rules processing,
+	which caused the second and subsequent recipes to (aparrently)
+	not activate.  In fact, cook sometime erroneously concluded the
+	target was up-to-date, creating the appearance of not building
+	the graph with those recipes included.
+
+	My thanks to  Peter Simons <simons@cys.de> for reporting this
+	problem.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 162  BUILDING
+	build	modify	   27 -> 157  MANIFEST
+	build	modify	   29 -> 157  Makefile.in
+	build	modify	   12 -> 93   README
+	build	modify	    3 -> 19   common/config.h.in
+	source	modify	    1 -> 2    common/exeext.c
+	build	modify	   43 -> 265  common/patchlevel.h
+	source	modify	    5 -> 6    common/trace.c
+	source	modify	    3 -> 4    common/trace.h
+	build	modify	    7 -> 28   configure
+	source	modify	    1 -> 2    cook/builtin/private.c
+	source	modify	    8 -> 9    cook/graph/recipe.c
+	source	modify	    6 -> 7    cook/graph/recipe.h
+	source	modify	   22 -> 23   cook/graph/run.c
+	source	modify	   18 -> 19   cook/graph/walk.c
+	source	modify	   13 -> 14   cook/opcode/context.c
+	build	modify	  120 -> 127  etc/version.so
+	test	create	    1	      test/01/t0186a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Nov 29	pmiller
+			08:26:24 1999
+	develop_begin	Mon Nov 29	pmiller	 Elapsed time: 0.523
+			08:26:38 1999		 days.
+	develop_end	Mon Nov 29	pmiller
+			12:22:07 1999
+	review_pass	Mon Nov 29	pmiller
+			12:22:14 1999
+
+
+
+Project "cook.2.11", Change 19					  Page 2
+Change Details					Tue Mar 28 07:13:02 2000
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_begin Mon Nov 29	pmiller	 Elapsed time: 0.065
+			12:22:37 1999		 days.
+	integrate_pass	Mon Nov 29	pmiller
+			12:52:05 1999
+
+
+
+Project "cook.2.11", Change 20					  Page 1
+Change Details					Tue Mar 28 07:13:03 2000
+
+NAME
+	Project "cook.2.11", Delta 8, Change 20.
+
+SUMMARY
+	cookbook file names
+
+DESCRIPTION
+	This change fixed a problem with finding cookbook with a
+	capitalized name.
+
+	My thanks to Peter Simons <simons@cys.de> for reporting this
+	problem.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 163  BUILDING
+	build	modify	   27 -> 158  MANIFEST
+	build	modify	   29 -> 158  Makefile.in
+	build	modify	   12 -> 93   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 266  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	source	modify	   13 -> 14   cook/option.c
+	build	modify	  120 -> 128  etc/version.so
+	test	create	    1	      test/01/t0187a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Nov 29	pmiller
+			12:29:23 1999
+	develop_begin	Mon Nov 29	pmiller	 Elapsed time: 0.081
+			12:29:49 1999		 days.
+	develop_end	Mon Nov 29	pmiller
+			13:06:07 1999
+	review_pass	Mon Nov 29	pmiller
+			13:08:23 1999
+	integrate_begin Mon Nov 29	pmiller	 Elapsed time: 0.037
+			13:08:45 1999		 days.
+	integrate_pass	Mon Nov 29	pmiller
+			13:25:32 1999
+
+
+
+Project "cook.2.11", Change 21					  Page 1
+Change Details					Tue Mar 28 07:13:04 2000
+
+NAME
+	Project "cook.2.11", Delta 10, Change 21.
+
+SUMMARY
+	mkdir vs automounter
+
+DESCRIPTION
+	This change removed the "if SGI" conditionals from around the
+	"if directory already exists, do nothing" code in the os_mkdir
+	function.  This means this test is *always* performed.	It turns
+	out that the Solaris automounter always returns ENOSYS for all
+	names in the top-level directory of an indirect map - i.e. it
+	doesn't test for existence first (amd does the right thing,
+	fortunately).
+
+	My thanks to Greg Steuck <greg@nexprise.com> for reporting this
+	problem.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 165  BUILDING
+	build	modify	   27 -> 158  MANIFEST
+	build	modify	   29 -> 158  Makefile.in
+	build	modify	   12 -> 93   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 268  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	source	modify	   20 -> 21   cook/os.c
+	build	modify	  120 -> 130  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Dec	 3	pmiller
+			08:53:00 1999
+	develop_begin	Fri Dec	 3	pmiller	 Elapsed time: 0.131
+			08:53:15 1999		 days.
+	develop_end	Fri Dec	 3	pmiller
+			09:52:18 1999
+	review_pass	Fri Dec	 3	pmiller
+			09:52:56 1999
+	integrate_begin Fri Dec	 3	pmiller	 Elapsed time: 0.192
+			09:53:21 1999		 days.
+
+
+
+
+Project "cook.2.11", Change 21					  Page 2
+Change Details					Tue Mar 28 07:13:04 2000
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_pass	Fri Dec	 3	pmiller
+			11:19:38 1999
+
+
+
+Project "cook.2.11", Change 22					  Page 1
+Change Details					Tue Mar 28 07:13:05 2000
+
+NAME
+	Project "cook.2.11", Delta 12, Change 22.
+
+SUMMARY
+	fingerprint doco
+
+DESCRIPTION
+	This change adds fingerprint documentation to the Large Projects
+	chapter.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 167  BUILDING
+	build	modify	   27 -> 158  MANIFEST
+	build	modify	   29 -> 158  Makefile.in
+	build	modify	   12 -> 94   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 270  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	build	modify	  120 -> 132  etc/version.so
+	source	modify	    6 -> 7    lib/en/user-guide/large.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Dec 13	pmiller
+			12:50:32 1999
+	develop_begin	Mon Dec 13	pmiller	 Elapsed time: 0.108
+			12:50:49 1999		 days.
+	develop_end	Mon Dec 13	pmiller	 Elapsed time: 0.079
+			13:39:21 1999		 days.
+	review_pass	Mon Dec 13	pmiller	 Elapsed time: 31.000
+			14:15:06 1999		 days.
+	integrate_begin Tue Jan 25	pmiller	 Elapsed time: 0.026
+			10:13:02 2000		 days.
+	integrate_pass	Tue Jan 25	pmiller
+			10:24:33 2000
+
+
+
+Project "cook.2.11", Change 23					  Page 1
+Change Details					Tue Mar 28 07:13:06 2000
+
+NAME
+	Project "cook.2.11", Delta 15, Change 23.
+
+SUMMARY
+	user guide typos
+
+DESCRIPTION
+	This change corrects a number of typographical errors in the
+	User Guide.
+
+	My thanks to Gilles Lamiral <lamiral@mail.dotcom.fr> for
+	reporting these problems.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 170  BUILDING
+	build	modify	   27 -> 159  MANIFEST
+	build	modify	   29 -> 159  Makefile.in
+	build	modify	   12 -> 95   README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 273  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	build	modify	  120 -> 135  etc/version.so
+	source	modify	    4 -> 5    lib/en/user-guide/function/
+				      collect_ln.so
+	source	modify	    5 -> 6    lib/en/user-guide/function/
+				      split.so
+	source	modify	    4 -> 5    lib/en/user-guide/function/
+				      strip.so
+	source	modify	    4 -> 5    lib/en/user-guide/function/
+				      unsplit.so
+	source	modify	    1 -> 2    lib/en/user-guide/function/
+				      write.so
+	source	modify	    7 -> 8    lib/en/user-guide/how.so
+	source	modify	    4 -> 5    lib/en/user-guide/intro2.so
+	source	modify	    3 -> 4    lib/en/user-guide/langu.flags.so
+	source	modify	   23 -> 24   lib/en/user-guide/language.so
+	source	modify	    7 -> 8    lib/en/user-guide/large.so
+	source	modify	    6 -> 7    lib/en/user-guide/system.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+
+
+
+
+Project "cook.2.11", Change 23					  Page 2
+Change Details					Tue Mar 28 07:13:06 2000
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Jan 19	pmiller
+			08:33:04 2000
+	develop_begin	Wed Jan 19	pmiller	 Elapsed time: 7.000
+			08:33:19 2000		 days.
+	develop_end	Thu Jan 27	pmiller
+			16:54:38 2000
+	review_pass	Thu Jan 27	pmiller
+			16:54:46 2000
+	integrate_begin Thu Jan 27	pmiller	 Elapsed time: 0.615
+			16:55:21 2000		 days.
+	integrate_pass	Thu Jan 27	pmiller
+			21:32:17 2000
+
+
+
+Project "cook.2.11", Change 25					  Page 1
+Change Details					Tue Mar 28 07:13:08 2000
+
+NAME
+	Project "cook.2.11", Delta 13, Change 25.
+
+SUMMARY
+	cook wait()ed too much
+
+DESCRIPTION
+	This change fixed a bug where Cook could sometimes wait for a
+	process and then forget its exit status. Then the graph walker
+	would wait forever for the already terminated process to
+	terminate.  (In particular, this happened when you used
+	[execute] in a recipe body.)
+
+	My thanks to Kirill A. Kornilov <kirill.kornilov@trustworks.com>
+	for reporting this problem.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 168  BUILDING
+	build	modify	   27 -> 159  MANIFEST
+	build	modify	   29 -> 159  Makefile.in
+	build	modify	   12 -> 95   README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 271  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	modify	    9 -> 10   cook/graph/recipe.c
+	source	modify	   19 -> 20   cook/graph/walk.c
+	source	modify	    6 -> 7    cook/listing.c
+	source	modify	   14 -> 15   cook/opcode/context.c
+	source	modify	   21 -> 22   cook/os.c
+	source	create	    1	      cook/os/wait.c
+	source	create	    1	      cook/os/wait.h
+	source	modify	   14 -> 15   etc/configure.in
+	build	modify	  120 -> 133  etc/version.so
+	source	modify	    4 -> 5    lib/en/readme/new.2.11.so
+	test	create	    1	      test/01/t0188a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jan 20	pmiller
+			08:48:17 2000
+	develop_begin	Thu Jan 20	pmiller	 Elapsed time: 3.186
+			08:48:33 2000		 days.
+	develop_end	Tue Jan 25	pmiller
+			10:12:24 2000
+	review_pass	Tue Jan 25	pmiller	 Elapsed time: 0.033
+			10:12:29 2000		 days.
+
+
+
+Project "cook.2.11", Change 25					  Page 2
+Change Details					Tue Mar 28 07:13:08 2000
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	develop_end_	Tue Jan 25	pmiller	 Elapsed time: 0.025
+	undo		10:27:08 2000		 days.
+	develop_end	Tue Jan 25	pmiller	 Elapsed time: 0.044
+			10:38:23 2000		 days.
+	review_pass	Tue Jan 25	pmiller
+			10:58:00 2000
+	integrate_begin Tue Jan 25	pmiller	 Elapsed time: 0.070
+			10:58:25 2000		 days.
+	integrate_pass	Tue Jan 25	pmiller
+			11:29:54 2000
+
+
+
+Project "cook.2.11", Change 26					  Page 1
+Change Details					Tue Mar 28 07:13:09 2000
+
+NAME
+	Project "cook.2.11", Delta 11, Change 26.
+
+SUMMARY
+	Y2K bug
+
+DESCRIPTION
+	This change fixed a Y2K bug in the date parsing functions.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 166  BUILDING
+	build	modify	   27 -> 158  MANIFEST
+	build	modify	   29 -> 158  Makefile.in
+	build	modify	   12 -> 94   README
+	build	modify	    3 -> 19   common/config.h.in
+	build	modify	   43 -> 269  common/patchlevel.h
+	build	modify	    7 -> 28   configure
+	source	modify	    7 -> 8    cooktime/date.y
+	build	modify	  120 -> 131  etc/version.so
+	source	modify	    3 -> 4    lib/en/readme/new.2.11.so
+	test	modify	    4 -> 5    test/00/t0094a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Jan 24	pmiller
+			08:26:52 2000
+	develop_begin	Mon Jan 24	pmiller	 Elapsed time: 0.141
+			08:27:14 2000		 days.
+	develop_end	Mon Jan 24	pmiller
+			09:30:51 2000
+	review_pass	Mon Jan 24	pmiller
+			09:30:57 2000
+	integrate_begin Mon Jan 24	pmiller	 Elapsed time: 0.038
+			09:31:22 2000		 days.
+	integrate_pass	Mon Jan 24	pmiller
+			09:48:25 2000
+
+
+
+Project "cook.2.11", Change 27					  Page 1
+Change Details					Tue Mar 28 07:13:10 2000
+
+NAME
+	Project "cook.2.11", Delta 14, Change 27.
+
+SUMMARY
+	wait3 glitch
+
+DESCRIPTION
+	This change fixes an introduced defect in the previous wait3
+	change.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by chain.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 169  BUILDING
+	build	modify	   27 -> 159  MANIFEST
+	build	modify	   29 -> 159  Makefile.in
+	build	modify	   12 -> 95   README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 272  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	modify	    1 -> 2    cook/os/wait.c
+	build	modify	  120 -> 134  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jan 27	pmiller
+			11:44:43 2000
+	develop_begin	Thu Jan 27	pmiller	 Elapsed time: 0.070
+			11:44:59 2000		 days.
+	develop_end	Thu Jan 27	pmiller
+			12:16:30 2000
+	review_pass	Thu Jan 27	pmiller
+			12:16:35 2000
+	integrate_begin Thu Jan 27	pmiller	 Elapsed time: 0.311
+			12:17:00 2000		 days.
+	integrate_pass	Thu Jan 27	pmiller
+			14:36:49 2000
+
+
+
+Project "cook.2.11", Change 28					  Page 1
+Change Details					Tue Mar 28 07:13:11 2000
+
+NAME
+	Project "cook.2.11", Delta 17, Change 28.
+
+SUMMARY
+	c_incl path flattening bug
+
+DESCRIPTION
+	This change fixed a bug in c_incl's path flattening, where it
+	would elide too many .. in some cases.
+
+	My thanks to Dennis Flanigan Jr. <flanigan@vexcel.com> for
+	reporting this problem.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 172  BUILDING
+	build	modify	   27 -> 160  MANIFEST
+	build	modify	   29 -> 160  Makefile.in
+	build	modify	   12 -> 96   README
+	source	create	    1	      c_incl/flatten.c
+	source	create	    1	      c_incl/flatten.h
+	source	modify	   19 -> 20   c_incl/sniff.c
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 275  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	build	modify	  120 -> 137  etc/version.so
+	source	modify	    5 -> 6    lib/en/readme/new.2.11.so
+	test	create	    1	      test/01/t0189a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Feb	 1	pmiller
+			11:33:55 2000
+	develop_begin	Tue Feb	 1	pmiller	 Elapsed time: 1.441
+			11:34:11 2000		 days.
+	develop_end	Wed Feb	 2	pmiller
+			14:52:46 2000
+	review_pass	Wed Feb	 2	pmiller
+			15:00:28 2000
+	integrate_begin Wed Feb	 2	pmiller	 Elapsed time: 0.036
+			15:00:53 2000		 days.
+	integrate_pass	Wed Feb	 2	pmiller
+			15:17:05 2000
+
+
+
+Project "cook.2.11", Change 29					  Page 1
+Change Details					Tue Mar 28 07:13:12 2000
+
+NAME
+	Project "cook.2.11", Delta 16, Change 29.
+
+SUMMARY
+	Mention freebsd port on web page.
+
+DESCRIPTION
+	This change adds a mention of the FreeBSD port to the Cook web
+	page.
+
+	My thanks to Jason Evans <jasone@canonware.com> for doing the
+	port.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 171  BUILDING
+	build	modify	   27 -> 159  MANIFEST
+	build	modify	   29 -> 159  Makefile.in
+	build	modify	   12 -> 95   README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 274  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	modify	    9 -> 10   etc/cook.html
+	build	modify	  120 -> 136  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Feb	 2	pmiller
+			09:36:21 2000
+	develop_begin	Wed Feb	 2	pmiller	 Elapsed time: 0.158
+			09:36:37 2000		 days.
+	develop_end	Wed Feb	 2	pmiller	 Elapsed time: 0.273
+			10:47:49 2000		 days.
+	review_pass	Wed Feb	 2	pmiller
+			12:50:35 2000
+	integrate_begin Wed Feb	 2	pmiller	 Elapsed time: 0.031
+			12:50:59 2000		 days.
+	integrate_pass	Wed Feb	 2	pmiller
+			13:04:59 2000
+
+
+
+Project "cook.2.11", Change 30					  Page 1
+Change Details					Tue Mar 28 07:13:13 2000
+
+NAME
+	Project "cook.2.11", Delta 18, Change 30.
+
+SUMMARY
+	c_incl -quote-filenames
+
+DESCRIPTION
+	This change adds the c_incl -quote-filenames option.  This means
+	that filenames containing spaces and other Cook special
+	characters may be used.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 173  BUILDING
+	build	modify	   27 -> 161  MANIFEST
+	build	modify	   29 -> 161  Makefile.in
+	build	modify	   12 -> 97   README
+	source	modify	   13 -> 14   c_incl/main.c
+	source	modify	   20 -> 21   c_incl/sniff.c
+	source	modify	   12 -> 13   c_incl/sniff.h
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 276  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	build	modify	  120 -> 138  etc/version.so
+	source	modify	   11 -> 12   lib/en/man1/c_incl.1
+	source	modify	    6 -> 7    lib/en/readme/new.2.11.so
+	test	create	    1	      test/01/t0190a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Feb 28	pmiller
+			17:57:35 2000
+	develop_begin	Mon Feb 28	pmiller	 Elapsed time: 0.703
+			17:58:10 2000		 days.
+	develop_end	Mon Feb 28	pmiller	 Elapsed time: 0.035
+			23:14:27 2000		 days.
+	review_pass	Mon Feb 28	pmiller
+			23:30:09 2000
+	integrate_begin Mon Feb 28	pmiller	 Elapsed time: 0.040
+			23:30:35 2000		 days.
+	integrate_pass	Mon Feb 28	pmiller
+			23:48:40 2000

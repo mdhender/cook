@@ -1,0 +1,121 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1998, 1999, 2002 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: manual entry for the cook_bom command
+.\"
+.so z_name.so
+.ds n) cook_bom
+.TH \*(n) 1 Cook "Reference Manual"
+.SH NAME
+\*(n) \- bill of materials
+.XX "cook_bom(1)" "bill of materials
+.SH SYNOPSIS
+.B \*(n)
+[
+.IR option \&...
+]
+.I dirname
+[
+.I outfile
+]
+.br
+.B \*(n)
+.B -Help
+.br
+.B \*(n)
+.B -VERSion
+.SH DESCRIPTION
+The
+.I \*(n)
+program is used to scan a directory and generate a cookbook fragment
+containing a bill of materials for that directory.  It also includes a
+recursive reference, via an ``#include-cooked'' directive, to the bills
+of materials for nested directories.
+.PP
+Output is sent to the standard output unless an output filename is specified.
+.br
+.ne 1i
+.SH OPTIONS
+The following options are understood:
+.TP 8n
+\fB-DIRectory\fP \fIpathname\fP
+This option may be used to specify a directory search path,
+similar to \fIcook\fP(1) \f[CW][search_list]\fP functionality.
+.TP 8n
+.B -Help
+.br
+Provide some help with using the
+.I \*(n)
+program.
+.TP 8n
+\fB-IGnore\fP \fIstring\fP
+This option may be used to specify filename patterns to be ignored.
+It may be given as many times as required.
+.TP 8n
+\fB-PREfix\fP \fIstring\fP
+This option may be manipulate the name of the manifest files.
+Defaults to the empty string if not set.
+.TP 8n
+\fB-SUFfix\fP \fIstring\fP
+This option may be manipulate the name of the manifest files.
+Defaults to ``\f[CW]/manifest.cook\fP if not set.
+.TP 8n
+.B -VERSion
+.br
+Print the version of the
+.I \*(n)
+program being executed.
+.PP
+All other options will produce a diagnostic error.
+.so o__rules.so
+.so z_exit.so
+.SH EXAMPLE
+The intended use of this command is to automatically generate a project
+file manifest in an efficient way.
+If you have a cookbook of the form
+.RS
+.nf
+.ft CW
+.ta 8n 16n 24n
+all_files_in_. = ;
+#include manifest.cook
+manifest = [all_files_in_.];
+
+set fingerprint mkdir unlink;
+
+%0manifest.cook: ["if" [in "%0" ""] "then" "." "else" "%0"]
+{
+	cook_bom
+		[addprefix '--dir=' [search_list]]
+		"--ignore='*~'"
+		[need]
+		[target]
+		;
+}
+.ft R
+.fi
+.RE
+At the end of this fragment, the \f[CW]manifest\fP variable contains a
+complete list of all files in the directory tree.  This variable may
+then be taken apart with the \f[CW]match_mask\fP function to build
+ingredients lists.
+.PP
+The constructed \fImanifest.cook\fP files work for both whole-project
+and recursive (not recommended) builds.
+.so copyright.so

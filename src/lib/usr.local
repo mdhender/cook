@@ -1,0 +1,32 @@
+/*
+ * NAME
+ *	usr.local - define installation locations
+ *
+ * DESCRIPTION
+ *	This cookbook defined where certain directoris are,
+ *	and some common uses of those directories,
+ *	relative to /usr/local.
+ *
+ * VARIABLES
+ *	bin		directory to place program binaries into
+ *	include		directory to place include files into
+ *	lib		directory to place libraries into
+ *	cc_include_flags The [include] directory is added to the search args
+ *	cc_link_flags	The [lib] directory is added to the search args
+ *
+ * MANIFEST: cookbook for locations in local system directories
+ */
+
+#pragma once
+
+bin = /usr/local/bin;
+include = /usr/local/include;
+lib = /usr/local/lib;
+
+if [not [defined cc_include_flags]] then
+	cc_include_flags = ;
+cc_include_flags = [stringset [cc_include_flags] -I[include]];
+
+if [not [defined cc_link_flags]] then
+	cc_link_flags = ;
+cc_link_flags = [stringset [cc_link_flags] -L[lib]];

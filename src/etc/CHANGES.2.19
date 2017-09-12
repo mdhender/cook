@@ -1,0 +1,673 @@
+
+
+
+Project "cook.2.19"						  Page 1
+List of Changes					Thu Jun	 6 14:32:58 2002
+
+Change	State		Description
+------- -------		-------------
+  10	completed	prepare for release
+  11	completed	archive
+  12	completed	bison
+  15	completed	fingerprints
+  16	completed	line length checking
+  17	completed	gettext 0.11
+  18	completed	fingerprints, again
+  19	completed	fingerprints and -star
+  20	completed	Solaris build problems
+  21	completed	mailing list
+
+
+
+Project "cook.2.19", Change 10					  Page 1
+Change Details					Thu Jun	 6 14:32:58 2002
+
+NAME
+	Project "cook.2.19", Delta 1, Change 10.
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change prepares Cook for the next public release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 221  BUILDING
+	build	modify	   27 -> 186  MANIFEST
+	build	modify	   29 -> 187  Makefile.in
+	build	modify	   12 -> 119  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 324  common/patchlevel.h
+	build	modify	    7 -> 30   configure
+	source	create	    1	      etc/CHANGES.2.18
+	build	modify	  185 -> 186  etc/version.so
+	source	modify	    2 -> 3    lib/en/readme/new.2.18.so
+	source	create	    1	      lib/en/readme/new.2.19.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Feb 19	pmiller
+			10:49:57 2002
+	develop_begin	Tue Feb 19	pmiller	 Elapsed time: 0.056
+			10:49:58 2002		 days.
+	develop_end	Tue Feb 19	pmiller
+			11:15:07 2002
+	review_pass	Tue Feb 19	pmiller
+			11:15:10 2002
+	integrate_begin Tue Feb 19	pmiller	 Elapsed time: 0.074
+			11:15:12 2002		 days.
+	integrate_pass	Tue Feb 19	pmiller
+			11:48:43 2002
+
+
+
+Project "cook.2.19", Change 11					  Page 1
+Change Details					Thu Jun	 6 14:32:58 2002
+
+NAME
+	Project "cook.2.19", Delta 2, Change 11.
+
+SUMMARY
+	archive
+
+DESCRIPTION
+	This change adds a number of things to the web archive:
+	1. the documentation is now in PDF format
+	2. there is a .ae file, for people who want to use Aegis to
+	develop Cook
+	3. the RPM file is built for upload, too.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 222  BUILDING
+	build	modify	   27 -> 186  MANIFEST
+	build	modify	   29 -> 187  Makefile.in
+	build	modify	   12 -> 119  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 325  common/patchlevel.h
+	build	modify	    7 -> 30   configure
+	source	modify	   11 -> 12   etc/Howto.cook
+	source	modify	   14 -> 15   etc/cook.html
+	build	modify	  185 -> 187  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Feb 28	pmiller
+			08:20:15 2002
+	develop_begin	Thu Feb 28	pmiller	 Elapsed time: 50.183
+			08:20:16 2002		 days.
+	develop_end	Thu May	 9	pmiller
+			08:42:24 2002
+	review_pass	Thu May	 9	pmiller
+			08:42:41 2002
+	integrate_begin Thu May	 9	pmiller	 Elapsed time: 0.042
+			08:42:43 2002		 days.
+	integrate_pass	Thu May	 9	pmiller
+			09:01:36 2002
+
+
+
+Project "cook.2.19", Change 12					  Page 1
+Change Details					Thu Jun	 6 14:32:59 2002
+
+NAME
+	Project "cook.2.19", Delta 3, Change 12.
+
+SUMMARY
+	bison
+
+DESCRIPTION
+	This change copes with resent Bison changes.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 223  BUILDING
+	build	modify	   27 -> 186  MANIFEST
+	build	modify	   29 -> 188  Makefile.in
+	build	modify	   12 -> 119  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 326  common/patchlevel.h
+	build	modify	    7 -> 30   configure
+	source	modify	   12 -> 13   etc/Howto.cook
+	source	modify	    9 -> 10   etc/Makefi.file.sh
+	build	modify	  185 -> 188  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu May	 9	pmiller
+			09:02:30 2002
+	develop_begin	Thu May	 9	pmiller	 Elapsed time: 0.043
+			09:02:30 2002		 days.
+	develop_end	Thu May	 9	pmiller	 Elapsed time: 0.028
+			09:21:56 2002		 days.
+	review_pass	Thu May	 9	pmiller
+			09:34:42 2002
+	integrate_begin Thu May	 9	pmiller
+			09:34:50 2002
+	integrate_pass	Thu May	 9	pmiller
+			09:43:00 2002
+
+
+
+Project "cook.2.19", Change 15					  Page 1
+Change Details					Thu Jun	 6 14:32:59 2002
+
+NAME
+	Project "cook.2.19", Delta 6, Change 15.
+
+SUMMARY
+	fingerprints
+
+DESCRIPTION
+	This change improves they way fingerprints are managed. An
+	additional field has been added to accurately track the actual
+	st_mtime of the file, rather than assuming that it *will* be
+	"newest". This should give much better behaviour when the file
+	mod time moves into the past.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 226  BUILDING
+	build	modify	   27 -> 188  MANIFEST
+	build	modify	   29 -> 190  Makefile.in
+	build	modify	   12 -> 120  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 329  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	source	modify	   11 -> 12   cook/fingerprint/find.c
+	source	modify	    2 -> 3    cook/fingerprint/gram.y
+	source	modify	    4 -> 5    cook/fingerprint/value.c
+	source	modify	    3 -> 4    cook/fingerprint/value.h
+	source	modify	   13 -> 14   cook/stat.cache.c
+	build	modify	  185 -> 191  etc/version.so
+	source	modify	    1 -> 2    lib/en/readme/new.2.19.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon May 20	pmiller
+			14:56:52 2002
+	develop_begin	Mon May 20	pmiller	 Elapsed time: 1.000
+			14:56:52 2002		 days.
+	develop_end	Mon May 20	pmiller	 Elapsed time: 0.028
+			23:01:27 2002		 days.
+	review_pass	Mon May 20	pmiller
+			23:14:08 2002
+	integrate_begin Mon May 20	pmiller
+			23:14:12 2002
+
+
+
+
+Project "cook.2.19", Change 15					  Page 2
+Change Details					Thu Jun	 6 14:32:59 2002
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_pass	Mon May 20	pmiller
+			23:18:54 2002
+
+
+
+Project "cook.2.19", Change 16					  Page 1
+Change Details					Thu Jun	 6 14:32:59 2002
+
+NAME
+	Project "cook.2.19", Delta 5, Change 16.
+
+SUMMARY
+	line length checking
+
+DESCRIPTION
+	This change adds code to the build to check line lengths, so
+	that files are well formatted.	(Or at least encourage it.)
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 225  BUILDING
+	build	modify	   27 -> 188  MANIFEST
+	build	modify	   29 -> 190  Makefile.in
+	build	modify	   12 -> 119  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 328  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	source	modify	   14 -> 15   etc/Howto.cook
+	source	create	    1	      etc/cfmt.cook
+	source	modify	   15 -> 16   etc/cook.html
+	source	modify	    1 -> 2    etc/system.sh
+	build	modify	  185 -> 190  etc/version.so
+	source	modify	    1 -> 2    file_check/file_check.c
+	source	modify	   17 -> 18   lib/en/man1/cook.1
+	source	modify	   10 -> 11   lib/en/user-guide/how.so
+	source	modify	    6 -> 7    lib/en/user-guide/langu.flags.so
+	source	modify	   26 -> 27   lib/en/user-guide/language.so
+	source	modify	   12 -> 13   lib/en/user-guide/large.so
+	source	modify	    4 -> 5    lib/en/user-guide/option.so
+	source	modify	   10 -> 11   lib/en/user-guide/parallel.so
+	source	modify	    3 -> 4    lib/en/user-guide/system/
+				      program.so
+	source	modify	    4 -> 5    make2cook/variable.h
+	test	modify	    1 -> 2    test/01/t0189a.sh
+	test	modify	    1 -> 2    test/01/t0190a.sh
+	test	modify	    1 -> 2    test/01/t0191a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon May 20	pmiller	 Cloned from change 15.
+			16:54:55 2002
+
+
+
+
+Project "cook.2.19", Change 16					  Page 2
+Change Details					Thu Jun	 6 14:32:59 2002
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	develop_begin	Mon May 20	pmiller	 Elapsed time: 0.622
+			16:54:56 2002		 days.
+	develop_end	Mon May 20	pmiller
+			21:34:59 2002
+	review_pass	Mon May 20	pmiller
+			21:36:07 2002
+	integrate_begin Mon May 20	pmiller
+			21:36:16 2002
+	integrate_	Mon May 20	pmiller
+	begin_undo	21:40:37 2002
+	develop_end_	Mon May 20	pmiller	 Elapsed time: 0.031
+	undo		21:40:43 2002		 days.
+	develop_end	Mon May 20	pmiller
+			21:54:30 2002
+	review_pass	Mon May 20	pmiller
+			21:54:52 2002
+	integrate_begin Mon May 20	pmiller
+			21:54:53 2002
+	integrate_pass	Mon May 20	pmiller
+			22:01:12 2002
+
+
+
+Project "cook.2.19", Change 17					  Page 1
+Change Details					Thu Jun	 6 14:32:59 2002
+
+NAME
+	Project "cook.2.19", Delta 4, Change 17.
+
+SUMMARY
+	gettext 0.11
+
+DESCRIPTION
+	This change copes with recent GNU gettext changes.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 224  BUILDING
+	build	modify	   27 -> 187  MANIFEST
+	build	modify	   29 -> 189  Makefile.in
+	build	modify	   12 -> 119  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 327  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	source	modify	    1 -> 2    etc/Howto.conf.in
+	source	modify	   13 -> 14   etc/Howto.cook
+	source	modify	   10 -> 11   etc/Makefi.file.sh
+	source	modify	    5 -> 6    etc/Makefile.head
+	source	create	    1	      etc/archive.cook
+	source	create	    1	      etc/autoconf.cook
+	source	modify	   16 -> 17   etc/configure.in
+	source	create	    1	      etc/i18n.cook
+	source	create	    1	      etc/msgfmt.sh
+	build	modify	  185 -> 189  etc/version.so
+	source	modify	    6 -> 7    lib/en/LC_MESSAGES/c_incl.po
+	source	modify	    6 -> 7    lib/en/LC_MESSAGES/common.po
+	source	modify	   29 -> 30   lib/en/LC_MESSAGES/cook.po
+	source	modify	    1 -> 2    lib/en/LC_MESSAGES/cook_bom.po
+	source	modify	    2 -> 3    lib/en/LC_MESSAGES/cookfp.po
+	source	modify	    3 -> 4    lib/en/LC_MESSAGES/cooktime.po
+	source	modify	    1 -> 2    lib/en/LC_MESSAGES/file_check.po
+	source	modify	    2 -> 3    lib/en/LC_MESSAGES/find_libs.po
+	source	modify	    2 -> 3    lib/en/LC_MESSAGES/fstrcmp.po
+	source	modify	    2 -> 3    lib/en/LC_MESSAGES/make2cook.po
+	source	modify	    2 -> 3    lib/en/LC_MESSAGES/roffpp.po
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+
+
+
+
+Project "cook.2.19", Change 17					  Page 2
+Change Details					Thu Jun	 6 14:32:59 2002
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon May 20	pmiller	 Cloned from change 16.
+			19:06:11 2002
+	develop_begin	Mon May 20	pmiller	 Elapsed time: 0.196
+			19:06:11 2002		 days.
+	develop_end	Mon May 20	pmiller
+			20:34:18 2002
+	review_pass	Mon May 20	pmiller
+			20:34:18 2002
+	integrate_begin Mon May 20	pmiller
+			20:34:18 2002
+	integrate_pass	Mon May 20	pmiller
+			20:41:12 2002
+
+
+
+Project "cook.2.19", Change 18					  Page 1
+Change Details					Thu Jun	 6 14:32:59 2002
+
+NAME
+	Project "cook.2.19", Delta 7, Change 18.
+
+SUMMARY
+	fingerprints, again
+
+DESCRIPTION
+	This change is another attempt to get fingerprint behavior right
+	in the face of all the horrible things ClearCase does to file
+	time stamps.
+
+	My thanks to Christian Goetze for reporting this problem.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 227  BUILDING
+	build	modify	   27 -> 189  MANIFEST
+	build	modify	   29 -> 191  Makefile.in
+	build	modify	   12 -> 120  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 330  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	source	modify	   14 -> 15   cook/stat.cache.c
+	build	modify	  185 -> 192  etc/version.so
+	test	create	    1	      test/02/t0200a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu May 23	pmiller
+			08:28:51 2002
+	develop_begin	Thu May 23	pmiller	 Elapsed time: 0.160
+			08:28:51 2002		 days.
+	develop_end	Thu May 23	pmiller
+			09:40:46 2002
+	review_pass	Thu May 23	pmiller
+			09:40:54 2002
+	integrate_begin Thu May 23	pmiller
+			09:40:59 2002
+	integrate_pass	Thu May 23	pmiller
+			09:46:02 2002
+
+
+
+Project "cook.2.19", Change 19					  Page 1
+Change Details					Thu Jun	 6 14:32:59 2002
+
+NAME
+	Project "cook.2.19", Delta 8, Change 19.
+
+SUMMARY
+	fingerprints and -star
+
+DESCRIPTION
+	This change adds documentation to the cook(1) man page, saying
+	that the ``@'' character means in the -star output.
+
+	My thanks to Christian Goetze for reporting this problem.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 228  BUILDING
+	build	modify	   27 -> 189  MANIFEST
+	build	modify	   29 -> 191  Makefile.in
+	build	modify	   12 -> 120  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 331  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	build	modify	  185 -> 193  etc/version.so
+	source	modify	   18 -> 19   lib/en/man1/cook.1
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu May 23	pmiller
+			10:17:13 2002
+	develop_begin	Thu May 23	pmiller
+			10:17:13 2002
+	develop_end	Thu May 23	pmiller
+			10:22:06 2002
+	review_pass	Thu May 23	pmiller
+			10:22:09 2002
+	integrate_begin Thu May 23	pmiller	 Elapsed time: 0.074
+			10:22:12 2002		 days.
+	integrate_pass	Thu May 23	pmiller
+			10:55:24 2002
+
+
+
+Project "cook.2.19", Change 20					  Page 1
+Change Details					Thu Jun	 6 14:32:59 2002
+
+NAME
+	Project "cook.2.19", Delta 9, Change 20.
+
+SUMMARY
+	Solaris build problems
+
+DESCRIPTION
+	This change fixes some build problems experienced on solaris.
+
+	My thanks to Christian Goetz for reporting this problem.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 229  BUILDING
+	build	modify	   27 -> 189  MANIFEST
+	build	modify	   29 -> 191  Makefile.in
+	build	modify	   12 -> 120  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 332  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	source	modify	    3 -> 4    cook/fingerprint/gram.y
+	source	modify	    5 -> 6    cook/fingerprint/value.c
+	source	modify	    4 -> 5    cook/fingerprint/value.h
+	source	modify	   15 -> 16   cook/stat.cache.c
+	build	modify	  185 -> 194  etc/version.so
+	source	modify	    2 -> 3    lib/en/readme/new.2.19.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jun	 6	pmiller
+			09:40:53 2002
+	develop_begin	Thu Jun	 6	pmiller	 Elapsed time: 0.055
+			09:40:53 2002		 days.
+	develop_end	Thu Jun	 6	pmiller
+			10:05:29 2002
+	review_pass	Thu Jun	 6	pmiller
+			10:05:29 2002
+	integrate_begin Thu Jun	 6	pmiller	 Elapsed time: 0.031
+			10:09:12 2002		 days.
+	integrate_pass	Thu Jun	 6	pmiller
+			10:23:19 2002
+
+
+
+Project "cook.2.19", Change 21					  Page 1
+Change Details					Thu Jun	 6 14:33:00 2002
+
+NAME
+	Project "cook.2.19", Delta 10, Change 21.
+
+SUMMARY
+	mailing list
+
+DESCRIPTION
+	This change update the web page for the changed mailing list
+	address and subscription procedures.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 230  BUILDING
+	build	modify	   27 -> 190  MANIFEST
+	build	modify	   29 -> 191  Makefile.in
+	build	modify	   12 -> 120  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 333  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	source	modify	    1 -> 2    etc/archive.cook
+	source	modify	   16 -> 17   etc/cook.html
+	source	create	    1	      etc/download.html
+	source	create	    1	      etc/mail-list.html
+	build	modify	  185 -> 195  etc/version.so
+	source	create	    1	      etc/y2k.html
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jun	 6	pmiller
+			10:24:59 2002
+	develop_begin	Thu Jun	 6	pmiller	 Elapsed time: 0.325
+			10:24:59 2002		 days.
+	develop_end	Thu Jun	 6	pmiller
+			12:51:17 2002
+	review_pass	Thu Jun	 6	pmiller
+			12:51:22 2002
+	integrate_begin Thu Jun	 6	pmiller
+			12:51:24 2002
+	integrate_pass	Thu Jun	 6	pmiller
+			12:55:57 2002

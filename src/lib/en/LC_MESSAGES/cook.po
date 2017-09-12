@@ -1,0 +1,1168 @@
+#
+# 	cook - file construction tool
+# 	Copyright (C) 1997-1999, 2001, 2002 Peter Miller;
+# 	All rights reserved.
+#
+# 	This program is free software; you can redistribute it and/or modify
+# 	it under the terms of the GNU General Public License as published by
+# 	the Free Software Foundation; either version 2 of the License, or
+# 	(at your option) any later version.
+#
+# 	This program is distributed in the hope that it will be useful,
+# 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+# 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# 	GNU General Public License for more details.
+#
+# 	You should have received a copy of the GNU General Public License
+# 	along with this program; if not, write to the Free Software
+# 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+#
+# MANIFEST: English localization for the cook program
+#
+# Please read the Internationalization section of the Reference Manual
+# before translating any of these messages.
+#
+# 	Messages containing ``(reason)'' are all triggered by the
+# 	-Reason option, used to trace cook's reasoning as it builds its
+# 	targets.
+#
+# -----------------------------------------------------------------------------
+msgid	""
+msgstr	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ascii\n"
+	"Content-Transfer-Encoding: 8bit\n"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" does not exist, assume non-leaf (reason)"
+msgstr	"the \"$filename\" file does not exist, the derivation assumes "
+	"that it is a place-marker to trigger the construction of its "
+	"ingredients (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" does not exist, backtracking (reason)"
+msgstr	"the \"$filename\" file does not exist, the derivation will "
+	"attempt to find an alternative (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" does not exist, error (reason)"
+msgstr	"the \"$filename\" file does not exist, this is specified as a "
+	"terminal error in the cookbook (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file had not been
+# constructed due to errors constructing ingredients or in a rule body.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" error (reason)"
+msgstr	"the \"$filename\" file cannot be derived due to an error (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" exists, assume leaf (reason)"
+msgstr	"the \"$filename\" file exists, it appears to be a primary source "
+	"file for the derivation (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" is explicitly a leaf node (reason)"
+msgstr	"the \"$filename\" file has been specified as a leaf node by the "
+	"user (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" is explicitly not a graph node (reason)"
+msgstr	"the \"$filename\" file has been exluded from the graph by the "
+	"user (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" is explicitly not a leaf node (reason)"
+msgstr	"the \"$filename\" file has been specified as an interior node  "
+	"by the user (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that a file needs to be constructed
+# (the recipe body executed) because it does not exist.
+#
+# 	$File_Name	The name of the file to be constructed.
+#
+msgid	"\"$filename\" is out of date because it does not exist (reason)"
+msgstr	"the \"$filename\" file is out of date because it does not exist "
+	"(reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that a file needs to be constructed
+# (the recipe body executed) because while the file exists, it exists
+# too far down the search list.  The ``set shallow'' flag is active,
+# which requires that it be relative to the top-most (.) directory.
+#
+# 	$File_Name	The name of the file to be constructed.
+#
+msgid	"\"$filename\" is out of date because it is too deep (reason)"
+msgstr	"the \"$filename\" file is out of date because it exists too far "
+	"down the search list, and the \"shallow\" flag is set (reason)"
+
+#
+# This message is issued when reporting the status of an attempt to
+# construct a file.  It indicates that the recipe had the ``forced''
+# flag set.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename\" is out of date because the \"forced\" flag is set "
+	"(reason)"
+msgstr	"the \"$filename\" file is out of date because the \"forced\" "
+	"flag is set (reason)"
+
+#
+# This message is issued when reporting the status of an attempt to
+# construct a file.  It indicates that the ingredients list of the
+# recipe changed, invalidating the file even if the time stamps are
+# all consistent.
+#
+#     $File_Name      The name of the offending file.
+#
+msgid	"\"$filename\" is out of date because the ingredients changed "
+	"(reason)"
+msgstr	"\"$filename\" is out of date because the ingredients list has "
+	"changed (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that a recipe in a cookbook will
+# not be applied because the precondition of that recipe (if clause)
+# failed.
+#
+# 	$File_Name	The name of the file to be constructed.
+#
+msgid	"\"$filename\" precondition rejects (reason)"
+msgstr	"the recipe predicate rejects the \"$filename\" file, the "
+	"derivation will attempt to find an alternative (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the file to be constructed.
+#
+msgid	"\"$filename\" primary source file not found"
+msgstr	"the \"$filename\" file is an explict primary source file, but it "
+	"could not be found"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that cook will attempt to construct
+# the indicated ingredient before proceeding with the target.  If the
+# ingredient cannot be constructed (but not an error), this recipe will
+# be abandoned and a later recipe tried (cook will backtrack).
+#
+# 	$File_Name1	The name of the recipe target.
+# 	$File_Name2	The name of the recipe ingredient.
+#
+msgid	"\"$filename1\" may require \"$filename2\" (reason)"
+msgstr	"the \"$filename1\" file may require the \"$filename2\" file "
+	"(reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that Cook can't work out how to
+# construct the file from the recipes given.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"\"$filename1\" not derived due to errors deriving \"$filename2\""
+msgstr	"the \"$filename1\" file was not derived due to errors deriving "
+	"the \"$filename2\" file"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that cook will attempt to construct
+# the indicated ingredient before proceeding with the target, and that
+# it will be an error if the target cannot be constructed.
+#
+# 	$File_Name1	The name of the recipe target.
+# 	$File_Name2	The name of the recipe ingredient.
+#
+msgid	"\"$filename1\" requires \"$filename2\" (reason)"
+msgstr	"the \"$filename1\" file requires the \"$filename2\" file (reason)"
+
+#
+# This message is issued when a #line directive is malformed.
+#
+msgid	"#line needs positive decimal line number"
+msgstr	"the #line directive requires a positive decimal line number "
+	"followed by a file name"
+
+#
+# This information message is issued when fingerprinting detects that a
+# recipe target was not achange by a recipe body.
+#
+# 	$File_Name"	The file in question.
+#
+msgid	"$filename fingerprint unchanged"
+msgstr	"the \"$filename\" file was not changed"
+
+#
+# This message is issued when reporting the status of an attempt to
+# construct a file.  It indicates that the file has been brought up to
+# date, however the file is a ``phony'' file, and has no recipe body
+# attached.
+#
+# 	$File_Name	The name of the file.
+#
+msgid	"$filename is phony (reason)"
+msgstr	"the \"$filename\" phony file is done, and recipes dependent on "
+	"it will be told it has been altered (reason)"
+
+#
+# This message is issued when reporting the status of an attempt to
+# construct a file.  It indicates that there was no need to run the
+# recipe body as the file was already up to date.
+#
+# 	$File_Name	The name of the file.
+#
+msgid	"$filename is up to date (reason)"
+msgstr	"the \"$filename\" file is up-to-date, no action required (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"$filename1 is out of date because $filename2 is shallower "
+	"(reason)"
+msgstr	"the \"$filename1\" file is out of date because the \"$filename2"
+	"\" file is shallower (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"$filename1 is out of date because $filename2 is younger (reason)"
+msgstr	"the \"$filename1\" file is out of date because the \"$filename2"
+	"\" file is younger (reason)"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that a file needs to be
+# reconstructed (the recipe body executed) because an ingredient file
+# was itself reconstructed and is now younger.  [This is a logical
+# statement, rather than a consultation of the file's modification time.
+# The move-if-changed trick does not work; use fingerprints if this is
+# important.]
+#
+# 	$File_Name1	The older recipe target.
+# 	$File_Name2	The younger recipe ingredient.
+#
+msgid	"$filename1 is out of date because $filename2 was cooked and is "
+	"now younger (reason)"
+msgstr	"the \"$filename1\" file is out of date because the \"$filename2"
+	"\" file was cooked and is now younger (reason)"
+
+#
+# This message is issued when cook determines that a target specified on
+# the command line (or the default target from the cookbook) is already
+# up to date, and does not require any action.
+#
+# 	$File_Name	The name of the target file.
+#
+msgid	"$filename: already up to date"
+msgstr	"the \"$filename\" file is already up to date, no action required"
+
+#
+# This error message is issued when cook is unable to determine how to
+# construct a file from the information provided in the cookbook.
+# This may in turn generate secondary errors.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"$filename: don't know how"
+msgstr	"the \"$filename\" file could not be derived, no relevant recipes "
+	"were found"
+
+#
+# This error message is issued when cook is unable to determine how to
+# construct a file from the information provided in the cookbook.
+# This may in turn generate secondary errors.
+#
+# 	$File_Name	The name of the offending file.
+# 	$File_Name_List	The names of all of the ingredients files
+# 			attempted as various recipes were explored while
+# 			trying to construct the target.  It implies
+# 			which recipes were attempted.
+#
+msgid	"$filename: don't know how, attempted $filenamelist"
+msgstr	"the \"$filename\" file could not be derived, no relevant recipes "
+	"were found; derivations attempted were via $filenamelist"
+
+#
+# This error message is issued when a problem occurs constructing a
+# file.  It may be because a recipe body failed, or it may be because an
+# ingredient could not be constructed.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"$filename: not done because of errors"
+msgstr	"the \"$filename\" file was not cooked because of errors"
+
+#
+# This error message is issued when an include file loop is discovered
+# in a cookbook.
+#
+# 	$File_Name	The name of the offending include file.
+#
+msgid	"$filename: recursive include"
+msgstr	"the \"$filename\" file is caught in an include infinite loop"
+
+#
+# This error message is issued when an infinite loop is detected for a
+# recipe target.
+#
+# 	$File_Name	The name of the recipe target file.
+#
+msgid	"$filename: subject of recipe infinite loop"
+msgstr	"the \"$filename\" file is caught in a recipe infinite loop"
+
+#
+# This warning message is used to present other error messages which
+# include a file name and line number.
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The line number within the file.
+# 	$MeSsaGe	The error message to be given.
+#
+msgid	"$filname: $number: warning: $message"
+msgstr	"$filname: $number: warning: $message"
+
+#
+# Use message from the ``print'' function.
+#
+# 	$MeSsaGe	The message to print.
+#
+msgid	"$message"
+msgstr	"$message"
+
+#
+# This error message is issued when the ``word'' builtin function
+# is not used corectly, and the first argument is not appropriate.
+#
+# 	$Name		The name of the offending function.
+# 	$Number		The number of the offending argument.
+#
+msgid	"$name: argument $number: must be a positive decimal number"
+msgstr	"$name: argument $number: must be a positive decimal number"
+
+#
+# This error message is issued when the ``if'' builtin function
+# is not used corectly, and there is no ``then'' separator.
+#
+# 	$Name		The name of the offending function.
+#
+msgid	"$name: no 'then' word"
+msgstr	"builtin \"$name\" function: no 'then' word"
+
+#
+# This error message is issued when one of the graph iformation runctions
+# is executed outside of a recipe body.  (This is the only place where
+# this information is available.)
+#
+msgid	"$name: only meaningful inside recipe body"
+msgstr	"$name: this function may only be used within a recipe body"
+
+#
+# This error message is issued when a builtin function is given the
+# wrong number of arguments.
+#
+# 	$Name		The name of the offending function.
+#
+msgid	"$name: requires an even number of arguments"
+msgstr	"builtin \"$name\" function: requires an even number of arguments"
+
+#
+# This error message is issued when a builtin function is given the
+# wrong number of arguments.
+#
+# 	$Name		The name of the offending function.
+#
+msgid	"$name: requires no arguments"
+msgstr	"builtin \"$name\" function: requires no arguments"
+
+#
+# This error message is issued when a builtin function is given the
+# wrong number of arguments.
+#
+# 	$Name		The name of the offending function.
+#
+msgid	"$name: requires one argument"
+msgstr	"builtin \"$name\" function: requires one argument"
+
+#
+# This error message is issued when a builtin function is given the
+# wrong number of arguments.
+#
+# 	$Name		The name of the offending function.
+#
+msgid	"$name: requires one or more arguments"
+msgstr	"builtin \"$name\" function: requires one or more arguments"
+
+#
+# This error message is issued when a builtin function is given the
+# wrong number of arguments.
+#
+# 	$Name		The name of the offending function.
+#
+msgid	"$name: requires two or more arguments"
+msgstr	"builtin \"$name\" function: requires two or more arguments"
+
+#
+# This error message is issued when the builtin opsys function is given
+# an attribute name that it does not understand.
+#
+# 	$Name		The name of the offending function.
+# 	$ATTRibute	The name of the offending attribute.
+#
+msgid	"$name: unknown \"$attribute\" attribute"
+msgstr	"builtin \"$name\" function: unknown \"$attribute\" attribute"
+
+#
+# This error message is issued when a variable reference is given
+# any arguments.
+#
+# 	$Name		The name of the offending variable.
+#
+msgid	"$name: variable references no arguments"
+msgstr	"variable \"$name\" reference: requires no arguments"
+
+#
+# This error message is issued when a ``loopstop'' statement is
+# encountered ouside any ``loop'' statement.
+#
+msgid	"'loopstop' encountered outside a loop"
+msgstr	"'loopstop' encountered outside a loop"
+
+#
+# This error message is issued when a ``return'' statement is
+# encountered ouside any function definition.
+#
+msgid	"'return' encountered outside a function"
+msgstr	"'return' encountered outside a function"
+
+#
+# This message is emitted as the first line of a listing file, to tell
+# the user where and when the cook was performed.
+#
+# 	$File_Name	The name of the log file.
+#
+msgid	"/* $filename */"
+msgstr	"/* ${basename $filename}, ${dirname $filename}, ${date %a %b %d %"
+	"H:%M %Y} */"
+
+#
+# This error message is issued when there is an unexpected error when
+# testing for the existence of an executable file.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"access(\"$filename\", X_OK)"
+msgstr	"access(\"$filename\", X_OK)"
+
+#
+# This error message is issued when an implicit recipe has targets which
+# use differing subsets of the pattern elements.
+#
+msgid	"at least one target of an implicit recipe must use all of the "
+	"named pattern elements"
+msgstr	"at least one target of an implicit recipe must use all of the "
+	"named pattern elements"
+
+#
+# This error message is issued when a cookbook contains an instantiation
+# of a recipe with no targets.  This is not meaningful.
+#
+msgid	"attempt to instantiate recipe with no targets"
+msgstr	"attempt to instantiate a recipe with no targets"
+
+#
+# This message is issued when reporting the instantiation of a cascade
+# ingredients recipe.
+#
+msgid	"cascade instantiated (reason)"
+msgstr	"cascade ingredients recipe instantiated (reason)"
+
+#
+# This error message is issued when a problem occurs while attempting to
+# read the value of a symbolic link.
+#
+# 	$File_Name	The name of the offending file.
+# 	$Mode		The desired file mode.
+#
+msgid	"chmod $filename $mode: $errno"
+msgstr	"chmod \"$filename\" $mode: $errno"
+
+#
+# This message is issued when reporting the exit status of a command
+# executed by cook (for example, in a recipe body or a [collect]
+# functon).
+#
+# 	$File_Name	The name of the command executed.
+# 	$Number		The exit status of the command.
+#
+msgid	"command $filename: exit status $number"
+msgstr	"$filename: exit status $number"
+
+#
+# This message is issued when reporting the exit status of a command
+# executed by cook (for example, in a recipe body or a [collect]
+# functon).  This is not a fatal error, e.g. the errok flag was set.
+#
+# 	$File_Name	The name of the command executed.
+# 	$Number		The exit status of the command.
+#
+msgid	"command $filename: exit status $number (ignored)"
+msgstr	"$filename: exit status $number (ignored)"
+
+#
+# This error message is issued when a command executed by cook
+# terminated with a ``stopped'' status.
+#
+# 	$File_Name	The name of the command executed.
+#
+msgid	"command $filename: stopped"
+msgstr	"$filename: stopped"
+
+#
+# This error message is issued when a command executed by cook was
+# terminated by an uncaught signal.
+#
+# 	$File_Name	The name of the command executed.
+# 	$Name		The name of the terminating signal.
+#
+msgid	"command $filename: terminated by $name"
+msgstr	"$filename: terminated by $name"
+
+#
+# This error message is issued when a command executed by cook was
+# terminated by an uncaught signal, and a core file was produced.
+#
+# 	$File_Name	The name of the command executed.
+# 	$Name		The name of the terminating signal.
+#
+msgid	"command $filename: terminated by $name (core dumped)"
+msgstr	"$filename: terminated by $name (core dumped)"
+
+#
+# This error message is issued when the [expr] function finds a problem.
+#
+msgid	"division by zero"
+msgstr	"division by zero"
+
+#
+# This error message is issued when a double-colon recipe has multiple
+# targets.  The semantics of this are not defined.
+#
+msgid	"double-colon recipes with multiple targets are not permitted"
+msgstr	"double-colon recipes with multiple targets are not permitted"
+
+#
+# This error message is issued when a dup() system call produces
+# unexpected results.  Extremely rare.
+#
+msgid	"dup was wrong"
+msgstr	"dup was wrong"
+
+#
+# This error message is issued when a dup() system call fails.
+# Extremely rare.
+#
+msgid	"dup(): $errno"
+msgstr	"dup(): $errno"
+
+#
+# This message is issued when reporting the instantiation of an explicit
+# recipe.
+#
+msgid	"explicit recipe instantiated (reason)"
+msgstr	"explicit recipe instantiated (reason)"
+
+#
+# This error message is issued when a problem ocurred calculating the
+# fingerprint of a file.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"fingerprint \"$filename\": $errno"
+msgstr	"fingerprint \"$filename\": $errno"
+
+#
+# This error message is issued when a cookbook contains a set clause
+# flag which is not understood.
+#
+# 	$Name		The offending flag name.
+#
+msgid	"flag \"$name\" not understood"
+msgstr	"flag \"$name\" not understood"
+
+#
+# This error message is issued when a cookbook contains a set clause
+# flag which is not understood.  Fuzzy string matching is used to
+# attempt to guess what the user may have meant.
+#
+# 	$Name		The offending flag name.
+# 	$Guess		The most likely alternative from the known valid
+# 			flag names.
+#
+msgid	"flag \"$name\" not understood, closest is the \"$guess\" flag"
+msgstr	"flag \"$name\" not understood, closest is the \"$guess\" flag"
+
+#
+# This error message is issued when a cookbook contains a set clause
+# which sets a flag more than once.
+#
+# 	$Name		The offending flag name.
+#
+msgid	"flag \"$name\" set more than once"
+msgstr	"flag \"$name\" set more than once"
+
+#
+# This error message is issued when a cookbook contains a set clause
+# which sets both a flag and its negative
+#
+# 	$Name1		The offending flag name.
+# 	$Name2		The other offending flag name.
+#
+msgid	"flags \"$name1\" and \"$name2\" both set"
+msgstr	"flags \"$name1\" and \"$name2\" both set"
+
+#
+# This error message is issued when a fork system call fails.
+#
+msgid	"fork(): $errno"
+msgstr	"fork(): $errno"
+
+#
+# This error message is issued when a function call statement fails,
+# because the function returned a non-zero exit status.
+#
+msgid	"function call returned non-zero exit status"
+msgstr	"function call returned non-zero exit status"
+
+#
+# This error message is issued when an unprintable character (usually a
+# control character or a meta cheracter) is found in a cookbook.  Use
+# backslash escape sequences instead.
+#
+# 	$Name		The name of the offending character (usually as
+# 			a backslash escape sequence).
+#
+msgid	"illegal '$name' character"
+msgstr	"illegal '$name' character"
+
+#
+# This error message is issued when %0 does not occur at the start of a
+# pattern or immediately following a / within a pattern.
+#
+# 	$Pattern	The pattern being scanned.
+# 	$Name		The name of the pattern element (%0)
+#
+msgid	"illegal position of '$name' in \"$pattern\" pattern"
+msgstr	"illegal position of '$name' in \"$pattern\" pattern"
+
+#
+# This error message is issued when a pattern element in a replacement
+# is not present in the original pattern matched.
+#
+# 	$Pattern	The pattern being scanned.
+# 	$Name		The name of the pattern element (%, %1, %2, etc)
+#
+msgid	"illegal use of '$name' in \"$pattern\" pattern"
+msgstr	"illegal use of '$name' in \"$pattern\" pattern"
+
+#
+# This message is issued when reporting the instantiation of an implicit
+# recipe.
+#
+msgid	"implicit recipe instantiated (reason)"
+msgstr	"implicit recipe instantiated (reason)"
+
+#
+# This warning message is issued when an include file could not be
+# found.  This include file is one which may be cooked later, if it is
+# out of date.  It is assumed when it is cooked, it will be included
+# when cook restarts, which is why it is only a warning.
+#
+msgid	"include cooked \"$filename\": file not found"
+msgstr	"include cooked \"$filename\": file not found"
+
+#
+# This error message is issued when cook is interrupted.  Cook will wait
+# for any child processes to complete before terminating, but it lets
+# the user know it noticed by issuing this message.
+#
+# 	$Name		The name of the interrupting signal.
+#
+msgid	"interrupted by $name"
+msgstr	"interrupted by $name"
+
+#
+# This error message is issued when an assignment statement has no name
+# of the left hand side.  This could happen after any expression of the
+# left hand side is evaluated.
+#
+msgid	"lefthand side of assignment is empty"
+msgstr	"lefthand side of assignment is empty"
+
+#
+# This error message is issued when an assignment statement has too many
+# names of the left hand side.  This could happen after any expression
+# of the left hand side is evaluated.
+#
+msgid	"lefthand side of assignment is more than one word"
+msgstr	"lefthand side of assignment is more than one word"
+
+#
+# This error message is issued when a user attempts to make a local
+# assignment at the outermost (global / cookbook) scope.
+#
+msgid	"local assign global scope"
+msgstr	"you may not perform a local assignment in the global scope"
+
+#
+# This error message is issued when an attempt is made to assign
+# variables within the COOK environment variable.
+#
+msgid	"may not assign variables in environment variable"
+msgstr	"may not assign variables in the ${upcase $progname} environment "
+	"variable"
+
+#
+# This error message is issued when an attempt is made to name
+# targets within the COOK environment variable.
+#
+# 	$Name		The name of the COOK environment variable.
+#
+msgid	"may not name targets in environment variable"
+msgstr	"may not name targets in the ${upcase $progname} environment "
+	"variable"
+
+#
+# This error message is issued when an inappropriate option is use
+# within the COOK environment variable.
+#
+# 	$Name		The name of the offending command line option.
+#
+msgid	"may not use $name in environment variable"
+msgstr	"may not use the $name option in the ${upcase $progname} "
+	"environment variable"
+
+#
+# This information message is issued to inform the user when cook
+# automatically creates a directory.
+#
+# 	$File_Name	The name of the directory.
+#
+msgid	"mkdir $filename"
+msgstr	"mkdir $filename"
+
+#
+# This error message is issued when the [expr] function finds a problem.
+#
+msgid	"modulo by zero"
+msgstr	"modulo by zero"
+
+#
+# This error message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file's modification time
+# has been updated.
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The modification time.
+#
+msgid	"mtime(\"$filename\") = $number (reason)"
+msgstr	"mtime(\"$filename\") = $number (reason)"
+
+#
+# This error message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file's modification time
+# was read from the file system as the given value.
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The modification time.
+#
+msgid	"mtime(\"$filename\") == $number (reason)"
+msgstr	"mtime(\"$filename\") == $number (reason)"
+
+#
+# This error message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file's modification time
+# was read from the file system, and the file does not exist (file is
+# treated as being infinitely old).
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The modification time.
+#
+msgid	"mtime(\"$filename\") == ENOENT (reason)"
+msgstr	"mtime(\"$filename\") == ENOENT (reason)"
+
+#
+# This error message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file's modification time
+# was read from the fingerprint cache as the given value, this has not
+# yet been confirmed by checking the actual file.
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The modification time.
+#
+msgid	"mtime(\"$filename\") was $number until fingerprinting (reason)"
+msgstr	"mtime(\"$filename\") was $number until fingerprinting (reason)"
+
+#
+# This error message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file's modification time
+# has been updated in the fingerprint cache.
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The modification time.
+#
+msgid	"newest mtime(\"$filename\") = $number (reason)"
+msgstr	"newest mtime(\"$filename\") = $number (reason)"
+
+#
+# This error message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file's newest modification
+# time was read from the stat cache as the given value.
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The modification time.
+#
+msgid	"newest mtime(\"$filename\") == $number (reason)"
+msgstr	"newest mtime(\"$filename\") == $number (reason)"
+
+#
+# This error message is issued when a quoted string contains an unescape
+# newline character.  If you want a newline in the quoted string, use
+# the \n escape sequence.
+#
+msgid	"newline in quote"
+msgstr	"newline in quote"
+
+#
+# This error message is issued when no cookbook can be found in the
+# current directory.  A large variety of file names have been searched
+# for.
+#
+msgid	"no book found"
+msgstr	"no cookbook found"
+
+#
+# This error message is issued when there was no target specified on the
+# command line, and no default target defined in the cook book (neither
+# explicityly nor implicitly).
+#
+msgid	"no default target"
+msgstr	"there is no default target in the cookbook"
+
+#
+# This error message is issued when cook is unable to determine an
+# appropriate name for the listing file.  Can sometimes be a side-effect
+# of not finding a cook book.
+#
+msgid	"no list file specified"
+msgstr	"no list file specified"
+
+#
+# This error message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that the file's oldest modification
+# time was read from the stat cache as the given value.
+#
+# 	$File_Name	The name of the file.
+# 	$Number		The modification time.
+#
+msgid	"oldest mtime(\"$filename\") == $number (reason)"
+msgstr	"oldest mtime(\"$filename\") == $number (reason)"
+
+#
+# This error message is issued when pathconf failes to determine the
+# maximum path name length.
+#
+#       $File_Name      The offending filename (file system).
+#
+msgid	"pathconf(\"$filename\", {PATH_MAX}): $errno"
+msgstr	"path max \"$filename\": $errno"
+
+#
+# This error message is issued when a matching pattern (regex within
+# recipe patterns, but there could be others one day) fails for some
+# reason.
+#
+# 	$Name		The offending file name pattern.
+#
+msgid	"pattern \"$pattern\" error: $message"
+msgstr	"pattern /$pattern/ error: $message"
+
+#
+# This error message is issued when the pipe system call fails.
+#
+msgid	"pipe(): $errno"
+msgstr	"pipe(): $errno"
+
+#
+# This error message is issued when a symbolic link contains the empty
+# string.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"readlink \"$filename\" returned \"\""
+msgstr	"readlink \"$filename\" returned \"\""
+
+#
+# This error message is issued when a problem occurs while attempting to
+# read the value of a symbolic link.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"readlink \"$filename\": $errno"
+msgstr	"readlink \"$filename\": $errno"
+
+#
+# This message is issued when reporting the status of an attempt
+# to construct a file.  It indicates that
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"recipe does not apply \"$filename\" backtracking (reason)"
+msgstr	"the \"$filename\" file is backtracking because this recipe did "
+	"not apply (reason)"
+
+#
+# This information message is issued to inform the user when cook
+# automatically removes a file.
+#
+# 	$File_Name	The name of the file.
+#
+msgid	"rm $filename"
+msgstr	"rm $filename"
+
+#
+# This error message is issued when the execution of a statement fails.
+# This could be when the cook book is being interpreted, or it could be
+# when a recipe body is being interpreted.
+#
+msgid	"statement failed"
+msgstr	"statement failed"
+
+#
+# This error message is issued when a symbolic link loop is detected.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"symbolic link loop \"$filename\" detected"
+msgstr	"symbolic link loop \"$filename\" detected"
+
+#
+# This error message is issued when an environment variable is not set.
+# This is NOT a result of using the [getenv] function in a cook book.
+#
+# 	$Name		The name of the offending environment variable.
+#
+msgid	"the $name environment variable is not set"
+msgstr	"the $name environment variable is not set"
+
+#
+# This error message is issued when a data ... datend pair are not
+# correctly formed.  The ``data'' keyword must be the last on the line
+# as cook then changes input mode and interprets the cook book
+# differently until the ``dataend'' keyword is seen.
+#
+msgid	"the 'data' keyword must be the last on the line"
+msgstr	"the 'data' keyword must be the last on the line"
+
+#
+# This warning message is issued when the relationship between a target
+# and a derived ingredient only appears in a derived cookbook (a
+# #include-cook'ed file).  This is the long form of the warning.
+#
+msgid	"this means that a clean build will fail"
+msgstr	"If the relationship between a target and a derived ingredient "
+	"appears only in a derived cookbook, it is likely that a clean "
+	"build (solely from primary source files) will fail.  It is "
+	"recommended that relationships such as this be placed in a "
+	"primary source cookbook."
+
+#
+# This information message is issued to inform the user when cook
+# automatically update the last-modified time of a file.
+#
+# 	$File_Name	The name of the file.
+#
+msgid	"touch $filename"
+msgstr	"touch $filename"
+
+#
+# This error message is issued when a cook book refers to an unknown
+# builtin function.
+#
+# 	$Name		The name of the unknown function.
+#
+msgid	"undefined function \"$name\""
+msgstr	"undefined function \"$name\""
+
+#
+# This error message is issued when a cook book refers to an unknown
+# builtin function.
+#
+# 	$Name		The name of the unknown function.
+# 	$Guess		Fuzzy string comparisons are used to determine
+# 			the most likely alternative from the known
+# 			function names.
+#
+msgid	"undefined function \"$name\", closest is the \"$guess\" function"
+msgstr	"undefined function \"$name\", closest is the \"$guess\" function"
+
+#
+# This error message is issued when a cook book refers to an unknown
+# variable.
+#
+# 	$Name		The name of the unknown variable.
+#
+msgid	"undefined variable \"$name\""
+msgstr	"undefined variable \"$name\""
+
+#
+# This error message is issued when a cook book refers to an unknown
+# variable.
+#
+# 	$Name		The name of the unknown variable.
+# 	$Guess		Fuzzy string comparisons are used to determine
+# 			the most likely alternative from the known
+# 			variable names.
+#
+msgid	"undefined variable \"$name\", closest is the \"$guess\" variable"
+msgstr	"undefined variable \"$name\", closest is the \"$guess\" variable"
+
+#
+# This error message is issued when a cook book ends prematurely.
+#
+msgid	"unexpected end of file"
+msgstr	"unexpected end of file"
+
+#
+# This error message is issued when an unrecognised preprocessor
+# directive is encountered in a cookbook.
+#
+# 	$Name		The name of the offending directive.
+#
+msgid	"unknown #$name directive"
+msgstr	"unknown #$name directive"
+
+#
+# This error message is issued when an unrecognised preprocessor
+# directive is encountered in a cookbook.
+#
+# 	$Name		The name of the offending directive.
+# 	$Guess		The name of a very similar directive.
+#
+msgid	"unknown #$name directive, guess #$guess"
+msgstr	"unknown #$name directive, guessing that you may have meant #"
+	"$guess instead"
+
+#
+# This error message is issued when a cookbook contains an unknown
+# escape sequence.
+#
+# 	$Name		The offending escape sequence.
+#
+msgid	"unknown '$name' escape"
+msgstr	"unknown '$name' escape"
+
+#
+# This error message is issued when the unsetenv command was not given
+# any environment variable names to unset.
+#
+msgid	"unsetenv was given no words"
+msgstr	"unsetenv was given no words"
+
+#
+# This error message is issued when a cook book contains an
+# unterminated #if, #ifdef or #ifndef conditional.
+#
+msgid	"unterminated conditional"
+msgstr	"unterminated conditional"
+
+#
+# This error message is issued when a cookbook contains an unterminated
+# string.  (If you want a newlinw in the string, use the \n escape
+# sequence.)
+#
+msgid	"unterminated string"
+msgstr	"unterminated string"
+
+#
+# This error message is issued when a user name is unknown.  This is
+# usually a result of the [home] function.
+#
+msgid	"user \"$name\" unknown"
+msgstr	"user \"$name\" unknown"
+
+#
+# This information message is issued when an error has been found, or an
+# interrupt received, and there are still child processes outstanding
+# from parallel execution.
+#
+# 	$Number		Number of outstanding processes (optional).
+#
+msgid	"waiting for outstanding processes"
+msgstr	"waiting for $number unfinished recipe${plural $number s} to "
+	"complete"
+
+#
+# This warning message is issued when the relationship between a target
+# and a derived ingredient only appears in a derived cookbook (a
+# #include-cook'ed file).  This is the short form of the warning.
+#
+# 	$RELATionship	The relationship between the files, expressed as
+# 			a valid ingredients recipe, so the user can just
+# 			cut and paste.
+# 	$File_Name	The name of a cookbook in which the relationship
+# 			appears.
+#
+msgid	"warning: the ``$relationship'' recipe is only in $filename"
+msgstr	"warning: the ``$relationship'' recipe only appears in the "
+	"derived \"$filename\" file"
