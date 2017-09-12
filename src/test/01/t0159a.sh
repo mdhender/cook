@@ -1,24 +1,22 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1998, 2001 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1998, 2001, 2007 Peter Miller;
+#       All rights reserved.
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: Test the no-include-cooked-warning functionality
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 work=${COOK_TMP:-/tmp}/$$
 PAGER=cat
@@ -35,26 +33,26 @@ export bin
 
 pass()
 {
-	set +x
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        cd $here
+        rm -rf $work
+        exit 0
 }
 fail()
 {
-	set +x
-	echo 'FAILED test of the no-include-cooked-warning functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 1
+        set +x
+        echo 'FAILED test of the no-include-cooked-warning functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 1
 }
 no_result()
 {
-	set +x
+        set +x
    echo 'NO RESULT for test of the no-include-cooked-warning functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 2
+        cd $here
+        rm -rf $work
+        exit 2
 }
 trap \"no_result\" 1 2 3 15
 
@@ -86,27 +84,27 @@ if [not [bin]] then fail;
 
 all: lex.o parse.o main.o
 {
-	date > [target];
+        date > [target];
 }
 
 %.c.d: %.c
 {
-	[bin]/c_incl -nc -ns -ali -api
-		%.c
-		"--prefix='%.o "[target]": %.c'"
-		"-suffix=';'"
-		-o [target];
+        [bin]/c_incl -nc -ns -ali -api
+                %.c
+                "--prefix='%.o "[target]": %.c'"
+                "-suffix=';'"
+                -o [target];
 }
 
 %.o: %.c
 {
-	date > [target];
+        date > [target];
 }
 
 %.c %.h: %.y
 {
-	date > %.c;
-	date > %.h;
+        date > %.c;
+        date > %.h;
 }
 fubar
 if test $? -ne 0 ; then no_result; fi
@@ -129,7 +127,7 @@ if test $? -ne 0 ; then no_result; fi
 cat > parse.y << 'fubar'
 %%
 main:
-	;
+        ;
 fubar
 if test $? -ne 0 ; then no_result; fi
 

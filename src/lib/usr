@@ -1,17 +1,16 @@
 /*
  * NAME
- *	usr - define installation locations
+ *      usr - define installation locations
  *
  * DESCRIPTION
- *	This cookbook defined where certain directoris are,
- *	relative to /usr.
+ *      This cookbook defined where certain directoris are,
+ *      relative to /usr.
  *
  * VARIABLES
- *	bin		directory to place program binaries into
- *	include		directory to place include files into
- *	lib		directory to place libraries into
- *
- * MANIFEST: cookbook for locations in system directories
+ *      bin             directory to place program binaries into
+ *      include         directory to place include files into
+ *      lib             directory to place libraries into
+ * Copyright (C) 1997-2007 Peter Miller
  */
 
 #pragma once

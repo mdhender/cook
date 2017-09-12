@@ -1,301 +1,284 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1998, 2001 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1998, 2001, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manipulate assign-append opcodes
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
-#include <ac/stdio.h>
+#include <common/ac/stdio.h>
 
-#include <error_intl.h>
-#include <expr/position.h>
-#include <id.h>
-#include <id/nothing.h>
-#include <id/variable.h>
-#include <opcode/assign_appen.h>
-#include <opcode/context.h>
-#include <opcode/private.h>
-#include <str_list.h>
-#include <trace.h>
+#include <common/error_intl.h>
+#include <cook/expr/position.h>
+#include <cook/id.h>
+#include <cook/id/nothing.h>
+#include <cook/id/variable.h>
+#include <cook/opcode/assign_appen.h>
+#include <cook/opcode/context.h>
+#include <cook/opcode/private.h>
+#include <common/str_list.h>
+#include <common/trace.h>
 
 
 typedef struct opcode_assign_append_ty opcode_assign_append_ty;
 struct opcode_assign_append_ty
 {
-	opcode_ty	inherited;
-	expr_position_ty pos;
+    opcode_ty       inherited;
+    expr_position_ty pos;
 };
 
 
 /*
  * NAME
- *	destructor
+ *      destructor
  *
  * SYNOPSIS
- *	void destructor(opcode_ty *);
+ *      void destructor(opcode_ty *);
  *
  * DESCRIPTION
- *	The destructor function is used to release resources held by
- *	this opcode.  Do not free the opcode itself, this is done by the
- *	base class.
+ *      The destructor function is used to release resources held by
+ *      this opcode.  Do not free the opcode itself, this is done by the
+ *      base class.
  */
 
-static void destructor _((opcode_ty *));
-
 static void
-destructor(op)
-	opcode_ty	*op;
+destructor(opcode_ty *op)
 {
-	opcode_assign_append_ty *this;
+    opcode_assign_append_ty *this;
 
-	trace(("opcode_assign_append::destructor()\n{\n"/*}*/));
-	this = (opcode_assign_append_ty *)op;
-	expr_position_destructor(&this->pos);
-	trace((/*{*/"}\n"));
+    trace(("opcode_assign_append::destructor()\n{\n"));
+    this = (opcode_assign_append_ty *) op;
+    expr_position_destructor(&this->pos);
+    trace(("}\n"));
 }
 
 
 /*
  * NAME
- *	execute
+ *      execute
  *
  * SYNOPSIS
- *	opcode_status_ty execute(opcode_ty *, opcode_context_ty *);
+ *      opcode_status_ty execute(opcode_ty *, opcode_context_ty *);
  *
  * DESCRIPTION
- *	The execute function is used to execute the given opcode within
- *	the given interpretation context.
+ *      The execute function is used to execute the given opcode within
+ *      the given interpretation context.
  *
  * RETURNS
- *	opcode_status_ty to indicate the result of the execution
+ *      opcode_status_ty to indicate the result of the execution
  */
-
-static opcode_status_ty execute _((const opcode_ty *, opcode_context_ty *));
 
 static opcode_status_ty
-execute(op, ocp)
-	const opcode_ty	*op;
-	opcode_context_ty *ocp;
+execute(const opcode_ty *op, opcode_context_ty *ocp)
 {
-	opcode_status_ty status;
-	const opcode_assign_append_ty *this;
-	string_list_ty	*name;
-	string_list_ty	*value;
-	string_list_ty	*value_pre;
-	string_ty	*Name;
-	id_ty		*idp;
+    opcode_status_ty status;
+    const opcode_assign_append_ty *this;
+    string_list_ty  *name;
+    string_list_ty  *value;
+    string_list_ty  *value_pre;
+    string_ty       *Name;
+    id_ty           *idp;
 
-	trace(("opcode_assign_append::execute()\n{\n"/*}*/));
-	status = opcode_status_success;
-	this = (const opcode_assign_append_ty *)op;
+    trace(("opcode_assign_append::execute()\n{\n"));
+    status = opcode_status_success;
+    this = (const opcode_assign_append_ty *)op;
 
-	value = opcode_context_string_list_pop(ocp);
-	name = opcode_context_string_list_pop(ocp);
+    value = opcode_context_string_list_pop(ocp);
+    name = opcode_context_string_list_pop(ocp);
 
-	switch (name->nstrings)
-	{
-	case 0:
-		error_with_position
-		(
-			&this->pos,
-			0,
-			i18n("lefthand side of assignment is empty")
-		);
-		status = opcode_status_error;
-		break;
+    switch (name->nstrings)
+    {
+    case 0:
+        error_with_position
+        (
+            &this->pos,
+            0,
+            i18n("lefthand side of assignment is empty")
+        );
+        status = opcode_status_error;
+        break;
 
-	case 1:
-		Name = name->string[0];
-		idp = opcode_context_id_search(ocp, Name);
-		if (!idp)
-		{
-			string_ty	*other;
+    case 1:
+        Name = name->string[0];
+        idp = opcode_context_id_search(ocp, Name);
+        if (!idp)
+        {
+            string_ty       *other;
 
-			status = opcode_status_error;
-			idp = opcode_context_id_search_fuzzy(ocp, Name, &other);
-			if (idp)
-			{
-				sub_context_ty	*scp;
+            status = opcode_status_error;
+            idp = opcode_context_id_search_fuzzy(ocp, Name, &other);
+            if (idp)
+            {
+                sub_context_ty  *scp;
 
-				scp = sub_context_new();
-				sub_var_set(scp, "Name", "%S", Name);
-				sub_var_set(scp, "Guess", "%S", other);
-				error_with_position
-				(
-					&this->pos,
-					scp,
-	i18n("undefined variable \"$name\", closest is the \"$guess\" variable")
-				);
-				sub_context_delete(scp);
-			}
-			else
-			{
-				sub_context_ty	*scp;
+                scp = sub_context_new();
+                sub_var_set_string(scp, "Name", Name);
+                sub_var_set_string(scp, "Guess", other);
+                error_with_position
+                (
+                    &this->pos,
+                    scp,
+                    i18n("undefined variable \"$name\", closest is the "
+                        "\"$guess\" variable")
+                );
+                sub_context_delete(scp);
+            }
+            else
+            {
+                sub_context_ty  *scp;
 
-				scp = sub_context_new();
-				sub_var_set(scp, "Name", "%S", Name);
-				error_with_position
-				(
-					&this->pos,
-					scp,
-					i18n("undefined variable \"$name\"")
-				);
-				sub_context_delete(scp);
-				idp = id_nothing_new();
-				opcode_context_id_assign(ocp, Name, idp, 0);
-			}
-		}
+                scp = sub_context_new();
+                sub_var_set_string(scp, "Name", Name);
+                error_with_position
+                (
+                    &this->pos,
+                    scp,
+                    i18n("undefined variable \"$name\"")
+                );
+                sub_context_delete(scp);
+                idp = id_nothing_new();
+                opcode_context_id_assign(ocp, Name, idp, 0);
+            }
+        }
 
-		/*
-		 * evaluate the variable reference
-		 */
-		trace(("mark\n"));
-		opcode_context_string_list_push(ocp); /* value_pre */
-		opcode_context_string_list_push(ocp);
-		string_list_append(opcode_context_string_list_peek(ocp), Name);
-		if (id_interpret(idp, ocp, &this->pos) < 0)
-			status = opcode_status_error;
-		trace(("mark\n"));
-		value_pre = opcode_context_string_list_pop(ocp);
+        /*
+         * evaluate the variable reference
+         */
+        trace(("mark\n"));
+        opcode_context_string_list_push(ocp);   /* value_pre */
+        opcode_context_string_list_push(ocp);
+        string_list_append(opcode_context_string_list_peek(ocp), Name);
+        if (id_interpret(idp, ocp, &this->pos) < 0)
+            status = opcode_status_error;
+        trace(("mark\n"));
+        value_pre = opcode_context_string_list_pop(ocp);
 
-		/*
-		 * build the value to be assigned and
-		 * assign the new value to the variable
-		 * if there was no error
-		 */
-		if (status == opcode_status_success)
-		{
-			string_list_append_list(value_pre, value);
-			opcode_context_id_assign
-			(
-				ocp,
-				name->string[0],
-				id_variable_new(value_pre),
-				0
-			);
-		}
-		string_list_delete(value_pre);
-		break;
+        /*
+         * build the value to be assigned and
+         * assign the new value to the variable
+         * if there was no error
+         */
+        if (status == opcode_status_success)
+        {
+            string_list_append_list(value_pre, value);
+            opcode_context_id_assign
+            (
+                ocp,
+                name->string[0],
+                id_variable_new(value_pre),
+                0
+            );
+        }
+        string_list_delete(value_pre);
+        break;
 
-	default:
-		error_with_position
-		(
-			&this->pos,
-			0,
-		       i18n("lefthand side of assignment is more than one word")
-		);
-		status = opcode_status_error;
-		break;
-	}
+    default:
+        error_with_position
+        (
+            &this->pos,
+            0,
+            i18n("lefthand side of assignment is more than one word")
+        );
+        status = opcode_status_error;
+        break;
+    }
 
-	string_list_delete(name);
-	string_list_delete(value);
-	trace(("return %s;\n", opcode_status_name(status)));
-	trace((/*{*/"}\n"));
-	return status;
+    string_list_delete(name);
+    string_list_delete(value);
+    trace(("return %s;\n", opcode_status_name(status)));
+    trace(("}\n"));
+    return status;
 }
 
 
 /*
  * NAME
- *	disassemble
+ *      disassemble
  *
  * SYNOPSIS
- *	void disassemble(opcode_ty *);
+ *      void disassemble(opcode_ty *);
  *
  * DESCRIPTION
- *	The disassemble function is used to disassemble the copdode and
- *	its arguments onto the standard output.  Don't worry about the
- *	location or a trailing newline.
+ *      The disassemble function is used to disassemble the copdode and
+ *      its arguments onto the standard output.  Don't worry about the
+ *      location or a trailing newline.
  */
 
-static void disassemble _((const opcode_ty *));
-
 static void
-disassemble(op)
-	const opcode_ty	*op;
+disassemble(const opcode_ty *op)
 {
-	const opcode_assign_append_ty *this;
+    const opcode_assign_append_ty *this;
 
-	trace(("opcode_assign_append::disassemle()\n{\n"/*}*/));
-	this = (const opcode_assign_append_ty *)op;
-	if (this->pos.pos_name && this->pos.pos_name->str_length)
-	{
-		printf
-		(
-			"\t# %s:%d",
-			this->pos.pos_name->str_text,
-			this->pos.pos_line
-		);
-	}
-	trace((/*{*/"}\n"));
+    trace(("opcode_assign_append::disassemle()\n{\n"));
+    this = (const opcode_assign_append_ty *)op;
+    if (this->pos.pos_name && this->pos.pos_name->str_length)
+    {
+        printf(" # %s:%d", this->pos.pos_name->str_text, this->pos.pos_line);
+    }
+    trace(("}\n"));
 }
 
 
 /*
  * NAME
- *	method
+ *      method
  *
  * DESCRIPTION
- *	The method variable describes this class.
+ *      The method variable describes this class.
  *
  * CAVEAT
- *	This symbol is not exported from this file.
+ *      This symbol is not exported from this file.
  */
 
 static opcode_method_ty method =
 {
-	"assign_append",
-	sizeof(opcode_assign_append_ty),
-	destructor,
-	execute,
-	execute, /* script */
-	disassemble,
+    "assign_append",
+    sizeof(opcode_assign_append_ty),
+    destructor,
+    execute,
+    execute,                    /* script */
+    disassemble,
 };
 
 
 /*
  * NAME
- *	opcode_assign_append_new
+ *      opcode_assign_append_new
  *
  * SYNOPSIS
- *	opcode_ty *opcode_assign_append_new(void);
+ *      opcode_ty *opcode_assign_append_new(void);
  *
  * DESCRIPTION
- *	The opcode_assign_append_new function is used to allocate a new instance
- *	of a assign_append opcode.
+ *      The opcode_assign_append_new function is used to allocate a new instance
+ *      of a assign_append opcode.
  *
  * RETURNS
- *	opcode_ty *; use opcode_delete when you are finished with it.
+ *      opcode_ty *; use opcode_delete when you are finished with it.
  */
 
 opcode_ty *
-opcode_assign_append_new(pp)
-	expr_position_ty *pp;
+opcode_assign_append_new(expr_position_ty *pp)
 {
-	opcode_ty	*op;
-	opcode_assign_append_ty *this;
+    opcode_ty       *op;
+    opcode_assign_append_ty *this;
 
-	trace(("opcode_assign_append_new()\n{\n"/*}*/));
-	op = opcode_new(&method);
-	this = (opcode_assign_append_ty *)op;
-	expr_position_copy_constructor(&this->pos, pp);
-	trace(("return %08lX;\n", (long)op));
-	trace((/*{*/"}\n"));
-	return op;
+    trace(("opcode_assign_append_new()\n{\n"));
+    op = opcode_new(&method);
+    this = (opcode_assign_append_ty *)op;
+    expr_position_copy_constructor(&this->pos, pp);
+    trace(("return %08lX;\n", (long)op));
+    trace(("}\n"));
+    return op;
 }

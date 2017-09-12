@@ -1,5 +1,7 @@
 /*
- * MANIFEST: cookbook for using gcc
+ * Public Domain 2007 Peter Miller
+ *
+ * cookbook for using gcc
  */
 #pragma once
 #include "c"

@@ -1,23 +1,21 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1997, 1998, 1999 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1997-1999, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: Canned Cookbook Functions
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  *
  * This file presents users with some useful functions, defined in terms
  * of the built-in functions.  While useful, they also serve as examples
@@ -30,200 +28,200 @@
 
 /*
  * NAME
- *	capitalize
+ *      capitalize
  *
  * SYNOPSIS
- *	[capitalize <word>...]
+ *      [capitalize <word>...]
  *
  * DESCRIPTION
- *	The capitalize function maps all of its arguments into lower
- *	case, and then the first letter of each argument is mapped to
- *	upper case.  Zero, one or more arguments may be given.
+ *      The capitalize function maps all of its arguments into lower
+ *      case, and then the first letter of each argument is mapped to
+ *      upper case.  Zero, one or more arguments may be given.
  */
 
 function capitalize =
 {
-	@1 = ;
-	@2 = [downcase [arg]];
-	loop
-	{
-		if [not [count [@2]]] then
-			loopstop;
-		@3 = [head [@2]];
-		@2 = [tail [@2]];
-		@1 = [@1] [upcase [substr 1 1 [@3]]][substr 2 9999 [@3]];
-	}
-	return [@1];
+        @1 = ;
+        @2 = [downcase [arg]];
+        loop
+        {
+                if [not [count [@2]]] then
+                        loopstop;
+                @3 = [head [@2]];
+                @2 = [tail [@2]];
+                @1 = [@1] [upcase [substr 1 1 [@3]]][substr 2 9999 [@3]];
+        }
+        return [@1];
 }
 
 
 /*
  * NAME
- *	defined-or-null
+ *      defined-or-null
  *
  * SYNOPSIS
- *	[defined-or-null <name> ]
+ *      [defined-or-null <name> ]
  *
  * DESCRIPTION
- *	The defined-or-null function may be used to determine if a
- *	variable has been set (on the command line, for example) and
- *	return its value if so, otherwise return the empty list.
+ *      The defined-or-null function may be used to determine if a
+ *      variable has been set (on the command line, for example) and
+ *      return its value if so, otherwise return the empty list.
  *
  * ARGUMENTS
- *	This function should only be given one argument - the name of
- *	the variable to look for.  Additional arguments will be ignored.
- *	Too few arguments will produce a complaint about the "" variable
- *	being undefined.
+ *      This function should only be given one argument - the name of
+ *      the variable to look for.  Additional arguments will be ignored.
+ *      Too few arguments will produce a complaint about the "" variable
+ *      being undefined.
  *
  * RETURNS
- *	The value of the named variable, or the empty list if the
- *	variable is not defined.
+ *      The value of the named variable, or the empty list if the
+ *      variable is not defined.
  */
 
 function defined-or-null =
 {
-	if [defined [@1]] then
-		return [[@1]];
-	return;
+        if [defined [@1]] then
+                return [[@1]];
+        return;
 }
 
 
 /*
  * NAME
- *	defined-or-default
+ *      defined-or-default
  *
  * SYNOPSIS
- *	[defined-or-default <name> <default-value>... ]
+ *      [defined-or-default <name> <default-value>... ]
  *
  * DESCRIPTION
- *	The defined-or-default function may be used to determine if a
- *	variable has been set (on the command line, for example) and
- *	return its value if so, otherwise return the given default value.
+ *      The defined-or-default function may be used to determine if a
+ *      variable has been set (on the command line, for example) and
+ *      return its value if so, otherwise return the given default value.
  *
  * ARGUMENTS
- *	The first argument is the name of the variable to look for.
+ *      The first argument is the name of the variable to look for.
  *
- *	The second and later arguments (if present) are the default
- *	value to be used if the named variable is not defined.  Optional.
+ *      The second and later arguments (if present) are the default
+ *      value to be used if the named variable is not defined.  Optional.
  *
  * RETURNS
- *	The value of the named variable, or the default list if the
- *	variable is not defined.
+ *      The value of the named variable, or the default list if the
+ *      variable is not defined.
  */
 
 function defined-or-default =
 {
-	if [defined [@1]] then
-		return [[@1]];
-	return [tail [arg]];
+        if [defined [@1]] then
+                return [[@1]];
+        return [tail [arg]];
 }
 
 
 /*
  * NAME
- *	repeat
+ *      repeat
  *
  * SYNOPSIS
- *	[repeat <unary-function> <arguments>... ]
+ *      [repeat <unary-function> <arguments>... ]
  *
  * DESCRIPTION
- *	The repeat function is used to repeatedly call another function,
- *	once for each of the specified arguments.  The can be useful
- *	when dealing with functions which do not automaticly accept
- *	argument lists in the form you require.
+ *      The repeat function is used to repeatedly call another function,
+ *      once for each of the specified arguments.  The can be useful
+ *      when dealing with functions which do not automaticly accept
+ *      argument lists in the form you require.
  *
- *	There are many instances where the repeat function call be used
- *	to elegantly avoid used to the ``loop { loopstop }'' construct.
+ *      There are many instances where the repeat function call be used
+ *      to elegantly avoid used to the ``loop { loopstop }'' construct.
  *
  * ARGUMENTS
- *	The first argument is the name of the function you want called.
- *	This function must accept a single argument.
+ *      The first argument is the name of the function you want called.
+ *      This function must accept a single argument.
  *
- *	The second and subsequent arguments are argument values to be
- *	passed to the named function, one at a time.
+ *      The second and subsequent arguments are argument values to be
+ *      passed to the named function, one at a time.
  *
  * RETURNS
- *	The results of the invocations of the function are accumulated
- *	in the order in which they were calculated.  The accumulated
- *	results are returned.
+ *      The results of the invocations of the function are accumulated
+ *      in the order in which they were calculated.  The accumulated
+ *      results are returned.
  */
 
 function repeat =
 {
-	@2 = ;
-	@3 = [tail [arg]];
-	loop
-	{
-		if [not [count [@3]]] then
-			loopstop;
-		@4 = [head [@3]];
-		@3 = [tail [@3]];
-		/* run the named function on this argument */
-		@2 = [@2] [[@1] [@4]];
-	}
-	return [@2];
+        @2 = ;
+        @3 = [tail [arg]];
+        loop
+        {
+                if [not [count [@3]]] then
+                        loopstop;
+                @4 = [head [@3]];
+                @3 = [tail [@3]];
+                /* run the named function on this argument */
+                @2 = [@2] [[@1] [@4]];
+        }
+        return [@2];
 }
 
 
 /*
  * NAME
- *	variable_by_path
+ *      variable_by_path
  *
  * SYNOPSIS
- *	[variable_by_path target prefix filename]
+ *      [variable_by_path target prefix filename]
  *
  * DESCRIPTION
- *	The variable_by_path function is used to extract the union
- *	of option settings relevant to a particular compilation or link.
- *	By using a variable suffix, this function may be used to obtain
- *	the setting of a wide variety of options and commands.
+ *      The variable_by_path function is used to extract the union
+ *      of option settings relevant to a particular compilation or link.
+ *      By using a variable suffix, this function may be used to obtain
+ *      the setting of a wide variety of options and commands.
  *
  * SIDE EFFECTS
- *	Global variables are searched in a no particular order for the
- *	necessary information.  All are searched, all found are used.
+ *      Global variables are searched in a no particular order for the
+ *      necessary information.  All are searched, all found are used.
  *
- *	e.g. [variable_by_path cc_flags foo/bar/baz.c]
- *	will hunt for variables with the following names:
- *		cc_flags_foo/bar/baz.c
- *		cc_flags_foo/bar
- *		cc_flags_foo
- *		cc_flags
+ *      e.g. [variable_by_path cc_flags foo/bar/baz.c]
+ *      will hunt for variables with the following names:
+ *              cc_flags_foo/bar/baz.c
+ *              cc_flags_foo/bar
+ *              cc_flags_foo
+ *              cc_flags
  *
- *	It is expected that the vast majority of these variables will
- *	not be set.  It will NOT hunt for cc_flags by itself.
+ *      It is expected that the vast majority of these variables will
+ *      not be set.  It will NOT hunt for cc_flags by itself.
  *
- *	Duplicates are removed.
+ *      Duplicates are removed.
  *
  * ARGUMENTS
- *	The arguments are available in temporary variables numbered
- *	by argument.  The function does not check that you supplied all
- *	of the arguments.  Caveat emptor.
+ *      The arguments are available in temporary variables numbered
+ *      by argument.  The function does not check that you supplied all
+ *      of the arguments.  Caveat emptor.
  *
- *	@1	The variable name prefix to use.
- *	@2	The filename to be dismembered.
+ *      @1      The variable name prefix to use.
+ *      @2      The filename to be dismembered.
  */
 
 function variable_by_path =
 {
-	@9 = ; /* empty result */
-	if [defined [@1]] then
-		@9 = [[@1]];
-	@8 = [split / [@2]];
-	@6 = 1 2 3 4 5 6 7 8 9;
-	loop
-	{
-		if [not [count [@6]]] then
-			loopstop;
-		@7 = [head [@6]];
-		@6 = [tail [@6]];
+        @9 = ; /* empty result */
+        if [defined [@1]] then
+                @9 = [[@1]];
+        @8 = [split / [@2]];
+        @6 = 1 2 3 4 5 6 7 8 9;
+        loop
+        {
+                if [not [count [@6]]] then
+                        loopstop;
+                @7 = [head [@6]];
+                @6 = [tail [@6]];
 
-		/* build the variable name */
-		@3 = [@1]_[unsplit / [wordlist 1 [@7] [@8]]];
+                /* build the variable name */
+                @3 = [@1]_[unsplit / [wordlist 1 [@7] [@8]]];
 
-		/* use the variable if it's defined */
-		if [defined [@3]] then
-			@9 = [@9] [[@3]];
-	}
-	/* remove duplicates and return */
-	return [stringset [@9]];
+                /* use the variable if it's defined */
+                if [defined [@3]] then
+                        @9 = [@9] [[@3]];
+        }
+        /* remove duplicates and return */
+        return [stringset [@9]];
 }

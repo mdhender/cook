@@ -1,24 +1,22 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1993, 1994, 1997, 1998, 2003 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1993, 1994, 1997, 1998, 2003, 2007 Peter Miller;
+#       All rights reserved.
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: Test the "resolve" builtin function
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 work=${COOK_TMP:-/tmp}/$$
 PAGER=cat
@@ -32,18 +30,18 @@ bin="$here/${1-.}/bin"
 
 fail()
 {
-	set +x
-	echo 'FAILED test of the builtin function "resolve"' 1>&2
-	cd $here
-	rm -rf $work
-	exit 1
+        set +x
+        echo 'FAILED test of the builtin function "resolve"' 1>&2
+        cd $here
+        rm -rf $work
+        exit 1
 }
 pass()
 {
-	set +x
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        cd $here
+        rm -rf $work
+        exit 0
 }
 trap "fail" 1 2 3 15
 
@@ -69,17 +67,17 @@ cc = [getenv CC]; if [not [cc]] then
 
 exe = ;
 if [in [substr 1 6 [os]] CYGWIN NUTCRA] then
-	exe = .exe;
+        exe = .exe;
 
 search_list  = . bl;
 %.o: %.c
 {
-	[cc] -O -c [resolve %.c];
+        [cc] -O -c [resolve %.c];
 }
 
 test[exe]: a.o b.o
 {
-	[cc] -o test[exe] [resolve a.o b.o];
+        [cc] -o test[exe] [resolve a.o b.o];
 }
 fubar
 if test $? -ne 0 ; then fail; fi
@@ -90,8 +88,8 @@ if test $? -ne 0 ; then fail; fi
 cat > a.c << 'fubar'
 main()
 {
-	b();
-	exit(0);
+        b();
+        exit(0);
 }
 fubar
 if test $? -ne 0 ; then fail; fi
@@ -104,7 +102,7 @@ if test $? -ne 0 ; then fail; fi
 cat > bl/b.c << 'fubar'
 b()
 {
-	printf("Hello, World!\n");
+        printf("Hello, World!\n");
 }
 fubar
 if test $? -ne 0 ; then fail; fi

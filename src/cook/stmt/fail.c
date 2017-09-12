@@ -1,159 +1,149 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1997 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1997, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manipulate fail statement nodes
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
-#include <expr/list.h>
-#include <opcode/fail.h>
-#include <opcode/list.h>
-#include <opcode/push.h>
-#include <stmt.h>
-#include <stmt/fail.h>
-#include <trace.h>
+#include <cook/expr/list.h>
+#include <cook/opcode/fail.h>
+#include <cook/opcode/list.h>
+#include <cook/opcode/push.h>
+#include <cook/stmt.h>
+#include <cook/stmt/fail.h>
+#include <common/trace.h>
 
 
 typedef struct stmt_fail_ty stmt_fail_ty;
 struct stmt_fail_ty
 {
-	stmt_ty		inherited;
-	expr_list_ty	text;
+    stmt_ty         inherited;
+    expr_list_ty    text;
 };
 
 
 /*
  *  NAME
- *	destructor - free a fail statement node
+ *      destructor - free a fail statement node
  *
  *  SYNOPSIS
- *	void destructor(stmt_ty *sp);
+ *      void destructor(stmt_ty *sp);
  *
  *  DESCRIPTION
- *	The destructor function releases the resources held by a fail
- *	statement instance after it is finished with.
+ *      The destructor function releases the resources held by a fail
+ *      statement instance after it is finished with.
  *
  *  CAVEAT
- *	Do not free the node itself, this the the destructor, not
- *	delete.
+ *      Do not free the node itself, this the the destructor, not
+ *      delete.
  */
-
-static void destructor _((stmt_ty *));
 
 static void
-destructor(sp)
-	stmt_ty		*sp;
+destructor(stmt_ty *sp)
 {
-	stmt_fail_ty	*this;
+    stmt_fail_ty    *this;
 
-	this = (stmt_fail_ty *)sp;
-	expr_list_destructor(&this->text);
+    this = (stmt_fail_ty *)sp;
+    expr_list_destructor(&this->text);
 }
 
 
 /*
  * NAME
- *	code_generate
+ *      code_generate
  *
  * SYNOPSIS
- *	stmt_result_ty code_generate(stmt_ty *sp, opcode_list_ty *olp);
+ *      stmt_result_ty code_generate(stmt_ty *sp, opcode_list_ty *olp);
  *
  * DESCRIPTION
- *	The code_generate function is used to generate the opcodes for
- *	this statement node.
+ *      The code_generate function is used to generate the opcodes for
+ *      this statement node.
  *
  * RETURNS
- *	The value returned indicates why the code generation terminated.
+ *      The value returned indicates why the code generation terminated.
  */
 
-static stmt_result_ty code_generate _((stmt_ty *, opcode_list_ty *));
-
 static stmt_result_ty
-code_generate(sp, olp)
-	stmt_ty		*sp;
-	opcode_list_ty	*olp;
+code_generate(stmt_ty *sp, opcode_list_ty *olp)
 {
-	stmt_fail_ty	*this;
+    stmt_fail_ty    *this;
 
-	trace(("code_generate(sp = %08X)\n{\n"/*}*/, sp));
-	assert(sp);
-	this = (stmt_fail_ty *)sp;
-	opcode_list_append(olp, opcode_push_new());
-	expr_list_code_generate(&this->text, olp);
-	opcode_list_append(olp, opcode_fail_new());
-	trace((/*{*/"}\n"));
-	return STMT_OK;
+    trace(("code_generate(sp = %08X)\n{\n", sp));
+    assert(sp);
+    this = (stmt_fail_ty *)sp;
+    opcode_list_append(olp, opcode_push_new());
+    expr_list_code_generate(&this->text, olp);
+    opcode_list_append(olp, opcode_fail_new());
+    trace(("}\n"));
+    return STMT_OK;
 }
 
 
 /*
  * NAME
- *	method - class method table
+ *      method - class method table
  *
  * DESCRIPTION
- *	This is the class method table.  It contains a description of
- *	the class, its name, size and pointers to its virtual methods.
+ *      This is the class method table.  It contains a description of
+ *      the class, its name, size and pointers to its virtual methods.
  *
  * CAVEAT
- *	This symbol is NOT to be exported from this file scope.
+ *      This symbol is NOT to be exported from this file scope.
  */
 
 static stmt_method_ty method =
 {
-	"fail",
-	sizeof(stmt_fail_ty),
-	destructor,
-	code_generate,
+    "fail",
+    sizeof(stmt_fail_ty),
+    destructor,
+    code_generate,
 };
 
 
 /*
  * NAME
- *	stmt_fail_new - create a new fail statement node
+ *      stmt_fail_new - create a new fail statement node
  *
  * SYNOPSIS
- *	stmt_ty *stmt_fail_new(string_ty *);
+ *      stmt_ty *stmt_fail_new(string_ty *);
  *
  * DESCRIPTION
- *	The stmt_fail_new function is used to create a new instance
- *	of a fail statement node.
+ *      The stmt_fail_new function is used to create a new instance
+ *      of a fail statement node.
  *
  * RETURNS
- *	stmt_ty *; pointer to polymorphic statement instance.
+ *      stmt_ty *; pointer to polymorphic statement instance.
  *
  * CAVEAT
- *	This function allocates data in dynamic memory.  It is the
- *	caller's responsibility to free this data, using stmt_delete,
- *	when it is no longer required.
+ *      This function allocates data in dynamic memory.  It is the
+ *      caller's responsibility to free this data, using stmt_delete,
+ *      when it is no longer required.
  */
 
 stmt_ty *
-stmt_fail_new(arg)
-	expr_list_ty	*arg;
+stmt_fail_new(expr_list_ty *arg)
 {
-	stmt_ty		*sp;
-	stmt_fail_ty	*this;
+    stmt_ty         *sp;
+    stmt_fail_ty    *this;
 
-	trace(("stmt_fail_new()\n{\n"/*}*/));
-	sp = stmt_private_new(&method);
-	this = (stmt_fail_ty *)sp;
-	expr_list_copy_constructor(&this->text, arg);
-	trace(("return %8.8lX;\n", (long)sp));
-	trace((/*{*/"}\n"));
-	return sp;
+    trace(("stmt_fail_new()\n{\n"));
+    sp = stmt_private_new(&method);
+    this = (stmt_fail_ty *)sp;
+    expr_list_copy_constructor(&this->text, arg);
+    trace(("return %8.8lX;\n", (long)sp));
+    trace(("}\n"));
+    return sp;
 }

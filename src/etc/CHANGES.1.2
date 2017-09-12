@@ -1,587 +1,589 @@
-Change	State		Description
-------- -------		-------------
-1	completed	New release derived from cook.1.1.
-2	completed	add the roffpp command
-3	completed	improve copyright headers
-4	completed	change tests to use test rather than []
-5	completed	add configuration for varargs
-6	completed	make os_pathname understand symbolic links
-7	being_		add the cooktime command
-	integrated
-
+Change  State           Description
+------- -------         -------------
+1       completed       New release derived from cook.1.1.
+2       completed       add the roffpp command
+3       completed       improve copyright headers
+4       completed       change tests to use test rather than []
+5       completed       add configuration for varargs
+6       completed       make os_pathname understand symbolic links
+7       being_          add the cooktime command
+        integrated
+
 IDENTIFICATION
-	Project "cook.1.2", change 1.
+        Project "cook.1.2", change 1.
 
 SUMMARY
-	New release derived from cook.1.1.
+        New release derived from cook.1.1.
 
 DESCRIPTION
-	New release derived from cook.1.1.
+        New release derived from cook.1.1.
 
 CAUSE
-	internal_enhancement
+        internal_enhancement
 
 FILES
-	Type	Action	Edit	File Name
-	------- ------- ------- -----------
-	source	create	1	CHANGES.sh
-	source	create	1	COPYING
-	source	create	1	Howto.cook
-	source	create	1	Makefile.awk
-	source	create	1	Makefile.sh
-	source	create	1	c_incl/cache.c
-	source	create	1	c_incl/cache.h
-	source	create	1	c_incl/main.c
-	source	create	1	c_incl/os.c
-	source	create	1	c_incl/os.h
-	source	create	1	c_incl/sniff.c
-	source	create	1	c_incl/sniff.h
-	source	create	1	common/ansi.c
-	source	create	1	common/arglex.c
-	source	create	1	common/arglex.h
-	source	create	1	common/error.c
-	source	create	1	common/error.h
-	source	create	1	common/help.c
-	source	create	1	common/help.h
-	source	create	1	common/main.h
-	source	create	1	common/mem.c
-	source	create	1	common/mem.h
-	source	create	1	common/str.c
-	source	create	1	common/str.h
-	source	create	1	common/trace.c
-	source	create	1	common/trace.h
-	source	create	1	common/version.c
-	source	create	1	common/version.h
-	source	create	1	common/word.c
-	source	create	1	common/word.h
-	source	create	1	config
-	source	create	1	cook/builtin.c
-	source	create	1	cook/builtin.h
-	source	create	1	cook/cook.c
-	source	create	1	cook/cook.h
-	source	create	1	cook/env.c
-	source	create	1	cook/env.h
-	source	create	1	cook/expr.c
-	source	create	1	cook/expr.h
-	source	create	1	cook/glob.c
-	source	create	1	cook/glob.h
-	source	create	1	cook/hashline.y
-	source	create	1	cook/id.c
-	source	create	1	cook/id.h
-	source	create	1	cook/lex.c
-	source	create	1	cook/lex.h
-	source	create	1	cook/listing.c
-	source	create	1	cook/listing.h
-	source	create	1	cook/main.c
-	source	create	1	cook/match.c
-	source	create	1	cook/match.h
-	source	create	1	cook/option.c
-	source	create	1	cook/option.h
-	source	create	1	cook/os.c
-	source	create	1	cook/os.h
-	source	create	1	cook/parse.y
-	source	create	1	cook/stmt.c
-	source	create	1	cook/stmt.h
-	source	create	1	doc/building.man
-	source	create	1	doc/builtin
-	source	create	1	doc/cmdline
-	source	create	1	doc/conditions
-	source	create	1	doc/glossary
-	source	create	1	doc/history
-	source	create	1	doc/how
-	source	create	1	doc/intro
-	source	create	1	doc/intro.aa
-	source	create	1	doc/intro.bb
-	source	create	1	doc/language
-	source	create	1	doc/match
-	source	create	1	doc/option
-	source	create	1	doc/readme.man
-	source	create	1	doc/refman.t
-	source	create	1	doc/system
-	source	create	1	doc/variables
-	source	create	1	find_libs/main.c
-	source	create	1	find_libs/os.c
-	source	create	1	find_libs/os.h
-	source	create	1	h/float.h
-	source	create	1	h/limits.h
-	source	create	1	h/stdarg.h
-	source	create	1	h/stddef.h
-	source	create	1	h/stdlib.h
-	source	create	1	h/string.h
-	source	create	1	h/time.h
-	source	create	1	lib/as
-	source	create	1	lib/bison
-	source	create	1	lib/c
-	source	create	1	lib/gcc
-	source	create	1	lib/home
-	source	create	1	lib/lex
-	source	create	1	lib/library
-	source	create	1	lib/print
-	source	create	1	lib/program
-	source	create	1	lib/sccs
-	source	create	1	lib/text
-	source	create	1	lib/usr
-	source	create	1	lib/usr.local
-	source	create	1	lib/yacc
-	source	create	1	lib/yacc_many
-	source	create	1	man1/c_incl.1
-	source	create	1	man1/cook.1
-	source	create	1	man1/find_libs.1
-	test	create	1	test/00/t0001a.sh
-	test	create	1	test/00/t0002a.sh
-	test	create	1	test/00/t0003a.sh
-	test	create	1	test/00/t0004a.sh
-	test	create	1	test/00/t0005a.sh
-	test	create	1	test/00/t0006a.sh
-	test	create	1	test/00/t0007a.sh
-	test	create	1	test/00/t0008a.sh
-	test	create	1	test/00/t0009a.sh
-	test	create	1	test/00/t0010a.sh
-	test	create	1	test/00/t0011a.sh
-	test	create	1	test/00/t0012a.sh
-	test	create	1	test/00/t0013a.sh
-	test	create	1	test/00/t0014a.sh
-	test	create	1	test/00/t0015a.sh
-	test	create	1	test/00/t0016a.sh
-	test	create	1	test/00/t0017a.sh
-	test	create	1	test/00/t0018a.sh
-	test	create	1	test/00/t0019a.sh
-	test	create	1	test/00/t0020a.sh
-	test	create	1	test/00/t0021a.sh
-	test	create	1	test/00/t0022a.sh
-	test	create	1	test/00/t0023a.sh
-	test	create	1	test/00/t0024a.sh
-	test	create	1	test/00/t0025a.sh
-	test	create	1	test/00/t0026a.sh
-	test	create	1	test/00/t0027a.sh
-	test	create	1	test/00/t0028a.sh
-	test	create	1	test/00/t0029a.sh
-	test	create	1	test/00/t0030a.sh
-	test	create	1	test/00/t0031a.sh
-	test	create	1	test/00/t0032a.sh
-	test	create	1	test/00/t0033a.sh
-	test	create	1	test/00/t0034a.sh
-	test	create	1	test/00/t0035a.sh
-	test	create	1	test/00/t0036a.sh
-	test	create	1	test/00/t0037a.sh
+        Type    Action  Edit    File Name
+        ------- ------- ------- -----------
+        source  create  1       CHANGES.sh
+        source  create  1       COPYING
+        source  create  1       Howto.cook
+        source  create  1       Makefile.awk
+        source  create  1       Makefile.sh
+        source  create  1       c_incl/cache.c
+        source  create  1       c_incl/cache.h
+        source  create  1       c_incl/main.c
+        source  create  1       c_incl/os.c
+        source  create  1       c_incl/os.h
+        source  create  1       c_incl/sniff.c
+        source  create  1       c_incl/sniff.h
+        source  create  1       common/ansi.c
+        source  create  1       common/arglex.c
+        source  create  1       common/arglex.h
+        source  create  1       common/error.c
+        source  create  1       common/error.h
+        source  create  1       common/help.c
+        source  create  1       common/help.h
+        source  create  1       common/main.h
+        source  create  1       common/mem.c
+        source  create  1       common/mem.h
+        source  create  1       common/str.c
+        source  create  1       common/str.h
+        source  create  1       common/trace.c
+        source  create  1       common/trace.h
+        source  create  1       common/version.c
+        source  create  1       common/version.h
+        source  create  1       common/word.c
+        source  create  1       common/word.h
+        source  create  1       config
+        source  create  1       cook/builtin.c
+        source  create  1       cook/builtin.h
+        source  create  1       cook/cook.c
+        source  create  1       cook/cook.h
+        source  create  1       cook/env.c
+        source  create  1       cook/env.h
+        source  create  1       cook/expr.c
+        source  create  1       cook/expr.h
+        source  create  1       cook/glob.c
+        source  create  1       cook/glob.h
+        source  create  1       cook/hashline.y
+        source  create  1       cook/id.c
+        source  create  1       cook/id.h
+        source  create  1       cook/lex.c
+        source  create  1       cook/lex.h
+        source  create  1       cook/listing.c
+        source  create  1       cook/listing.h
+        source  create  1       cook/main.c
+        source  create  1       cook/match.c
+        source  create  1       cook/match.h
+        source  create  1       cook/option.c
+        source  create  1       cook/option.h
+        source  create  1       cook/os.c
+        source  create  1       cook/os.h
+        source  create  1       cook/parse.y
+        source  create  1       cook/stmt.c
+        source  create  1       cook/stmt.h
+        source  create  1       doc/building.man
+        source  create  1       doc/builtin
+        source  create  1       doc/cmdline
+        source  create  1       doc/conditions
+        source  create  1       doc/glossary
+        source  create  1       doc/history
+        source  create  1       doc/how
+        source  create  1       doc/intro
+        source  create  1       doc/intro.aa
+        source  create  1       doc/intro.bb
+        source  create  1       doc/language
+        source  create  1       doc/match
+        source  create  1       doc/option
+        source  create  1       doc/readme.man
+        source  create  1       doc/refman.t
+        source  create  1       doc/system
+        source  create  1       doc/variables
+        source  create  1       find_libs/main.c
+        source  create  1       find_libs/os.c
+        source  create  1       find_libs/os.h
+        source  create  1       h/float.h
+        source  create  1       h/limits.h
+        source  create  1       h/stdarg.h
+        source  create  1       h/stddef.h
+        source  create  1       h/stdlib.h
+        source  create  1       h/string.h
+        source  create  1       h/time.h
+        source  create  1       lib/as
+        source  create  1       lib/bison
+        source  create  1       lib/c
+        source  create  1       lib/gcc
+        source  create  1       lib/home
+        source  create  1       lib/lex
+        source  create  1       lib/library
+        source  create  1       lib/print
+        source  create  1       lib/program
+        source  create  1       lib/sccs
+        source  create  1       lib/text
+        source  create  1       lib/usr
+        source  create  1       lib/usr.local
+        source  create  1       lib/yacc
+        source  create  1       lib/yacc_many
+        source  create  1       man1/c_incl.1
+        source  create  1       man1/cook.1
+        source  create  1       man1/find_libs.1
+        test    create  1       test/00/t0001a.sh
+        test    create  1       test/00/t0002a.sh
+        test    create  1       test/00/t0003a.sh
+        test    create  1       test/00/t0004a.sh
+        test    create  1       test/00/t0005a.sh
+        test    create  1       test/00/t0006a.sh
+        test    create  1       test/00/t0007a.sh
+        test    create  1       test/00/t0008a.sh
+        test    create  1       test/00/t0009a.sh
+        test    create  1       test/00/t0010a.sh
+        test    create  1       test/00/t0011a.sh
+        test    create  1       test/00/t0012a.sh
+        test    create  1       test/00/t0013a.sh
+        test    create  1       test/00/t0014a.sh
+        test    create  1       test/00/t0015a.sh
+        test    create  1       test/00/t0016a.sh
+        test    create  1       test/00/t0017a.sh
+        test    create  1       test/00/t0018a.sh
+        test    create  1       test/00/t0019a.sh
+        test    create  1       test/00/t0020a.sh
+        test    create  1       test/00/t0021a.sh
+        test    create  1       test/00/t0022a.sh
+        test    create  1       test/00/t0023a.sh
+        test    create  1       test/00/t0024a.sh
+        test    create  1       test/00/t0025a.sh
+        test    create  1       test/00/t0026a.sh
+        test    create  1       test/00/t0027a.sh
+        test    create  1       test/00/t0028a.sh
+        test    create  1       test/00/t0029a.sh
+        test    create  1       test/00/t0030a.sh
+        test    create  1       test/00/t0031a.sh
+        test    create  1       test/00/t0032a.sh
+        test    create  1       test/00/t0033a.sh
+        test    create  1       test/00/t0034a.sh
+        test    create  1       test/00/t0035a.sh
+        test    create  1       test/00/t0036a.sh
+        test    create  1       test/00/t0037a.sh
 
 HISTORY
-	What		When		Who	Comment
-	------		------		-----	---------
-	new_change	Fri Jun 19	pmiller Elapsed time: 0.000 days.
-			21:29:13 1992
-	develop_begin	Fri Jun 19	pmiller Elapsed time: 0.000 days.
-			21:29:13 1992
-	develop_end	Fri Jun 19	pmiller Elapsed time: 0.000 days.
-			21:29:13 1992
-	review_pass	Fri Jun 19	pmiller Elapsed time: 0.000 days.
-			21:29:13 1992
-	integrate_begin Fri Jun 19	pmiller Elapsed time: 0.011 days.
-			21:29:13 1992
-	integrate_pass	Fri Jun 19	pmiller
-			21:34:21 1992
-
+        What            When            Who     Comment
+        ------          ------          -----   ---------
+        new_change      Fri Jun 19      pmiller Elapsed time: 0.000 days.
+                        21:29:13 1992
+        develop_begin   Fri Jun 19      pmiller Elapsed time: 0.000 days.
+                        21:29:13 1992
+        develop_end     Fri Jun 19      pmiller Elapsed time: 0.000 days.
+                        21:29:13 1992
+        review_pass     Fri Jun 19      pmiller Elapsed time: 0.000 days.
+                        21:29:13 1992
+        integrate_begin Fri Jun 19      pmiller Elapsed time: 0.011 days.
+                        21:29:13 1992
+        integrate_pass  Fri Jun 19      pmiller
+                        21:34:21 1992
+
 IDENTIFICATION
-	Project "cook.1.2", build 2, change 2.
+        Project "cook.1.2", build 2, change 2.
 
 SUMMARY
-	add the roffpp command
+        add the roffpp command
 
 DESCRIPTION
-	1. The roffpp command is like cpp, but for text.	 It takes a
-	*roff file and substitutes the .so directives.	A search path of
-	include directories may be specified.
-	2. engance the c_incl program to understand these files, so that
-	dependencies may be tracked.
-	3. imptove some of the copyright notices
-	4. remove an anachronism: HIER_CHAR
+        1. The roffpp command is like cpp, but for text.         It takes a
+        *roff file and substitutes the .so directives.  A search path of
+        include directories may be specified.
+        2. engance the c_incl program to understand these files, so that
+        dependencies may be tracked.
+        3. imptove some of the copyright notices
+        4. remove an anachronism: HIER_CHAR
 
 CAUSE
-	internal_enhancement
+        internal_enhancement
 
 FILES
-	Type	Action	Edit	File Name
-	------- ------- ------- -----------
-	source	modify	2	Howto.cook
-	source	modify	2	Makefile.sh
-	source	create	1	c_incl/lang_c.c
-	source	create	1	c_incl/lang_roff.c
-	source	modify	2	c_incl/main.c
-	source	modify	2	c_incl/sniff.c
-	source	modify	2	c_incl/sniff.h
-	source	modify	2	common/ansi.c
-	source	modify	2	common/arglex.c
-	source	modify	2	common/arglex.h
-	source	modify	2	common/error.c
-	source	modify	2	common/main.h
-	source	modify	2	common/mem.h
-	source	modify	2	common/str.c
-	source	modify	2	common/word.h
-	source	modify	2	config
-	source	modify	2	cook/builtin.c
-	source	modify	2	cook/glob.c
-	source	modify	2	cook/hashline.y
-	source	modify	2	cook/listing.c
-	source	modify	2	cook/match.c
-	source	modify	2	cook/option.c
-	source	modify	2	cook/os.c
-	source	modify	2	man1/c_incl.1
-	source	create	1	man1/roffpp.1
-	source	create	1	roffpp/main.c
-	source	create	1	roffpp/preprocess.c
-	source	create	1	roffpp/preprocess.h
-	test	create	1	test/00/t0038a.sh
-	test	create	1	test/00/t0039a.sh
+        Type    Action  Edit    File Name
+        ------- ------- ------- -----------
+        source  modify  2       Howto.cook
+        source  modify  2       Makefile.sh
+        source  create  1       c_incl/lang_c.c
+        source  create  1       c_incl/lang_roff.c
+        source  modify  2       c_incl/main.c
+        source  modify  2       c_incl/sniff.c
+        source  modify  2       c_incl/sniff.h
+        source  modify  2       common/ansi.c
+        source  modify  2       common/arglex.c
+        source  modify  2       common/arglex.h
+        source  modify  2       common/error.c
+        source  modify  2       common/main.h
+        source  modify  2       common/mem.h
+        source  modify  2       common/str.c
+        source  modify  2       common/word.h
+        source  modify  2       config
+        source  modify  2       cook/builtin.c
+        source  modify  2       cook/glob.c
+        source  modify  2       cook/hashline.y
+        source  modify  2       cook/listing.c
+        source  modify  2       cook/match.c
+        source  modify  2       cook/option.c
+        source  modify  2       cook/os.c
+        source  modify  2       man1/c_incl.1
+        source  create  1       man1/roffpp.1
+        source  create  1       roffpp/main.c
+        source  create  1       roffpp/preprocess.c
+        source  create  1       roffpp/preprocess.h
+        test    create  1       test/00/t0038a.sh
+        test    create  1       test/00/t0039a.sh
 
 HISTORY
-	What		When		Who	Comment
-	------		------		-----	---------
-	new_change	Fri Jun 19	pmiller Elapsed time: 0.001 days.
-			22:36:04 1992
-	develop_begin	Fri Jun 19	pmiller Elapsed time: 1.005 days.
-			22:36:19 1992
-	develop_end	Sun Jun 21	pmiller Elapsed time: 0.001 days.
-			22:38:31 1992
-	review_pass	Sun Jun 21	pmiller Elapsed time: 0.001 days.
-			22:39:01 1992
-	integrate_begin Sun Jun 21	pmiller Elapsed time: 0.036 days.
-			22:39:40 1992
-	integrate_pass	Sun Jun 21	pmiller
-			22:55:46 1992
-
+        What            When            Who     Comment
+        ------          ------          -----   ---------
+        new_change      Fri Jun 19      pmiller Elapsed time: 0.001 days.
+                        22:36:04 1992
+        develop_begin   Fri Jun 19      pmiller Elapsed time: 1.005 days.
+                        22:36:19 1992
+        develop_end     Sun Jun 21      pmiller Elapsed time: 0.001 days.
+                        22:38:31 1992
+        review_pass     Sun Jun 21      pmiller Elapsed time: 0.001 days.
+                        22:39:01 1992
+        integrate_begin Sun Jun 21      pmiller Elapsed time: 0.036 days.
+                        22:39:40 1992
+        integrate_pass  Sun Jun 21      pmiller
+                        22:55:46 1992
+
 IDENTIFICATION
-	Project "cook.1.2", build 3, change 3.
+        Project "cook.1.2", build 3, change 3.
 
 SUMMARY
-	improve copyright headers
+        improve copyright headers
 
 DESCRIPTION
-	improve copyright headers
+        improve copyright headers
 
 CAUSE
-	internal_enhancement
+        internal_enhancement
 
 FILES
-	Type	Action	Edit	File Name
-	------- ------- ------- -----------
-	source	modify	2	c_incl/os.c
-	source	modify	2	c_incl/os.h
-	source	modify	2	common/error.h
-	source	modify	2	common/mem.c
-	source	modify	2	common/str.h
-	source	modify	2	common/trace.c
-	source	modify	2	common/trace.h
-	source	modify	2	common/version.h
-	source	modify	2	common/word.c
-	source	modify	2	cook/builtin.h
-	source	modify	2	cook/cook.c
-	source	modify	2	cook/cook.h
-	source	modify	2	cook/env.c
-	source	modify	2	cook/env.h
-	source	modify	2	cook/expr.c
-	source	modify	2	cook/expr.h
-	source	modify	2	cook/glob.h
-	source	modify	3	cook/hashline.y
-	source	modify	2	cook/id.c
-	source	modify	2	cook/id.h
-	source	modify	2	cook/lex.c
-	source	modify	2	cook/lex.h
-	source	modify	3	cook/listing.c
-	source	modify	2	cook/listing.h
-	source	modify	2	cook/match.h
-	source	modify	2	cook/option.h
-	source	modify	2	cook/os.h
-	source	modify	2	cook/parse.y
-	source	modify	2	cook/stmt.c
-	source	modify	2	cook/stmt.h
-	source	modify	2	doc/building.man
-	source	modify	2	doc/builtin
-	source	modify	2	doc/cmdline
-	source	modify	2	doc/conditions
-	source	modify	2	doc/glossary
-	source	modify	2	doc/history
-	source	modify	2	doc/how
-	source	modify	2	doc/intro
-	source	modify	2	doc/intro.aa
-	source	modify	2	doc/intro.bb
-	source	modify	2	doc/language
-	source	modify	2	doc/match
-	source	modify	2	doc/option
-	source	modify	2	doc/readme.man
-	source	modify	2	doc/refman.t
-	source	modify	2	doc/system
-	source	modify	2	doc/variables
-	source	modify	2	find_libs/os.c
-	source	modify	2	find_libs/os.h
-	source	modify	2	lib/as
-	source	modify	2	lib/bison
-	source	modify	2	lib/c
-	source	modify	2	lib/gcc
-	source	modify	2	lib/home
-	source	modify	2	lib/lex
-	source	modify	2	lib/library
-	source	modify	2	lib/print
-	source	modify	2	lib/program
-	source	modify	2	lib/sccs
-	source	modify	2	lib/text
-	source	modify	2	lib/usr
-	source	modify	2	lib/usr.local
-	source	modify	2	lib/yacc
-	source	modify	2	lib/yacc_many
+        Type    Action  Edit    File Name
+        ------- ------- ------- -----------
+        source  modify  2       c_incl/os.c
+        source  modify  2       c_incl/os.h
+        source  modify  2       common/error.h
+        source  modify  2       common/mem.c
+        source  modify  2       common/str.h
+        source  modify  2       common/trace.c
+        source  modify  2       common/trace.h
+        source  modify  2       common/version.h
+        source  modify  2       common/word.c
+        source  modify  2       cook/builtin.h
+        source  modify  2       cook/cook.c
+        source  modify  2       cook/cook.h
+        source  modify  2       cook/env.c
+        source  modify  2       cook/env.h
+        source  modify  2       cook/expr.c
+        source  modify  2       cook/expr.h
+        source  modify  2       cook/glob.h
+        source  modify  3       cook/hashline.y
+        source  modify  2       cook/id.c
+        source  modify  2       cook/id.h
+        source  modify  2       cook/lex.c
+        source  modify  2       cook/lex.h
+        source  modify  3       cook/listing.c
+        source  modify  2       cook/listing.h
+        source  modify  2       cook/match.h
+        source  modify  2       cook/option.h
+        source  modify  2       cook/os.h
+        source  modify  2       cook/parse.y
+        source  modify  2       cook/stmt.c
+        source  modify  2       cook/stmt.h
+        source  modify  2       doc/building.man
+        source  modify  2       doc/builtin
+        source  modify  2       doc/cmdline
+        source  modify  2       doc/conditions
+        source  modify  2       doc/glossary
+        source  modify  2       doc/history
+        source  modify  2       doc/how
+        source  modify  2       doc/intro
+        source  modify  2       doc/intro.aa
+        source  modify  2       doc/intro.bb
+        source  modify  2       doc/language
+        source  modify  2       doc/match
+        source  modify  2       doc/option
+        source  modify  2       doc/readme.man
+        source  modify  2       doc/refman.t
+        source  modify  2       doc/system
+        source  modify  2       doc/variables
+        source  modify  2       find_libs/os.c
+        source  modify  2       find_libs/os.h
+        source  modify  2       lib/as
+        source  modify  2       lib/bison
+        source  modify  2       lib/c
+        source  modify  2       lib/gcc
+        source  modify  2       lib/home
+        source  modify  2       lib/lex
+        source  modify  2       lib/library
+        source  modify  2       lib/print
+        source  modify  2       lib/program
+        source  modify  2       lib/sccs
+        source  modify  2       lib/text
+        source  modify  2       lib/usr
+        source  modify  2       lib/usr.local
+        source  modify  2       lib/yacc
+        source  modify  2       lib/yacc_many
 
 HISTORY
-	What		When		Who	Comment
-	------		------		-----	---------
-	new_change	Sun Jun 21	pmiller Elapsed time: 0.000 days.
-			23:19:18 1992
-	develop_begin	Sun Jun 21	pmiller Elapsed time: 0.037 days.
-			23:19:28 1992
-	develop_end	Mon Jun 22	pmiller Elapsed time: 0.000 days.
-			16:06:16 1992
-	review_pass	Mon Jun 22	pmiller Elapsed time: 0.001 days.
-			16:06:29 1992
-	integrate_begin Mon Jun 22	pmiller Elapsed time: 0.017 days.
-			16:06:59 1992
-	integrate_pass	Mon Jun 22	pmiller
-			16:14:37 1992
-
+        What            When            Who     Comment
+        ------          ------          -----   ---------
+        new_change      Sun Jun 21      pmiller Elapsed time: 0.000 days.
+                        23:19:18 1992
+        develop_begin   Sun Jun 21      pmiller Elapsed time: 0.037 days.
+                        23:19:28 1992
+        develop_end     Mon Jun 22      pmiller Elapsed time: 0.000 days.
+                        16:06:16 1992
+        review_pass     Mon Jun 22      pmiller Elapsed time: 0.001 days.
+                        16:06:29 1992
+        integrate_begin Mon Jun 22      pmiller Elapsed time: 0.017 days.
+                        16:06:59 1992
+        integrate_pass  Mon Jun 22      pmiller
+                        16:14:37 1992
+
 IDENTIFICATION
-	Project "cook.1.2", build 4, change 4.
+        Project "cook.1.2", build 4, change 4.
 
 SUMMARY
-	change tests to use test rather than []
+        change tests to use test rather than []
 
 DESCRIPTION
-	change tests to use test rather than []
+        change tests to use test rather than []
 
 CAUSE
-	external_bug
+        external_bug
 
 FILES
-	Type	Action	Edit	File Name
-	------- ------- ------- -----------
-	source	modify	3	Makefile.sh
-	test	modify	2	test/00/t0001a.sh
-	test	modify	2	test/00/t0002a.sh
-	test	modify	2	test/00/t0003a.sh
-	test	modify	2	test/00/t0004a.sh
-	test	modify	2	test/00/t0005a.sh
-	test	modify	2	test/00/t0006a.sh
-	test	modify	2	test/00/t0007a.sh
-	test	modify	2	test/00/t0008a.sh
-	test	modify	2	test/00/t0009a.sh
-	test	modify	2	test/00/t0010a.sh
-	test	modify	2	test/00/t0011a.sh
-	test	modify	2	test/00/t0012a.sh
-	test	modify	2	test/00/t0013a.sh
-	test	modify	2	test/00/t0014a.sh
-	test	modify	2	test/00/t0015a.sh
-	test	modify	2	test/00/t0016a.sh
-	test	modify	2	test/00/t0017a.sh
-	test	modify	2	test/00/t0018a.sh
-	test	modify	2	test/00/t0019a.sh
-	test	modify	2	test/00/t0020a.sh
-	test	modify	2	test/00/t0021a.sh
-	test	modify	2	test/00/t0022a.sh
-	test	modify	2	test/00/t0023a.sh
-	test	modify	2	test/00/t0024a.sh
-	test	modify	2	test/00/t0025a.sh
-	test	modify	2	test/00/t0026a.sh
-	test	modify	2	test/00/t0027a.sh
-	test	modify	2	test/00/t0028a.sh
-	test	modify	2	test/00/t0029a.sh
-	test	modify	2	test/00/t0030a.sh
-	test	modify	2	test/00/t0031a.sh
-	test	modify	2	test/00/t0032a.sh
-	test	modify	2	test/00/t0033a.sh
-	test	modify	2	test/00/t0034a.sh
-	test	modify	2	test/00/t0035a.sh
-	test	modify	2	test/00/t0036a.sh
-	test	modify	2	test/00/t0037a.sh
-	test	modify	2	test/00/t0038a.sh
-	test	modify	2	test/00/t0039a.sh
+        Type    Action  Edit    File Name
+        ------- ------- ------- -----------
+        source  modify  3       Makefile.sh
+        test    modify  2       test/00/t0001a.sh
+        test    modify  2       test/00/t0002a.sh
+        test    modify  2       test/00/t0003a.sh
+        test    modify  2       test/00/t0004a.sh
+        test    modify  2       test/00/t0005a.sh
+        test    modify  2       test/00/t0006a.sh
+        test    modify  2       test/00/t0007a.sh
+        test    modify  2       test/00/t0008a.sh
+        test    modify  2       test/00/t0009a.sh
+        test    modify  2       test/00/t0010a.sh
+        test    modify  2       test/00/t0011a.sh
+        test    modify  2       test/00/t0012a.sh
+        test    modify  2       test/00/t0013a.sh
+        test    modify  2       test/00/t0014a.sh
+        test    modify  2       test/00/t0015a.sh
+        test    modify  2       test/00/t0016a.sh
+        test    modify  2       test/00/t0017a.sh
+        test    modify  2       test/00/t0018a.sh
+        test    modify  2       test/00/t0019a.sh
+        test    modify  2       test/00/t0020a.sh
+        test    modify  2       test/00/t0021a.sh
+        test    modify  2       test/00/t0022a.sh
+        test    modify  2       test/00/t0023a.sh
+        test    modify  2       test/00/t0024a.sh
+        test    modify  2       test/00/t0025a.sh
+        test    modify  2       test/00/t0026a.sh
+        test    modify  2       test/00/t0027a.sh
+        test    modify  2       test/00/t0028a.sh
+        test    modify  2       test/00/t0029a.sh
+        test    modify  2       test/00/t0030a.sh
+        test    modify  2       test/00/t0031a.sh
+        test    modify  2       test/00/t0032a.sh
+        test    modify  2       test/00/t0033a.sh
+        test    modify  2       test/00/t0034a.sh
+        test    modify  2       test/00/t0035a.sh
+        test    modify  2       test/00/t0036a.sh
+        test    modify  2       test/00/t0037a.sh
+        test    modify  2       test/00/t0038a.sh
+        test    modify  2       test/00/t0039a.sh
 
 HISTORY
-	What		When		Who	Comment
-	------		------		-----	---------
-	new_change	Wed Jul	 8	pmiller Elapsed time: 0.001 days.
-			23:05:23 1992
-	develop_begin	Wed Jul	 8	pmiller Elapsed time: 0.092 days.
-			23:05:37 1992
-	develop_end	Wed Jul	 8	pmiller Elapsed time: 0.002 days.
-			23:46:57 1992
-	review_pass	Wed Jul	 8	pmiller Elapsed time: 0.002 days.
-			23:47:45 1992
-	integrate_begin Wed Jul	 8	pmiller Elapsed time: 0.015 days.
-			23:48:27 1992
-	integrate_pass	Wed Jul	 8	pmiller
-			23:55:02 1992
-
+        What            When            Who     Comment
+        ------          ------          -----   ---------
+        new_change      Wed Jul  8      pmiller Elapsed time: 0.001 days.
+                        23:05:23 1992
+        develop_begin   Wed Jul  8      pmiller Elapsed time: 0.092 days.
+                        23:05:37 1992
+        develop_end     Wed Jul  8      pmiller Elapsed time: 0.002 days.
+                        23:46:57 1992
+        review_pass     Wed Jul  8      pmiller Elapsed time: 0.002 days.
+                        23:47:45 1992
+        integrate_begin Wed Jul  8      pmiller Elapsed time: 0.015 days.
+                        23:48:27 1992
+        integrate_pass  Wed Jul  8      pmiller
+                        23:55:02 1992
+
 IDENTIFICATION
-	Project "cook.1.2", build 5, change 5.
+        Project "cook.1.2", build 5, change 5.
 
 SUMMARY
-	add configuration for varargs
+        add configuration for varargs
 
 DESCRIPTION
-	1. A major stumbling block is that many systems don't have stdarg.
-	Change the code to be able to use stdarg.h or varargs.h as necessary.
-	2. move common elements of aegis and fmtgen into common, as many of
-	these common elements need mods for varargs.
-	3. reflect the change to varargs in the BUILDING instructions.
-	4. other small mods so will compile with traditional cc.
-	5. enhance the capabilities of str_vformat.
-	6. fix the enums for picky ansi c compilers.
+        1. A major stumbling block is that many systems don't have stdarg.
+        Change the code to be able to use stdarg.h or varargs.h as necessary.
+        2. move common elements of aegis and fmtgen into common, as many of
+        these common elements need mods for varargs.
+        3. reflect the change to varargs in the BUILDING instructions.
+        4. other small mods so will compile with traditional cc.
+        5. enhance the capabilities of str_vformat.
+        6. fix the enums for picky ansi c compilers.
 
 CAUSE
-	internal_enhancement
+        internal_enhancement
 
 FILES
-	Type	Action	Edit	File Name
-	------- ------- ------- -----------
-	source	modify	3	Howto.cook
-	source	modify	4	Makefile.sh
-	source	modify	3	c_incl/sniff.c
-	source	modify	3	common/ansi.c
-	source	modify	3	common/arglex.h
-	source	modify	3	common/error.c
-	source	modify	3	common/error.h
-	source	modify	3	common/str.c
-	source	modify	3	common/str.h
-	source	modify	3	common/trace.c
-	source	create	1	conf/ConvexOS-10
-	source	create	1	conf/SunOS-4.1.2
-	source	create	1	conf/SysV-4.0
-	source	modify	3	cook/builtin.c
-	source	modify	3	cook/cook.c
-	source	modify	3	cook/expr.c
-	source	modify	3	cook/expr.h
-	source	modify	3	cook/id.c
-	source	modify	3	cook/id.h
-	source	modify	3	cook/lex.c
-	source	modify	4	cook/listing.c
-	source	modify	2	cook/main.c
-	source	modify	3	cook/option.h
-	source	modify	3	cook/parse.y
-	source	modify	3	cook/stmt.h
-	source	modify	3	doc/building.man
-	source	remove	1	h/stdarg.h
-	source	create	1	h/stdarg.h-min
+        Type    Action  Edit    File Name
+        ------- ------- ------- -----------
+        source  modify  3       Howto.cook
+        source  modify  4       Makefile.sh
+        source  modify  3       c_incl/sniff.c
+        source  modify  3       common/ansi.c
+        source  modify  3       common/arglex.h
+        source  modify  3       common/error.c
+        source  modify  3       common/error.h
+        source  modify  3       common/str.c
+        source  modify  3       common/str.h
+        source  modify  3       common/trace.c
+        source  create  1       conf/ConvexOS-10
+        source  create  1       conf/SunOS-4.1.2
+        source  create  1       conf/SysV-4.0
+        source  modify  3       cook/builtin.c
+        source  modify  3       cook/cook.c
+        source  modify  3       cook/expr.c
+        source  modify  3       cook/expr.h
+        source  modify  3       cook/id.c
+        source  modify  3       cook/id.h
+        source  modify  3       cook/lex.c
+        source  modify  4       cook/listing.c
+        source  modify  2       cook/main.c
+        source  modify  3       cook/option.h
+        source  modify  3       cook/parse.y
+        source  modify  3       cook/stmt.h
+        source  modify  3       doc/building.man
+        source  remove  1       h/stdarg.h
+        source  create  1       h/stdarg.h-min
 
 HISTORY
-	What		When		Who	Comment
-	------		------		-----	---------
-	new_change	Wed Jul	 8	pmiller Elapsed time: 0.000 days.
-			23:58:12 1992
-	develop_begin	Wed Jul	 8	pmiller Elapsed time: 2.792 days.
-			23:58:19 1992
-	develop_end	Sun Jul 12	pmiller Elapsed time: 0.003 days.
-			22:24:34 1992
-	review_pass	Sun Jul 12	pmiller Elapsed time: 0.002 days.
-			22:25:42 1992
-	integrate_begin Sun Jul 12	pmiller Elapsed time: 0.101 days.
-			22:26:25 1992
-	integrate_pass	Sun Jul 12	pmiller
-			23:12:02 1992
-
+        What            When            Who     Comment
+        ------          ------          -----   ---------
+        new_change      Wed Jul  8      pmiller Elapsed time: 0.000 days.
+                        23:58:12 1992
+        develop_begin   Wed Jul  8      pmiller Elapsed time: 2.792 days.
+                        23:58:19 1992
+        develop_end     Sun Jul 12      pmiller Elapsed time: 0.003 days.
+                        22:24:34 1992
+        review_pass     Sun Jul 12      pmiller Elapsed time: 0.002 days.
+                        22:25:42 1992
+        integrate_begin Sun Jul 12      pmiller Elapsed time: 0.101 days.
+                        22:26:25 1992
+        integrate_pass  Sun Jul 12      pmiller
+                        23:12:02 1992
+
 IDENTIFICATION
-	Project "cook.1.2", build 7, change 6.
+        Project "cook.1.2", build 7, change 6.
 
 SUMMARY
-	make os_pathname understand symbolic links
+        make os_pathname understand symbolic links
 
 DESCRIPTION
-	make os_pathname understand symbolic links
+        make os_pathname understand symbolic links
 
 CAUSE
-	internal_enhancement
+        internal_enhancement
 
 FILES
-	Type	Action	Edit	File Name
-	------- ------- ------- -----------
-	source	modify	5	Makefile.sh
-	source	modify	2	c_incl/cache.h
-	source	modify	3	c_incl/main.c
-	source	modify	3	c_incl/os.h
-	source	modify	4	common/error.h
-	source	modify	3	common/main.h
-	source	modify	3	common/trace.h
-	source	modify	2	conf/ConvexOS-10
-	source	modify	2	conf/SunOS-4.1.2
-	source	modify	2	conf/SysV-4.0
-	source	modify	4	cook/builtin.c
-	source	modify	3	cook/cook.h
-	source	modify	3	cook/glob.c
-	source	modify	5	cook/listing.c
-	source	modify	3	cook/main.c
-	source	modify	3	cook/os.c
-	source	modify	3	cook/os.h
-	source	modify	2	find_libs/main.c
-	source	modify	2	roffpp/main.c
-	test	modify	3	test/00/t0012a.sh
+        Type    Action  Edit    File Name
+        ------- ------- ------- -----------
+        source  modify  5       Makefile.sh
+        source  modify  2       c_incl/cache.h
+        source  modify  3       c_incl/main.c
+        source  modify  3       c_incl/os.h
+        source  modify  4       common/error.h
+        source  modify  3       common/main.h
+        source  modify  3       common/trace.h
+        source  modify  2       conf/ConvexOS-10
+        source  modify  2       conf/SunOS-4.1.2
+        source  modify  2       conf/SysV-4.0
+        source  modify  4       cook/builtin.c
+        source  modify  3       cook/cook.h
+        source  modify  3       cook/glob.c
+        source  modify  5       cook/listing.c
+        source  modify  3       cook/main.c
+        source  modify  3       cook/os.c
+        source  modify  3       cook/os.h
+        source  modify  2       find_libs/main.c
+        source  modify  2       roffpp/main.c
+        test    modify  3       test/00/t0012a.sh
 
 HISTORY
-	What		When		Who	Comment
-	------		------		-----	---------
-	new_change	Sun Jul 12	pmiller Elapsed time: 0.000 days.
-			23:14:52 1992
-	develop_begin	Sun Jul 12	pmiller Elapsed time: 0.000 days.
-			23:14:58 1992
-	develop_end	Mon Jul 13	pmiller Elapsed time: 0.000 days.
-			12:56:43 1992
-	review_pass	Mon Jul 13	pmiller Elapsed time: 0.001 days.
-			12:56:51 1992
-	integrate_begin Mon Jul 13	pmiller Elapsed time: 0.065 days.
-			12:57:18 1992
-	integrate_fail	Mon Jul 13	pmiller The convex is a little
-			13:26:41 1992		peculiar.
-						Needs more work.
-						Elapsed time: 0.076 days.
-	develop_end	Mon Jul 13	pmiller Elapsed time: 0.001 days.
-			14:00:48 1992
-	review_pass	Mon Jul 13	pmiller Elapsed time: 0.001 days.
-			14:01:07 1992
-	integrate_begin Mon Jul 13	pmiller Elapsed time: 0.037 days.
-			14:01:35 1992
-	integrate_pass	Mon Jul 13	pmiller
-			14:18:10 1992
-
+        What            When            Who     Comment
+        ------          ------          -----   ---------
+        new_change      Sun Jul 12      pmiller Elapsed time: 0.000 days.
+                        23:14:52 1992
+        develop_begin   Sun Jul 12      pmiller Elapsed time: 0.000 days.
+                        23:14:58 1992
+        develop_end     Mon Jul 13      pmiller Elapsed time: 0.000 days.
+                        12:56:43 1992
+        review_pass     Mon Jul 13      pmiller Elapsed time: 0.001 days.
+                        12:56:51 1992
+        integrate_begin Mon Jul 13      pmiller Elapsed time: 0.065 days.
+                        12:57:18 1992
+        integrate_fail  Mon Jul 13      pmiller The convex is a little
+                        13:26:41 1992           peculiar.
+                                                Needs more work.
+                                                Elapsed time: 0.076 days.
+        develop_end     Mon Jul 13      pmiller Elapsed time: 0.001 days.
+                        14:00:48 1992
+        review_pass     Mon Jul 13      pmiller Elapsed time: 0.001 days.
+                        14:01:07 1992
+        integrate_begin Mon Jul 13      pmiller Elapsed time: 0.037 days.
+                        14:01:35 1992
+        integrate_pass  Mon Jul 13      pmiller
+                        14:18:10 1992
+
 IDENTIFICATION
-	Project "cook.1.2", build 8, change 7.
+        Project "cook.1.2", build 8, change 7.
 
 SUMMARY
-	add the cooktime command
+        add the cooktime command
 
 DESCRIPTION
-	add the cooktime command
+        add the cooktime command
 
 CAUSE
-	internal_enhancement
+        internal_enhancement
 
 STATE
-	being_integrated
+        being_integrated
 
 FILES
-	Type	Action	Edit	File Name
-	------- ------- ------- -----------
-	source	modify	3	Howto.cook
-	source	modify	5	Makefile.sh
-	source	modify	3	common/main.h
-	source	create		cooktime/date.y
-	source	create		cooktime/main.c
-	source	create		man1/cooktime.1
-	test	create		test/00/t0040a.sh
+        Type    Action  Edit    File Name
+        ------- ------- ------- -----------
+        source  modify  3       Howto.cook
+        source  modify  5       Makefile.sh
+        source  modify  3       common/main.h
+        source  create          cooktime/date.y
+        source  create          cooktime/main.c
+        source  create          man1/cooktime.1
+        test    create          test/00/t0040a.sh
 
 HISTORY
-	What		When		Who	Comment
-	------		------		-----	---------
-	new_change	Mon Jul 13	pmiller Elapsed time: 0.000 days.
-			14:27:20 1992
-	develop_begin	Mon Jul 13	pmiller Elapsed time: 0.322 days.
-			14:27:30 1992
-	develop_end	Mon Jul 13	pmiller Elapsed time: 0.001 days.
-			16:52:33 1992
-	review_pass	Mon Jul 13	pmiller Elapsed time: 0.001 days.
-			16:52:51 1992
-	integrate_begin Mon Jul 13	pmiller Elapsed time: 0.645 days.
-			16:53:24 1992
+        What            When            Who     Comment
+        ------          ------          -----   ---------
+        new_change      Mon Jul 13      pmiller Elapsed time: 0.000 days.
+                        14:27:20 1992
+        develop_begin   Mon Jul 13      pmiller Elapsed time: 0.322 days.
+                        14:27:30 1992
+        develop_end     Mon Jul 13      pmiller Elapsed time: 0.001 days.
+                        16:52:33 1992
+        review_pass     Mon Jul 13      pmiller Elapsed time: 0.001 days.
+                        16:52:51 1992
+        integrate_begin Mon Jul 13      pmiller Elapsed time: 0.645 days.
+                        16:53:24 1992
+
+Copyright (C) 1997-2007 Peter Miller

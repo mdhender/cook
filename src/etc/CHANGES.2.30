@@ -1,0 +1,116 @@
+
+
+
+Project "cook.2.30"						  Page 1
+List of Changes					Sun Sep 30 23:52:26 2007
+
+Change	State		Description
+------- -------		-------------
+  10	completed	prepare for release
+  11	being_		GPLv3
+	integrated
+	pmiller
+
+
+
+Project "cook.2.30", Change 10					  Page 1
+Change Details					Sun Sep 30 23:52:26 2007
+
+NAME
+	Project "cook.2.30", Delta 1, Change 10,
+	b7e7533b-9d05-47a9-95a4-efadce859528
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change prepares Cook for the next public release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory. This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	  366 -> 367  BUILDING
+	build	modify	  240 -> 241  Makefile.in
+	build	modify	  154 -> 155  README
+	build	modify	  469 -> 470  common/patchlevel.h
+	build	modify	  331 -> 332  etc/version.so
+	source	modify	    3 -> 4    lib/en/readme/new.2.29.so
+	source	create	    1	      lib/en/readme/new.2.30.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Aug 21	pmiller
+			12:53:02 2007
+	develop_begin	Tue Aug 21	pmiller	 Elapsed time: 0.090
+			12:53:04 2007		 days.
+	develop_end_2ai Tue Aug 21	pmiller
+			13:33:45 2007
+	integrate_begin Tue Aug 21	pmiller
+			13:33:54 2007
+	integrate_pass	Tue Aug 21	pmiller
+			13:37:15 2007
+
+
+
+Project "cook.2.30", Change 11					  Page 1
+Change Details					Sun Sep 30 23:52:27 2007
+
+NAME
+	Project "cook.2.30", Delta 2, Change 11.
+
+SUMMARY
+	GPLv3
+
+DESCRIPTION
+	The LICENSE file has been updated to match the licensing of the
+	source code.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory. This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+	arch.	 host	  aeb	      aet	  aet -bl     aet -reg
+	-------- -------- ---------   ---------	  ---------   ---------
+	linux-		  required    exempt	  exempt      required
+	i486
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+STATE
+	This change is in the 'being_integrated' state.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	source	modify	    3	      lib/en/man1/cook_lic.1
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Sep 30	pmiller
+			23:42:37 2007
+	develop_begin	Sun Sep 30	pmiller
+			23:42:38 2007
+	develop_end_2ai Sun Sep 30	pmiller
+			23:49:49 2007
+	integrate_begin Sun Sep 30	pmiller
+			23:51:48 2007

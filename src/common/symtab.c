@@ -1,34 +1,32 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1990-1994, 1997, 2001, 2003 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1990-1994, 1997, 2001, 2003, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: functions to manipulate symbol tables
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
-#include <error.h> /* for debugging */
-#include <fstrcmp.h>
-#include <mem.h>
-#include <symtab.h>
-#include <trace.h>
+#include <common/error.h> /* for debugging */
+#include <common/fstrcmp.h>
+#include <common/mem.h>
+#include <common/symtab.h>
+#include <common/trace.h>
 
 
 symtab_ty *
-symtab_alloc(int size)
+symtab_alloc(unsigned size)
 {
     symtab_ty       *stp;
     str_hash_ty     j;
@@ -38,13 +36,13 @@ symtab_alloc(int size)
     stp->reap = 0;
     stp->hash_modulus = 1 << 2; /* MUST be a power of 2 */
     while (stp->hash_modulus < size)
-    	stp->hash_modulus <<= 1;
+        stp->hash_modulus <<= 1;
     stp->hash_mask = stp->hash_modulus - 1;
     stp->hash_load = 0;
     stp->hash_table =
-	mem_alloc(stp->hash_modulus * sizeof(symtab_row_ty *));
+        mem_alloc(stp->hash_modulus * sizeof(symtab_row_ty *));
     for (j = 0; j < stp->hash_modulus; ++j)
-	stp->hash_table[j] = 0;
+        stp->hash_table[j] = 0;
     trace(("return %08lX;\n", (long)stp));
     trace(("}\n"));
     return stp;
@@ -59,20 +57,20 @@ symtab_free(symtab_ty *stp)
     trace(("symtab_free(stp = %08lX)\n{\n", (long)stp));
     for (j = 0; j < stp->hash_modulus; ++j)
     {
-	symtab_row_ty	**rpp;
+        symtab_row_ty   **rpp;
 
-	rpp = &stp->hash_table[j];
-	while (*rpp)
-	{
-	    symtab_row_ty   *rp;
+        rpp = &stp->hash_table[j];
+        while (*rpp)
+        {
+            symtab_row_ty   *rp;
 
-	    rp = *rpp;
-	    *rpp = rp->overflow;
-	    if (stp->reap)
-		stp->reap(rp->data);
-	    str_free(rp->key);
-	    mem_free(rp);
-	}
+            rp = *rpp;
+            *rpp = rp->overflow;
+            if (stp->reap)
+                stp->reap(rp->data);
+            str_free(rp->key);
+            mem_free(rp);
+        }
     }
     mem_free(stp->hash_table);
     mem_free(stp);
@@ -82,19 +80,19 @@ symtab_free(symtab_ty *stp)
 
 /*
  * NAME
- *	split - reduce symbol table load
+ *      split - reduce symbol table load
  *
  * SYNOPSIS
- *	void split(symtab_ty);
+ *      void split(symtab_ty);
  *
  * DESCRIPTION
- *	The split function is used to split symbols in the bucket indicated by
- *	the split point.  The symbols are split between that bucket and the one
- *	after the current end of the table.
+ *      The split function is used to split symbols in the bucket indicated by
+ *      the split point.  The symbols are split between that bucket and the one
+ *      after the current end of the table.
  *
  * CAVEAT
- *	It is only sensable to do this when the symbol table load exceeds some
- *	reasonable threshold.  A threshold of 80% is suggested.
+ *      It is only sensable to do this when the symbol table load exceeds some
+ *      reasonable threshold.  A threshold of 80% is suggested.
  */
 
 static void
@@ -129,26 +127,26 @@ split(symtab_ty *stp)
      */
     for (j = 0; j < stp->hash_modulus; ++j)
     {
-	symtab_row_ty   *p;
+        symtab_row_ty   *p;
 
-	new_hash_table[j] = 0;
-	new_hash_table[stp->hash_modulus + j] = 0;
-	p = stp->hash_table[j];
-	while (p)
-	{
-	    symtab_row_ty   *p2;
-	    str_hash_ty     idx;
-	    symtab_row_ty   **ipp;
+        new_hash_table[j] = 0;
+        new_hash_table[stp->hash_modulus + j] = 0;
+        p = stp->hash_table[j];
+        while (p)
+        {
+            symtab_row_ty   *p2;
+            str_hash_ty     idx;
+            symtab_row_ty   **ipp;
 
-	    p2 = p;
-	    p = p2->overflow;
-	    p2->overflow = 0;
+            p2 = p;
+            p = p2->overflow;
+            p2->overflow = 0;
 
-	    idx = p2->key->str_hash & new_hash_mask;
-	    for (ipp = &new_hash_table[idx]; *ipp; ipp = &(*ipp)->overflow)
-		;
-	    *ipp = p2;
-	}
+            idx = p2->key->str_hash & new_hash_mask;
+            for (ipp = &new_hash_table[idx]; *ipp; ipp = &(*ipp)->overflow)
+                ;
+            *ipp = p2;
+        }
     }
 
     /*
@@ -164,19 +162,19 @@ split(symtab_ty *stp)
 
 /*
  * NAME
- *	symtab_query - search for a variable
+ *      symtab_query - search for a variable
  *
  * SYNOPSIS
- *	int symtab_query(symtab_ty *, string_ty *key);
+ *      int symtab_query(symtab_ty *, string_ty *key);
  *
  * DESCRIPTION
- *	The symtab_query function is used to reference a variable.
+ *      The symtab_query function is used to reference a variable.
  *
  * RETURNS
- *	If the variable has been defined, the function returns a non-zero value
- *	and the value is returned through the 'value' pointer.
- *	If the variable has not been defined, it returns zero,
- *	and 'value' is unaltered.
+ *      If the variable has been defined, the function returns a non-zero value
+ *      and the value is returned through the 'value' pointer.
+ *      If the variable has not been defined, it returns zero,
+ *      and 'value' is unaltered.
  */
 
 void *
@@ -184,20 +182,20 @@ symtab_query(symtab_ty *stp, string_ty *key)
 {
     str_hash_ty     idx;
     symtab_row_ty   *p;
-    void	    *result;
+    void            *result;
 
     trace(("symtab_query(stp = %08lX, key = \"%s\")\n{\n",
-	(long)stp, key->str_text));
+        (long)stp, key->str_text));
     result = 0;
 
     idx = key->str_hash & stp->hash_mask;
     for (p = stp->hash_table[idx]; p; p = p->overflow)
     {
-	if (str_equal(key, p->key))
-	{
-    	    result = p->data;
-    	    break;
-	}
+        if (str_equal(key, p->key))
+        {
+            result = p->data;
+            break;
+        }
     }
 
     trace(("return %08lX;\n", (long)result));
@@ -214,22 +212,22 @@ symtab_query_fuzzy_inner(symtab_ty *stp, string_ty *key, double *best_weight,
     symtab_row_ty   *p;
 
     trace(("symtab_query_fuzzy_inner(stp = %08lX, key = \"%s\")\n{\n",
-	(long)stp, key->str_text));
+        (long)stp, key->str_text));
 
     for (idx = 0; idx < stp->hash_modulus; ++idx)
     {
-	for (p = stp->hash_table[idx]; p; p = p->overflow)
-	{
-    	    double	w;
+        for (p = stp->hash_table[idx]; p; p = p->overflow)
+        {
+            double      w;
 
-    	    w = fstrcmp(key->str_text, p->key->str_text);
-    	    if (w > *best_weight)
-    	    {
-       		*best_key = p->key;
-       		*best_weight = w;
-       		*best_result = p->data;
-	    }
-	}
+            w = fstrcmp(key->str_text, p->key->str_text);
+            if (w > *best_weight)
+            {
+                *best_key = p->key;
+                *best_weight = w;
+                *best_result = p->data;
+            }
+        }
     }
     trace(("}\n"));
 }
@@ -243,7 +241,7 @@ symtab_query_fuzzy(symtab_ty *stp, string_ty *key, string_ty **key_used)
     string_ty       *best_key;
 
     trace(("symtab_query(stp = %08lX, key = \"%s\")\n{\n",
-	(long)stp, key->str_text));
+        (long)stp, key->str_text));
     best_weight = 0.6;
     best_result = 0;
     best_key = 0;
@@ -251,7 +249,7 @@ symtab_query_fuzzy(symtab_ty *stp, string_ty *key, string_ty **key_used)
     symtab_query_fuzzy_inner(stp, key, &best_weight, &best_key, &best_result);
 
     if (key_used && best_key)
-	*key_used = best_key;
+        *key_used = best_key;
     trace(("return %08lX;\n", (long)best_result));
     trace(("}\n"));
     return best_result;
@@ -274,18 +272,18 @@ symtab_query_fuzzyN(symtab_ty **stp_table, size_t stp_length, string_ty *key,
 
     for (j = 0; j < stp_length; ++j)
     {
-	symtab_query_fuzzy_inner
-	(
-	    stp_table[j],
-	    key,
-	    &best_weight,
-	    &best_key,
-	    &best_result
-	);
+        symtab_query_fuzzy_inner
+        (
+            stp_table[j],
+            key,
+            &best_weight,
+            &best_key,
+            &best_result
+        );
     }
 
     if (key_used && best_key)
-	*key_used = best_key;
+        *key_used = best_key;
     trace(("return %08lX;\n", (long)best_result));
     trace(("}\n"));
     return best_result;
@@ -294,17 +292,17 @@ symtab_query_fuzzyN(symtab_ty **stp_table, size_t stp_length, string_ty *key,
 
 /*
  * NAME
- *	symtab_assign - assign a variable
+ *      symtab_assign - assign a variable
  *
  * SYNOPSIS
- *	void symtab_assign(symtab_ty *, string_ty *key, void *data);
+ *      void symtab_assign(symtab_ty *, string_ty *key, void *data);
  *
  * DESCRIPTION
- *	The symtab_assign function is used to assign
- *	a value to a given variable.
+ *      The symtab_assign function is used to assign
+ *      a value to a given variable.
  *
  * CAVEAT
- *	The name is copied, the data is not.
+ *      The name is copied, the data is not.
  */
 
 void
@@ -314,18 +312,18 @@ symtab_assign(symtab_ty *stp, string_ty *key, void *data)
     symtab_row_ty   *p;
 
     trace(("symtab_assign(stp = %08lX, key = \"%s\", data = %08lX)\n{\n",
-	(long)stp, key->str_text, (long)data));
+        (long)stp, key->str_text, (long)data));
     idx = key->str_hash & stp->hash_mask;
     for (p = stp->hash_table[idx]; p; p = p->overflow)
     {
-	if (str_equal(key, p->key))
-	{
-	    trace(("modify existing entry\n"));
-	    if (stp->reap)
-	       	stp->reap(p->data);
-	    p->data = data;
-	    goto done;
-	}
+        if (str_equal(key, p->key))
+        {
+            trace(("modify existing entry\n"));
+            if (stp->reap)
+                stp->reap(p->data);
+            p->data = data;
+            goto done;
+        }
     }
 
     trace(("new entry\n"));
@@ -337,7 +335,7 @@ symtab_assign(symtab_ty *stp, string_ty *key, void *data)
 
     stp->hash_load++;
     if (stp->hash_load * 10 >= stp->hash_modulus * 8)
-	split(stp);
+        split(stp);
     done:
     trace(("}\n"));
 }
@@ -345,19 +343,19 @@ symtab_assign(symtab_ty *stp, string_ty *key, void *data)
 
 /*
  * NAME
- *	symtab_assign_push - assign a variable
+ *      symtab_assign_push - assign a variable
  *
  * SYNOPSIS
- *	void symtab_assign_push(symtab_ty *, string_ty *key, void *data);
+ *      void symtab_assign_push(symtab_ty *, string_ty *key, void *data);
  *
  * DESCRIPTION
- *	The symtab_assign function is used to assign
- *	a value to a given variable.
- *	Any previous value will be obscured until this one
- *	is deleted with symtab_delete.
+ *      The symtab_assign function is used to assign
+ *      a value to a given variable.
+ *      Any previous value will be obscured until this one
+ *      is deleted with symtab_delete.
  *
  * CAVEAT
- *	The name is copied, the data is not.
+ *      The name is copied, the data is not.
  */
 
 void
@@ -367,7 +365,7 @@ symtab_assign_push(symtab_ty *stp, string_ty *key, void *data)
     symtab_row_ty   *p;
 
     trace(("symtab_assign_push(stp = %08lX, key = \"%s\", data = %08lX)\n{\n",
-	(long)stp, key->str_text, (long)data));
+        (long)stp, key->str_text, (long)data));
     idx = key->str_hash & stp->hash_mask;
 
     p = mem_alloc(sizeof(symtab_row_ty));
@@ -378,24 +376,24 @@ symtab_assign_push(symtab_ty *stp, string_ty *key, void *data)
 
     stp->hash_load++;
     if (stp->hash_load * 10 >= stp->hash_modulus * 8)
-	split(stp);
+        split(stp);
     trace(("}\n"));
 }
 
 
 /*
  * NAME
- *	symtab_delete - delete a variable
+ *      symtab_delete - delete a variable
  *
  * SYNOPSIS
- *	void symtab_delete(string_ty *name, symtab_class_ty class);
+ *      void symtab_delete(string_ty *name, symtab_class_ty class);
  *
  * DESCRIPTION
- *	The symtab_delete function is used to delete variables.
+ *      The symtab_delete function is used to delete variables.
  *
  * CAVEAT
- *	The name is freed, the data is reaped.
- *	(By default, reap does nothing.)
+ *      The name is freed, the data is reaped.
+ *      (By default, reap does nothing.)
  */
 
 void
@@ -405,28 +403,28 @@ symtab_delete(symtab_ty *stp, string_ty *key)
     symtab_row_ty   **pp;
 
     trace(("symtab_delete(stp = %08lX, key = \"%s\")\n{\n",
-	(long)stp, key->str_text));
+        (long)stp, key->str_text));
     idx = key->str_hash & stp->hash_mask;
 
     pp = &stp->hash_table[idx];
     for (;;)
     {
-	symtab_row_ty	*p;
+        symtab_row_ty   *p;
 
-	p = *pp;
-	if (!p)
-	    break;
-	if (str_equal(key, p->key))
-	{
-	    if (stp->reap)
-	       	stp->reap(p->data);
-	    str_free(p->key);
-	    *pp = p->overflow;
-	    mem_free(p);
-	    stp->hash_load--;
-	    break;
-	}
-	pp = &p->overflow;
+        p = *pp;
+        if (!p)
+            break;
+        if (str_equal(key, p->key))
+        {
+            if (stp->reap)
+                stp->reap(p->data);
+            str_free(p->key);
+            *pp = p->overflow;
+            mem_free(p);
+            stp->hash_load--;
+            break;
+        }
+        pp = &p->overflow;
     }
     trace(("}\n"));
 }
@@ -434,18 +432,18 @@ symtab_delete(symtab_ty *stp, string_ty *key)
 
 /*
  * NAME
- *	symtab_dump - dump symbol table
+ *      symtab_dump - dump symbol table
  *
  * SYNOPSIS
- *	void symtab_dump(symtab_ty *stp, char *caption);
+ *      void symtab_dump(symtab_ty *stp, char *caption);
  *
  * DESCRIPTION
- *	The symtab_dump function is used to dump the contents of the
- *	symbol table.  The caption will be used to indicate why the
- *	symbol table was dumped.
+ *      The symtab_dump function is used to dump the contents of the
+ *      symbol table.  The caption will be used to indicate why the
+ *      symbol table was dumped.
  *
  * CAVEAT
- *	This function is only available when symbol DEBUG is defined.
+ *      This function is only available when symbol DEBUG is defined.
  */
 
 #ifdef DEBUG
@@ -459,15 +457,15 @@ symtab_dump(symtab_ty *stp, char *caption)
     error_raw("symbol table %s = {", caption);
     for (j = 0; j < stp->hash_modulus; ++j)
     {
-	for (p = stp->hash_table[j]; p; p = p->overflow)
-	{
-	    error_raw
-	    (
-		"key = \"%s\", data = %08lX",
-		p->key->str_text,
-		(long)p->data
-	    );
-	}
+        for (p = stp->hash_table[j]; p; p = p->overflow)
+        {
+            error_raw
+            (
+                "key = \"%s\", data = %08lX",
+                p->key->str_text,
+                (long)p->data
+            );
+        }
     }
     error_raw("}");
 }
@@ -479,12 +477,12 @@ void
 symtab_walk(symtab_ty *stp, void (*func)(symtab_ty *, string_ty *, void *,
     void *), void *arg)
 {
-    str_hash_ty	    j;
+    str_hash_ty     j;
     symtab_row_ty   *rp;
 
     trace(("symtab_walk(stp = %08lX)\n{\n", (long)stp));
     for (j = 0; j < stp->hash_modulus; ++j)
-	for (rp = stp->hash_table[j]; rp; rp = rp->overflow)
-    	    func(stp, rp->key, rp->data, arg);
+        for (rp = stp->hash_table[j]; rp; rp = rp->overflow)
+            func(stp, rp->key, rp->data, arg);
     trace(("}\n"));
 }

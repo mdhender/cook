@@ -1,23 +1,21 @@
 '\" t
-.\"	cook - a file construction tool
-.\"	Copyright (C) 1992, 1993, 1994, 1995, 1997, 1998, 1999 Peter Miller;
-.\"	All rights reserved.
+.\"     cook - a file construction tool
+.\"     Copyright (C) 1992-1995, 1997-1999, 2007 Peter Miller;
+.\"     All rights reserved.
 .\"
-.\"	This program is free software; you can redistribute it and/or modify
-.\"	it under the terms of the GNU General Public License as published by
-.\"	the Free Software Foundation; either version 2 of the License, or
-.\"	(at your option) any later version.
+.\"     This program is free software; you can redistribute it and/or modify
+.\"     it under the terms of the GNU General Public License as published by
+.\"     the Free Software Foundation; either version 3 of the License, or
+.\"     (at your option) any later version.
 .\"
-.\"	This program is distributed in the hope that it will be useful,
-.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
-.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-.\"	GNU General Public License for more details.
+.\"     This program is distributed in the hope that it will be useful,
+.\"     but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"     GNU General Public License for more details.
 .\"
-.\"	You should have received a copy of the GNU General Public License
-.\"	along with this program; if not, write to the Free Software
-.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-.\"
-.\" MANIFEST: source of the README file
+.\"     You should have received a copy of the GNU General Public License
+.\"     along with this program. If not, see
+.\"     <http://www.gnu.org/licenses/>.
 .\"
 .if n .ftr CB B
 .if n .ftr CI I
@@ -167,7 +165,7 @@ T}
 If you are putting together a source-code distribution and planning to
 write a makefile, consider writing a cookbook instead.  Although
 Cook takes a day or two to learn, it is much more powerful and a bit
-more intuitave than the traditional \fImake\fP(1) tool.
+more intuitive than the traditional \fImake\fP(1) tool.
 And Cook doesn't interpret tab differently to 8 space characters!
 .br
 .ne 2i
@@ -307,7 +305,7 @@ This program is free software;
 you can redistribute it
 and/or modify it under the terms of the GNU General Public
 License as published by the Free Software Foundation;
-either version 2 of the License,
+either version 3 of the License,
 or (at your option) any later version.
 .PP
 This program is distributed in the hope that it will be useful,
@@ -317,9 +315,8 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
 PURPOSE.
 See the GNU General Public License for more details.
 .PP
-You should have received a copy of the GNU General Public
-License along with this program; if not, write to the Free
-Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <http://www.gnu.org/licenses/>.
 .PP
 It should be in the
 .I LICENSE
@@ -339,6 +336,6 @@ Peter Miller;E-Mail:;millerp@canb.auug.org.au
 .XX "" "Release Notes"
 A number of features have been added to \fIcook\fP with this release.
 The following list is only a summary; for excruciating detail, and also
-acknowlegements of those who generously sent me feedback, please see
+acknowledgements of those who generously sent me feedback, please see
 the \fIetc/CHANGES.*\fP files included in this distribution.
 .so new.so

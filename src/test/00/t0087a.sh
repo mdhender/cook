@@ -1,24 +1,22 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1995, 1997, 1998, 2001 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1995, 1997, 1998, 2001, 2007 Peter Miller;
+#       All rights reserved.
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: Test the data dataend functionality
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 work=${COOK_TMP:-/tmp}/$$
 PAGER=cat
@@ -32,18 +30,18 @@ bin="$here/${1-.}/bin"
 
 fail()
 {
-	set +x
-	echo 'FAILED test of the data dataend functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 1
+        set +x
+        echo 'FAILED test of the data dataend functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 1
 }
 pass()
 {
-	set +x
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        cd $here
+        rm -rf $work
+        exit 0
 }
 trap \"fail\" 1 2 3 15
 
@@ -66,8 +64,8 @@ unset LANG
 cat > Howto.cook << 'fubar'
 test:
 {
-	cat > [target];
-	data
+        cat > [target];
+        data
 478419787 1848587843 366432946 1415719421 685962344 800787207 512887343
 2103883632 1553007812 907276668 939183245 2033091504 1015482697 498644539
 308421973 1201282452 125204477 1443054657 378522298 840169048 306581513
@@ -211,7 +209,7 @@ test:
 1072027336 17364886 2050288832 1210102219 285429404 1226672831 1002447325
 1028838861 417325532 1139578774 1751052128 913265047 1735348498 1780522087
 1273565645 1139082870 1093845540 1710967691 913040400 267625071
-	dataend
+        dataend
 }
 fubar
 if test $? -ne 0 ; then fail; fi

@@ -1,34 +1,32 @@
 #!/bin/sh
 #
-#	cook - file construction tool
-#	Copyright (C) 1994, 1997, 1998 Peter Miller;
-#	All rights reserved.
+#       cook - file construction tool
+#       Copyright (C) 1994, 1997, 1998, 2007 Peter Miller;
+#       All rights reserved.
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 3 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program; if not, write to the Free Software
-#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: Test the archive long name functionality
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 ed /dev/null > /dev/null 2>&1 << 'fubar'
 q
 fubar
 if test $? -ne 0; then
-	echo ''
-	echo '	Your system has no "ed" command.'
-	echo '	This test is declared to pass by default.'
-	echo ''
-	exit 0
+        echo ''
+        echo '  Your system has no "ed" command.'
+        echo '  This test is declared to pass by default.'
+        echo ''
+        exit 0
 fi
 
 work=${COOK_TMP:-/tmp}/$$
@@ -43,18 +41,18 @@ bin="$here/${1-.}/bin"
 
 fail()
 {
-	set +x
-	echo 'FAILED test of the archive long name functionality' 1>&2
-	cd $here
-	rm -rf $work
-	exit 1
+        set +x
+        echo 'FAILED test of the archive long name functionality' 1>&2
+        cd $here
+        rm -rf $work
+        exit 1
 }
 pass()
 {
-	set +x
-	cd $here
-	rm -rf $work
-	exit 0
+        set +x
+        cd $here
+        rm -rf $work
+        exit 0
 }
 trap \"fail\" 1 2 3 15
 
@@ -85,11 +83,11 @@ fubar
 if test $? -ne 0 ; then fail; fi
 diff foo.ok foo.aa > /dev/null 2>&1
 if test $? -ne 0 ; then
-	echo ""
-	echo "	This system does not understand the standard text-based"
-	echo "	archive file format.  This test passes by default."
-	echo ""
-	pass
+        echo ""
+        echo "  This system does not understand the standard text-based"
+        echo "  archive file format.  This test passes by default."
+        echo ""
+        pass
 fi
 
 #
@@ -100,18 +98,18 @@ test: a(b) {}
 
 %1(%2): %2
 {
-	if [exists %1] then
-	{
-		echo "This should never happen."
-			set silent;
-		fail;
-	}
-	ar qc %1 %2;
+        if [exists %1] then
+        {
+                echo "This should never happen."
+                        set silent;
+                fail;
+        }
+        ar qc %1 %2;
 }
 
 b:
 {
-	echo "This is a small file." > b;
+        echo "This is a small file." > b;
 }
 fubar
 if test $? -ne 0 ; then fail; fi

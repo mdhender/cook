@@ -1,48 +1,46 @@
 /*
- *	cook - file construction tool
- *	Copyright (C) 1997 Peter Miller;
- *	All rights reserved.
+ *      cook - file construction tool
+ *      Copyright (C) 1997, 2006, 2007 Peter Miller;
+ *      All rights reserved.
  *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 2 of the License, or
- *	(at your option) any later version.
+ *      This program is free software; you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation; either version 3 of the License, or
+ *      (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ *      This program is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program; if not, write to the Free Software
- *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
- *
- * MANIFEST: interface definition for cook/graph/walk.c
+ *      You should have received a copy of the GNU General Public License
+ *      along with this program. If not, see
+ *      <http://www.gnu.org/licenses/>.
  */
 
 #ifndef COOK_GRAPH_WALK_H
 #define COOK_GRAPH_WALK_H
 
-#include <main.h>
+#include <common/main.h>
 
 struct graph_ty; /* existence */
 
 enum graph_walk_status_ty
 {
-	graph_walk_status_done,
-	graph_walk_status_done_stop,
-	graph_walk_status_error,
-	graph_walk_status_uptodate,
-	graph_walk_status_uptodate_done,
-	graph_walk_status_wait
+        graph_walk_status_done,
+        graph_walk_status_done_stop,
+        graph_walk_status_error,
+        graph_walk_status_uptodate,
+        graph_walk_status_uptodate_done,
+        graph_walk_status_wait
 };
 typedef enum graph_walk_status_ty graph_walk_status_ty;
 
-char *graph_walk_status_name _((graph_walk_status_ty));
+char *graph_walk_status_name(graph_walk_status_ty);
 
-graph_walk_status_ty graph_walk _((struct graph_ty *));
-graph_walk_status_ty graph_walk_pairs _((struct graph_ty *));
-graph_walk_status_ty graph_walk_script _((struct graph_ty *));
-int graph_isit_uptodate _((struct graph_ty *));
+graph_walk_status_ty graph_walk(struct graph_ty *);
+graph_walk_status_ty graph_walk_pairs(struct graph_ty *);
+graph_walk_status_ty graph_walk_script(struct graph_ty *);
+int graph_isit_uptodate(struct graph_ty *);
 
 #endif /* COOK_GRAPH_WALK_H */
