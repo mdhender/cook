@@ -1,7 +1,7 @@
 Begin3
 Title: Cook
-Version: 2.30
-Entered-date: 27DEC2007
+Version: 2.31
+Entered-date: 13FEB2008
 Description: Cook is a tool for constructing files. It is given a
         set of files to create, and recipes of how to create
         them. In any non-trivial program there will be
@@ -50,18 +50,18 @@ Keywords: build, dependency maintenance, derivation, make,
         referential integrity
 Author: millerp@canb.auug.org.au (Peter Miller)
 Primary-site: http://www.canb.auug.org.au/~millerp/cook/
-        cook-2.30.README
-        cook-2.30.lsm
-        cook-2.30.spec
-        cook-2.30.tar.gz
-        cook-2.30.ug.ps.gz
-        cook-2.30.rm.ps.gz
+        cook-2.31.README
+        cook-2.31.lsm
+        cook-2.31.spec
+        cook-2.31.tar.gz
+        cook-2.31.ug.ps.gz
+        cook-2.31.rm.ps.gz
 Secondary-site: sunsite.unc.edu /pub/Linux/devel/make
-        cook-2.30.README
-        cook-2.30.lsm
-        cook-2.30.spec
-        cook-2.30.tar.gz
-        cook-2.30.ug.ps.gz
-        cook-2.30.rm.ps.gz
+        cook-2.31.README
+        cook-2.31.lsm
+        cook-2.31.spec
+        cook-2.31.tar.gz
+        cook-2.31.ug.ps.gz
+        cook-2.31.rm.ps.gz
 Copying-policy: GPL 2.0
 End

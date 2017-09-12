@@ -116,6 +116,7 @@ enum option_number_ty
         OPTION_UPDATE_MAX,      /* update utime for consistency - backwards! */
         OPTION_MATCH_MODE_REGEX, /* regex pattern matching (as opp native) */
         OPTION_TELL_POSITION,   /* add file and line when echoing commands */
+        OPTION_CTIME,           /* use both st_ctime and st_mtime */
 
         /*
          * If you add to this list, make sure you also add the option to

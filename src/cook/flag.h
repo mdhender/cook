@@ -66,6 +66,8 @@ enum flag_value_ty
         RF_CASCADE_OFF,
         RF_CLEARSTAT,
         RF_CLEARSTAT_OFF,
+        RF_CTIME,
+        RF_CTIME_OFF,
         RF_DEFAULT,
         RF_DEFAULT_OFF,
         RF_ERROK,

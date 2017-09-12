@@ -583,7 +583,7 @@ exit_status(char *cmd, int status, int errok)
          */
         scp = sub_context_new();
         sub_var_set_charstar(scp, "File_Name", cmd);
-        sub_var_set_charstar(scp, "Name", strsignal(c));
+        sub_var_set_charstar(scp, "Name", safe_strsignal(c));
         if (b)
         {
             error_intl

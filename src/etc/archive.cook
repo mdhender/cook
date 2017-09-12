@@ -46,8 +46,6 @@ integration-build-targets: [integration-build-targets];
 
 integration-build-targets +=
     archive/[project_minus].tar.gz
-    /* archive/[project_minus].shar.01.gz */
-    /* archive/[project_minus].patch.gz */
     [fromto etc/%.html archive/%.html
         [match_mask etc/%.html [source_files]]
     ]
@@ -222,20 +220,6 @@ source_file_order =
     po/[project_short].pot
     ;
 
-archive/[project_minus].shar.01.gz: [source_file_order]
-    set shallow
-{
-    parts = [glob archive/[project_minus].shar.*];
-    if [parts] then
-        rm [parts]
-            set clearstat;
-    /* assumes shar.3.49 available */
-    shar -n[project_minus] -a -c -oarchive/[project_minus].shar -L200
-        -s "'Peter Miller <millerp@canb.auug.org.au>'"
-        [resolve [source_file_order]];
-    gzip -9 -v archive/[project_minus].shar.*;
-}
-
 archive/[project_minus].tar.gz: [source_file_order]
     set shallow
 {
@@ -347,28 +331,6 @@ archive/[project_minus].README: lib/en/readme/readme.txt
     set shallow
 {
     cp [resolve [need]] [target];
-}
-
-patch-files =
-    [prepost "" ",P"
-        common/patchlevel.h
-        [stringset
-            [source_file_order]
-        -
-            common/patchlevel.h
-        ]
-    ];
-
-archive/[project_minus].patch.gz: etc/patches.sh [patch-files]
-    set shallow
-{
-    sh [resolve [need]] | gzip -9 > [target];
-}
-
-%0%,P: %0%: etc/patch.file.sh
-{
-    sh [resolve etc/patch.file.sh] [project] [change] %0% [resolve %0%]
-        > [target];
 }
 
 etc/%.html.d: etc/%.html
