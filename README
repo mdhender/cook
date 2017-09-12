@@ -77,12 +77,12 @@ ARCHIVE	SITE
        The latest version of cook is available on the Web from:
 
 	   URL:	   http://www.canb.auug.org.au/~millerp/cook/
-	   File:   cook-2.27.README	# the README from the tar file
-	   File:   cook-2.27.lsm	# LSM format description
-	   File:   cook-2.27.spec	# RedHat package specification
-	   File:   cook-2.27.rm.ps.gz	# PostScript of	the Reference Manual
-	   File:   cook-2.27.ug.ps.gz	# PostScript of	the User Guide
-	   File:   cook-2.27.tar.gz	# the complete source
+	   File:   cook-2.29.README	# the README from the tar file
+	   File:   cook-2.29.lsm	# LSM format description
+	   File:   cook-2.29.spec	# RedHat package specification
+	   File:   cook-2.29.rm.ps.gz	# PostScript of	the Reference Manual
+	   File:   cook-2.29.ug.ps.gz	# PostScript of	the User Guide
+	   File:   cook-2.29.tar.gz	# the complete source
 
        This Web	page also contains a few other pieces of software written by
        me.  Please have	a look if you are interested.
@@ -91,12 +91,12 @@ ARCHIVE	SITE
        will be able to find Cook on any	of its mirrors.
 
 	   URL:	   ftp://sunsite.unc.edu/pub/Linux/devel/make/
-	   File:   cook-2.27.README	# the README from the tar file
-	   File:   cook-2.27.lsm	# LSM format description
-	   File:   cook-2.27.spec	# RedHat package specification
-	   File:   cook-2.27.rm.ps.gz	# PostScript of	the Reference Manual
-	   File:   cook-2.27.ug.ps.gz	# PostScript of	the User Guide
-	   File:   cook-2.27.tar.gz	# the complete source
+	   File:   cook-2.29.README	# the README from the tar file
+	   File:   cook-2.29.lsm	# LSM format description
+	   File:   cook-2.29.spec	# RedHat package specification
+	   File:   cook-2.29.rm.ps.gz	# PostScript of	the Reference Manual
+	   File:   cook-2.29.ug.ps.gz	# PostScript of	the User Guide
+	   File:   cook-2.29.tar.gz	# the complete source
        This site is extensively	mirrored around	the world, so look for a copy
        near you	(you will get much better response).
 
@@ -128,7 +128,7 @@ BUILDING COOK
        BUILDING	file included in this distribution.
 
 COPYRIGHT
-       cook version 2.27
+       cook version 2.29
        Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996,
        1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007	Peter
        Miller; All rights reserved.
@@ -158,6 +158,29 @@ NEW IN THIS RELEASE
        following list is only a	summary; for excruciating detail, and also
        acknowlegements of those	who generously sent me feedback, please	see
        the etc/CHANGES.* files included	in this	distribution.
+
+   Version 2.29	(2007-Jun-22)
+       * There is a new	variable for specifying	the granularity	of the file
+       timestamps.  Most POSIX systems will support a value of 1.  Rather than
+       default to the worst case, the user can now specify the value in
+       seconds with a built-in cook variable.
+
+       * There is a new	recipe option avaibale called symlink-ingredients that
+       has the effect of creating symbolic links for ingredients which are
+       present on the search path, but not in the first	directory in the
+       search path.  This option creates the necessary symbolic	links.	This
+       is for use with brain dead tools, like GNU Automake, which don't	grok
+       search paths.
+
+   Version 2.28	(2007-Jun-5)
+       * The [print] function has been enhanced	so that	it is now able to
+       print more than one line, if you	include	a newline escape.
+
+       * A problem with	the Makefile has been fixed.
+
+       * This change fixes a problem building the temp file name code which
+       uses sprintf(). Basically, the code now uses snprintf() which is	better
+       and makes the problem go	away.
 
    Version 2.27	(2007-Mar-13)
        * An ANSI C compiler is now required to build Cook.
