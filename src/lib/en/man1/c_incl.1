@@ -1,0 +1,361 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1994, 1995, 1997-2002 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: manual entry for c_incl
+.\"
+.TH C_INCL 1 Cook "Reference Manual"
+.so z_name.so
+.ds n) c_incl
+.SH NAME
+\*(n) - determine dependencies
+.XX "c_incl(1)" "determine include dependencies"
+.SH SYNOPSIS
+.B \*(n)
+[
+.IR option ...
+]
+.I filename
+.br
+.B \*(n)
+.B -Help
+.br
+.B \*(n)
+.B -VERSion
+.SH DESCRIPTION
+The
+.I \*(n)
+program
+is used to traverse source files looking for include dependencies
+suitable for \f(CW[collect]\fPion or \f(CW#include-cooked\fP-ing by cook.
+.PP
+The filename ``-'' is understood to mean the standard input.
+When you use this file name, caching is ignored.
+.PP
+Several input languages are supported,
+see the options list for details.
+.br
+.ne 1i
+.SH OPTIONS
+The following options are understood.
+.TP 8n
+.B -C
+The source file is a C source file.
+It is assumed that it will have the dependencies resolved
+by the
+.IR cpp (1)
+command.
+The same include semantics as the
+.IR cpp (1)
+command will be employed.
+This is the default.
+This is short-hand for ``--language=c''
+.TP 8n
+.B --Language=\fIname\fP
+.RS
+This option may be used to specify the language of the source file.
+Know names include ``C'', ``M4'', ``optimistic'' and ``roff''.
+.PP
+The ``optimistic'' language will take on almost anything.  It accepts an
+\f[CW]include\fP keyword in any case, including mixed, with leading
+white space, but at most one leading punctuation character.  It assumes
+that the filename follows the include keyword and does not contain white
+space, and does not start or end with punctuation characters (it strips
+off any it may find).  The rest of the line is ignored.  The drawback is
+that it will sometimes recognise commands and other text as unintended
+include directives, hence the name.
+This is often used to recognise include directives in a wide variety of
+assembler input.
+.RE
+.TP 8n
+.B -Roff
+The source file is a *roff source file.
+It is assumed that it will have the dependencies resolved
+by the
+.IR roffpp (1)
+command.
+The same include semantics as the
+.IR roffpp (1)
+command will be employed.
+This is short-hand for ``--language=roff''
+.TP 8n
+.B -Verbose
+Tell what is happening.
+.TP 8n
+.BI -I path
+.br
+Specify include path, a la
+.IR cc (1).
+.TP 8n
+.B -I-
+.RS
+Any directories you specify with
+.B -I
+options before the
+.B -I-
+option are searched only for the case of \fI#include "file"\fP;
+they  are  not  searched for \fI#include <file>\fP.
+.PP
+If  additional  directories are specified with
+.B -I
+options after  the
+.BR -I- ,
+these directories are searched for all \fI#include\fP directives.
+(Ordinarily all
+.B -I
+directories are used this way.)
+.PP
+In addition, the
+.I -I-
+option inhibits the  use  of
+the current directory
+(where the current input file came from)
+as the first search directory for \fI#include "file"\fP.
+There is no way to override this effect of \fI-I-\fP.
+With \fI-I.\fP you can specify searching the directory which
+was current when \*(n) was invoked.
+That is not exactly the same
+as what the preprocessor does by default,
+but it is often satisfactory.
+.PP
+The \fI-I-\fP option does not inhibit the use of the standard
+system directories for header files.
+Thus, \fI-I-\fP and \fI-No_System\fP are independent.
+.RE
+.TP 8n
+.B -Absolute_Paths
+This option may be used to allow absolute paths in the output.
+This is usually the default.
+.TP 8n
+.B -No_Absolute_Paths
+This option may be used to exclude absolute paths from the output.
+.TP 8n
+.B -Absent_Local_Ignore
+.br
+For files included using a
+.I "#include ''filename.h''"
+directive,
+ignore the file if it cannot be found.
+.TP 8n
+.B -Absent_Local_Mention
+.br
+For files included using a
+.I "#include ''filename.h''"
+directive,
+print the file name even if the file cannot be found.
+This is the default (it probably needs to be built).
+.TP 8n
+.B -Absent_Local_Error
+.br
+For files included using a
+.I "#include ''filename.h''"
+directive,
+print a fatal error if the file cannot be found.
+.TP 8n
+.B -Absent_System_Ignore
+.br
+For files included with a
+.I "#include <filename.h>"
+directive,
+ignore the file if it cannot be found.
+This is the default (it was probably ifdef'ed out).
+.TP 8n
+.B -Absent_System_Mention
+.br
+For files included with a
+.I "#include <filename.h>"
+directive,
+print the file name even if the file cannot be found.
+.TP 8n
+.B -Absent_System_Error
+.br
+For files included with a
+.I "#include <filename.h>"
+directive,
+print a fatal error if the file cannot be found.
+.TP 8n
+.B -Absent_Program_Ignore
+.br
+If the file named on the command line cannot be found,
+behave as if the file were found, but was empty.
+.TP 8n
+.B -Absent_Program_Error
+.br
+If the file named on the command line cannot be found,
+print a fatal error message.
+This is the default.
+.TP 8n
+.B -Escape_Newlines
+This option may be used to request that newlines in the output are
+escaped with backslash (``\e'') characters.
+.TP 8n
+.B -Help
+.br
+Give information on how to use
+.IR \*(n) .
+.TP 8n
+\fB-EXclude\fP \fIfilename\fP
+This option may be used to nominate include file names which are not to
+be used.
+.TP 8n
+.B -VERSion
+.br
+Tell what version of
+.I \*(n)
+is being run.
+.TP 8n
+\fB-Interior_Files\fP \fIfilename\fP...
+This option may be used to tell \fIc_incl\fP about include files which
+don't exist yet.  This is because they are interior to the dependency graph,
+but \fIcook\fP(1) hasn't finished walking it yet.
+Often used with Cook's \f(CW[interior-files]\fP function.
+(\fBNote:\fP the \fIfilename\fP list has an arbitrary number of files;
+it ends at the next option or end-of-line,
+so you need to be careful where you put the input filename.)
+.TP 8n
+.B -No_System
+.br
+Do not search the
+.I /usr/include
+directory.
+By default this is searched last.
+This option implies the -No_Absolute_Paths option,
+unless explicitly contradicted.
+.TP 8n
+.B -CAche
+.br
+This option may be used to turn caching on.
+This is the default.
+.TP 8n
+.B -No_Cache
+.br
+This option may be used to turn caching off.
+.TP 8n
+\fB-PREfix\fP \fIstring\fP
+.br
+This option may be used to print a string
+before any of the filenames are printed.
+It will not be printed if no file names are printed.
+.TP 8n
+.B -Quote_FileNames
+This option may be used to have \fIc_incl\fP quote filenames.  This
+permits filenames to contain characters which are special to Cook,
+including spaces.
+.TP 8n
+\fB-SUFfix\fP \fIstring\fP
+.br
+This option may be used to print a string
+after all of the filenames are printed.
+It will not be printed if no file names are printed.
+.TP 8n
+\fB-Output\fP \fIfilename\fP
+This option may be used to specify the output file.
+Defaults to the standard output if not set.
+.TP 8n
+\fB-No_Source_Relative_Includes\fP
+This option will give a fatal error if a
+.I "#include ''filename.h''"
+directive is used.
+This is necessary when you are using Cook's \f(CWsearch_list\fP functionality
+to stitch together a baseline and a private work area.
+.TP 8n
+\fB-RECursion\fP
+This option may be used to specify that nested include files are to
+be scanned, so that their includes may also be discovered.  This is
+the default.
+.TP 8n
+\fB-No_RECursion\fP
+This option may be use to specify that nested include files are
+\fInot\fP to be scanned.  This option is recommended for use with the
+Cook \f(CWcascade-for\fP recipes.
+This option implies -\fBNo_Cache\fP, unless a \fB-Cache\fP option is specified.
+.TP 8n
+\fB-Remove_Leading_Path\fP \fIpath\fP
+This option may be used to remove path prefixes from the included filenames.
+May be used more than once.
+This is necessary when you are using Cook's \f(CWsearch_list\fP functionality
+to stitch together a baseline and a private work area;
+usually as ``\f(CW[prepost "-rlp=" "" [search_list]]\fP''
+.TP 8n
+\fB-STripdot\fP
+This option may be used to specify that leading redundant dot directories
+are to be removed from paths before processing.
+This is the default.
+.TP 8n
+\fB-No_STripdot\fP
+This option may be used to specify that leading redundant dot directories
+need not be removed from paths before processing.
+(Some path flattening may still occur.)
+.TP 8n
+\fB-Substitute_Leading_Path\fP \fIfrom\fP \fIto\fP
+This option may be used to modify path prefixes from the included filenames.
+May be used more than once.
+This is necessary when you are
+performing heterogeneous builds in the same directory tree.
+By using an ``arch'' variable to hold the architecture,
+and placing each architecture's objects in a separate directory tree,
+this option may be used as ``\f(CW-slp [arch] "'[arch]'"\fP''
+(The outer quotes protect from Cook, the inner quotes protect from the shell.)
+If you need more intricate editing, used \fIsed\fP(1).
+.PP
+Any other options will generate an error.
+.so o__rules.so
+.br
+.ne 1i
+.SH CACHING
+The caching mechanism use by the
+.I \*(n)
+program caches the results of searching files
+for include files (in a file called
+.I .\*(n)rc
+in the current directory).
+The cache is only refreshed when a file changes.
+.PP
+The use of this cache has been shown to dramatically increase the
+performance of the
+.I \*(n)
+program.
+Typically,
+only a small proportions files in a project change between builds,
+resulting in a very high cache hit rate.
+.PP
+When using caching,
+always use the same command line options,
+otherwise weird and wonderful things will happen.
+.PP
+The
+.I .\*(n)rc
+file is a binary file.
+If you wish to rebuild the cache,
+simply delete this file with the
+.IR rm (1)
+command.
+Being a binary file,
+the
+.I .\*(n)rc
+file is not portable across machines or operating systems,
+so you will need to delete it when you move your sources.
+It is a binary file for performance.
+.PP
+Accesses to the
+.I .\*(n)rc
+file use file locking, so recipies using
+.I \*(n)
+need not use the \f(CWsingle-thread\fP clause.
+.so z_exit.so
+.so copyright.so

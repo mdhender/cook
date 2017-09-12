@@ -1,0 +1,419 @@
+#!@PERL@
+#
+#	cook - file construction tool
+#	Copyright (C) 1998-2001 Endocardial Solutions Inc
+#
+#	This program is free software; you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation; either version 2 of the License, or
+#	(at your option) any later version.
+#
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
+#
+#	You should have received a copy of the GNU General Public License
+#	along with this program; if not, write to the Free Software
+#	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+#
+# MANIFEST: The cook_rsh Prel script.
+#
+
+# autoconf
+$datadir = "@datadir@";
+$libdir = "@libdir@";
+$bindir = "@bindir@";
+
+#
+# NAME
+#	cook_rsh
+#
+# SYNOPSIS
+#	cook_rsh <arch> <command> [ <argument>... ]
+#
+# DESCRIPTION
+#	The cook_rsh program is a wrapper around rsh which does simple
+#	load balancing.  It obtains its load information by running the
+#	rup(1) command, and selects the most suitable host hased on the
+#	architecture you specify, and the least load of all hosts of
+#	that architecture.
+#
+#	The first command line argument is the architecture name (with
+#	_[CL]) which we will use to get the list of possible hosts.
+#	From that list we will choose the best candidate for the actual
+#	rsh requested and exec that using rsh.	The choice for now is
+#	based on simple load.
+#
+# COOKBOOKS
+#	In order to make use of this program, somewhere in your cookbook,
+#	you need to add a line which reads
+#
+#		parallel_rsh = "cook_rsh";
+#
+#	If the host chosen is the same as the caller (build host)
+#	then this program just exec the command skipping the rsh.
+#	So it costs nothing to use this in a one machine network!
+#
+#	For each recipe you want distributed to a remote host, you need
+#	to add a host-binding attribute to.  Typical usage is where you
+#	have a muti-architecture build.
+#
+#		%1/%0%.o: %0%.c
+#			host-binding %1
+#		{
+#			cc -o [target] -c [resolve %0%.c];
+#		}
+#
+#	In the recipe given here, each architecture has its object files
+#	placed into a separate architecture-specific directory tree.
+#	The architecture name (%1) is used in the host-binding, so
+#	that the compiles may be load-balanced to all machines of that
+#	architecture.
+#
+#	If you need a command to run on a specific host (say, because
+#	that's where a specific application license resides), then simply
+#	use the host name in the host-binding attribute, rather than an
+#	architecture name.
+#
+# DEFINING THE CLASSES
+#	The @datadir@/host_lists.pl file is expected to exist, and to
+#	contain variable definitions used to determine if hosts are
+#	members of particular architectures.
+#
+# SYSLOG LOGGING
+#	Typical commands seen during a build would look like
+#		sh -c 'cd /aegis/dd/gumby2.2.C079 && \
+#		sh -ce /aegis/dd/gumby2.2.C079/.6.1; \
+#		echo $? > /aegis/dd/gumby2.2.C079/.6.2'
+#	So we can extract the project/ change from the command quite
+#	easily and logging it via syslog would be a trivial addition.
+#
+# OPTIONS
+#	This command is not usually given any options.
+#
+#	-h	Help - show usage info
+#	-v	Verbose - report choice
+#	-l<facility> Use syslog logging
+#	-s	use ssh(1) instead of rsh(1)
+#	-T<n>	Trace value for testing
+#
+# FILES
+#	@datadir@/exclude.hosts
+#		This file is used to list those host which must not be
+#		used by this script.  Simply list excuded hosts, one
+#		hostname per line.  If the file is absent, all hosts
+#		reported by rup(1) may be used.
+#	@datadir@/host_lists.pl
+#		This file defines the classes of hosts for each architecture.
+#
+# AUTHOR
+#	Jerry Pendergraft <jerry@endocardial.com>
+#
+require 5.004;
+use Getopt::Std;
+use Sys::Syslog;
+
+sub usage
+{
+    warn <<"EO_USAGE";
+Usage: cook_job_dist [options] architecture_name rsh_arguments
+  # Accepts options:
+  #  -h : Help - show this usage info
+  #  -v : Verbose - report choice
+  #  -l<facility> : syslog Logging execution info to <facility>
+  #  -s : use Ssh instead of rsh for remote execution
+  #  -T<n> : Trace value for testing
+EO_USAGE
+
+    die "\n";
+}
+$opt_h = $opt_l = $opt_s = $opt_T = $opt_v = 0;
+getopts('hl:svT:');
+  # if they asked for help - just do it
+&usage if $opt_h;
+
+$Trace = $opt_T || 0;
+$SysLogFacility = $opt_l || "";
+$RemoteCommand  = $opt_s || "rsh";
+
+unshift(@INC, "$datadir");
+  # Site defines active hosts by type
+require "host_lists.pl";
+
+  # defines Excluded - so we can exclude on the fly
+
+%Excludes = &read_excludes("$datadir/exclude.hosts");
+
+if ( grep { /all/i } keys %Excludes ) # check for special token all
+{
+    warn "Excluding all hosts\n" if $Trace & 2;
+    die "all hosts are excluded\n";
+}
+else
+{
+    my ($me, $ident, $target, $logmsg, $onArch);
+
+      # First argument is desired architecture string
+    my $remote_arch = shift(@ARGV);
+    chomp($remote_arch);
+    my @hostlist = ();
+      # is given argument really an architecure or just a machine name
+    if( defined($ArchNames{$remote_arch}) )
+    {
+        warn "Arch: $remote_arch\n" if                          $Trace & 1;
+        warn "Potential: ",
+           join(",", sort @{$ArchNames{$remote_arch}}), "\n" if $Trace & 16;
+        warn "Excluding: ",
+           join(",", sort keys %Excludes), "\n" if              $Trace & 2;
+
+        @hostlist = grep {!defined($Excludes{$_})} @{$ArchNames{$remote_arch}};
+
+        warn "Checking:", join(",", @hostlist), "\n" if         $Trace & 4;
+	$onArch = $remote_arch;
+    }
+    else       # assume it is a machine name and just check it
+    {
+        @hostlist = ( $remote_arch );
+	$onArch = '';
+    }
+    my $best_host = &freehosts(@hostlist);
+
+    my $cmd = join(" ", @ARGV);
+
+    ($ident, $target) = &cmd_info($cmd);
+
+    chop($me = `uname -n`);
+
+    my $start_time = time();	    # get time of start
+
+    if( ! $best_host =~ /\w+/ )     # did not resolve a viable host
+    {
+        die "No viable host for $remote_arch\n";
+    }
+    elsif ( $me eq $best_host )	    # execute locally
+    {
+	$logmsg = "$onArch(local)$best_host ";
+	warn sprintf("%s %s\n", $logmsg, $target) if        $opt_v;
+	warn "trying local($ident) command: $cmd\n" if      $Trace & 8;
+        system $cmd unless                                  $Trace > 64;
+    }
+    else
+    {
+	$logmsg = "$onArch\@$best_host ";
+	warn sprintf("%s %s\n", $logmsg, $target) if        $opt_v;
+          # one more level of evaluation during rsh
+          # so we have to protect any command variables such as: $?
+	$cmd =~ s!\$!\\\$!g;
+
+        warn "trying rsh($ident) command: \"$cmd\"\n" if    $Trace & 8;
+          # run on remote host using desired method
+        system "$RemoteCommand $best_host \"$cmd\"" unless  $Trace > 64;
+    }
+
+    if( $SysLogFacility )                # logging requested
+    {
+	$logmsg = $logmsg
+		. $ident . " "
+		. &timestamp($start_time) . " "
+		. &timestamp(time()) . " $target";
+
+	warn "logmsg:$logmsg:\n" if                         $Trace & 16;
+
+	openlog('CookJob', 'nowait', $SysLogFacility);
+	syslog('info', "$logmsg");
+	closelog();
+    }
+}
+
+exit $?;
+
+  # Get a list of hosts in ascending load order
+  # then select either the whole list or $qty from the top
+  # As there is a possibliity that hosts_by_load could return
+  # an empty list due to all possible machines timing out on
+  # the rup. We allow up to 4 retries.
+sub freehosts
+{
+    local(@usehosts) = @_;
+    local(@hosts);
+    my $tries = 0; my $max_tries = 4;
+
+    until( (scalar(@hosts = &hosts_by_load(@usehosts)))
+        || ($tries++ > $max_tries) )
+    {
+	warn "retry:$tries\n" if                            $Trace & 64;
+    }
+
+    $hosts[0]
+}
+
+sub timestamp
+{
+    my $time = shift;
+
+    my( $sec,$min,$hours,$mday,$mon,$year) = localtime($time);
+
+    sprintf("%4d%02d%02d%02d%02d%02d", $year + 1900,
+	$mon + 1, $mday, $hours, $min, $sec);
+}
+
+sub cmd_info
+{
+    local $cmd = shift;
+    my $ident;
+     #
+     # parse the identifier (project.C000) out of the path
+     #
+    if( $cmd =~ m!/[^/]+/(\S+/delta\d+\.\d+)\s+! )
+    {
+	$ident = $1;
+
+	$ident =~ s!/branch!!g;
+	$ident =~ s!/delta\d+!.delta!;
+    }
+    elsif( $cmd =~ m!/(\w+\.[\w.]+)! )
+    {
+	$ident = $1;
+    }
+
+    my $target = 'Unknown';
+     #
+     # parse the script filename from the command
+     # file is named .\d+.\d+ but be general and
+     # allow for a path name as well.
+     #
+    if( $cmd =~ m!sh\s+-ce*\s+([\w./]+)[\s;]+! )
+    {
+	my $script = $1;
+
+	if( open(SH, "<$script") )
+	{
+	    while(<SH>)
+	    {
+		if( m!-o\s+(\S+)! )             # compile to .o file
+		{
+		    $target = $1;
+		    $target =~ s!.+/!!;
+		    last;
+		}
+		elsif( m!ar\s+rcl\s+(\S+)! )    # archive library
+		{
+		    $target = $1;
+		    $target =~ s!.+/!!;
+		    last;
+		}
+	    }
+	    close(SH);
+	}
+	else
+	{
+	    warn "failopen:$script\n" if                        $Trace & 32;
+	}
+    }
+
+    ($ident, $target);
+}
+
+# Given a list of hostnames, checks their load and returns list
+# in load order (ascending)
+
+sub hosts_by_load
+{
+    local(@hlist) = @_;
+    local(%hosts) = ();
+
+     # we build up a shell script to do the actual checking
+     # Why shell you ask?, well it is because we need to have
+     # the background process pids to kill them off and
+     # avoid long timeouts for rup machine-not-there
+     # the other alternative would be to do a
+     # fork here and set process group so the group could be
+     # killed. Do that later maybe
+
+    my $shell_cmd = "for host in ";    # loop over potential hosts
+
+    foreach my $host (@hlist)
+    {
+        $shell_cmd .= "$host ";        # this being the list
+    }
+
+    $shell_cmd .= " ;\ndo\n"             # loop
+                 # run rup in background so it won't hang
+               .  "(rup \$host 2>/dev/null)& \n"
+                 # get its pid and save in unique variable
+               .  "eval \${host}pid=\$!\n"
+                 # Now spawn another background process to kill the rup pid
+               .  "(sleep 1;"
+               .  "eval \"kill -15 \\\${\${host}pid} 2>/dev/null\")&\n"
+                 # end of the loop for hosts
+               .  "done"
+                 # Now munge the output to what we want
+                 # delete all commas
+               .  " | tr -d ',' |"
+                 # and just print the host name and current load
+               .  " awk \"{print \\\$1, \\\$(NF-2)}\" \n"
+               ;
+
+    if ( open(LOADS, "/bin/sh -c \'$shell_cmd\' |") )
+    {
+	my $favored = 'build\d+';
+        my $factor  = 1.1;	# who knows the best number
+	my $host;               # machine who called us
+        chop($host = `uname -n`);
+
+        while(<LOADS>)
+        {
+	    local($mach, $load);
+            chop;
+            warn "got:$_\n" if                              $Trace & 4096;
+            if( ($mach,$load) = /^\s*(\w+)\s+([\d.]+)/ )
+            {
+		 # apply the fudge factor to favor "build only" machines
+                 # and the caller is favored as well
+                unless ( ($mach eq $host)
+	              || ($mach =~ /$favored/o ) )
+		{
+		    $load += $factor;
+		    warn sprintf("adjust:%-8s %0.3f\n",
+				 $mach, $load) if           $Trace & 8192;
+		}
+                 # save the machine name and its adjusted load
+                $hosts{$mach} = $load;
+                warn sprintf("use: %-8s %0.3f\n",
+			     $mach, $load) if               $Trace & 2048;
+            }
+        }
+    }
+    close(LOADS);
+
+    sort { $hosts{$a} <=> $hosts{$b} } keys %hosts;
+}
+
+
+sub read_excludes
+{
+    local($xfile) = shift;
+    local(%xhosts) = ();
+
+      # If the exclude file exists read it - otherwise assume none
+      #
+    if( open(EXCL, $xfile) )
+    {
+	while(<EXCL>)
+	{
+	    chop;
+	    s/\s*\#.*$//;	# strip comments
+	    s/^\s+//;		# strip leading spaces
+	    s/\s+$//;		# and trailing space
+
+	    if( /\w+/ )
+	    {
+		$xhosts{$_}++;	# tally the given machine name
+	    }
+	}
+	close(EXCL);
+    }
+
+    %xhosts;
+}

@@ -1,0 +1,38 @@
+/*
+ * NAME
+ *	rcs - extract files from RCS
+ *
+ * DESCRIPTION
+ *	This cookbook is used to extract files from RCS
+ *
+ * RECIPES
+ *	%: RCS/%,v	extract files from RCS
+ *	%: %,v		extract files from RCS
+ *
+ * VARIABLES
+ *	co		the RCS checkout command
+ *	co_flags	flags for the co command, default empty
+ *
+ * MANIFEST: cookbook for using RCS
+ */
+
+#pragma once
+
+if [not [defined co]] then
+	co = co;
+if [not [defined co_flags]] then
+	co_flags = ;
+
+%0%: %0RCS/%,v
+	set no-implicit-ingredients
+	if [exists %0RCS/%,v]
+{
+	[co] [co_flags] %0RCS/%,v %0%;
+}
+
+%0%: %0%,v
+	set no-implicit-ingredients
+	if [exists %0%,v]
+{
+	[co] [co_flags] %0%,v %0%;
+}

@@ -1,0 +1,1107 @@
+Filename	Description
+----------	-------------
+MANIFEST	This file.
+aegis.conf	 instructions to aegis, per-project configuration
+c_incl/cache.c	 functions to manipulate include file cache
+c_incl/cache.h	 interface definition for c_incl/cache.c
+c_incl/flatten.c	 functions to manipulate flattens
+c_incl/flatten.h	 interface definition for flatten.c
+c_incl/lang.c	 functions to manipulate source language seclection
+c_incl/lang.h	 interface definition for c_incl/lang.c
+c_incl/lang_c.c	 functions to scan C language files
+c_incl/lang_c.h	 interface definition for c_incl/lang_c.c
+c_incl/lang_m4.c	 functions to scan m4 source files
+c_incl/lang_m4.h	 interface definition for c_incl/lang_m4.c
+c_incl/lang_optimis.c	 functions to scan source files
+c_incl/lang_optimis.h	 interface definition for c_incl/lang_optimis.c
+c_incl/lang_roff.c	 functions to scan *roff source files
+c_incl/lang_roff.h	 interface definition for c_incl/lang_roff.c
+c_incl/main.c	 operating system entry point, and command line argument parsing
+c_incl/os.c	 functions to isolate operating system interface
+c_incl/os_interface.h	 interface definition for c_incl/os.c
+c_incl/sniff.c	 functions to scan source files looking for include files
+c_incl/sniff.h	 interface definition for c_incl/sniff.c
+c_incl/stripdot.c	 functions to manipulate stripdots
+c_incl/stripdot.h	 interface definition for stripdot.c
+common/ac/ar.h	 isolate <ar.h> differences
+common/ac/ctype.h	 insulate against <ctype.h> vagueries
+common/ac/dirent.h	 insulate against <dirent.h> vs <ndir.h> differences
+common/ac/errno.h	 insulation against <errno.h> valueries
+common/ac/fcntl.h	 insulate against <fcntl.h> vs <sys/file.h> differences
+common/ac/libintl.c	 implement missing functions from <libintl.h>
+common/ac/libintl.h	 insulate against <libintl.h> presence or absence
+common/ac/limits.h	 insulate against <limits.h> presence or absence
+common/ac/locale.h	 insulate against <locale.h> presence or absence
+common/ac/mntent.c	 functions to implement mntent stubs
+common/ac/mntent.h	 presence vs absence insulation for <mntent.c>
+common/ac/regex.h	 insulation against <rxposix.h> vagueries
+common/ac/signal.h	 insulate <signal.h> vagueries
+common/ac/stdarg.h	 insulate against <varargs.h> vs <stdarg.h> differences
+common/ac/stddef.h	 insulate against <stddef.h> presence or absence
+common/ac/stdio.h	 insulate against <stdio.h> vagueries
+common/ac/stdlib.c	 implement missing functions from <stdlib.h>
+common/ac/stdlib.h	 insulate against <stdlib.h> presence or absence
+common/ac/string.c	 functions to implement missing ANSI C <string.h> functions
+common/ac/string.h	 insulate against <string.h> vs <strings.h> differences
+common/ac/sys/ioctl.h	 interface definition for ioctl.c
+common/ac/sys/utsname.c	 functions to manipulate utsnames
+common/ac/sys/utsname.h	 presence vs absence insulation for sys/utsname.h
+common/ac/termios.h	 insulate against <sys/ioctl.h> vs <termios.h> differences
+common/ac/time.c	 impliment missing functions from <time.h>
+common/ac/time.h	 insulate against <time.h> vs <sys/time.h> differences
+common/ac/unistd.h	 insulate against <unistd.h> presence or absence
+common/ac/utime.h	 presence vs absence insulation for <utime.h>
+common/ac/wchar.c	 impliment missing functions from <wchar.h>
+common/ac/wchar.h	 insulate against <wchar.h> presence or absence
+common/ac/wctype.c	 impliment missing functions from <wctype.h>
+common/ac/wctype.h	 insulate against <wctype.h> presence or absence
+common/arglex.c	 functions to perform lexical analysis on command line arguments
+common/arglex.h	 interface definition for common/arglex.c
+common/config.messy.h	 more configuration stuff
+common/env.c	 functions to manipulate environment variables
+common/env.h	 interface definition for common/env.c
+common/error.c	 functions to report errors
+common/error.h	 interface definition for common/error.c
+common/error_intl.c	 functions to manipulate error_intls
+common/error_intl.h	 interface definition for common/error_intl.c
+common/error_intl/close.c	 functions to emit close error messages
+common/error_intl/open.c	 functions to emit open error messages
+common/error_intl/read.c	 functions to emit read error messages
+common/error_intl/stat.c	 functions to emit stat error messages
+common/error_intl/unlink.c	 functions to emit unlink error messages
+common/error_intl/write.c	 functions to emit write error messages
+common/exeext.c	 functions to manipulate executable file extensions
+common/exeext.h	 interface definition for common/exeext.c
+common/fflush_slow.c	 functions to manipulate fflush_slows
+common/fflush_slow.h	 interface definition for fflush_slow.c
+common/fp.c	 functions to manipulate fingerprints
+common/fp.h	 interface definition for common/fp.c
+common/fp/README	
+common/fp/cksum.c	 functions to manipulate POSIX cksum fingerprints
+common/fp/cksum.h	 interface definition for common/fp/cksum.c
+common/fp/combined.c	 functions to manipulate combined fingerprints
+common/fp/combined.h	 interface definition for common/fp/combined.c
+common/fp/crc32.c	 functions to manipulate crc32 fingerprints
+common/fp/crc32.h	 interface definition for common/fp/crc32.c
+common/fp/ident.c	 functions to manipulate identifier fingerprints
+common/fp/ident.h	 interface definition for ident.h
+common/fp/len.c	 functions to manipulate length fingerprints
+common/fp/len.h	 interface definition for common/fp/len.c
+common/fp/md5.c	 functions to manipulate md5 fingerprints
+common/fp/md5.h	 interface definition for common/fp/md5.c
+common/fp/snefru.c	 functions to manipulate snefru fingerprints
+common/fp/snefru.h	 interface definition for common/fp/snefru.c
+common/fstrcmp.c	 functions to make fuzzy comparisons between strings
+common/fstrcmp.h	 interface definition for common/fstrcmp.c
+common/gmatch.c	 functions to manipulate gmatchs
+common/gmatch.h	 interface definition for common/gmatch.c
+common/help.c	 functions to provide consistent -Help behaviour
+common/help.h	 interface definition for comon/help.c
+common/home_directo.c	 functions to find the home directory
+common/home_directo.h	 interface definition for common/home_directo.c
+common/input.c	 functions for reading input
+common/input.h	 interface definition for common/input.c
+common/input/crlf.c	 functions for reading input and filtering out CR LF sequences
+common/input/crlf.h	 interface definition for common/input/crlf.c
+common/input/file.c	 functions for reading input from files
+common/input/file.h	 interface definition for common/input/file.c
+common/input/file_text.c	 functions to read input from text files
+common/input/file_text.h	 interface definition for common/input/file_text.c
+common/input/null.c	 functions to manipulate nulls
+common/input/null.h	 interface definition for null.c
+common/input/private.c	 functions for manipulating input streams
+common/input/private.h	 class internal definitions for input streams
+common/input/pushba_trans.c	 functions to transfer pushback buffer
+common/input/stdin.c	 functions to read the standard inptu
+common/input/stdin.h	 interface definition for common/input/stdin.c
+common/itab.c	 functions to manipulate itabs
+common/itab.h	 interface definition for common/itab.c
+common/language.c	 functions to manipulate languages
+common/language.h	 interface definition for common/language.c
+common/libdir.c	 functions to locate the library directory
+common/libdir.h	 interface definition for common/libdir.c
+common/main.h	 common defined, including DEBUG define
+common/mem.c	 functions to manipulate dynamic memory
+common/mem.h	 interface definition for common/mem.c
+common/mprintf.c	 functions to manipulate mprintfs
+common/mprintf.h	 interface definition for common/mprintf.c
+common/noreturn.h	 careful definition of ``noreturn'' function attribute
+common/page.c	 functions to manipulate pages
+common/page.h	 interface definition for common/page.c
+common/progname.c	 functions to manipulate the program name
+common/progname.h	 interface definition for common/progname.c
+common/quit.c	 functions to quit the program
+common/quit.h	 interface definition for common/quit.c
+common/star.c	 functions to manipulate stars
+common/star.h	 interface definition for common/star.c
+common/str.c	 functions to manipulate shared strings
+common/str.h	 interface definition for common/str.c
+common/str/cat2.c	 functions to catenate two strings
+common/str/cat3.c	 functions to catenate three strings
+common/str/downcase.c	 functions to downcase strings
+common/str/quote.c	 functions to manipulate quotes
+common/str/re.c	 functions to manipulate regular expressions
+common/str/re.h	 interface definition for common/str/re.c
+common/str/substitute.c	 functions to substitute strings
+common/str/upcase.c	 functions to upcase strings
+common/str_list.c	 functions to manipulate lists of strings
+common/str_list.h	 interface definition for common/str_list.c
+common/stracc.c	 functions to accumulate strings
+common/stracc.h	 interface definition for common/stracc.c
+common/sub.c	 functions to perform $ substitutions
+common/sub.h	 interface definition for common/sub.c
+common/sub/basename.c	 functions to manipulate basenames
+common/sub/basename.h	 interface definition for common/sub/basename.c
+common/sub/date.c	 functions to manipulate dates
+common/sub/date.h	 interface definition for common/sub/date.c
+common/sub/dirname.c	 functions to manipulate dirnames
+common/sub/dirname.h	 interface definition for common/sub/dirname.c
+common/sub/downcase.c	 functions to manipulate downcases
+common/sub/downcase.h	 interface definition for common/sub/downcase.c
+common/sub/errno.c	 functions to manipulate errnos
+common/sub/errno.h	 interface definition for common/sub/errno.c
+common/sub/expr.c	 functions to manipulate exprs
+common/sub/expr.h	 interface definition for common/sub/expr.c
+common/sub/expr_gram.h	 interface definition for common/sub/expr_gram.y
+common/sub/expr_gram.y	 functions to parse expression grammar
+common/sub/expr_lex.c	 functions to manipulate expr_lexs
+common/sub/expr_lex.h	 interface definition for common/sub/expr_lex.c
+common/sub/ident.c	 functions to manipulate idents
+common/sub/ident.h	 interface definition for common/sub/ident.c
+common/sub/left.c	 functions to manipulate lefts
+common/sub/left.h	 interface definition for common/sub/left.c
+common/sub/length.c	 functions to manipulate lengths
+common/sub/length.h	 interface definition for common/sub/length.c
+common/sub/plural.c	 functions to manipulate plurals
+common/sub/plural.h	 interface definition for common/sub/plural.c
+common/sub/private.h	 interface definition for common/sub.c private internals
+common/sub/progname.c	 functions to manipulate prognames
+common/sub/progname.h	 interface definition for common/sub/progname.c
+common/sub/right.c	 functions to manipulate rights
+common/sub/right.h	 interface definition for common/sub/right.c
+common/sub/upcase.c	 functions to manipulate upcases
+common/sub/upcase.h	 interface definition for common/sub/upcase.c
+common/sub/zero_pad.c	 functions to manipulate zero_pads
+common/sub/zero_pad.h	 interface definition for common/sub/zero_pad.c
+common/symtab.c	 functions to manipulate symbol tables
+common/symtab.h	 interface definition for common/symtab.c
+common/timing.c	 functions to manipulate timings
+common/timing.h	 interface definition for common/timing.c
+common/trace.c	 functions to report execution traces
+common/trace.h	 interface definition for common/trace.c
+common/verbose.c	 functions to manipulate verboses
+common/verbose.h	 interface definition for verbose.c
+common/version-stmp.c	 functions to manipulate version-stmps
+common/version-stmp.h	 interface definition for common/version-stmp.c
+common/version.c	 functions to provide common -VERSion behaviour
+common/version.h	 interface definition for common/version.c
+common/wstr.c	 wide string manipulation functions
+common/wstr.h	 interface definition for common/wstr.c
+common/wstr_list.c	 functions to manipulate lists of wide strings
+common/wstr_list.h	 interface definition for common/wstr_list.c
+cook/archive.c	 functions to manipulate archive files
+cook/archive.h	 interface definition for cook/archive.c
+cook/builtin.c	 functions to access the builtin functions
+cook/builtin.h	 interface definition for cook/builtin.c
+cook/builtin/addprefix.c	 functions to implement the builtin addprefix function
+cook/builtin/addprefix.h	 interface definition for cook/builtin/addprefix.c
+cook/builtin/addsuffix.c	 functions to implement the builtin addsuffix function
+cook/builtin/addsuffix.h	 interface definition for cook/builtin/addsuffix.c
+cook/builtin/basename.c	 functions to implement the builtin basename function
+cook/builtin/basename.h	 interface definition for cook/builtin/basename.c
+cook/builtin/boolean.c	 functions to implement the builtin functions
+cook/builtin/boolean.h	 interface definition for cook/builtin/boolean.c
+cook/builtin/cando.c	 functions to manipulate candos
+cook/builtin/cando.h	 interface definition for cook/builtin/cando.c
+cook/builtin/collect.c	 functions to implement the builtin collect functions
+cook/builtin/collect.h	 interface definition for cook/builtin/collect.c
+cook/builtin/cook.c	 functions to implement the builtin functions
+cook/builtin/cook.h	 interface definition for cook/builtin/cook.c
+cook/builtin/defined.c	 functions to implement the builtin defined function
+cook/builtin/defined.h	 interface definition for cook/builtin/defined.c
+cook/builtin/dos.c	 functions to manipulate doss
+cook/builtin/dos.h	 interface definition for cook/builtin/dos.c
+cook/builtin/execute.c	 functions to implement the builtin execute function
+cook/builtin/execute.h	 interface definition for cook/builtin/execute.c
+cook/builtin/exists.c	 functions to implement the builtin exists function
+cook/builtin/exists.h	 interface definition for cook/builtin/exists.c
+cook/builtin/expr.c	 functions to implement the builtin expr function
+cook/builtin/expr.h	 interface definition for cook/builtin/expr.c
+cook/builtin/expr_lex.c	 functions to manipulate expr_lexs
+cook/builtin/expr_lex.h	 interface definition for cook/builtin/expr_lex.c
+cook/builtin/expr_parse.h	 interface definition for cook/builtin/expr_parse.c
+cook/builtin/expr_parse.y	 functions to manipulate expr_parse.ys
+cook/builtin/filter_out.c	 functions to implement the builtin filter_out function
+cook/builtin/filter_out.h	 interface definition for cook/builtin/filter_out.c
+cook/builtin/find_command.c	 functions to implement the builtin functions
+cook/builtin/find_command.h	 interface definition for cook/builtin/find_command.c
+cook/builtin/findstring.c	 functions to implement the findstring builtin function
+cook/builtin/findstring.h	 interface definition for cook/builtin/findstring.c
+cook/builtin/getenv.c	 functions to implement the builtin getenv function
+cook/builtin/getenv.h	 interface definition for cook/builtin/getenv.c
+cook/builtin/glob.c	 functions to perform shell-style file pattern matching
+cook/builtin/glob.h	 interface definition for cook/builtin/glob.c
+cook/builtin/home.c	 functions to implement the home builtin function
+cook/builtin/home.h	 interface definition for cook/builtin/home.c
+cook/builtin/interi_files.c	 functions to implement the interior_files builtin function
+cook/builtin/interi_files.h	 interface definition for cook/builtin/interi_files.c
+cook/builtin/join.c	 functions to implement the builtin join function
+cook/builtin/join.h	 interface definition for cook/builtin/join.c
+cook/builtin/match.c	 functions to implement the builtin functions
+cook/builtin/match.h	 interface definition for cook/builtin/match.c
+cook/builtin/mtime.c	 functions to manipulate mtimes
+cook/builtin/mtime.h	 interface definition for cook/builtin/mtime.c
+cook/builtin/opsys.c	 functions to implement the builtin os function
+cook/builtin/opsys.h	 interface definition for cook/builtin/opsys.c
+cook/builtin/options.c	 functions to implement the builtin options function
+cook/builtin/options.h	 interface definition for cook/builtin/options.c
+cook/builtin/pathname.c	 functions to implement the builtin pathname functions
+cook/builtin/pathname.h	 interface definition for cook/builtin/pathname.c
+cook/builtin/positional.c	 functions to implement the builtin positional functions
+cook/builtin/positional.h	 interface definition for cook/builtin/positional.c
+cook/builtin/print.c	 functions to implement the print builtin function
+cook/builtin/print.h	 interface definition for cook/builtin/print.c
+cook/builtin/private.c	 functions to manipulate privates
+cook/builtin/private.h	 interface definition for cook/builtin/private.c
+cook/builtin/read.c	 functions to implement the read builtin function
+cook/builtin/read.h	 interface definition for read.c
+cook/builtin/readlink.c	 functions to manipulate readlinks
+cook/builtin/readlink.h	 interface definition for cook/builtin/readlink.c
+cook/builtin/relati_dirna.c	 functions to manipulate relati_dirnas
+cook/builtin/relati_dirna.h	 interface definition for cook/builtin/relati_dirna.c
+cook/builtin/resolve.c	 functions to manipulate resolves
+cook/builtin/resolve.h	 interface definition for cook/builtin/resolve.c
+cook/builtin/sort_newest.c	 functions to manipulate sort_newests
+cook/builtin/sort_newest.h	 interface definition for cook/builtin/sort_newest.c
+cook/builtin/split.c	 functions to implement the split builtin function
+cook/builtin/split.h	 interface definition for cook/builtin/split.c
+cook/builtin/stringset.c	 functions to implement the builtin stringset function
+cook/builtin/stringset.h	 interface definition for cook/builtin/stringset.c
+cook/builtin/strip.c	 functions to implement the strip builtin function
+cook/builtin/strip.h	 interface definition for cook/builtin/strip.c
+cook/builtin/stripdot.c	 functions to manipulate stripdots
+cook/builtin/stripdot.h	 interface definition for stripdot.c
+cook/builtin/subst.c	 functions to implement builtin subst function
+cook/builtin/subst.h	 interface definition for cook/builtin/subst.c
+cook/builtin/substr.c	 functions to implement builtin substr function
+cook/builtin/substr.h	 interface definition for cook/builtin/substr.c
+cook/builtin/suffix.c	 functions to implement the builtin suffix function
+cook/builtin/suffix.h	 interface definition for cook/builtin/suffix.c
+cook/builtin/text.c	 functions to implement the builtin text functions
+cook/builtin/text.h	 interface definition for cook/builtin/text.h
+cook/builtin/thread-id.c	 functions to implement the builtin thread-id function
+cook/builtin/thread-id.h	 interface definition for cook/builtin/thread-id.c
+cook/builtin/unsplit.c	 functions to implement the unsplit builtin function
+cook/builtin/unsplit.h	 interface definition for cook/builtin/unsplit.c
+cook/builtin/uptodate.c	 functions to manipulate uptodates
+cook/builtin/uptodate.h	 interface definition for cook/builtin/uptodate.c
+cook/builtin/word.c	 functions to implement builtin word function
+cook/builtin/word.h	 interface definition for cook/builtin/word.c
+cook/builtin/wordlist.c	 functions to implement the builtin wordlist function
+cook/builtin/wordlist.h	 interface definition for wordlist.c
+cook/builtin/write.c	 functions to implement the write builtin function
+cook/builtin/write.h	 interface definition for cook/builtin/write.c
+cook/cascade.c	 functions to manipulate cascades
+cook/cascade.h	 interface definition for cook/cascade.c
+cook/cook.c	 functions to cook targets
+cook/cook.h	 interface definition for cook/cook.c
+cook/desist.c	 functions to manipulate desists
+cook/desist.h	 interface definition for cook/desist.c
+cook/dir_part.c	 functions to manipulate directory parts
+cook/dir_part.h	 interface definition for cook/dir_part.c
+cook/expr.c	 functions to manipulate expression trees
+cook/expr.h	 interface definition for cook/expr.c
+cook/expr/catenate.c	 functions to manipulate expression catenate nodes
+cook/expr/catenate.h	 interface definition for cook/expr/catenate.c
+cook/expr/constant.c	 functions to manipulate expression constant nodes
+cook/expr/constant.h	 interface definition for cook/expr/constant.c
+cook/expr/function.c	 functions to manipulate expression function nodes
+cook/expr/function.h	 interface definition for cook/expr/function.c
+cook/expr/list.c	 functions to manipulate expression lists
+cook/expr/list.h	 interface definition for cook/expr/list.c
+cook/expr/position.c	 functions to manipulate expression positions
+cook/expr/position.h	 interface definition for cook/expr/position.c
+cook/fingerprint.c	 functions to manipulate fingerprints
+cook/fingerprint.h	 interface definition for cook/fingerprint.c
+cook/fingerprint/calc_string.c	 functions to calculate checksum of a string
+cook/fingerprint/calculate.c	 functions to manipulate calculates
+cook/fingerprint/filename.c	 functions to manipulate filenames
+cook/fingerprint/filename.h	 interface definition for cook/fingerprint/filename.c
+cook/fingerprint/find.c	 functions to manipulate finds
+cook/fingerprint/find.h	 interface definition for cook/fingerprint/find.c
+cook/fingerprint/gram.h	 interface definition for cook/fingerprint/gram.y
+cook/fingerprint/gram.y	 functions to manipulate the persistent fingerprint cache
+cook/fingerprint/ingredients.c	 functions to manipulate ingredients fingerprints
+cook/fingerprint/lex.c	 functions to do lexical analysis on the fingerprint cache file
+cook/fingerprint/lex.h	 interface definition for cook/fingerprint/lex.c
+cook/fingerprint/record.c	 functions to manipulate records
+cook/fingerprint/record.h	 interface definition for cook/fingerprint/record.c
+cook/fingerprint/subdir.c	 functions to manipulate subdirs
+cook/fingerprint/subdir.h	 interface definition for cook/fingerprint/subdir.c
+cook/fingerprint/sync.c	 functions to manipulate syncs
+cook/fingerprint/sync.h	 interface definition for cook/fingerprint/sync.c
+cook/fingerprint/value.c	 functions to manipulate values
+cook/fingerprint/value.h	 interface definition for cook/fingerprint/value.c
+cook/flag.c	 functions to manipulate flags
+cook/flag.h	 interface definition for cook/flag.c
+cook/function.c	 functions to manipulate functions
+cook/function.h	 interface definition for cook/function.c
+cook/graph.c	 functions to manipulate dependency graphs
+cook/graph.h	 interface definition for cook/graph.c
+cook/graph/build.c	 functions to build dependency graphs
+cook/graph/build.h	 interface definition for cook/graph/build.c
+cook/graph/check.c	 functions to determine if a graph is up-to-date
+cook/graph/check.h	 interface definition for cook/graph/check.c
+cook/graph/edge_type.c	 functions to manipulate edge_types
+cook/graph/edge_type.h	 interface definition for cook/graph/edge_type.c
+cook/graph/file.c	 functions to manipulate graph files
+cook/graph/file.h	 interface definition for cook/graph/file.c
+cook/graph/file_list.c	 functions to manipulate graph file lists
+cook/graph/file_list.h	 interface definition for cook/graph/file_list.c
+cook/graph/file_pair.c	 functions to manipulate graph file pairs
+cook/graph/file_pair.h	 interface definition for cook/graph/file_pair.c
+cook/graph/leaf.c	 functions to manipulate graph leaf nodes
+cook/graph/leaf.h	 interface definition for cook/graph/leaf.c
+cook/graph/pairs.c	 functions to print pair-wise file dependencies
+cook/graph/pairs.h	 interface definition for cook/graph/pairs.c
+cook/graph/recipe.c	 functions to manipulate recipes
+cook/graph/recipe.h	 interface definition for cook/graph/recipe.c
+cook/graph/recipe_list.c	 functions to manipulate graph recipe lists
+cook/graph/recipe_list.h	 interface definition for cook/graph/recipe_list.c
+cook/graph/run.c	 functions to walk a single graph recipe node
+cook/graph/run.h	 interface definition for cook/graph/run.c
+cook/graph/script.c	 functions to print dependency graphs as a shell script
+cook/graph/script.h	 interface definition for cook/graph/script.c
+cook/graph/stats.c	 functions to print graph construction statistics
+cook/graph/stats.h	 interface definition for cook/graph/stats.c
+cook/graph/walk.c	 functions to perform a post-order traversal of a dependency graph
+cook/graph/walk.h	 interface definition for cook/graph/walk.c
+cook/graph/web.c	 functions to print dependency graphs as a shell script
+cook/graph/web.h	 interface definition for cook/graph/web.c
+cook/hashline.h	 interface definition for cook/hashline.y
+cook/hashline.y	 functions to parse #directive lines in cookbooks
+cook/id.c	 functions to manipulate the symbol table
+cook/id.h	 interface definition for cook/id.c
+cook/id/builtin.c	 functions to manipulate builtin IDs
+cook/id/builtin.h	 interface definition for cook/id/builtin.c
+cook/id/function.c	 functions to manipulate function IDs
+cook/id/function.h	 interface definition for cook/id/function.c
+cook/id/global.c	 functions to manipulate globals
+cook/id/global.h	 interface definition for global.c
+cook/id/nothing.c	 functions to manipulate nothing IDs
+cook/id/nothing.h	 interface definition for cook/id/nothing.c
+cook/id/private.c	 functions to manipulate private ID innards
+cook/id/private.h	 interface definition for cook/id/private.c
+cook/id/variable.c	 functions to manipulate variable IDs
+cook/id/variable.h	 interface definition for cook/id/variable.c
+cook/lex.c	 functions to perform lexical analysis on cookbooks
+cook/lex.h	 interface definition for cook/lex.c
+cook/lex/filename.c	 functions to manipulate lex filenames
+cook/lex/filename.h	 interface definition for cook/lex/filename.c
+cook/lex/filenamelist.c	 functions to manipulate lex filename lists
+cook/lex/filenamelist.h	 interface definition for cook/lex/filenamelist.c
+cook/listing.c	 functions to open and close the listing file
+cook/listing.h	 interface definition for cook/listing.c
+cook/main.c	 operating system start point, and command line argument parsing
+cook/match.c	 functions to perform recipe pattern matching
+cook/match.h	 interface definition for cook/match.c
+cook/match/cook.c	 functions to manipulate cook native matching
+cook/match/cook.h	 interface definition for cook/match/cook.c
+cook/match/new.c	 functions to manipulate news
+cook/match/new_by_recip.c	 functions to manipulate new_by_recipes
+cook/match/new_by_recip.h	 interface definition for cook/match/new_by_recipe.c
+cook/match/private.c	 functions to manipulate privates
+cook/match/private.h	 interface definition for cook/match/private.c
+cook/match/regex.c	 functions to manipulate regex pattern matching
+cook/match/regex.h	 interface definition for cook/match/regex.c
+cook/match/stack.c	 functions to manipulate pattern matching stacks
+cook/match/stack.h	 interface definition for cook/match/stack.c
+cook/match/wl.c	 functions to manipulate matching words lists
+cook/match/wl.h	 interface definition for cook/match/wl.c
+cook/meter.c	 functions to manipulate meters
+cook/meter.h	 interface definition for meter.c
+cook/opcode.c	 functions to manipulate opcodes
+cook/opcode.h	 interface definition for cook/opcode.c
+cook/opcode/assign.c	 functions to manipulate assignment opcodes
+cook/opcode/assign.h	 interface definition for cook/opcode/assign.c
+cook/opcode/assign_appen.c	 functions to manipulate assign-append opcodes
+cook/opcode/assign_appen.h	 interface definition for cook/opcode/assign_appen.c
+cook/opcode/assign_local.c	 functions to manipulate assign_locals
+cook/opcode/assign_local.h	 interface definition for assign_local.c
+cook/opcode/cascade.c	 functions to manipulate cascade opcodes
+cook/opcode/cascade.h	 interface definition for cook/opcode/cascade.c
+cook/opcode/catenate.c	 functions to manipulate catenate opcodes
+cook/opcode/catenate.h	 interface definition for cook/opcode/catenate.c
+cook/opcode/command.c	 functions to manipulate command opcodes
+cook/opcode/command.h	 interface definition for cook/opcode/command.c
+cook/opcode/context.c	 functions to manipulate opcode contexts
+cook/opcode/context.h	 interface definition for cook/opcode/context.c
+cook/opcode/fail.c	 functions to manipulate fail opcodes
+cook/opcode/fail.h	 interface definition for cook/opcode/fail.c
+cook/opcode/function.c	 functions to manipulate function opcodes
+cook/opcode/function.h	 interface definition for cook/opcode/function.c
+cook/opcode/gosub.c	 functions to manipulate gosub opcodes
+cook/opcode/gosub.h	 interface definition for cook/opcode/gosub.c
+cook/opcode/goto.c	 functions to manipulate goto opcodes
+cook/opcode/goto.h	 interface definition for cook/opcode/goto.c
+cook/opcode/jmpf.c	 functions to manipulate jmpf opcodes
+cook/opcode/jmpf.h	 interface definition for cook/opcode/jmpf.c
+cook/opcode/jmpt.c	 functions to manipulate jmpt opcodes
+cook/opcode/jmpt.h	 interface definition for cook/opcode/jmpt.c
+cook/opcode/label.c	 functions to manipulate labels
+cook/opcode/label.h	 interface definition for cook/opcode/label.c
+cook/opcode/list.c	 functions to manipulate opcode lists
+cook/opcode/list.h	 interface definition for cook/opcode/list.c
+cook/opcode/postlude.c	 functions to manipulate postlude opcodes
+cook/opcode/postlude.h	 interface definition for cook/opcode/postlude.c
+cook/opcode/prelude.c	 functions to manipulate prelude opcodes
+cook/opcode/prelude.h	 interface definition for cook/opcode/prelude.c
+cook/opcode/private.c	 functions to manipulate opcodes
+cook/opcode/private.h	 interface definition for cook/opcode/private.c
+cook/opcode/push.c	 functions to manipulate push opcodes
+cook/opcode/push.h	 interface definition for cook/opcode/push.c
+cook/opcode/recipe.c	 functions to manipulate recipe opcodes
+cook/opcode/recipe.h	 interface definition for cook/opcode/recipe.c
+cook/opcode/set.c	 functions to manipulate set opcodes
+cook/opcode/set.h	 interface definition for cook/opcode/set.c
+cook/opcode/setenv.c	 functions to manipulate setenv opcodes
+cook/opcode/setenv.h	 interface definition for cook/opcode/setenv.c
+cook/opcode/setenv_appen.c	 functions to manipulate setenv_append opcodes
+cook/opcode/setenv_appen.h	 interface definition for cook/opcode/setenv_appen.c
+cook/opcode/status.c	 functions to manipulate opcode statii
+cook/opcode/status.h	 interface definition for cook/opcode/status.c
+cook/opcode/string.c	 functions to manipulate string opcodes
+cook/opcode/string.h	 interface definition for string.c
+cook/opcode/thread-id.c	 functions to manipulate thread-ids
+cook/opcode/thread-id.h	 interface definition for cook/opcode/thread-id.c
+cook/opcode/touch.c	 functions to manipulate touch opcodes
+cook/opcode/touch.h	 interface definition for cook/opcode/touch.c
+cook/opcode/unsetenv.c	 functions to manipulate unsetenv opcodes
+cook/opcode/unsetenv.h	 interface definition for cook/opcode/unsetenv.c
+cook/option.c	 functions to manage command line options
+cook/option.h	 interface definition for cook/option.c
+cook/os.c	 functions to isolate operating system interface
+cook/os/below_dir.c	 functions to manipulate below_dirs
+cook/os/below_dir.h	 interface definition for cook/os/below_dir.c
+cook/os/dirnam_relat.c	 functions to manipulate dirnam_relats
+cook/os/path_cat.c	 functions to manipulate path_cats
+cook/os/pathname.c	 functions to manipulate pathnames
+cook/os/rel_if_poss.c	 functions to manipulate rel_if_posss
+cook/os/rel_if_poss.h	 interface definition for cook/os/rel_if_poss.c
+cook/os/wait.c	 functions to manipulate waits
+cook/os/wait.h	 interface definition for wait.c
+cook/os_interface.h	 interface definition for cook/os.c
+cook/parse.h	 interface definition for cook/parse.y
+cook/parse.y	 functions to parse cookbooks
+cook/recipe.c	 functions to manipulate recipes
+cook/recipe.h	 interface definition for cook/recipe.c
+cook/recipe/list.c	 functions to manipulate recipe lists
+cook/recipe/list.h	 interface definition for cook/recipe/list.c
+cook/stat.cache.c	 functions to manipulate the stat cache
+cook/stat.cache.h	 interface definition for cook/stat.cache.c
+cook/stmt.c	 functions to manage statement trees
+cook/stmt.h	 interface definition for cook/stmt.c
+cook/stmt/append.c	 functions to manipulate assign-append statement nodes
+cook/stmt/append.h	 interface definition for append.c
+cook/stmt/assign.c	 functions to manipulate assignment statement nodes
+cook/stmt/assign.h	 interface definition for cook/stmt/assign.c
+cook/stmt/command.c	 functions to manipulate command statement nodes
+cook/stmt/command.h	 interface definition for cook/stmt/command.c
+cook/stmt/compound.c	 functions to manipulate compound statement nodes
+cook/stmt/compound.h	 interface definition for cook/stmt/compound.c
+cook/stmt/fail.c	 functions to manipulate fail statement nodes
+cook/stmt/fail.h	 interface definition for cook/stmt/fail.c
+cook/stmt/gosub.c	 functions to manipulate gosub statement nodes
+cook/stmt/gosub.h	 interface definition for cook/stmt/gosub.c
+cook/stmt/if.c	 functions to manipulate if statement nodes
+cook/stmt/if.h	 interface definition for cook/stmt/if.c
+cook/stmt/list.c	 functions to manipulate statement lists
+cook/stmt/list.h	 interface definition for cook/stmt/list.c
+cook/stmt/loop.c	 functions to manipulate loop statement nodes
+cook/stmt/loop.h	 interface definition for cook/stmt/loop.c
+cook/stmt/loopvar.c	 functions to manipulate loopvars
+cook/stmt/loopvar.h	 interface definition for cook/stmt/loopvar.c
+cook/stmt/nop.c	 functions to manipulate nop statement nodes
+cook/stmt/nop.h	 interface definition for cook/stmt/nop.c
+cook/stmt/recipe.c	 functions to manipulate recipe statement nodes
+cook/stmt/recipe.h	 interface definition for cook/stmt/recipe.c
+cook/stmt/return.c	 functions to manipulate return statement nodes
+cook/stmt/return.h	 interface definition for cook/stmt/return.c
+cook/stmt/set.c	 functions to manipulate set statement nodes
+cook/stmt/set.h	 interface definition for cook/stmt/set.c
+cook/stmt/touch.c	 functions to manipulate touch statement nodes
+cook/stmt/touch.h	 interface definition for cook/stmt/touch.c
+cook/stmt/unsetenv.c	 functions to manipulate unsetenv statement nodes
+cook/stmt/unsetenv.h	 interface definition for cook/stmt/unsetenv.c
+cook/strip_dot.c	 functions to remove leading dots from pathnames
+cook/strip_dot.h	 interface definition for cook/strip_dot.c
+cook/tempfilename.c	 functions to manipulate tempfilenames
+cook/tempfilename.h	 interface definition for tempfilename.c
+cook_bom/main.c	 operating system start point, and command line argument parsing
+cook_bom/sniff.c	 functions to manipulate sniffs
+cook_bom/sniff.h	 interface definition for cook_manifest/sniff.c
+cookfp/main.c	 operating system start point, and command line argument parsing
+cooktime/date.h	 interface definition for cooktime/date.y
+cooktime/date.y	 functions to parse dates
+cooktime/main.c	 operating system start point, and parse command line arguments
+etc/CHANGES.1.10	Change history of cook
+etc/CHANGES.1.11	Change history of cook
+etc/CHANGES.1.2	Change history of cook
+etc/CHANGES.1.3	Change history of cook
+etc/CHANGES.1.4	Change history of cook
+etc/CHANGES.1.5	Change history of cook
+etc/CHANGES.1.6	Change history of cook
+etc/CHANGES.1.7	Change history of cook
+etc/CHANGES.1.8	Change history of cook
+etc/CHANGES.1.9	Change history of cook
+etc/CHANGES.2.0	Change history of cook
+etc/CHANGES.2.1	Change history of cook
+etc/CHANGES.2.10	Change history of cook
+etc/CHANGES.2.11	Change history of cook
+etc/CHANGES.2.12	Change history of cook
+etc/CHANGES.2.15	Change history of cook
+etc/CHANGES.2.16	Change history of cook
+etc/CHANGES.2.17	Change history of cook
+etc/CHANGES.2.18	Change history of cook
+etc/CHANGES.2.19	Change history of cook
+etc/CHANGES.2.2	Change history of cook
+etc/CHANGES.2.20	Change history of cook
+etc/CHANGES.2.3	Change history of cook
+etc/CHANGES.2.4	Change history of cook
+etc/CHANGES.2.5	Change history of cook
+etc/CHANGES.2.6	Change history of cook
+etc/CHANGES.2.7	Change history of cook
+etc/CHANGES.2.9	Change history of cook
+etc/CHANGES.sh	Change history of cook
+etc/Howto.conf.in	 instructions to cook, architecture specific
+etc/Howto.cook	 instructions to cook, how to build project
+etc/MANIFEST.head	Script for building this file.
+etc/MANIFEST.sh	Script for building this file.
+etc/Makefi.file.sh	 shell script to generate Makefile fragment for each source file
+etc/Makefile.awk	 helper file for generating Makefile file
+etc/Makefile.head	 instructions to make, how to build the cook package
+etc/Makefile.sh	 shell script to generate Makefile file
+etc/archive.cook	 instructions to Cook, how to build the archive directory
+etc/autoconf.cook	 Instructions to Cook, how to use GNU Autoconf
+etc/cfmt.cook	 etc/cfmt.cook
+etc/configure.ac	 how to configure cook, input to the GNU autoconf program
+etc/cook.gif.uue	 etc/cook.gif.uue
+etc/cook.html	 input for archive/cook.html
+etc/download.html	 input for archive/cook.html
+etc/function.sh	 shell script to generate doc/function.so
+etc/i18n.cook	 etc/i18n.cook
+etc/libdir-h.in	 input for configure, template for etc/libdir-h
+etc/libdir.so.in	 input for configure, template for etc/libdir.so
+etc/mail-list.html	 input for archive/cook.html
+etc/metrics.cook	 metrics.cook
+etc/msgfmt.sh	 shell script to insulate agains gettext vagueries
+etc/page-list.awk	 page-list.awk
+etc/patch.file.sh	 shell script to generate the patch for one file
+etc/patches.sh	 shell script to generate the patch file
+etc/ptx.ignore	 ptx.ignore
+etc/ptx.sh	 shell script to manipulate ptxs
+etc/ptx1.awk	 ptx1.awk
+etc/ptx2.awk	 ptx2.awk
+etc/rpm-build.sh	 shell script to build the RPM package
+etc/spec.sh	 shell script to generate RedHat spec file
+etc/ssp.awk	 awk script to supress multiple blank lines
+etc/system.sh	 shell script to generate doc/system.list.so
+etc/tags.cook	 etc/tags.cook
+etc/template/c	New file template.
+etc/template/generic	New file template.
+etc/template/h	New file template.
+etc/template/man	New file template.
+etc/template/ms	New file template.
+etc/template/sh	New file template.
+etc/template/test	New file template.
+etc/toc.so	 table of contents macros
+etc/y2k.html	 input for archive/cook.html
+etc/zer-len-msg.sh	 make sure there are no shared messages not in common
+file_check/file_check.c	 functions to manipulate file_checks
+file_check/file_check.h	 interface definition for file_check.c
+file_check/main.c	 operating system entry point
+find_libs/main.c	 operating system start point, and parse command line options
+find_libs/os.c	 functions to isolate operating system interface
+find_libs/os_interface.h	 interface definition for find_libs/os.c
+fstrcmp/main.c	 operating system entry point
+lib/as	 cookbook for using assembler
+lib/bison	 cookbook for using bison
+lib/c	 cookbook for using C
+lib/c++	 cookbook for using C++
+lib/en/LC_MESSAGES/c_incl.po	 English localization for the c_incl program
+lib/en/LC_MESSAGES/common.po	 English localization, messages common to all programs
+lib/en/LC_MESSAGES/cook.po	 English localization for the cook program
+lib/en/LC_MESSAGES/cook_bom.po	 English localization for the cook_bom program
+lib/en/LC_MESSAGES/cookfp.po	 English localization for the cookfp program
+lib/en/LC_MESSAGES/cooktime.po	 English localization for the cooktime program
+lib/en/LC_MESSAGES/file_check.po	 lib/en/LC_MESSAGES/file_check.po
+lib/en/LC_MESSAGES/find_libs.po	 English localization for the find_libs program
+lib/en/LC_MESSAGES/fstrcmp.po	 English localization for the fstrcmp program
+lib/en/LC_MESSAGES/make2cook.po	 English localization for the make2cook program
+lib/en/LC_MESSAGES/roffpp.po	 English localization for the roffpp program
+lib/en/building/main.man	 source of the BUILDING file
+lib/en/building/windows-nt.so	 document describing how to build Cook for Windows-NT
+lib/en/lsm/main.roff	 input for archive/cook-N.N.lsm
+lib/en/man1/c_incl.1	 manual entry for c_incl
+lib/en/man1/cook.1	 manual entry for the cook command
+lib/en/man1/cook_bom.1	 manual entry for the cook_bom command
+lib/en/man1/cook_lic.1	
+lib/en/man1/cook_rsh.1	 manual entry for the cook_rsh command
+lib/en/man1/cookfp.1	 manual entry for the cookfp command
+lib/en/man1/cooktime.1	 manual entry for the cooktime command
+lib/en/man1/copyright.so	 copyright notice for manual entries
+lib/en/man1/find_libs.1	 manual entry for the find_libs command
+lib/en/man1/make2cook.1	 manual entry for the make2cook command
+lib/en/man1/o__rules.so	 description of option up/down case convention
+lib/en/man1/roffpp.1	 manual entry for the roffpp command
+lib/en/man1/z_exit.so	 description of exit status for manual entries
+lib/en/man1/z_name.so	 document include setting some *roff variables
+lib/en/readme/main.man	 source of the README file
+lib/en/readme/new.1.10.so	 document describing new 1.10 features
+lib/en/readme/new.1.11.so	 document describing new 1.11 features
+lib/en/readme/new.1.26.so	 document describing new 2.26 features
+lib/en/readme/new.1.4.so	 document describing new 1.4 features
+lib/en/readme/new.1.5.so	 document describing new 1.5 features
+lib/en/readme/new.1.6.so	 document describing new 1.6 features
+lib/en/readme/new.1.7.so	 document describing new.1.7.so
+lib/en/readme/new.1.8.so	 document describing new 1.8 features
+lib/en/readme/new.1.9.so	 document describing new 1.9 features
+lib/en/readme/new.2.0.so	 document describing new 2.0 features
+lib/en/readme/new.2.1.so	 document describing new 2.1 features
+lib/en/readme/new.2.10.so	 document describing new.2.10.so
+lib/en/readme/new.2.11.so	 document describing new 2.11 features
+lib/en/readme/new.2.12.so	 document describing new 2.12 features
+lib/en/readme/new.2.15.so	 document describing new 2.15 features
+lib/en/readme/new.2.16.so	 document describing new 2.16 features
+lib/en/readme/new.2.17.so	 document describing new 2.17 features
+lib/en/readme/new.2.18.so	 document describing new 2.18 features
+lib/en/readme/new.2.19.so	 document describing new 2.19 features
+lib/en/readme/new.2.2.so	 document describing new 2.2 features
+lib/en/readme/new.2.20.so	 document describing new 2.20 features
+lib/en/readme/new.2.21.so	 document describing new 2.21 features
+lib/en/readme/new.2.22.so	 document describing new 2.22 features
+lib/en/readme/new.2.23.so	 document describing new 2.23 features
+lib/en/readme/new.2.24.so	 document describing new 2.24 features
+lib/en/readme/new.2.25.so	 document describing new 2.25 features
+lib/en/readme/new.2.3.so	 document describing new 2.3 features
+lib/en/readme/new.2.4.so	 document describing new.2.4.so
+lib/en/readme/new.2.5.so	 document describing new 2.5. features
+lib/en/readme/new.2.6.so	 document describing new 2.6 features
+lib/en/readme/new.2.7.so	 document describing new 2.7 features
+lib/en/readme/new.2.8.so	 document describing new 2.8 features
+lib/en/readme/new.2.9.so	 document describing new 2.9 features
+lib/en/refman/i18n.pic.so	 document describing i18n.pic.so
+lib/en/refman/i18n.so	 document describing i18n.so
+lib/en/refman/main.man	 Reference Manual
+lib/en/release/body.so	 document describing body.so
+lib/en/release/main.man	 How to release a version of Cook
+lib/en/tutorial/fig1.so	 Cook Tutorial
+lib/en/tutorial/fig2.so	 document describing fig2.so
+lib/en/tutorial/main.mm	 Tutorial
+lib/en/user-guide/builtin.so	 User Guide, Built-In Functions
+lib/en/user-guide/cook_rsh.so	 User Guide, Managing remote execution of Parallel builds
+lib/en/user-guide/function/addprefix.so	 User Guide, Builtin Functions, Addprefix
+lib/en/user-guide/function/addsuffix.so	 User Guide, Builtin Functions, Addsuffix
+lib/en/user-guide/function/and.so	 User Guide, Builtin Functions, And
+lib/en/user-guide/function/basename.so	 User Guide, Builtin Functions, Basename
+lib/en/user-guide/function/cando.so	 User Guide, Builtin Functions, Cando
+lib/en/user-guide/function/catenate.so	 User Guide, Built-In Functions, Catenate
+lib/en/user-guide/function/collect.so	 User Guide, Built-In Functions, Collect
+lib/en/user-guide/function/collect_ln.so	 User Guide, Built-In Functions, Collect_lines
+lib/en/user-guide/function/cook.so	 document describing cook.so
+lib/en/user-guide/function/count.so	 User Guide, Built-In Functions, Count
+lib/en/user-guide/function/defined.so	 User Guide, Built-In Functions, Defined
+lib/en/user-guide/function/dir.so	 User Guide, Built-In Functions, Dir
+lib/en/user-guide/function/dirname.so	 User Guide, Built-In Functions, Dirname
+lib/en/user-guide/function/dos_path.so	 User Guide, Built-In Functions, Dos-Path
+lib/en/user-guide/function/downcase.so	 User Guide, Built-In Functions, Downcase
+lib/en/user-guide/function/entryname.so	 User Guide, Built-In Functions, Entryname
+lib/en/user-guide/function/execute.so	 User Guide, Built-In Functions, Execute
+lib/en/user-guide/function/exists.so	 User Guide, Built-In Functions, Exists
+lib/en/user-guide/function/expr.so	 User Guide, Built-In Functions, Expr
+lib/en/user-guide/function/filter.so	 User Guide, Built-In Functions, Filter
+lib/en/user-guide/function/filter_out.so	 User Guide, Built-In Functions, Filter_out
+lib/en/user-guide/function/find_cmd.so	 User Guide, Built-In Functions, Find_command
+lib/en/user-guide/function/findstring.so	 User Guide, Builtin Functions, Findstring
+lib/en/user-guide/function/firstword.so	 User Guide, Built-In Functions, Head
+lib/en/user-guide/function/fromto.so	 User Guide, Built-In Functions, Fromto
+lib/en/user-guide/function/getenv.so	 User Guide, Built-In Functions, Getenv
+lib/en/user-guide/function/glob.so	 User Guide, Built-In Functions, Glob
+lib/en/user-guide/function/head.so	 User Guide, Built-In Functions, Head
+lib/en/user-guide/function/home.so	 User Guide, Builtin Functions, Home
+lib/en/user-guide/function/if.so	 User Guide, Built-In Functions, If
+lib/en/user-guide/function/in.so	 User Guide, Built-In Functions, In
+lib/en/user-guide/function/inter_files.so	 User Guide, Built-In Functions, Interior_Files
+lib/en/user-guide/function/join.so	 User Guide, Builtin Functions, Join
+lib/en/user-guide/function/leaf_files.so	 User Guide, Built-In Functions, Leaf_Files
+lib/en/user-guide/function/match_mask.so	 User Guide, Built-In Functions, Match_mask
+lib/en/user-guide/function/matches.so	 User Guide, Built-In Functions, Matches
+lib/en/user-guide/function/mtime.so	 User Guide, Built-In Functions, Mtime
+lib/en/user-guide/function/not.so	 User Guide, Built-In Functions, Not
+lib/en/user-guide/function/notdir.so	 User Guide, Built-In Functions, Notdir
+lib/en/user-guide/function/opsys.so	 User Guide, Built-In Functions, Operating_System
+lib/en/user-guide/function/options.so	 User Guide, Built-In Functions, Options
+lib/en/user-guide/function/or.so	 User Guide, Built-In Functions, Or
+lib/en/user-guide/function/pathname.so	 User Guide, Built-In Functions, Pathname
+lib/en/user-guide/function/patsubst.so	 User Guide, Built-In Functions, Patsubst
+lib/en/user-guide/function/prepost.so	 User Guide, Built-In Functions, Prepost
+lib/en/user-guide/function/print.so	 User Guide, Built-In Functions, Print
+lib/en/user-guide/function/quote.so	 User Guide, Built-In Functions, Quote
+lib/en/user-guide/function/read.so	 User Guide, Built-In Functions, Read
+lib/en/user-guide/function/read_lines.so	 User Guide, Built-In Functions, Read Lines
+lib/en/user-guide/function/readlink.so	 User Guide, Built-In Functions, Readlink
+lib/en/user-guide/function/relat_dirna.so	 User Guide, Built-In Functions, Relative_Dirname
+lib/en/user-guide/function/resolve.so	 User Guide, Built-In Functions, Resolve
+lib/en/user-guide/function/shell.so	 User Guide, Built-In Functions, Shell
+lib/en/user-guide/function/sort.so	 User Guide, Built-In Functions, Sort
+lib/en/user-guide/function/sort_newest.so	 User Guide, Built-In Functions, Sort_newest
+lib/en/user-guide/function/split.so	 User Guide, Builtin Functions, Split
+lib/en/user-guide/function/stringset.so	 User Guide, Built-In Functions, Stringset
+lib/en/user-guide/function/strip.so	 User Guide, Builtin Functions, Strip
+lib/en/user-guide/function/stripdot.so	 User Guide, Builtin Functions, Stripdot
+lib/en/user-guide/function/subst.so	 User Guide, Builtin Functions, Subst
+lib/en/user-guide/function/substr.so	 User Guide, Builtin Functions, Subst
+lib/en/user-guide/function/suffix.so	 User Guide, Builtin Functions, Suffix
+lib/en/user-guide/function/tail.so	 User Guide, Built-In Functions, Tail
+lib/en/user-guide/function/un_dos_path.so	 User Guide, Built-In Functions, Un-Dos-Path
+lib/en/user-guide/function/unsplit.so	 User Guide, Builtin Functions, Unsplit
+lib/en/user-guide/function/upcase.so	 User Guide, Built-In Functions, Upcase
+lib/en/user-guide/function/uptodate.so	 User Guide, Built-In Functions, Uptodate
+lib/en/user-guide/function/wildcard.so	 User Guide, Built-In Functions, Wildcard
+lib/en/user-guide/function/word.so	 User Guide, Builtin Functions, Word
+lib/en/user-guide/function/wordlist.so	 document describing wordlist.so
+lib/en/user-guide/function/words.so	 User Guide, Built-In Functions, Words
+lib/en/user-guide/function/write.so	 User Guide, Built-In Functions, Write
+lib/en/user-guide/functions.so	 User Guide, Functions Library
+lib/en/user-guide/glossary.so	 User Guide, Glossary
+lib/en/user-guide/history.so	 User Guide, Ancient History
+lib/en/user-guide/how.so	 User Guide, Actions when Cooking
+lib/en/user-guide/include.so	 User Guide, Include File Dependencies
+lib/en/user-guide/intro.so	 User Guide, Introduction
+lib/en/user-guide/intro1.so	 User Guide, Cook from the Outside
+lib/en/user-guide/intro2.so	 User Guide, Cook from a Cookbook
+lib/en/user-guide/lang.asig2.pic	 lib/en/user-guide/lang.asign.pic
+lib/en/user-guide/lang.asign.pic	 lib/en/user-guide/lang.asign.pic
+lib/en/user-guide/lang.casca.pic	 lib/en/user-guide/lang.casca.pic
+lib/en/user-guide/lang.cmd1.pic	 lib/en/user-guide/lang.cmd1.pic
+lib/en/user-guide/lang.cmd2.pic	 lib/en/user-guide/lang.cmd2.pic
+lib/en/user-guide/lang.cook.pic	 lib/en/user-guide/lang.cook.pic
+lib/en/user-guide/lang.cstm2.pic	 lib/en/user-guide/lang.cstm2.pic
+lib/en/user-guide/lang.cstmt.pic	 lib/en/user-guide/lang.cstmt.pic
+lib/en/user-guide/lang.elist.pic	 lib/en/user-guide/lang.elist.pic
+lib/en/user-guide/lang.expr.pic	 lib/en/user-guide/lang.expr.pic
+lib/en/user-guide/lang.exprs.pic	 lib/en/user-guide/lang.exprs.pic
+lib/en/user-guide/lang.fail.pic	 lib/en/user-guide/lang.fail.pic
+lib/en/user-guide/lang.flags.pic	 lib/en/user-guide/lang.flags.pic
+lib/en/user-guide/lang.func.pic	 lib/en/user-guide/lang.func.pic
+lib/en/user-guide/lang.func2.pic	 lib/en/user-guide/lang.func2.pic
+lib/en/user-guide/lang.gate.pic	 lib/en/user-guide/lang.gate.pic
+lib/en/user-guide/lang.gosub.pic	 lib/en/user-guide/lang.gosub.pic
+lib/en/user-guide/lang.if.pic	 lib/en/user-guide/lang.if.pic
+lib/en/user-guide/lang.loop.pic	 lib/en/user-guide/lang.loop.pic
+lib/en/user-guide/lang.loop2.pic	 lib/en/user-guide/lang.loop2.pic
+lib/en/user-guide/lang.reci2.pic	 lib/en/user-guide/lang.reci2.pic
+lib/en/user-guide/lang.reci3.pic	 lib/en/user-guide/lang.reci3.pic
+lib/en/user-guide/lang.recip.pic	 lib/en/user-guide/lang.recip.pic
+lib/en/user-guide/lang.set.pic	 lib/en/user-guide/lang.set.pic
+lib/en/user-guide/lang.sete2.pic	 lib/en/user-guide/lang.asign.pic
+lib/en/user-guide/lang.seten.pic	 lib/en/user-guide/lang.asign.pic
+lib/en/user-guide/lang.usecl.pic	 lib/en/user-guide/lang.usecl.pic
+lib/en/user-guide/langu.flags.so	 document describing recipe flags
+lib/en/user-guide/language.so	 User Guide, Cookbook Language Definition
+lib/en/user-guide/large.so	 User Guide, Building Large Projects
+lib/en/user-guide/main.mm	 Reference Manual
+lib/en/user-guide/match.so	 User Guide, File name patterns
+lib/en/user-guide/option.so	 User Guide, Option Precedence
+lib/en/user-guide/parallel.so	 User Guide, Cooking in Parallel
+lib/en/user-guide/system.so	 User Guide, Supplied Cookbooks
+lib/en/user-guide/system/as.so	 document describing the ``as'' cookbook
+lib/en/user-guide/system/c.so	 document describing the ``c'' cookbook
+lib/en/user-guide/system/f77.so	 document describing the ``f77'' cookbook
+lib/en/user-guide/system/g77.so	 document describing the ``g77'' cookbook
+lib/en/user-guide/system/gcc.so	 document describing the ``gcc'' cookbook
+lib/en/user-guide/system/home.so	 document describing the ``home'' cookbook
+lib/en/user-guide/system/lex.so	 document describing the ``lex'' cookbook
+lib/en/user-guide/system/library.so	 document describing the ``library'' cookbook
+lib/en/user-guide/system/print.so	 document describing the ``print'' cookbook
+lib/en/user-guide/system/program.so	 document describing the ``program'' cookbook
+lib/en/user-guide/system/rcs.so	 document describing the ``rcs'' cookbook
+lib/en/user-guide/system/recursive.so	 document describing the ``recursive'' cookbook
+lib/en/user-guide/system/sccs.so	 document describing the ``sccs'' cookbook
+lib/en/user-guide/system/text.so	 document describing the ``text'' cookbook
+lib/en/user-guide/system/usr.local.so	 document describing the ``usr.local'' cookbook
+lib/en/user-guide/system/usr.so	 document describing the ``usr'' cookbook
+lib/en/user-guide/system/yacc.so	 document describing the ``yacc'' cookbook
+lib/en/user-guide/system/yacc_many.so	 document describing the ``yacc_many'' cookbook
+lib/en/user-guide/variables.so	 User Guide, Predefined Variables
+lib/f77	 cookbook for using Fortran
+lib/functions	 Canned Cookbook Functions
+lib/g77	 cookbook for using g77
+lib/gcc	 cookbook for using gcc
+lib/home	 cookbook for locations in home directory
+lib/host_lists.pl	 lib/host_lists.pl
+lib/java	 cookbook for using Java
+lib/lex	 cookbook for using lex
+lib/library	 cookbook for constructing libraries
+lib/print	 cookbook for printing files
+lib/program	 cookbook for constructing programs
+lib/rcs	 cookbook for using RCS
+lib/recursive	 cookbook for recursive directory structured projects
+lib/sccs	 cookbook for using SCCS
+lib/text	 cookbook for formatting documents
+lib/usr	 cookbook for locations in system directories
+lib/usr.local	 cookbook for locations in local system directories
+lib/yacc	 cookbook for using yacc
+lib/yacc_many	 cookbook for using yacc more than once in same program
+make2cook/blob.c	 functions to manipulate blobs
+make2cook/blob.h	 interface definition for make2cook/blob.c
+make2cook/emit.c	 functions to emit the result
+make2cook/emit.h	 interface definition for make2cook/emit.c
+make2cook/gram.h	 interface definition for make2cook/gram.y
+make2cook/gram.y	 functions to parse Makefiles
+make2cook/lex.c	 functions to perform lexical analysis on Makefiles
+make2cook/lex.h	 interface definition for make2cook/lex.c
+make2cook/main.c	 operating system entry point
+make2cook/stmt.c	 functions to manipulate statements
+make2cook/stmt.h	 interface definition for make2cook/stmt.c
+make2cook/stmt/assign.c	 functions to manipulate assign statements
+make2cook/stmt/assign.h	 interface definition for make2cook/stmt/assign.c
+make2cook/stmt/blank.c	 functions to manipulate blank statements
+make2cook/stmt/blank.h	 interface definition for make2cook/stmt/blank.c
+make2cook/stmt/command.c	 functions to manipulate commands
+make2cook/stmt/command.h	 interface definition for make2cook/stmt/command.c
+make2cook/stmt/comment.c	 functions to manipulate comment statements
+make2cook/stmt/comment.h	 interface definition for make2cook/stmt/comment.c
+make2cook/stmt/compound.c	 functions to manipulate compound statements
+make2cook/stmt/compound.h	 interface definition for make2cook/stmt/compound.c
+make2cook/stmt/define.c	 functions to manipulate define statements
+make2cook/stmt/define.h	 interface definition for make2cook/stmt/define.c
+make2cook/stmt/export.c	 functions to manipulate export statements
+make2cook/stmt/export.h	 interface definition for make2cook/stmt/export.c
+make2cook/stmt/if.c	 functions to manipulate if statements
+make2cook/stmt/if.h	 interface definition for make2cook/stmt/if.c
+make2cook/stmt/include.c	 functions to manipulate include statements
+make2cook/stmt/include.h	 interface definition for include.h
+make2cook/stmt/rule.c	 functions to manipulate rule statements
+make2cook/stmt/rule.h	 interface definition for make2cook/stmt/rule.c
+make2cook/stmt/unexport.c	 functions to manipulate unexport statements
+make2cook/stmt/unexport.h	 interface definition for make2cook/stmt/unexport.c
+make2cook/stmt/vpath.c	 functions to manipulate vpath statementss
+make2cook/stmt/vpath.h	 interface definition for make2cook/stmt/vpath.c
+make2cook/vargram.h	 interface definition for make2cook/vargram.y
+make2cook/vargram.y	 functions to parse variable references
+make2cook/variable.c	 functions to manipulate variables
+make2cook/variable.h	 interface definition for make2cook/variable.c
+roffpp/main.c	 operating system start point, and parse command line arguments
+roffpp/preprocess.c	 functions to eliminate include files
+roffpp/preprocess.h	 interface definition for roffpp/preprocess.c
+script/cook_rsh.in	 The cook_rsh Prel script.
+test/00/t0001a.sh	 test the "and" builtin function
+test/00/t0002a.sh	 test "catenate" builtin function
+test/00/t0003a.sh	 test "collect" builtin function
+test/00/t0004a.sh	 test "collect_lines" builtin function
+test/00/t0005a.sh	 test the "count" builtin function
+test/00/t0006a.sh	 test the "defined" builtin function
+test/00/t0007a.sh	 test the "dirname" builtin function
+test/00/t0008a.sh	 test the "downcase" builtin function
+test/00/t0009a.sh	 test the "entryname" builtin function
+test/00/t0010a.sh	 test the "execute" builtin function
+test/00/t0011a.sh	 test the "exists" builtin function
+test/00/t0012a.sh	 test the "find_command" builtin function
+test/00/t0013a.sh	 test the "fromto" builtin function
+test/00/t0014a.sh	 test the "getenv" builtin function
+test/00/t0015a.sh	 test the "glob" builtin function
+test/00/t0016a.sh	 test the "match" builtin function
+test/00/t0017a.sh	 test the "head" builtin function
+test/00/t0018a.sh	 test the "if" builtin function
+test/00/t0019a.sh	 test the "in" builtin function
+test/00/t0020a.sh	 test the "match_mask" builtin function
+test/00/t0021a.sh	 test the "mtime" builtin function
+test/00/t0022a.sh	 test the "not" builtin function
+test/00/t0023a.sh	 test the "or" builtin function
+test/00/t0024a.sh	 test the "pathname" builtin function
+test/00/t0025a.sh	 test the "prepost" builtin function
+test/00/t0026a.sh	 test the "quote" builtin function
+test/00/t0027a.sh	 test the "stringset" builtin function
+test/00/t0028a.sh	 test the "tail" builtin function
+test/00/t0029a.sh	 test the cook -Book option
+test/00/t0031a.sh	 test the os_stat_cache() function
+test/00/t0032a.sh	 test the "sort" builtin function
+test/00/t0033a.sh	 test the c_incl program
+test/00/t0034a.sh	 test the "%0" pattern replacement - it may be empty
+test/00/t0035a.sh	 test the %0 pattern, it must not match absolute paths
+test/00/t0036a.sh	 test the %1, etc, patterns
+test/00/t0037a.sh	 test the c_incl -no_cache option
+test/00/t0038a.sh	 test roffpp functionality
+test/00/t0039a.sh	 test the c_incl -Roff option
+test/00/t0040a.sh	 test the cooktime program
+test/00/t0041a.sh	 Test the "resolve" builtin function
+test/00/t0042a.sh	 test the "sort_newest" builtin function
+test/00/t0043a.sh	 Test the c_incl .. flattening
+test/00/t0044a.sh	 Test c_incl on missing files
+test/00/t0045a.sh	 Test recipes with no ingredients
+test/00/t0046a.sh	 Test the fingerprint functionality
+test/00/t0047a.sh	 Test the fingerprint short-circuit functionality
+test/00/t0048a.sh	 Test the include-cooked functionality
+test/00/t0049a.sh	 Test the cookfp repeat functionality
+test/00/t0050a.sh	 Test the include-cooked functionality
+test/00/t0051a.sh	 Test the newest/oldest mtime functionality
+test/00/t0052a.sh	 Test the cmd line var functionality
+test/00/t0053a.sh	 Test the nodefault recipe flag
+test/00/t0054a.sh	 Test the fingerprint functionality
+test/00/t0055a.sh	 Test the include-cooked functionality
+test/00/t0056a.sh	 Test the search-list functionality
+test/00/t0057a.sh	 Test the addprefix builtin function
+test/00/t0058a.sh	 Test the addsuffix builtin function
+test/00/t0059a.sh	 Test the filter_out builtin function
+test/00/t0060a.sh	 Test the subst builtin function
+test/00/t0061a.sh	 Test the word builtin function
+test/00/t0062a.sh	 Test the builtin basename function
+test/00/t0063a.sh	 Test the suffix builtin function
+test/00/t0064a.sh	 Test the join builtin function
+test/00/t0065a.sh	 Test the make2cook functionality
+test/00/t0066a.sh	 Test the make2cook functionality
+test/00/t0067a.sh	 Test the default recipe anti-looping heuristic
+test/00/t0068a.sh	 Test the make2cook include functionality
+test/00/t0069a.sh	 Test the archive file functionality
+test/00/t0070a.sh	 Test the make2cook archive functionality
+test/00/t0071a.sh	 Test the make2cook vpath functionality
+test/00/t0072a.sh	 Test the home builtin function
+test/00/t0073a.sh	 Test the findstring builtin function
+test/00/t0074a.sh	 Test the split builtin function
+test/00/t0075a.sh	 Test the unsplit builtin function
+test/00/t0076a.sh	 Test the strip builtin function
+test/00/t0077a.sh	 Test the archive long name functionality
+test/00/t0078a.sh	 Test the strip-dot functionality
+test/00/t0079a.sh	 Test the mtime depth functionality
+test/00/t0081a.sh	 Test the search_list fingerprint
+test/00/t0082a.sh	 Test the unlink flag functionality
+test/00/t0083a.sh	 Test the mkdir flag functionality
+test/00/t0084a.sh	 Test the double colon functionality
+test/00/t0085a.sh	 Test the recuse flag functionality
+test/00/t0086a.sh	 Test the c_incl -I- functionality
+test/00/t0087a.sh	 Test the data dataend functionality
+test/00/t0088a.sh	 Test the cookfp -id functionality
+test/00/t0089a.sh	 Test the set mkdir functionality
+test/00/t0090a.sh	 Test the fstrcmp functionality
+test/00/t0091a.sh	 Test the options builtin functionality
+test/00/t0092a.sh	 Test the glob functionality
+test/00/t0093a.sh	 Test the undefined variable functionality
+test/00/t0094a.sh	 Test the time-adjust-back functionality
+test/00/t0095a.sh	 Test the readlink builtin function
+test/00/t0096a.sh	 Test the -no-include-cooked option
+test/00/t0097a.sh	 Test the make2cook functionality
+test/00/t0098a.sh	 Test the make2cook functionality
+test/00/t0099a.sh	 Test the make2cook define functionality
+test/01/t0100a.sh	 Test the make2cook export functionality
+test/01/t0101a.sh	 Test the make2cook archive pattern functionality
+test/01/t0102a.sh	 Test the make2cook functionality
+test/01/t0103a.sh	 Test the make2cook foreach functionality
+test/01/t0104a.sh	 Test the make2cook functionality
+test/01/t0105a.sh	 Test the make2cook functionality
+test/01/t0106a.sh	 Test the make2cook functionality
+test/01/t0107a.sh	 Test the include file boundary functionality
+test/01/t0108a.sh	 Test the c_incl functionality
+test/01/t0109a.sh	 Test the match functionality
+test/01/t0111a.sh	 Test the graph functionality
+test/01/t0112a.sh	 Test the graph functionality
+test/01/t0113a.sh	 Test the graph functionality
+test/01/t0114a.sh	 Test the graph functionality
+test/01/t0115a.sh	 Test the graph functionality
+test/01/t0116a.sh	 Test the opcode functionality
+test/01/t0117a.sh	 Test the single-thread functionality
+test/01/t0118a.sh	 Test the shallow functionality
+test/01/t0119a.sh	 Test the user-defined function functionality
+test/01/t0120a.sh	 Test the no-implicit-ingredients functionality
+test/01/t0121a.sh	 Test the parallel_hosts functionality
+test/01/t0122a.sh	 Test the host-binding functionality
+test/01/t0123a.sh	 Test the __FILE__ functionality
+test/01/t0124a.sh	 Test the include-cooked functionality
+test/01/t0125a.sh	 Test the thread-id functionality
+test/01/t0126a.sh	 Test the #line functionality
+test/01/t0127a.sh	 Test the wordlist functionality
+test/01/t0128a.sh	 Test the command-line-goals functionality
+test/01/t0129a.sh	 Test the remote shell functionality
+test/01/t0130a.sh	 Test the c_incl m4 functionality
+test/01/t0131a.sh	 Test the make2cook -nir functionality
+test/01/t0132a.sh	 Test the function call pattern functionality
+test/01/t0133a.sh	 Test the c_incl optimistic functionality
+test/01/t0134a.sh	 Test the c_incl -nap functionality
+test/01/t0135a.sh	 Test the implicit pattern functionality
+test/01/t0136a.sh	 Test the implicit pattern functionality
+test/01/t0137a.sh	 Test the target existence functionality
+test/01/t0138a.sh	 Test the implicit pattern usage functionality
+test/01/t0139a.sh	 Test the builtin print functionality
+test/01/t0140a.sh	 Test the function call statement
+test/01/t0141a.sh	 Test the c_incl functionality
+test/01/t0142a.sh	 Test the c_incl --escape-newline option
+test/01/t0144a.sh	 Test the leaf-explicit functionality
+test/01/t0145a.sh	 Test the graph-exterior functionality
+test/01/t0146a.sh	 Test the string reconstruction
+test/01/t0147a.sh	 Test the cascade functionality
+test/01/t0148a.sh	 Test the c_incl -norecurs functionality
+test/01/t0149a.sh	 Test the cascade-for functionality
+test/01/t0150a.sh	 Test the exists-symlink functionality
+test/01/t0151a.sh	 Test the [expr] functionality
+test/01/t0152a.sh	 Test the null command functionality
+test/01/t0153a.sh	 Test the pattern match functionality
+test/01/t0154a.sh	 Test the fp+path functionality
+test/01/t0155a.sh	 Test the directory fingerprint functionality
+test/01/t0156a.sh	 Test the dos-path functionality
+test/01/t0157a.sh	 Test the un-dos-path functionality
+test/01/t0158a.sh	 Test the gate-before-ingredients functionality
+test/01/t0159a.sh	 Test the no-include-cooked-warning functionality
+test/01/t0160a.sh	 Test the c_incl --interior-files functionality
+test/01/t0161a.sh	 Test the [interior_files] functionality
+test/01/t0162a.sh	 Test the += functionality
+test/01/t0163a.sh	 Test the reldir functionality
+test/01/t0164a.sh	 Test the cook_bom functionality
+test/01/t0165a.sh	 Test the #include functionality
+test/01/t0166a.sh	 Test the [cook] functionality
+test/01/t0167a.sh	 Test the graph build error functionality
+test/01/t0168a.sh	 Test the c_incl -exclude functionality
+test/01/t0169a.sh	 Test the fingerprint per-directory functionality
+test/01/t0170a.sh	 Test the cook -web functionality
+test/01/t0171a.sh	 Test the user defined functionality
+test/01/t0172a.sh	 Test the fingerprint functionality
+test/01/t0173a.sh	 Test the regex-recipe-pattern functionality
+test/01/t0175a.sh	 Test the loop-var functionality
+test/01/t0176a.sh	 Test the write built-in functionality
+test/01/t0177a.sh	 Test the ingredients recipe functionality
+test/01/t0178a.sh	 test the "mtime-seconds" builtin function
+test/01/t0179a.sh	 Test the reverse time travel functionality
+test/01/t0180a.sh	 Test the print+script functionality
+test/01/t0181a.sh	 Test the write+script functionality
+test/01/t0182a.sh	 Test the local variable functionality
+test/01/t0183a.sh	 Test the cook_bom --ignore functionality
+test/01/t0185a.sh	 Test the relaxed %0 pattern functionality
+test/01/t0186a.sh	 Test the double colon functionality
+test/01/t0187a.sh	 Test the Cookbook functionality
+test/01/t0188a.sh	 Test the parallel wait functionality
+test/01/t0189a.sh	 Test the c_incl functionality
+test/01/t0190a.sh	 Test the c_incl functionality
+test/01/t0191a.sh	 Test the c_incl functionality
+test/01/t0193a.sh	 Test the stringset + functionality
+test/01/t0195a.sh	 Test the c_incl stdin functionality
+test/01/t0196a.sh	 test the %1, etc, patterns
+test/01/t0197a.sh	 Test the uptodate functionality
+test/01/t0198a.sh	 Test the edge type functionality
+test/01/t0199a.sh	 Test the ingredients-fingerprint functionality
+test/02/t0200a.sh	 Test the reverse time travel functionality
+test/02/t0201a.sh	 Test the [stripdot] functionality
+test/02/t0202a.sh	 Test the cascade functionality
+test/02/t0203a.sh	 test "read_lines" builtin function
+test/02/t0205a.sh	 Test the unprintable comments functionality
+test/02/t0206a.sh	 Test the filepair(exists) functionality
+test/02/t0208a.sh	 Test the script functionality
+test/02/t0209a.sh	 Test the os_execute functionality
+test/02/t0210a.sh	 Test the cookbook include functionality
+test/02/t0211a.sh	 Test the options setting functionality
+common/patchlevel.h	The patch level of this distribution.
+etc/version.so	The patch level of this distribution.
+lib/en/readme/new.so	
+lib/en/refman/index.so	
+lib/en/refman/parts.so	
+lib/en/user-guide/function.so	
+lib/en/user-guide/system.list.so	
+etc/CHANGES.2.26	Change history of cook

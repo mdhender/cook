@@ -1,0 +1,62 @@
+/*
+ * NAME
+ *	lex - the lex cookbook
+ *
+ * DESCRIPTION
+ *	This cookbook describes how to work with lex files.
+ *
+ * RECIPES
+ *	%.l: %.c	make C source files from lex source files
+ *
+ * VARIABLES
+ *	lex		The lex command
+ *			Not altered if already defined.
+ *	lex_flags	Options to pass to the lex command
+ *			Not altered if already defined.
+ *			The default is empty.
+ *	lex_src		lex source files in the current directory.
+ *	dot_src		Source files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_obj		Object files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_clean	Files which may be removed from the current directory
+ *			in a clean target.
+ *	dot_lint_obj	Lint object files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *
+ * MANIFEST: cookbook for using lex
+ */
+
+#pragma once
+
+#include "c"
+
+if [not [defined lex]] then
+	lex = lex;
+if [not [defined lex_flags]] then
+	lex_flags = ;
+lex_src = [glob *.l];
+dot_src =
+	[stringset
+		[dot_src] [lex_src]
+	-
+		[fromto %.l %.c [lex_src]]
+		[fromto %.l %.s [lex_src]]
+	];
+dot_obj = [stringset [dot_obj] [fromto %.l %.o [lex_src]]];
+dot_clean =
+	[stringset
+		[dot_clean]
+		[fromto %.l %.c [lex_src]]
+		[fromto %.l %.ln [lex_src]]
+		[fromto %.l %.s [lex_src]]
+		lex.yy.c
+	];
+dot_lint_obj = [stringset [dot_lint_obj] [fromto %.l %.ln [lex_src]]];
+
+%.c: %.l
+	single-thread lex.yy.c
+{
+	[lex] [lex_flags] %.l;
+	mv lex.yy.c %.c;
+}

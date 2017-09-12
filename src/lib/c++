@@ -1,0 +1,178 @@
+/*
+ * NAME
+ *	c++ - the C++ compiler cookbook
+ *
+ * DESCRIPTION
+ *	This cookbook describes how to work with C++ files.
+ *	Include file dependencies are automatically determined.
+ *
+ * RECIPES
+ *	%.o: %.cpp	make object files form C++ source files
+ *	%.o: %.cc	make object files form C++ source files
+ *	%.o: %.c++	make object files form C++ source files
+ *
+ * VARIABLES
+ *	c_incl		The C++ include dependency sniffer command.
+ *			Not altered if already defined.
+ *	c++		The C++ compiler command
+ *			Not altered if already defined.
+ *	c++_flags	options to pass to the C++ compiler command
+ *			Not altered if already defined.
+ *			The default is "-O".
+ *	c++_include_flags Options passed to the C++ compiler and c_incl
+ *			controlling include file searching.
+ *			Not altered if already defined.
+ *			The default is empty.
+ *	c++_src		C++ source files in the current directory.
+ *	dot_src		Source files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_obj		Object files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_clean	Files which may be removed from the current directory
+ *			in a clean target.
+ *
+ * SEE ALSO
+ *	program		The program cookbook:
+ *	   ld		   The linker program
+ *	   ld_flags	   The linker flags, NOT libraries
+ *	   ld_libraries	   The linker flags (-L, -l) for libraries
+ *
+ * MANIFEST: cookbook for using C++
+ */
+
+#pragma once
+
+if [not [defined c_incl]] then
+	c_incl = [find_command c_incl];
+if [not [defined c++]] then
+	c++ = g++;
+if [not [defined c++_flags]] then
+	c++_flags = -O;
+if [not [defined c++_include_flags]] then
+	c++_include_flags = ;
+if [not [defined c++_link_flags]] then
+	c++_link_flags = ;
+c++_src = [glob "*.cpp" "*.cc" "*.c++" ];
+if [not [defined dot_src]] then
+	dot_src = ;
+dot_src =
+	[stringset
+	    [dot_src] [c++_src]
+	-
+	    [fromto %.cpp %.s
+	    [fromto %.c++ %.s
+	    [fromto %.cc %.s
+		[c++_src]
+	    ]]]
+	];
+if [not [defined dot_obj]] then
+	dot_obj = ;
+dot_obj =
+	[stringset
+	    [dot_obj]
+
+	    [fromto %.cpp %.o
+	    [fromto %.c++ %.o
+	    [fromto %.cc %.o
+		[c++_src]
+	    ]]]
+	];
+if [not [defined dot_clean]] then
+	dot_clean = ;
+dot_clean =
+	[stringset
+		[dot_clean]
+		[fromto %.cpp %.o
+		[fromto %.cc %.o
+		[fromto %.c++ %.o
+		    [c++_src]
+		]]]
+		[fromto %.cpp %.s
+		[fromto %.cc %.s
+		[fromto %.c++ %.s
+		    [c++_src]
+		]]]
+	];
+
+%.o: %.cpp
+{
+	[c++] [c++_include_flags] [c++_flags]
+		[addprefix "-I" [search_list]]
+		-o [target]
+		-c [resolve %.cpp];
+}
+
+%.o: %.cc
+{
+	[c++] [c++_include_flags] [c++_flags]
+		[addprefix "-I" [search_list]]
+		-o [target]
+		-c [resolve %.cc];
+}
+
+%.o: %.c++
+{
+	[c++] [c++_include_flags] [c++_flags]
+		[addprefix "-I" [search_list]]
+		-o [target]
+		-c [resolve %.c++];
+}
+
+/*
+ * if the c_incl command is available, then check dependencies
+ */
+#if [c_incl]
+	%.cpp.d: %.cpp
+	{
+		[c_incl] -nc -ns -nrec
+			[c++_include_flags]
+			[resolve %.cpp]
+			[addprefix "-I" [search_list]]
+			-prefix "'cascade %.cpp ='"
+			-suffix "';'"
+			[addprefix "-rlp=" [split ":" [search_list]]]
+			-o [target];
+	}
+	%.cc.d: %.cc
+	{
+		[c_incl] -nc -ns -nrec
+			[c++_include_flags]
+			[resolve %.cc]
+			[addprefix "-I" [search_list]]
+			-prefix "'cascade %.cc ='"
+			-suffix "';'"
+			[addprefix "-rlp=" [split ":" [search_list]]]
+			-o [target];
+	}
+	%.c++.d: %.c++
+	{
+		[c_incl] -nc -ns -nrec
+			[c++_include_flags]
+			[resolve %.c++]
+			[addprefix "-I" [search_list]]
+			-prefix "'cascade %.c++ ='"
+			-suffix "';'"
+			[addprefix "-rlp=" [split ":" [search_list]]]
+			-o [target];
+	}
+	%.h.d: %.h
+	{
+		[c_incl] -nc -ns -nrec
+			[c++_include_flags]
+			[resolve %.h]
+			[addprefix "-I" [search_list]]
+			-prefix "'cascade %.h ='"
+			-suffix "';'"
+			[addprefix "-rlp=" [split ":" [search_list]]]
+			-o [target];
+	}
+
+	c++_dep_files = [addsuffix ".d" [c++_src] [glob "*.h"]];
+	dot_clean =
+		[stringset
+			[dot_clean]
+			[c++_dep_files]
+		];
+
+	#include-cooked-nowarn [c++_dep_files]
+#endif

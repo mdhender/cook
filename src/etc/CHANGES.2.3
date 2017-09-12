@@ -1,0 +1,1381 @@
+
+
+
+Project "cook.2.3"						 Page 1
+List of Changes				       Tue Jul 21 23:02:56 1998
+
+Change	State		Description
+------- -------		-------------
+  10	completed	prepare for release
+  11	completed	cascade-ingredients-for
+  12	completed	c_incl -norecursive
+  13	completed	cascade-for documentation
+  14	completed	add cascade flag/option
+  15	completed	use cascade-for
+  16	completed	cascade and derived files warnings
+  17	completed	basename in user guide
+  18	completed	move aux to etc
+  19	completed	change cascade to use assignment form
+  20	completed	better cascade use detection
+  21	completed	large project documentation
+  22	completed	[expr]
+  23	completed	exists-symlink
+  24	completed	expression evaluation bug
+  25	completed	repeat function
+  26	completed	update release notes
+
+
+
+Project "cook.2.3", Change 10					 Page 1
+Change Details				       Tue Jul 21 23:02:57 1998
+
+NAME
+	Project "cook.2.3", Delta 1, Change 10.
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change prepares Cook for release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 34   BUILDING
+	build	modify	   27 -> 80   MANIFEST
+	build	modify	   29 -> 81   Makefile.in
+	build	modify	   12 -> 40   README
+	source	create	    1	      aux/CHANGES.2.2
+	source	modify	    1 -> 2    aux/rpm-build.sh
+	build	modify	    5 -> 93   aux/version.so
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 131  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+	source	create	    1	      lib/en/readme/new.2.3.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed May 20	pmiller
+			21:33:37 1998
+	develop_begin	Wed May 20	pmiller	 Elapsed time: 2.032
+			21:33:48 1998		 days.
+	develop_end	Fri May 22	pmiller
+			21:48:15 1998
+	review_pass	Fri May 22	pmiller
+			21:48:57 1998
+	integrate_begin Fri May 22	pmiller
+			21:49:05 1998
+	integrate_pass	Fri May 22	pmiller
+			21:55:20 1998
+
+
+
+Project "cook.2.3", Change 11					 Page 1
+Change Details				       Tue Jul 21 23:02:57 1998
+
+NAME
+	Project "cook.2.3", Delta 3, Change 11.
+
+SUMMARY
+	cascade-ingredients-for
+
+DESCRIPTION
+	This change introduces the cascade-ingredients-for statement.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 34   BUILDING
+	build	modify	   27 -> 82   MANIFEST
+	build	modify	   29 -> 83   Makefile.in
+	build	modify	   12 -> 41   README
+	source	modify	   33 -> 34   aux/Howto.cook
+	build	modify	    5 -> 95   aux/version.so
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 133  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+	source	create	    1	      cook/cascade.c
+	source	create	    1	      cook/cascade.h
+	source	modify	   20 -> 21   cook/cook.c
+	source	modify	   18 -> 19   cook/graph/build.c
+	source	modify	    3 -> 4    cook/graph/file_pair.c
+	source	modify	    2 -> 3    cook/graph/file_pair.h
+	source	modify	   15 -> 16   cook/hashline.y
+	source	modify	   17 -> 18   cook/lex.c
+	source	create	    1	      cook/opcode/cascade.c
+	source	create	    1	      cook/opcode/cascade.h
+	source	modify	   23 -> 24   cook/parse.y
+	source	create	    1	      cook/stmt/cascade.c
+	source	create	    1	      cook/stmt/cascade.h
+	source	modify	   19 -> 20   lib/en/LC_MESSAGES/cook.po
+	test	create	    1	      test/01/t0147a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri May 22	pmiller
+			22:12:05 1998
+	develop_begin	Fri May 22	pmiller	 Elapsed time: 2.020
+			22:13:38 1998		 days.
+	develop_end	Tue May 26	pmiller
+			22:22:37 1998
+	review_pass	Tue May 26	pmiller
+			22:22:51 1998
+	integrate_begin Tue May 26	pmiller
+
+
+
+Project "cook.2.3", Change 11					 Page 2
+Change Details				       Tue Jul 21 23:02:57 1998
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			22:23:00 1998
+	integrate_pass	Tue May 26	pmiller
+			22:30:47 1998
+
+
+
+Project "cook.2.3", Change 12					 Page 1
+Change Details				       Tue Jul 21 23:02:57 1998
+
+NAME
+	Project "cook.2.3", Delta 2, Change 12.
+
+SUMMARY
+	c_incl -norecursive
+
+DESCRIPTION
+	This change adds the c_incl -norecursive option, to support the
+	new cascade-for cook rule.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 34   BUILDING
+	build	modify	   27 -> 81   MANIFEST
+	build	modify	   29 -> 82   Makefile.in
+	build	modify	   12 -> 41   README
+	build	modify	    5 -> 94   aux/version.so
+	source	modify	    8 -> 9    c_incl/main.c
+	source	modify	   11 -> 12   c_incl/sniff.c
+	source	modify	    8 -> 9    c_incl/sniff.h
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 132  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+	source	modify	    8 -> 9    lib/en/man1/c_incl.1
+	source	modify	    1 -> 2    lib/en/readme/new.2.3.so
+	test	create	    1	      test/01/t0148a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon May 25	pmiller
+			17:02:11 1998
+	develop_begin	Mon May 25	pmiller	 Elapsed time: 1.000
+			17:02:37 1998		 days.
+	develop_end	Tue May 26	pmiller
+			16:43:39 1998
+	review_pass	Tue May 26	pmiller
+			16:47:11 1998
+	integrate_begin Tue May 26	pmiller	 Elapsed time: 0.023
+			16:47:19 1998		 days.
+	integrate_pass	Tue May 26	pmiller
+			16:57:27 1998
+
+
+
+Project "cook.2.3", Change 13					 Page 1
+Change Details				       Tue Jul 21 23:02:57 1998
+
+NAME
+	Project "cook.2.3", Delta 11, Change 13.
+
+SUMMARY
+	cascade-for documentation
+
+DESCRIPTION
+	This change documents the caccade-for recipes.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 38   BUILDING
+	build	modify	   27 -> 87   MANIFEST
+	build	modify	   29 -> 88   Makefile.in
+	build	modify	   12 -> 42   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 141  common/patchlevel.h
+	source	modify	    9 -> 10   config
+	build	modify	    7 -> 15   configure
+	build	modify	    2 -> 3    etc/version.so
+	source	modify	    4 -> 5    lib/en/user-guide/include.so
+	source	create	    1	      lib/en/user-guide/lang.casca.pic
+	source	modify	   12 -> 13   lib/en/user-guide/language.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue May 26	pmiller
+			16:58:35 1998
+	develop_begin	Tue May 26	pmiller	 Elapsed time: 20.166
+			16:59:22 1998		 days.
+	develop_end	Tue Jun 23	pmiller	 Elapsed time: 0.030
+			18:14:16 1998		 days.
+	review_pass	Tue Jun 23	pmiller
+			18:27:43 1998
+	integrate_begin Tue Jun 23	pmiller	 Elapsed time: 0.070
+			18:27:55 1998		 days.
+	integrate_	Tue Jun 23	pmiller
+	begin_undo	18:59:15 1998
+	develop_end_	Tue Jun 23	pmiller
+	undo		18:59:28 1998
+	develop_end	Tue Jun 23	pmiller
+			19:02:06 1998
+	review_pass	Tue Jun 23	pmiller
+
+
+
+Project "cook.2.3", Change 13					 Page 2
+Change Details				       Tue Jul 21 23:02:57 1998
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			19:02:23 1998
+	integrate_begin Tue Jun 23	pmiller
+			19:02:31 1998
+	integrate_	Tue Jun 23	pmiller
+	begin_undo	19:08:10 1998
+	develop_end_	Tue Jun 23	pmiller
+	undo		19:08:18 1998
+	develop_end	Tue Jun 23	pmiller
+			19:10:15 1998
+	review_pass	Tue Jun 23	pmiller
+			19:10:18 1998
+	integrate_begin Tue Jun 23	pmiller
+			19:10:24 1998
+	integrate_pass	Tue Jun 23	pmiller
+			19:18:14 1998
+
+
+
+Project "cook.2.3", Change 14					 Page 1
+Change Details				       Tue Jul 21 23:02:58 1998
+
+NAME
+	Project "cook.2.3", Delta 4, Change 14.
+
+SUMMARY
+	add cascade flag/option
+
+DESCRIPTION
+	This change adds the cascade flag, and -CAScade command line
+	option.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 34   BUILDING
+	build	modify	   27 -> 83   MANIFEST
+	build	modify	   29 -> 84   Makefile.in
+	build	modify	   12 -> 41   README
+	build	modify	    5 -> 96   aux/version.so
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 134  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+	source	modify	    8 -> 9    cook/builtin/options.c
+	source	modify	    4 -> 5    cook/flag.c
+	source	modify	    3 -> 4    cook/flag.h
+	source	modify	   19 -> 20   cook/graph/build.c
+	source	modify	   14 -> 15   cook/main.c
+	source	modify	    8 -> 9    cook/option.c
+	source	modify	    9 -> 10   cook/option.h
+	source	modify	   24 -> 25   cook/parse.y
+	source	modify	    8 -> 9    lib/en/man1/cook.1
+	test	create	    1	      test/01/t0149a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue May 26	pmiller
+			23:31:19 1998
+	develop_begin	Tue May 26	pmiller	 Elapsed time: 1.000
+			23:31:24 1998		 days.
+	develop_end	Wed May 27	pmiller
+			17:04:53 1998
+	review_pass	Wed May 27	pmiller
+			17:05:49 1998
+	integrate_begin Wed May 27	pmiller	 Elapsed time: 1.536
+			17:06:00 1998		 days.
+	integrate_pass	Thu May 28	pmiller
+			21:07:17 1998
+
+
+
+Project "cook.2.3", Change 15					 Page 1
+Change Details				       Tue Jul 21 23:02:58 1998
+
+NAME
+	Project "cook.2.3", Delta 7, Change 15.
+
+SUMMARY
+	use cascade-for
+
+DESCRIPTION
+	This change updates Cook's own build process to use the
+	cascade-for functionality.  This should result in a slightly
+	more efficient build procedure, and also exersize significant
+	portions of the new code.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 34   BUILDING
+	build	modify	   27 -> 84   MANIFEST
+	build	modify	   29 -> 85   Makefile.in
+	build	modify	   12 -> 41   README
+	source	modify	   34 -> 35   aux/Howto.cook
+	source	modify	   10 -> 11   aux/Makefi.file.sh
+	build	modify	    5 -> 99   aux/version.so
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 137  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed May 27	pmiller
+			17:16:30 1998
+	develop_begin	Wed May 27	pmiller	 Elapsed time: 3.000
+			17:17:03 1998		 days.
+	develop_end	Mon Jun	 1	pmiller	 Elapsed time: 0.033
+			16:44:19 1998		 days.
+	review_pass	Mon Jun	 1	pmiller
+			16:59:02 1998
+	integrate_begin Mon Jun	 1	pmiller	 Elapsed time: 0.046
+			16:59:11 1998		 days.
+	integrate_pass	Mon Jun	 1	pmiller
+			17:19:41 1998
+
+
+
+Project "cook.2.3", Change 16					 Page 1
+Change Details				       Tue Jul 21 23:02:58 1998
+
+NAME
+	Project "cook.2.3", Delta 5, Change 16.
+
+SUMMARY
+	cascade and derived files warnings
+
+DESCRIPTION
+	This change enhances the derived include file warnings to also
+	work with cascaded ingredients.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 34   BUILDING
+	build	modify	   27 -> 84   MANIFEST
+	build	modify	   29 -> 84   Makefile.in
+	build	modify	   12 -> 41   README
+	build	modify	    5 -> 97   aux/version.so
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 135  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+	source	modify	    1 -> 2    cook/cascade.c
+	source	modify	    1 -> 2    cook/cascade.h
+	source	modify	   21 -> 22   cook/cook.c
+	source	modify	    4 -> 5    cook/graph/file_pair.c
+	source	modify	    3 -> 4    cook/graph/file_pair.h
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri May 29	pmiller
+			12:45:19 1998
+	develop_begin	Fri May 29	pmiller	 Elapsed time: 1.000
+			12:45:28 1998		 days.
+	develop_end	Sun May 31	pmiller
+			22:39:17 1998
+	review_pass	Sun May 31	pmiller
+			22:39:21 1998
+	integrate_begin Sun May 31	pmiller	 Elapsed time: 0.060
+			22:39:31 1998		 days.
+	integrate_pass	Sun May 31	pmiller
+			23:06:43 1998
+
+
+
+Project "cook.2.3", Change 17					 Page 1
+Change Details				       Tue Jul 21 23:02:58 1998
+
+NAME
+	Project "cook.2.3", Delta 6, Change 17.
+
+SUMMARY
+	basename in user guide
+
+DESCRIPTION
+	This change adds some explanatory commands about the [basename]
+	cook function.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 34   BUILDING
+	build	modify	   27 -> 84   MANIFEST
+	build	modify	   29 -> 84   Makefile.in
+	build	modify	   12 -> 41   README
+	build	modify	    5 -> 98   aux/version.so
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 136  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+	source	modify	    5 -> 6    lib/en/user-guide/function/
+				      basename.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Jun	 1	pmiller
+			09:37:14 1998
+	develop_begin	Mon Jun	 1	pmiller	 Elapsed time: 0.194
+			09:37:51 1998		 days.
+	develop_end	Mon Jun	 1	pmiller
+			11:05:08 1998
+	review_pass	Mon Jun	 1	pmiller
+			11:05:12 1998
+	integrate_begin Mon Jun	 1	pmiller	 Elapsed time: 0.129
+			11:05:22 1998		 days.
+	integrate_pass	Mon Jun	 1	pmiller
+			12:03:32 1998
+
+
+
+Project "cook.2.3", Change 18					 Page 1
+Change Details				       Tue Jul 21 23:02:58 1998
+
+NAME
+	Project "cook.2.3", Delta 9, Change 18.
+
+SUMMARY
+	move aux to etc
+
+DESCRIPTION
+	This change renames the ``aux'' directory to be ``etc''.
+	This is motivated by an attempt to port Cook to the CygWin32
+	system.	  the problem is that the string ``aux'' anywhere in
+	the path is interpreted to mean the "aux:" device.   The win32
+	API is typically brain-dead.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_improvement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 36   BUILDING
+	build	modify	   27 -> 86   MANIFEST
+	build	modify	   29 -> 87   Makefile.in
+	build	modify	   12 -> 42   README
+	source	remove	    1	      aux/CHANGES.1.10
+				      Moved to etc/CHANGES.1.10
+	source	remove	    1	      aux/CHANGES.1.11
+				      Moved to etc/CHANGES.1.11
+	source	remove	    1	      aux/CHANGES.1.2
+				      Moved to etc/CHANGES.1.2
+	source	remove	    1	      aux/CHANGES.1.3
+				      Moved to etc/CHANGES.1.3
+	source	remove	    1	      aux/CHANGES.1.4
+				      Moved to etc/CHANGES.1.4
+	source	remove	    1	      aux/CHANGES.1.5
+				      Moved to etc/CHANGES.1.5
+	source	remove	    1	      aux/CHANGES.1.6
+				      Moved to etc/CHANGES.1.6
+	source	remove	    1	      aux/CHANGES.1.7
+				      Moved to etc/CHANGES.1.7
+	source	remove	    1	      aux/CHANGES.1.8
+				      Moved to etc/CHANGES.1.8
+	source	remove	    1	      aux/CHANGES.1.9
+				      Moved to etc/CHANGES.1.9
+	source	remove	    1	      aux/CHANGES.2.0
+				      Moved to etc/CHANGES.2.0
+	source	remove	    3	      aux/CHANGES.2.1
+				      Moved to etc/CHANGES.2.1
+	source	remove	    1	      aux/CHANGES.2.2
+
+
+
+Project "cook.2.3", Change 18					 Page 2
+Change Details				       Tue Jul 21 23:02:58 1998
+
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+				      Moved to etc/CHANGES.2.2
+	source	remove	    2	      aux/CHANGES.sh
+				      Moved to etc/CHANGES.sh
+	source	remove	    2	      aux/Howto.conf.in
+				      Moved to etc/Howto.conf.in
+	source	remove	   35	      aux/Howto.cook
+				      Moved to etc/Howto.cook
+	source	remove	    1	      aux/MANIFEST.head
+				      Moved to etc/MANIFEST.head
+	source	remove	    3	      aux/MANIFEST.sh
+				      Moved to etc/MANIFEST.sh
+	source	remove	   11	      aux/Makefi.file.sh
+				      Moved to etc/Makefi.file.sh
+	source	remove	    2	      aux/Makefile.awk
+				      Moved to etc/Makefile.awk
+	source	remove	    7	      aux/Makefile.head
+				      Moved to etc/Makefile.head
+	source	remove	    8	      aux/Makefile.sh
+				      Moved to etc/Makefile.sh
+	source	remove	    2	      aux/config.h.in
+				      Moved to etc/config.h.in
+	source	remove	    2	      aux/config.h.in1
+				      Moved to etc/config.h.in1
+	source	remove	    2	      aux/config.h.in2
+				      Moved to etc/config.h.in2
+	source	remove	   12	      aux/configure.in
+				      Moved to etc/configure.in
+	source	remove	    1	      aux/cook.gif.uue
+				      Moved to etc/cook.gif.uue
+	source	remove	    8	      aux/cook.html
+				      Moved to etc/cook.html
+	source	remove	    3	      aux/function.sh
+				      Moved to etc/function.sh
+	source	remove	    2	      aux/libdir-h.in
+				      Moved to etc/libdir-h.in
+	source	remove	    3	      aux/libdir.so.in
+				      Moved to etc/libdir.so.in
+	source	remove	    2	      aux/patch.file.sh
+				      Moved to etc/patch.file.sh
+	source	remove	    2	      aux/patches.sh
+				      Moved to etc/patches.sh
+	source	remove	    2	      aux/ptx.ignore
+				      Moved to etc/ptx.ignore
+	source	remove	    2	      aux/ptx.sh
+				      Moved to etc/ptx.sh
+	source	remove	    2	      aux/ptx1.awk
+				      Moved to etc/ptx1.awk
+	source	remove	    2	      aux/ptx2.awk
+				      Moved to etc/ptx2.awk
+	source	remove	    2	      aux/rpm-build.sh
+				      Moved to etc/rpm-build.sh
+	source	remove	    5	      aux/spec.sh
+				      Moved to etc/spec.sh
+	source	remove	    2	      aux/ssp.awk
+				      Moved to etc/ssp.awk
+
+
+
+Project "cook.2.3", Change 18					 Page 3
+Change Details				       Tue Jul 21 23:02:58 1998
+
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	source	remove	    3	      aux/system.sh
+				      Moved to etc/system.sh
+	source	remove	    2	      aux/template/c
+				      Moved to etc/template/c
+	source	remove	    2	      aux/template/generic
+				      Moved to etc/template/generic
+	source	remove	    2	      aux/template/h
+				      Moved to etc/template/h
+	source	remove	    2	      aux/template/man
+				      Moved to etc/template/man
+	source	remove	    2	      aux/template/ms
+				      Moved to etc/template/ms
+	source	remove	    2	      aux/template/sh
+				      Moved to etc/template/sh
+	source	remove	    5	      aux/template/test
+				      Moved to etc/template/test
+	source	remove	    2	      aux/toc.so
+				      Moved to etc/toc.so
+	build	remove	    5	      aux/version.so
+				      Moved to etc/version.so
+	source	remove	    2	      aux/zer-len-msg.sh
+				      Moved to etc/zer-len-msg.sh
+	build	modify	    3 -> 9    common/config.h.in
+	source	modify	    3 -> 4    common/libdir.c
+	build	modify	   43 -> 139  common/patchlevel.h
+	source	modify	    8 -> 9    config
+	build	modify	    7 -> 15   configure
+	source	create	    1	      etc/CHANGES.1.10
+				      Moved from aux/CHANGES.1.10
+	source	create	    1	      etc/CHANGES.1.11
+				      Moved from aux/CHANGES.1.11
+	source	create	    1	      etc/CHANGES.1.2
+				      Moved from aux/CHANGES.1.2
+	source	create	    1	      etc/CHANGES.1.3
+				      Moved from aux/CHANGES.1.3
+	source	create	    1	      etc/CHANGES.1.4
+				      Moved from aux/CHANGES.1.4
+	source	create	    1	      etc/CHANGES.1.5
+				      Moved from aux/CHANGES.1.5
+	source	create	    1	      etc/CHANGES.1.6
+				      Moved from aux/CHANGES.1.6
+	source	create	    1	      etc/CHANGES.1.7
+				      Moved from aux/CHANGES.1.7
+	source	create	    1	      etc/CHANGES.1.8
+				      Moved from aux/CHANGES.1.8
+	source	create	    1	      etc/CHANGES.1.9
+				      Moved from aux/CHANGES.1.9
+	source	create	    1	      etc/CHANGES.2.0
+				      Moved from aux/CHANGES.2.0
+	source	create	    1	      etc/CHANGES.2.1
+				      Moved from aux/CHANGES.2.1
+	source	create	    1	      etc/CHANGES.2.2
+				      Moved from aux/CHANGES.2.2
+	source	create	    1	      etc/CHANGES.sh
+				      Moved from aux/CHANGES.sh
+
+
+
+Project "cook.2.3", Change 18					 Page 4
+Change Details				       Tue Jul 21 23:02:58 1998
+
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	source	create	    1	      etc/Howto.conf.in
+				      Moved from aux/Howto.conf.in
+	source	create	    1	      etc/Howto.cook
+				      Moved from aux/Howto.cook
+	source	create	    1	      etc/MANIFEST.head
+				      Moved from aux/MANIFEST.head
+	source	create	    1	      etc/MANIFEST.sh
+				      Moved from aux/MANIFEST.sh
+	source	create	    1	      etc/Makefi.file.sh
+				      Moved from aux/Makefi.file.sh
+	source	create	    1	      etc/Makefile.awk
+				      Moved from aux/Makefile.awk
+	source	create	    1	      etc/Makefile.head
+				      Moved from aux/Makefile.head
+	source	create	    1	      etc/Makefile.sh
+				      Moved from aux/Makefile.sh
+	source	create	    1	      etc/config.h.in
+				      Moved from aux/config.h.in
+	source	create	    1	      etc/config.h.in1
+				      Moved from aux/config.h.in1
+	source	create	    1	      etc/config.h.in2
+				      Moved from aux/config.h.in2
+	source	create	    1	      etc/configure.in
+				      Moved from aux/configure.in
+	source	create	    1	      etc/cook.gif.uue
+				      Moved from aux/cook.gif.uue
+	source	create	    1	      etc/cook.html
+				      Moved from aux/cook.html
+	source	create	    1	      etc/function.sh
+				      Moved from aux/function.sh
+	source	create	    1	      etc/libdir-h.in
+				      Moved from aux/libdir-h.in
+	source	create	    1	      etc/libdir.so.in
+				      Moved from aux/libdir.so.in
+	source	create	    1	      etc/patch.file.sh
+				      Moved from aux/patch.file.sh
+	source	create	    1	      etc/patches.sh
+				      Moved from aux/patches.sh
+	source	create	    1	      etc/ptx.ignore
+				      Moved from aux/ptx.ignore
+	source	create	    1	      etc/ptx.sh
+				      Moved from aux/ptx.sh
+	source	create	    1	      etc/ptx1.awk
+				      Moved from aux/ptx1.awk
+	source	create	    1	      etc/ptx2.awk
+				      Moved from aux/ptx2.awk
+	source	create	    1	      etc/rpm-build.sh
+				      Moved from aux/rpm-build.sh
+	source	create	    1	      etc/spec.sh
+				      Moved from aux/spec.sh
+	source	create	    1	      etc/ssp.awk
+				      Moved from aux/ssp.awk
+	source	create	    1	      etc/system.sh
+				      Moved from aux/system.sh
+	source	create	    1	      etc/template/c
+
+
+
+Project "cook.2.3", Change 18					 Page 5
+Change Details				       Tue Jul 21 23:02:58 1998
+
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+				      Moved from aux/template/c
+	source	create	    1	      etc/template/generic
+				      Moved from aux/template/generic
+	source	create	    1	      etc/template/h
+				      Moved from aux/template/h
+	source	create	    1	      etc/template/man
+				      Moved from aux/template/man
+	source	create	    1	      etc/template/ms
+				      Moved from aux/template/ms
+	source	create	    1	      etc/template/sh
+				      Moved from aux/template/sh
+	source	create	    1	      etc/template/test
+				      Moved from aux/template/test
+	source	create	    1	      etc/toc.so
+				      Moved from aux/toc.so
+	build	create	    1	      etc/version.so
+				      Moved from aux/version.so
+	source	create	    1	      etc/zer-len-msg.sh
+				      Moved from aux/zer-len-msg.sh
+	source	modify	    8 -> 9    lib/en/building/main.man
+	source	modify	   10 -> 11   lib/en/lsm/main.roff
+	source	modify	    9 -> 10   lib/en/man1/cook.1
+	source	modify	    3 -> 4    lib/en/man1/copyright.so
+	source	modify	    9 -> 10   lib/en/readme/main.man
+	source	modify	    4 -> 5    lib/en/refman/main.man
+	source	modify	    5 -> 6    lib/en/release/main.man
+	source	modify	    7 -> 8    lib/en/user-guide/main.mm
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Jun	 1	pmiller
+			16:38:15 1998
+	develop_begin	Mon Jun	 1	pmiller	 Elapsed time: 3.000
+			16:38:39 1998		 days.
+	develop_end	Thu Jun	 4	pmiller
+			15:57:16 1998
+	review_pass	Thu Jun	 4	pmiller
+			16:03:01 1998
+	integrate_begin Thu Jun	 4	pmiller
+			16:03:10 1998
+	integrate_fail	Thu Jun	 4	pmiller	 a few aux references
+			16:11:38 1998		 left
+						 Elapsed time: 0.071
+						 days.
+	develop_end	Thu Jun	 4	pmiller
+			16:43:33 1998
+	review_pass	Thu Jun	 4	pmiller
+			16:44:06 1998
+	integrate_begin Thu Jun	 4	pmiller	 Elapsed time: 0.025
+			16:44:19 1998		 days.
+	integrate_fail	Thu Jun	 4	pmiller	 cook: the "aux/
+			16:55:46 1998		 CHANGES.2.2" file is
+						 an explict primary
+						 source file, but it
+
+
+
+Project "cook.2.3", Change 18					 Page 6
+Change Details				       Tue Jul 21 23:02:58 1998
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+						 could not be found
+						 Elapsed time: 1.000
+						 days.
+	develop_end	Fri Jun	 5	pmiller
+			12:00:06 1998
+	review_pass	Fri Jun	 5	pmiller
+			12:00:12 1998
+	integrate_begin Fri Jun	 5	pmiller	 Elapsed time: 0.096
+			12:00:21 1998		 days.
+	integrate_pass	Fri Jun	 5	pmiller
+			12:43:30 1998
+
+
+
+Project "cook.2.3", Change 19					 Page 1
+Change Details				       Tue Jul 21 23:02:59 1998
+
+NAME
+	Project "cook.2.3", Delta 8, Change 19.
+
+SUMMARY
+	change cascade to use assignment form
+
+DESCRIPTION
+	This change alters cascade from a recipe form to an explicit
+	assignment form.  This gives better error messages when the
+	user mis-types the keyword.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 35   BUILDING
+	build	modify	   27 -> 85   MANIFEST
+	build	modify	   29 -> 86   Makefile.in
+	build	modify	   12 -> 41   README
+	source	modify	   35 -> 36   aux/Howto.cook
+	build	modify	    5 -> 100  aux/version.so
+	build	modify	    3 -> 8    common/config.h.in
+	build	modify	   43 -> 138  common/patchlevel.h
+	build	modify	    7 -> 14   configure
+	source	modify	   16 -> 17   cook/hashline.y
+	source	modify	   18 -> 19   cook/lex.c
+	source	modify	   25 -> 26   cook/parse.y
+	source	modify	    5 -> 6    cook/stmt/assign.c
+	source	remove	    1	      cook/stmt/cascade.c
+	source	remove	    1	      cook/stmt/cascade.h
+	test	modify	    1 -> 2    test/01/t0147a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Jun	 2	pmiller
+			06:02:46 1998
+	develop_begin	Tue Jun	 2	pmiller	 Elapsed time: 3.000
+			06:03:00 1998		 days.
+	develop_end	Thu Jun	 4	pmiller
+			17:01:57 1998
+	review_pass	Thu Jun	 4	pmiller
+			17:02:06 1998
+	integrate_begin Thu Jun	 4	pmiller
+			17:02:15 1998
+	integrate_fail	Thu Jun	 4	pmiller	 reference to deleted
+			17:07:56 1998		 file
+	develop_end	Thu Jun	 4	pmiller	 Elapsed time: 1.000
+			17:16:16 1998		 days.
+	review_pass	Fri Jun	 5	pmiller
+
+
+
+Project "cook.2.3", Change 19					 Page 2
+Change Details				       Tue Jul 21 23:02:59 1998
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			09:30:27 1998
+	integrate_begin Fri Jun	 5	pmiller	 Elapsed time: 0.039
+			09:30:40 1998		 days.
+	integrate_pass	Fri Jun	 5	pmiller
+			09:48:00 1998
+
+
+
+Project "cook.2.3", Change 20					 Page 1
+Change Details				       Tue Jul 21 23:03:00 1998
+
+NAME
+	Project "cook.2.3", Delta 10, Change 20.
+
+SUMMARY
+	better cascade use detection
+
+DESCRIPTION
+	This change corrects a problem where casecade use was returning
+	a false positive, thus generating spurious warning messages.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by chain.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 37   BUILDING
+	build	modify	   27 -> 86   MANIFEST
+	build	modify	   29 -> 87   Makefile.in
+	build	modify	   12 -> 42   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 140  common/patchlevel.h
+	build	modify	    7 -> 15   configure
+	source	modify	    2 -> 3    cook/cascade.c
+	build	modify	    1 -> 2    etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jun 18	pmiller
+			17:56:15 1998
+	develop_begin	Thu Jun 18	pmiller	 Elapsed time: 0.087
+			17:56:21 1998		 days.
+	develop_end	Thu Jun 18	pmiller
+			18:35:20 1998
+	review_pass	Thu Jun 18	pmiller
+			18:35:26 1998
+	integrate_begin Thu Jun 18	pmiller	 Elapsed time: 0.035
+			18:35:46 1998		 days.
+	integrate_pass	Thu Jun 18	pmiller
+			18:51:40 1998
+
+
+
+Project "cook.2.3", Change 21					 Page 1
+Change Details				       Tue Jul 21 23:03:00 1998
+
+NAME
+	Project "cook.2.3", Delta 14, Change 21.
+
+SUMMARY
+	large project documentation
+
+DESCRIPTION
+	This change adds a chapter to the Cook User's Guide, giving an
+	outline of how to build large projects using Cook in a single
+	build pass.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 41   BUILDING
+	build	modify	   27 -> 90   MANIFEST
+	build	modify	   29 -> 91   Makefile.in
+	build	modify	   12 -> 43   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 144  common/patchlevel.h
+	build	modify	    7 -> 15   configure
+	build	modify	    5 -> 6    etc/version.so
+	source	create	    1	      lib/en/user-guide/large.so
+	source	modify	    8 -> 9    lib/en/user-guide/main.mm
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Jun 23	pmiller
+			19:20:01 1998
+	develop_begin	Tue Jun 23	pmiller	 Elapsed time: 3.000
+			19:20:04 1998		 days.
+	develop_end	Fri Jun 26	pmiller
+			16:44:55 1998
+	review_pass	Fri Jun 26	pmiller
+			16:45:12 1998
+	integrate_begin Fri Jun 26	pmiller	 Elapsed time: 0.026
+			16:45:25 1998		 days.
+	integrate_pass	Fri Jun 26	pmiller
+			16:57:00 1998
+
+
+
+Project "cook.2.3", Change 22					 Page 1
+Change Details				       Tue Jul 21 23:03:00 1998
+
+NAME
+	Project "cook.2.3", Delta 13, Change 22.
+
+SUMMARY
+	[expr]
+
+DESCRIPTION
+	This change adds the [expr] function, to calculate simple
+	arithmetic expressions.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 40   BUILDING
+	build	modify	   27 -> 89   MANIFEST
+	build	modify	   29 -> 90   Makefile.in
+	build	modify	   12 -> 43   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 143  common/patchlevel.h
+	build	modify	    7 -> 15   configure
+	source	modify	    9 -> 10   cook/builtin.c
+	source	create	    1	      cook/builtin/expr.c
+	source	create	    1	      cook/builtin/expr.h
+	source	create	    1	      cook/builtin/expr_lex.c
+	source	create	    1	      cook/builtin/expr_lex.h
+	source	create	    1	      cook/builtin/expr_parse.h
+	source	create	    1	      cook/builtin/expr_parse.y
+	source	modify	    1 -> 2    etc/Howto.cook
+	build	modify	    4 -> 5    etc/version.so
+	source	modify	   20 -> 21   lib/en/LC_MESSAGES/cook.po
+	source	modify	    2 -> 3    lib/en/readme/new.2.3.so
+	source	create	    1	      lib/en/user-guide/function/
+				      expr.so
+	test	create	    1	      test/01/t0151a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Jun 23	pmiller
+			19:22:00 1998
+	develop_begin	Tue Jun 23	pmiller	 Elapsed time: 2.180
+			19:22:08 1998		 days.
+	develop_end	Thu Jun 25	pmiller
+			20:43:04 1998
+	review_pass	Thu Jun 25	pmiller	 Elapsed time: 0.165
+			20:43:24 1998		 days.
+	integrate_begin Thu Jun 25	pmiller	 Elapsed time: 0.092
+			21:57:46 1998		 days.
+	integrate_pass	Thu Jun 25	pmiller
+
+
+
+Project "cook.2.3", Change 22					 Page 2
+Change Details				       Tue Jul 21 23:03:00 1998
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			22:39:13 1998
+
+
+
+Project "cook.2.3", Change 23					 Page 1
+Change Details				       Tue Jul 21 23:03:00 1998
+
+NAME
+	Project "cook.2.3", Delta 12, Change 23.
+
+SUMMARY
+	exists-symlink
+
+DESCRIPTION
+	This change adds a function [exists-symlink] for testing the
+	existence of symlinks.	Just like [exists], but it doesn't
+	follow symbolic links.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 39   BUILDING
+	build	modify	   27 -> 88   MANIFEST
+	build	modify	   29 -> 89   Makefile.in
+	build	modify	   12 -> 42   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 142  common/patchlevel.h
+	build	modify	    7 -> 15   configure
+	source	modify	    8 -> 9    cook/builtin.c
+	source	modify	    7 -> 8    cook/builtin/exists.c
+	source	modify	    5 -> 6    cook/builtin/exists.h
+	source	modify	    9 -> 10   cook/os.c
+	source	modify	    4 -> 5    cook/os.h
+	source	modify	    4 -> 5    cook/stat.cache.c
+	source	modify	    2 -> 3    cook/stat.cache.h
+	build	modify	    3 -> 4    etc/version.so
+	source	modify	    4 -> 5    lib/en/user-guide/function/
+				      exists.so
+	test	create	    1	      test/01/t0150a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Jun 23	pmiller
+			19:25:26 1998
+	develop_begin	Tue Jun 23	pmiller	 Elapsed time: 0.135
+			19:25:29 1998		 days.
+	develop_end	Tue Jun 23	pmiller
+			20:26:16 1998
+	develop_end_	Tue Jun 23	pmiller
+	undo		20:27:17 1998
+	develop_end	Tue Jun 23	pmiller
+			20:31:40 1998
+	review_pass	Tue Jun 23	pmiller
+			20:38:35 1998
+	integrate_begin Tue Jun 23	pmiller
+
+
+
+Project "cook.2.3", Change 23					 Page 2
+Change Details				       Tue Jul 21 23:03:00 1998
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			20:38:45 1998
+	integrate_pass	Tue Jun 23	pmiller
+			20:48:12 1998
+
+
+
+Project "cook.2.3", Change 24					 Page 1
+Change Details				       Tue Jul 21 23:03:00 1998
+
+NAME
+	Project "cook.2.3", Delta 15, Change 24.
+
+SUMMARY
+	expression evaluation bug
+
+DESCRIPTION
+	This change correts and expression evaluation bug.
+
+	My thanks to Pieter Nagel <pnagel@epiuse.co.za> for reporting
+	this bug.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 42   BUILDING
+	build	modify	   27 -> 91   MANIFEST
+	build	modify	   29 -> 92   Makefile.in
+	build	modify	   12 -> 43   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 145  common/patchlevel.h
+	build	modify	    7 -> 15   configure
+	source	modify	    8 -> 9    cook/opcode/command.c
+	build	modify	    6 -> 7    etc/version.so
+	test	create	    1	      test/01/t0152a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jul	 9	pmiller
+			14:32:54 1998
+	develop_begin	Thu Jul	 9	pmiller	 Elapsed time: 0.051
+			14:33:04 1998		 days.
+	develop_end	Thu Jul	 9	pmiller
+			14:56:05 1998
+	review_pass	Thu Jul	 9	pmiller
+			15:01:28 1998
+	integrate_begin Thu Jul	 9	pmiller	 Elapsed time: 0.034
+			15:01:37 1998		 days.
+	integrate_pass	Thu Jul	 9	pmiller
+			15:16:46 1998
+
+
+
+Project "cook.2.3", Change 25					 Page 1
+Change Details				       Tue Jul 21 23:03:01 1998
+
+NAME
+	Project "cook.2.3", Delta 16, Change 25.
+
+SUMMARY
+	repeat function
+
+DESCRIPTION
+	This change corrects a bug in the repeat function for use in
+	cookbooks.
+
+	My thanks to Pieter Nagel <pnagel@epiuse.co.za> for reporting
+	this problem.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 43   BUILDING
+	build	modify	   27 -> 91   MANIFEST
+	build	modify	   29 -> 92   Makefile.in
+	build	modify	   12 -> 43   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 146  common/patchlevel.h
+	build	modify	    7 -> 15   configure
+	build	modify	    7 -> 8    etc/version.so
+	source	modify	    3 -> 4    lib/functions
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jul	 9	pmiller
+			15:17:58 1998
+	develop_begin	Thu Jul	 9	pmiller
+			15:18:01 1998
+	develop_end	Thu Jul	 9	pmiller
+			15:25:10 1998
+	review_pass	Thu Jul	 9	pmiller
+			15:25:13 1998
+	integrate_begin Thu Jul	 9	pmiller	 Elapsed time: 0.297
+			15:25:22 1998		 days.
+	integrate_pass	Thu Jul	 9	pmiller
+			17:38:59 1998
+
+
+
+Project "cook.2.3", Change 26					 Page 1
+Change Details				       Tue Jul 21 23:03:01 1998
+
+NAME
+	Project "cook.2.3", Delta 17, Change 26.
+
+SUMMARY
+	update release notes
+
+DESCRIPTION
+	This change updates the release notes to include the new
+	features.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 44   BUILDING
+	build	modify	   27 -> 91   MANIFEST
+	build	modify	   29 -> 92   Makefile.in
+	build	modify	   12 -> 44   README
+	build	modify	    3 -> 9    common/config.h.in
+	build	modify	   43 -> 147  common/patchlevel.h
+	build	modify	    7 -> 15   configure
+	build	modify	    8 -> 9    etc/version.so
+	source	modify	    9 -> 10   lib/en/building/main.man
+	source	modify	    4 -> 5    lib/en/man1/copyright.so
+	source	modify	   10 -> 11   lib/en/readme/main.man
+	source	modify	    3 -> 4    lib/en/readme/new.2.3.so
+	source	modify	    5 -> 6    lib/en/refman/main.man
+	source	modify	    9 -> 10   lib/en/user-guide/main.mm
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Jul 20	pmiller
+			16:39:35 1998
+	develop_begin	Mon Jul 20	pmiller	 Elapsed time: 1.116
+			16:39:39 1998		 days.
+	develop_end	Tue Jul 21	pmiller	 Elapsed time: 0.024
+			17:31:41 1998		 days.
+	review_pass	Tue Jul 21	pmiller
+			17:42:37 1998
+	integrate_begin Tue Jul 21	pmiller	 Elapsed time: 0.612
+			17:42:49 1998		 days.
+	integrate_pass	Tue Jul 21	pmiller
+			22:18:03 1998

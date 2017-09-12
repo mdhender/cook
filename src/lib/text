@@ -1,0 +1,74 @@
+/*
+ * NAME
+ *	text - process text
+ *
+ * DESCRIPTION
+ *	This cookbook is used to process text documents.
+ *
+ *	Include file dependencies are automatically detected.
+ *	The requirements for various preprocessors are automatically detected
+ *	(eg eqn, tbl, pic, graf).
+ *
+ * RECIPES
+ *	%.ps: %.t	PostScript for generic *roff source
+ *	%: %.t		straight text from *roff source
+ *
+ * VARIABLES
+ *	text_incl	The text_incl command (finds include dependencies).
+ *			Not altered if already set.
+ *	text_roff	The text_roff command (finds preprocessor needs).
+ *			Not altered if already set.
+ *	roff_flags	Arguments passed to text_roff,
+ *			and indirectly to the *roff program.
+ *			Not altered if already set.
+ *			Defaults to empty.
+ *
+ * MANIFEST: cookbook for formatting documents
+ */
+
+#pragma once
+
+if [not [defined c_incl]] then
+	c_incl = [find_command c_incl];
+if [not [defined text_roff]] then
+	text_roff = groff -Tascii;
+if [not [defined ps_roff]] then
+	text_roff = groff;
+if [not [defined roff_flags]] then
+	roff_flags = ;
+
+%.ps: %.t
+{
+	[ps_roff] -e [roff_flags] %.t > %.ps;
+}
+
+%.doc: %.t
+{
+	[text_roff] -n [roff_flags] %.t > %.doc;
+}
+
+#if [c_incl]
+
+%.t.d: %.t
+{
+	[c_incl] -r -ns -nc -nrec
+		[addprefix "-I" [search_list]]
+		--prefix\="'cascade %.t ='"
+		--suffix\="';'"
+		[resolve %.t]
+		-o [target];
+}
+
+%.so.d: %.so
+{
+	[c_incl] -r -ns -nc -nrec
+		[addprefix "-I" [search_list]]
+		--prefix\="'cascade %.so ='"
+		--suffix\="';'"
+		[resolve %.so]
+		-o [target];
+}
+
+#include-cooked [addprefix ".d" [glob "*.t" "*.so"]]
+
+#endif

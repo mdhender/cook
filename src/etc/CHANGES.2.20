@@ -1,0 +1,468 @@
+
+
+
+Project "cook.2.20"						  Page 1
+List of Changes					Mon Aug 26 17:31:29 2002
+
+Change	State		Description
+------- -------		-------------
+  10	completed	prepare for release
+  11	completed	[cook] bug
+  12	completed	documentation bugs
+  15	completed	stripdots function
+  16	completed	stripdot vs cascade
+  17	completed	wint_t
+  18	completed	c_incl vs stripdot
+
+
+
+Project "cook.2.20", Change 10					  Page 1
+Change Details					Mon Aug 26 17:31:29 2002
+
+NAME
+	Project "cook.2.20", Delta 1, Change 10.
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change prepares Cook for the next public release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 232  BUILDING
+	build	modify	   27 -> 192  MANIFEST
+	build	modify	   29 -> 192  Makefile.in
+	build	modify	   12 -> 122  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 335  common/patchlevel.h
+	build	modify	    7 -> 31   configure
+	source	create	    1	      etc/CHANGES.2.19
+	build	modify	  196 -> 197  etc/version.so
+	source	create	    1	      lib/en/readme/new.2.20.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jun	 6	pmiller
+			14:32:24 2002
+	develop_begin	Thu Jun	 6	pmiller	 Elapsed time: 0.025
+			14:32:24 2002		 days.
+	develop_end	Thu Jun	 6	pmiller
+			14:43:49 2002
+	review_pass	Thu Jun	 6	pmiller
+			14:43:51 2002
+	integrate_begin Thu Jun	 6	pmiller
+			14:43:54 2002
+	integrate_pass	Thu Jun	 6	pmiller
+			14:52:03 2002
+
+
+
+Project "cook.2.20", Change 11					  Page 1
+Change Details					Mon Aug 26 17:31:29 2002
+
+NAME
+	Project "cook.2.20", Delta 3, Change 11.
+
+SUMMARY
+	[cook] bug
+
+DESCRIPTION
+	This change fixes a problem with how the graph_build function is
+	called. This manifested in the [cook], [cando] and [uptodate]
+	builtin functions, which would occasionally free an invalid
+	string when leading dot prefixes were stripped.
+
+	My thanks to Jeff Lawson <jlawson@bovine.net> for reporting this
+	problem.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 234  BUILDING
+	build	modify	   27 -> 192  MANIFEST
+	build	modify	   29 -> 193  Makefile.in
+	build	modify	   12 -> 122  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 337  common/patchlevel.h
+	build	modify	    7 -> 32   configure
+	source	modify	   30 -> 31   cook/graph/build.c
+	source	modify	    2 -> 3    cook/strip_dot.c
+	source	modify	    2 -> 3    cook/strip_dot.h
+	source	modify	   15 -> 16   etc/Howto.cook
+	build	modify	  196 -> 199  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Aug 14	pmiller
+			20:15:10 2002
+	develop_begin	Wed Aug 14	pmiller	 Elapsed time: 0.342
+			20:15:11 2002		 days.
+	develop_end	Wed Aug 14	pmiller
+			22:48:57 2002
+	review_pass	Wed Aug 14	pmiller
+			22:49:01 2002
+	integrate_begin Wed Aug 14	pmiller	 Elapsed time: 0.044
+			22:49:03 2002		 days.
+
+
+
+
+Project "cook.2.20", Change 11					  Page 2
+Change Details					Mon Aug 26 17:31:29 2002
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_pass	Wed Aug 14	pmiller
+			23:08:45 2002
+
+
+
+Project "cook.2.20", Change 12					  Page 1
+Change Details					Mon Aug 26 17:31:29 2002
+
+NAME
+	Project "cook.2.20", Delta 4, Change 12.
+
+SUMMARY
+	documentation bugs
+
+DESCRIPTION
+	This change fixes a number of innaccuracies in the
+	documentation.	It also gets the table of contents moved to the
+	front of the Reference Manual and the User Guide.
+
+	My thanks to Jeff Lawson <jlawson@bovine.net> for reporting
+	these problems.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 235  BUILDING
+	build	modify	   27 -> 193  MANIFEST
+	build	modify	   29 -> 193  Makefile.in
+	build	modify	   12 -> 122  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 338  common/patchlevel.h
+	build	modify	    7 -> 32   configure
+	source	modify	   10 -> 11   cook/flag.c
+	source	modify	   16 -> 17   etc/Howto.cook
+	source	create	    1	      etc/page-list.awk
+	build	modify	  196 -> 200  etc/version.so
+	source	modify	    3 -> 4    lib/en/man1/cook_bom.1
+	source	modify	    7 -> 8    lib/en/refman/main.man
+	source	modify	    3 -> 4    lib/en/user-guide/function/home.so
+	source	modify	    1 -> 2    lib/en/user-guide/function/inter_
+				      files.so
+	source	modify	    1 -> 2    lib/en/user-guide/function/leaf_
+				      files.so
+	source	modify	    4 -> 5    lib/en/user-guide/function/
+				      options.so
+	source	modify	    2 -> 3    lib/en/user-guide/function/
+				      print.so
+	source	modify	    3 -> 4    lib/en/user-guide/functions.so
+	source	modify	   11 -> 12   lib/en/user-guide/how.so
+	source	modify	   27 -> 28   lib/en/user-guide/language.so
+	source	modify	   13 -> 14   lib/en/user-guide/large.so
+	source	modify	    8 -> 9    lib/en/user-guide/match.so
+	source	modify	   11 -> 12   lib/en/user-guide/parallel.so
+
+
+
+Project "cook.2.20", Change 12					  Page 2
+Change Details					Mon Aug 26 17:31:29 2002
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Aug 15	pmiller
+			10:12:38 2002
+	develop_begin	Thu Aug 15	pmiller	 Elapsed time: 0.151
+			10:12:38 2002		 days.
+	develop_end	Thu Aug 15	pmiller
+			11:20:40 2002
+	review_pass	Thu Aug 15	pmiller
+			11:24:13 2002
+	integrate_begin Thu Aug 15	pmiller
+			11:24:15 2002
+	integrate_pass	Thu Aug 15	pmiller
+			11:29:38 2002
+
+
+
+Project "cook.2.20", Change 15					  Page 1
+Change Details					Mon Aug 26 17:31:29 2002
+
+NAME
+	Project "cook.2.20", Delta 5, Change 15.
+
+SUMMARY
+	stripdots function
+
+DESCRIPTION
+	This change adds a [stripdots] function.
+	My thanks to Jeff Lawson for this suggestion.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 236  BUILDING
+	build	modify	   27 -> 194  MANIFEST
+	build	modify	   29 -> 194  Makefile.in
+	build	modify	   12 -> 122  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 339  common/patchlevel.h
+	build	modify	    7 -> 32   configure
+	source	modify	   20 -> 21   cook/builtin.c
+	source	create	    1	      cook/builtin/stripdot.c
+	source	create	    1	      cook/builtin/stripdot.h
+	build	modify	  196 -> 201  etc/version.so
+	source	create	    1	      lib/en/user-guide/function/
+				      stripdot.so
+	test	create	    1	      test/02/t0201a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Aug 25	pmiller
+			19:51:52 2002
+	develop_begin	Sun Aug 25	pmiller	 Elapsed time: 0.080
+			19:51:52 2002		 days.
+	develop_end	Sun Aug 25	pmiller
+			20:28:05 2002
+	review_pass	Sun Aug 25	pmiller
+			20:28:14 2002
+	integrate_begin Sun Aug 25	pmiller
+			20:28:17 2002
+	integrate_pass	Sun Aug 25	pmiller
+			20:31:58 2002
+
+
+
+Project "cook.2.20", Change 16					  Page 1
+Change Details					Mon Aug 26 17:31:29 2002
+
+NAME
+	Project "cook.2.20", Delta 6, Change 16.
+
+SUMMARY
+	stripdot vs cascade
+
+DESCRIPTION
+	This change fixes a problem where cascade recipes did not take
+	the stripdot flag into account.
+	My thanks to Jeff Lawson <jlawson@bovine.net> for reporting this
+	problem.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 237  BUILDING
+	build	modify	   27 -> 195  MANIFEST
+	build	modify	   29 -> 195  Makefile.in
+	build	modify	   12 -> 122  README
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 340  common/patchlevel.h
+	build	modify	    7 -> 32   configure
+	source	modify	    1 -> 2    cook/builtin/stripdot.c
+	source	modify	    3 -> 4    cook/cascade.c
+	source	modify	    2 -> 3    cook/cascade.h
+	source	modify	    3 -> 4    cook/strip_dot.c
+	source	modify	    3 -> 4    cook/strip_dot.h
+	build	modify	  196 -> 202  etc/version.so
+	test	create	    1	      test/02/t0202a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Aug 25	pmiller
+			20:37:10 2002
+	develop_begin	Sun Aug 25	pmiller	 Elapsed time: 0.219
+			20:37:11 2002		 days.
+	develop_end	Sun Aug 25	pmiller
+			22:15:45 2002
+	review_pass	Sun Aug 25	pmiller
+			22:16:45 2002
+	integrate_begin Sun Aug 25	pmiller
+			22:16:49 2002
+	integrate_pass	Sun Aug 25	pmiller
+			22:20:07 2002
+
+
+
+Project "cook.2.20", Change 17					  Page 1
+Change Details					Mon Aug 26 17:31:30 2002
+
+NAME
+	Project "cook.2.20", Delta 2, Change 17.
+
+SUMMARY
+	wint_t
+
+DESCRIPTION
+	This change fixes the declaration of wint_t, and makes sure that
+	wchar.h is included wherever wint_t is used.
+
+	My thanks to Christopher JS Vance <vance@aurema.com> for
+	reporting this problem.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 233  BUILDING
+	build	modify	   27 -> 192  MANIFEST
+	build	modify	   29 -> 193  Makefile.in
+	build	modify	   12 -> 122  README
+	source	modify	    4 -> 5    common/ac/stddef.h
+	source	modify	    7 -> 8    common/ac/wchar.h
+	source	modify	    6 -> 7    common/ac/wctype.h
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 336  common/patchlevel.h
+	build	modify	    7 -> 32   configure
+	source	modify	   17 -> 18   etc/configure.in
+	build	modify	  196 -> 198  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Jul	 9	pmiller
+			10:15:42 2002
+	develop_begin	Tue Jul	 9	pmiller	 Elapsed time: 0.057
+			10:15:43 2002		 days.
+	develop_end	Tue Jul	 9	pmiller
+			10:41:23 2002
+	review_pass	Tue Jul	 9	pmiller
+			10:41:26 2002
+	integrate_begin Tue Jul	 9	pmiller
+			10:41:30 2002
+	integrate_pass	Tue Jul	 9	pmiller
+			10:50:49 2002
+
+
+
+Project "cook.2.20", Change 18					  Page 1
+Change Details					Mon Aug 26 17:31:30 2002
+
+NAME
+	Project "cook.2.20", Delta 7, Change 18.
+
+SUMMARY
+	c_incl vs stripdot
+
+DESCRIPTION
+	This change adds the -stripdot and -nostripdot options.
+	My thanks to Jeff Lawson <jlawson@bovine.net> for this
+	suggestion.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 238  BUILDING
+	build	modify	   27 -> 196  MANIFEST
+	build	modify	   29 -> 196  Makefile.in
+	build	modify	   12 -> 122  README
+	source	modify	   16 -> 17   c_incl/main.c
+	source	modify	   24 -> 25   c_incl/sniff.c
+	source	modify	   14 -> 15   c_incl/sniff.h
+	source	create	    1	      c_incl/stripdot.c
+	source	create	    1	      c_incl/stripdot.h
+	build	modify	    3 -> 22   common/config.h.in
+	build	modify	   43 -> 341  common/patchlevel.h
+	build	modify	    7 -> 32   configure
+	build	modify	  196 -> 203  etc/version.so
+	source	modify	   14 -> 15   lib/en/man1/c_incl.1
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Aug 25	pmiller
+			22:37:45 2002
+	develop_begin	Sun Aug 25	pmiller	 Elapsed time: 1.000
+			22:37:46 2002		 days.
+	develop_end	Mon Aug 26	pmiller
+			17:04:52 2002
+	review_pass	Mon Aug 26	pmiller
+			17:04:58 2002
+	integrate_begin Mon Aug 26	pmiller
+			17:05:01 2002
+	integrate_pass	Mon Aug 26	pmiller
+			17:06:42 2002

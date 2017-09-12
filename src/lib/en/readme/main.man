@@ -1,0 +1,344 @@
+'\" t
+.\"	cook - a file construction tool
+.\"	Copyright (C) 1992, 1993, 1994, 1995, 1997, 1998, 1999 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: source of the README file
+.\"
+.if n .ftr CB B
+.if n .ftr CI I
+.if n .ftr CW R
+.if n .ftr C  R
+.TH "Read Me" Cook Cook "Reference Manual"
+.so ../etc/version.so
+.hy 0
+.ad l
+.SH NAME
+cook \- a file construction tool
+.XX "" "The README File"
+.SH DESCRIPTION
+The
+.I cook
+program is a tool for constructing files,
+and maintaining referential integrity between files.
+It is given a set of files to create,
+and recipes of how to create and maintain them.
+In any non-trivial program there will be
+prerequisites to performing the actions necessary to
+creating any file,
+such as include files.
+The
+.I cook
+program provides a mechanism to define these.
+.PP
+When a program is being developed or maintained,
+the programmer will typically change one file of several which
+comprise the program.
+The
+.I cook
+program examines the last-modified times of the files
+to see when the prerequisites of a file have changed,
+implying that the file needs to be recreated as it is logically out of date.
+.PP
+The
+.I cook
+program also provides a facility for implicit recipes,
+allowing users to specify how to form a file with a
+given suffix from a file with a different suffix.
+For example,
+to create
+.IR filename .o
+from
+.IR filename .c
+.PP
+.br
+.TS
+tab(;);
+lw(2.75i) lw(2.75i).
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook is a replacement for the traditional \fImake\fP(1) tool.
+T};T{
+.sp 0.5
+.if n *
+.if t \(bu
+There is a \fImake2cook\fP utility included in the distribution
+to help convert makefiles into cookbooks.
+T}
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook is more powerful than the traditional \fImake\fP tool.
+T};\^
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook has true variables, not simple macros.
+T};T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook has a simple but powerful string-based description language with
+many built-in functions.  This allows sophisticated filename
+specification and manipulation without loss of readability or
+performance.
+T}
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook has user defined functions.
+T};\^
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook can build in parallel.
+T};T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook is able to build your project with multiple parallel threads, with
+support for rules which must be single threaded.  It is possible to
+distribute parallel builds over your LAN, allowing you to turn your
+network into a virtual parallel build engine.
+T}
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook can distribute builds across your LAN.
+T};\^
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook is able to use fingerprints to supplement file modification
+times.  This allows build optimization without contorted rules.
+T};T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook can be configured with an explicit list of primary source files.
+This allow the dependency graph to be constructed faster by not going
+down dead ends, and also allows better error messages when the graph
+can't be constructed.  This requires an accurate source file manifest.
+T}
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+In addition to walking the dependency graph,
+Cook can turn the input rules into a shell script, or a web page.
+T};\^
+T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook runs on almost any flavor of UNIX.  The source distribution is self
+configuring using a GNU Autoconf generated configure script.
+T};T{
+.sp 0.5
+.if n *
+.if t \(bu
+Cook has special \fIcascade\fP dependencies, allowing powerful include
+dependency specification, amongst other things.
+T}
+.TE
+.PP
+If you are putting together a source-code distribution and planning to
+write a makefile, consider writing a cookbook instead.  Although
+Cook takes a day or two to learn, it is much more powerful and a bit
+more intuitave than the traditional \fImake\fP(1) tool.
+And Cook doesn't interpret tab differently to 8 space characters!
+.br
+.ne 2i
+.SH ARCHIVE SITE
+The latest version of
+.I cook
+is available on the Web from:
+.RS 4m
+.TS
+tab(;);
+l l s
+l l l.
+URL:;http://www.canb.auug.org.au/~millerp/cook/
+File:;cook-\*(v).README;# the README from the tar file
+File:;cook-\*(v).lsm;# LSM format description
+File:;cook-\*(v).spec;# RedHat package specification
+.\" File:;cook-\*(v).patch.gz;# patch to take \*(w) to \*(v)
+File:;cook-\*(v).rm.ps.gz;# PostScript of the Reference Manual
+File:;cook-\*(v).ug.ps.gz;# PostScript of the User Guide
+File:;cook-\*(v).tar.gz;# the complete source
+.TE
+.RE
+.PP
+This Web page also contains a few other pieces of software written by me.
+Please have a look if you are interested.
+.PP
+Cook is also carried by \f(CWsunsite.unc.edu\fP in its Linux archives.
+You will be able to find Cook on any of its mirrors.
+.RS 4m
+.TS
+tab(;);
+l l s
+l l l.
+URL:;ftp://sunsite.unc.edu/pub/Linux/devel/make/
+File:;cook-\*(v).README;# the README from the tar file
+File:;cook-\*(v).lsm;# LSM format description
+File:;cook-\*(v).spec;# RedHat package specification
+.\" File:;cook-\*(v).patch.gz;# patch to take \*(w) to \*(v)
+File:;cook-\*(v).rm.ps.gz;# PostScript of the Reference Manual
+File:;cook-\*(v).ug.ps.gz;# PostScript of the User Guide
+File:;cook-\*(v).tar.gz;# the complete source
+.TE
+.RE
+This site is extensively mirrored around the world,
+so look for a copy near you (you will get much better response).
+.\" .SS FTP by EMail
+.\" For those of you without Web or FTP access,
+.\" I recommend the use of an ftp-by-email server.
+.\" Here is a list of a few (there may be more):
+.\" .TS
+.\" center,tab(;);
+.\" l l.
+.\" ftpmail@cs.uow.edu.au;Australia
+.\" ftpmail@ftp.uni-stuttgart.de;Germany
+.\" ftpmail@grasp.insa-lyon.fr;France
+.\" ftpmail@doc.ic.ac.uk;Great Britain
+.\" ftpmail@ieunet.ie;Ireland
+.\" ftpmail@sunsite.unc.edu;USA
+.\" ftpmail@ftp.uu.net;USA
+.\" .TE
+.\" .PP
+.\" In general, you can get a help message about how to use each system
+.\" by sending email with a subject of "help"
+.\" and a message body containing just the word "help".
+.br
+.ne 2i
+.SH MAILING LIST
+A mailing list has been created so that users of
+.I cook
+may exchange ideas about how to use the
+.I cook
+program.
+Discussion may include,
+but is not limited to:
+bugs, enhancements, and applications.
+The list is not moderated.
+.PP
+The address of the mailing list is
+.RS
+.ft CW
+cook-users@canb.auug.org.au
+.ft R
+.RE
+Please
+.if t \fBdo not\fP
+.if n DO NOT
+send subscribe requests to this address.
+.PP
+To subscribe to this mailing list,
+send an email message to \f(CWmajordomo@canb.auug.org.au\fP with
+a message body containing the single line
+.RS
+.ft CW
+subscribe cook-users
+.ft R
+.RE
+If you have an email address which is not readily derived from
+your mail headers (majordomo is only a Perl program, after all)
+you will need to use a message of the form:
+.RS
+.ft CW
+subscribe cook-users \fIaddress\fP
+.ft R
+.RE
+where \fIaddress\fP is the email address to which
+you want messages sent.
+.PP
+The software which handles this mailing list
+.if n CANNOT
+.if t .B cannot
+send you a copy of the
+.I cook
+program.
+.br
+.ne 2i
+.SH BUILDING COOK
+Full instructions for building the
+.I cook
+program may be found in the
+.I BUILDING
+file included in this distribution.
+.br
+.ne 2i
+.SH COPYRIGHT
+.I cook
+version \*(v)
+.br
+Copyright
+.nr d) \n(.d
+.if t \(co
+.if n (C)
+\*(Y) Peter Miller;
+.if '\n(d)'\n(.d' .br
+All rights reserved.
+.PP
+This program is free software;
+you can redistribute it
+and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation;
+either version 2 of the License,
+or (at your option) any later version.
+.PP
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY;
+without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.
+See the GNU General Public License for more details.
+.PP
+You should have received a copy of the GNU General Public
+License along with this program; if not, write to the Free
+Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.PP
+It should be in the
+.I LICENSE
+file included with this distribution.
+.br
+.ne 1i
+.SH AUTHOR
+.TS
+tab(;);
+l l l.
+Peter Miller;E-Mail:;millerp@canb.auug.org.au
+\f(CW/\e/\e*\fP;WWW:;http://www.canb.auug.org.au/~millerp/
+.TE
+.br
+.bp
+.SH NEW IN THIS RELEASE
+.XX "" "Release Notes"
+A number of features have been added to \fIcook\fP with this release.
+The following list is only a summary; for excruciating detail, and also
+acknowlegements of those who generously sent me feedback, please see
+the \fIetc/CHANGES.*\fP files included in this distribution.
+.so new.so

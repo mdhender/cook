@@ -1,0 +1,680 @@
+
+
+
+Project "cook.1.6"						 Page 1
+List of Changes				       Sat Jul 23 17:11:43 1994
+
+Change	State		Description
+------- -------		-------------
+   1	completed	New release derived from cook.1.5.
+   2	completed	fixed a bug in "strip dot" code, and another
+			in mtime depth code
+   3	being_		improve install section of generated Makefile
+	integrated
+
+
+
+Project "cook.1.6", Change 1					 Page 1
+Change Details				       Sat Jul 23 17:11:46 1994
+
+NAME
+	Project "cook.1.6", Delta 1, Change 1.
+
+SUMMARY
+	New release derived from cook.1.5.
+
+DESCRIPTION
+	New release derived from cook.1.5.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+ARCHITECTURE
+	This change must build and test in the "unspecified"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	create	1	BUILDING
+	source	create	1	LICENSE
+	build	create	1	MANIFEST
+	build	create	1	Makefile.in
+	build	create	1	README
+	source	create	1	aux/BUILDING.man
+	source	create	1	aux/CHANGES.1.2
+	source	create	1	aux/CHANGES.1.3
+	source	create	1	aux/CHANGES.1.4
+	source	create	1	aux/CHANGES.sh
+	source	create	1	aux/Howto.cook
+	source	create	1	aux/MANIFEST.sh
+	source	create	1	aux/Makefi.file.sh
+	source	create	1	aux/Makefile.awk
+	source	create	1	aux/Makefile.head
+	source	create	1	aux/Makefile.sh
+	source	create	1	aux/README.man
+	source	create	1	aux/config.h.in
+	source	create	1	aux/configure.in
+	source	create	1	aux/new.1.4.so
+	source	create	1	aux/new.1.5.so
+	build	create	1	aux/new.so
+	source	create	1	aux/patch.file.sh
+	source	create	1	aux/patches.sh
+	source	create	1	aux/template/c
+	source	create	1	aux/template/generic
+	source	create	1	aux/template/h
+	source	create	1	aux/template/man
+	source	create	1	aux/template/ms
+	source	create	1	aux/template/sh
+	source	create	1	aux/template/test
+	source	create	1	c_incl/cache.c
+	source	create	1	c_incl/cache.h
+	source	create	1	c_incl/lang_c.c
+
+
+
+Project "cook.1.6", Change 1					 Page 2
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	c_incl/lang_roff.c
+	source	create	1	c_incl/main.c
+	source	create	1	c_incl/os.c
+	source	create	1	c_incl/os.h
+	source	create	1	c_incl/sniff.c
+	source	create	1	c_incl/sniff.h
+	source	create	1	common/ac/ar.h
+	source	create	1	common/ac/dirent.h
+	source	create	1	common/ac/fcntl.h
+	source	create	1	common/ac/limits.h
+	source	create	1	common/ac/stddef.h
+	source	create	1	common/ac/stdlib.h
+	source	create	1	common/ac/string.h
+	source	create	1	common/ac/time.h
+	source	create	1	common/ac/unistd.h
+	source	create	1	common/ansi.c
+	source	create	1	common/arglex.c
+	source	create	1	common/arglex.h
+	build	create	1	common/config.h.in
+	source	create	1	common/error.c
+	source	create	1	common/error.h
+	source	create	1	common/fp.c
+	source	create	1	common/fp.h
+	source	create	1	common/fp/README
+	source	create	1	common/fp/cksum.c
+	source	create	1	common/fp/cksum.h
+	source	create	1	common/fp/combined.c
+	source	create	1	common/fp/combined.h
+	source	create	1	common/fp/crc32.c
+	source	create	1	common/fp/crc32.h
+	source	create	1	common/fp/len.c
+	source	create	1	common/fp/len.h
+	source	create	1	common/fp/md5.c
+	source	create	1	common/fp/md5.h
+	source	create	1	common/fp/snefru.c
+	source	create	1	common/fp/snefru.h
+	source	create	1	common/help.c
+	source	create	1	common/help.h
+	source	create	1	common/main.h
+	source	create	1	common/mem.c
+	source	create	1	common/mem.h
+	source	create	1	common/mprintf.c
+	source	create	1	common/mprintf.h
+	build	create	1	common/patchlevel.h
+	source	create	1	common/s-v-arg.h
+	source	create	1	common/str.c
+	source	create	1	common/str.h
+	source	create	1	common/symtab.c
+	source	create	1	common/symtab.h
+	source	create	1	common/trace.c
+	source	create	1	common/trace.h
+	source	create	1	common/version-stmp.c
+	source	create	1	common/version-stmp.h
+	source	create	1	common/version.c
+	source	create	1	common/version.h
+
+
+
+Project "cook.1.6", Change 1					 Page 3
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	common/word.c
+	source	create	1	common/word.h
+	source	create	1	config
+	build	create	1	configure
+	source	create	1	cook/archive.c
+	source	create	1	cook/archive.h
+	source	create	1	cook/builtin.c
+	source	create	1	cook/builtin.h
+	source	create	1	cook/builtin/addprefix.c
+	source	create	1	cook/builtin/addprefix.h
+	source	create	1	cook/builtin/addsuffix.c
+	source	create	1	cook/builtin/addsuffix.h
+	source	create	1	cook/builtin/basename.c
+	source	create	1	cook/builtin/basename.h
+	source	create	1	cook/builtin/boolean.c
+	source	create	1	cook/builtin/boolean.h
+	source	create	1	cook/builtin/collect.c
+	source	create	1	cook/builtin/collect.h
+	source	create	1	cook/builtin/cook.c
+	source	create	1	cook/builtin/cook.h
+	source	create	1	cook/builtin/defined.c
+	source	create	1	cook/builtin/defined.h
+	source	create	1	cook/builtin/execute.c
+	source	create	1	cook/builtin/execute.h
+	source	create	1	cook/builtin/exists.c
+	source	create	1	cook/builtin/exists.h
+	source	create	1	cook/builtin/filter_out.c
+	source	create	1	cook/builtin/filter_out.h
+	source	create	1	cook/builtin/find_command.c
+	source	create	1	cook/builtin/find_command.h
+	source	create	1	cook/builtin/findstring.c
+	source	create	1	cook/builtin/findstring.h
+	source	create	1	cook/builtin/getenv.c
+	source	create	1	cook/builtin/getenv.h
+	source	create	1	cook/builtin/glob.c
+	source	create	1	cook/builtin/glob.h
+	source	create	1	cook/builtin/home.c
+	source	create	1	cook/builtin/home.h
+	source	create	1	cook/builtin/join.c
+	source	create	1	cook/builtin/join.h
+	source	create	1	cook/builtin/match.c
+	source	create	1	cook/builtin/match.h
+	source	create	1	cook/builtin/opsys.c
+	source	create	1	cook/builtin/opsys.h
+	source	create	1	cook/builtin/pathname.c
+	source	create	1	cook/builtin/pathname.h
+	source	create	1	cook/builtin/split.c
+	source	create	1	cook/builtin/split.h
+	source	create	1	cook/builtin/stringset.c
+	source	create	1	cook/builtin/stringset.h
+	source	create	1	cook/builtin/strip.c
+	source	create	1	cook/builtin/strip.h
+	source	create	1	cook/builtin/subst.c
+	source	create	1	cook/builtin/subst.h
+	source	create	1	cook/builtin/suffix.c
+
+
+
+Project "cook.1.6", Change 1					 Page 4
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	cook/builtin/suffix.h
+	source	create	1	cook/builtin/text.c
+	source	create	1	cook/builtin/text.h
+	source	create	1	cook/builtin/unsplit.c
+	source	create	1	cook/builtin/unsplit.h
+	source	create	1	cook/builtin/word.c
+	source	create	1	cook/builtin/word.h
+	source	create	1	cook/cook.c
+	source	create	1	cook/cook.h
+	source	create	1	cook/env.c
+	source	create	1	cook/env.h
+	source	create	1	cook/expr.c
+	source	create	1	cook/expr.h
+	source	create	1	cook/fngrprnt.h
+	source	create	1	cook/fngrprnt.y
+	source	create	1	cook/fngrprnt_lex.c
+	source	create	1	cook/fngrprnt_lex.h
+	source	create	1	cook/hashline.h
+	source	create	1	cook/hashline.y
+	source	create	1	cook/id.c
+	source	create	1	cook/id.h
+	source	create	1	cook/lex.c
+	source	create	1	cook/lex.h
+	source	create	1	cook/listing.c
+	source	create	1	cook/listing.h
+	source	create	1	cook/main.c
+	source	create	1	cook/match.c
+	source	create	1	cook/match.h
+	source	create	1	cook/option.c
+	source	create	1	cook/option.h
+	source	create	1	cook/os.c
+	source	create	1	cook/os.h
+	source	create	1	cook/parse.h
+	source	create	1	cook/parse.y
+	source	create	1	cook/stat.cache.c
+	source	create	1	cook/stat.cache.h
+	source	create	1	cook/stmt.c
+	source	create	1	cook/stmt.h
+	source	create	1	cookfp/main.c
+	source	create	1	cooktime/date.h
+	source	create	1	cooktime/date.y
+	source	create	1	cooktime/main.c
+	source	create	1	doc/builtin.so
+	source	create	1	doc/cmdline.so
+	source	create	1	doc/conditions.so
+	source	create	1	doc/function.sh
+	build	create	1	doc/function.so
+	source	create	1	doc/function/addprefix.so
+	source	create	1	doc/function/addsuffix.so
+	source	create	1	doc/function/and.so
+	source	create	1	doc/function/basename.so
+	source	create	1	doc/function/cando.so
+	source	create	1	doc/function/catenate.so
+	source	create	1	doc/function/collect.so
+	source	create	1	doc/function/collect_ln.so
+
+
+
+Project "cook.1.6", Change 1					 Page 5
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	doc/function/count.so
+	source	create	1	doc/function/defined.so
+	source	create	1	doc/function/dir.so
+	source	create	1	doc/function/dirname.so
+	source	create	1	doc/function/downcase.so
+	source	create	1	doc/function/entryname.so
+	source	create	1	doc/function/execute.so
+	source	create	1	doc/function/exists.so
+	source	create	1	doc/function/filter.so
+	source	create	1	doc/function/filter_out.so
+	source	create	1	doc/function/find_cmd.so
+	source	create	1	doc/function/findstring.so
+	source	create	1	doc/function/fromto.so
+	source	create	1	doc/function/getenv.so
+	source	create	1	doc/function/glob.so
+	source	create	1	doc/function/head.so
+	source	create	1	doc/function/home.so
+	source	create	1	doc/function/if.so
+	source	create	1	doc/function/in.so
+	source	create	1	doc/function/join.so
+	source	create	1	doc/function/match_mask.so
+	source	create	1	doc/function/matches.so
+	source	create	1	doc/function/mtime.so
+	source	create	1	doc/function/not.so
+	source	create	1	doc/function/opsys.so
+	source	create	1	doc/function/or.so
+	source	create	1	doc/function/pathname.so
+	source	create	1	doc/function/patsubst.so
+	source	create	1	doc/function/prepost.so
+	source	create	1	doc/function/quote.so
+	source	create	1	doc/function/resolve.so
+	source	create	1	doc/function/shell.so
+	source	create	1	doc/function/sort.so
+	source	create	1	doc/function/sort_newest.so
+	source	create	1	doc/function/split.so
+	source	create	1	doc/function/stringset.so
+	source	create	1	doc/function/strip.so
+	source	create	1	doc/function/subst.so
+	source	create	1	doc/function/suffix.so
+	source	create	1	doc/function/tail.so
+	source	create	1	doc/function/unsplit.so
+	source	create	1	doc/function/upcase.so
+	source	create	1	doc/function/uptodate.so
+	source	create	1	doc/function/wildcard.so
+	source	create	1	doc/function/word.so
+	source	create	1	doc/function/words.so
+	source	create	1	doc/glossary.so
+	source	create	1	doc/history.so
+	source	create	1	doc/how.so
+	source	create	1	doc/intro.so
+	source	create	1	doc/intro1.so
+	source	create	1	doc/intro2.so
+	source	create	1	doc/language.so
+	source	create	1	doc/match.so
+	source	create	1	doc/option.so
+
+
+
+Project "cook.1.6", Change 1					 Page 6
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	doc/refman.t
+	source	create	1	doc/system.so
+	source	create	1	doc/variables.so
+	build	create	1	doc/version.so
+	source	create	1	find_libs/main.c
+	source	create	1	find_libs/os.c
+	source	create	1	find_libs/os.h
+	source	create	1	lib/as
+	source	create	1	lib/bison
+	source	create	1	lib/c
+	source	create	1	lib/gcc
+	source	create	1	lib/home
+	source	create	1	lib/lex
+	source	create	1	lib/library
+	source	create	1	lib/print
+	source	create	1	lib/program
+	source	create	1	lib/rcs
+	source	create	1	lib/sccs
+	source	create	1	lib/text
+	source	create	1	lib/usr
+	source	create	1	lib/usr.local
+	source	create	1	lib/yacc
+	source	create	1	lib/yacc_many
+	source	create	1	make2cook/blob.c
+	source	create	1	make2cook/blob.h
+	source	create	1	make2cook/emit.c
+	source	create	1	make2cook/emit.h
+	source	create	1	make2cook/gram.h
+	source	create	1	make2cook/gram.y
+	source	create	1	make2cook/lex.c
+	source	create	1	make2cook/lex.h
+	source	create	1	make2cook/main.c
+	source	create	1	make2cook/stmt.c
+	source	create	1	make2cook/stmt.h
+	source	create	1	make2cook/stmt/assign.c
+	source	create	1	make2cook/stmt/assign.h
+	source	create	1	make2cook/stmt/blank.c
+	source	create	1	make2cook/stmt/blank.h
+	source	create	1	make2cook/stmt/comment.c
+	source	create	1	make2cook/stmt/comment.h
+	source	create	1	make2cook/stmt/compound.c
+	source	create	1	make2cook/stmt/compound.h
+	source	create	1	make2cook/stmt/define.c
+	source	create	1	make2cook/stmt/define.h
+	source	create	1	make2cook/stmt/if.c
+	source	create	1	make2cook/stmt/if.h
+	source	create	1	make2cook/stmt/include.c
+	source	create	1	make2cook/stmt/include.h
+	source	create	1	make2cook/stmt/rule.c
+	source	create	1	make2cook/stmt/rule.h
+	source	create	1	make2cook/stmt/vpath.c
+	source	create	1	make2cook/stmt/vpath.h
+	source	create	1	make2cook/vargram.h
+	source	create	1	make2cook/vargram.y
+	source	create	1	make2cook/variable.c
+
+
+
+Project "cook.1.6", Change 1					 Page 7
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	create	1	make2cook/variable.h
+	source	create	1	man1/c_incl.1
+	source	create	1	man1/cook.1
+	source	create	1	man1/cookfp.1
+	source	create	1	man1/cooktime.1
+	source	create	1	man1/copyright.so
+	source	create	1	man1/find_libs.1
+	source	create	1	man1/make2cook.1
+	source	create	1	man1/o__rules.so
+	source	create	1	man1/roffpp.1
+	source	create	1	man1/z_exit.so
+	source	create	1	man1/z_name.so
+	source	create	1	roffpp/main.c
+	source	create	1	roffpp/preprocess.c
+	source	create	1	roffpp/preprocess.h
+	test	create	1	test/00/t0001a.sh
+	test	create	1	test/00/t0002a.sh
+	test	create	1	test/00/t0003a.sh
+	test	create	1	test/00/t0004a.sh
+	test	create	1	test/00/t0005a.sh
+	test	create	1	test/00/t0006a.sh
+	test	create	1	test/00/t0007a.sh
+	test	create	1	test/00/t0008a.sh
+	test	create	1	test/00/t0009a.sh
+	test	create	1	test/00/t0010a.sh
+	test	create	1	test/00/t0011a.sh
+	test	create	1	test/00/t0012a.sh
+	test	create	1	test/00/t0013a.sh
+	test	create	1	test/00/t0014a.sh
+	test	create	1	test/00/t0015a.sh
+	test	create	1	test/00/t0016a.sh
+	test	create	1	test/00/t0017a.sh
+	test	create	1	test/00/t0018a.sh
+	test	create	1	test/00/t0019a.sh
+	test	create	1	test/00/t0020a.sh
+	test	create	1	test/00/t0021a.sh
+	test	create	1	test/00/t0022a.sh
+	test	create	1	test/00/t0023a.sh
+	test	create	1	test/00/t0024a.sh
+	test	create	1	test/00/t0025a.sh
+	test	create	1	test/00/t0026a.sh
+	test	create	1	test/00/t0027a.sh
+	test	create	1	test/00/t0028a.sh
+	test	create	1	test/00/t0029a.sh
+	test	create	1	test/00/t0030a.sh
+	test	create	1	test/00/t0031a.sh
+	test	create	1	test/00/t0032a.sh
+	test	create	1	test/00/t0033a.sh
+	test	create	1	test/00/t0034a.sh
+	test	create	1	test/00/t0035a.sh
+	test	create	1	test/00/t0036a.sh
+	test	create	1	test/00/t0037a.sh
+	test	create	1	test/00/t0038a.sh
+	test	create	1	test/00/t0039a.sh
+	test	create	1	test/00/t0040a.sh
+
+
+
+Project "cook.1.6", Change 1					 Page 8
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	test	create	1	test/00/t0041a.sh
+	test	create	1	test/00/t0042a.sh
+	test	create	1	test/00/t0043a.sh
+	test	create	1	test/00/t0044a.sh
+	test	create	1	test/00/t0045a.sh
+	test	create	1	test/00/t0046a.sh
+	test	create	1	test/00/t0047a.sh
+	test	create	1	test/00/t0048a.sh
+	test	create	1	test/00/t0049a.sh
+	test	create	1	test/00/t0050a.sh
+	test	create	1	test/00/t0051a.sh
+	test	create	1	test/00/t0052a.sh
+	test	create	1	test/00/t0053a.sh
+	test	create	1	test/00/t0054a.sh
+	test	create	1	test/00/t0055a.sh
+	test	create	1	test/00/t0056a.sh
+	test	create	1	test/00/t0057a.sh
+	test	create	1	test/00/t0058a.sh
+	test	create	1	test/00/t0059a.sh
+	test	create	1	test/00/t0060a.sh
+	test	create	1	test/00/t0061a.sh
+	test	create	1	test/00/t0062a.sh
+	test	create	1	test/00/t0063a.sh
+	test	create	1	test/00/t0064a.sh
+	test	create	1	test/00/t0065a.sh
+	test	create	1	test/00/t0066a.sh
+	test	create	1	test/00/t0067a.sh
+	test	create	1	test/00/t0068a.sh
+	test	create	1	test/00/t0069a.sh
+	test	create	1	test/00/t0070a.sh
+	test	create	1	test/00/t0071a.sh
+	test	create	1	test/00/t0072a.sh
+	test	create	1	test/00/t0073a.sh
+	test	create	1	test/00/t0074a.sh
+	test	create	1	test/00/t0075a.sh
+	test	create	1	test/00/t0076a.sh
+	test	create	1	test/00/t0077a.sh
+	source	create	1	txt2c/main.c
+	source	create	1	txt2c/txt2c.c
+	source	create	1	txt2c/txt2c.h
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Sun Apr 17	pmiller
+			08:23:35 1994
+	develop_begin	Sun Apr 17	pmiller
+			08:23:35 1994
+	develop_end	Sun Apr 17	pmiller
+			08:23:35 1994
+	review_pass	Sun Apr 17	pmiller
+			08:23:35 1994
+	integrate_begin Sun Apr 17	pmiller	 Elapsed time: 0.056
+			08:23:35 1994		 days.
+	integrate_pass	Sun Apr 17	pmiller
+
+
+
+Project "cook.1.6", Change 1					 Page 9
+Change Details				       Sat Jul 23 17:11:46 1994
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+			08:48:37 1994
+
+
+
+Project "cook.1.6", Change 2					 Page 1
+Change Details				       Sat Jul 23 17:11:47 1994
+
+NAME
+	Project "cook.1.6", Delta 3, Change 2.
+
+SUMMARY
+	fixed a bug in "strip dot" code, and another in mtime depth
+	code
+
+DESCRIPTION
+	When a filename has a leading dot directory, it is stripped
+	off.	     There was a bug in this code, causing weird
+	behaviour.  The bug has been fixed, and the strip-dot
+	functionality is now user selectable, but still defaults to ON.
+
+	The search_list depth is used in addition to the mtime to
+	determine if a file is out of date.  Absolute paths are a
+	problem, and the code has been changed so that the depth of
+	absolute paths is irrelevant.
+
+	My thanks to Scott M. King <smking@Thinkage.On.CA> for
+	reporting these problems.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	build	modify	2	BUILDING
+	build	modify	2	MANIFEST
+	build	modify	2	Makefile.in
+	build	modify	2	README
+	source	create	1	aux/CHANGES.1.5
+	source	modify	2	aux/Howto.cook
+	source	modify	2	aux/configure.in
+	source	create	1	aux/new.1.6.so
+	build	modify	2	aux/new.so
+	build	modify	1	common/config.h.in
+	build	modify	2	common/patchlevel.h
+	source	modify	2	config
+	build	modify	2	configure
+	source	modify	2	cook/cook.c
+	source	modify	2	cook/cook.h
+	source	modify	2	cook/main.c
+	source	modify	2	cook/option.c
+	source	modify	2	cook/option.h
+	source	modify	2	cook/parse.y
+	source	modify	2	cooktime/date.y
+	build	modify	1	doc/function.so
+	source	modify	2	doc/language.so
+	build	modify	2	doc/version.so
+	source	modify	2	man1/cook.1
+	test	create	1	test/00/t0078a.sh
+	test	create	1	test/00/t0079a.sh
+
+
+
+Project "cook.1.6", Change 2					 Page 2
+Change Details				       Sat Jul 23 17:11:47 1994
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Thu Jul	 7	pmiller
+			07:52:58 1994
+	develop_begin	Thu Jul	 7	pmiller	 Elapsed time: 9.837
+			07:53:17 1994		 days.
+	develop_end	Thu Jul 21	pmiller
+			06:40:09 1994
+	review_pass	Thu Jul 21	pmiller
+			06:40:17 1994
+	integrate_begin Thu Jul 21	pmiller	 Elapsed time: 0.028
+			06:45:07 1994		 days.
+	integrate_fail	Thu Jul 21	pmiller	 version number in
+			06:57:37 1994		 documentation not
+						 updated by
+						 integration build
+						 Elapsed time: 0.035
+						 days.
+	develop_end	Thu Jul 21	pmiller
+			07:13:22 1994
+	review_pass	Thu Jul 21	pmiller
+			07:13:37 1994
+	integrate_begin Thu Jul 21	pmiller	 Elapsed time: 0.940
+			07:17:20 1994		 days.
+	integrate_pass	Fri Jul 22	pmiller
+			06:50:27 1994
+
+
+
+Project "cook.1.6", Change 3					 Page 1
+Change Details				       Sat Jul 23 17:11:49 1994
+
+NAME
+	Project "cook.1.6", Delta 4, Change 3.
+
+SUMMARY
+	improve install section of generated Makefile
+
+DESCRIPTION
+	The generated Makefile installed the manual pages into the
+	wrong directory.  This has been fixed.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the baseline.
+
+ARCHITECTURES
+	This change must build and test in each of the "sun4" and
+	"sun5" architectures.
+
+	arch.	 host	  aeb	      aet	  aet -bl     aet -reg
+	-------- -------- ----------- ----------- ----------- -----------
+	sun4		  required    required	  exempt      required
+	sun5		  required    required	  exempt      required
+			  ----------- ----------- ----------- -----------
+			  required    required	  exempt      required
+
+CAUSE
+	This change was caused by internal_bug.
+
+STATE
+	This change is in the 'being_integrated' state.
+
+FILES
+	Type	Action	Edit	File Name
+	------- ------- ------- -----------
+	source	modify	2	aux/Howto.cook
+	source	modify	1	aux/Makefi.file.sh
+	source	modify	1	aux/Makefile.sh
+	source	modify	1	aux/new.1.6.so
+	test	modify	1	test/00/t0079a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Jul 22	pmiller
+			07:34:20 1994
+	develop_begin	Fri Jul 22	pmiller	 Elapsed time: 0.000
+			07:34:31 1994		 days.
+	develop_end	Sat Jul 23	pmiller
+			16:53:54 1994
+	review_pass	Sat Jul 23	pmiller
+			16:54:04 1994
+	integrate_begin Sat Jul 23	pmiller	 Elapsed time: 0.029
+			16:58:44 1994		 days.

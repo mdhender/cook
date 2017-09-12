@@ -1,0 +1,132 @@
+/*
+ * NAME
+ *	java - the JAVA compiler cookbook
+ *
+ * DESCRIPTION
+ *	This cookbook describes how to work with .java files.
+ *
+ *	This cookbook will only work with jikes, not javac.  It assumes
+ *	that source in java/src/%0%1.java is being compiled into
+ *	java/bin/com/companyName/projectName/%0%1.class.The recipe at the end
+ *	generates a .jar file (java .tar file).
+ *
+ * RECIPES
+ *	%.class: %.java	make class files form Java source files
+ *
+ * VARIABLES
+ *	javac		The Java compiler command
+ *
+ * CONTRIBUTED BY
+ *	Matthew Lee
+ *
+ * MANIFEST: cookbook for using Java
+ */
+
+#pragma once
+
+domian = name-of-project.name-of-company.com; /* change this as appropriate */
+
+java_project = [head [split "." [domain]]];
+
+function rev =
+{
+    local result = ;
+    local foo = ;
+    loop foo = [@1]
+    {
+	result = [foo] [result];
+    }
+    return [result];
+}
+
+java_domain = [unsplit "/" [rev [split "." [domain]]]];
+
+manifest = [find java/src -name "*.java" -print];
+
+classpath =
+    [unsplit ":"
+	/usr/j2se/src.zip
+	/usr/j2se/jre/lib/rt.jar
+	[addsuffix "/java/bin" [search_list]]
+	[addsuffix "/java/src" [search_list]]
+    ];
+sourcepath =
+    [unsplit ":"
+	[addsuffix "/java/src/" [search_list]]
+    ];
+
+all = ;
+all: [all]
+    set default;
+
+/*
+ * How to compile Java sources.
+ */
+java/bin/[java_domain]/%0%1.class: java/src/%0%1.java
+{
+    jikes
+	+F
+	-nowarn /* because jikes is VERY pedantic */
+	-classpath [classpath]
+	-sourcepath [sourcepath]
+	-d java/bin
+	[resolve
+#if 1
+	    /*
+             * Note: this recipe skips all of the problems of figuring
+             * out Java dependencies by always compiling everything.
+	     */
+	    [match_mask java/src/%%0%%1.java [manifest]]
+#else
+	    java/src/%0%1.java
+#endif
+	]
+       	;
+}
+
+/*
+ * How to generate a jar file from all our .class files
+ */
+install/lib/[java_project].jar:
+    [fromto
+	java/src/%0%1.java
+	java/bin/[java_domain]/%0%1.class
+	[match_mask java/src/%0%1.java [manifest]]
+    ]
+{
+    /*
+     * The jar tool does not allow us to strip the leading saerch list elements
+     * from .class files that are pulled from the baseline.
+     * One way to get around this is to copy all of the .class
+     * files that don't already exist in this work area's source
+     * tree from the baseline into the changeset.
+     */
+    loop tmp = [need]
+    {
+	if [not [exists [tmp]]] then
+	{
+	    /* The file doesn't exist in this changeset's source tree */
+	    if [not [exists [dirname [tmp]]]] then
+	    {
+		/* Make the directory before copying the file */
+		mkdir -p [dirname [tmp]];
+	    }
+	    cp -p -r [resolve [tmp]] [tmp];
+	}
+    }
+
+    /*
+     * Create the jar file, rooted in the com directory
+     */
+    cat - > tmp.[thread-id];
+data
+cd java/bin
+jar cvf ../../[target] \
+[fromto java/bin/com/%0%1.class com/%0%1.class [need]]
+dataend
+    /* Execute and delete the script we've just created */
+    sh tmp.[thread-id];
+    rm tmp.[thread-id];
+}
+
+all += install/lib/[java_project].jar;

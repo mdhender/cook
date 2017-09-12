@@ -1,0 +1,971 @@
+/*
+ *	cook - file construction tool
+ *	Copyright (C) 1994-1999, 2001-2004 Peter Miller;
+ *	All rights reserved.
+ *
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 2 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program; if not, write to the Free Software
+ *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+ *
+ * MANIFEST: instructions to cook, how to build project
+ */
+
+/*
+ * remove targets before running recipe bodies
+ */
+set unlink;
+
+/*
+ * make directories above targets before running recipe bodies
+ */
+set mkdir;
+
+/*
+ * Update file times if necessary, to ensure outputs are newer then inputs.
+ * On fast machines, that happens frequently for transitive dependencies.
+ */
+set time-adjust;
+
+/*
+ * You may want to change some of these options.
+ * ([debug] must be defined, even if empty, use comments.)
+ *
+ * If you want to turn the DEBUG compile flag on,
+ * edit the common/main.h file.
+ */
+debug = -g ;
+
+/*
+ * Make sure the [project], [change], [version] and [arch] variables are set.
+ */
+#ifndef project
+echo "The [project] variable was not set from the command line." set silent;
+echo "If you want to do a build which is not a development build" set silent;
+echo "or an integration build, use the make command, not cook." set silent;
+fail;
+#endif
+#ifndef change
+echo "The [change] variable was not set from the command line." set silent;
+echo "If you want to do a build which is not a development build" set silent;
+echo "or an integration build, use the make command, not cook." set silent;
+fail;
+#endif
+#ifndef version
+echo "The [version] variable was not set from the command line." set silent;
+echo "If you want to do a build which is not a development build" set silent;
+echo "or an integration build, use the make command, not cook." set silent;
+fail;
+#endif
+#ifndef arch
+echo "The [arch] variable was not set from the command line." set silent;
+echo "If you want to do a build which is not a development build" set silent;
+echo "or an integration build, use the make command, not cook." set silent;
+fail;
+#endif
+#ifndef search_path
+echo "The [search_path] variable was not set from the command line." set silent;
+echo "If you want to do a build which is not a development build" set silent;
+echo "or an integration build, use the make command, not cook." set silent;
+fail;
+#endif
+
+/*
+ * The first item in search list should be the absolute path of the
+ * current directory.  Assume that it is.
+ */
+search_list = .;
+search_tmp = [tail [split ':' [search_path]]];
+
+/*
+ * Try to shorten the search path in command lines, too.
+ *
+ * This takes a little getting used to....
+ * 1. For development builds, the search path is dev dir, then branch bl,
+ *    then ... project bl.  Thus, bl in a dev dir winds up pointing to
+ *    the branch repository.
+ * 2. For integration builds, aegis deliberately omits the branch
+ *    baseline from the path, but include's the branch's parents and
+ *    ancestors.  Thus, bl in an int dir winds up pointing to the
+ *    branch's parent's reporitory.
+ * The idea is that integration builds in a branch are like a
+ * development build of the branch's dev dir.
+ */
+search_name = bl;
+loop
+{
+	search_dir = [head [search_tmp]];
+	if [not [search_dir]] then
+		loopstop;
+	search_tmp = [tail [search_tmp]];
+
+	if [not [exists [search_name]]] then
+		ln -s [search_dir] [search_name]
+			set clearstat;
+	search_list = [search_list] [search_name];
+	search_name = [search_name]bl;
+}
+
+/*
+ * If this is a development build, the version will be x.y.Czzz,
+ * so look to see if there is a C in the version string.
+ */
+if [match_mask %1C%2 [version]] then
+{
+	/*
+	 * The develop_begin_command in the config file
+	 * always creates the "bl" symbolic link.
+	 */
+	baseline = bl;
+}
+
+if [not [defined baseline]] then
+{
+	/*
+	 * Turn on aggressive updating to ensure the smallest possible
+	 * range of mod times at aeipass.  This also ensures mod time
+	 * consistency on fast machines.
+	 */
+	set time-adjust-back;
+}
+else
+{
+	/*
+	 * Use finger prints for development builds.
+	 * They avoid much of the tedium.
+	 */
+	set fingerprint;
+}
+
+/*
+ * determine the short version:
+ * no change or delta number
+ */
+version_short = [fromto %1.C%2 %1 [subst D C [version]]];
+
+version_shorter = [split "." [version_short]] _ _;
+version_shorter = [unsplit "." [word 1 [version_shorter]]
+	[word 2 [version_shorter]]];
+project_short = [fromto %.[version_short] % [project]];
+project_minus = [project_short]-[version_short];
+
+/*
+ * This file is generated by autoconf.
+ * It is architecture specific.
+ * If it is not found (not cooked yet) the following
+ * symbols will be undefined.
+ *
+ *	Must be included *after* the search_list is defined.
+ */
+#include-cooked-nowarn [arch]/etc/Howto.conf
+if [not [defined prefix]] then
+	prefix = /usr/local;
+if [not [defined exec_prefix]] then
+	exec_prefix = [prefix];
+if [not [defined yacc]] then
+	yacc = yacc;
+if [not [defined libs]] then
+	libs = ;
+if [not [defined cc]] then
+	cc = ['if' [find_command gcc] 'then' gcc 'else' cc];
+
+awk = gawk;
+
+/*
+ * The source files.
+ * This is given to us by aegis.
+ */
+vs_file = common/patchlevel.h;
+change_files = ;
+#include-cooked-nowarn etc/cook/change_files.[version]
+etc/cook/change_files.[version]:
+	set shallow nodefault
+{
+	echo "'change_files ='" > [target];
+	aegis -l cf -p [project] -c [change] -unf
+		| [awk] "'/^build/{next};$2==\"remove\"{next};{print $NF}'"
+		>> [target];
+	echo "';'" >> [target];
+}
+project_files = ;
+#include-cooked-nowarn etc/cook/project_files.[version]
+etc/cook/project_files.[version]:
+	set shallow nodefault
+{
+	echo "'project_files ='" > [target];
+	aegis -l pf -p [project] -c [change] -unf
+		| [awk] "'/^build/{next};$2==\"remove\"{next};{print $NF}'"
+		>> [target];
+	echo "';'" >> [target];
+}
+source_files =
+	[sort [stringset [project_files] [change_files]]]
+	[vs_file] etc/version.so
+	;
+
+/*
+ * Speed up graph building by stating the leaves explictly.
+ * This also gives more useful error messages.
+ */
+if [count [project_files]] then
+if [count [change_files]] then
+{
+	/* obsolete */ leaf_file_accept = [project_files] [change_files];
+	graph_leaf_file = [project_files] [change_files];
+	/* obsolete */ leaf_pattern_accept = /%0%;
+	graph_leaf_pattern = /%0%;
+}
+
+source_files = [source_files]
+	[fromto
+		lib/%1/readme/main.%2 lib/%1/readme/new.so
+		[match_mask lib/%1/readme/main.%2 [source_files]]
+	]
+	[fromto
+		lib/%1/refman/main.%2 lib/%1/refman/index.so
+		[match_mask lib/%1/refman/main.%2 [source_files]]
+	]
+	[fromto
+		lib/%1/refman/main.%2 lib/%1/refman/parts.so
+		[match_mask lib/%1/refman/main.%2 [source_files]]
+	]
+	[fromto
+		lib/%1/user-guide/main.%2 lib/%1/user-guide/function.so
+		[match_mask lib/%1/user-guide/main.%2 [source_files]]
+	]
+	[fromto
+		lib/%1/user-guide/main.%2 lib/%1/user-guide/system.list.so
+		[match_mask lib/%1/user-guide/main.%2 [source_files]]
+	];
+
+/*
+ * There is a special list of files you must use, in preference to the
+ * standard C files.  This ensures appropriate operating system insulation
+ * is always in place.
+ */
+c_incl_excludes =
+	[fromto common/ac/%0%.h -ex\=%0%.h
+		[match_mask common/ac/%0%.h [source_files]]
+	];
+
+/*
+ * determine the list of commands,
+ * and their object file lists
+ */
+
+commands =
+	[stringset
+		[fromto %1/%0%2 %1 [match_mask %1/%0%2.c [source_files]]]
+		[fromto %1/%0%2 %1 [match_mask %1/%0%2.y [source_files]]]
+	-
+		common
+	];
+
+cmd_list = [commands];
+loop
+{
+	cmd = [head [cmd_list]];
+	if [not [cmd]] then
+		loopstop;
+	cmd_list = [tail [cmd_list]];
+
+	[cmd]_obj =
+		[fromto [cmd]/%0%.y [arch]/[cmd]/%0%.gen.o
+			[match_mask [cmd]/%0%.y [source_files]]
+		]
+		[fromto [cmd]/%0%.c [arch]/[cmd]/%0%.o
+			[match_mask [cmd]/%0%.c [source_files]]
+		]
+		[arch]/common/lib.a
+		[arch]/common/version-stmp.o
+		;
+	[cmd],I =
+		[fromto [cmd]/%0%.y [cmd]/%0%.gen.c,I
+			[match_mask [cmd]/%0%.y [source_files]]
+		]
+		[fromto [cmd]/%0%.c [cmd]/%0%.c,I
+			[match_mask [cmd]/%0%.c [source_files]]
+		]
+		;
+}
+
+/*
+ * The default recipe
+ */
+all =
+	doc.targets
+	[prepost [arch]/bin/ "" [commands]]
+	internationalization
+	[fromto script/%.in [arch]/bin/%
+		[match_mask script/%.in [source_files]]
+	]
+	;
+
+all: [all]
+	set default;
+
+common_obj = [arch]/common/lib.a [arch]/common/version-stmp.o;
+lib_obj =
+	[stringset
+		[fromto
+			common/%0%.c
+			[arch]/common/%0%.o
+			[match_mask common/%0%.c [source_files]]
+		]
+		[fromto
+			common/%0%.y
+			[arch]/common/%0%.gen.o
+			[match_mask common/%0%.y [source_files]]
+		]
+	-
+		[common_obj]
+	];
+lib_srcs =
+	[match_mask lib/% [source_files]]
+	;
+
+/*
+ * how to compile C sources
+ */
+cc_flags = -O2 [debug];
+cc_include_flags = ;
+
+/*
+ * this next section is for gcc
+ *	comment it out if you don't have gcc
+ *
+ * The gcc include files MUST be first.
+ */
+if [in [cc] gcc] then
+{
+	cc_flags = [cc_flags]
+		-ansi -Wall -Wstrict-prototypes -Wmissing-prototypes
+		-Wshadow -Wmissing-declarations -Wpointer-arith;
+	if [in [arch] linux-i486 sun5] then
+	if [defined baseline] then
+		cc_flags = [cc_flags] -Werror -fno-builtin;
+}
+
+/*
+ * include files from the common directory.
+ */
+cc_include_flags =
+	[cc_include_flags]
+	[prepost -I /[arch]/common [search_list]]
+	[prepost "-I" "/common" [search_list]]
+	;
+
+/*
+ * Build %.o from %.c
+ */
+[arch]/%1/%0%2.o: %1/%0%2.c
+	single-thread %2.o
+{
+	extra = [cc_flags];
+	if [defined %2_flags] then
+		extra = [extra] [%2_flags];
+	if [match %%.gen %2] then
+	{
+		/*
+		 * Generated files may have warnings, because we have no
+		 * control over the quality of generated code (usually
+		 * warnings about missing prototypes or unreferenced
+		 * labels).
+		 */
+		extra = [stringset [extra] - -Werror];
+	}
+	[cc] [extra]
+		[stringset
+			[cc_include_flags]
+			[prepost "-I" "/%1" [search_list]]
+		]
+		-c [resolve %1/%0%2.c]
+		['if' [in gcc [cc]] 'then' -o [target]];
+	if [not [in gcc [cc]]] then
+		mv %2.o [target];
+}
+
+%1/%0%2.c.d: %1/%0%2.c
+	set no-cascade
+{
+	c_incl
+		-nc /* no cache */
+		-ns /* no system */
+		-eia /* empty if absent */
+		-nrec /* no recursion */
+		[stringset
+			[cc_include_flags]
+			[prepost "-I" "/%1" [search_list]]
+		]
+		-prefix "'cascade %1/%0%2.c ='"
+		-suffix "';'" [resolve %1/%0%2.c]
+		-nsri /* no source relative includes */
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-slp [arch] "'[arch]'" /* substitute leading path */
+		['if' [not [filter common/ac/%%0%% %1/%0%2.c]]
+		'then'
+			[c_incl_excludes]
+		]
+		-o [target];
+}
+
+%1/%0%2.h.d: %1/%0%2.h
+	set no-cascade
+{
+	c_incl
+		-nc /* no cache */
+		-ns /* no system */
+		-eia /* empty if absent */
+		-nrec /* no recursion */
+		[stringset
+			[cc_include_flags]
+			[prepost "-I" "/%1" [search_list]]
+		]
+		-prefix "'cascade %1/%0%2.h ='"
+		-suffix "';'" [resolve %1/%0%2.h]
+		-nsri /* no source relative includes */
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-slp [arch] "'[arch]'" /* substitute leading path */
+		['if' [not [filter common/ac/%%0%% %1/%0%2.h]]
+		'then'
+			[c_incl_excludes]
+		]
+		-o [target];
+}
+
+c-dep-files =
+	[fromto %0% %0%.d [match_mask %0%.c [source_files]]]
+	[fromto %0%.y %0%.gen.c.d [match_mask %0%.y [source_files]]]
+	;
+h-dep-files =
+	[fromto %0% %0%.d [match_mask %0%.h [source_files]]]
+	[fromto %0%.y %0%.gen.h.d [match_mask %0%.y [source_files]]]
+	;
+
+ac-h-files = [match_mask common/ac/%0%.h [source_files]] ;
+#if [count [ac-h-files]]
+cascade [ac-h-files] = [arch]/common/config.h;
+#endif
+
+#include-cooked-nowarn [c-dep-files] [h-dep-files]
+
+/*
+ * Dependencies on generated files are impossible to determine a priori.
+ * Catch 22: you need the files to exist to determine whether you need
+ * them to exist.  Sigh.
+ */
+cascade common/libdir.c = [arch]/etc/libdir-h;
+cascade common/sub/expr_lex.c = common/sub/expr_gram.gen.h;
+cascade common/version-stmp.c = [vs_file];
+cascade cook/fingerprint/lex.c = cook/fingerprint/gram.gen.h;
+cascade cook/lex.c = cook/parse.gen.h cook/hashline.gen.h;
+cascade lib/en/readme/main.man = lib/en/readme/new.so;
+cascade make2cook/lex.c = make2cook/gram.gen.h;
+cascade make2cook/variable.c = make2cook/vargram.gen.h;
+cascade cook/builtin/expr_lex.c = cook/builtin/expr_parse.gen.h;
+
+/*
+ * How to use yacc sources.
+ */
+yacc = bison -y;
+yacc_flags = -v;
+
+%1/%0%2.gen.c %1/%0%2.gen.h: %1/%0%2.y
+	single-thread y.tab.c y.tab.h y.output
+{
+	rm -f %1/%0%2.list y.output
+		set silent;
+	if [exists %1/%0%2.gen.c] then
+		rm %1/%0%2.gen.c
+			set clearstat;
+	if [exists %1/%0%2.gen.h] then
+		rm %1/%0%2.gen.h
+			set clearstat;
+	[yacc] -d [yacc_flags] [resolve %1/%0%2.y];
+	yy = [collect echo %0%2 | sed "'s/[^a-zA-Z0-9]/_/g'"];
+	sed	-e "'s/\[yY\]\[yY\]/"[yy]"_/g'"
+		-e "'/<stdio.h>/d'"
+		-e "'/<stdlib.h>/d'"
+		-e "'/<stddef.h>/d'"
+		y.tab.c > %1/%0%2.gen.c;
+	rm y.tab.c;
+	sed	-e \'s/\[yY\]\[yY\]/[yy]_/g\'
+		-e \'s/Y_TAB_H/[yy]_TAB_H/\'
+		y.tab.h > %1/%0%2.gen.h;
+	rm y.tab.h;
+	if [exists y.output] then
+		mv y.output %1/%0%2.list
+			set clearstat;
+}
+
+/*
+ * build the scripts
+ */
+[arch]/bin/%: script/%.in [arch]/config.status
+	single-thread conftest.subs
+{
+	CONFIG_FILES\=[target]\:[resolve script/%.in] CONFIG_HEADERS\=
+		[resolve [arch]/config.status];
+	chmod a+rx [target];
+}
+
+/*
+ * build the programs
+ */
+[arch]/bin/%: [%_obj]
+{
+	[cc] [debug] -o [target] [resolve [%_obj]] [libs];
+	chmod 755 [target];
+}
+
+
+/*
+ * The version stamp is to be updated for every
+ * integration and development build.
+ * (The integrate_begin_command in the config file
+ * deletes them for integration builds.)
+ */
+
+[vs_file]:
+	set shallow
+{
+	copyright_years =
+		[collect
+			aegis -list version -p [project] -c [change]
+			| [awk] "-F'[[\\\\]]'" "'/^copyright_years/{print $2}'"
+		];
+	echo "'#define PATCHLEVEL \""[version]"\"'" > [target];
+	echo "'#define COPYRIGHT_YEARS \""[copyright_years]"\"'" >> [target];
+}
+
+
+/*
+ * Not a shallow recipe because content changes according to Aegis, not
+ * cookable.
+ */
+etc/version.so:
+	set ['if' [or [not [defined baseline] ] [not [exists bl/etc/version.so
+		] ] ] 'then' shallow]
+{
+	copyright_years =
+		[collect
+			aegis -list version -p [project] -c [change]
+			| [awk] "-F'[[\\\\]]'" "'/^copyright_years/{print $2}'"
+		];
+	echo "'.ds V) "[version]"'" > [target];
+	echo "'.ds v) "[version_short]"'" >> [target];
+	aegis -list version -p [project] -c [change]
+		| [awk] -F'\'"\'' "'/previous/{print $2}'"
+		| [awk] -F. "'{print \".ds w) \"$1\".\"$2}'"
+		>> [target];
+	echo "'.ds Y) "[copyright_years]"'" >> [target];
+}
+
+/*
+ * formatting documents and manual entries
+ */
+doc.targets: cat txt special;
+
+/*
+ * manual entries
+ */
+cat =
+	[fromto lib/%3/man%1/%2.%1 lib/%3/cat%1/%2.%1
+		[match_mask lib/%3/man%1/%2.%1 [source_files]]
+	];
+cat: [cat];
+
+lib/%3/cat%1/%2.%1: lib/%3/man%1/%2.%1
+{
+	roffpp
+		[prepost "-I" "/lib/%3/man%1" [search_list]]
+		[prepost -I /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve lib/%3/man%1/%2.%1]
+	| groff -Tascii -P-ch -t -man
+	> [target];
+}
+
+lib/%3/man%1/%2.%1.d: lib/%3/man%1/%2.%1
+	set no-cascade
+{
+	c_incl -nc -ns -eia -r
+		-nrec /* no recursion */
+		[stringset
+			[cc_include_flags]
+			[prepost "-I" "/lib/%3/man%1" [search_list]]
+			[prepost "-I" /[arch]/etc [search_list]]
+			[prepost "-I" "/etc" [search_list]]
+		]
+		-prefix "'cascade lib/%3/man%1/%2.%1 ='"
+		-suffix "';'"
+		[resolve lib/%3/man%1/%2.%1]
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-slp [arch] "'[arch]'" /* substitute leading path */
+		-o [target];
+}
+
+%0%.so.d: %0%.so
+	set no-cascade
+{
+	c_incl -nc -ns -eia -r
+		-nrec /* no recursion */
+		[stringset
+			[cc_include_flags]
+			[prepost "-I"
+				"/"[unsplit /
+					[wordlist 1 3
+						[split / [dirname %0%.so]]
+					]
+				]
+				[search_list]
+			]
+			[prepost "-I" /[arch]/etc [search_list]]
+			[prepost "-I" "/etc" [search_list]]
+		]
+		-prefix "'cascade %0%.so ='"
+		-suffix "';'"
+		[resolve %0%.so]
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-slp [arch] "'[arch]'" /* substitute leading path */
+		-o [target];
+}
+
+man-dep-files =
+	[fromto %0% %0%.d
+		[match_mask lib/%3/man%1/%2.%1 [source_files]]
+	]
+	[fromto %0% %0%.d
+		[match_mask %0%.so [source_files]]
+	];
+
+cascade lib/en/man1/cook.1 = [arch]/etc/libdir.so;
+cascade lib/en/user-guide/main.mm = [arch]/etc/libdir.so;
+
+#include-cooked-nowarn [man-dep-files]
+
+
+/*
+ * user manuals
+ */
+
+txt =
+	[fromto lib/%1/%2/main.ms lib/%1/%2/%2.pdf
+		[match_mask lib/%1/%2/main.ms [source_files]]]
+	[fromto lib/%1/%2/main.mm lib/%1/%2/%2.pdf
+		[match_mask lib/%1/%2/main.mm [source_files]]]
+	[fromto lib/%1/%2/main.roff lib/%1/%2/%2.txt
+		[match_mask lib/%1/%2/main.roff [source_files]]]
+	[fromto lib/%1/%2/main.man lib/%1/%2/%2.txt
+		[match_mask lib/%1/%2/main.man [source_files]]]
+	[fromto lib/%1/%2/main.man lib/%1/%2/%2.pdf
+		[match_mask lib/%1/%2/main.man [source_files]]]
+	;
+txt =
+	[stringset
+		[txt]
+	-
+		[fromto lib/%1/refman/main.man lib/%1/refman/refman.txt
+                	[match_mask lib/%1/refman/main.man [source_files]]
+		]
+	];
+txt: [txt];
+
+lib/%1/%2/%2.pdf: lib/%1/%2/main.ms etc/page-list-awk
+{
+	roffpp
+		[prepost "-I" "/lib/%1/%2" [search_list]]
+		[prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve lib/%1/%2/main.ms]
+		> lib/%1/%2/main.groff;
+	groff -p -t -mpic -mpspic -mgs
+		-rD1 /* headers and footers assuming double sided */
+		lib/%1/%2/main.groff
+		> lib/%1/%2/main.ps.tmp				set meter;
+	rm lib/%1/%2/main.groff;
+	psselect -p`awk -f [resolve etc/page-list.awk] lib/%1/%2/main.ps.tmp`
+		lib/%1/%2/main.ps.tmp > lib/%1/%2/main.ps;
+	rm lib/%1/%2/main.ps.tmp;
+	ps2pdf lib/%1/%2/main.ps [target]			set meter;
+	rm lib/%1/%2/main.ps;
+}
+
+lib/%1/%2/%2.pdf: lib/%1/%2/main.mm etc/page-list.awk
+{
+	roffpp
+		[prepost "-I" "/lib/%1/%2" [search_list]]
+		[prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve lib/%1/%2/main.mm]
+		> lib/%1/%2/%2.groff;
+	groff -p -t -mpic -mpspic -mm
+		-rD1 /* headers and footers assuming double sided */
+		lib/%1/%2/%2.groff
+		> lib/%1/%2/%2.ps.tmp				set meter;
+	rm lib/%1/%2/%2.groff;
+	psselect -p`awk -f [resolve etc/page-list.awk] lib/%1/%2/%2.ps.tmp`
+		lib/%1/%2/%2.ps.tmp > lib/%1/%2/%2.ps;
+	rm lib/%1/%2/%2.ps.tmp;
+	ps2pdf lib/%1/%2/%2.ps [target]				set meter;
+	rm lib/%1/%2/%2.ps;
+}
+
+lib/%1/%2/%2.pdf: lib/%1/%2/main.man etc/page-list.awk
+{
+	roffpp
+		[prepost "-I" "/lib/%1/%2" [search_list]]
+		[prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve lib/%1/%2/main.man]
+		> lib/%1/%2/%2.groff;
+	groff -p -t -mpic -mpspic -man
+		-rD1 /* headers and footers assuming double sided */
+		lib/%1/%2/%2.groff
+		> lib/%1/%2/%2.ps.tmp				set meter;
+	rm lib/%1/%2/%2.groff;
+	psselect -p`awk -f [resolve etc/page-list.awk] lib/%1/%2/%2.ps.tmp`
+		lib/%1/%2/%2.ps.tmp > lib/%1/%2/%2.ps;
+	rm lib/%1/%2/%2.ps.tmp;
+	ps2pdf lib/%1/%2/%2.ps [target]				set meter;
+	rm lib/%1/%2/%2.ps;
+}
+
+lib/%1/%2/%2.txt: lib/%1/%2/main.roff: etc/ssp.awk
+{
+	roffpp
+		[prepost "-I" "/lib/%1/%2" [search_list]]
+		[prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve lib/%1/%2/main.roff]
+	| groff -Tascii -t -P-chub
+	| [awk] -f [resolve etc/ssp.awk]
+	> [target];
+}
+
+lib/%1/%2/%2.txt: lib/%1/%2/main.man: etc/ssp.awk
+{
+	roffpp
+		[prepost "-I" "/lib/%1/%2" [search_list]]
+		[prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		[resolve lib/%1/%2/main.man]
+	| groff -Tascii -t -P-chub -man
+	| [awk] -f [resolve etc/ssp.awk]
+	> [target];
+}
+
+
+/* Sigh.  Must be before the next recipe, and before the generic .d's. */
+cascade lib/en/user-guide/builtin.so = lib/en/user-guide/function.so;
+cascade lib/en/user-guide/system.so = lib/en/user-guide/system.list.so;
+
+lib/%/user-guide/function.so: : etc/system.sh
+	[match_mask lib/%/user-guide/function/%%.so [source_files]]
+{
+	sh [resolve etc/system.sh]
+		[fromto lib/%/user-guide/function/%%.so function/%%.so
+			[match_mask lib/%/user-guide/function/%%.so
+				[source_files]
+			]
+		]
+		> [target];
+}
+
+
+lib/%/user-guide/system.list.so: : etc/system.sh
+	[match_mask lib/%/user-guide/system/%%.so [source_files]]
+{
+	sh [resolve etc/system.sh]
+		[fromto lib/%/user-guide/system/%%.so system/%%.so
+			[match_mask lib/%/user-guide/system/%%.so
+				[source_files]
+			]
+		]
+		> [target];
+}
+
+
+lib/%/readme/new.so: : etc/system.sh
+	[match_mask lib/%/readme/new.%%.so [source_files]]
+{
+	sh [resolve etc/system.sh] -r
+		[fromto lib/%/readme/new.%%.so new.%%.so
+			[match_mask lib/%/readme/new.%%.so [source_files]]
+		]
+		> [target];
+}
+
+
+/* Sigh.  Must be before the next recipe, and before the generic .d's. */
+cascade lib/en/refman/main.man =
+	lib/en/refman/index.so lib/en/refman/parts.so;
+
+lib/%/refman/index.so: [match_mask lib/%/man%%1/%%2.%%1 [source_files]]
+		etc/ptx1.awk etc/ptx.ignore etc/ptx2.awk
+	set no-cascade
+{
+	[awk] -f [resolve etc/ptx1.awk]
+		[resolve [match_mask lib/%/man%%1/%%2.%%1 [source_files]]]
+	| ptx -O -r -w1000 -i[resolve etc/ptx.ignore]
+	| sort -t'\'"\'' -f -d +5 -6 +3 -4
+	| [awk] -F'\'"\'' -f [resolve etc/ptx2.awk]
+	> [target];
+}
+
+lib/%/refman/parts.so: [match_mask lib/%/man%%1/%%2.%%1 [source_files]]
+		etc/ptx.sh
+	set no-cascade
+{
+	sh -f [resolve etc/ptx.sh]
+		[match_mask lib/%/man%%1/%%2.%%1 [source_files]]
+	> [target];
+}
+
+/* Sigh.  Must be before the next recipe. */
+lib/%/faq/main.roff.d:: lib/%/faq/toc.so;
+
+lib/%1/%2/main.%3.d: lib/%1/%2/main.%3
+	set no-cascade
+{
+	c_incl -nc -ns -eia -r
+		-nrec /* no recursion */
+		[prepost "-I" "/lib/%1/%2" [search_list]]
+		[prepost "-I" "/lib/%1/man1" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/man5" [search_list]] /* for refman */
+		[prepost "-I" "/lib/%1/readme" [search_list]] /* for refman */
+		[prepost "-I" /[arch]/etc [search_list]]
+		[prepost "-I" "/etc" [search_list]]
+		-prefix "'cascade lib/%1/%2/main.%3 ='"
+		-suffix "';'"
+		[resolve lib/%1/%2/main.%3]
+		[prepost "-rlp=" "" [search_list]] /* remove leading path */
+		-slp [arch] "'[arch]'" /* substitute leading path */
+		-o [target];
+}
+
+doc-dep-files =
+	[addsuffix .d
+		[match_mask lib/%1/%2/main.%3 [source_files]]
+	];
+
+#include-cooked-nowarn [doc-dep-files]
+
+
+/*
+ * specials
+ */
+
+special:
+	README
+	BUILDING
+	;
+
+/*
+ * building things which require txt2c to build
+ *
+ * Build %.h from %.1
+ */
+
+man1/%.h: man1/%.1: etc/txt2c.awk
+{
+	[awk] -f [resolve etc/txt2c.awk] < [resolve man1/%.1] > [target];
+}
+
+man1/%.h: man1/%.so: etc/txt2c.awk
+{
+	[awk] -f [resolve etc/txt2c.awk] < [resolve man1/%.so] > [target];
+}
+
+
+ranlib = [find_command ranlib];
+
+[arch]/common/lib.a: [lib_obj]
+	set ingredients-fingerprint
+{
+	ar qc [target] [resolve [lib_obj]];
+	if [ranlib] then
+		[ranlib] [target];
+}
+
+/*
+ * need this so that ../man1/???.h includes work properly
+ */
+if [not [exists [arch]/common]] then
+	mkdir -p [arch]/common
+		set clearstat;
+
+LICENSE: lib/en/cat1/cook_lic.1
+{
+	cp [need] [target];
+}
+
+/* Sigh */
+cascade lib/en/building/main.man = etc/version.so;
+cascade lib/en/lsm/main.roff = etc/version.so;
+cascade lib/en/man1/copyright.so = etc/version.so;
+cascade lib/en/readme/main.man = etc/version.so;
+cascade lib/en/refman/main.man = etc/version.so;
+cascade lib/en/release/main.man = etc/version.so;
+cascade lib/en/user-guide/main.mm = etc/version.so;
+
+
+all += file_check/.done;
+
+file_check/.done: [arch]/bin/file_check
+	[project_files] [change_files]
+{
+	[resolve [arch]/bin/file_check] /* -w */
+		[resolve [change_files] [project_files]]
+		;
+	touch [target];
+}
+
+/*
+ * Include the recipes for GNU Autoconf.
+ */
+#include [resolve etc/autoconf.cook]
+
+/*
+ * Include the recipes for internationalization.
+ */
+#include [resolve etc/i18n.cook]
+
+/*
+ * Include the recipes for the archive directory.
+ */
+#include [resolve etc/archive.cook]
+
+/*
+ * Include the recipes for using the cfmt program.
+ */
+#include [resolve etc/cfmt.cook etc/metrics.cook]
+
+/*
+ * Include recipes for generating the "tags" amd "TAGS" files.
+ */
+#include [resolve etc/cfmt.cook etc/tags.cook]

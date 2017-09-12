@@ -1,0 +1,209 @@
+'\" t
+.\"	cook - file construction tool
+.\"	Copyright (C) 1997-1999, 2004 Peter Miller;
+.\"	All rights reserved.
+.\"
+.\"	This program is free software; you can redistribute it and/or modify
+.\"	it under the terms of the GNU General Public License as published by
+.\"	the Free Software Foundation; either version 2 of the License, or
+.\"	(at your option) any later version.
+.\"
+.\"	This program is distributed in the hope that it will be useful,
+.\"	but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"	GNU General Public License for more details.
+.\"
+.\"	You should have received a copy of the GNU General Public License
+.\"	along with this program; if not, write to the Free Software
+.\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"
+.\" MANIFEST: How to release a version of Cook
+.\"
+.if n .ftr CB B
+.if n .ftr CI I
+.if n .ftr CW R
+.if n .ftr C  R
+.so ../man1/z_name.so
+.TH Release "\*(N)" "\*(N)" "Release Notes"
+.ad l
+.hy 0
+.so version.so
+.de e(
+.RS
+.ft CW
+.nf
+.sp
+..
+.de e)
+.sp
+.fi
+.ft R
+.RE
+..
+.SH NAME
+How to release a version of \*(N)
+.SH CHECKLIST
+This document describes the steps involved in issuing a new release of \*(N).
+The level of detail is too much in some places, and too little in others.
+.SS Verify Current Baseline
+Take the \f(CWarchive/\*(n)-\*(v).tar.gz\fP file from the current
+baseline.
+Unpack it an verify that it configures and builds on each of the
+HP/UX, SunOs, Solaris, OSF/1 and AIX flavors.
+There are usually small niggling problems
+(some of them are such bad UNIX implementations).
+Fix the problems and try again.
+.SS Cut A New Version
+The releases are \fIpost-numbered\fP so that you must end the current
+branch and start a new branch with the desired release number.  This
+allows you to cut bug-fix sub-branches with sensible numbers when you
+want to release a bug fix.
+.IP \(bu 2n
+Set the project to one level up, and do a develop end
+on the current branch.
+.IP \(bu 2n
+Review it (hopefully without finding anything wrong),
+.IP \(bu 2n
+and the integrate it you normally would.
+.IP \(bu 2n
+Create a new branch for the release, and a new change on that branch.
+.IP \(bu 2n
+Create the change file for the last release (etc/CHANGES.\*(v)),
+and the release notes file for next release (lib/en/readme/new.\*(v).so).
+.IP \(bu 2n
+When you integrate, use the -MINIMum option so that the version number
+in the documentation is correct.  Do a full regression test.
+.IP \(bu 2n
+Set your default project to the new branch.
+.PP
+Resume these instructions once the new branch has been updated by this
+change.  Then these instructions will have the new version number in
+them, and you will be able to cut-and-paste from the text file straight
+into the xterm session.
+.br
+.ne 2i
+.SH UPLOAD TO THE ARCHIVES
+There are two archives to upload to.
+.SS Update Primary Archive
+Transfer a copy to \f(CWhttp://www.canb.auug.org.au/~millerp/\fP by FTP.
+Login as \f(CWmillerp\fP and change to the \f[CW]WWW/cook\fP directory
+(this corresponds to the \f[CW]/~millerp/cook/\fP directory for WWW clients).
+.e(
+% \f(CBaecd -bl archive\fP
+% \f(CBftp ftp.canb.auug.org.au\fP
+user: \f(CBmillerp\fP
+ftp> \f(CBbinary\fP
+ftp> \f(CBcd WWW/cook\fP
+ftp>
+.e)
+Delete the old version of \*(N),
+to keep the space to a minimum.
+.e(
+ftp> \f(CBprompt\fP
+ftp> \f(CBmdelete \*(n)*\fP
+ftp>
+.e)
+Transfer the new version
+.e(
+ftp> \f(CBmput \*(n)*\fP
+ftp> \f(CBquit\fP
+%
+.e)
+.br
+.ne 2i
+.SS Update Linux Archive
+Transfer a copy to \f(CWmetalab.unc.edu\fP by FTP.
+.PP
+First check
+\f(CWftp://metalab.unc.edu/pub/Linux/HOW.TO.SUBMIT\fP
+and
+\f(CWftp://metalab.unc.edu/pub/Linux/LSM-TEMPLATE\fP
+to see if anything has changed.
+.PP
+Login as \f(CWanonymous\fP and change to the
+\f(CW/incoming/Linux\fP directory.
+Use the following commands
+.e(
+% \f(CBaecd -bl archive\fP
+% \f(CBftp metalab.unc.edu\fP
+user: \f(CBanonymous\fP
+ftp> \f(CBcd /incoming/linux\fP
+ftp> \f(CBbinary\fP
+ftp> \f(CBprompt\fP
+ftp> \f(CBmput \*(n)-*\fP
+ftp> \f(CBquit\fP
+%
+.e)
+.PP
+The incoming directory is scanned, and the files placed into the archive
+automatically.  There is no need to send email to the archive maintainer.
+.SH NOTIFICATIONS
+A couple of mailing lists and newsgroups need to be notified.
+.SS Notify Mailing Lists
+Send a notification to the \fI\*(n)-users@canb.auug.org.au\fP and
+\fIaegis-users@canb.auug.org.au\fP
+lists.  It should look like this:
+.e(
+.fi
+To:
+'in +8n
+aegis-users@canb.auug.org.au,
+cook-users@canb.auug.org.au
+.in -8n
+.so body.so
+.e)
+.PP
+Only send this notification \fIafter\fP the files are actually available
+at the archive site.
+.SS Notify Newsgroups
+Send a notification to the newsgroups can also be notified by email,
+which tends to work best as not all newsgroups are sufficiently available
+elsewhere.  It should look like this:
+.e(
+.fi
+To: mail2news@replay.com
+.br
+Newsgroups:
+'in +8n
+alt.sources.d,
+comp.software-eng,
+comp.software.config-mgmt,
+comp.sources.d,
+gnu.announce
+.in -8n
+.so body.so
+.e)
+.PP
+Only send this notification \fIafter\fP the files are actually available
+at the archive site.
+.br
+.ne 2i
+.SS Update Mailing List Info
+Update the \*(n)-users list info, by sending email
+.e(
+To: majordomo@canb.auug.org.au
+
+newinfo \*(n)-users \fIpassword
+
+attach the \f(CIREADME\fI file here
+.e)
+.br
+.ne 2i
+.SS Notify Linux Announce
+Send a notification to the comp.os.linux.announce list.
+It should look like this:
+.e(
+.fi
+To: linux-announce@news.ornl.gov
+.so body.so
+.e)
+.PP
+Only send this notification \fIafter\fP the files are actually available
+at the archive site.
+.br
+.ne 2i
+.SS Update Slash Dot
+Go to \f[CW]http://www.freshmeat.net/\fP and update the info for Cook.
+.br
+.ne 2i
+.so ../man1/copyright.so

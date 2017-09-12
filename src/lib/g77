@@ -1,0 +1,6 @@
+/*
+ * MANIFEST: cookbook for using g77
+ */
+#pragma once
+#include "f77"
+f77 = g77;

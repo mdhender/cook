@@ -1,0 +1,64 @@
+/*
+ * NAME
+ *	as - assembler cookbook
+ *
+ * DESCRIPTION
+ *	This cookbook defines how to use the assembler
+ *
+ * RECIPES
+ *	%.o: %.s	construct object friles from assembler source files
+ *
+ * VARIABLES
+ *	as		The assembler command.
+ *			Not altered if already defined.
+ *	as_flags	Options to pass the assembler command.
+ *			Not altered if already defined.
+ *			The default is empty.
+ *	as_src		Assembler source files in the current directory.
+ *	dot_src		Source files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_obj		Object files constructable in the current directory
+ *			(unioned with existing setting, if necessary).
+ *	dot_clean	Files which may be removed from the current directory
+ *			in a clean target.
+ *
+ * MANIFEST: cookbook for using assembler
+ */
+
+#pragma once
+
+if [not [defined as]] then
+	as = as;
+if [not [defined as_flags]] then
+	as_flags = ;
+if [not [defined dot_src]] then
+	dot_src = ;
+if [not [defined dot_obj]] then
+	dot_obj = ;
+/* Assembler files have many names... *.asm, *.as, *.S are also
+   possibilities.  use this file for ideas.  */
+as_src = [glob *.s];
+dot_src = [stringset [dot_src] [as_src]];
+dot_obj = [stringset [dot_obj] [fromto %.s %.o [as_src]]];
+dot_clean = [stringset [dot_clean] [dot_obj]];
+
+%.o: %.s
+{
+	[as] [as_flags] -o %.o [resolve %.s];
+}
+
+%.s.d: %.s
+{
+	[c_incl] --language\=optimistic
+		-ns -nc -nrec
+		[add_prefix "-I" [search_list]]
+		[resolve %.s]
+		--prefix "'cascade %.s ='"
+		--suffix "';'"
+		-o [target];
+}
+
+#include-cooked-nowarn [addsuffix ".d" [as_src]]
+
+/* It would be nice to scan the include files, too, but they tend to
+   have even more suffix variety than assembler sources.  */

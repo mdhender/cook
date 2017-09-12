@@ -1,0 +1,443 @@
+
+
+
+Project "cook.2.15"						  Page 1
+List of Changes					Wed Oct 25 08:46:57 2000
+
+Change	State		Description
+------- -------		-------------
+  10	completed	prepare for release
+  11	completed	#include "c"
+  17	completed	cygwin stuff
+  18	completed	c_incl -
+  19	completed	pattern explanation
+  20	completed	reason fingerprint bug
+  21	completed	stringset +
+
+
+
+Project "cook.2.15", Change 10					  Page 1
+Change Details					Wed Oct 25 08:46:58 2000
+
+NAME
+	Project "cook.2.15", Delta 1, Change 10.
+
+SUMMARY
+	prepare for release
+
+DESCRIPTION
+	This change prepares Cook for the next public release.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 180  BUILDING
+	build	modify	   27 -> 166  MANIFEST
+	build	modify	   29 -> 164  Makefile.in
+	build	modify	   12 -> 101  README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 283  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	create	    1	      etc/CHANGES.2.12
+	build	modify	  144 -> 145  etc/version.so
+	source	modify	    1 -> 2    lib/en/readme/new.2.12.so
+	source	create	    1	      lib/en/readme/new.2.15.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Apr 11	pmiller
+			11:07:24 2000
+	develop_begin	Tue Apr 11	pmiller	 Elapsed time: 3.000
+			11:07:36 2000		 days.
+	develop_end	Fri Apr 14	pmiller	 Elapsed time: 0.027
+			07:54:25 2000		 days.
+	review_pass	Fri Apr 14	pmiller
+			08:06:35 2000
+	integrate_begin Fri Apr 14	pmiller	 Elapsed time: 0.065
+			08:07:01 2000		 days.
+	integrate_pass	Fri Apr 14	pmiller
+			08:36:07 2000
+
+
+
+Project "cook.2.15", Change 11					  Page 1
+Change Details					Wed Oct 25 08:46:58 2000
+
+NAME
+	Project "cook.2.15", Delta 2, Change 11.
+
+SUMMARY
+	#include "c"
+
+DESCRIPTION
+	This change fixed a bug in the lib/c file, which was getting .h
+	dependency files wrong.
+
+	My thanks to Thimble Smith <tim@mysql.com> for reporting this
+	problem.
+
+	This change is exempt from testing against the development
+	directory.  This change is exempt from testing against the
+	baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 181  BUILDING
+	build	modify	   27 -> 166  MANIFEST
+	build	modify	   29 -> 164  Makefile.in
+	build	modify	   12 -> 101  README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 284  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	build	modify	  144 -> 146  etc/version.so
+	source	modify	    2 -> 3    lib/c
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Apr 14	pmiller
+			10:04:32 2000
+	develop_begin	Fri Apr 14	pmiller	 Elapsed time: 0.330
+			10:04:49 2000		 days.
+	develop_end	Fri Apr 14	pmiller
+			12:33:24 2000
+	review_pass	Fri Apr 14	pmiller
+			12:33:32 2000
+	integrate_begin Fri Apr 14	pmiller	 Elapsed time: 0.085
+			12:33:57 2000		 days.
+	integrate_pass	Fri Apr 14	pmiller
+			13:12:25 2000
+
+
+
+Project "cook.2.15", Change 17					  Page 1
+Change Details					Wed Oct 25 08:46:59 2000
+
+NAME
+	Project "cook.2.15", Delta 7, Change 17.
+
+SUMMARY
+	cygwin stuff
+
+DESCRIPTION
+	This change contains a couple of fixes to make Cook work a
+	little better on Cygwin.
+
+	* cook/os.c (os_mtime_adjust): Fixed bug preventing the time-
+	adjust feature from working on .exe files for Cygwin.
+
+	* common/fp.c: Fingerprint is now checked in binary for Cygwin
+	systems.
+
+	My thanks to Adam Schlegel <aceschle@thinkage.ca> for sending
+	this patch.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 186  BUILDING
+	build	modify	   27 -> 169  MANIFEST
+	build	modify	   29 -> 167  Makefile.in
+	build	modify	   12 -> 103  README
+	source	modify	    3 -> 4    common/ac/fcntl.h
+	build	modify	    3 -> 20   common/config.h.in
+	source	modify	    5 -> 6    common/fp.c
+	build	modify	   43 -> 289  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	modify	   22 -> 23   cook/os.c
+	build	modify	  144 -> 151  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Aug 30	pmiller
+			11:45:58 2000
+	develop_begin	Wed Aug 30	pmiller	 Elapsed time: 39.800
+			11:46:04 2000		 days.
+	develop_end	Tue Oct 24	pmiller
+			17:46:08 2000
+	review_pass	Tue Oct 24	pmiller	 Elapsed time: 1.000
+			17:46:09 2000		 days.
+
+
+
+Project "cook.2.15", Change 17					  Page 2
+Change Details					Wed Oct 25 08:46:59 2000
+
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	integrate_begin Wed Oct 25	pmiller	 Elapsed time: 0.031
+			06:19:48 2000		 days.
+	integrate_pass	Wed Oct 25	pmiller
+			06:33:32 2000
+
+
+
+Project "cook.2.15", Change 18					  Page 1
+Change Details					Wed Oct 25 08:46:59 2000
+
+NAME
+	Project "cook.2.15", Delta 4, Change 18.
+
+SUMMARY
+	c_incl -
+
+DESCRIPTION
+	This change make it possible for use stdin as an input file for
+	the c_incl program.
+
+	My thanks to Jerry Pendergraft <jerry@endocardial.com> for this
+	suggstion.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 183  BUILDING
+	build	modify	   27 -> 168  MANIFEST
+	build	modify	   29 -> 166  Makefile.in
+	build	modify	   12 -> 103  README
+	source	modify	   14 -> 15   c_incl/main.c
+	source	modify	   21 -> 22   c_incl/sniff.c
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 286  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	build	modify	  144 -> 148  etc/version.so
+	source	modify	   12 -> 13   lib/en/man1/c_incl.1
+	source	modify	    2 -> 3    lib/en/readme/new.2.15.so
+	test	create	    1	      test/01/t0195a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Mon Sep 25	pmiller
+			17:45:54 2000
+	develop_begin	Mon Sep 25	pmiller	 Elapsed time: 17.636
+			17:46:00 2000		 days.
+	develop_end	Wed Oct 18	pmiller
+			22:32:07 2000
+	develop_end_	Wed Oct 18	pmiller	 Elapsed time: 0.022
+	undo		22:34:50 2000		 days.
+	develop_end	Wed Oct 18	pmiller
+			22:44:57 2000
+	review_pass	Wed Oct 18	pmiller
+			22:45:03 2000
+	integrate_begin Wed Oct 18	pmiller
+			22:45:12 2000
+	integrate_pass	Wed Oct 18	pmiller
+			22:54:56 2000
+
+
+
+Project "cook.2.15", Change 19					  Page 1
+Change Details					Wed Oct 25 08:47:00 2000
+
+NAME
+	Project "cook.2.15", Delta 5, Change 19.
+
+SUMMARY
+	pattern explanation
+
+DESCRIPTION
+	This change adds some commentary and documentation, explaining
+	that % and %N patterns may not match the empty string.	They can
+	cause problems by unintentionally matching absolute paths.
+
+	My thanks to Christian Goetze <cg@digisle.net> for reporting
+	this problem.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 184  BUILDING
+	build	modify	   27 -> 169  MANIFEST
+	build	modify	   29 -> 167  Makefile.in
+	build	modify	   12 -> 103  README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 287  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	modify	    2 -> 3    cook/match/cook.c
+	build	modify	  144 -> 149  etc/version.so
+	source	modify	    6 -> 7    lib/en/user-guide/match.so
+	test	create	    1	      test/01/t0196a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Fri Oct 13	pmiller
+			11:44:55 2000
+	develop_begin	Fri Oct 13	pmiller	 Elapsed time: 7.000
+			11:45:02 2000		 days.
+	develop_end	Tue Oct 24	pmiller
+			11:36:29 2000
+	review_pass	Tue Oct 24	pmiller
+			11:44:40 2000
+	integrate_begin Tue Oct 24	pmiller	 Elapsed time: 0.490
+			11:44:49 2000		 days.
+	integrate_pass	Tue Oct 24	pmiller
+			15:25:17 2000
+
+
+
+Project "cook.2.15", Change 20					  Page 1
+Change Details					Wed Oct 25 08:47:00 2000
+
+NAME
+	Project "cook.2.15", Delta 6, Change 20.
+
+SUMMARY
+	reason fingerprint bug
+
+DESCRIPTION
+	This change fixed a bug which only manifested when fingerprints
+	*and* the -reason option were being used, and even then only
+	sometimes.
+
+	My thanks to Adam Schlegel <aceschle@thinkage.ca> for sending
+	this patch.
+
+	This change must pass a full regression test.  This change is
+	exempt from testing against the development directory.	This
+	change is exempt from testing against the baseline.
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by external_bug.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 185  BUILDING
+	build	modify	   27 -> 169  MANIFEST
+	build	modify	   29 -> 167  Makefile.in
+	build	modify	   12 -> 103  README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 288  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	modify	   10 -> 11   cook/stat.cache.c
+	build	modify	  144 -> 150  etc/version.so
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Tue Oct 17	pmiller
+			17:39:40 2000
+	develop_begin	Tue Oct 17	pmiller	 Elapsed time: 5.000
+			17:39:47 2000		 days.
+	develop_end	Tue Oct 24	pmiller
+			17:37:30 2000
+	review_pass	Tue Oct 24	pmiller
+			17:37:53 2000
+	integrate_begin Tue Oct 24	pmiller	 Elapsed time: 0.024
+			17:38:08 2000		 days.
+	integrate_pass	Tue Oct 24	pmiller
+			17:48:56 2000
+
+
+
+Project "cook.2.15", Change 21					  Page 1
+Change Details					Wed Oct 25 08:47:01 2000
+
+NAME
+	Project "cook.2.15", Delta 3, Change 21.
+
+SUMMARY
+	stringset +
+
+DESCRIPTION
+	This change adds a plus operator to the stringset function (it
+	means you can cancel the - operator easily)
+
+
+ARCHITECTURE
+	This change must build and test in the "linux-i486"
+	architecture.
+
+CAUSE
+	This change was caused by internal_enhancement.
+
+FILES
+	Type	Action	 Edit	      File Name
+	------- -------- -------      -----------
+	build	modify	    5 -> 182  BUILDING
+	build	modify	   27 -> 167  MANIFEST
+	build	modify	   29 -> 165  Makefile.in
+	build	modify	   12 -> 102  README
+	build	modify	    3 -> 20   common/config.h.in
+	build	modify	   43 -> 285  common/patchlevel.h
+	build	modify	    7 -> 29   configure
+	source	modify	    8 -> 9    cook/builtin/stringset.c
+	build	modify	  144 -> 147  etc/version.so
+	source	modify	    1 -> 2    lib/en/readme/new.2.15.so
+	source	modify	    4 -> 5    lib/en/user-guide/function/
+				      stringset.so
+	test	create	    1	      test/01/t0193a.sh
+
+HISTORY
+	What		When		Who	 Comment
+	------		------		-----	 ---------
+	new_change	Wed Oct 18	pmiller
+			14:59:47 2000
+	develop_begin	Wed Oct 18	pmiller	 Elapsed time: 0.909
+			14:59:54 2000		 days.
+	develop_end	Wed Oct 18	pmiller
+			21:49:09 2000
+	review_pass	Wed Oct 18	pmiller
+			21:49:35 2000
+	integrate_begin Wed Oct 18	pmiller
+			21:49:44 2000
+	integrate_pass	Wed Oct 18	pmiller
+			21:59:32 2000

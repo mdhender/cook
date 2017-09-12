@@ -1,0 +1,595 @@
+#
+# 	cook - file construction tool
+# 	Copyright (C) 1997-1999, 2001-2003 Peter Miller;
+# 	All rights reserved.
+#
+# 	This program is free software; you can redistribute it and/or modify
+# 	it under the terms of the GNU General Public License as published by
+# 	the Free Software Foundation; either version 2 of the License, or
+# 	(at your option) any later version.
+#
+# 	This program is distributed in the hope that it will be useful,
+# 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+# 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# 	GNU General Public License for more details.
+#
+# 	You should have received a copy of the GNU General Public License
+# 	along with this program; if not, write to the Free Software
+# 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+#
+# MANIFEST: English localization, messages common to all programs
+#
+# Please read the Internationalization section of the Reference Manual
+# before translating any of these messages.
+#
+# -------------------------------------------------------------------------
+msgid	""
+msgstr	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ascii\n"
+	"Content-Transfer-Encoding: 8bit\n"
+
+#
+# This error message is used to format some other message when parsing a
+# file, to include the file name and line number.
+#
+# 	$File_Name	The name of the file being parsed.
+# 	$Number		The line number within the file.
+# 	$MeSsaGe	The error message.
+#
+msgid	"$filename: $number: $message"
+msgstr	"$filename: $number: $message"
+
+#
+#
+# This warning message is used to format some other message when parsing
+# a file, to include the file name and line number.
+#
+# 	$File_Name	The name of the file being parsed.
+# 	$Number		The line number within the file.
+# 	$MeSsaGe	The error message.
+#
+msgid	"$filename: $number: warning: $message"
+msgstr	"$filename: $number: warning: $message"
+
+#
+# This fatal error message is issued at the end of parsing a file, when
+# error message s have been found parsing the file.
+#
+# 	$File_Name	The name of the file being parsed.
+#
+msgid	"$filename: found $number fatal errors"
+msgstr	"$filename: found $number fatal ${plural $number errors error}"
+
+#
+# This fatal error message is issued while parsing a file, when the
+# number of fatal error messages becomes too great.
+#
+# 	$File_Name	The name of the file being parsed.
+#
+msgid	"$filename: too many fatal errors"
+msgstr	"$filename: too many fatal errors"
+
+#
+# This warning message is issued when the user requests debug tracing
+# and the program was not compiled with it enabled.
+#
+# 	$Name		The name of the debugging option.
+#
+msgid	"$name needs DEBUG"
+msgstr	"Warning: the $name option is only effective when $progname is "
+	"compiled using the DEBUG define in the common/main.h include "
+	"file."
+
+#
+# This error message is issued when a command line option which should
+# have been followed by one or more file names was not.
+#
+# 	$Name		The name of the offending command line option.
+#
+msgid	"$name needs files"
+msgstr	"the $name option requires one or more filename arguments"
+
+#
+# This error message is issued when a command line option which should
+# have been followed buy a numeric arguemnt was not.
+#
+# 	$Name		The name of the offending command line option.
+#
+msgid	"$name needs number"
+msgstr	"the $name option requires a numeric argument"
+
+#
+# This error message is issued when a command line option which should
+# have been followed buy a string arguemnt was not.
+#
+# 	$Name		The name of the offending command line option.
+#
+msgid	"$name needs string"
+msgstr	"the $name option requires a string argument"
+
+#
+# This text fragment is used to construct a description of a time, when
+# that time is less than one minute.  The time fragment will be used
+# with the messages marked [[Time]].
+#
+# 	$Number		The number of seconds (integer).
+#
+msgid	"$number seconds"
+msgstr	"$number ${plural $number seconds second}"
+
+#
+# This text fragment is used to construct a description of a time, when
+# that time is more than one year.  The time fragment will be used
+# with the messages marked [[Time]].
+#
+# 	$Number		The number of years (real).
+#
+msgid	"$number years"
+msgstr	"$number years"
+
+#
+# This text fragment is used to construct a description of a time, when
+# that time is more than one day but less than one year.  The time
+# fragment will be used with the messages marked [[Time]].
+#
+# 	$Number1		The number of days (integer).
+# 	$Number2		The number of hours (integer) remainder.
+#
+msgid	"$number1 days $number2 hours"
+msgstr	"${number1}d${zpad $number2 2}h"
+
+#
+# This text fragment is used to construct a description of a time, when
+# that time is more than one hour but less than one day.  The time
+# fragment will be used with the messages marked [[Time]].
+#
+# 	$Number1		The number of hours (integer).
+# 	$Number2		The number of minutes (integer) remainder.
+#
+msgid	"$number1 hours $number2 minutes"
+msgstr	"${number1}h${zpad $number2 2}m"
+
+#
+# This text fragment is used to construct a description of a time, when
+# that time is more than one minute but less than one hour.  The time
+# fragment will be used with the messages marked [[Time]].
+#
+# 	$Number1		The number of minutes (integer).
+# 	$Number2		The number of seconds (integer) remainder.
+#
+msgid	"$number1 minutes $number2 seconds"
+msgstr	"${number1}m${zpad $number2 2}s"
+
+#
+# This message is issued when the last modified time of a file is
+# adjusted into the past.
+#
+# 	$File_Name	The name of the file adjusted.
+# 	$Number		The time interval of the adjustment, in a format
+# 			described by one of the above [[Time]]
+# 			references.
+#
+msgid	"adjusting \"$filename\" back $number"
+msgstr	"adjusting \"$filename\" back $number"
+
+#
+#
+# This message is issued when the last modified time of a file is
+# adjusted into the future.
+#
+# 	$File_Name	The name of the file adjusted.
+# 	$Number		The time interval of the adjustment, in a format
+# 			described by one of the above [[Time]]
+# 			references.
+#
+#
+msgid	"adjusting \"$filename\" forward $number"
+msgstr	"adjusting \"$filename\" forward $number"
+
+#
+# This error message is issued when an error message abbreviation is
+# ambiguous.  This message is one of the [[Substitution]] messages.
+#
+msgid	"ambiguous substitution name"
+msgstr	"ambiguous substitution name"
+
+#
+# This error message is issued when closing a file is not successful.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"close $filename: $errno"
+msgstr	"close \"$filename\": $errno"
+
+#
+# This error message is issued when the command line is too short.
+#
+msgid	"command line too short"
+msgstr	"command line too short"
+
+#
+# This error message is issued when the same command line option is
+# given on the command line more than once.
+#
+# 	$Name		The name of the offending option.
+#
+msgid	"duplicate \"$name\" option"
+msgstr	"duplicate \"$name\" option"
+
+#
+# This error message is issued when a substitution is empty.
+#
+msgid	"empty $${} substitution"
+msgstr	"empty $${} substitution"
+
+#
+# This error message is issued when the attempt to spawn a sub-command
+# fails.
+#
+# 	$File_Name	The name of the offending command.
+#
+msgid	"exec $filename: $errno"
+msgstr	"exec \"$filename\": $errno"
+
+#
+# This error message is issued when the getcwd() function fails.
+#
+msgid	"getcwd: $errno"
+msgstr	"getcwd: $errno"
+
+#
+# This error message is issued when a substitution fails to use defined
+# substution variables.  This message summarizes the errors.
+#
+# 	$MeSsaGe	The offending error message.
+# 	$Number		The number of unused variables.
+# 			(Optional)
+#
+msgid	"in substitution \"$message\" found unused variables"
+msgstr	"in substitution \"$message\" found $number unused ${plural "
+	"$number variables variable}"
+
+#
+# This error message is issued when a substitution fails to use a
+# defined substution variable.
+#
+# 	$MeSsaGe	The offending error message.
+# 	$Name		The name of the unused variable.
+#
+msgid	"in substitution \"$message\" variable \"$name\" unused"
+msgstr	"in substitution \"$message\" variable \"$name\" unused"
+
+#
+# This error message is issued when there is a known but syntactically
+# incorrect option on the command line.
+#
+# 	$Name		The offending command line argument.
+#
+msgid	"misplaced \"$name\" option"
+msgstr	"misplaced \"$name\" option on the command line"
+
+#
+# This error message is issued when there is an extra string on the
+# command line.  It is probably a file name.
+#
+# 	$File_Name	The offending command line argument.
+#
+msgid	"misplaced file name (\"$filename\")"
+msgstr	"misplaced file name (\"$filename\") on command line"
+
+#
+# This error message is issued when there is an extra number on the
+# command line.
+#
+# 	$Number		The offending command line argument.
+#
+msgid	"misplaced number ($number)"
+msgstr	"misplaced number ($number) on the command line"
+
+#
+# This error message is issued when an error occurs when creating a
+# directory.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"mkdir $filename: $errno"
+msgstr	"mkdir \"$filename\": $errno"
+
+#
+# This error message is issued when no files are named on the command
+# line.  At least one file must be named.
+#
+msgid	"no files named"
+msgstr	"no files named, at least one file must be named on the command "
+	"line"
+
+#
+# This error message is issued when a file cannot be opened (both for
+# reading or writing).
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"open $filename: $errno"
+msgstr	"open \"$filename\": $errno"
+
+#
+# This error message is issued when a problem occurs while attempting to
+# open a directory.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"opendir $filename: $errno"
+msgstr	"opendir $filename: $errno"
+
+#
+# This error message is issued when a command line option is ambiguous.
+#
+# 	$Name		The offending command line option.
+# 	$Guess		A comma separated list of possible interpretations.
+#
+msgid	"option \"$name\" ambiguous ($guess)"
+msgstr	"option \"$name\" is ambiguous ($guess)"
+
+#
+# This error message is issued when a page length specified with the
+# -Page_Length option is not reasonable.
+#
+# 	$Number		The value of the offending option.
+#
+msgid	"page length $number out of range"
+msgstr	"page length $number out of range"
+
+#
+# This error message is issued when a page length specified with the
+# -Page_Width option is not reasonable.
+#
+# 	$Number		The value of the offending option.
+#
+msgid	"page width $number out of range"
+msgstr	"page width $number out of range"
+
+#
+# This error message is issued when bison detects invalid input.
+#
+msgid	"parse error"
+msgstr	"unable to work out what you meant to say"
+
+#
+# This error message is issued when bison detects invalid input, as a
+# result of a malloc failure.
+#
+msgid	"parse error; also virtual memory exceeded"
+msgstr	"unable to work out what you meant to say, because memory was "
+	"exhausted"
+
+#
+# This error message is issued when bison detects invalid input, as a
+# result of a stack overflow.
+#
+msgid	"parser stack overflow"
+msgstr	"unable to work out what you meant to say, because it was too "
+	"complicated"
+
+#
+# This error message is issued when pathconf failes to determine the
+# maximum file name length.
+#
+# 	$File_Name	The offending filename (file system).
+#
+msgid	"pathconf(\"$filename\", {NAME_MAX}): $errno"
+msgstr	"name_max \"$filename\": $errno"
+
+#
+# This error message is issued when a file name matching pattern
+# (fnmatch within glob) fails to have a closing bracket in a chacter set
+# specification.
+#
+# 	$Name		The offending file name pattern.
+#
+msgid	"pattern \"$name\" missing closing ']'"
+msgstr	"pattern \"$name\" missing closing ']'"
+
+#
+# This error message is issued when there is a problem reading a file.
+#
+# 	$File_name	The name of the offending file.
+#
+msgid	"read $filename: $errno"
+msgstr	"read \"$filename\": $errno"
+
+#
+# This error message is issued when there is a problem reading the value
+# of a symbolic link.
+#
+# 	$File_name	The name of the offending file.
+#
+msgid	"readlink $filename: $errno"
+msgstr	"readlink \"$filename\": $errno"
+
+#
+# This error message is issued when an error message substitution is
+# given no arguments, but requires at least one.  This message is one of
+# the [[Substitution]] messages.
+#
+msgid	"requires at least one argument"
+msgstr	"requires at least one argument"
+
+#
+# This error message is issued when an error message substitution
+# requires exactly one argument, but is given more or less.  This
+# message is one of the [[Substitution]] messages.
+#
+msgid	"requires one argument"
+msgstr	"requires one argument"
+
+#
+# This error message is issued when an error message substitution
+# requires exactly one or two arguments, but is given more or less.
+# This message is one of the [[Substitution]] messages.
+#
+msgid	"requires one or two arguments"
+msgstr	"requires one or two arguments"
+
+#
+# This error message is issued when an error message substitution
+# requires exactly two arguments, but is given more or less.  This
+# message is one of the [[Substitution]] messages.
+#
+msgid	"requires two arguments"
+msgstr	"requires two arguments"
+
+#
+# This error message is issued when an error message substitution
+# requires exactly two or three arguments, but is given more or less.
+# This message is one of the [[Substitution]] messages.
+#
+msgid	"requires two or three arguments"
+msgstr	"requires two or three arguments"
+
+#
+# This error message is issued when an error message substitution
+# requires no arguments, but is given some.  This message is one of the
+# [[Substitution]] messages.
+#
+msgid	"requires zero arguments"
+msgstr	"requires zero arguments"
+
+#
+# This string is the name of the standard input stream.
+#
+msgid	"standard input"
+msgstr	"standard input"
+
+#
+# This string is the name of the standard output stream.
+#
+msgid	"standard output"
+msgstr	"standard output"
+
+#
+# This error message is issued when an attempt to obtain ``stat''
+# details of a fial fails.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"stat $filename: $errno"
+msgstr	"$filename: $errno"
+
+#
+# This error message is issued when the output of the strftime function
+# is too large to fit in the internal buffer (typically 2000 bytes, but
+# not always).
+#
+msgid	"strftime output too large"
+msgstr	"strftime output too large"
+
+#
+# This error message is issued when an error message substitution fails.
+# The message will be one of those marked [[Substitition]], above.
+#
+# 	$Name		The name of the offending substitution function.
+# 	$MeSsaGe	The actual error.
+#
+msgid	"substitution $${$name} failed: $message"
+msgstr	"substitution $${$name} failed: $message"
+
+#
+# This error message is issued when yacc detects invalid input.
+#
+msgid	"syntax error"
+msgstr	"unable to work out what you meant to say"
+
+#
+# This error message is issued when too many filenames are specified on
+# the command line of a program.
+#
+msgid	"too many filenames specified"
+msgstr	"too many filenames specified"
+
+#
+# This error message is issued when there is an unknown option on the
+# command line.
+#
+#       $Name           The offending command line argument.
+#
+msgid	"unknown \"$name\" option"
+msgstr	"unknown \"$name\" option on the command line"
+
+#
+# This error message is issued when an error message substitution is
+# named, but is unknown.  This message is one of the [[Substitution]]
+# messages.
+#
+msgid	"unknown substitution name"
+msgstr	"unknown substitution name"
+
+#
+# This error message is issued when an attempt to unlink a file fails.
+#
+# 	$File_name	The name of the offending file.
+#
+msgid	"unlink $filename: $errno"
+msgstr	"unlink \"$filename\": $errno"
+
+#
+# This error message is issued when an error message substitution
+# contains an unterminated backslash escape sequence.
+#
+msgid	"unterminated $${} \\ sequence"
+msgstr	"unterminated $${} \\ sequence"
+
+#
+# This error message is issued when an error message substitution
+# contains unterminated single quotes (').
+#
+msgid	"unterminated $${} quotes"
+msgstr	"unterminated $${} quotes"
+
+#
+# This error message is issued when error message substitution contains
+# unterminated { curly braces }.
+#
+msgid	"unterminated $${} substitution"
+msgstr	"unterminated $${} substitution"
+
+#
+# This error message is issued when an attempt to set a file's access
+# and modification times fails.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"utime $filename: $errno"
+msgstr	"utime \"$filename\": $errno"
+
+#
+# This error message is issued when a problem occurs while waiting for a
+# child process to terminate.
+#
+msgid	"wait(): $errno"
+msgstr	"wait(): $errno"
+
+#
+# This warning message is issued when an attempt to unlink a file fails.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"warning: unlink $filename: $errno"
+msgstr	"warning: unlink \"$filename\": $errno"
+
+#
+# This error message is issued when an attempt to set a file's
+# last-time-modified time fails.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"warning: when adjusting \"$filename\": $errno"
+msgstr	"warning: when adjusting \"$filename\": $errno"
+
+#
+# This error message is issued when a problem occurs while writing to a
+# file.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"write $filename: $errno"
+msgstr	"write \"$filename\": $errno"

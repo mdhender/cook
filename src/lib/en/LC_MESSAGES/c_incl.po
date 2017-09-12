@@ -1,0 +1,134 @@
+#
+# 	cook - file construction tool
+# 	Copyright (C) 1997, 1999, 2002 Peter Miller;
+# 	All rights reserved.
+#
+# 	This program is free software; you can redistribute it and/or modify
+# 	it under the terms of the GNU General Public License as published by
+# 	the Free Software Foundation; either version 2 of the License, or
+# 	(at your option) any later version.
+#
+# 	This program is distributed in the hope that it will be useful,
+# 	but WITHOUT ANY WARRANTY; without even the implied warranty of
+# 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# 	GNU General Public License for more details.
+#
+# 	You should have received a copy of the GNU General Public License
+# 	along with this program; if not, write to the Free Software
+# 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+#
+# MANIFEST: English localization for the c_incl program
+#
+# Please read the Internationalization section of the Reference Manual
+# before translating any of these messages.
+#
+# -----------------------------------------------------------------------------
+msgid	""
+msgstr	"MIME-Version: 1.0\n"
+	"Content-Type: text/plain; charset=ascii\n"
+	"Content-Transfer-Encoding: 8bit\n"
+
+#
+# This fatal error message is issued if the -nsri option has been
+# specified, and the file uses #include "..." type includes.
+#
+# 	$File_Name	The name of the fake file.
+# 	$Number		The number of offending include lines (Optional)
+#
+msgid	"$filename has source relative includes"
+msgstr	"the \"$filename\" file has $number source relative include "
+	"directive${plural $number s}"
+
+msgid	"$filename1: excluded $filename2 referenced"
+msgstr	"$filename1: the excluded file \"$filename2\" is referenced by "
+	"this file"
+
+#
+# This information (-verbose) message is issued when c_incl pretends
+# that file file exists and is empty.
+#
+# 	$File_Name	The name of the fake file.
+#
+msgid	"bogus empty \"$filename\" file"
+msgstr	"pretending that \"$filename\" is empty"
+
+#
+# This information (-verbose) message is issued when file file's stat(2)
+# information does not match the information in the .c_inclrc file (or
+# there was no .c_inclrc file), or the file has not been scanned before.
+#
+# 	$File_Name	The name of the file to be scanned.
+#
+msgid	"cache miss for \"$filename\" file"
+msgstr	"need to scan the \"$filename\" file"
+
+#
+# This fatal error message is issued when the --language option is given
+# a name it does not understand.
+#
+# 	$Name		The offending language name.
+#
+msgid	"input language $name unknown"
+msgstr	"input language \"$name\" unknown"
+
+#
+# This fatal error message is issued when the --language option is given
+# a name it does not understand.
+#
+# 	$Name		The offending language name.
+# 	$Guess		A possibile language name.
+#
+msgid	"input language $name unknown, closest is $guess"
+msgstr	"input language \"$name\" unknown, closest is the \"$guess\" "
+	"language"
+
+#
+# This error message is issued whren there is a problem manipulating a
+# file lock.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"lock \"$filename\" exclusive: $errno"
+msgstr	"lock \"$filename\" exclusive: $errno"
+
+#
+# This error message is issued whren there is a problem manipulating a
+# file lock.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"lock \"$filename\" shared: $errno"
+msgstr	"lock \"$filename\" shared: $errno"
+
+#
+# This information (-verbose) message is issued when c_incl is
+# traversing the include search path, in order to resolve the name of an
+# include file.
+#
+# 	$File_Name	The name of the include file candidate.
+#
+msgid	"may need to look at \"$filename\" file"
+msgstr	"may need to look at \"$filename\" file"
+
+#
+# This fatal error message is issued when no files are named on the
+# command line.
+#
+msgid	"no input file specified"
+msgstr	"no input file specified"
+
+#
+# This error message is issued whren there is a problem manipulating a
+# file lock.
+#
+# 	$File_Name	The name of the offending file.
+#
+msgid	"unlock \"$filename\": $errno"
+msgstr	"unlock \"$filename\": $errno"
+
+#
+# This warning message is issued when an include file candidate is
+# inaccessible.
+#
+msgid	"warning: stat $filename: $errno"
+msgstr	"warning: stat $filename: $errno"

@@ -1,0 +1,6 @@
+/*
+ * MANIFEST: cookbook for using gcc
+ */
+#pragma once
+#include "c"
+cc = gcc;
