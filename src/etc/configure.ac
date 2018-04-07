@@ -337,6 +337,7 @@ dnl support for NLSDIR option
 dnl
 AC_ARG_WITH(nlsdir,
     [  --with-nlsdir=PATH   specify where the locale files should be installed])
+echo "ignore"
 
 if test "x$NLSDIR" = "x"; then
         if test "x$with_nlsdir" != "x"; then
