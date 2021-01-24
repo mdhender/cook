@@ -76,15 +76,19 @@ DESCRIPTION
 ARCHIVE SITE
        The latest version of cook is available on the Web from:
 
-           URL:    http://miller.emu.id.au/pmiller/cook/
-           File:   cook-2.34.README     # the README from the tar file
-           File:   cook-2.34.spec       # RedHat package specification
-           File:   cook-2.34.rm.ps.gz   # PostScript of the Reference Manual
-           File:   cook-2.34.ug.ps.gz   # PostScript of the User Guide
-           File:   cook-2.34.tar.gz     # the complete source
+           URL:    https://github.com/mdhender/cook/
+           File:   cook-2.35.README     # the README from the tar file
+           File:   cook-2.35.spec       # RedHat package specification
+           File:   cook-2.35.rm.ps.gz   # PostScript of the Reference Manual
+           File:   cook-2.35.ug.ps.gz   # PostScript of the User Guide
+           File:   cook-2.35.tar.gz     # the complete source
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
+
+       Peter Miller passed away in 2014. His website,
+       http://miller.emu.id.au/pmiller/, has been archived at
+       https://petermiller.work/.
 
 MAILING LIST
        A mailing list has been created so that users of cook may exchange
@@ -108,7 +112,7 @@ BUILDING COOK
        BUILDING file included in this distribution.
 
 COPYRIGHT
-       cook version 2.34
+       cook version 2.35
        Copyright (C) 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996,
        1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008,
        2009, 2010 Peter Miller
@@ -137,6 +141,10 @@ NEW IN THIS RELEASE
        following list is only a summary; for excruciating detail, and also
        acknowledgements of those who generously sent me feedback, please see
        the etc/CHANGES.* files included in this distribution.
+
+   Version 2.35 (2019-Jun-24)
+       * This change set fixes some errors with the build and configuration
+         scripts. (Thanks due to https://github.com/shlomif.)
 
    Version 2.34 (2010-Sep-25)
        * This change set adds a link to the PPA to the download page.  This
