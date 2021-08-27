@@ -78,7 +78,8 @@ fubar
 if test $? -ne 0 ; then fail; fi
 
 cat > test.c << 'fubar'
-main(){exit(42);}
+#include <stdlib.h>
+int main(){exit(42);}
 fubar
 if test $? -ne 0 ; then fail; fi
 
@@ -105,7 +106,8 @@ if test $? -ne 0 ; then fail; fi
 #
 sleep 2
 cat > test.c << 'fubar'
-main(){exit(0);}
+#include <stdlib.h>
+int main(){exit(0);}
 fubar
 if test $? -ne 0 ; then fail; fi
 
