@@ -754,9 +754,9 @@ common/sub/expr.$(OBJEXT): common/sub/expr.c common/ac/stdarg.h \
 common/sub/expr_gram.yacc.c common/sub/expr_gram.yacc.h: \
 		common/sub/expr_gram.y
 	$(YACC) -d common/sub/expr_gram.y
-	sed -e 's/[yY][yY]/sub_expr_gram_/g' y.tab.c > \
+	sed -e 's/yy\|YY_YY/sub_expr_gram_/g' y.tab.c > \
 		common/sub/expr_gram.yacc.c
-	sed -e 's/[yY][yY]/sub_expr_gram_/g' y.tab.h > \
+	sed -e 's/yy\|YY_YY/sub_expr_gram_/g' y.tab.h > \
 		common/sub/expr_gram.yacc.h
 	rm y.tab.c y.tab.h
 
@@ -1073,9 +1073,9 @@ cook/builtin/expr_lex.$(OBJEXT): cook/builtin/expr_lex.c \
 cook/builtin/expr_parse.yacc.c cook/builtin/expr_parse.yacc.h: \
 		cook/builtin/expr_parse.y
 	$(YACC) -d cook/builtin/expr_parse.y
-	sed -e 's/[yY][yY]/builtin_expr_parse_/g' y.tab.c > \
+	sed -e 's/yy\|YY_YY/builtin_expr_parse_/g' y.tab.c > \
 		cook/builtin/expr_parse.yacc.c
-	sed -e 's/[yY][yY]/builtin_expr_parse_/g' y.tab.h > \
+	sed -e 's/yy\|YY_YY/builtin_expr_parse_/g' y.tab.h > \
 		cook/builtin/expr_parse.yacc.h
 	rm y.tab.c y.tab.h
 
@@ -1575,9 +1575,9 @@ cook/fingerprint/find.$(OBJEXT): cook/fingerprint/find.c \
 cook/fingerprint/gram.yacc.c cook/fingerprint/gram.yacc.h: \
 		cook/fingerprint/gram.y
 	$(YACC) -d cook/fingerprint/gram.y
-	sed -e 's/[yY][yY]/fingerprint_gram_/g' y.tab.c > \
+	sed -e 's/yy\|YY_YY/fingerprint_gram_/g' y.tab.c > \
 		cook/fingerprint/gram.yacc.c
-	sed -e 's/[yY][yY]/fingerprint_gram_/g' y.tab.h > \
+	sed -e 's/yy\|YY_YY/fingerprint_gram_/g' y.tab.h > \
 		cook/fingerprint/gram.yacc.h
 	rm y.tab.c y.tab.h
 
@@ -1853,8 +1853,8 @@ cook/graph/web.$(OBJEXT): cook/graph/web.c common/ac/stdarg.h \
 
 cook/hashline.yacc.c cook/hashline.yacc.h: cook/hashline.y
 	$(YACC) -d cook/hashline.y
-	sed -e 's/[yY][yY]/hashline_/g' y.tab.c > cook/hashline.yacc.c
-	sed -e 's/[yY][yY]/hashline_/g' y.tab.h > cook/hashline.yacc.h
+	sed -e 's/yy\|YY_YY/hashline_/g' y.tab.c > cook/hashline.yacc.c
+	sed -e 's/yy\|YY_YY/hashline_/g' y.tab.h > cook/hashline.yacc.h
 	rm y.tab.c y.tab.h
 
 cook/hashline.yacc.$(OBJEXT): cook/hashline.yacc.c common/ac/stdarg.h \
@@ -2412,8 +2412,8 @@ cook/os/wait.$(OBJEXT): cook/os/wait.c common/ac/stddef.h \
 
 cook/parse.yacc.c cook/parse.yacc.h: cook/parse.y
 	$(YACC) -d cook/parse.y
-	sed -e 's/[yY][yY]/parse_/g' y.tab.c > cook/parse.yacc.c
-	sed -e 's/[yY][yY]/parse_/g' y.tab.h > cook/parse.yacc.h
+	sed -e 's/yy\|YY_YY/parse_/g' y.tab.c > cook/parse.yacc.c
+	sed -e 's/yy\|YY_YY/parse_/g' y.tab.h > cook/parse.yacc.h
 	rm y.tab.c y.tab.h
 
 cook/parse.yacc.$(OBJEXT): cook/parse.yacc.c common/ac/stdarg.h \
@@ -2663,8 +2663,8 @@ cookfp/main.$(OBJEXT): cookfp/main.c common/ac/errno.h \
 
 cooktime/date.yacc.c cooktime/date.yacc.h: cooktime/date.y
 	$(YACC) -d cooktime/date.y
-	sed -e 's/[yY][yY]/date_/g' y.tab.c > cooktime/date.yacc.c
-	sed -e 's/[yY][yY]/date_/g' y.tab.h > cooktime/date.yacc.h
+	sed -e 's/yy\|YY_YY/date_/g' y.tab.c > cooktime/date.yacc.c
+	sed -e 's/yy\|YY_YY/date_/g' y.tab.h > cooktime/date.yacc.h
 	rm y.tab.c y.tab.h
 
 cooktime/date.yacc.$(OBJEXT): cooktime/date.yacc.c common/ac/ctype.h \
@@ -2895,8 +2895,8 @@ make2cook/emit.$(OBJEXT): make2cook/emit.c common/ac/stdarg.h \
 
 make2cook/gram.yacc.c make2cook/gram.yacc.h: make2cook/gram.y
 	$(YACC) -d make2cook/gram.y
-	sed -e 's/[yY][yY]/gram_/g' y.tab.c > make2cook/gram.yacc.c
-	sed -e 's/[yY][yY]/gram_/g' y.tab.h > make2cook/gram.yacc.h
+	sed -e 's/yy\|YY_YY/gram_/g' y.tab.c > make2cook/gram.yacc.c
+	sed -e 's/yy\|YY_YY/gram_/g' y.tab.h > make2cook/gram.yacc.h
 	rm y.tab.c y.tab.h
 
 make2cook/gram.yacc.$(OBJEXT): make2cook/gram.yacc.c common/ac/stdarg.h \
@@ -3053,8 +3053,8 @@ make2cook/stmt/vpath.$(OBJEXT): make2cook/stmt/vpath.c \
 
 make2cook/vargram.yacc.c make2cook/vargram.yacc.h: make2cook/vargram.y
 	$(YACC) -d make2cook/vargram.y
-	sed -e 's/[yY][yY]/vargram_/g' y.tab.c > make2cook/vargram.yacc.c
-	sed -e 's/[yY][yY]/vargram_/g' y.tab.h > make2cook/vargram.yacc.h
+	sed -e 's/yy\|YY_YY/vargram_/g' y.tab.c > make2cook/vargram.yacc.c
+	sed -e 's/yy\|YY_YY/vargram_/g' y.tab.h > make2cook/vargram.yacc.h
 	rm y.tab.c y.tab.h
 
 make2cook/vargram.yacc.$(OBJEXT): make2cook/vargram.yacc.c \
